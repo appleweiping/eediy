@@ -1,0 +1,53 @@
+name: Broken or restricted link / 链接异常
+description: Report a missing, moved, policy-blocked, or degraded resource.
+title: "[Link] "
+labels:
+  - link
+  - needs-review
+body:
+  - type: input
+    id: page
+    attributes:
+      label: EEDIY page / 所在页面
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Affected URL / 异常链接
+      placeholder: https://
+    validations:
+      required: true
+  - type: dropdown
+    id: symptom
+    attributes:
+      label: Observed result / 观察结果
+      options:
+        - Not found or removed
+        - Access denied or robots restriction
+        - Login or payment required
+        - Redirect loop or wrong destination
+        - Important material missing
+        - Certificate or connection failure
+    validations:
+      required: true
+  - type: textarea
+    id: observation
+    attributes:
+      label: Time, region, status, and reproduction / 时间、地区、状态与复现
+      description: Do not include accounts, cookies, tokens, or personal data.
+    validations:
+      required: true
+  - type: input
+    id: replacement
+    attributes:
+      label: Official replacement, if known / 官方替代链接
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks / 确认
+      options:
+        - label: I tested the link without exposing private account data.
+          required: true
+        - label: I understand policy denials require manual review and are not healthy responses.
+          required: true

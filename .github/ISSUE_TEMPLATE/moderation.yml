@@ -1,0 +1,40 @@
+name: Moderation or conduct report
+description: Report a community-guideline or Code of Conduct concern.
+title: "[Moderation] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue will be public. Share only the minimum information needed to identify the concern. Do not include private contact details, credentials, private messages, or other sensitive evidence.
+  - type: textarea
+    id: location
+    attributes:
+      label: Public location
+      description: Link to the public issue, discussion, pull request, comment, or commit involved.
+      placeholder: https://github.com/owner/repository/...
+    validations:
+      required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: Concern
+      description: Briefly describe the conduct or moderation concern without sensitive personal details.
+    validations:
+      required: true
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      options:
+        - Routine review
+        - Ongoing disruption
+        - Immediate safety concern
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Public-report confirmation
+      options:
+        - label: I understand this report is public and contains no sensitive or private evidence.
+          required: true

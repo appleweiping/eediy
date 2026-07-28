@@ -1,0 +1,522 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eediy.dev/schemas/course.schema.json",
+  "title": "EEDIY canonical course catalogue",
+  "description": "The reviewed, bilingual catalogue generated from research candidates and enriched by maintainers.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "updated_at",
+    "tracks",
+    "courses"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "tracks": {
+      "type": "array",
+      "minItems": 24,
+      "items": {
+        "$ref": "#/$defs/track"
+      }
+    },
+    "courses": {
+      "type": "array",
+      "minItems": 125,
+      "items": {
+        "$ref": "#/$defs/course"
+      }
+    }
+  },
+  "$defs": {
+    "localizedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "zh",
+        "en"
+      ],
+      "properties": {
+        "zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "localizedList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "zh",
+        "en"
+      ],
+      "properties": {
+        "zh": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "en": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "track": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "group",
+        "order",
+        "title",
+        "summary",
+        "outcomes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "group": {
+          "$ref": "#/$defs/slug"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "summary": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "outcomes": {
+          "$ref": "#/$defs/localizedList"
+        },
+        "prerequisite_tracks": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/slug"
+          },
+          "default": []
+        }
+      }
+    },
+    "course": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source_id",
+        "slug",
+        "track",
+        "title",
+        "summary",
+        "institution",
+        "course_code",
+        "role",
+        "tier",
+        "level",
+        "languages",
+        "study_plan",
+        "tooling",
+        "safety",
+        "prerequisite_course_ids",
+        "prerequisites",
+        "outcomes",
+        "completion_evidence",
+        "selection_note",
+        "review_note",
+        "resource_coverage",
+        "resources",
+        "projects",
+        "last_reviewed"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "source_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "track": {
+          "$ref": "#/$defs/slug"
+        },
+        "title": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "summary": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "institution": {
+          "type": "string",
+          "minLength": 1
+        },
+        "course_code": {
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "mainline",
+            "alternative",
+            "supplement"
+          ]
+        },
+        "tier": {
+          "enum": [
+            "S",
+            "A",
+            "B"
+          ]
+        },
+        "level": {
+          "enum": [
+            "introductory",
+            "intermediate",
+            "advanced",
+            "mixed",
+            "unspecified"
+          ]
+        },
+        "languages": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+          }
+        },
+        "study_plan": {
+          "$ref": "#/$defs/studyPlan"
+        },
+        "tooling": {
+          "$ref": "#/$defs/tooling"
+        },
+        "safety": {
+          "$ref": "#/$defs/safety"
+        },
+        "prerequisite_course_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "default": []
+        },
+        "prerequisites": {
+          "$ref": "#/$defs/localizedList"
+        },
+        "outcomes": {
+          "$ref": "#/$defs/localizedList"
+        },
+        "completion_evidence": {
+          "$ref": "#/$defs/localizedList"
+        },
+        "selection_note": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "review_note": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "resource_coverage": {
+          "$ref": "#/$defs/resourceCoverage"
+        },
+        "resources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/resource"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/project"
+          }
+        },
+        "last_reviewed": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "resourceCoverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "video",
+        "notes",
+        "practice",
+        "labs",
+        "exams",
+        "code"
+      ],
+      "properties": {
+        "video": {
+          "$ref": "#/$defs/coverageScore"
+        },
+        "notes": {
+          "$ref": "#/$defs/coverageScore"
+        },
+        "practice": {
+          "$ref": "#/$defs/coverageScore"
+        },
+        "labs": {
+          "$ref": "#/$defs/coverageScore"
+        },
+        "exams": {
+          "$ref": "#/$defs/coverageScore"
+        },
+        "code": {
+          "$ref": "#/$defs/coverageScore"
+        }
+      }
+    },
+    "studyPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "estimated_weeks",
+        "hours_per_week",
+        "note"
+      ],
+      "properties": {
+        "estimated_weeks": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 104
+        },
+        "hours_per_week": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0,
+          "maximum": 80
+        },
+        "note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "tooling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "software",
+        "hardware",
+        "cost_note"
+      ],
+      "properties": {
+        "software": {
+          "$ref": "#/$defs/localizedList"
+        },
+        "hardware": {
+          "$ref": "#/$defs/localizedList"
+        },
+        "cost_note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "note"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "simulation-only",
+            "low-energy",
+            "supervised",
+            "standard"
+          ]
+        },
+        "note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "coverageScore": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "url",
+        "access",
+        "license",
+        "status",
+        "last_verified"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "kind": {
+          "enum": [
+            "course",
+            "video",
+            "notes",
+            "textbook",
+            "assignments",
+            "labs",
+            "projects",
+            "exams",
+            "code",
+            "dataset",
+            "simulator",
+            "community",
+            "other"
+          ]
+        },
+        "title": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "access": {
+          "enum": [
+            "open",
+            "open-registration",
+            "free-audit",
+            "limited-free",
+            "paid",
+            "institutional"
+          ]
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "available",
+            "degraded",
+            "archived",
+            "unavailable",
+            "review-needed"
+          ]
+        },
+        "last_verified": {
+          "type": "string",
+          "format": "date"
+        },
+        "note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "brief",
+        "origin",
+        "deliverables",
+        "verification",
+        "reproducibility",
+        "safety_level",
+        "safety_note"
+      ],
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "brief": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "origin": {
+          "enum": [
+            "official",
+            "suggested"
+          ]
+        },
+        "deliverables": {
+          "$ref": "#/$defs/projectEvidence4"
+        },
+        "verification": {
+          "$ref": "#/$defs/projectEvidence4"
+        },
+        "reproducibility": {
+          "$ref": "#/$defs/projectEvidence3"
+        },
+        "safety_level": {
+          "enum": [
+            "simulation-only",
+            "low-energy",
+            "supervised",
+            "standard"
+          ]
+        },
+        "safety_note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "projectEvidence4": {
+      "$ref": "#/$defs/localizedList",
+      "properties": {
+        "zh": {
+          "minItems": 4
+        },
+        "en": {
+          "minItems": 4
+        }
+      }
+    },
+    "projectEvidence3": {
+      "$ref": "#/$defs/localizedList",
+      "properties": {
+        "zh": {
+          "minItems": 3
+        },
+        "en": {
+          "minItems": 3
+        }
+      }
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    }
+  }
+}

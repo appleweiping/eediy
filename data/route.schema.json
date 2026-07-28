@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eediy.dev/schemas/route.schema.json",
+  "title": "EEDIY learning routes",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "routes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "$ref": "#/$defs/route"
+      }
+    }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title_zh",
+        "title_en",
+        "audience_zh",
+        "audience_en",
+        "outcome_zh",
+        "outcome_en",
+        "stages"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "title_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outcome_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outcome_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/stage"
+          }
+        }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name_zh",
+        "name_en",
+        "course_ids",
+        "required_course_ids",
+        "elective_count",
+        "exit_zh",
+        "exit_en"
+      ],
+      "properties": {
+        "name_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "course_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required_course_ids": {
+          "type": "array",
+          "minItems": 0,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "path_options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/path_option"
+          }
+        },
+        "elective_course_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "elective_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exit_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exit_en": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {
+              "properties": {
+                "required_course_ids": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "required": [
+                "path_options"
+              ]
+            }
+          ]
+        },
+        {
+          "if": {
+            "required": [
+              "path_options"
+            ]
+          },
+          "then": {
+            "properties": {
+              "elective_count": {
+                "const": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "path_option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label_zh",
+        "label_en",
+        "course_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "label_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "course_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}

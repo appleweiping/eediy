@@ -1,0 +1,5 @@
+{# Select Material's interface translations from the page URL at build time. #}
+{% set page_language = "en" if page and (page.url == "en/" or page.url.startswith("en/")) else "zh" %}
+{% import "partials/languages/" ~ page_language ~ ".html" as lang %}
+{% import "partials/languages/en.html" as fallback %}
+{% macro t(key) %}{{ lang.t(key) or fallback.t(key) or key }}{% endmacro %}

@@ -1,0 +1,125 @@
+---
+title: "Real-Time Project for Embedded Systems"
+description: "University of Colorado Boulder 的《Real-Time Project for Embedded Systems》以摄像头和 Raspberry Pi 家庭项目收束实时嵌入式序列；项目、代码和练习完整，但有明确前序与平台成本。"
+page_type: course
+---
+
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 39f0e676e848a0e1 -->
+
+# Real-Time Project for Embedded Systems
+
+[English](../../en/courses/real-time-cps/066-real-time-embedded-systems-4.md) · [← 实时与信息物理系统](index.md)
+
+> University of Colorado Boulder 的《Real-Time Project for Embedded Systems》以摄像头和 Raspberry Pi 家庭项目收束实时嵌入式序列；项目、代码和练习完整，但有明确前序与平台成本。
+
+## 课程定位
+
+| 属性 | 值 |
+|---|---|
+| **机构** | University of Colorado Boulder |
+| **课程编号** | Real-Time Embedded Systems 4 |
+| **方向** | [实时与信息物理系统](index.md) |
+| **评级** | A |
+| **角色** | 替代 |
+| **难度** | 提供方未标准化（请按先修判断） |
+| **最近复核** | 2026-07-28 |
+
+## 为什么选择这门课
+
+替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
+
+## 学习前准备
+
+- 建议先完成方向基础：嵌入式系统
+- 建议先完成方向基础：信号与系统
+- 课程顺序要求：先完成[《Real-Time Embedded Systems Concepts and Practices》](../real-time-cps/063-real-time-embedded-systems-1.md)（University of Colorado Boulder Real-Time Embedded Systems 1）
+- 课程顺序要求：先完成[《Real-Time Embedded Systems Theory and Analysis》](../real-time-cps/064-real-time-embedded-systems-2.md)（University of Colorado Boulder Real-Time Embedded Systems 2）
+
+## 可验证的学习成果
+
+- 解释实时与信息物理系统中的核心模型，并说明主要假设与适用边界
+- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
+- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
+
+## 工时与节奏
+
+**11 周，每周 9 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
+
+## 软件、硬件与成本
+
+### 软件
+
+- 维护者建议的开源/免费验证路径：Zephyr 或 FreeRTOS 源码、GCC 或 LLVM、CMake、GDB，以及 Renode 或 QEMU
+- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
+
+### 硬件
+
+- 资源清单包含实验覆盖；优先借用或共享课程支持的实时控制开发板、USB 调试器、逻辑分析仪及低压传感器/执行器。仅在提供方实验手册明确要求后核对规格、许可与安全条件
+
+### 成本说明
+
+建议软件栈可开源或免费使用；这不是提供方要求或物料清单。开发板、元件、打样和仪器的实际清单与费用以提供方实验手册、地区和当地可得性为准，采购前优先借用、共享或仿真。
+
+## 安全等级
+
+**低能量实验。** 仅开展隔离、限流、低能量实验；通电前检查额定值、接地、短路风险和紧急断电方式。
+
+## 公开资源完整度
+
+| 资源类型 | 完整度 |
+|---|---|
+| 视频 | 完整 |
+| 讲义 | 部分 |
+| 练习 | 完整 |
+| 实验 | 完整 |
+| 考试 | 无公开材料 |
+| 代码 | 完整 |
+
+## 资源与访问条件
+
+| 资源 | 访问 | 许可 | 状态 | 复核日期 |
+|---|---|---|---|---|
+| [课程主页](https://www.coursera.org/learn/real-time-project-embedded-systems) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
+
+> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
+
+## 实践闭环
+
+### 《Real-Time Project for Embedded Systems · University of Colorado Boulder Real-Time Embedded Systems 4》实时闭环截止期压力测试
+
+这是维护者为《Real-Time Project for Embedded Systems · University of Colorado Boulder Real-Time Embedded Systems 4》建议的自学项目，不是课程官方作业。为实时与信息物理系统建立离散事件调度器与受控对象仿真，量化抖动、超期和传感丢失对闭环安全裕量的影响。
+
+**来源：** 维护者建议项目
+
+**交付物**
+
+- 任务集、周期/截止期/WCET 假设、调度策略和受控对象模型
+- 可执行调度器、闭环仿真、故障注入器和监控断言
+- 不同负载下的原始响应时间、抖动、超期和状态轨迹
+- 一份报告，给出可调度边界、控制退化和安全降级状态
+
+**验收**
+
+- 标称负载下零截止期超期，解析响应时间界与仿真最坏值相差不超过 10%
+- 覆盖零负载、100% 利用率附近、突发阻塞和时钟漂移边界
+- 用第二种调度分析或穷举短超周期交叉核对可调度结论
+- 逐步增加 WCET 直到首次超期，报告超期率与闭环误差增长曲线
+
+**复现要求**
+
+- 提交调度器、受控对象、故障场景、断言和分析源文件
+- 固定事件顺序、随机种子、时间单位、求解器与依赖版本
+- 保存原始事件/状态日志和自动生成的时间线与报告
+
+**安全边界：** 仅仿真 — 只在模拟受控对象上施加超期和故障；不得把未经独立安全验证的调度或降级逻辑接入真实机械、车辆、医疗或电力系统。
+
+## 风险、缺口与边界
+
+摄像头与 Raspberry Pi 家庭项目要求先完成前两门课程，且可能需要付费平台访问。
+
+## 完成证据
+
+- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
+- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
+- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
+- 实验包：原理图/装置设置、校准记录、原始数据、不确定度、安全检查、失败记录与从原始数据重建图表的步骤

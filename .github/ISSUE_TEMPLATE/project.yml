@@ -1,0 +1,50 @@
+name: Project or lab proposal / 项目或实验提案
+description: Propose a reproducible, assessable, and safely bounded engineering project.
+title: "[Project] "
+labels:
+  - project
+  - needs-review
+body:
+  - type: input
+    id: track
+    attributes:
+      label: Track and prerequisite courses / 方向与先修
+    validations:
+      required: true
+  - type: textarea
+    id: brief
+    attributes:
+      label: Engineering brief / 工程任务
+      description: State the problem, constraints, and what is deliberately out of scope.
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Reproducible deliverables / 可复现交付物
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification and acceptance / 验证与验收
+    validations:
+      required: true
+  - type: textarea
+    id: tooling
+    attributes:
+      label: Software, hardware, bill of materials, and cost / 工具、物料与成本
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Hazards, controls, and supervision / 危险、控制与监督
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: Artifact and dependency licenses / 产物与依赖许可
+    validations:
+      required: true

@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "groups": [
+    {
+      "id": "foundations",
+      "title_zh": "数理与工程基础",
+      "title_en": "Mathematical and Engineering Foundations"
+    },
+    {
+      "id": "core",
+      "title_zh": "电子工程核心",
+      "title_en": "Electrical Engineering Core"
+    },
+    {
+      "id": "systems",
+      "title_zh": "数字、系统与智能硬件",
+      "title_en": "Digital, Systems, and Intelligent Hardware"
+    },
+    {
+      "id": "waves",
+      "title_zh": "信号、通信与电磁",
+      "title_en": "Signals, Communications, and Electromagnetics"
+    },
+    {
+      "id": "devices",
+      "title_zh": "器件、芯片与微纳",
+      "title_en": "Devices, Integrated Circuits, and Micro/Nano"
+    },
+    {
+      "id": "energy",
+      "title_zh": "电能与可持续能源",
+      "title_en": "Electric Energy and Sustainability"
+    },
+    {
+      "id": "practice",
+      "title_zh": "仪器、设计与跨学科实践",
+      "title_en": "Instrumentation, Design, and Interdisciplinary Practice"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "mathematics",
+      "group": "foundations",
+      "order": 10,
+      "title_zh": "工程数学",
+      "title_en": "Engineering Mathematics",
+      "summary_zh": "微积分、线性代数、微分方程、复变函数与数值思维，为后续所有建模和分析提供共同语言。",
+      "summary_en": "Calculus, linear algebra, differential equations, complex variables, and numerical reasoning for modeling across EE.",
+      "prerequisites": []
+    },
+    {
+      "id": "probability-statistics",
+      "group": "foundations",
+      "order": 20,
+      "title_zh": "概率、统计与随机过程",
+      "title_en": "Probability, Statistics, and Random Processes",
+      "summary_zh": "从概率模型到随机信号、估计与推断，连接通信、控制、信号处理和器件噪声。",
+      "summary_en": "Probability models, random signals, estimation, and inference for communications, control, DSP, and device noise.",
+      "prerequisites": ["mathematics"]
+    },
+    {
+      "id": "physics",
+      "group": "foundations",
+      "order": 30,
+      "title_zh": "物理基础",
+      "title_en": "Physics Foundations",
+      "summary_zh": "力学、电磁学、波动与量子基础，面向机器人、场与波、器件和光电方向。",
+      "summary_en": "Mechanics, electromagnetism, waves, and quantum foundations for robotics, fields, devices, and photonics.",
+      "prerequisites": ["mathematics"]
+    },
+    {
+      "id": "programming-tools",
+      "group": "foundations",
+      "order": 40,
+      "title_zh": "编程与工程计算",
+      "title_en": "Programming and Engineering Computing",
+      "summary_zh": "Python、C、版本控制、可复现实验与数值工具，强调把分析变成可验证的软件。",
+      "summary_en": "Python, C, version control, reproducible experiments, and numerical tools that turn analysis into verifiable software.",
+      "prerequisites": []
+    },
+    {
+      "id": "ee-introduction",
+      "group": "foundations",
+      "order": 50,
+      "title_zh": "电子工程导论",
+      "title_en": "Introduction to Electrical Engineering",
+      "summary_zh": "用跨越电路、信号、计算和机电系统的综合课程建立全景认知，并尽早完成小型系统。",
+      "summary_en": "Survey courses spanning circuits, signals, computation, and electromechanical systems, with early system-building practice.",
+      "prerequisites": ["mathematics", "programming-tools"]
+    },
+    {
+      "id": "circuits",
+      "group": "core",
+      "order": 100,
+      "title_zh": "电路分析",
+      "title_en": "Circuit Analysis",
+      "summary_zh": "直流、交流、动态电路、网络定理和频域方法，是电子、控制、电力与仪器的共同基础。",
+      "summary_en": "DC, AC, dynamic circuits, network theorems, and frequency-domain methods shared by electronics, control, power, and instrumentation.",
+      "prerequisites": ["mathematics", "physics"]
+    },
+    {
+      "id": "electronics-laboratory",
+      "group": "core",
+      "order": 110,
+      "title_zh": "电子实验与测量",
+      "title_en": "Electronics Laboratory and Measurement",
+      "summary_zh": "从面包板、示波器和误差分析到可复现实验报告，建立安全、可靠的动手能力。",
+      "summary_en": "Breadboards, oscilloscopes, uncertainty, and reproducible lab reports for safe and reliable hands-on work.",
+      "prerequisites": ["circuits"]
+    },
+    {
+      "id": "analog-electronics",
+      "group": "core",
+      "order": 120,
+      "title_zh": "模拟电子",
+      "title_en": "Analog Electronics",
+      "summary_zh": "二极管、晶体管、运放、反馈、滤波与模拟系统设计，兼顾小信号模型和实际非理想因素。",
+      "summary_en": "Diodes, transistors, op-amps, feedback, filters, and analog system design with real nonidealities.",
+      "prerequisites": ["circuits", "electronics-laboratory"]
+    },
+    {
+      "id": "signals-systems",
+      "group": "core",
+      "order": 130,
+      "title_zh": "信号与系统",
+      "title_en": "Signals and Systems",
+      "summary_zh": "卷积、变换、采样、滤波和反馈的统一语言，贯通信号处理、通信与控制。",
+      "summary_en": "Convolution, transforms, sampling, filtering, and feedback as a common language for DSP, communications, and control.",
+      "prerequisites": ["mathematics", "circuits"]
+    },
+    {
+      "id": "digital-logic",
+      "group": "core",
+      "order": 140,
+      "title_zh": "数字逻辑与计算结构",
+      "title_en": "Digital Logic and Computation Structures",
+      "summary_zh": "组合逻辑、时序逻辑、有限状态机、处理器与存储层次，从门级抽象走向完整计算机。",
+      "summary_en": "Combinational and sequential logic, finite-state machines, processors, and memory from gates to complete computers.",
+      "prerequisites": ["programming-tools", "circuits"]
+    },
+    {
+      "id": "electromagnetics",
+      "group": "core",
+      "order": 150,
+      "title_zh": "电磁场与波",
+      "title_en": "Electromagnetic Fields and Waves",
+      "summary_zh": "Maxwell 方程、边界条件、传输线、波导与辐射，为 RF、光子和高速互连奠基。",
+      "summary_en": "Maxwell equations, boundaries, transmission lines, waveguides, and radiation for RF, photonics, and high-speed interconnects.",
+      "prerequisites": ["mathematics", "physics"]
+    },
+    {
+      "id": "computer-architecture",
+      "group": "systems",
+      "order": 200,
+      "title_zh": "计算机体系结构",
+      "title_en": "Computer Architecture",
+      "summary_zh": "ISA、流水线、缓存、并行与性能分析，解释数字系统如何执行真实程序。",
+      "summary_en": "ISAs, pipelines, caches, parallelism, and performance analysis for understanding how hardware executes programs.",
+      "prerequisites": ["digital-logic", "programming-tools"]
+    },
+    {
+      "id": "fpga-soc",
+      "group": "systems",
+      "order": 210,
+      "title_zh": "FPGA 与片上系统",
+      "title_en": "FPGA and System-on-Chip Design",
+      "summary_zh": "RTL、验证、外设接口与软硬件协同，以可综合设计和板级演示作为验收。",
+      "summary_en": "RTL, verification, interfaces, and hardware/software co-design with synthesizable designs and board-level demonstrations.",
+      "prerequisites": ["digital-logic", "computer-architecture"]
+    },
+    {
+      "id": "embedded-systems",
+      "group": "systems",
+      "order": 220,
+      "title_zh": "嵌入式系统",
+      "title_en": "Embedded Systems",
+      "summary_zh": "裸机程序、外设、实时采样、通信和系统集成，要求可重复构建的硬件项目。",
+      "summary_en": "Bare-metal software, peripherals, real-time sampling, communications, and integrated hardware projects.",
+      "prerequisites": ["digital-logic", "programming-tools", "electronics-laboratory"]
+    },
+    {
+      "id": "real-time-cps",
+      "group": "systems",
+      "order": 230,
+      "title_zh": "实时与信息物理系统",
+      "title_en": "Real-Time and Cyber-Physical Systems",
+      "summary_zh": "调度、时序分析、可靠性与物理闭环，关注任务错过截止期时系统会发生什么。",
+      "summary_en": "Scheduling, timing analysis, reliability, and physical feedback with explicit treatment of missed deadlines.",
+      "prerequisites": ["embedded-systems", "signals-systems"]
+    },
+    {
+      "id": "hardware-security",
+      "group": "systems",
+      "order": 240,
+      "title_zh": "硬件安全",
+      "title_en": "Hardware Security",
+      "summary_zh": "侧信道、故障攻击、可信执行与安全架构，在真实处理器和可验证威胁模型上学习。",
+      "summary_en": "Side channels, fault attacks, trusted execution, and secure architecture using real processors and testable threat models.",
+      "prerequisites": ["digital-logic", "computer-architecture"]
+    },
+    {
+      "id": "dsp",
+      "group": "waves",
+      "order": 300,
+      "title_zh": "数字信号处理",
+      "title_en": "Digital Signal Processing",
+      "summary_zh": "离散变换、滤波器、谱估计、多率系统与实现，以代码、数据和误差指标闭环。",
+      "summary_en": "Discrete transforms, filters, spectral estimation, multirate systems, and implementations validated with code and metrics.",
+      "prerequisites": ["signals-systems", "probability-statistics", "programming-tools"]
+    },
+    {
+      "id": "communications",
+      "group": "waves",
+      "order": 310,
+      "title_zh": "通信系统",
+      "title_en": "Communication Systems",
+      "summary_zh": "调制、检测、信道、同步、链路预算与无线系统，从波形到端到端可靠通信。",
+      "summary_en": "Modulation, detection, channels, synchronization, link budgets, and wireless systems from waveforms to reliable links.",
+      "prerequisites": ["signals-systems", "probability-statistics"]
+    },
+    {
+      "id": "information-theory-coding",
+      "group": "waves",
+      "order": 320,
+      "title_zh": "信息论与编码",
+      "title_en": "Information Theory and Coding",
+      "summary_zh": "熵、容量、率失真与现代纠错码，给出通信与压缩的理论边界和构造方法。",
+      "summary_en": "Entropy, capacity, rate-distortion, and modern error-correcting codes for both limits and constructions.",
+      "prerequisites": ["probability-statistics", "communications"]
+    },
+    {
+      "id": "control-systems",
+      "group": "waves",
+      "order": 330,
+      "title_zh": "控制系统",
+      "title_en": "Control Systems",
+      "summary_zh": "状态空间、稳定性、频域设计、估计与最优控制，强调仿真、实验和模型失配。",
+      "summary_en": "State space, stability, frequency-domain design, estimation, and optimal control with simulation and model mismatch.",
+      "prerequisites": ["signals-systems", "mathematics"]
+    },
+    {
+      "id": "robotics",
+      "group": "waves",
+      "order": 340,
+      "title_zh": "机器人与自主系统",
+      "title_en": "Robotics and Autonomous Systems",
+      "summary_zh": "运动学、动力学、规划、感知和操控，通过仿真或实体平台完成可演示系统。",
+      "summary_en": "Kinematics, dynamics, planning, perception, and manipulation through demonstrable simulated or physical systems.",
+      "prerequisites": ["control-systems", "programming-tools", "physics"]
+    },
+    {
+      "id": "rf-microwave-antennas",
+      "group": "waves",
+      "order": 350,
+      "title_zh": "射频、微波与天线",
+      "title_en": "RF, Microwave, and Antennas",
+      "summary_zh": "网络参数、匹配、噪声、接收机、微波电路和天线，明确仪器、频谱法规与功率安全。",
+      "summary_en": "Network parameters, matching, noise, receivers, microwave circuits, and antennas with instrumentation, spectrum, and RF safety.",
+      "prerequisites": ["electromagnetics", "circuits", "communications"]
+    },
+    {
+      "id": "semiconductor-devices",
+      "group": "devices",
+      "order": 400,
+      "title_zh": "半导体器件",
+      "title_en": "Semiconductor Devices",
+      "summary_zh": "载流子、结、MOS 与纳米结构，把量子和固体物理连接到可测量的器件特性。",
+      "summary_en": "Carriers, junctions, MOS structures, and nanostructures connecting quantum and solid-state physics to measurable devices.",
+      "prerequisites": ["physics", "circuits", "mathematics"]
+    },
+    {
+      "id": "microelectronics",
+      "group": "devices",
+      "order": 410,
+      "title_zh": "微电子学",
+      "title_en": "Microelectronics",
+      "summary_zh": "从器件模型到晶体管级放大器和数字门，连接半导体物理、模拟和集成电路设计。",
+      "summary_en": "From device models to transistor-level amplifiers and gates, linking semiconductor physics to analog and IC design.",
+      "prerequisites": ["semiconductor-devices", "circuits"]
+    },
+    {
+      "id": "analog-ic",
+      "group": "devices",
+      "order": 420,
+      "title_zh": "模拟与混合信号集成电路",
+      "title_en": "Analog and Mixed-Signal IC Design",
+      "summary_zh": "偏置、增益级、反馈、噪声、数据转换与版图意识，以仿真和设计权衡为核心。",
+      "summary_en": "Biasing, gain stages, feedback, noise, data conversion, and layout-aware tradeoffs validated in simulation.",
+      "prerequisites": ["microelectronics", "analog-electronics"]
+    },
+    {
+      "id": "vlsi-ic",
+      "group": "devices",
+      "order": 430,
+      "title_zh": "数字 VLSI 与芯片设计",
+      "title_en": "Digital VLSI and Chip Design",
+      "summary_zh": "CMOS 逻辑、时序、功耗、物理设计与验证，区分开源流程和受限商业 EDA。",
+      "summary_en": "CMOS logic, timing, power, physical design, and verification with explicit open-source versus restricted EDA paths.",
+      "prerequisites": ["microelectronics", "digital-logic"]
+    },
+    {
+      "id": "fabrication-mems",
+      "group": "devices",
+      "order": 440,
+      "title_zh": "微纳工艺与 MEMS",
+      "title_en": "Micro/Nanofabrication and MEMS",
+      "summary_zh": "沉积、光刻、刻蚀、工艺集成和微机电设计；无洁净室时只做工艺计划、仿真和案例分析。",
+      "summary_en": "Deposition, lithography, etching, process integration, and MEMS design using process plans and simulation when cleanrooms are unavailable.",
+      "prerequisites": ["semiconductor-devices", "physics"]
+    },
+    {
+      "id": "optics-photonics",
+      "group": "devices",
+      "order": 450,
+      "title_zh": "光学、光电与光子学",
+      "title_en": "Optics, Optoelectronics, and Photonics",
+      "summary_zh": "几何与波动光学、半导体光电器件、集成光子和量子光学，结合可复现的仿真设计。",
+      "summary_en": "Geometric and wave optics, optoelectronic devices, integrated photonics, and quantum optics with reproducible simulation.",
+      "prerequisites": ["electromagnetics", "semiconductor-devices", "physics"]
+    },
+    {
+      "id": "power-electronics",
+      "group": "energy",
+      "order": 500,
+      "title_zh": "电力电子",
+      "title_en": "Power Electronics",
+      "summary_zh": "变换器拓扑、磁性元件、调制与闭环控制；高压和大功率实验默认仿真或受监督。",
+      "summary_en": "Converter topologies, magnetics, modulation, and feedback; high-voltage or high-power work defaults to simulation or supervision.",
+      "prerequisites": ["circuits", "control-systems", "electronics-laboratory"]
+    },
+    {
+      "id": "power-systems-machines",
+      "group": "energy",
+      "order": 510,
+      "title_zh": "电力系统与电机",
+      "title_en": "Power Systems and Electric Machines",
+      "summary_zh": "潮流、故障、稳定性、电能质量和机电能量转换，兼顾模型与现实电网约束。",
+      "summary_en": "Power flow, faults, stability, power quality, and electromechanical conversion grounded in real grid constraints.",
+      "prerequisites": ["circuits", "electromagnetics", "mathematics"]
+    },
+    {
+      "id": "energy-storage-pv",
+      "group": "energy",
+      "order": 520,
+      "title_zh": "储能与光伏",
+      "title_en": "Energy Storage and Photovoltaics",
+      "summary_zh": "电化学储能、太阳能电池、系统建模与能量管理，明确电池、激光和高压安全边界。",
+      "summary_en": "Electrochemical storage, solar cells, system modeling, and energy management with explicit battery, laser, and high-voltage safety.",
+      "prerequisites": ["semiconductor-devices", "circuits", "mathematics"]
+    },
+    {
+      "id": "pcb-eda",
+      "group": "practice",
+      "order": 600,
+      "title_zh": "PCB、EDA 与硬件验证",
+      "title_en": "PCB, EDA, and Hardware Verification",
+      "summary_zh": "原理图、版图、制造文件、BOM、调试与设计评审，让电路从仿真走到可制造、可测试硬件。",
+      "summary_en": "Schematics, layout, fabrication outputs, BOMs, debugging, and reviews that turn simulations into manufacturable hardware.",
+      "prerequisites": ["circuits", "electronics-laboratory"]
+    },
+    {
+      "id": "sensors-instrumentation",
+      "group": "practice",
+      "order": 610,
+      "title_zh": "传感器与仪器",
+      "title_en": "Sensors and Instrumentation",
+      "summary_zh": "传感机理、接口电路、校准、噪声和测量不确定度，要求给出可追溯的测试方法。",
+      "summary_en": "Sensing mechanisms, interfaces, calibration, noise, and uncertainty with traceable test methods.",
+      "prerequisites": ["analog-electronics", "signals-systems", "electronics-laboratory"]
+    },
+    {
+      "id": "biomedical",
+      "group": "practice",
+      "order": 620,
+      "title_zh": "生物医学电子与信号",
+      "title_en": "Biomedical Electronics and Signals",
+      "summary_zh": "生理信号、医学成像、仪器与患者安全；人体实验必须遵守伦理、隔离和监督要求。",
+      "summary_en": "Physiological signals, medical imaging, and instrumentation with patient safety, ethics, isolation, and supervision.",
+      "prerequisites": ["sensors-instrumentation", "dsp", "physics"]
+    },
+    {
+      "id": "capstone-practice",
+      "group": "practice",
+      "order": 630,
+      "title_zh": "综合设计与毕业项目",
+      "title_en": "Capstone Design and Engineering Practice",
+      "summary_zh": "把需求、标准、架构、成本、安全、制造、测试和复盘合并为一个可复现、可演示的工程交付物。",
+      "summary_en": "Requirements, standards, architecture, cost, safety, fabrication, testing, and postmortems combined into a reproducible engineering deliverable.",
+      "prerequisites": ["ee-introduction", "electronics-laboratory", "programming-tools"]
+    }
+  ]
+}

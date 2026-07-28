@@ -1,0 +1,49 @@
+name: Factual or safety correction / 事实或安全纠错
+description: Correct a technical claim, route dependency, translation, license, or safety boundary.
+title: "[Correction] "
+labels:
+  - content
+  - needs-review
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page and section / 页面与章节
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current statement / 当前表述
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Why it is incorrect or unsafe / 错误或风险
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Primary evidence / 一手证据
+      description: Link standards, official documentation, course pages, or peer-reviewed work.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed bilingual correction / 建议双语修正
+    validations:
+      required: true
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Impact / 影响
+      options:
+        - Safety-critical
+        - Blocks course completion
+        - Factual but not urgent
+        - Translation or clarity
+    validations:
+      required: true

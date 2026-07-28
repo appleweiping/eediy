@@ -1,0 +1,139 @@
+name: Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      full_external_check:
+        description: Check every external URL over the network
+        required: false
+        default: false
+        type: boolean
+  schedule:
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUTF8: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  quality:
+    name: Data, docs, tests, and strict build
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.lock
+
+      - name: Install dependencies
+        run: python -m pip install --require-hashes -r requirements.lock
+
+      - name: Check dependency consistency
+        run: |
+          python -m pip check
+          python scripts/check_dependency_lock.py
+
+      - name: Check canonical data drift
+        run: |
+          python scripts/enrich_official_resources.py --validate-only
+          python scripts/compile_courses.py --check
+          python scripts/apply_project_templates.py --check
+          python scripts/apply_course_editorial.py --check
+
+      - name: Validate courses and routes
+        run: |
+          python scripts/validate_courses.py
+          python scripts/validate_mainline_audit.py
+          python scripts/validate_routes.py
+
+      - name: Check generated page drift
+        run: python scripts/generate_course_pages.py --check
+
+      - name: Check translations, navigation, links, and managed text
+        run: |
+          python scripts/check_translations.py
+          python scripts/check_navigation.py
+          python scripts/check_markdown_links.py
+          python scripts/check_forbidden_terms.py
+
+      - name: Run unit tests
+        run: python -m pytest -q
+
+      - name: Restore external-link cache
+        if: github.event_name != 'pull_request'
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: .cache/external-links.json
+          key: ${{ runner.os }}-external-links-v3-${{ hashFiles('requirements.lock', 'data/**/*.json', 'docs/**/*.md', 'scripts/check_external_links.py') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            ${{ runner.os }}-external-links-v3-${{ hashFiles('requirements.lock', 'data/**/*.json', 'docs/**/*.md', 'scripts/check_external_links.py') }}-
+            ${{ runner.os }}-external-links-v3-
+
+      - name: Check every external resource over the network
+        if: >-
+          github.event_name == 'schedule' ||
+          (github.event_name == 'workflow_dispatch' && inputs.full_external_check)
+        run: >-
+          python scripts/check_external_links.py
+          --allow-review
+          --workers 24
+          --timeout 8
+          --retries 1
+          --cache-ttl-hours 0
+
+      - name: Check external resources with the bounded cache
+        if: >-
+          github.event_name == 'push' ||
+          (github.event_name == 'workflow_dispatch' && inputs.full_external_check != true)
+        run: >-
+          python scripts/check_external_links.py
+          --allow-review
+          --workers 24
+          --timeout 8
+          --retries 1
+
+      - name: Build consolidated report
+        if: always()
+        shell: bash
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            python scripts/quality_report.py --skip-external --warnings-as-errors
+          else
+            python scripts/quality_report.py --require-external --warnings-as-errors
+          fi
+
+      - name: Build documentation with warnings as errors
+        run: python -m mkdocs build --strict
+
+      - name: Upload quality reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: quality-report-${{ github.run_id }}
+          path: |
+            build/quality-report.json
+            build/quality-report.md
+            build/external-links.json
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,0 +1,8 @@
+# Default review ownership
+* @appleweiping
+
+# Evidence, generators, and release controls require explicit owner review
+/data/ @appleweiping
+/scripts/ @appleweiping
+/.github/workflows/ @appleweiping
+/SECURITY.md @appleweiping

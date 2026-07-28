@@ -1,0 +1,171 @@
+site_name: EEDIY | EE 自学指南
+site_description: 面向电子工程学习者的双语课程导航、路线规划与项目实践指南
+site_author: EEDIY Contributors
+site_url: https://appleweiping.github.io/eediy/
+repo_url: https://github.com/appleweiping/eediy
+repo_name: appleweiping/eediy
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; 2026 EEDIY Contributors
+
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+strict: true
+not_in_nav: |
+  /courses/*
+  /courses/**/*
+  /routes/*
+  /routes/**/*
+  /en/courses/*
+  /en/courses/**/*
+  /en/routes/*
+  /en/routes/**/*
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: zh
+  logo: assets/images/eediy-mark.png
+  favicon: assets/images/eediy-mark.png
+  font: false
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.path
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: 跟随系统 / Follow system
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: 切换至深色 / Switch to dark
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: 切换至系统 / Switch to system
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: 锚点链接 / Permalink
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/extra.js
+
+extra:
+  generator: false
+  status:
+    verified: 已核验 / Verified
+    review: 待复核 / Review due
+
+nav:
+  - 中文:
+      - 首页: index.md
+      - 开始学习: getting-started.md
+      - 全局路线: roadmap.md
+      - 学习路线: routes/index.md
+      - 课程导航: courses/index.md
+      - 实践指南:
+          - 指南总览: guides/index.md
+          - 工具与环境: guides/tools.md
+          - 实验安全: guides/safety.md
+          - 项目实践: guides/projects.md
+          - 版本控制与协作: guides/version-control.md
+          - Python 与 Jupyter: guides/python-jupyter.md
+          - C 与构建系统: guides/c-cmake.md
+          - 数值计算与验证: guides/numerical-computing.md
+          - SPICE 电路仿真: guides/spice-simulation.md
+          - PCB 与 KiCad: guides/pcb-kicad.md
+          - HDL 与 FPGA: guides/hdl-fpga.md
+          - 嵌入式工具链: guides/embedded-toolchains.md
+          - 仪器与测量: guides/instrumentation-measurement.md
+          - 数据与实验记录: guides/data-lab-notebooks.md
+          - 文献检索: guides/literature-research.md
+          - 技术写作: guides/technical-writing.md
+          - 可复现工程: guides/reproducibility.md
+      - 参与共建:
+          - 贡献指南: contributing.md
+          - 许可与引用: about/license.md
+  - English:
+      - Home: en/index.md
+      - Getting Started: en/getting-started.md
+      - Global Roadmap: en/roadmap.md
+      - Learning Routes: en/routes/index.md
+      - Course Catalog: en/courses/index.md
+      - Practice Guides:
+          - Guide Index: en/guides/index.md
+          - Tools and Environments: en/guides/tools.md
+          - Laboratory Safety: en/guides/safety.md
+          - Project Practice: en/guides/projects.md
+          - Version Control and Collaboration: en/guides/version-control.md
+          - Python and Jupyter: en/guides/python-jupyter.md
+          - C and Build Systems: en/guides/c-cmake.md
+          - Numerical Computing: en/guides/numerical-computing.md
+          - SPICE Circuit Simulation: en/guides/spice-simulation.md
+          - PCB and KiCad: en/guides/pcb-kicad.md
+          - HDL and FPGA: en/guides/hdl-fpga.md
+          - Embedded Toolchains: en/guides/embedded-toolchains.md
+          - Instrumentation and Measurement: en/guides/instrumentation-measurement.md
+          - Data and Laboratory Records: en/guides/data-lab-notebooks.md
+          - Literature Research: en/guides/literature-research.md
+          - Technical Writing: en/guides/technical-writing.md
+          - Reproducible Engineering: en/guides/reproducibility.md
+      - Contribute:
+          - Contribution Guide: en/contributing.md
+          - Licensing and Attribution: en/about/license.md

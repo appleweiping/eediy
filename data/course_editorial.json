@@ -1,0 +1,1542 @@
+[
+  {
+    "source_id": 1,
+    "summary": {
+      "zh": "MIT 的《Single Variable Calculus》为工程数学打下单变量微积分主线；完整的视频、讲义、练习与考试资料适合形成自学闭环。",
+      "en": "MIT's Single Variable Calculus builds the single-variable calculus foundation for engineering mathematics, with complete videos, notes, practice, and exams supporting a self-study loop."
+    },
+    "review_note": {
+      "zh": "未发现影响自学闭环的关键缺口。",
+      "en": "No critical gap."
+    }
+  },
+  {
+    "source_id": 2,
+    "summary": {
+      "zh": "MIT 的《Multivariable Calculus》把工程数学推进到多变量分析；视频、讲义、练习和考试资源齐全，可作为后续场论与系统建模的数学准备。",
+      "en": "MIT's Multivariable Calculus advances engineering mathematics into multivariable analysis, with complete videos, notes, practice, and exams for further field and system modeling study."
+    },
+    "review_note": {
+      "zh": "需要先掌握单变量微积分。",
+      "en": "Requires single-variable calculus."
+    }
+  },
+  {
+    "source_id": 3,
+    "summary": {
+      "zh": "MIT 的《Differential Equations》提供工程系统动态描述所需的微分方程主线；其视频、讲义、练习与考试均完整，便于边学边检验。",
+      "en": "MIT's Differential Equations provides the differential-equation spine used to describe dynamic engineering systems, backed by complete videos, notes, practice, and exams."
+    },
+    "review_note": {
+      "zh": "建议将多变量微积分作为同步先修课程。",
+      "en": "Multivariable calculus is recommended as a co-requisite."
+    }
+  },
+  {
+    "source_id": 4,
+    "summary": {
+      "zh": "MIT 的《Linear Algebra》承担工程数学中的线性代数主线；完整的视频、讲义、练习与考试使矩阵方法可以按闭环方式掌握。",
+      "en": "MIT's Linear Algebra supplies the linear-algebra spine for engineering mathematics, with complete videos, notes, practice, and exams enabling closed-loop study of matrix methods."
+    },
+    "review_note": {
+      "zh": "课程形式上列出微积分先修要求，但核心线性代数内容可以不依赖微积分学习。",
+      "en": "Calculus is formally listed, but the central linear algebra content can be learned without it."
+    }
+  },
+  {
+    "source_id": 5,
+    "summary": {
+      "zh": "MIT 的《Complex Variables with Applications》补充工程数学中的复变量方法；公开讲义、练习、考试和 MATLAB 教程较完整，但没有授课视频。",
+      "en": "MIT's Complex Variables with Applications supplements engineering mathematics with complex-variable methods, offering strong notes, practice, exams, and MATLAB tutorials but no lecture videos."
+    },
+    "review_note": {
+      "zh": "没有授课视频，但包含 MATLAB 教程。",
+      "en": "No lecture videos; MATLAB tutorials are included."
+    }
+  },
+  {
+    "source_id": 6,
+    "summary": {
+      "zh": "MIT 的《Introduction to Probability and Statistics》提供概率统计的可计算入门；讲义、练习、考试、R 活动与交互题构成较强实践链，但不含授课视频。",
+      "en": "MIT's Introduction to Probability and Statistics offers a computational entry to probability and statistics, combining notes, practice, exams, R activities, and interactive questions without lecture videos."
+    },
+    "review_note": {
+      "zh": "没有授课视频；免费的 MIT Open Learning Library 版本提供交互式问题与 R 语言活动。",
+      "en": "No lecture videos; the free MIT Open Learning Library version supplies interactive questions and R activities."
+    }
+  },
+  {
+    "source_id": 7,
+    "summary": {
+      "zh": "MIT 的《Probabilistic Systems Analysis and Applied Probability》把概率方法直接连接到系统分析；视频、讲义、练习与考试资料完整，适合作为概率主线。",
+      "en": "MIT's Probabilistic Systems Analysis and Applied Probability connects probability directly to systems analysis, with complete videos, notes, practice, and exams supporting a mainline study path."
+    },
+    "review_note": {
+      "zh": "需要单变量微积分和多变量微积分基础。",
+      "en": "Requires single-variable and multivariable calculus."
+    }
+  },
+  {
+    "source_id": 8,
+    "summary": {
+      "zh": "MIT 的《Fundamentals of Probability》为概率统计方向提供研究生层次的严格补充；讲义公开，但习题与考试缺少答案，反馈链不完整。",
+      "en": "MIT's Fundamentals of Probability provides a rigorous graduate-level supplement for probability and statistics, with public notes but no solutions for the released problems and exams."
+    },
+    "review_note": {
+      "zh": "课程严谨度达到研究生层次；公开的习题集与考试均未提供答案。",
+      "en": "Graduate-level rigor; public problem sets and exams do not include solutions."
+    }
+  },
+  {
+    "source_id": 9,
+    "summary": {
+      "zh": "MIT 的《Matrix Methods in Data Analysis, Signal Processing, and Machine Learning》展示矩阵方法在数据与信号方向的应用；视频配合练习、实验和代码，但作业反馈与结课项目材料不完整。",
+      "en": "MIT's Matrix Methods in Data Analysis, Signal Processing, and Machine Learning applies matrix methods across data and signal work, pairing videos with practice, lab, and code materials while leaving assignment feedback and final-project coverage incomplete."
+    },
+    "review_note": {
+      "zh": "作业没有答案，期末项目材料也不完整。",
+      "en": "Assignments have no solutions and the final-project materials are partial."
+    }
+  },
+  {
+    "source_id": 10,
+    "summary": {
+      "zh": "MIT 的《Classical Mechanics》为物理基础中的力学部分提供完整主线，并支撑机器人与机电系统学习；视频、讲义、练习和考试均可公开获取。",
+      "en": "MIT's Classical Mechanics provides a complete mechanics spine within the physics foundation and supports later robotics and electromechanics study through open videos, notes, practice, and exams."
+    },
+    "review_note": {
+      "zh": "未发现关键缺口；本课可作为机器人与机电系统所需的力学基础。",
+      "en": "No critical gap; serves as a mechanics foundation for robotics and electromechanics."
+    }
+  },
+  {
+    "source_id": 11,
+    "summary": {
+      "zh": "MIT 的《Physics II: Electricity and Magnetism with an Experimental Focus》以讲义、练习、考试和九项实验连接电磁学理论与测量；实验价值高，但必须在受控条件下实施。",
+      "en": "MIT's Physics II: Electricity and Magnetism with an Experimental Focus connects electromagnetic theory and measurement through notes, practice, exams, and nine experiments, with supervised conditions required for the physical work."
+    },
+    "review_note": {
+      "zh": "九项实验包含高电压与电击穿操作；必须设置明确的安全准入条件并由合格人员监督。",
+      "en": "Nine experiments include high-voltage and electrical-breakdown work; require explicit safety gating and supervision."
+    }
+  },
+  {
+    "source_id": 12,
+    "summary": {
+      "zh": "MIT 的《Physics III: Vibrations and Waves》构建振动与波动的物理主线；完整视频、讲义、练习和考试可为信号、控制及电磁方向提供前置直觉。",
+      "en": "MIT's Physics III: Vibrations and Waves builds the physics spine for oscillations and waves, using complete videos, notes, practice, and exams to prepare for signal, control, and electromagnetic study."
+    },
+    "review_note": {
+      "zh": "需要先掌握力学与微积分。",
+      "en": "Requires mechanics and calculus."
+    }
+  },
+  {
+    "source_id": 13,
+    "summary": {
+      "zh": "MIT 的《Quantum Physics I》为器件与光子方向补足量子物理入口；视频和讲义完整，但公开习题与考试缺少答案。",
+      "en": "MIT's Quantum Physics I supplies an entry to quantum physics for device and photonics study, with strong videos and notes but no solutions for the public problems and exams."
+    },
+    "review_note": {
+      "zh": "公开习题集与考试均未提供答案。",
+      "en": "Public problem sets and exams do not include solutions."
+    }
+  },
+  {
+    "source_id": 14,
+    "summary": {
+      "zh": "MIT 的《Quantum Physics II》在 Quantum Physics I 之后继续深化量子物理；视频与讲义可用，但练习和考试的解答反馈并不完整。",
+      "en": "MIT's Quantum Physics II deepens quantum physics after Quantum Physics I, offering videos and notes while leaving practice and exam feedback incomplete."
+    },
+    "review_note": {
+      "zh": "需要先完成 Quantum Physics I；公开练习与考试缺少完整的答案反馈。",
+      "en": "Requires Quantum Physics I; public practice and exams lack complete solution feedback."
+    }
+  },
+  {
+    "source_id": 15,
+    "summary": {
+      "zh": "MIT 的《Introduction to CS and Programming Using Python》为 EE 学习所需的 Python 编程建立主线；当前 Python 3 视频、讲义、练习、实验与代码资源充足。",
+      "en": "MIT's Introduction to CS and Programming Using Python builds the Python programming spine needed for EE study, with current Python 3 videos, notes, practice, labs, and code."
+    },
+    "review_note": {
+      "zh": "课程使用当前的 Python 3 材料；对于这类技能课程，缺少考试并不构成关键缺口。",
+      "en": "Current Python 3 materials; the absence of exams is not a critical gap for this skills course."
+    }
+  },
+  {
+    "source_id": 16,
+    "summary": {
+      "zh": "MIT 的《Practical Programming in C》面向嵌入式与底层开发补齐 C 语言实践；讲义、练习、实验和代码形成动手链路，但没有视频。",
+      "en": "MIT's Practical Programming in C develops the C practice needed for embedded and low-level work, with notes, exercises, labs, and code forming a hands-on sequence despite the absence of videos."
+    },
+    "review_note": {
+      "zh": "没有视频；部分 UNIX 工具示例已经过时。",
+      "en": "No videos; some UNIX tool examples are dated."
+    }
+  },
+  {
+    "source_id": 17,
+    "summary": {
+      "zh": "MIT 的《Introduction to MATLAB》提供面向 EE 计算工作的 MATLAB 快速入门；讲义与少量练习、代码可用，但软件许可和缺少反馈限制了独立完成度。",
+      "en": "MIT's Introduction to MATLAB offers a concise entry to MATLAB for EE computation, with notes plus limited practice and code while software licensing and sparse feedback constrain independent completion."
+    },
+    "review_note": {
+      "zh": "MATLAB 需要付费许可；应提供迁移到 GNU Octave 的说明。",
+      "en": "MATLAB requires a license; provide a GNU Octave migration note."
+    }
+  },
+  {
+    "source_id": 18,
+    "summary": {
+      "zh": "MIT 的《The Art of Approximation in Science and Engineering》训练工程估算与量纲推理；讲义和练习较完整，适合作为数学补充而非核心数学替代品。",
+      "en": "MIT's The Art of Approximation in Science and Engineering trains engineering estimation and dimensional reasoning through strong notes and practice, serving as a supplement rather than a replacement for core mathematics."
+    },
+    "review_note": {
+      "zh": "没有视频；本课适合训练量纲推理与估算，但不能替代核心数学课程。",
+      "en": "No video; useful for dimensional reasoning and estimation, not as a replacement for core mathematics."
+    }
+  },
+  {
+    "source_id": 19,
+    "summary": {
+      "zh": "MIT 的《Introduction to Electrical Engineering and Computer Science I》以视频、讲义、习题、实验、考试和代码提供跨软硬件的 EE 入门闭环；机器人平台虽旧，课程结构仍适合独立学习。",
+      "en": "MIT's Introduction to Electrical Engineering and Computer Science I provides a cross-layer EE introduction through videos, notes, practice, labs, exams, and code, although its robot platform is dated."
+    },
+    "review_note": {
+      "zh": "课程按独立学习设计，但移动机器人硬件和软件栈已经过时。",
+      "en": "Designed for independent study, but the mobile-robot hardware and software stack are dated."
+    }
+  },
+  {
+    "source_id": 20,
+    "summary": {
+      "zh": "MIT 的《Electromagnetic Energy: From Motors to Lasers》以宽口径方式连接电磁能、器件与应用；讲义较强并有实验演示，适合作为桥梁课程而非完整主线。",
+      "en": "MIT's Electromagnetic Energy: From Motors to Lasers bridges electromagnetic energy, devices, and applications through strong notes and laboratory demonstrations, working best as a broad transition course rather than a complete spine."
+    },
+    "review_note": {
+      "zh": "公开的只有实验演示视频，习题集没有答案；课程覆盖面较宽，最适合作为衔接课程。",
+      "en": "Only laboratory demonstration videos are public, problem sets have no solutions, and the course is broad enough to work best as a bridge."
+    }
+  },
+  {
+    "source_id": 21,
+    "summary": {
+      "zh": "MIT 的《Circuits and Electronics》为电路分析与电子学提供主线课程；视频、讲义、习题、实验和考试异常完整，适合从推导走到测量验证。",
+      "en": "MIT's Circuits and Electronics provides a mainline course in circuit analysis and electronics, with unusually complete videos, notes, problems, labs, and exams connecting derivation to measurement."
+    },
+    "review_note": {
+      "zh": "工具与元器件参考资料已经过时，但教学和考核主线异常完整。",
+      "en": "The tools and component references are dated, but the teaching and assessment spine is exceptionally complete."
+    }
+  },
+  {
+    "source_id": 22,
+    "summary": {
+      "zh": "Georgia Institute of Technology 的《Linear Circuits 1: DC Analysis》通过视频和一百余道练习强化直流电路分析；练习反馈丰富，但缺少真正的家庭实验闭环。",
+      "en": "Georgia Institute of Technology's Linear Circuits 1: DC Analysis strengthens DC circuit analysis through videos and more than one hundred drills, while lacking a true home-lab loop."
+    },
+    "review_note": {
+      "zh": "课程包含一百多道练习，但没有真正的家庭实验闭环；Coursera 的订阅、试用或预览访问条件可能变化。",
+      "en": "More than one hundred drills but no true home-lab loop; Coursera subscription, trial, or preview access can change."
+    }
+  },
+  {
+    "source_id": 23,
+    "summary": {
+      "zh": "Georgia Institute of Technology 的《Linear Circuits 2: AC Analysis》承接直流分析并训练交流电路方法；视频、45 项作业与实验演示可用，但没有完整搭建循环。",
+      "en": "Georgia Institute of Technology's Linear Circuits 2: AC Analysis follows DC analysis with AC circuit methods, combining videos, 45 assignments, and experiment demonstrations without a complete build loop."
+    },
+    "review_note": {
+      "zh": "课程包含 45 项作业和实验演示，但没有搭建闭环；Coursera 访问可能收费或随时变化。",
+      "en": "Includes 45 assignments and experiment demonstrations but no build loop; Coursera access is paid or variable."
+    }
+  },
+  {
+    "source_id": 24,
+    "summary": {
+      "zh": "MIT 的《Introduction to Electronics, Signals, and Measurement》把电子学、信号与测量放入同一实验框架；讲义、练习、实验和考试完整，但 LabVIEW 环境较旧。",
+      "en": "MIT's Introduction to Electronics, Signals, and Measurement unifies electronics, signals, and measurement in one laboratory framework, with strong notes, practice, labs, and exams but a dated LabVIEW environment."
+    },
+    "review_note": {
+      "zh": "LabVIEW 虚拟仪器及其配套仪器生态已经过时。",
+      "en": "LabVIEW virtual instruments and the instrument ecosystem are dated."
+    }
+  },
+  {
+    "source_id": 25,
+    "summary": {
+      "zh": "MIT 的《Hands-On Introduction to Electrical Engineering Lab Skills》聚焦基础电子实验操作；实验材料可用于短期动手训练，但讲义有限且没有练习反馈主线。",
+      "en": "MIT's Hands-On Introduction to Electrical Engineering Lab Skills focuses on foundational electronics bench work, offering useful short-form lab practice but limited notes and no exercise-feedback spine."
+    },
+    "review_note": {
+      "zh": "课程使用已经过时的 555 定时器和 TTL 器件，并且没有练习反馈主线。",
+      "en": "Uses dated 555-timer and TTL parts and provides no exercise-feedback spine."
+    }
+  },
+  {
+    "source_id": 26,
+    "summary": {
+      "zh": "MIT 的《Introductory Analog Electronics Laboratory》用六个实验和七周项目训练模拟电子设计；实践强度高，但付费阅读材料和旧器件需要替代物料清单。",
+      "en": "MIT's Introductory Analog Electronics Laboratory develops analog design through six labs and a seven-week project, offering strong practice while requiring substitutes for paid readings and obsolete parts."
+    },
+    "review_note": {
+      "zh": "六个实验和一个为期七周的项目很有价值，但付费阅读材料与旧器件要求准备替代物料清单。",
+      "en": "Six labs and a seven-week project are strong, but paid readings and old parts require a substitute BOM."
+    }
+  },
+  {
+    "source_id": 27,
+    "summary": {
+      "zh": "Digilent 的《Real Analog Courses》以讲义、练习和配套仪器实验构建真实模拟电路实践链；资源可操作性强，但依赖特定 Analog Discovery 硬件。",
+      "en": "Digilent's Real Analog Courses builds a practical analog-circuit sequence from notes, exercises, and instrument-based labs, with strong reproducibility constrained by required Analog Discovery hardware."
+    },
+    "review_note": {
+      "zh": "需要 Analog Discovery 2 或 3，因此存在硬件成本与地区供货限制。",
+      "en": "Requires an Analog Discovery 2 or 3, creating a hardware-cost and regional-availability constraint."
+    }
+  },
+  {
+    "source_id": 28,
+    "summary": {
+      "zh": "Cornell University 的《Introduction to Circuits for Electrical and Computer Engineers》以作业与实验补充电路学习；部分讲义缺失，且作业、实验没有答案，也没有公开考试。",
+      "en": "Cornell University's Introduction to Circuits for Electrical and Computer Engineers supplements circuit study with homework and labs, but some notes are missing and neither solutions nor exams are public."
+    },
+    "review_note": {
+      "zh": "部分讲义缺失；作业与实验没有答案，也没有公开考试。",
+      "en": "Some notes are missing; homework and labs have no solutions, and exams are absent."
+    }
+  },
+  {
+    "source_id": 29,
+    "summary": {
+      "zh": "Cornell University 的《Microelectronics》以 27 份讲义、12 份带解答作业、带解答考试和四个实验形成微电子学文本主线；没有视频，但反馈链完整。",
+      "en": "Cornell University's Microelectronics forms a text-first microelectronics spine from 27 notes, twelve solved homework sets, solved exams, and four labs, providing a complete feedback loop without videos."
+    },
+    "review_note": {
+      "zh": "课程没有视频且授课年份为 2016 年，但 27 份讲义、12 份带解答作业、带解答考试和四个实验组成了完整主线。",
+      "en": "No videos and taught in 2016, but 27 notes, twelve solved homeworks, solved exams, and four labs form a complete spine."
+    }
+  },
+  {
+    "source_id": 30,
+    "summary": {
+      "zh": "MIT 的《Microelectronic Devices and Circuits》连接微电子器件与电路分析；讲义、练习、实验和考试较完整，但没有视频且设计工具参考较旧。",
+      "en": "MIT's Microelectronic Devices and Circuits connects microelectronic devices with circuit analysis through strong notes, practice, labs, and exams, while lacking video and using dated design references."
+    },
+    "review_note": {
+      "zh": "没有视频；设计工具与工艺参考资料已经过时。",
+      "en": "No video; design tooling and process references are dated."
+    }
+  },
+  {
+    "source_id": 31,
+    "summary": {
+      "zh": "University of California, Berkeley 的《Microelectronic Devices and Circuits》以公开讲义、作业和实验提供另一条微电子学习路径；付费教材与不完整答案限制独立反馈。",
+      "en": "University of California, Berkeley's Microelectronic Devices and Circuits offers an alternative microelectronics path through public notes, homework, and labs, while a paid text and incomplete solutions limit independent feedback."
+    },
+    "review_note": {
+      "zh": "公开讲义、作业和实验具有学习价值，但 Razavi 教材需要付费，且答案并不完整。",
+      "en": "Public notes, homework, and labs are useful, but the Razavi text is paid and solutions are incomplete."
+    }
+  },
+  {
+    "source_id": 32,
+    "summary": {
+      "zh": "MIT 的《Solid-State Circuits》以问题、实验和考试补充固态模拟电路训练；核心课堂讲义缺失，因此必须搭配 6.012 同等基础与外部阅读。",
+      "en": "MIT's Solid-State Circuits supplements solid-state analog circuit training with problems, labs, and exams, but missing classroom notes make 6.012-equivalent preparation and outside reading essential."
+    },
+    "review_note": {
+      "zh": "主要课堂讲义缺失；课程依赖相当于 6.012 的前置基础与外部阅读材料。",
+      "en": "The primary classroom notes are missing; the course depends on 6.012-equivalent preparation and outside readings."
+    }
+  },
+  {
+    "source_id": 33,
+    "summary": {
+      "zh": "MIT 的《Advanced Circuit Techniques》通过六套习题和三个实验提供高级电路专题实践；由于没有公开教学主线，只适合基础扎实的学习者作定向补充。",
+      "en": "MIT's Advanced Circuit Techniques offers advanced circuit practice through six problem sets and three labs, but its lack of a public teaching spine makes it suitable only as a focused supplement for prepared learners."
+    },
+    "review_note": {
+      "zh": "没有公开教学主线；本课只适合基础充分、能够利用六套习题和三个实验独立推进的学习者。",
+      "en": "No public teaching spine; appropriate only for prepared learners using the six problem sets and three labs."
+    }
+  },
+  {
+    "source_id": 34,
+    "summary": {
+      "zh": "IIT Bombay / NPTEL 的《Analog Circuits》以 2026 年视频和周作业提供当前模拟电路讲授序列；缺少实验、代码与公开答案反馈。",
+      "en": "IIT Bombay / NPTEL's Analog Circuits provides a current analog-circuit lecture sequence through 2026 videos and weekly assignments, but lacks labs, code, and public solution feedback."
+    },
+    "review_note": {
+      "zh": "课程提供当前的 2026 年视频和周作业，但没有实验、代码或公开答案反馈。",
+      "en": "Current 2026 videos and weekly assignments, but no laboratory, code, or public solution feedback."
+    }
+  },
+  {
+    "source_id": 35,
+    "summary": {
+      "zh": "Indian Institute of Science / NPTEL 的《Integrated Circuits, MOSFETs, OP-Amps and Their Applications》串联集成电路器件、运放与应用；视频和实验演示可用，但演示不能替代可复现实验。",
+      "en": "Indian Institute of Science / NPTEL's Integrated Circuits, MOSFETs, OP-Amps and Their Applications connects devices, op-amps, and applications through videos and demonstrations that do not constitute a reproducible lab."
+    },
+    "review_note": {
+      "zh": "课程包含滤波器实验演示，但这些演示并不构成可复现的家庭实验。",
+      "en": "Includes filter experiment demonstrations, not a reproducible home laboratory."
+    }
+  },
+  {
+    "source_id": 36,
+    "summary": {
+      "zh": "IIT Madras / NPTEL 的《Analog IC Design》以 2026 年 12 周视频大纲提供模拟集成电路设计主线，并保留 2018 年归档作为补充；分级反馈与证书考试依赖注册，且没有公开 EDA 项目。",
+      "en": "IIT Madras / NPTEL's Analog IC Design provides a current 2026 twelve-week video spine for analog integrated-circuit design with the 2018 archive retained as a supplement, while graded feedback and the certificate exam depend on enrollment and no open EDA project is provided."
+    },
+    "review_note": {
+      "zh": "当前 2026 年课程提供结构化的 12 周视频大纲，但分级反馈与可选证书考试依赖注册，且没有公开 EDA 项目。",
+      "en": "The current 2026 run provides a structured 12-week video syllabus, but graded feedback and the optional certificate exam depend on enrollment, and no open EDA project is provided."
+    }
+  },
+  {
+    "source_id": 37,
+    "summary": {
+      "zh": "MIT 的《Computation Structures》从数字逻辑推进到计算结构，资源覆盖视频、讲义、习题、实验、考试与代码；应联合使用 2017 年讲授材料和 2009 年实验考核材料。",
+      "en": "MIT's Computation Structures advances from digital logic into computational structures with videos, notes, practice, labs, exams, and code, best studied by combining the 2017 teaching materials with the 2009 lab and assessment archive."
+    },
+    "review_note": {
+      "zh": "课程页面应明确说明：2017 年版本提供视频和讲义，2009 年版本提供实验与考试。",
+      "en": "The course page should explain that the 2017 edition supplies videos and notes while the 2009 edition supplies laboratories and exams."
+    }
+  },
+  {
+    "source_id": 38,
+    "summary": {
+      "zh": "ETH Zurich 的《Digital Design and Computer Architecture》用 2025 年视频、讲义、练习与代码连接数字设计和计算机体系结构；材料较新，但托管服务器需要人工检查可访问性。",
+      "en": "ETH Zurich's Digital Design and Computer Architecture connects digital design and computer architecture through complete 2025 videos, notes, exercises, and code, while its separately hosted materials need manual access checks."
+    },
+    "review_note": {
+      "zh": "官方入口链接了完整的 2025 年视频与材料；Safari 托管的材料服务器仍需人工检查 robots 规则和下载健康状况。",
+      "en": "The official landing page links complete 2025 videos and materials; the Safari-hosted material server needs a manual robots and download-health check."
+    }
+  },
+  {
+    "source_id": 39,
+    "summary": {
+      "zh": "Hebrew University of Jerusalem 的《Build a Modern Computer from First Principles: From Nand to Tetris, Part I》以自包含 HDL 模拟器和逐级项目训练数字逻辑；项目链完整，但平台访问条款可能变化。",
+      "en": "Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part I teaches digital logic through a self-contained HDL simulator and staged projects, subject to changing platform access terms."
+    },
+    "review_note": {
+      "zh": "HDL 模拟器和项目可自包含完成，但 Coursera 的试用、付费及完整课程访问条款可能变化。",
+      "en": "The HDL simulator and projects are self-contained, but Coursera trial, payment, and full-course access terms can change."
+    }
+  },
+  {
+    "source_id": 40,
+    "summary": {
+      "zh": "Hebrew University of Jerusalem 的《Build a Modern Computer from First Principles: From Nand to Tetris, Part II》以六个自成体系的项目实现虚拟机、编译器与操作系统；需要入门编程能力、Python 或 Java 环境，且平台完整访问可能收费。",
+      "en": "Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part II uses six self-contained projects to implement a virtual machine, compiler, and operating system, requiring introductory programming, Python or Java setup, and potentially paid platform access."
+    },
+    "review_note": {
+      "zh": "六个大型项目需要配置 Python 或 Java 环境，且 Coursera 的访问条款可能变化。",
+      "en": "Six substantial projects require Python or Java setup, and Coursera access terms can change."
+    }
+  },
+  {
+    "source_id": 41,
+    "summary": {
+      "zh": "Cornell University 的《Digital Logic and Computer Organization》以公开讲义补充数字逻辑与计算机组成知识；没有作业、考试或实验，不能单独构成反馈闭环。",
+      "en": "Cornell University's Digital Logic and Computer Organization supplements digital logic and computer organization through public notes, but provides no open homework, exams, or labs for a complete feedback loop."
+    },
+    "review_note": {
+      "zh": "仅有授课讲义公开；没有公开作业、考试或实验。",
+      "en": "Only lecture notes are public; there are no open homework sets, exams, or laboratories."
+    }
+  },
+  {
+    "source_id": 42,
+    "summary": {
+      "zh": "MIT 的《Introductory Digital Systems Laboratory》以 Verilog 实验和期末项目训练 FPGA 数字系统实现；讲义和实践资料扎实，但开发板与 EDA 流程已过时。",
+      "en": "MIT's Introductory Digital Systems Laboratory develops FPGA-based digital implementation through Verilog labs and final projects, with strong notes and practice constrained by dated boards and EDA workflows."
+    },
+    "review_note": {
+      "zh": "Verilog 实验与期末项目很有价值，但 FPGA 开发板和 EDA 工作流已经过时。",
+      "en": "The Verilog laboratories and final projects are strong, but the FPGA boards and EDA workflow are dated."
+    }
+  },
+  {
+    "source_id": 43,
+    "summary": {
+      "zh": "University of Illinois Urbana-Champaign 的《Digital Systems Laboratory》采用当前 SystemVerilog 与 Vivado 流程训练 FPGA 系统；讲义、实验和代码较完整，但依赖指定开发板及校内基础设施。",
+      "en": "University of Illinois Urbana-Champaign's Digital Systems Laboratory uses a current SystemVerilog and Vivado sequence for FPGA systems, with strong notes, labs, and code tied to a specified board and some campus infrastructure."
+    },
+    "review_note": {
+      "zh": "当前的 SystemVerilog 与 Vivado 学习序列依赖指定 FPGA 开发板和部分校内基础设施。",
+      "en": "The current SystemVerilog and Vivado sequence depends on a specified FPGA board and some campus infrastructure."
+    }
+  },
+  {
+    "source_id": 44,
+    "summary": {
+      "zh": "University of California, Berkeley 的《Digital Design and Integrated Circuits》提供数字集成电路设计的当前课程身份与目标，可用于校准学习范围；公开目录不提供可独立完成的教学骨架，课程归档需 CalNet，工业 EDA 实验也受限。",
+      "en": "University of California, Berkeley's Digital Design and Integrated Circuits provides a current curriculum identity and scope for digital IC design, but the public catalog is not an independently executable teaching spine, its archives require CalNet, and industrial EDA labs are restricted."
+    },
+    "review_note": {
+      "zh": "当前目录能够确认课程范围，但课程归档需要 CalNet，工业 EDA 实验也受限；本条记录不能作为可独立完成的公开课程。",
+      "en": "The current catalog confirms the curriculum, but its course archives require CalNet and the industrial EDA laboratories are restricted; this record is not an independently executable public course."
+    }
+  },
+  {
+    "source_id": 45,
+    "summary": {
+      "zh": "Stanford University 的《Digital Systems Architecture》以讲义、作业和实验补充 FPGA 系统架构；公开部分仍可用，但平台、教材和指定硬件限制独立完成。",
+      "en": "Stanford University's Digital Systems Architecture supplements FPGA system architecture with notes, homework, and labs, while platform logins, the textbook, and specified hardware constrain independent completion."
+    },
+    "review_note": {
+      "zh": "公开讲义、作业和实验仍有价值，但 Canvas、Gradescope、教材和指定 FPGA 硬件限制了独立完成。",
+      "en": "Public notes, homework, and laboratories remain useful, but Canvas, Gradescope, the textbook, and specified FPGA hardware limit independent completion."
+    }
+  },
+  {
+    "source_id": 46,
+    "summary": {
+      "zh": "Cornell University 的《Computer Architecture》以 RISC-V 讲义、问题和实验说明建立体系结构主线；公开代码资源较强，但团队仓库、服务器及部分起始代码不开放。",
+      "en": "Cornell University's Computer Architecture builds a RISC-V architecture spine from notes, problems, and lab descriptions, with public code resources limited by a private group repository, server, and some starter code."
+    },
+    "review_note": {
+      "zh": "RISC-V 讲义、问题和实验说明已公开，但团队仓库、服务器和部分起始代码为私有资源。",
+      "en": "RISC-V notes, problems, and laboratory descriptions are public, but the group repository, server, and some starter code are private."
+    }
+  },
+  {
+    "source_id": 47,
+    "summary": {
+      "zh": "MIT 的《Computer System Architecture》以讲义、问题、实验和考试提供计算机体系结构替代路径；案例年代较早，公开解答链也不完整。",
+      "en": "MIT's Computer System Architecture offers an alternative architecture path through notes, problems, labs, and exams, but its examples are dated and the public solution loop is incomplete."
+    },
+    "review_note": {
+      "zh": "体系结构案例已经过时，且公开问题与考试没有完整的答案闭环。",
+      "en": "Architecture examples are old, and the public problems and exams do not include a complete solution loop."
+    }
+  },
+  {
+    "source_id": 48,
+    "summary": {
+      "zh": "University of California, Berkeley 的《Great Ideas in Computer Architecture》通过讲义、讨论、实验和项目形成体系结构实践链；公开材料丰富，但录像与评分器需要校内账号。",
+      "en": "University of California, Berkeley's Great Ideas in Computer Architecture forms a practical architecture sequence from notes, discussions, labs, and projects, while recordings and the grader require institutional access."
+    },
+    "review_note": {
+      "zh": "讲义、讨论、实验和项目均已公开，但录像位于 bCourses，评分器需要 Berkeley 账号。",
+      "en": "Notes, discussions, laboratories, and projects are public, but recordings live in bCourses and the grader requires a Berkeley account."
+    }
+  },
+  {
+    "source_id": 49,
+    "summary": {
+      "zh": "MIT 的《Complex Digital Systems》以讲义、实验和代码补充复杂数字与 VLSI 系统设计；商业 EDA 依赖和旧标准单元假设使实践难以复现。",
+      "en": "MIT's Complex Digital Systems supplements complex digital and VLSI system design through notes, labs, and code, while commercial EDA dependencies and obsolete standard-cell assumptions impede reproduction."
+    },
+    "review_note": {
+      "zh": "商业 EDA 依赖和陈旧的标准单元假设，使实验与项目难以复现。",
+      "en": "Commercial EDA dependencies and old standard-cell assumptions make the laboratories and projects difficult to reproduce."
+    }
+  },
+  {
+    "source_id": 50,
+    "summary": {
+      "zh": "MIT 的《Analysis and Design of Digital Integrated Circuits》以公开讲义、习题、考试和设计材料构成数字集成电路自学主线；内容骨架可执行，但需用当前课程范围与现代开放仿真补偿付费教材及 2003 年工艺工具链。",
+      "en": "MIT's Analysis and Design of Digital Integrated Circuits forms an executable digital-IC self-study spine from open notes, problems, examinations, and design materials, while requiring a current curriculum reference and modern open simulation to compensate for its paid text and 2003 process tooling."
+    },
+    "review_note": {
+      "zh": "开放讲义、习题、考试和设计材料形成可用教学骨架，但付费教材及 2003 年工艺、SPICE 和版图工作流已经过时；应配合当前课程范围与现代开放仿真。",
+      "en": "The open notes, problems, examinations, and design materials form a usable teaching spine, but the paid textbook and 2003 process, SPICE, and layout workflows are dated; pair it with the current curriculum record and modern open simulation."
+    }
+  },
+  {
+    "source_id": 51,
+    "summary": {
+      "zh": "Cornell University 的《VLSI Systems》以讲义和五个实验提供 VLSI 系统实践补充；缺少答案、考试和期末项目，工具也属于商业 EDA 流程。",
+      "en": "Cornell University's VLSI Systems supplements VLSI practice with notes and five public labs, but omits solutions, exams, and the final project while using a commercial EDA workflow."
+    },
+    "review_note": {
+      "zh": "五个实验已公开，但答案、考试和期末项目缺失，所用工具也代表商业 EDA 工作流。",
+      "en": "Five laboratories are public, but solutions, exams, and the final project are missing, and the tools represent a commercial EDA workflow."
+    }
+  },
+  {
+    "source_id": 52,
+    "summary": {
+      "zh": "Cornell University 的《Advanced Microcontroller Design and System-on-Chip》以大量项目档案训练微控制器与 SoC 实现；2017 年资料丰富，但实践绑定 DE1-SoC 与 Cyclone V 平台。",
+      "en": "Cornell University's Advanced Microcontroller Design and System-on-Chip develops microcontroller and SoC implementation through a rich project archive, with the 2017 work tied to the DE1-SoC and Cyclone V platform."
+    },
+    "review_note": {
+      "zh": "丰富的 2017 年项目归档与 DE1-SoC 和 Cyclone V 平台绑定。",
+      "en": "The rich 2017 project archive is tied to the DE1-SoC and Cyclone V platform."
+    }
+  },
+  {
+    "source_id": 53,
+    "summary": {
+      "zh": "MIT 的《Secure Hardware Design》以开放教材、CTF、实验和代码建立现代硬件安全主线；实践面向真实处理器，开始前必须核对硬件可得性。",
+      "en": "MIT's Secure Hardware Design builds a modern hardware-security spine from an open text, CTF, labs, and code, with exercises targeting real processors whose availability must be checked."
+    },
+    "review_note": {
+      "zh": "开放教材、CTF 和实验较为现代，但练习面向真实处理器，需要先核对硬件可得性。",
+      "en": "The open text, CTF, and laboratories are modern, but exercises target real processors and require checking hardware availability."
+    }
+  },
+  {
+    "source_id": 54,
+    "summary": {
+      "zh": "MIT 的《Operating System Engineering》通过当前 RISC-V xv6 实验与代码补充体系结构之上的系统实践；讲义与实验有价值，但没有完整视频或公开评分反馈。",
+      "en": "MIT's Operating System Engineering adds systems practice above computer architecture through current RISC-V xv6 labs and code, while lacking a full video series and public grading feedback."
+    },
+    "review_note": {
+      "zh": "RISC-V xv6 实验保持当前性，但没有完整视频系列或公开评分反馈。",
+      "en": "The RISC-V xv6 laboratories are current, but there is no full video series or public grading feedback."
+    }
+  },
+  {
+    "source_id": 55,
+    "summary": {
+      "zh": "MIT 的《The Art and Science of PCB Design》通过八个 KiCad 与 Altium 实验、视频、讲义和代码建立 PCB 设计主线；课程许可开放，但制板成本和部分视频访问需另行核对。",
+      "en": "MIT's The Art and Science of PCB Design builds a PCB-design spine through eight KiCad and Altium labs plus videos, notes, and code, with fabrication cost and some video access still requiring checks."
+    },
+    "review_note": {
+      "zh": "这门采用 CC BY-SA 许可的课程包含八个 KiCad 与 Altium 实验；制板和物料清单仍有成本，Panopto 链接也需要人工检查访问情况。",
+      "en": "The CC BY-SA course includes eight KiCad and Altium laboratories; fabrication and BOM costs remain, and Panopto links need a manual access check."
+    }
+  },
+  {
+    "source_id": 56,
+    "summary": {
+      "zh": "Worcester Polytechnic Institute 的《Essentials of PCB Design》以幻灯片、起始文件、KiCad 材料和 GitHub 资源补充 PCB 实践；录屏受限且制板需自费。",
+      "en": "Worcester Polytechnic Institute's Essentials of PCB Design supplements PCB practice with slides, starter files, KiCad materials, and GitHub resources, while recordings are restricted and fabrication is self-funded."
+    },
+    "review_note": {
+      "zh": "幻灯片、起始文件、KiCad 材料和 GitHub 资源已公开；录屏需要 WPI 账号，制板费用由学习者自行承担。",
+      "en": "Slides, starter files, KiCad materials, and GitHub resources are public; recordings require a WPI account and fabrication is self-funded."
+    }
+  },
+  {
+    "source_id": 57,
+    "summary": {
+      "zh": "Cornell University 的《Digital Systems Design Using Microcontrollers》以当前 RP2350 与 Pico 2 平台、完整实验和长期学生项目档案提供综合设计主线；它把嵌入式实现、测量、测试与公开项目证据连成结课闭环。",
+      "en": "Cornell University's Digital Systems Design Using Microcontrollers provides a current capstone spine around RP2350 and Pico 2, complete laboratories, and a long-running archive of student projects that connects embedded implementation, measurement, testing, and public project evidence."
+    },
+    "review_note": {
+      "zh": "当前的 RP2350 与 Pico 2 学习序列要求先掌握 C 编程、数字系统和基础电子学。",
+      "en": "The current RP2350 and Pico 2 sequence assumes prior C programming, digital systems, and basic electronics."
+    }
+  },
+  {
+    "source_id": 58,
+    "summary": {
+      "zh": "Stanford University 的《Computer Systems from the Ground Up》用 2026 年 RISC-V 材料、视频、实验与代码连接底层计算机系统和嵌入式实践；Mango Pi 套件的地区供应是主要限制。",
+      "en": "Stanford University's Computer Systems from the Ground Up connects low-level computer systems and embedded practice through 2026 RISC-V videos, labs, and code, with regional Mango Pi kit availability as its main constraint."
+    },
+    "review_note": {
+      "zh": "2026 年春季的 RISC-V 课程使用 Mango Pi 开发板与套件，其地区供应情况不一。",
+      "en": "The Spring 2026 RISC-V course uses a Mango Pi board and kit whose regional availability varies."
+    }
+  },
+  {
+    "source_id": 59,
+    "summary": {
+      "zh": "The University of Texas at Austin 的《Embedded Systems: Shape the World》依托为 EE 319K 编写的开放教材、章节视频与实践活动提供嵌入式系统入门；失效的聚合视频索引已排除、edX 课程已归档，实践时宜优先使用 MSPM0 版本并自行保存实验记录。",
+      "en": "The University of Texas at Austin's Embedded Systems: Shape the World provides an embedded-systems introduction through an open text, chapter-embedded videos, and activities created for EE 319K; the dead aggregate video index is excluded, the edX run is archived, and learners should prefer the MSPM0 edition while preserving their own lab records."
+    },
+    "review_note": {
+      "zh": "主入口是为 EE 319K 编写的开放教材与课程材料站，而不是当前课程运行页；章节页仍嵌入视频与活动，但失效的聚合视频索引已排除。edX 课程已经归档、TM4C123 工具链较旧，因此应优先采用 MSPM0 版本。",
+      "en": "The primary is an open textbook and course-material site created for EE 319K rather than a current course run; chapter pages still embed videos and activities, but the dead aggregate video index is excluded. The edX run is archived and the TM4C123 toolchain is old, so the MSPM0 edition is preferred."
+    }
+  },
+  {
+    "source_id": 60,
+    "summary": {
+      "zh": "University of California, Berkeley 的《Introduction to Embedded and Cyber-Physical Systems》用开放教材连接嵌入式系统与信息物理系统；文本基础扎实，但录屏、实验、硬件和工具链均已显旧。",
+      "en": "University of California, Berkeley's Introduction to Embedded and Cyber-Physical Systems connects embedded and cyber-physical systems through a strong open textbook, while its recordings, labs, hardware, and toolchains are dated."
+    },
+    "review_note": {
+      "zh": "开放教材很强，但课程录屏、实验、硬件和工具链已经过时。",
+      "en": "The open textbook is strong, but recorded course captures, laboratories, hardware, and toolchains are dated."
+    }
+  },
+  {
+    "source_id": 61,
+    "summary": {
+      "zh": "MIT 的《Mobile Autonomous Systems Laboratory》保留了移动自主系统项目组织与验证方法；2005 年移动平台已经淘汰，应只把材料作为项目方法参考。",
+      "en": "MIT's Mobile Autonomous Systems Laboratory preserves useful project organization and validation methods for mobile autonomy, but its obsolete 2005 platform limits the material to methodological reference."
+    },
+    "review_note": {
+      "zh": "2005 年的移动平台已经淘汰；本课只能作为项目方法参考。",
+      "en": "The 2005 mobile platform is obsolete; use this only as a project-method reference."
+    }
+  },
+  {
+    "source_id": 62,
+    "summary": {
+      "zh": "Cornell University 的《ECE Practice and Design》以迷宫机器人项目训练 EE 综合设计与交付；项目本身有价值，但教学资料、考核与部分链接缺失。",
+      "en": "Cornell University's ECE Practice and Design trains integrated EE design and delivery through a maze-robot project, while missing teaching notes, assessments, and linked pages prevent a complete course loop."
+    },
+    "review_note": {
+      "zh": "迷宫机器人项目很有价值，但教学讲义、作业、考试和部分链接页面缺失。",
+      "en": "The maze-robot project is valuable, but teaching notes, homework, exams, and some linked pages are missing."
+    }
+  },
+  {
+    "source_id": 63,
+    "summary": {
+      "zh": "University of Colorado Boulder 的《Real-Time Embedded Systems Concepts and Practices》以 Raspberry Pi、Linux、视频、实验与代码建立实时嵌入式实践入口；硬件要求明确，平台访问可能收费。",
+      "en": "University of Colorado Boulder's Real-Time Embedded Systems Concepts and Practices establishes a practical real-time embedded entry through Raspberry Pi, Linux, videos, labs, and code, with explicit hardware and potentially paid access."
+    },
+    "review_note": {
+      "zh": "课程明确要求 Raspberry Pi 与 Linux 硬件环境，且 Coursera 访问可能需要付费。",
+      "en": "The Raspberry Pi and Linux hardware requirement is explicit, and Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 64,
+    "summary": {
+      "zh": "University of Colorado Boulder 的《Real-Time Embedded Systems Theory and Analysis》承接实时系统实践并强化理论分析；视频、练习与考试可用，但要求完成前序课程且平台可能收费。",
+      "en": "University of Colorado Boulder's Real-Time Embedded Systems Theory and Analysis follows the concepts course with deeper theory, using videos, practice, and exams under a prerequisite and potentially paid platform model."
+    },
+    "review_note": {
+      "zh": "本课要求先完成前一门实时系统概念课程，且平台访问可能需要付费。",
+      "en": "This course requires the preceding concepts course, and platform access may require payment."
+    }
+  },
+  {
+    "source_id": 65,
+    "summary": {
+      "zh": "University of Colorado Boulder 的《Real-Time Mission-Critical Systems Design》将实时系统学习推进到任务关键设计；视频、练习、实验和代码较完整，但指定硬件与付费访问构成门槛。",
+      "en": "University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances real-time study into mission-critical design through videos, practice, labs, and code, with specified hardware and paid access as barriers."
+    },
+    "review_note": {
+      "zh": "ECC、闪存、冗余与 FMEA 练习使用指定硬件，且平台访问可能需要付费。",
+      "en": "ECC, flash, redundancy, and FMEA exercises use specified hardware, and platform access may require payment."
+    }
+  },
+  {
+    "source_id": 66,
+    "summary": {
+      "zh": "University of Colorado Boulder 的《Real-Time Project for Embedded Systems》以摄像头和 Raspberry Pi 家庭项目收束实时嵌入式序列；项目、代码和练习完整，但有明确前序与平台成本。",
+      "en": "University of Colorado Boulder's Real-Time Project for Embedded Systems closes the sequence with a camera-and-Raspberry-Pi home project, offering strong project and code practice under explicit prerequisites and possible platform cost."
+    },
+    "review_note": {
+      "zh": "摄像头与 Raspberry Pi 家庭项目要求先完成前两门课程，且可能需要付费平台访问。",
+      "en": "The camera and Raspberry Pi home project requires the first two courses and paid-platform access may apply."
+    }
+  },
+  {
+    "source_id": 67,
+    "summary": {
+      "zh": "MIT 的《Feedback Systems》以问题、实验和考试建立反馈控制主线；反馈训练较强，但核心教材讲义不公开，实体实验也需要替代物料清单。",
+      "en": "MIT's Feedback Systems builds a feedback-control spine through problems, labs, and exams, while missing primary text notes and hardware-specific labs require substitute readings and a replacement bill of materials."
+    },
+    "review_note": {
+      "zh": "主要教材讲义未公开，电机、热系统和运放实验需要准备替代物料清单。",
+      "en": "Primary textbook notes are not public, and the motor, thermal, and op-amp laboratories need a substitute BOM."
+    }
+  },
+  {
+    "source_id": 68,
+    "summary": {
+      "zh": "Stanford University 的《Introduction to Linear Dynamical Systems》以视频、讲义、练习、考试和代码提供线性动态系统主线；MATLAB 材料虽旧，但整体学习闭环异常完整。",
+      "en": "Stanford University's Introduction to Linear Dynamical Systems provides a linear-systems spine through videos, notes, practice, exams, and code, with an unusually complete loop despite dated MATLAB materials."
+    },
+    "review_note": {
+      "zh": "MATLAB 材料已经过时，但可以迁移到 Python；其余学习闭环异常完整。",
+      "en": "The MATLAB materials are old but can be migrated to Python; the remaining learning loop is unusually complete."
+    }
+  },
+  {
+    "source_id": 69,
+    "summary": {
+      "zh": "MIT 的《Dynamic Systems and Control》以讲义与问题补充动态系统和控制基础；没有视频且解答不完整，学习前必须具备线性代数与微分方程基础。",
+      "en": "MIT's Dynamic Systems and Control supplements dynamic-systems and control foundations through notes and problems, but lacks videos and complete solutions and requires firm linear-algebra and differential-equation preparation."
+    },
+    "review_note": {
+      "zh": "没有视频系列且答案不完整；线性代数与微分方程是明确的先修基础。",
+      "en": "There is no video series and solutions are incomplete; linear algebra and differential equations are firm prerequisites."
+    }
+  },
+  {
+    "source_id": 70,
+    "summary": {
+      "zh": "MIT 的《Dynamics of Nonlinear Systems》为控制方向提供研究生层次的非线性系统补充；讲义可用，但课程年代较早，反馈有限且无视频或实验闭环。",
+      "en": "MIT's Dynamics of Nonlinear Systems provides a graduate-level nonlinear-systems supplement for control study, with useful notes but limited feedback and no video or laboratory loop."
+    },
+    "review_note": {
+      "zh": "这是一门年代较早的研究生课程，反馈有限，也没有视频或实验闭环。",
+      "en": "This graduate, older course has limited feedback and no video or laboratory loop."
+    }
+  },
+  {
+    "source_id": 71,
+    "summary": {
+      "zh": "MIT 的《Multivariable Control Systems》以讲义、问题和代码补充多变量控制方法；MATLAB 与 LMI 流程较旧，公开答案覆盖也不完整。",
+      "en": "MIT's Multivariable Control Systems supplements multivariable control through notes, problems, and code, while its MATLAB and LMI workflow is dated and public solution coverage remains incomplete."
+    },
+    "review_note": {
+      "zh": "MATLAB 与 LMI 工作流已经过时，公开答案覆盖也不完整。",
+      "en": "The MATLAB and LMI workflow is dated and public solution coverage is incomplete."
+    }
+  },
+  {
+    "source_id": 72,
+    "summary": {
+      "zh": "MIT 的《Dynamic Programming and Stochastic Control》为控制方向补充动态规划与随机控制的研究生材料；讲义具有深度，但数学负担重且独立反馈有限。",
+      "en": "MIT's Dynamic Programming and Stochastic Control adds graduate-level dynamic programming and stochastic control material, with deep notes but heavy mathematical demands and limited independent feedback."
+    },
+    "review_note": {
+      "zh": "课程达到研究生层次，数学负担较重，可供独立学习的反馈也有限。",
+      "en": "The material is mathematically heavy at graduate level and offers limited independent feedback."
+    }
+  },
+  {
+    "source_id": 73,
+    "summary": {
+      "zh": "Caltech 作者维护的《Feedback Systems: An Introduction for Scientists and Engineers》第二版配套站以开放教材、实例、习题和更新后的 Python 图源建立反馈系统文本主线；它不是当前完整课堂运行页，教师专用习题手册仍受限。",
+      "en": "The author-maintained second-edition companion for Caltech's Feedback Systems: An Introduction for Scientists and Engineers builds a text-based feedback-systems spine from the open book, examples, exercises, and updated Python figure sources; it is not a complete current course run, and the instructor exercise manual remains restricted."
+    },
+    "review_note": {
+      "zh": "作者维护的第二版配套站提供开放教材、实例、习题和更新后的 Python 图源，但它不是当前完整课程运行页；教师习题手册仍受限。",
+      "en": "The author-maintained second-edition companion provides the open text, examples, exercises, and updated Python sources, but it is not a complete current course run; the instructor exercise manual remains restricted."
+    }
+  },
+  {
+    "source_id": 74,
+    "summary": {
+      "zh": "MIT 的《Robotic Manipulation》以现代 Drake 讲义、视频、实验和代码训练机器人操作；软件实践链较强，但部分评分作业与反馈不公开。",
+      "en": "MIT's Robotic Manipulation develops robot-manipulation skills through modern Drake notes, videos, labs, and code, while some graded assignments and feedback remain unavailable."
+    },
+    "review_note": {
+      "zh": "现代 Drake 讲义与代码已公开，但部分评分作业和反馈并未开放。",
+      "en": "Modern Drake notes and code are public, but some graded assignments and feedback are not."
+    }
+  },
+  {
+    "source_id": 75,
+    "summary": {
+      "zh": "MIT 的《Underactuated Robotics》以当前讲义、Drake 示例和 Colab 练习提供欠驱动机器人主线；视频与代码完整度高，但作业反馈仍不充分。",
+      "en": "MIT's Underactuated Robotics provides a mainline path through current notes, Drake examples, Colab exercises, videos, and code, with assignment feedback as the remaining limitation."
+    },
+    "review_note": {
+      "zh": "当前讲义、Drake 示例和 Colab 练习很强，但作业反馈不完整。",
+      "en": "Current notes, Drake examples, and Colab exercises are strong, but assignment feedback is incomplete."
+    }
+  },
+  {
+    "source_id": 76,
+    "summary": {
+      "zh": "MIT 的《Autonomous Robot Design Competition》保留自主机器人竞赛的设计流程与团队项目方法；控制器和传感器已经淘汰，不宜照搬硬件实现。",
+      "en": "MIT's Autonomous Robot Design Competition preserves valuable competition design and team-project methods, while its obsolete controller and sensors make the hardware implementation unsuitable for direct reproduction."
+    },
+    "review_note": {
+      "zh": "控制器和传感器已经淘汰，因此只能提取设计流程与竞赛方法方面的经验。",
+      "en": "The controller and sensors are obsolete, so this should be used only for design-process and competition-method lessons."
+    }
+  },
+  {
+    "source_id": 77,
+    "summary": {
+      "zh": "Northwestern University 的《Modern Robotics, Course 1: Foundations of Robot Motion》以开放预印本、软件库和 CoppeliaSim 练习建立机器人运动基础；自学材料强，但平台免费体验不完整。",
+      "en": "Northwestern University's Modern Robotics, Course 1: Foundations of Robot Motion builds robot-motion foundations from an open preprint, software library, and CoppeliaSim exercises, while the platform's free experience is incomplete."
+    },
+    "review_note": {
+      "zh": "开放预印本、软件库和 CoppeliaSim 练习很强，但 Coursera 明确说明免费模式不能提供完整学习体验。",
+      "en": "The open preprint, software library, and CoppeliaSim exercises are strong, but Coursera explicitly does not provide the full experience for free."
+    }
+  },
+  {
+    "source_id": 78,
+    "summary": {
+      "zh": "Northwestern University 的《Modern Robotics, Course 2: Robot Kinematics》用视频、讲义、练习、仿真和代码训练机器人运动学；必须先完成该系列第一课，完整平台访问可能收费。",
+      "en": "Northwestern University's Modern Robotics, Course 2: Robot Kinematics develops robot kinematics through videos, notes, practice, simulation, and code, requiring Course 1 and potentially paid platform access."
+    },
+    "review_note": {
+      "zh": "本课要求先完成系列第一门课程，且 Coursera 完整访问可能需要付费。",
+      "en": "This course requires the first course in the sequence, and full Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 79,
+    "summary": {
+      "zh": "Northwestern University 的《Modern Robotics, Course 3: Robot Dynamics》把系列推进到机器人动力学；视频、讲义、练习、仿真和代码齐全，但依赖前序运动学并可能需要付费访问。",
+      "en": "Northwestern University's Modern Robotics, Course 3: Robot Dynamics advances the sequence into robot dynamics with videos, notes, practice, simulation, and code, under a kinematics prerequisite and possible access fee."
+    },
+    "review_note": {
+      "zh": "本课要求先掌握前序运动学内容，且 Coursera 完整访问可能需要付费。",
+      "en": "This course requires the preceding kinematics material, and full Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 80,
+    "summary": {
+      "zh": "Northwestern University 的《Modern Robotics, Course 4: Robot Motion Planning and Control》聚焦机器人运动规划与控制；实践资源完整，但依赖系列前三课且平台完整访问可能收费。",
+      "en": "Northwestern University's Modern Robotics, Course 4: Robot Motion Planning and Control focuses on planning and control through complete practice resources, while requiring the first three courses and potentially paid access."
+    },
+    "review_note": {
+      "zh": "本课依赖系列前三部分，且 Coursera 完整访问可能需要付费。",
+      "en": "The course depends on the first three parts of the sequence, and full Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 81,
+    "summary": {
+      "zh": "Northwestern University 的《Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots》连接机械臂操作与轮式移动机器人；视频、仿真和代码充分，但术语、前序与平台访问需留意。",
+      "en": "Northwestern University's Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots connects manipulation and wheeled mobility through rich videos, simulation, and code, with terminology, prerequisites, and access conditions requiring attention."
+    },
+    "review_note": {
+      "zh": "说明可能仍使用 CoppeliaSim 的旧称 V-REP；课程还可能要求完成前序系列并购买平台访问。",
+      "en": "Instructions may use the former V-REP name for CoppeliaSim; the prior sequence and paid-platform access may be required."
+    }
+  },
+  {
+    "source_id": 82,
+    "summary": {
+      "zh": "Northwestern University 的《Modern Robotics, Course 6: Capstone Project, Mobile Manipulation》以完整仿真抓取与放置项目收束机器人系列；项目和代码资源强，但要求先完成前五课并可能付费。",
+      "en": "Northwestern University's Modern Robotics, Course 6: Capstone Project, Mobile Manipulation closes the sequence with a complete simulated pick-and-place project, requiring all five prior courses and potentially paid access."
+    },
+    "review_note": {
+      "zh": "完整的仿真抓取与放置结课项目要求先完成前五门课程，且 Coursera 完整访问可能需要付费。",
+      "en": "The complete simulated pick-and-place capstone assumes all first five courses, and full Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 83,
+    "summary": {
+      "zh": "MIT 的《Signals and Systems》以视频、讲义、习题和考试建立信号与系统理论主线；推导和考核闭环完整，但没有编程或硬件实验。",
+      "en": "MIT's Signals and Systems builds a theory-first signals-and-systems spine through videos, notes, problems, and exams, with a complete assessment loop but no programming or hardware lab."
+    },
+    "review_note": {
+      "zh": "课程具备完整的理论与考核闭环，但没有编程或硬件实验。",
+      "en": "The course has a complete theory and assessment loop but no programming or hardware laboratory."
+    }
+  },
+  {
+    "source_id": 84,
+    "summary": {
+      "zh": "MIT 的《Signals and Systems》提供另一套视频、讲义与带解答习题资源；可独立支持理论学习，但配套教材收费且没有公开考试。",
+      "en": "MIT's Signals and Systems offers an alternative set of videos, notes, and solved problems that can support theory study independently, though its companion text is paid and no exams are public."
+    },
+    "review_note": {
+      "zh": "配套教材需要付费，但讲义与带解答问题足以用于学习；课程没有公开考试集。",
+      "en": "The companion textbook is paid, but the notes and solved problems are sufficient for study; there is no exam set."
+    }
+  },
+  {
+    "source_id": 85,
+    "summary": {
+      "zh": "Cornell University 的《Signals and Information》以十套带解答作业、四套带解答考试和五个实验补充信号学习；没有公开讲义，因此不能作为独立教学主线。",
+      "en": "Cornell University's Signals and Information supplements signal study with ten solved homework sets, four solved exams, and five labs, but cannot serve as a teaching spine because no lecture notes are public."
+    },
+    "review_note": {
+      "zh": "十套带解答作业、四套带解答考试和五个实验具有价值，但没有公开授课讲义，因此不能构成教学主线。",
+      "en": "Ten solved homework sets, four solved exams, and five laboratories are useful, but no lecture notes are public, so this is not a teaching spine."
+    }
+  },
+  {
+    "source_id": 86,
+    "summary": {
+      "zh": "Cornell University 的《Mathematics of Signal and System Analysis》以完整专著、十一套作业和两套考试提供信号系统数学路径；文本主线清晰，但没有答案。",
+      "en": "Cornell University's Mathematics of Signal and System Analysis provides a mathematical path through a complete monograph, eleven homework sets, and two exams, while withholding solutions."
+    },
+    "review_note": {
+      "zh": "完整专著、十一套作业和两套考试均已公开，但没有提供答案。",
+      "en": "A complete monograph, eleven homework sets, and two exams are public, but solutions are not."
+    }
+  },
+  {
+    "source_id": 87,
+    "summary": {
+      "zh": "Cornell University 的《Introduction to Probability and Inference for Random Signals and Systems》以作业和考试补充随机信号所需的概率推断；讲义缺失且答案覆盖很少。",
+      "en": "Cornell University's Introduction to Probability and Inference for Random Signals and Systems supplements probability for random signals through homework and exams, while lacking notes and offering only sparse solutions."
+    },
+    "review_note": {
+      "zh": "公开资源只有九套作业和三套考试，且仅前两套作业提供部分答案，没有授课讲义。",
+      "en": "Only nine homework sets and three exams are public, with partial solutions for the first two homework sets and no lecture notes."
+    }
+  },
+  {
+    "source_id": 88,
+    "summary": {
+      "zh": "MIT 的《Digital Signal Processing》以完整视频和十九套带解答习题建立 DSP 理论主线；反馈质量高，但核心教材年代较早且没有编程实验。",
+      "en": "MIT's Digital Signal Processing builds a DSP theory spine from a complete lecture series and nineteen solved problem sets, with excellent feedback but an old core text and no coding lab."
+    },
+    "review_note": {
+      "zh": "十九套带解答习题和完整授课视频系列非常出色，但核心教材出版于 1975 年，且没有编程实验。",
+      "en": "Nineteen solved problem sets and a complete lecture series are excellent, but the core text dates to 1975 and there is no coding laboratory."
+    }
+  },
+  {
+    "source_id": 89,
+    "summary": {
+      "zh": "MIT 的《Discrete-Time Signal Processing》以讲义、习题、实验、考试和代码提供离散时间 DSP 替代主线；Athena 与 MATLAB 项目流程较旧，应迁移到 Python。",
+      "en": "MIT's Discrete-Time Signal Processing offers an alternative discrete-time DSP spine through notes, practice, labs, exams, and code, with its old Athena and MATLAB project workflow needing a Python migration."
+    },
+    "review_note": {
+      "zh": "Athena 与 MATLAB 项目工作流已经过时，应同时提供迁移到 Python 的路径。",
+      "en": "The Athena and MATLAB project workflow is old and should be accompanied by a Python migration path."
+    }
+  },
+  {
+    "source_id": 90,
+    "summary": {
+      "zh": "EPFL 的《Digital Signal Processing 1: Basic Concepts and Algorithms》通过视频、交互笔记本、练习和代码建立 DSP 算法入口；动手性强，但完整平台访问可能收费。",
+      "en": "EPFL's Digital Signal Processing 1: Basic Concepts and Algorithms establishes an algorithmic DSP entry through videos, hands-on notebooks, exercises, and code, with full platform access potentially requiring payment."
+    },
+    "review_note": {
+      "zh": "动手笔记本和练习很强，但 Coursera 完整访问可能需要付费。",
+      "en": "Hands-on notebooks and exercises are strong, but full Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 91,
+    "summary": {
+      "zh": "EPFL 的《Digital Signal Processing 2: Filtering》从基础原理展开滤波方法；视频、笔记本、练习和代码齐全，建议具备基础微积分与线性代数，完整平台访问可能收费。",
+      "en": "EPFL's Digital Signal Processing 2: Filtering develops filtering from first principles through videos, notebooks, exercises, and code, recommending basic calculus and linear algebra while potentially requiring paid platform access."
+    },
+    "review_note": {
+      "zh": "官方建议具备基础微积分与线性代数，但未把第一门 DSP 课程列为硬性先修；Coursera 完整访问可能需要付费。",
+      "en": "The provider recommends basic calculus and linear algebra but does not list the first DSP course as a hard prerequisite; full Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 92,
+    "summary": {
+      "zh": "EPFL 的《Digital Signal Processing 3: Analog versus Digital》从基础原理比较模拟与数字信号处理；视频、练习、实验和代码齐全，建议具备基础微积分与线性代数，完整平台访问可能收费。",
+      "en": "EPFL's Digital Signal Processing 3: Analog versus Digital compares analog and digital processing from first principles through videos, exercises, labs, and code, recommending basic calculus and linear algebra while potentially requiring paid access."
+    },
+    "review_note": {
+      "zh": "官方建议具备基础微积分与线性代数，但未把前序系列列为硬性先修；Coursera 完整访问可能需要付费。",
+      "en": "The provider recommends basic calculus and linear algebra but does not list the earlier sequence as a hard prerequisite; full Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 93,
+    "summary": {
+      "zh": "EPFL 的《Digital Signal Processing 4: Applications》把 DSP 方法带到图像、通信和微控制器应用；视频、实验与代码丰富，但缺少统一的累计结课项目。",
+      "en": "EPFL's Digital Signal Processing 4: Applications carries DSP into image, communications, and microcontroller work through rich videos, labs, and code, but lacks one cumulative capstone."
+    },
+    "review_note": {
+      "zh": "图像、通信和微控制器应用很有价值，但没有统一的累计结课项目，且平台访问可能需要付费。",
+      "en": "Image, communications, and microcontroller applications are useful, but there is no single cumulative capstone and platform access may require payment."
+    }
+  },
+  {
+    "source_id": 94,
+    "summary": {
+      "zh": "University of Illinois Urbana-Champaign 的《Digital Signal Processing I》以当前讲义、作业与考试提供文本型 DSP 路径；考核链完整，但没有视频或编程实验。",
+      "en": "University of Illinois Urbana-Champaign's Digital Signal Processing I provides a current text-first DSP path through notes, assignments, and exams, with a strong assessment loop but no video or coding lab."
+    },
+    "review_note": {
+      "zh": "当前讲义、作业和考试均已公开，但没有视频或编程实验。",
+      "en": "The current notes, assignments, and exams are public, but there is no video or coding laboratory."
+    }
+  },
+  {
+    "source_id": 95,
+    "summary": {
+      "zh": "University of Illinois Urbana-Champaign 的《Digital Signal Processing Laboratory》以 Python 与 Jupyter 实验把 DSP 理论落到实现；公开的 Summer 2025 归档含七项实验与期末任务，但要求 ECE 310 或同等 DSP 基础。",
+      "en": "University of Illinois Urbana-Champaign's Digital Signal Processing Laboratory turns DSP theory into Python and Jupyter implementation through a public Summer 2025 archive with seven labs and a final task, assuming ECE 310 or equivalent DSP preparation."
+    },
+    "review_note": {
+      "zh": "公开的 Summer 2025 归档使用 Python 与 Jupyter 笔记本，要求 ECE 310 或同等 DSP 基础，并非持续维护的当前课程运行页。",
+      "en": "The public Summer 2025 archive uses Python and Jupyter notebooks, assumes ECE 310 or equivalent DSP preparation, and is not a current continuously maintained course run."
+    }
+  },
+  {
+    "source_id": 96,
+    "summary": {
+      "zh": "University of California, Berkeley 的《Digital Signal Processing》通过 SDR、业余无线电实验和代码训练 DSP 应用；硬件、频率法规、许可与工具版本都需要本地复核。",
+      "en": "University of California, Berkeley's Digital Signal Processing develops applied DSP through SDR and amateur-radio labs plus code, with hardware, frequency law, licensing, and tool versions requiring local review."
+    },
+    "review_note": {
+      "zh": "2019 年的 SDR 与业余无线电实验需要硬件，并要求了解当地频率法规、核对执照要求及更新工具版本。",
+      "en": "The 2019 SDR and amateur-radio laboratories require hardware, local frequency-law awareness, license checks, and tool-version updates."
+    }
+  },
+  {
+    "source_id": 97,
+    "summary": {
+      "zh": "Stanford University 的《The Fourier Transform and Its Applications》用 30 个视频、字幕、九套带解答习题和考试建立傅里叶分析主线；仅少量 MATLAB 工具较旧。",
+      "en": "Stanford University's The Fourier Transform and Its Applications builds a Fourier-analysis spine from 30 videos, transcripts, nine solved problem sets, and exams, with only small MATLAB utilities showing their age."
+    },
+    "review_note": {
+      "zh": "30 个视频、字幕、九套带解答习题和考试组成了强学习闭环；只有少量 MATLAB 工具已经过时。",
+      "en": "Thirty videos, transcripts, nine solved problem sets, and exams form a strong loop; only the small MATLAB utilities are dated."
+    }
+  },
+  {
+    "source_id": 98,
+    "summary": {
+      "zh": "MIT 的《Introduction to Communication, Control, and Signal Processing》以开放教材和考试答案连接通信、控制与信号处理；适合概览和复习，但没有公开视频或习题集。",
+      "en": "MIT's Introduction to Communication, Control, and Signal Processing connects communications, control, and signal processing through an open text and exam solutions, serving overview and review rather than a complete course."
+    },
+    "review_note": {
+      "zh": "开放教材与考试答案具有价值，但没有公开习题集或视频。",
+      "en": "The open textbook and exam solutions are useful, but there are no public problem sets or videos."
+    }
+  },
+  {
+    "source_id": 99,
+    "summary": {
+      "zh": "MIT 的《Introduction to EECS II: Digital Communication Systems》把压缩、编码、信道与网络放入同一数字通信入口；视频、讲义和代码可用，但公开答案反馈不完整。",
+      "en": "MIT's Introduction to EECS II: Digital Communication Systems integrates compression, coding, channels, and networks in one digital-communications entry, with videos, notes, and code but incomplete public solution feedback."
+    },
+    "review_note": {
+      "zh": "压缩、编码、信道与网络整合得很好，但公开答案与反馈闭环不完整。",
+      "en": "Compression, coding, channels, and networks are integrated well, but the public solution and feedback loop is incomplete."
+    }
+  },
+  {
+    "source_id": 100,
+    "summary": {
+      "zh": "MIT 的《Principles of Digital Communications I》以视频、讲义、练习和考试建立数字通信理论主线；整体资源完整，但作业答案不公开。",
+      "en": "MIT's Principles of Digital Communications I builds a digital-communications theory spine through videos, notes, practice, and exams, with homework solutions as the principal missing feedback."
+    },
+    "review_note": {
+      "zh": "除作业答案未公开外，课程资源基本完整；不应改用材料不完整的 2009 年版本。",
+      "en": "The public course is otherwise complete, but homework solutions are not open; the incomplete 2009 edition should not be substituted."
+    }
+  },
+  {
+    "source_id": 101,
+    "summary": {
+      "zh": "MIT 的《Principles of Digital Communication II》以完整视频、讲义、练习和考试继续高级数字通信主线；资源反馈强，但严格要求先完成第一门数字通信课程。",
+      "en": "MIT's Principles of Digital Communication II continues the advanced digital-communications spine with complete videos, notes, practice, and exams, under a strict prerequisite of the first course."
+    },
+    "review_note": {
+      "zh": "这门高级课程的资源闭环很强，但严格要求先完成第一门数字通信课程。",
+      "en": "This advanced course has a strong resource loop but strictly assumes the first digital communications course."
+    }
+  },
+  {
+    "source_id": 102,
+    "summary": {
+      "zh": "Stanford University 的《Information Theory》以当前课件和带答案作业提供信息论主线；文本与反馈质量较高，但授课视频仅限 Canvas。",
+      "en": "Stanford University's Information Theory provides a current information-theory spine through slides and solved homework, with strong textual feedback but lecture video restricted to Canvas."
+    },
+    "review_note": {
+      "zh": "当前课件与作业答案已公开，但授课视频仅能通过 Canvas 访问。",
+      "en": "Current slides and homework solutions are public, but lecture video is restricted to Canvas."
+    }
+  },
+  {
+    "source_id": 103,
+    "summary": {
+      "zh": "MIT 的《Information Theory》以讲义补充信息论学习；文本可作参考，但没有公开视频、答案或考试，不能独立构成反馈闭环。",
+      "en": "MIT's Information Theory supplements information-theory study through useful notes, but offers no open videos, solutions, or exams for an independent feedback loop."
+    },
+    "review_note": {
+      "zh": "讲义具有参考价值，但没有公开答案、视频或考试。",
+      "en": "The notes are useful, but there are no open solutions, videos, or exams."
+    }
+  },
+  {
+    "source_id": 104,
+    "summary": {
+      "zh": "MIT 的《Principles of Wireless Communications》以习题、项目和阅读材料补充无线通信专题；由于没有公开讲义或视频，不具备独立教学主线。",
+      "en": "MIT's Principles of Wireless Communications supplements wireless communications through problem sets, a project, and readings, but lacks public notes or videos for an independent teaching spine."
+    },
+    "review_note": {
+      "zh": "公开资源只有习题集、项目和阅读材料，因此没有可供独立学习的教学主线。",
+      "en": "Only problem sets, a project, and readings are public, so there is no independent teaching spine."
+    }
+  },
+  {
+    "source_id": 105,
+    "summary": {
+      "zh": "Stanford University 的《Wireless Communications》以讲义、作业、项目、模拟考试和代码提供无线通信替代路径；视频受限且部分协议背景停留在 2020 年。",
+      "en": "Stanford University's Wireless Communications offers an alternative wireless path through a reader, homework, project, practice exam, and code, while video access is restricted and some protocol context dates to 2020."
+    },
+    "review_note": {
+      "zh": "讲义、作业、项目和模拟考试均已公开，但视频位于 Canvas，部分协议背景停留在 2020 年。",
+      "en": "The reader, homework, project, and practice exam are public, but video is in Canvas and some protocol context dates to 2020."
+    }
+  },
+  {
+    "source_id": 106,
+    "summary": {
+      "zh": "IIT Bombay / NPTEL 的《Principles of Digital Communications》以 65 个视频和周作业提供数字通信讲授序列；内容覆盖稳定，但认证考试收费且没有实验或代码闭环。",
+      "en": "IIT Bombay / NPTEL's Principles of Digital Communications provides a 65-lecture digital-communications sequence with weekly assignments, while certification is paid and no lab or code loop is available."
+    },
+    "review_note": {
+      "zh": "65 个视频和周作业已公开，但认证采用限时付费考试，且没有实验或代码闭环。",
+      "en": "Sixty-five lectures and weekly assignments are public, but certification is a timed paid exam and there is no laboratory or code loop."
+    }
+  },
+  {
+    "source_id": 107,
+    "summary": {
+      "zh": "Cornell University 的《Electromagnetic Fields and Waves》以 28 份讲义、12 套带解答作业和四套带解答考试建立电磁场与波的文本主线；虽无视频，反馈闭环完整。",
+      "en": "Cornell University's Electromagnetic Fields and Waves builds a text-first electromagnetics spine from 28 notes, twelve solved homework sets, and four solved exams, providing a complete loop without video."
+    },
+    "review_note": {
+      "zh": "28 份讲义、12 套带解答作业和四套带解答考试组成完整文本闭环，但这门 2007 年课程没有视频。",
+      "en": "Twenty-eight notes, twelve solved homework sets, and four solved exams form a complete text loop, but the 2007 course has no video."
+    }
+  },
+  {
+    "source_id": 108,
+    "summary": {
+      "zh": "MIT 的《Electromagnetics and Applications》以开放教材、答案、演示和考试提供电磁学应用主线；文本与反馈资源优秀，但没有完整授课视频系列。",
+      "en": "MIT's Electromagnetics and Applications provides an applied electromagnetics spine through an open text, solutions, demonstrations, and exams, with excellent textual feedback but no full lecture-video series."
+    },
+    "review_note": {
+      "zh": "开放教材、答案与演示非常出色，但没有完整的授课视频系列。",
+      "en": "The open text, solutions, and demonstrations are excellent, but there is no full lecture-video series."
+    }
+  },
+  {
+    "source_id": 109,
+    "summary": {
+      "zh": "MIT 的《Electromagnetics》以仿真视频、MATLAB 文件、问题和考试补充电磁学；计算资料有价值，但缺少完整讲授主线。",
+      "en": "MIT's Electromagnetics supplements field study with a simulation video, MATLAB files, problems, and exams, while lacking a complete teaching spine."
+    },
+    "review_note": {
+      "zh": "仿真视频、MATLAB 文件、问题与考试均已公开，但没有完整教学主线。",
+      "en": "Simulation video, MATLAB files, problems, and exams are public, but a complete teaching spine is not."
+    }
+  },
+  {
+    "source_id": 110,
+    "summary": {
+      "zh": "Cornell University 的《Radio Frequency Systems》以十套作业、带解答考试和六个实验训练射频系统；实践资源丰富，但前五讲缺失并依赖付费教材与 Simulink。",
+      "en": "Cornell University's Radio Frequency Systems develops RF-system skills through ten homework sets, solved exams, and six labs, while missing the first five lectures and relying on a paid text and Simulink."
+    },
+    "review_note": {
+      "zh": "第 1 至第 5 讲缺失，课程还引用付费教材和 Simulink；不过十套作业、带解答考试和六个实验仍很有价值。",
+      "en": "Lectures one through five are missing and the course references a paid text and Simulink, although ten homework sets, solved exams, and six laboratories are valuable."
+    }
+  },
+  {
+    "source_id": 111,
+    "summary": {
+      "zh": "Eindhoven University of Technology 的《RF and Millimeter-Wave Circuit Design》以 Qucs-S 与 Octave 仿真构建射频毫米波电路实践主线；约七成内容可复现，硬件为可选项。",
+      "en": "Eindhoven University of Technology's RF and Millimeter-Wave Circuit Design builds a simulation-first RF and millimeter-wave circuit path in Qucs-S and Octave, with about seventy percent reproducible and hardware optional."
+    },
+    "review_note": {
+      "zh": "约 70% 的课程使用可复现的 Qucs-S 与 Octave 仿真，但 Coursera 访问可能需要付费，实体硬件为可选项。",
+      "en": "About seventy percent of the course uses reproducible Qucs-S and Octave simulations, but Coursera access may require payment and hardware is optional."
+    }
+  },
+  {
+    "source_id": 112,
+    "summary": {
+      "zh": "IIT Kharagpur / NPTEL 的《Analysis and Design Principles of Microwave Antennas》以视频和作业提供微波天线分析与设计主线；它补足天线方向，但不能替代通用微波工程课程，且没有开放实验或编程项目。",
+      "en": "IIT Kharagpur / NPTEL's Analysis and Design Principles of Microwave Antennas provides a substantial video-and-assignment spine for microwave antenna analysis and design, complementing rather than replacing a general microwave-engineering course and offering no open lab or coding project."
+    },
+    "review_note": {
+      "zh": "这是一门聚焦天线的课程，不是通用微波工程主线；授课与作业序列较为充实，但没有开放实验或编程项目。",
+      "en": "This is an antenna-focused course rather than a general microwave-engineering spine; its lecture and assignment sequence is substantial, but there is no open laboratory or coding project."
+    }
+  },
+  {
+    "source_id": 113,
+    "summary": {
+      "zh": "MIT 的《Receivers, Antennas, and Signals》以开放草稿和十三套带解答习题补充接收机与天线学习；文本参考强，但年代较早且无视频或实验。",
+      "en": "MIT's Receivers, Antennas, and Signals supplements receiver and antenna study through an open draft and thirteen solved problem sets, with strong textual reference but no video or lab."
+    },
+    "review_note": {
+      "zh": "开放草稿和十三套带解答习题是很强的参考资料，但课程年代较早，也没有视频或实验。",
+      "en": "An open draft and thirteen solved problem sets are strong references, but the course is old and has no video or laboratory."
+    }
+  },
+  {
+    "source_id": 114,
+    "summary": {
+      "zh": "MIT 的《Power Electronics》以当前视频、讲义、练习、设计任务和考试建立电力电子主线；理论与设计闭环异常完整，但实体硬件实验无法完全复现，独立学习默认只做仿真或限流低能量实验。",
+      "en": "MIT's Power Electronics builds a current power-electronics spine from videos, notes, practice, design work, and exams, with an unusually complete theory-and-design loop but no fully reproducible hardware lab; independent study should default to simulation or current-limited low-energy work."
+    },
+    "review_note": {
+      "zh": "当前理论与设计闭环异常完整，但课程没有提供可完全复现的硬件实验；独立学习者应默认使用仿真或限流低能量方案，不得无监督搭建高压或大电流硬件。",
+      "en": "The current theory and design loop is unusually complete, but it does not provide a fully reproducible hardware laboratory; independent learners should default to simulation or current-limited low-energy work and must not attempt unsupervised high-voltage or high-current hardware."
+    }
+  },
+  {
+    "source_id": 115,
+    "summary": {
+      "zh": "University of Colorado Boulder 的《Introduction to Power Electronics》通过视频、练习、仿真和代码提供电力电子入门；仿真实践有价值，但平台与评分访问可能收费或变化。",
+      "en": "University of Colorado Boulder's Introduction to Power Electronics provides an entry through videos, exercises, simulation, and code, with useful practice subject to changing or paid platform and grading access."
+    },
+    "review_note": {
+      "zh": "仿真练习具有价值，但 Coursera 访问和评分作业的可用性可能需要付费，也可能变化。",
+      "en": "The simulation exercises are useful, but Coursera access and graded work availability may require payment and can change."
+    }
+  },
+  {
+    "source_id": 116,
+    "summary": {
+      "zh": "University of Colorado Boulder 的《Converter Circuits》在电力电子入门后专门训练变换器电路；视频、练习、仿真和代码可用，但有明确前序与平台付费风险。",
+      "en": "University of Colorado Boulder's Converter Circuits specializes in converter circuits after the introductory course, using videos, practice, simulation, and code under an explicit prerequisite and possible access fee."
+    },
+    "review_note": {
+      "zh": "本课要求先完成电力电子入门课程，且平台访问可能需要付费。",
+      "en": "This course assumes the introductory power-electronics course, and platform access may require payment."
+    }
+  },
+  {
+    "source_id": 117,
+    "summary": {
+      "zh": "University of Colorado Boulder 的《Converter Control》把电力电子序列推进到变换器控制；视频、练习、仿真和代码支持实践，但要求变换器与反馈控制基础。",
+      "en": "University of Colorado Boulder's Converter Control advances the power-electronics sequence into converter control through videos, practice, simulation, and code, requiring prior converter and feedback-control knowledge."
+    },
+    "review_note": {
+      "zh": "需要先掌握变换器与反馈控制知识，且平台访问可能需要付费。",
+      "en": "Prior converter and feedback-control knowledge is required, and platform access may require payment."
+    }
+  },
+  {
+    "source_id": 118,
+    "summary": {
+      "zh": "IIT Kharagpur / NPTEL 的《Power System Analysis》以视频和作业提供电力系统分析主线；讲授材料开放，但认证考试收费且没有实验或代码闭环。",
+      "en": "IIT Kharagpur / NPTEL's Power System Analysis provides a power-system analysis spine through open lectures and assignments, while certification is paid and no lab or code loop is available."
+    },
+    "review_note": {
+      "zh": "授课与作业已开放，但认证采用限时付费考试，且没有实验或代码闭环。",
+      "en": "Lectures and assignments are open, but certification uses a timed paid exam and there is no laboratory or code loop."
+    }
+  },
+  {
+    "source_id": 119,
+    "summary": {
+      "zh": "MIT 的《Seminar in Electric Power Systems》以带解答习题和项目示例补充电力系统学习；分析与项目资料有价值，但 2006 年电网和市场背景需要更新注释。",
+      "en": "MIT's Seminar in Electric Power Systems supplements power-systems study through solved problems and project examples, while its 2006 grid and market context needs explicit modernization notes."
+    },
+    "review_note": {
+      "zh": "带解答习题和项目示例很有价值，但 2006 年的电网与市场背景需要明确的更新注释。",
+      "en": "Solved problem sets and project examples are valuable, but 2006 grid and market context needs explicit updating annotations."
+    }
+  },
+  {
+    "source_id": 120,
+    "summary": {
+      "zh": "MIT 的《Electric Machines》以讲义、练习和考试提供研究生层次电机主线；文本与考核资源强，但要求已有电力工程基础。",
+      "en": "MIT's Electric Machines provides a rigorous graduate electric-machines spine through notes, practice, and exams, under a prerequisite of prior electric-power study."
+    },
+    "review_note": {
+      "zh": "这门严谨的研究生课程要求已有电力工程背景。",
+      "en": "This rigorous graduate course assumes a prior electric-power background."
+    }
+  },
+  {
+    "source_id": 121,
+    "summary": {
+      "zh": "IIT Kharagpur / NPTEL 的《Electrical Machines II》以当前视频序列继续电机学习；讲授资源可用，但没有可复现实验或开放反馈闭环。",
+      "en": "IIT Kharagpur / NPTEL's Electrical Machines II continues electric-machines study through a current video sequence, while lacking a reproducible lab and open feedback loop."
+    },
+    "review_note": {
+      "zh": "当前视频序列具有学习价值，但没有可复现实验或开放反馈闭环。",
+      "en": "The current video sequence is useful but has no reproducible laboratory or open feedback loop."
+    }
+  },
+  {
+    "source_id": 122,
+    "summary": {
+      "zh": "Delft University of Technology 的《Solar Energy Engineering: Photovoltaic Energy Conversion》通过视频、讲义、练习、实验与代码建立光伏能量转换主线；目前有匹配的 TU Delft 开放课程入口、公开视频与讲义，但 edX 审计与证书访问受限。",
+      "en": "Delft University of Technology's Solar Energy Engineering: Photovoltaic Energy Conversion builds a photovoltaic-conversion spine from videos, notes, practice, labs, and code, with a matching TU Delft open-course entry, public videos, and notes while edX audit and certificate access remain limited."
+    },
+    "review_note": {
+      "zh": "edX 审计路径受限，证书价格可能变化；配套开放材料采用 CC BY-NC-SA 许可。",
+      "en": "The edX audit path is limited and certificate pricing can change; the companion open materials use a CC BY-NC-SA license."
+    }
+  },
+  {
+    "source_id": 123,
+    "summary": {
+      "zh": "MIT 的《Electrochemical Energy Systems》以讲义和考试补充电化学储能系统；考试答案完整，但课程要求研究生层次电化学与传输数学，习题也没有答案。",
+      "en": "MIT's Electrochemical Energy Systems supplements energy-storage study through notes and exams, with complete exam solutions but graduate electrochemistry and transport prerequisites and unsolved problem sets."
+    },
+    "review_note": {
+      "zh": "需要研究生层次的电化学与传输数学基础；尽管考试答案完整，习题集仍没有答案。",
+      "en": "Graduate electrochemistry and transport mathematics are prerequisites; problem sets lack solutions even though exam solutions are complete."
+    }
+  },
+  {
+    "source_id": 124,
+    "summary": {
+      "zh": "Cornell University 的《Physics of Semiconductors and Nanostructures》以 32 份讲义、11 套带解答作业和大部分带解答考试建立半导体物理文本主线；没有视频但反馈充分。",
+      "en": "Cornell University's Physics of Semiconductors and Nanostructures builds a semiconductor-physics text spine from 32 handouts, eleven solved homework sets, and mostly solved exams, with strong feedback despite no video."
+    },
+    "review_note": {
+      "zh": "32 份讲义、11 套带解答作业和大部分带解答考试形成强文本闭环，但这门 2012 年课程没有视频。",
+      "en": "Thirty-two handouts, eleven solved homework sets, and mostly solved exams form a strong text loop, but the 2012 course has no video."
+    }
+  },
+  {
+    "source_id": 125,
+    "summary": {
+      "zh": "MIT 的《Introduction to Nanoelectronics》以开放教材提供纳米电子学入口；文本具有长期参考价值，但习题和考试没有答案，并要求量子力学准备。",
+      "en": "MIT's Introduction to Nanoelectronics provides a nanoelectronics entry through a valuable open textbook, while unsolved problems and exams and a quantum-mechanics prerequisite limit independent feedback."
+    },
+    "review_note": {
+      "zh": "开放教材很有价值，但习题集与考试没有答案，课程还要求具备量子力学基础。",
+      "en": "The open textbook is valuable, but problem sets and exams lack solutions and the course assumes quantum-mechanics readiness."
+    }
+  },
+  {
+    "source_id": 126,
+    "summary": {
+      "zh": "MIT 的《Micro/Nano Processing Technology》以讲义、练习和考试建立微纳加工理论主线；洁净室部分只能作为案例或虚拟流程学习，不能包装成家庭实验。",
+      "en": "MIT's Micro/Nano Processing Technology builds a micro- and nanofabrication theory spine through notes, practice, and exams, with cleanroom work restricted to case-study or virtual-process learning."
+    },
+    "review_note": {
+      "zh": "对于独立学习者，洁净室工作只能作为案例研究或虚拟工艺学习，绝不能描述为家庭实验。",
+      "en": "Cleanroom work can only be a case study or virtual process for independent learners and must not be described as a home laboratory."
+    }
+  },
+  {
+    "source_id": 127,
+    "summary": {
+      "zh": "EPFL 的《Micro and Nanofabrication (MEMS)》以视频和洁净室演示提供 MEMS 微纳加工替代路径；演示只能观察，且完整平台访问价格较高。",
+      "en": "EPFL's Micro and Nanofabrication (MEMS) offers an alternative MEMS fabrication path through videos and cleanroom demonstrations, which remain observational under a costly premium-access model."
+    },
+    "review_note": {
+      "zh": "审计路径受限，高级访问价格约为 249 美元；洁净室演示仅供观察，并非可复现的家庭实验。",
+      "en": "The audit path is limited and premium access is about USD 249; cleanroom demonstrations are observational rather than reproducible home laboratories."
+    }
+  },
+  {
+    "source_id": 128,
+    "summary": {
+      "zh": "IIT Kanpur / NPTEL 的《Basic Overview of Semiconductor Device Processing and IC Fabrication》以 2026 年视频补充半导体工艺与 IC 制造概览；讲授主线新，但没有实验、代码或开放评分反馈。",
+      "en": "IIT Kanpur / NPTEL's Basic Overview of Semiconductor Device Processing and IC Fabrication offers a current 2026 overview through a strong lecture spine, while lacking labs, code, and open grading feedback."
+    },
+    "review_note": {
+      "zh": "2026 年归档提供了很强的授课主线，但没有可复现实验、代码或开放评分反馈。",
+      "en": "The 2026 archive provides a strong lecture spine but no reproducible laboratory, code, or open grading feedback."
+    }
+  },
+  {
+    "source_id": 129,
+    "summary": {
+      "zh": "MIT 的《Design and Fabrication of Microelectromechanical Devices》以讲义、带解答问题、编程和设计任务建立 MEMS 设计主线；制造环节对多数自学者不可达。",
+      "en": "MIT's Design and Fabrication of Microelectromechanical Devices builds a MEMS design spine from notes, solved problems, programming, and design work, while physical fabrication remains inaccessible to most independent learners."
+    },
+    "review_note": {
+      "zh": "问题答案、编程与设计任务均已公开，但多数独立学习者无法完成制造环节，且最好先具备微加工基础。",
+      "en": "Problem solutions, programming, and design work are public, but fabrication is unavailable to most independent learners and prior microfabrication is desirable."
+    }
+  },
+  {
+    "source_id": 130,
+    "summary": {
+      "zh": "Cornell University 的《Quantum Optics for Photonics》以讲义、十套带解答作业和部分带解答考试提供研究生量子光学路径；没有视频，期末考试也无答案。",
+      "en": "Cornell University's Quantum Optics for Photonics provides a graduate quantum-optics path through notes, ten solved homework sets, and partly solved exams, while lacking video and a final-exam solution."
+    },
+    "review_note": {
+      "zh": "十套带解答作业已公开，其中一套考试也有答案；但期末考试没有答案、课程没有视频，且内容达到研究生层次。",
+      "en": "Ten solved homework sets are public and one exam is solved, but the final is not, there is no video, and the material is graduate-level."
+    }
+  },
+  {
+    "source_id": 131,
+    "summary": {
+      "zh": "Cornell University 的《Semiconductor Optoelectronics》以 16 份讲义和八套带解答作业建立半导体光电子主线；文本反馈优秀，但无视频或实验且先修要求严格。",
+      "en": "Cornell University's Semiconductor Optoelectronics builds a semiconductor-optoelectronics spine from sixteen notes and eight solved homework sets, with excellent textual feedback but no video or lab and firm prerequisites."
+    },
+    "review_note": {
+      "zh": "16 份讲义和八套带解答作业非常出色，但没有实验或视频，且量子力学、电磁学与器件物理是明确先修。",
+      "en": "Sixteen notes and eight solved homework sets are excellent, but there is no laboratory or video and quantum mechanics, electromagnetics, and device physics are firm prerequisites."
+    }
+  },
+  {
+    "source_id": 132,
+    "summary": {
+      "zh": "IIT Madras / NPTEL 的《Introduction to Photonics》以视频、练习答案和演示建立光子学主线；反馈资源较强，但当前考核访问可能依赖报名。",
+      "en": "IIT Madras / NPTEL's Introduction to Photonics builds a photonics spine through videos, solved assignments, and demonstrations, with current assessment access potentially depending on enrollment."
+    },
+    "review_note": {
+      "zh": "作业、答案与演示都很强，但当前考核的访问可能取决于是否报名。",
+      "en": "Assignments, solutions, and demonstrations are strong, but current assessment access may depend on enrollment."
+    }
+  },
+  {
+    "source_id": 133,
+    "summary": {
+      "zh": "University of British Columbia 的《Silicon Photonics Design, Fabrication and Data Analysis》以 KLayout、SiEPIC、gdsfactory、远程制造和测量工具链形成罕见的硅光全流程；实践价值极高，但时点、许可与地区条件需复核。",
+      "en": "University of British Columbia's Silicon Photonics Design, Fabrication and Data Analysis forms a rare full silicon-photonics loop across a KLayout, SiEPIC, gdsfactory, remote-fabrication, and measurement toolchain, with timing, licensing, and regional conditions requiring recheck."
+    },
+    "review_note": {
+      "zh": "KLayout、SiEPIC、gdsfactory、远程制造与测量构成罕见的完整闭环，但必须重新核对流片日期、工具许可、地区访问条件以及芯片不会邮寄这一事实。",
+      "en": "KLayout, SiEPIC, gdsfactory, remote fabrication, and measurement form a rare full loop, but tapeout dates, tool licenses, regional access, and the fact that chips are not mailed must be rechecked."
+    }
+  },
+  {
+    "source_id": 134,
+    "summary": {
+      "zh": "MIT 的《Optics》以讲义、习题和考试提供严格的光学理论主线；理论与考核闭环优秀，但没有完整视频或可复现实体实验。",
+      "en": "MIT's Optics provides a rigorous optics theory spine through notes, problems, and exams, with an excellent assessment loop but no full video series or reproducible physical lab."
+    },
+    "review_note": {
+      "zh": "理论与考核闭环非常出色，但没有完整授课视频系列或可复现的实体实验。",
+      "en": "The theory and assessment loop is excellent, but there is no full lecture-video series or reproducible physical laboratory."
+    }
+  },
+  {
+    "source_id": 135,
+    "summary": {
+      "zh": "MIT 的《Photonic Materials and Devices》以四次设计评审和配套材料补充光子材料与器件学习；设计任务有价值，但没有答案且依赖付费教材。",
+      "en": "MIT's Photonic Materials and Devices supplements photonic materials and device study through four design reviews and supporting materials, while omitting answers and relying on a paid text."
+    },
+    "review_note": {
+      "zh": "四次设计评审很有价值，但没有答案，课程还引用付费的 Saleh 与 Teich 教材。",
+      "en": "Four design reviews are valuable, but answers are absent and the course references the paid Saleh and Teich text."
+    }
+  },
+  {
+    "source_id": 136,
+    "summary": {
+      "zh": "IIT Kharagpur / NPTEL 的《Electrical Measurement and Electronic Instruments》以 84 个以上视频和演示广泛覆盖电测量与电子仪器；讲授面广，但没有可复现家庭实验或代码闭环。",
+      "en": "IIT Kharagpur / NPTEL's Electrical Measurement and Electronic Instruments surveys measurement and instrumentation through more than 84 videos and demonstrations, while lacking a reproducible home lab and code loop."
+    },
+    "review_note": {
+      "zh": "84 个以上的视频与演示带来广泛覆盖，但没有可复现的家庭实验或编程闭环。",
+      "en": "More than eighty-four videos and demonstrations provide broad coverage, but there is no reproducible home laboratory or coding loop."
+    }
+  },
+  {
+    "source_id": 137,
+    "summary": {
+      "zh": "IISER Bhopal / NPTEL 的《Sensor Technologies: Physics, Fabrication, and Circuits》从传感器物理延伸到制造与电路；视频主线覆盖面完整，但没有开放的搭建测试闭环。",
+      "en": "IISER Bhopal / NPTEL's Sensor Technologies: Physics, Fabrication, and Circuits spans sensor physics, fabrication, and circuits through a broad video spine, but provides no open build-and-test loop."
+    },
+    "review_note": {
+      "zh": "课程覆盖从传感器物理到电路的完整范围，但没有开放的搭建与测试闭环。",
+      "en": "The course covers sensor physics through circuits but does not provide an open build-and-test loop."
+    }
+  },
+  {
+    "source_id": 138,
+    "summary": {
+      "zh": "University of Colorado Boulder 的《Sensors and Sensor Circuit Design》以视频、练习、实验和代码训练传感器接口电路；实践链较强，但依赖旧款 PSoC 5LP 与 Windows 工具链。",
+      "en": "University of Colorado Boulder's Sensors and Sensor Circuit Design develops sensor-interface circuits through videos, practice, labs, and code, with a strong sequence tied to an older PSoC 5LP and Windows toolchain."
+    },
+    "review_note": {
+      "zh": "实验依赖较旧的 PSoC 5LP 套件与 Windows 工具链，且 Coursera 访问可能需要付费。",
+      "en": "The laboratory depends on an older PSoC 5LP kit and Windows toolchain, and Coursera access may require payment."
+    }
+  },
+  {
+    "source_id": 139,
+    "summary": {
+      "zh": "IIT Madras / NPTEL 的《Biomedical Instrumentation》以视频序列提供生物医学仪器的广泛入门；讲授覆盖较好，但没有可复现的仪器项目，也不构成诊断或人体实验授权。",
+      "en": "IIT Madras / NPTEL's Biomedical Instrumentation provides a broad entry to biomedical instruments through its video sequence, while lacking a reproducible instrumentation project and providing no authorization for diagnosis or human experimentation."
+    },
+    "review_note": {
+      "zh": "授课序列覆盖面较广，但没有提供可复现的仪器项目，也不得被视为诊断或人体实验授权；人体数据或身体接触式测量需要伦理审批和合格人员监督。",
+      "en": "The lecture sequence is broad, but it does not provide a reproducible instrumentation project and must not be treated as authorization for diagnosis or human experimentation; human data or body-connected measurement requires ethics approval and qualified supervision."
+    }
+  },
+  {
+    "source_id": 140,
+    "summary": {
+      "zh": "MIT 的《Biomedical Signal and Image Processing》以讲义、实验和 MATLAB 工作流补充生物医学信号与图像处理；内容仍有价值，但工具链和旧数据链接需要迁移。",
+      "en": "MIT's Biomedical Signal and Image Processing supplements biomedical signal and image processing through notes, labs, and a MATLAB workflow, with valuable content whose tooling and old data links need migration."
+    },
+    "review_note": {
+      "zh": "应将 MATLAB 工作流与旧的 MIT 托管数据链接迁移到 Python 和当前数据集。",
+      "en": "The MATLAB workflow and old MIT-hosted data links should be migrated to Python and current datasets."
+    }
+  }
+]

@@ -1,0 +1,104 @@
+name: Course proposal / 课程推荐
+description: Propose a course with access, license, workload, tooling, safety, and completion evidence.
+title: "[Course] "
+labels:
+  - course
+  - needs-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请提供一手证据。仅有课程名称或链接的推荐无法进入目录。
+        Use primary evidence. A title or URL alone is not sufficient for the catalogue.
+  - type: input
+    id: official_url
+    attributes:
+      label: Official course URL / 官方课程页
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: identity
+    attributes:
+      label: Institution and course code / 机构与编号
+    validations:
+      required: true
+  - type: dropdown
+    id: track
+    attributes:
+      label: Canonical track / 方向
+      description: Select the closest option; explain a taxonomy concern below.
+      options:
+        - Mathematical and engineering foundations
+        - Circuits and electronics
+        - Digital systems and intelligent hardware
+        - Signals, communications, control, and electromagnetics
+        - Devices, integrated circuits, and micro/nano
+        - Electric energy and sustainability
+        - Instrumentation, design, and interdisciplinary practice
+    validations:
+      required: true
+  - type: textarea
+    id: selection
+    attributes:
+      label: Selection rationale and known gaps / 选择理由与缺口
+      description: Compare public materials, assessment, practice, and prerequisites.
+    validations:
+      required: true
+  - type: textarea
+    id: resources
+    attributes:
+      label: Resource evidence / 资源证据
+      description: For every URL, record type, access, license, status, and verification date.
+      placeholder: |
+        URL:
+        Type:
+        Access:
+        License:
+        Status:
+        Last verified (YYYY-MM-DD):
+    validations:
+      required: true
+  - type: textarea
+    id: workload
+    attributes:
+      label: Workload evidence / 工时证据
+      description: Cite traceable provider evidence, or label a maintainer estimate, explain its basis, and require a two-week learner calibration before long-term planning. Do not use "unknown".
+      placeholder: |
+        Provenance (provider / maintainer estimate):
+        Evidence URL or estimation basis:
+        Weekly hours and included work:
+        Two-week calibration instruction:
+    validations:
+      required: true
+  - type: textarea
+    id: tooling
+    attributes:
+      label: Software, hardware, and cost / 软件、硬件与成本
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety boundary / 安全边界
+      description: State whether work is standard, simulation-only, low-energy, or supervised, and why.
+    validations:
+      required: true
+  - type: textarea
+    id: completion
+    attributes:
+      label: Completion evidence / 完成证据
+      description: Define artifacts another learner or reviewer can verify.
+    validations:
+      required: true
+  - type: checkboxes
+    id: attestation
+    attributes:
+      label: Contributor checks / 贡献者确认
+      options:
+        - label: I checked the links under the recorded access conditions.
+          required: true
+        - label: I did not include restricted course answers or unlicensed copies.
+          required: true
+        - label: I disclosed any relationship to the provider.
+          required: true
