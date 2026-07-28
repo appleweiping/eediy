@@ -90,6 +90,33 @@ def test_mainline_audit_accepts_exact_coverage() -> None:
     )
 
 
+def test_mainline_audit_allows_the_next_civil_day_across_timezones() -> None:
+    audit_data, candidates, tracks, resources = sample_inputs()
+    assert (
+        mainline_audit_issues(
+            audit_data,
+            candidates,
+            tracks,
+            resources,
+            today=date(2026, 7, 28),
+        )
+        == []
+    )
+
+
+def test_mainline_audit_rejects_more_than_one_day_ahead_of_utc() -> None:
+    audit_data, candidates, tracks, resources = sample_inputs()
+    audit_data["audits"][0]["verified_at"] = "2026-07-30"
+    issues = mainline_audit_issues(
+        audit_data,
+        candidates,
+        tracks,
+        resources,
+        today=date(2026, 7, 28),
+    )
+    assert any(issue.code == "mainline_audit.future_date" for issue in issues)
+
+
 def test_mainline_audit_rejects_missing_mainline_and_preferred() -> None:
     audit_data, candidates, tracks, resources = sample_inputs()
     audit_data["audits"].pop()

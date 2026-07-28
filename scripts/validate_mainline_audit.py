@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import sys
 from collections import Counter, defaultdict
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 from urllib.parse import urlsplit, urlunsplit
@@ -77,7 +77,8 @@ def mainline_audit_issues(
     today: date | None = None,
 ) -> list[Issue]:
     issues: list[Issue] = []
-    today = today or date.today()
+    utc_today = today or datetime.now(timezone.utc).date()
+    latest_valid_date = utc_today + timedelta(days=1)
     if not isinstance(audit_data, Mapping) or not isinstance(
         audit_data.get("audits"), list
     ):
@@ -370,12 +371,15 @@ def mainline_audit_issues(
                 )
             )
         else:
-            if verified_at > today:
+            if verified_at > latest_valid_date:
                 issues.append(
                     Issue(
                         "error",
                         "mainline_audit.future_date",
-                        f"verified_at {verified_at.isoformat()} is in the future",
+                        (
+                            f"verified_at {verified_at.isoformat()} is more than one "
+                            "civil day ahead of UTC"
+                        ),
                         path,
                     )
                 )
