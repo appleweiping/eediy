@@ -1134,7 +1134,7 @@ def test_cli_payload_records_approved_and_unapproved_reviews(
     ledger_path.write_text(
         json.dumps(
             {
-                "reviewed_at": "2026-07-30",
+                "reviewed_at": datetime.now().astimezone().date().isoformat(),
                 "reviewer": "independent review",
                 "groups": [
                     {
