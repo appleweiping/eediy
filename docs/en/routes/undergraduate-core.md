@@ -8,8 +8,6 @@ page_type: route
 
 # Undergraduate Core Audit
 
-[中文](../../routes/undergraduate-core.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners auditing a full undergraduate-level EE core

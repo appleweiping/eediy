@@ -8,8 +8,6 @@ page_type: track
 
 # 电磁场与波
 
-[English](../../en/courses/electromagnetics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 Maxwell 方程、边界条件、传输线、波导与辐射，为 RF、光子和高速互连奠基。

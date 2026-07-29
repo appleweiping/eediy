@@ -8,8 +8,6 @@ page_type: track
 
 # Power Systems and Electric Machines
 
-[中文](../../../courses/power-systems-machines/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Power flow, faults, stability, power quality, and electromechanical conversion grounded in real grid constraints.

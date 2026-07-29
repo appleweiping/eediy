@@ -8,8 +8,6 @@ page_type: track
 
 # Biomedical Electronics and Signals
 
-[中文](../../../courses/biomedical/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Physiological signals, medical imaging, and instrumentation with patient safety, ethics, isolation, and supervision.

@@ -8,8 +8,6 @@ page_type: track
 
 # 综合设计与毕业项目
 
-[English](../../en/courses/capstone-practice/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 把需求、标准、架构、成本、安全、制造、测试和复盘合并为一个可复现、可演示的工程交付物。

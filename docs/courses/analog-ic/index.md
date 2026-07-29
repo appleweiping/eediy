@@ -8,8 +8,6 @@ page_type: track
 
 # 模拟与混合信号集成电路
 
-[English](../../en/courses/analog-ic/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 偏置、增益级、反馈、噪声、数据转换与版图意识，以仿真和设计权衡为核心。

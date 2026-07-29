@@ -8,8 +8,6 @@ page_type: track
 
 # 微纳工艺与 MEMS
 
-[English](../../en/courses/fabrication-mems/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 沉积、光刻、刻蚀、工艺集成和微机电设计；无洁净室时只做工艺计划、仿真和案例分析。

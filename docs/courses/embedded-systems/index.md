@@ -8,8 +8,6 @@ page_type: track
 
 # 嵌入式系统
 
-[English](../../en/courses/embedded-systems/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 裸机程序、外设、实时采样、通信和系统集成，要求可重复构建的硬件项目。

@@ -8,8 +8,6 @@ page_type: track
 
 # Physics Foundations
 
-[中文](../../../courses/physics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Mechanics, electromagnetism, waves, and quantum foundations for robotics, fields, devices, and photonics.

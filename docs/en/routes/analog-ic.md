@@ -8,8 +8,6 @@ page_type: route
 
 # Analog, Mixed-Signal, and Integrated Circuits
 
-[中文](../../routes/analog-ic.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners progressing from circuits and devices to transistor-level design, simulation, and layout

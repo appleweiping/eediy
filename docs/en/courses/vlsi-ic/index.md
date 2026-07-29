@@ -8,8 +8,6 @@ page_type: track
 
 # Digital VLSI and Chip Design
 
-[中文](../../../courses/vlsi-ic/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 CMOS logic, timing, power, physical design, and verification with explicit open-source versus restricted EDA paths.

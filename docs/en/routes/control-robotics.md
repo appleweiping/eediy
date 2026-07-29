@@ -8,8 +8,6 @@ page_type: route
 
 # Control, Robotics, and Autonomous Systems
 
-[中文](../../routes/control-robotics.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners integrating dynamics, estimation, planning, and manipulation into autonomous systems

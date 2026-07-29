@@ -8,8 +8,6 @@ page_type: route
 
 # 光电、光子与 MEMS
 
-[English](../en/routes/photonics-mems.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望从电磁与量子基础进入光电器件、集成光子和微机电系统的学习者

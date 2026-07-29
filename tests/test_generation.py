@@ -97,9 +97,93 @@ def test_generated_translation_heading_structure_matches(
         / "mathematics"
         / "001-ee-101.md"
     ]
-    assert [level for level, _, _ in markdown_headings(zh)] == [
-        level for level, _, _ in markdown_headings(en)
+    zh_headings = markdown_headings(zh)
+    en_headings = markdown_headings(en)
+    assert [level for level, _, _ in zh_headings] == [
+        level for level, _, _ in en_headings
     ]
+    assert [(level, title) for level, title, _ in zh_headings if level == 2] == [
+        (2, "课程简介"),
+        (2, "课程资源"),
+        (2, "实践与验收"),
+    ]
+    assert [(level, title) for level, title, _ in en_headings if level == 2] == [
+        (2, "Course Overview"),
+        (2, "Course Resources"),
+        (2, "Practice and Verification"),
+    ]
+    assert all(level in {1, 2} for level, _, _ in zh_headings)
+    assert all(level in {1, 2} for level, _, _ in en_headings)
+    for label in (
+        "为什么选择这门课",
+        "学习前准备",
+        "可验证的学习成果",
+        "工时与节奏",
+        "软件、硬件与成本",
+        "软件",
+        "硬件",
+        "成本说明",
+        "安全等级",
+        "公开资源完整度",
+        "资源与访问条件",
+        "实践闭环",
+        "风险、缺口与边界",
+        "完成证据",
+    ):
+        assert f"**{label}**" in zh
+    for label in (
+        "Why choose this course",
+        "Before you start",
+        "Verifiable learning outcomes",
+        "Workload and pacing",
+        "Software, hardware, and cost",
+        "Software",
+        "Hardware",
+        "Cost note",
+        "Safety level",
+        "Public resource coverage",
+        "Resources and access",
+        "Practice loop",
+        "Risks, gaps, and boundaries",
+        "Completion evidence",
+    ):
+        assert f"**{label}**" in en
+    zh_overview = zh.split("## 课程简介\n\n", 1)[1].split("\n## 课程资源", 1)[0]
+    en_overview = en.split("## Course Overview\n\n", 1)[1].split(
+        "\n## Course Resources", 1
+    )[0]
+    assert [line for line in zh_overview.splitlines() if line.startswith("- **")] == [
+        "- **机构：** Example University",
+        "- **课程编号：** EE-101",
+        "- **方向：** [工程数学](index.md)",
+        "- **评级：** S",
+        "- **角色：** 主线",
+        "- **难度：** 提供方未标准化（请按先修判断）",
+        "- **最近复核：** 2026-07-28",
+    ]
+    assert [line for line in en_overview.splitlines() if line.startswith("- **")] == [
+        "- **Institution:** Example University",
+        "- **Course code:** EE-101",
+        "- **Track:** [Engineering Mathematics](index.md)",
+        "- **Tier:** S",
+        "- **Role:** Mainline",
+        "- **Level:** Not standardized by provider (use prerequisites)",
+        "- **Last reviewed:** 2026-07-28",
+    ]
+    assert "| 属性 | 值 |" not in zh
+    assert "| Attribute | Value |" not in en
+    assert not any(line.startswith("> ") for line in zh_overview.splitlines())
+    assert not any(line.startswith("> ") for line in en_overview.splitlines())
+    zh_summary = zh_overview.split("- **最近复核：** 2026-07-28\n\n", 1)[1].split(
+        "\n\n", 1
+    )[0]
+    en_summary = en_overview.split("- **Last reviewed:** 2026-07-28\n\n", 1)[
+        1
+    ].split("\n\n", 1)[0]
+    assert zh_summary and not zh_summary.startswith(("-", "**", "!!!"))
+    assert en_summary and not en_summary.startswith(("-", "**", "!!!"))
+    assert "# Signals Through Calculus\n\n## 课程简介" in zh
+    assert "# Signals Through Calculus\n\n## Course Overview" in en
     assert "maintainer planning estimate" in en
     assert "维护者规划估计" in zh
     en_route = expected[tmp_path / "docs" / "en" / "routes" / "starter.md"]
@@ -108,6 +192,24 @@ def test_generated_translation_heading_structure_matches(
     assert "**Required**" in en_route
     assert "**Selection rule:** Complete all 1 required course." in en_route
     assert "1. Foundation" not in en_route
+
+
+def test_generated_pages_do_not_render_inline_language_switches(
+    tmp_path: Path, catalogue: dict, routes_data: dict
+) -> None:
+    expected = build_expected_pages(catalogue, routes_data, tmp_path / "docs")
+
+    for content in expected.values():
+        assert "[English](" not in content
+        assert "[中文](" not in content
+
+    detail_pages = [
+        content
+        for path, content in expected.items()
+        if path.name != "index.md" or path.parent.name == "mathematics"
+    ]
+    assert detail_pages
+    assert all("[← " not in content for content in detail_pages)
 
 
 def test_check_detects_drift_without_overwriting(

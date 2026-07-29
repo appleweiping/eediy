@@ -8,8 +8,6 @@ page_type: track
 
 # Probability, Statistics, and Random Processes
 
-[中文](../../../courses/probability-statistics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Probability models, random signals, estimation, and inference for communications, control, DSP, and device noise.

@@ -8,8 +8,6 @@ page_type: route
 
 # Embedded Systems and Intelligent Hardware
 
-[中文](../../routes/embedded-maker.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners moving from digital logic to MCUs, real-time systems, PCBs, and complete hardware builds

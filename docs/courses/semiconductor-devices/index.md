@@ -8,8 +8,6 @@ page_type: track
 
 # 半导体器件
 
-[English](../../en/courses/semiconductor-devices/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 载流子、结、MOS 与纳米结构，把量子和固体物理连接到可测量的器件特性。

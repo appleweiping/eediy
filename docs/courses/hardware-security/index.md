@@ -8,8 +8,6 @@ page_type: track
 
 # 硬件安全
 
-[English](../../en/courses/hardware-security/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 侧信道、故障攻击、可信执行与安全架构，在真实处理器和可验证威胁模型上学习。

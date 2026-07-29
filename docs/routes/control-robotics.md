@@ -8,8 +8,6 @@ page_type: route
 
 # 控制、机器人与自主系统
 
-[English](../en/routes/control-robotics.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望把动态系统、估计、规划和操控整合成自主系统的学习者

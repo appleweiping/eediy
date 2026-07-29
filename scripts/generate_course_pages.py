@@ -305,7 +305,7 @@ def _render_projects(course: Mapping[str, Any], language: str) -> str:
             ]
             label_separator = "：" if language == "zh" else ":"
             chunks.append(
-                f"### {_safe(title)}\n\n"
+                f"**{_safe(title)}**\n\n"
                 f"{_safe(brief)}\n\n"
                 f"**{origin_label}{label_separator}** {_safe(origin_value)}\n\n"
                 f"**{deliverable_label}**\n\n"
@@ -357,20 +357,16 @@ def render_course_page(
     courses_by_source: Mapping[int, Mapping[str, Any]],
     audit: Mapping[str, Any] | None = None,
 ) -> str:
-    other = "en" if language == "zh" else "zh"
     title = str(course["title"][language])
     summary = str(course["summary"][language])
     track_title = str(track["title"][language])
     role = ROLE_LABELS[str(course["role"])][0 if language == "zh" else 1]
     level = LEVEL_LABELS[str(course["level"])][0 if language == "zh" else 1]
-    language_link = (
-        f"[English](../../en/courses/{course['track']}/{course['slug']}.md)"
-        if language == "zh"
-        else f"[中文](../../../courses/{course['track']}/{course['slug']}.md)"
-    )
     if language == "zh":
         labels = {
-            "position": "课程定位",
+            "overview": "课程简介",
+            "course_resources": "课程资源",
+            "practice_verification": "实践与验收",
             "why": "为什么选择这门课",
             "before": "学习前准备",
             "outcomes": "可验证的学习成果",
@@ -397,8 +393,6 @@ def render_course_page(
             "license": "许可",
             "status": "状态",
             "verified": "复核日期",
-            "attribute": "属性",
-            "value": "值",
             "resource_type": "资源类型",
             "completeness": "完整度",
         }
@@ -409,7 +403,9 @@ def render_course_page(
         )
     else:
         labels = {
-            "position": "Course position",
+            "overview": "Course Overview",
+            "course_resources": "Course Resources",
+            "practice_verification": "Practice and Verification",
             "why": "Why choose this course",
             "before": "Before you start",
             "outcomes": "Verifiable learning outcomes",
@@ -436,8 +432,6 @@ def render_course_page(
             "license": "License",
             "status": "Status",
             "verified": "Verified",
-            "attribute": "Attribute",
-            "value": "Value",
             "resource_type": "Resource type",
             "completeness": "Completeness",
         }
@@ -472,13 +466,11 @@ def render_course_page(
         (labels["level"], level),
         (labels["reviewed"], course["last_reviewed"]),
     ]
-    metadata_table = (
-        f"| {labels['attribute']} | {labels['value']} |\n|---|---|\n"
-        + "\n".join(
-            f"| **{_safe(key)}** | "
-            f"{_safe(value) if not str(value).startswith('[') else value} |"
-            for key, value in metadata_rows
-        )
+    metadata_separator = "：" if language == "zh" else ":"
+    metadata_list = "\n".join(
+        f"- **{_safe(key)}{metadata_separator}** "
+        f"{_safe(value) if not str(value).startswith('[') else value}"
+        for key, value in metadata_rows
     )
     coverage_rows = "\n".join(
         f"| {COVERAGE_NAMES[key][0 if language == 'zh' else 1]} | "
@@ -516,34 +508,36 @@ def render_course_page(
         _front_matter(title, summary, "course")
         + _marker(course)
         + f"# {_safe(title)}\n\n"
-        + f"{language_link} · [← {_safe(track_title)}](index.md)\n\n"
-        + f"> {_safe(summary)}\n\n"
+        + f"## {labels['overview']}\n\n"
+        + f"{metadata_list}\n\n"
+        + f"{_safe(summary)}\n\n"
         + audit_notice
-        + f"## {labels['position']}\n\n{metadata_table}\n\n"
-        + f"## {labels['why']}\n\n{_safe(course['selection_note'][language])}\n\n"
-        + f"## {labels['before']}\n\n{prerequisites}\n\n"
-        + f"## {labels['outcomes']}\n\n{outcomes}\n\n"
-        + f"## {labels['workload']}\n\n"
+        + f"**{labels['why']}**\n\n{_safe(course['selection_note'][language])}\n\n"
+        + f"**{labels['before']}**\n\n{prerequisites}\n\n"
+        + f"**{labels['outcomes']}**\n\n{outcomes}\n\n"
+        + f"**{labels['workload']}**\n\n"
         + f"**{_safe(workload_value)}{sentence_stop}** {_safe(study_plan['note'][language])}\n\n"
-        + f"## {labels['tooling']}\n\n"
-        + f"### {labels['software']}\n\n{software}\n\n"
-        + f"### {labels['hardware']}\n\n{hardware}\n\n"
-        + f"### {labels['cost']}\n\n{_safe(course['tooling']['cost_note'][language])}\n\n"
-        + f"## {labels['safety']}\n\n"
+        + f"**{labels['safety']}**\n\n"
         + f"**{_safe(safety_level)}{sentence_stop}** {_safe(course['safety']['note'][language])}\n\n"
-        + f"## {labels['coverage']}\n\n"
+        + f"## {labels['course_resources']}\n\n"
+        + f"**{labels['tooling']}**\n\n"
+        + f"**{labels['software']}**\n\n{software}\n\n"
+        + f"**{labels['hardware']}**\n\n{hardware}\n\n"
+        + f"**{labels['cost']}**\n\n{_safe(course['tooling']['cost_note'][language])}\n\n"
+        + f"**{labels['coverage']}**\n\n"
         + f"| {labels['resource_type']} | {labels['completeness']} |\n|---|---|\n"
         + coverage_rows
         + "\n\n"
-        + f"## {labels['resources']}\n\n"
+        + f"**{labels['resources']}**\n\n"
         + f"| {labels['kind']} | {labels['access']} | {labels['license']} | "
         + f"{labels['status']} | {labels['verified']} |\n"
         + "|---|---|---|---|---|\n"
         + "\n".join(resource_rows)
         + f"\n\n> {_safe(notice)}\n\n"
-        + f"## {labels['practice']}\n\n{_render_projects(course, language)}\n\n"
-        + f"## {labels['risk']}\n\n{_safe(course['review_note'][language])}\n\n"
-        + f"## {labels['evidence']}\n\n"
+        + f"## {labels['practice_verification']}\n\n"
+        + f"**{labels['practice']}**\n\n{_render_projects(course, language)}\n\n"
+        + f"**{labels['risk']}**\n\n{_safe(course['review_note'][language])}\n\n"
+        + f"**{labels['evidence']}**\n\n"
         + "\n".join(f"- {_safe(item)}" for item in evidence)
         + "\n"
     )
@@ -559,11 +553,6 @@ def render_track_page(
 ) -> str:
     title = str(track["title"][language])
     summary = str(track["summary"][language])
-    other_link = (
-        f"[English](../../en/courses/{track['id']}/index.md)"
-        if language == "zh"
-        else f"[中文](../../../courses/{track['id']}/index.md)"
-    )
     ordered = sorted(courses, key=_course_sort_key)
     prerequisites = [
         tracks_by_id[track_id]
@@ -572,7 +561,6 @@ def render_track_page(
     ]
     if language == "zh":
         labels = {
-            "catalogue": "课程总览",
             "position": "方向定位",
             "prereq": "建议先修方向",
             "sequence": "建议顺序",
@@ -592,7 +580,6 @@ def render_track_page(
         ]
     else:
         labels = {
-            "catalogue": "Course catalogue",
             "position": "Track position",
             "prereq": "Recommended prerequisite tracks",
             "sequence": "Suggested order",
@@ -676,7 +663,6 @@ def render_track_page(
         _front_matter(title, summary, "track")
         + _marker({"track": track, "courses": [course["id"] for course in ordered]})
         + f"# {_safe(title)}\n\n"
-        + f"{other_link} · [← {labels['catalogue']}](../index.md)\n\n"
         + f"## {labels['position']}\n\n{_safe(summary)}\n\n"
         + review_notice
         + f"## {labels['prereq']}\n\n{prereq_items}\n\n"
@@ -703,11 +689,6 @@ def render_catalogue_index(
 ) -> str:
     used = Counter(str(course["track"]) for course in courses)
     used_tracks = [track for track in tracks if used[track["id"]]]
-    other_link = (
-        "[English](../en/courses/index.md)"
-        if language == "zh"
-        else "[中文](../../courses/index.md)"
-    )
     stats = catalogue_statistics({"tracks": tracks, "courses": courses})
     if language == "zh":
         title = "课程导航"
@@ -766,7 +747,6 @@ def render_catalogue_index(
         _front_matter(title, description, "catalogue")
         + _marker({"tracks": tracks, "courses": [course["id"] for course in courses]})
         + f"# {title}\n\n"
-        + f"{other_link} · "
         + ("[学习路线](../routes/index.md)" if language == "zh" else "[Learning routes](../routes/index.md)")
         + f"\n\n{intro}\n\n"
         + f"## {usage_title}\n\n"
@@ -784,11 +764,6 @@ def render_route_index(
     courses_by_source: Mapping[int, Mapping[str, Any]],
     language: str,
 ) -> str:
-    other_link = (
-        "[English](../en/routes/index.md)"
-        if language == "zh"
-        else "[中文](../../routes/index.md)"
-    )
     if language == "zh":
         title = "学习路线"
         description = "按目标组织的分阶段电子工程自学路线，每个阶段指向经过复核的课程和明确验收结果。"
@@ -821,7 +796,6 @@ def render_route_index(
         _front_matter(title, description, "routes")
         + _marker({"routes": routes})
         + f"# {title}\n\n"
-        + f"{other_link} · "
         + ("[课程导航](../courses/index.md)" if language == "zh" else "[Course catalogue](../courses/index.md)")
         + f"\n\n{_safe(intro)}\n\n"
         + f"| {headers[0]} | {headers[1]} | {headers[2]} | {headers[3]} |\n"
@@ -841,14 +815,8 @@ def render_route_page(
     title = str(route[f"title_{language}"])
     audience = str(route[f"audience_{language}"])
     outcome = str(route[f"outcome_{language}"])
-    other_link = (
-        f"[English](../en/routes/{route['id']}.md)"
-        if language == "zh"
-        else f"[中文](../../routes/{route['id']}.md)"
-    )
     if language == "zh":
         labels = {
-            "routes": "学习路线",
             "audience": "适合人群",
             "outcome": "最终验收",
             "stages": "阶段安排",
@@ -870,7 +838,6 @@ def render_route_page(
         ]
     else:
         labels = {
-            "routes": "Learning routes",
             "audience": "Audience",
             "outcome": "Final outcome",
             "stages": "Stages",
@@ -1118,7 +1085,6 @@ def render_route_page(
         _front_matter(title, outcome, "route")
         + _marker(route)
         + f"# {_safe(title)}\n\n"
-        + f"{other_link} · [← {labels['routes']}](index.md)\n\n"
         + f"## {labels['audience']}\n\n{_safe(audience)}\n\n"
         + f"## {labels['outcome']}\n\n{_safe(outcome)}\n\n"
         + audit_notice

@@ -8,8 +8,6 @@ page_type: track
 
 # Semiconductor Devices
 
-[中文](../../../courses/semiconductor-devices/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Carriers, junctions, MOS structures, and nanostructures connecting quantum and solid-state physics to measurable devices.

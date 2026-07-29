@@ -8,8 +8,6 @@ page_type: track
 
 # FPGA 与片上系统
 
-[English](../../en/courses/fpga-soc/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 RTL、验证、外设接口与软硬件协同，以可综合设计和板级演示作为验收。

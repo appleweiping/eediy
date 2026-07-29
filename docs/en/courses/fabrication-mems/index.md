@@ -8,8 +8,6 @@ page_type: track
 
 # Micro/Nanofabrication and MEMS
 
-[中文](../../../courses/fabrication-mems/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Deposition, lithography, etching, process integration, and MEMS design using process plans and simulation when cleanrooms are unavailable.

@@ -8,8 +8,6 @@ page_type: track
 
 # Capstone Design and Engineering Practice
 
-[中文](../../../courses/capstone-practice/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Requirements, standards, architecture, cost, safety, fabrication, testing, and postmortems combined into a reproducible engineering deliverable.

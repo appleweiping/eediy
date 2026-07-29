@@ -8,8 +8,6 @@ page_type: track
 
 # Computer Architecture
 
-[中文](../../../courses/computer-architecture/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 ISAs, pipelines, caches, parallelism, and performance analysis for understanding how hardware executes programs.

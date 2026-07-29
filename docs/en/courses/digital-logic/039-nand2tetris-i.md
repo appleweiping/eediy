@@ -8,61 +8,59 @@ page_type: course
 
 # Build a Modern Computer from First Principles: From Nand to Tetris, Part I
 
-[中文](../../../courses/digital-logic/039-nand2tetris-i.md) · [← Digital Logic and Computation Structures](index.md)
+## Course Overview
 
-> Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part I teaches digital logic through a self-contained HDL simulator and staged projects, subject to changing platform access terms.
+- **Institution:** Hebrew University of Jerusalem
+- **Course code:** Nand2Tetris I
+- **Track:** [Digital Logic and Computation Structures](index.md)
+- **Tier:** S
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-## Course position
+Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part I teaches digital logic through a self-contained HDL simulator and staged projects, subject to changing platform access terms.
 
-| Attribute | Value |
-|---|---|
-| **Institution** | Hebrew University of Jerusalem |
-| **Course code** | Nand2Tetris I |
-| **Track** | [Digital Logic and Computation Structures](index.md) |
-| **Tier** | S |
-| **Role** | Alternative |
-| **Level** | Not standardized by provider (use prerequisites) |
-| **Last reviewed** | 2026-07-28 |
-
-## Why choose this course
+**Why choose this course**
 
 Alternative course. A particularly complete and well-structured option for this track. Review note: S content / A access
 
-## Before you start
+**Before you start**
 
 - Recommended foundation: Programming and Engineering Computing
 - Recommended foundation: Circuit Analysis
 
-## Verifiable learning outcomes
+**Verifiable learning outcomes**
 
 - Explain the core models in Digital Logic and Computation Structures, including their assumptions and limits
 - Solve representative derivations and problems, checking units, limiting cases, or numerical results
 - Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-## Workload and pacing
+**Workload and pacing**
 
 **11 weeks at 9 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-## Software, hardware, and cost
+**Safety level**
 
-### Software
+**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+
+## Course Resources
+
+**Software, hardware, and cost**
+
+**Software**
 
 - Maintainer-suggested open-source/free verification path: Logisim Evolution, Icarus Verilog or Verilator, and GTKWave
 - The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
 
-### Hardware
+**Hardware**
 
 - The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect a logic training board, USB programmer, and logic analyzer explicitly specified by the course
 
-### Cost note
+**Cost note**
 
 The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
 
-## Safety level
-
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
-
-## Public resource coverage
+**Public resource coverage**
 
 | Resource type | Completeness |
 |---|---|
@@ -73,7 +71,7 @@ The current maintainer path uses computation and simulation only, with no dedica
 | Exams | No public material |
 | Code | Complete |
 
-## Resources and access
+**Resources and access**
 
 | Resource | Access | License | Status | Verified |
 |---|---|---|---|---|
@@ -82,9 +80,11 @@ The current maintainer path uses computation and simulation only, with no dedica
 
 > “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
 
-## Practice loop
+## Practice and Verification
 
-### Build a Modern Computer from First Principles: From Nand to Tetris, Part I · Hebrew University of Jerusalem Nand2Tetris I: Streaming Digital Unit with Formal Checks
+**Practice loop**
+
+**Build a Modern Computer from First Principles: From Nand to Tetris, Part I · Hebrew University of Jerusalem Nand2Tetris I: Streaming Digital Unit with Formal Checks**
 
 This is a maintainer-suggested self-study project for Build a Modern Computer from First Principles: From Nand to Tetris, Part I · Hebrew University of Jerusalem Nand2Tetris I, not an official course assignment. Implement a parameterized, handshaked streaming unit for Digital Logic and Computation Structures and verify function, timing protocol, and reset boundaries with RTL simulation, assertions, and randomized testing.
 
@@ -112,11 +112,11 @@ This is a maintainer-suggested self-study project for Build a Modern Computer fr
 
 **Safety boundary:** Simulation only — Use RTL simulation and synthesis reports only by default; do not load a design with unaudited clocks, resets, or interfaces into physical systems.
 
-## Risks, gaps, and boundaries
+**Risks, gaps, and boundaries**
 
 The HDL simulator and projects are self-contained, but Coursera trial, payment, and full-course access terms can change.
 
-## Completion evidence
+**Completion evidence**
 
 - Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
 - Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test

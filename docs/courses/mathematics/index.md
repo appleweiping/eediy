@@ -8,8 +8,6 @@ page_type: track
 
 # 工程数学
 
-[English](../../en/courses/mathematics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 微积分、线性代数、微分方程、复变函数与数值思维，为后续所有建模和分析提供共同语言。

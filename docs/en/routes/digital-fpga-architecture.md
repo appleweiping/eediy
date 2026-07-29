@@ -8,8 +8,6 @@ page_type: route
 
 # Digital Systems, FPGA, and Architecture
 
-[中文](../../routes/digital-fpga-architecture.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Hardware learners who want the full path from RTL to processors and SoCs

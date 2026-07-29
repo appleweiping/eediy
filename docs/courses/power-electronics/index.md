@@ -8,8 +8,6 @@ page_type: track
 
 # 电力电子
 
-[English](../../en/courses/power-electronics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 变换器拓扑、磁性元件、调制与闭环控制；高压和大功率实验默认仿真或受监督。

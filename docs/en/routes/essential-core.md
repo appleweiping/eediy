@@ -8,8 +8,6 @@ page_type: route
 
 # Essential Core
 
-[中文](../../routes/essential-core.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners with limited time who still want a complete EE foundation

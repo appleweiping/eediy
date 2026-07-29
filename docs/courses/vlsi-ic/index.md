@@ -8,8 +8,6 @@ page_type: track
 
 # 数字 VLSI 与芯片设计
 
-[English](../../en/courses/vlsi-ic/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 CMOS 逻辑、时序、功耗、物理设计与验证，区分开源流程和受限商业 EDA。

@@ -68,7 +68,9 @@ jobs:
           python scripts/validate_routes.py
 
       - name: Check generated page drift
-        run: python scripts/generate_course_pages.py --check
+        run: |
+          python scripts/generate_course_pages.py --check
+          python scripts/sync_navigation.py --check
 
       - name: Check translations, navigation, links, and managed text
         run: |

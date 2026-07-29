@@ -8,8 +8,6 @@ page_type: track
 
 # 信息论与编码
 
-[English](../../en/courses/information-theory-coding/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 熵、容量、率失真与现代纠错码，给出通信与压缩的理论边界和构造方法。

@@ -8,8 +8,6 @@ page_type: route
 
 # Signal Processing, Communications, and Information Theory
 
-[中文](../../routes/dsp-communications.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners moving from Fourier analysis to digital communications, wireless systems, and coding

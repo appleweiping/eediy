@@ -8,8 +8,6 @@ page_type: track
 
 # Embedded Systems
 
-[中文](../../../courses/embedded-systems/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Bare-metal software, peripherals, real-time sampling, communications, and integrated hardware projects.

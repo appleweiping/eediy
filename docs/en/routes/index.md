@@ -8,7 +8,7 @@ page_type: routes
 
 # Learning Routes
 
-[中文](../../routes/index.md) · [Course catalogue](../courses/index.md)
+[Course catalogue](../courses/index.md)
 
 Routes control scope and sequence; they are not rigid degree plans. Choose one main route, then fill only the prerequisite gaps you actually have.
 

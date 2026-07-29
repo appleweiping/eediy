@@ -8,8 +8,6 @@ page_type: track
 
 # Real-Time and Cyber-Physical Systems
 
-[中文](../../../courses/real-time-cps/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Scheduling, timing analysis, reliability, and physical feedback with explicit treatment of missed deadlines.

@@ -8,8 +8,6 @@ page_type: route
 
 # 信号处理、通信与信息论
 
-[English](../en/routes/dsp-communications.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望从傅里叶分析走到数字通信、无线和纠错码的学习者

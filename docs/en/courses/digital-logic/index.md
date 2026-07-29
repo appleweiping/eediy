@@ -8,8 +8,6 @@ page_type: track
 
 # Digital Logic and Computation Structures
 
-[中文](../../../courses/digital-logic/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Combinational and sequential logic, finite-state machines, processors, and memory from gates to complete computers.

@@ -75,6 +75,14 @@ def _excluded_patterns(config: Mapping[str, Any]) -> list[str]:
     return []
 
 
+def _requires_all_docs(config: Mapping[str, Any]) -> bool:
+    extra = config.get("extra")
+    return (
+        isinstance(extra, Mapping)
+        and extra.get("navigation_requires_all_docs") is True
+    )
+
+
 def navigation_issues(
     config_path: Path,
     *,
@@ -98,14 +106,15 @@ def navigation_issues(
         for target in raw_targets
         if not target.startswith(("http://", "https://"))
     ]
-    duplicates = [
+    literal_duplicates = [
         target for target, count in Counter(path_targets).items() if count > 1
     ]
-    for target in duplicates:
+    for target in literal_duplicates:
         issues.append(
             Issue("error", "nav.duplicate", f"navigation target appears more than once: {target}")
         )
     seeds: set[Path] = set()
+    resolved_targets: dict[Path, list[str]] = {}
     synthetic_source = docs_root / "index.md"
     for target in path_targets:
         resolved = resolve_internal_target(
@@ -128,8 +137,45 @@ def navigation_issues(
                 Issue("error", "nav.not_markdown", f"nav target is not Markdown: {target}")
             )
         else:
-            seeds.add(resolved.path.resolve())
+            resolved_path = resolved.path.resolve()
+            seeds.add(resolved_path)
+            resolved_targets.setdefault(resolved_path, []).append(target)
+    for resolved_path, targets in sorted(
+        resolved_targets.items(), key=lambda item: item[0].as_posix()
+    ):
+        if len(targets) > 1 and len(set(targets)) > 1:
+            relative = resolved_path.relative_to(docs_root).as_posix()
+            issues.append(
+                Issue(
+                    "error",
+                    "nav.duplicate",
+                    "multiple navigation targets resolve to the same page: "
+                    + ", ".join(targets),
+                    relative,
+                )
+            )
     all_docs = {path.resolve() for path in markdown_files(docs_root)}
+    excluded = _excluded_patterns(config)
+    required_docs = {
+        page
+        for page in all_docs
+        if not matches_any(page.relative_to(docs_root).as_posix(), excluded)
+    }
+    directly_listed = seeds.intersection(required_docs)
+    direct_missing = required_docs.difference(seeds)
+    require_all_docs = _requires_all_docs(config)
+    if require_all_docs:
+        for missing in sorted(direct_missing):
+            relative = missing.relative_to(docs_root).as_posix()
+            issues.append(
+                Issue(
+                    "error",
+                    "nav.direct_missing",
+                    "page must appear directly in navigation because "
+                    "extra.navigation_requires_all_docs is enabled",
+                    relative,
+                )
+            )
     reachable = set(seeds)
     if check_reachability:
         queue = deque(seeds)
@@ -149,7 +195,6 @@ def navigation_issues(
                 if neighbor not in reachable:
                     reachable.add(neighbor)
                     queue.append(neighbor)
-        excluded = _excluded_patterns(config)
         for orphan in sorted(all_docs - reachable):
             relative = orphan.relative_to(docs_root).as_posix()
             if matches_any(relative, excluded):
@@ -165,6 +210,20 @@ def navigation_issues(
     statistics = {
         "nav_targets": len(path_targets),
         "markdown_pages": len(all_docs),
+        "required_markdown_pages": len(required_docs),
+        "directly_listed_pages": len(directly_listed),
+        "direct_nav_pages": len(directly_listed),
+        "direct_coverage_percent": (
+            round(len(directly_listed) * 100 / len(required_docs), 2)
+            if required_docs
+            else 100.0
+        ),
+        "direct_nav_coverage_percent": (
+            round(len(directly_listed) * 100 / len(required_docs), 2)
+            if required_docs
+            else 100.0
+        ),
+        "navigation_requires_all_docs": require_all_docs,
         "reachable_pages": len(reachable),
         "reachability_percent": (
             round(len(reachable) * 100 / len(all_docs), 2) if all_docs else 100.0
@@ -191,6 +250,7 @@ def main(argv: list[str] | None = None) -> int:
     emit_issues(issues)
     print(
         f"Navigation: {statistics.get('nav_targets', 0)} targets, "
+        f"{statistics.get('direct_coverage_percent', 0):.2f}% directly listed, "
         f"{statistics.get('reachability_percent', 0):.2f}% reachable"
     )
     write_json_report(

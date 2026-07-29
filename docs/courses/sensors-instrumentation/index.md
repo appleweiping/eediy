@@ -8,8 +8,6 @@ page_type: track
 
 # 传感器与仪器
 
-[English](../../en/courses/sensors-instrumentation/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 传感机理、接口电路、校准、噪声和测量不确定度，要求给出可追溯的测试方法。

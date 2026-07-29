@@ -8,8 +8,6 @@ page_type: track
 
 # Introduction to Electrical Engineering
 
-[中文](../../../courses/ee-introduction/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Survey courses spanning circuits, signals, computation, and electromechanical systems, with early system-building practice.

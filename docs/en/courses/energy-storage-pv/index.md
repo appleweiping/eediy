@@ -8,8 +8,6 @@ page_type: track
 
 # Energy Storage and Photovoltaics
 
-[中文](../../../courses/energy-storage-pv/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Electrochemical storage, solar cells, system modeling, and energy management with explicit battery, laser, and high-voltage safety.

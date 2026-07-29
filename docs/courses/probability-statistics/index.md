@@ -8,8 +8,6 @@ page_type: track
 
 # 概率、统计与随机过程
 
-[English](../../en/courses/probability-statistics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 从概率模型到随机信号、估计与推断，连接通信、控制、信号处理和器件噪声。

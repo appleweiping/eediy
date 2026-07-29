@@ -8,8 +8,6 @@ page_type: track
 
 # Power Electronics
 
-[中文](../../../courses/power-electronics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Converter topologies, magnetics, modulation, and feedback; high-voltage or high-power work defaults to simulation or supervision.

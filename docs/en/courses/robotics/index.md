@@ -8,8 +8,6 @@ page_type: track
 
 # Robotics and Autonomous Systems
 
-[中文](../../../courses/robotics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Kinematics, dynamics, planning, perception, and manipulation through demonstrable simulated or physical systems.

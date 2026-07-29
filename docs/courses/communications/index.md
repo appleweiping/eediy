@@ -8,8 +8,6 @@ page_type: track
 
 # 通信系统
 
-[English](../../en/courses/communications/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 调制、检测、信道、同步、链路预算与无线系统，从波形到端到端可靠通信。

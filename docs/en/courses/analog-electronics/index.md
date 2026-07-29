@@ -8,8 +8,6 @@ page_type: track
 
 # Analog Electronics
 
-[中文](../../../courses/analog-electronics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Diodes, transistors, op-amps, feedback, filters, and analog system design with real nonidealities.

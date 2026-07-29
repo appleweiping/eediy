@@ -8,62 +8,60 @@ page_type: course
 
 # Embedded Systems: Shape the World
 
-[中文](../../../courses/embedded-systems/059-ee-319k-volume-1.md) · [← Embedded Systems](index.md)
+## Course Overview
 
-> The University of Texas at Austin's Embedded Systems: Shape the World provides an embedded-systems introduction through an open text, chapter-embedded videos, and activities created for EE 319K; the dead aggregate video index is excluded, the edX run is archived, and learners should prefer the MSPM0 edition while preserving their own lab records.
+- **Institution:** The University of Texas at Austin
+- **Course code:** EE 319K / Volume 1
+- **Track:** [Embedded Systems](index.md)
+- **Tier:** S
+- **Role:** Mainline
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-## Course position
+The University of Texas at Austin's Embedded Systems: Shape the World provides an embedded-systems introduction through an open text, chapter-embedded videos, and activities created for EE 319K; the dead aggregate video index is excluded, the edX run is archived, and learners should prefer the MSPM0 edition while preserving their own lab records.
 
-| Attribute | Value |
-|---|---|
-| **Institution** | The University of Texas at Austin |
-| **Course code** | EE 319K / Volume 1 |
-| **Track** | [Embedded Systems](index.md) |
-| **Tier** | S |
-| **Role** | Mainline |
-| **Level** | Not standardized by provider (use prerequisites) |
-| **Last reviewed** | 2026-07-28 |
-
-## Why choose this course
+**Why choose this course**
 
 Mainline course. A particularly complete and well-structured option for this track. Review note: S/A
 
-## Before you start
+**Before you start**
 
 - Recommended foundation: Digital Logic and Computation Structures
 - Recommended foundation: Programming and Engineering Computing
 - Recommended foundation: Electronics Laboratory and Measurement
 
-## Verifiable learning outcomes
+**Verifiable learning outcomes**
 
 - Explain the core models in Embedded Systems, including their assumptions and limits
 - Solve representative derivations and problems, checking units, limiting cases, or numerical results
 - Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-## Workload and pacing
+**Workload and pacing**
 
 **13 weeks at 11 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-## Software, hardware, and cost
+**Safety level**
 
-### Software
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
+
+## Course Resources
+
+**Software, hardware, and cost**
+
+**Software**
 
 - Maintainer-suggested open-source/free verification path: GCC or LLVM, CMake, GDB, OpenOCD, and Renode or QEMU
 - The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
 
-### Hardware
+**Hardware**
 
 - The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a course-supported microcontroller development board, USB debugger, current-limited low-voltage supply, and logic analyzer. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
 
-### Cost note
+**Cost note**
 
 The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
 
-## Safety level
-
-**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
-
-## Public resource coverage
+**Public resource coverage**
 
 | Resource type | Completeness |
 |---|---|
@@ -74,7 +72,7 @@ The suggested software stack is available open source or free; this is not a pro
 | Exams | Partial |
 | Code | Complete |
 
-## Resources and access
+**Resources and access**
 
 | Resource | Access | License | Status | Verified |
 |---|---|---|---|---|
@@ -85,9 +83,11 @@ The suggested software stack is available open source or free; this is not a pro
 
 > “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
 
-## Practice loop
+## Practice and Verification
 
-### Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1: Deterministic Sampling and Fault-Recovery Node
+**Practice loop**
+
+**Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1: Deterministic Sampling and Fault-Recovery Node**
 
 This is a maintainer-suggested self-study project for Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1, not an official course assignment. Implement a low-voltage sensing node or its simulation for Embedded Systems, including timed sampling, buffering, checksummed communication, a watchdog, and power-loss recovery.
 
@@ -115,11 +115,11 @@ This is a maintainer-suggested self-study project for Embedded Systems: Shape th
 
 **Safety boundary:** Low energy — Limit physical nodes to isolated, current-limited operation at or below 5 V; verify pins and ratings and wire with power removed. No mains, human connection, heaters, motors, or battery packs.
 
-## Risks, gaps, and boundaries
+**Risks, gaps, and boundaries**
 
 The primary is an open textbook and course-material site created for EE 319K rather than a current course run; chapter pages still embed videos and activities, but the dead aggregate video index is excluded. The edX run is archived and the TM4C123 toolchain is old, so the MSPM0 edition is preferred.
 
-## Completion evidence
+**Completion evidence**
 
 - Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
 - Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test

@@ -8,8 +8,6 @@ page_type: track
 
 # 数字逻辑与计算结构
 
-[English](../../en/courses/digital-logic/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 组合逻辑、时序逻辑、有限状态机、处理器与存储层次，从门级抽象走向完整计算机。

@@ -8,27 +8,23 @@ page_type: course
 
 # Converter Control
 
-[中文](../../../courses/power-electronics/117-power-electronics-3.md) · [← Power Electronics](index.md)
+## Course Overview
 
-> University of Colorado Boulder's Converter Control advances the power-electronics sequence into converter control through videos, practice, simulation, and code, requiring prior converter and feedback-control knowledge.
+- **Institution:** University of Colorado Boulder
+- **Course code:** Power Electronics 3
+- **Track:** [Power Electronics](index.md)
+- **Tier:** A
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-## Course position
+University of Colorado Boulder's Converter Control advances the power-electronics sequence into converter control through videos, practice, simulation, and code, requiring prior converter and feedback-control knowledge.
 
-| Attribute | Value |
-|---|---|
-| **Institution** | University of Colorado Boulder |
-| **Course code** | Power Electronics 3 |
-| **Track** | [Power Electronics](index.md) |
-| **Tier** | A |
-| **Role** | Alternative |
-| **Level** | Not standardized by provider (use prerequisites) |
-| **Last reviewed** | 2026-07-28 |
-
-## Why choose this course
+**Why choose this course**
 
 Alternative course. A reliable option that can serve as a main course or strong alternative.
 
-## Before you start
+**Before you start**
 
 - Recommended foundation: Circuit Analysis
 - Recommended foundation: Control Systems
@@ -36,36 +32,38 @@ Alternative course. A reliable option that can serve as a main course or strong 
 - Course-sequence requirement: complete [Introduction to Power Electronics](../power-electronics/115-power-electronics-1.md) (University of Colorado Boulder Power Electronics 1) first
 - Course-sequence requirement: complete [Converter Circuits](../power-electronics/116-power-electronics-2.md) (University of Colorado Boulder Power Electronics 2) first
 
-## Verifiable learning outcomes
+**Verifiable learning outcomes**
 
 - Explain the core models in Power Electronics, including their assumptions and limits
 - Solve representative derivations and problems, checking units, limiting cases, or numerical results
 - Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-## Workload and pacing
+**Workload and pacing**
 
 **11 weeks at 7 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-## Software, hardware, and cost
+**Safety level**
 
-### Software
+**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+
+## Course Resources
+
+**Software, hardware, and cost**
+
+**Software**
 
 - Maintainer-suggested open-source/free verification path: Qucs-S, ngspice, Python 3, Jupyter, and GNU Octave
 - The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
 
-### Hardware
+**Hardware**
 
 - The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect isolated/current-limited power, differential probes, electronic load, oscilloscope, and course-specified power stage in a compliant lab
 
-### Cost note
+**Cost note**
 
 The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
 
-## Safety level
-
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
-
-## Public resource coverage
+**Public resource coverage**
 
 | Resource type | Completeness |
 |---|---|
@@ -76,7 +74,7 @@ The current maintainer path uses computation and simulation only, with no dedica
 | Exams | No public material |
 | Code | Partial |
 
-## Resources and access
+**Resources and access**
 
 | Resource | Access | License | Status | Verified |
 |---|---|---|---|---|
@@ -84,9 +82,11 @@ The current maintainer path uses computation and simulation only, with no dedica
 
 > “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
 
-## Practice loop
+## Practice and Verification
 
-### Converter Control · University of Colorado Boulder Power Electronics 3: Converter Loss and Closed-Loop Protection Simulation
+**Practice loop**
+
+**Converter Control · University of Colorado Boulder Power Electronics 3: Converter Loss and Closed-Loop Protection Simulation**
 
 This is a maintainer-suggested self-study project for Converter Control · University of Colorado Boulder Power Electronics 3, not an official course assignment. Simulate a DC–DC converter for Power Electronics and quantify ripple, efficiency proxy, device stress, control stability, and overcurrent or open-load protection.
 
@@ -114,11 +114,11 @@ This is a maintainer-suggested self-study project for Converter Control · Unive
 
 **Safety boundary:** Simulation only — Use converter simulation only; do not build mains, high-voltage, high-current, magnetic-component, battery-powered, or power-switching hardware.
 
-## Risks, gaps, and boundaries
+**Risks, gaps, and boundaries**
 
 Prior converter and feedback-control knowledge is required, and platform access may require payment.
 
-## Completion evidence
+**Completion evidence**
 
 - Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
 - Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test

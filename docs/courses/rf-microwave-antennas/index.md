@@ -8,8 +8,6 @@ page_type: track
 
 # 射频、微波与天线
 
-[English](../../en/courses/rf-microwave-antennas/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 网络参数、匹配、噪声、接收机、微波电路和天线，明确仪器、频谱法规与功率安全。

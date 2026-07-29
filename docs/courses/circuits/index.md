@@ -8,8 +8,6 @@ page_type: track
 
 # 电路分析
 
-[English](../../en/courses/circuits/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 直流、交流、动态电路、网络定理和频域方法，是电子、控制、电力与仪器的共同基础。
