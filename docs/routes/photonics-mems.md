@@ -48,9 +48,9 @@ page_type: route
 
 **选课要求：** 完成全部 1 门必修，并从 2 门选修候选中选择 1 门。其余 1 门为可选补充，不计入本阶段选修数。
 
-- [Introduction to Photonics](../courses/optics-photonics/132-108106135.md) — **必修**; IIT Madras / NPTEL; 主线; S
+- [Introduction to Photonics](../courses/optics-photonics/132-108106135.md) — **必修**; IIT Madras / NPTEL; 主线; A
 - [Silicon Photonics Design, Fabrication and Data Analysis](../courses/optics-photonics/133-phot1x.md) — **可选补充**; University of British Columbia; 主线; A; **审计复核中**
-- [Optics](../courses/optics-photonics/134-2-71.md) — **选修候选**; MIT; 替代; S
+- [Optics](../courses/optics-photonics/134-2-71.md) — **选修候选**; MIT; 主线; S
 - [Photonic Materials and Devices](../courses/optics-photonics/135-3-46.md) — **选修候选**; MIT; 补充; B
 
 **阶段退出条件：** 完成片上或自由空间光链路预算，验证插入损耗、带宽、串扰和每比特能耗；对尺寸与材料偏差运行不少于 200 次蒙特卡洛试验并报告规格良率。

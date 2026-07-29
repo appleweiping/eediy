@@ -4,7 +4,7 @@ description: "按目标组织的分阶段电子工程自学路线，每个阶段
 page_type: routes
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 80a784b73ec677bc -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: e81ec23564b05fc2 -->
 
 # 学习路线
 

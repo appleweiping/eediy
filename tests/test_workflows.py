@@ -19,6 +19,10 @@ def test_quality_report_is_a_blocking_gate_with_external_evidence() -> None:
         "Build consolidated report"
     )
     assert "build/external-links.json" in workflow
+    assert (
+        "python scripts/check_course_guides.py --minimum-guides 60 "
+        "--require-track-coverage --require-mainline-coverage"
+    ) in workflow
 
 
 def test_pages_deploys_only_after_a_successful_main_quality_run() -> None:

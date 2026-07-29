@@ -16,9 +16,6 @@ Learners progressing from circuits and devices to transistor-level design, simul
 
 Complete an analog or mixed-signal design with specifications, corner simulation, noise/power tradeoffs, and layout checks.
 
-!!! warning "Mainline audit review in this route"
-    - [Analog IC Design](../courses/analog-ic/036-108106105-noc26-ee66.md): The official 2026 twelve-week video syllabus is confirmed, but graded feedback and the certificate exam depend on enrollment, no open EDA project is supplied, and the resource manifest still contains only the older archive. Last audited: 2026-07-29.
-
 ## Stages
 
 ### Circuits and devices
@@ -41,7 +38,7 @@ Complete an analog or mixed-signal design with specifications, corner simulation
 - [Solid-State Circuits](../courses/analog-electronics/032-6-301.md) — **Elective option**; MIT; Supplement; B
 - [Analog Circuits](../courses/analog-electronics/034-108101094.md) — **Elective option**; IIT Bombay / NPTEL; Alternative; A
 - [Integrated Circuits, MOSFETs, OP-Amps and Their Applications](../courses/analog-electronics/035-108108111.md) — **Elective option**; Indian Institute of Science / NPTEL; Alternative; A
-- [Analog IC Design](../courses/analog-ic/036-108106105-noc26-ee66.md) — **Optional supplement**; IIT Madras / NPTEL; Mainline; A; **Audit review**
+- [Analog IC Design](../courses/analog-ic/036-108106105-noc26-ee66.md) — **Optional supplement**; IIT Madras / NPTEL; Supplement; A
 
 **Stage exit criterion:** Design an op-amp or low-noise front end and verify gain, bandwidth, phase margin, noise, slew rate, and power specifications individually; all PVT and load corners must pass, or any miss must be captured as a reproducible tradeoff.
 

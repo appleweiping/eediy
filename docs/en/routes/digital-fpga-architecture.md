@@ -45,7 +45,7 @@ Implement and verify a pipelined processor or custom accelerator and run softwar
 
 - [Computer Architecture](../courses/computer-architecture/046-ece-4750.md) — **Required**; Cornell University; Mainline; A
 - [Computer System Architecture](../courses/computer-architecture/047-6-823.md) — **Elective option**; MIT; Alternative; A
-- [Great Ideas in Computer Architecture](../courses/computer-architecture/048-cs-61c.md) — **Elective option**; University of California, Berkeley; Alternative; A
+- [Great Ideas in Computer Architecture](../courses/computer-architecture/048-cs-61c.md) — **Elective option**; University of California, Berkeley; Mainline; A
 - [Advanced Microcontroller Design and System-on-Chip](../courses/fpga-soc/052-ece-5760.md) — **Elective option**; Cornell University; Alternative; A
 - [Secure Hardware Design](../courses/hardware-security/053-6-5950.md) — **Required**; MIT; Mainline; A
 

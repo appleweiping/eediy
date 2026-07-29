@@ -28,7 +28,7 @@ page_type: route
 - [Differential Equations](../courses/mathematics/003-18-03sc.md) — **必修**; MIT; 主线; S
 - [Linear Algebra](../courses/mathematics/004-18-06sc.md) — **必修**; MIT; 主线; S
 - [Classical Mechanics](../courses/physics/010-8-01sc.md) — **必修**; MIT; 主线; S
-- [Introduction to Linear Dynamical Systems](../courses/control-systems/068-ee-263.md) — **必修**; Stanford University; 主线; S
+- [Introduction to Linear Dynamical Systems (2008 Archive)](../courses/control-systems/068-ee-263.md) — **必修**; Stanford University; 主线; S
 
 **阶段退出条件：** 从物理假设推导一个多状态系统，识别参数并在未参与拟合的轨迹上验证；状态预测归一化误差低于 10%，且完成可控性与可观性秩检查。
 

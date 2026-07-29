@@ -4,7 +4,7 @@ description: "从面包板、示波器和误差分析到可复现实验报告，
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 1348d520257907d0 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4d43f3d340bdaf81 -->
 
 # 电子实验与测量
 
@@ -18,14 +18,15 @@ page_type: track
 
 ## 建议顺序
 
-1. [Real Analog Courses](027-real-analog.md)
+1. [Introduction to Electronics, Signals, and Measurement](024-6-071j.md)
+2. [Real Analog Courses](027-real-analog.md)
 
 ## 课程清单
 
 | 课程 | 机构 | 角色 | 评级 | 实践资源 |
 |---|---|---|---|---|
+| [Introduction to Electronics, Signals, and Measurement](024-6-071j.md) | MIT | 主线 | A | 完整 |
 | [Real Analog Courses](027-real-analog.md) | Digilent | 主线 | A | 完整 |
-| [Introduction to Electronics, Signals, and Measurement](024-6-071j.md) | MIT | 替代 | A | 完整 |
 | [Hands-On Introduction to Electrical Engineering Lab Skills](025-6-091.md) | MIT | 补充 | B | 完整 |
 
 ## 如何选课

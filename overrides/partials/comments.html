@@ -1,0 +1,109 @@
+{# Course feedback is attached through Material's standard comments slot.
+   Course filenames begin with a catalogue ID (for example, 021-6-002.md).
+   Normalizing the English source path keeps both language versions attached
+   to the same stable ID and canonical discussion context. #}
+{% if page.meta and page.meta.page_type == "course" and page.file %}
+  {% set source_path = page.file.src_uri %}
+  {% set canonical_source = source_path[3:] if source_path.startswith("en/") else source_path %}
+  {% set course_file = canonical_source.split("/")[-1] %}
+  {% set catalogue_id = course_file.split("-")[0] %}
+  {% set metadata_course_id = page.meta.course_id | default("", true) | string %}
+  {% set metadata_parts = metadata_course_id.split("-") %}
+  {% set metadata_suffix = metadata_parts[1] if (metadata_parts | length) == 2 else "" %}
+  {% set metadata_id_is_valid = (
+    metadata_course_id.startswith("course-")
+    and (metadata_parts | length) == 2
+    and (metadata_suffix | length) == 3
+    and metadata_suffix.isdigit()
+  ) %}
+  {% set fallback_id_is_valid = (catalogue_id | length) == 3 and catalogue_id.isdigit() %}
+  {% if metadata_id_is_valid or fallback_id_is_valid %}
+    {% set course_id = metadata_course_id if metadata_id_is_valid else "course-" ~ catalogue_id %}
+    {% set course_number = course_id[7:] %}
+    {% set canonical_path = canonical_source[:-3] ~ "/" %}
+    {% set canonical_page = config.site_url.rstrip("/") ~ "/" ~ canonical_path %}
+    {% set reported_path = source_path[:-3] ~ "/" %}
+    {% set reported_page = config.site_url.rstrip("/") ~ "/" ~ reported_path %}
+    {% set issue_url = config.repo_url.rstrip("/") ~ "/issues/new" %}
+    {% set is_english = source_path.startswith("en/") %}
+    {% set reported_language = "en" if is_english else "zh-Hans" %}
+    <section class="ee-course-feedback" aria-labelledby="ee-course-feedback-title-{{ course_number }}" data-course-id="{{ course_id }}">
+      <h2 id="ee-course-feedback-title-{{ course_number }}">
+        {{ "Help keep this course guide accurate" if is_english else "帮助我们维护这份课程指南" }}
+      </h2>
+      <p>
+        {% if is_english %}
+          Found a questionable claim, a resource that no longer works, or something worth adding after studying the course? Choose the closest report type. Both language versions use the same course ID and review queue.
+        {% else %}
+          如果你发现事实存疑、资源失效，或学完后有值得补充的经验，请选择最接近的反馈类型。中英文页面共用同一个课程 ID 与审查队列。
+        {% endif %}
+      </p>
+      <p class="ee-course-feedback__context">
+        <span>{{ "Stable course ID:" if is_english else "稳定课程 ID：" }}</span>
+        <code>{{ course_id }}</code>
+        <span aria-hidden="true">·</span>
+        <a href="{{ config.repo_url.rstrip("/") }}/issues?q={{ ('is:issue "' ~ course_id ~ '"') | urlencode }}">
+          {{ "Review existing reports" if is_english else "查看已有反馈" }}
+        </a>
+      </p>
+      <ul class="ee-course-feedback__actions">
+        <li>
+          <a href="{{ issue_url }}?template=content-error.yml&amp;title={{ ("[Correction][" ~ course_id ~ "] ") | urlencode }}&amp;course_id={{ course_id | urlencode }}&amp;page={{ canonical_page | urlencode }}&amp;reported_page={{ reported_page | urlencode }}&amp;reported_language={{ reported_language | urlencode }}">
+            <strong>{{ "Correct a fact or safety boundary" if is_english else "纠正事实或安全边界" }}</strong>
+            <span>{{ "Bring primary evidence and propose the smallest accurate correction." if is_english else "请附一手证据，并给出最小且准确的修正建议。" }}</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ issue_url }}?template=broken-link.yml&amp;title={{ ("[Link][" ~ course_id ~ "] ") | urlencode }}&amp;course_id={{ course_id | urlencode }}&amp;page={{ canonical_page | urlencode }}&amp;reported_page={{ reported_page | urlencode }}&amp;reported_language={{ reported_language | urlencode }}">
+            <strong>{{ "Report a broken or restricted resource" if is_english else "报告失效或受限资源" }}</strong>
+            <span>{{ "Record the URL, observed result, time, region, and an official replacement if known." if is_english else "记录链接、现象、时间和地区；如有官方替代页也请附上。" }}</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ issue_url }}?template=course-feedback.yml&amp;title={{ ("[Course feedback][" ~ course_id ~ "] ") | urlencode }}&amp;course_id={{ course_id | urlencode }}&amp;page={{ canonical_page | urlencode }}&amp;reported_page={{ reported_page | urlencode }}&amp;reported_language={{ reported_language | urlencode }}">
+            <strong>{{ "Share learning experience or an update" if is_english else "分享学习经验或更新建议" }}</strong>
+            <span>{{ "Separate first-hand experience from sourced changes to workload, prerequisites, tools, or materials." if is_english else "请区分亲历经验与有来源的变化，如工时、先修、工具或材料更新。" }}</span>
+          </a>
+        </li>
+      </ul>
+      <p class="ee-course-feedback__privacy">
+        {% if is_english %}
+          Reports are public and require a GitHub account to submit. Do not post credentials, private contact details, restricted answers, or unlicensed copies.
+        {% else %}
+          反馈将公开展示，提交需要 GitHub 账号。请勿发布凭据、私人联系方式、受限答案或未获许可的副本。
+        {% endif %}
+      </p>
+    </section>
+    <section class="ee-course-discussion" aria-labelledby="ee-course-discussion-title-{{ course_number }}">
+      <h2 id="ee-course-discussion-title-{{ course_number }}">
+        {{ "Course discussion" if is_english else "课程讨论" }}
+      </h2>
+      <p>
+        {% if is_english %}
+          Comments are stored in the repository's public GitHub Discussions. Chinese and English pages share the same thread through <code>{{ course_id }}</code>. When the embedded panel is available, sign in with GitHub to comment; use the structured reports above when a claim or resource needs maintainer action. If the panel does not load,
+          <a href="{{ config.repo_url.rstrip("/") }}/discussions?discussions_q={{ course_id | urlencode }}">search Discussions for this course ID</a>.
+        {% else %}
+          评论保存在仓库公开的 GitHub Discussions 中；中英文页面通过 <code>{{ course_id }}</code> 共用同一讨论串。嵌入面板可用时，登录 GitHub 后即可评论；需要维护者处理的事实或资源问题，请使用上方结构化反馈入口。若面板未能加载，可直接打开
+          <a href="{{ config.repo_url.rstrip("/") }}/discussions?discussions_q={{ course_id | urlencode }}">该课程 ID 的 Discussions 搜索结果</a>。
+        {% endif %}
+      </p>
+      <script src="https://giscus.app/client.js"
+              data-repo="appleweiping/eediy"
+              data-repo-id="R_kgDOTmjk4g"
+              data-category="Announcements"
+              data-category-id="DIC_kwDOTmjk4s4DCMDn"
+              data-mapping="specific"
+              data-term="{{ course_id }}"
+              data-strict="1"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="top"
+              data-theme="preferred_color_scheme"
+              data-lang="{{ 'en' if is_english else 'zh-CN' }}"
+              data-loading="lazy"
+              crossorigin="anonymous"
+              async>
+      </script>
+    </section>
+  {% endif %}
+{% endif %}

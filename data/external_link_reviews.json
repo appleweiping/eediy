@@ -1,0 +1,168 @@
+{
+  "reviewed_at": "2026-07-29",
+  "reviewer": "independent adversarial review",
+  "policy": "An automated review result is retained only when a primary official index, a repository API, or the rendered primary page independently confirms the target. Automated 403, robots, and local TLS-chain failures are not treated as proof of a dead resource.",
+  "summary": {
+    "reviewed": 38,
+    "retain": 38,
+    "replace": 0,
+    "remove": 0
+  },
+  "groups": [
+    {
+      "name": "University of Illinois Course Explorer",
+      "decision": "retain",
+      "automation_reason": "anti-automation 403/challenge",
+      "allowed_reason_codes": [
+        "http_403"
+      ],
+      "method": "The official Fall 2025 ECE schedule and terms-offered pages both list ECE 385.",
+      "evidence": [
+        "https://courses.illinois.edu/schedule/2025/fall/ECE",
+        "https://courses.illinois.edu/schedule/terms/ECE/385"
+      ],
+      "urls": [
+        "https://courses.illinois.edu/schedule/2025/fall/ECE/385"
+      ]
+    },
+    {
+      "name": "University of Illinois ECE 310",
+      "decision": "retain",
+      "automation_reason": "robots policy",
+      "allowed_reason_codes": [
+        "robots_denied"
+      ],
+      "method": "Every target is an exact href on the public official homework or exams index; 18 matched and none were missing.",
+      "evidence": [
+        "https://courses.physics.illinois.edu/ece310/su2026/homework.html",
+        "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
+      ],
+      "urls": [
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam1_su20.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam3_practice2.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam3_practice3.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_Practice_1.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_practice_2.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_practice_3.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam1_practice3.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam1_practice_2.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam3_su20.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/HW1.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/HW2.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw10.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw3.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw4.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw5.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw6.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw7.pdf",
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw8.pdf"
+      ]
+    },
+    {
+      "name": "University of Illinois ECE 311",
+      "decision": "retain",
+      "automation_reason": "robots policy",
+      "allowed_reason_codes": [
+        "robots_denied"
+      ],
+      "method": "Every target is an exact href on the public official laboratory index; 8 matched and none were missing.",
+      "evidence": [
+        "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
+      ],
+      "urls": [
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab1/Lab1.zip",
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab2/Lab2.zip",
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab3/Lab3.zip",
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab4/Lab4.zip",
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab5/Lab5.zip",
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab6/Lab6.zip",
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab7/Lab7.zip",
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/LabFinal/LabFinal.zip"
+      ]
+    },
+    {
+      "name": "Berkeley EE 123 public Drive schedule",
+      "decision": "retain",
+      "automation_reason": "robots policy",
+      "allowed_reason_codes": [
+        "robots_denied"
+      ],
+      "method": "The official Berkeley course site embeds the same public Drive identifier; the Drive page and embed both returned the Week schedule without an access-request prompt.",
+      "evidence": [
+        "https://sites.google.com/berkeley.edu/ee123-sp19"
+      ],
+      "urls": [
+        "https://drive.google.com/open?id=17A74lYDcEGZAFHgTAcS43zaVgR3l93T1MaLoKey-kA0"
+      ]
+    },
+    {
+      "name": "GitHub course repositories",
+      "decision": "retain",
+      "automation_reason": "robots policy",
+      "allowed_reason_codes": [
+        "robots_denied"
+      ],
+      "method": "GitHub REST Contents API confirmed the branch and directory for all five targets.",
+      "evidence": [
+        "https://github.com/cornell-ece4750/2025F",
+        "https://github.com/cs107e/cs107e.github.io"
+      ],
+      "urls": [
+        "https://github.com/cornell-ece4750/2025F/tree/main/sections/section1",
+        "https://github.com/cornell-ece4750/2025F/tree/main/sections/section2",
+        "https://github.com/cornell-ece4750/2025F/tree/main/sections/section3",
+        "https://github.com/cs107e/cs107e.github.io/tree/master/lectures/Assembly/code",
+        "https://github.com/cs107e/cs107e.github.io/tree/master/lectures/Intro/code"
+      ]
+    },
+    {
+      "name": "MIT Press book page",
+      "decision": "retain",
+      "automation_reason": "anti-automation response",
+      "allowed_reason_codes": [
+        "robots_denied"
+      ],
+      "method": "The rendered MIT Press product page identifies the title, author, and ISBN; MIT OCW also points to this ISBN.",
+      "evidence": [
+        "https://mitpress.mit.edu/9780262542364/introduction-to-computation-and-programming-using-python/"
+      ],
+      "urls": [
+        "https://mitpress.mit.edu/9780262542364/introduction-to-computation-and-programming-using-python"
+      ]
+    },
+    {
+      "name": "Caltech feedback-systems solutions policy",
+      "decision": "retain",
+      "automation_reason": "local Python CA-chain failure",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "The exact Caltech page returned HTTP 200 in independent clients and still states that the manual is restricted to instructors; Princeton University Press's official catalogue independently confirms the accompanying electronic solutions manual.",
+      "evidence": [
+        "https://assets.press.princeton.edu/catalogs/math09text.pdf"
+      ],
+      "urls": [
+        "https://www.cds.caltech.edu/~murray/books/AM05/wiki/Solutions_manual.html"
+      ]
+    },
+    {
+      "name": "OSHA safety guidance",
+      "decision": "retain",
+      "automation_reason": "anti-automation 403",
+      "allowed_reason_codes": [
+        "http_403"
+      ],
+      "method": "All three rendered primary OSHA pages remain available and support the cited laser, electrical, and semiconductor-fabrication safety boundaries.",
+      "evidence": [
+        "https://www.osha.gov/laser-hazards",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333",
+        "https://www.osha.gov/semiconductors/silicon/device-fabrication"
+      ],
+      "urls": [
+        "https://www.osha.gov/laser-hazards",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333",
+        "https://www.osha.gov/semiconductors/silicon/device-fabrication"
+      ]
+    }
+  ]
+}

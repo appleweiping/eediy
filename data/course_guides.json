@@ -1,0 +1,1307 @@
+{
+  "schema_version": 1,
+  "guides": [
+    {
+      "course_id": 1,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/001.zh.md",
+        "en": "content/course-guides/001.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/syllabus/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/1.-differentiation/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-2-applications-of-differentiation/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-3-the-definite-integral-and-its-applications/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-4-techniques-of-integration/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-5-exploring-the-infinite/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/1.-differentiation/exam-1/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/unit-4-techniques-of-integration/exam-4/",
+        "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/final-exam/",
+        "https://ocw.mit.edu/courses/18-014-calculus-with-theory-fall-2010/pages/syllabus/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 2,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/002.zh.md",
+        "en": "content/course-guides/002.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/syllabus/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/1.-vectors-and-matrices/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/2.-partial-derivatives/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/3.-double-integrals-and-line-integrals-in-the-plane/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/4.-triple-integrals-and-surface-integrals-in-3-space/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/4.-triple-integrals-and-surface-integrals-in-3-space/physics-applications/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/2.-partial-derivatives/exam-2/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/3.-double-integrals-and-line-integrals-in-the-plane/exam-3/",
+        "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/final-exam-1/",
+        "https://ocw.mit.edu/courses/18-022-calculus-of-several-variables-fall-2010/pages/syllabus/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 3,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/003.zh.md",
+        "en": "content/course-guides/003.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/",
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/syllabus/syllabus/",
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-i-first-order-differential-equations/",
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-ii-second-order-constant-coefficient-linear-equations/",
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-iii-fourier-series-and-laplace-transform/",
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-iv-first-order-systems/",
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-i-first-order-differential-equations/exam-1/",
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-iii-fourier-series-and-laplace-transform/exam-3/",
+        "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/final-exam/",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/calendar/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 4,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/004.zh.md",
+        "en": "content/course-guides/004.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/",
+        "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/syllabus/",
+        "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/resource-index/",
+        "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/final-exam/",
+        "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/download/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 7,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/007.zh.md",
+        "en": "content/course-guides/007.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/",
+        "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/pages/resource-index/",
+        "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/resources/problem-sets/",
+        "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/pages/final-exam/",
+        "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/download/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 10,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/010.zh.md",
+        "en": "content/course-guides/010.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/",
+        "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/syllabus/",
+        "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments/",
+        "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/online-textbook/",
+        "https://ocw.mit.edu/courses/8-012-physics-i-classical-mechanics-fall-2008/",
+        "https://ocw.mit.edu/courses/8-012-physics-i-classical-mechanics-fall-2008/pages/syllabus/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 11,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/011.zh.md",
+        "en": "content/course-guides/011.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/pages/syllabus/",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/pages/labs/",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/pages/assignments/",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/pages/exams/",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/1d6b8101d722796f5c3e95c00ced4952_safety.pdf",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/1af9c151e4df6f7255df824ac3c7f3ec_building_hvps.pdf",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/ecb0db9176aee59873ea4e5d0acfd96f_experiment_eb.pdf",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/7162c615ab94fc2de43caa0dde060a75_experiment_mw.pdf",
+        "https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/8b02d94715301775a7ba7122791b16e4_red_box_content.pdf",
+        "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 12,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/012.zh.md",
+        "en": "content/course-guides/012.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/",
+        "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/syllabus/",
+        "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/resource-index/",
+        "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/problem-solving-help-videos/",
+        "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/exam-1/",
+        "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-iii-optics/exam-2/",
+        "https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/final-exam/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 15,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/015.zh.md",
+        "en": "content/course-guides/015.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/lists/lecture-code/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/pages/finger-exercises/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/lists/problem-sets/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/lists/recitations/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/mit6_100l_f22_ps0.pdf",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/resources/mit6_100l_f22_ps0_code_zip/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/mit6_100l_f22_ps1.pdf",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/resources/mit6_100l_f22_ps1_code_zip/",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/mit6_100l_f22_ps5.pdf",
+        "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/resources/mit6_100l_f22_ps5_code_zip/",
+        "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/assignments/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 16,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/016.zh.md",
+        "en": "content/course-guides/016.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+        "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/pages/labs/",
+        "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/9796fe2dda5404aa9d14a49081b842d8_MIT6_087IAP10_project.pdf",
+        "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/download/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 19,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/019.zh.md",
+        "en": "content/course-guides/019.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/",
+        "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/resource-index/",
+        "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/software-and-tools/",
+        "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/unit-4-probability-and-planning/",
+        "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/final-exam/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 21,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/021.zh.md",
+        "en": "content/course-guides/021.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+        "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/labs/",
+        "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/exams/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 24,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/024.zh.md",
+        "en": "content/course-guides/024.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/labs/",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/resources/laboratory-assignments/",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/exams/",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/aaacee926556e3234368e5fc9e5aa3d1_electric_safety.pdf",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/96353ccc62ddd1ea41c35a1a4afec30b_lab1.pdf",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/fe3cc74bda73fa139d19c39540c68248_heart_rate_lab.pdf"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 26,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/026.zh.md",
+        "en": "content/course-guides/026.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-101-introductory-analog-electronics-laboratory-spring-2007/",
+        "https://ocw.mit.edu/courses/6-101-introductory-analog-electronics-laboratory-spring-2007/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-101-introductory-analog-electronics-laboratory-spring-2007/pages/labs/",
+        "https://ocw.mit.edu/courses/6-101-introductory-analog-electronics-laboratory-spring-2007/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-101-introductory-analog-electronics-laboratory-spring-2007/pages/projects/",
+        "https://ocw.mit.edu/courses/6-101-introductory-analog-electronics-laboratory-spring-2007/resources/kit_warnings/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 27,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/027.zh.md",
+        "en": "content/course-guides/027.en.md"
+      },
+      "primary_sources": [
+        "https://digilent.com/shop/coursework-learning-resources/",
+        "https://digilent.com/reference/_media/learn/courses/real-analog/real-analog-chapters-1-12-toc.pdf",
+        "https://digilent.com/reference/_media/learn/courses/real-analog-chapter-1/real-analog-chapter-1.pdf",
+        "https://digilent.com/reference/_media/learn/courses/real-analog-chapter-9/real-analog-chapter-9.pdf",
+        "https://digilent.com/reference/_media/reference/test-and-measurement/analog-discovery-2/ad2_rm.pdf",
+        "https://digilent.com/shop/waveforms/",
+        "https://digilent.com/reference/software/waveforms/waveforms-3/previous-versions",
+        "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 29,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/029.zh.md",
+        "en": "content/course-guides/029.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.ece.cornell.edu/courses/ece-3150-microelectronics/",
+        "https://ocw.ece.cornell.edu/courses/ece-3150-microelectronics/ece-3150-lecture-notes-and-handouts/",
+        "https://ocw.ece.cornell.edu/courses/ece-3150-microelectronics/ece-3150-homework-and-exams/",
+        "https://ocw.ece.cornell.edu/courses/ece-3150-microelectronics/ece-3150-projects-and-labs/",
+        "https://ocw.ece.cornell.edu/files/2017/03/ece3150_lab4-1cyoaq6.pdf"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 37,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/037.zh.md",
+        "en": "content/course-guides/037.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+        "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2009/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2009/pages/labs/",
+        "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2009/pages/tools/",
+        "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2009/pages/tutorial-problems/",
+        "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2009/pages/exams/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 42,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/042.zh.md",
+        "en": "content/course-guides/042.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/",
+        "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/pages/labs/",
+        "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/pages/projects/",
+        "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/pages/exams/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 46,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/046.zh.md",
+        "en": "content/course-guides/046.en.md"
+      },
+      "primary_sources": [
+        "https://www.csl.cornell.edu/courses/ece4750/handouts.shtml",
+        "https://www.csl.cornell.edu/courses/ece4750/schedule.shtml",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/ece4750-syllabus.pdf",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/ece4750-lab-logistics.pdf",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/ece4750-lab1-imul.pdf",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/ece4750-lab2-proc.pdf",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/ece4750-lab3-mem.pdf",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/ece4750-lab4-sys.pdf",
+        "https://github.com/cornell-ece4750/2025F"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 48,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/048.zh.md",
+        "en": "content/course-guides/048.en.md"
+      },
+      "primary_sources": [
+        "https://cs61c.org/su26/",
+        "https://cs61c.org/su26/policies/",
+        "https://cs61c.org/su26/exam/",
+        "https://cs61c.org/su26/projects/proj1/",
+        "https://cs61c.org/su26/projects/proj2/",
+        "https://cs61c.org/su26/projects/proj3/",
+        "https://cs61c.org/su26/labs/lab07/",
+        "https://github.com/61c-teach/su26-lab-starter",
+        "https://github.com/61c-teach/su26-proj1-starter",
+        "https://github.com/61c-teach/su26-proj2-starter",
+        "https://github.com/61c-teach/su26-proj3-starter",
+        "https://www.csl.cornell.edu/courses/ece4750/",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/ece4750-lab-logistics.pdf",
+        "https://www.csl.cornell.edu/courses/ece4750/handouts/ece4750-lab1-imul.pdf"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 50,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/050.zh.md",
+        "en": "content/course-guides/050.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/projects/",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/3fd5ad1346a5389abc54bd158606a17a_guidelines.pdf",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/7b958ae6c59b2644c47598508c945a96_technicalsummary.pdf",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/tools/",
+        "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/exams/",
+        "https://icbook.eecs.berkeley.edu/resources/powerpoint-slides",
+        "https://www2.eecs.berkeley.edu/Courses/EECS151/",
+        "https://151tapeout.berkie.ee/course-info/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 53,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/053.zh.md",
+        "en": "content/course-guides/053.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-5950-secure-hardware-design-spring-2025/",
+        "https://shd.mit.edu/2025/",
+        "https://shd.mit.edu/2025/calendar.html",
+        "https://shd.mit.edu/2025/labs.html",
+        "https://shd.mit.edu/2025/lectureReadings.html",
+        "https://shd.mit.edu/2025/labs/fuzz.html",
+        "https://shd.mit.edu/2025/labs/formal.html",
+        "https://github.com/CSAIL-Arch-Sec/SHD-StarterCode",
+        "https://cgi.cse.unsw.edu.au/~cs6420/syllabus/",
+        "https://cgi.cse.unsw.edu.au/~cs6420/hackster/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 55,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/055.zh.md",
+        "en": "content/course-guides/055.en.md"
+      },
+      "primary_sources": [
+        "https://pcb.mit.edu/",
+        "https://pcb.mit.edu/syllabus/",
+        "https://pcb.mit.edu/schedule/",
+        "https://pcb.mit.edu/labs/lab_01/",
+        "https://pcb.mit.edu/labs/lab_02/",
+        "https://pcb.mit.edu/labs/lab_03/",
+        "https://pcb.mit.edu/labs/lab_04/",
+        "https://pcb.mit.edu/labs/lab_05/",
+        "https://pcb.mit.edu/labs/lab_06/",
+        "https://pcb.mit.edu/labs/lab_07/",
+        "https://pcb.mit.edu/labs/lab_08/",
+        "https://pcb.mit.edu/lectures/board_fab/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 57,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/057.zh.md",
+        "en": "content/course-guides/057.en.md"
+      },
+      "primary_sources": [
+        "https://ece4760.github.io/",
+        "https://vanhunteradams.com/Pico/CourseMaterials/Policy.html",
+        "https://vanhunteradams.com/Pico/Birds/Birdsong.html",
+        "https://vanhunteradams.com/Pico/Galton/Galton.html",
+        "https://vanhunteradams.com/Pico/Helicopter/Helicopter.html",
+        "https://vanhunteradams.com/Pico/Helicopter/MotorCircuit.html",
+        "https://vanhunteradams.com/Pico/CourseMaterials/Final_Project.html",
+        "https://ece4760.github.io/Projects/Projects.html",
+        "https://vanhunteradams.com/Pico/CourseMaterials/4760_BOM.pdf"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 58,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/058.zh.md",
+        "en": "content/course-guides/058.en.md"
+      },
+      "primary_sources": [
+        "https://cs107e.github.io/about/",
+        "https://cs107e.github.io/schedule/",
+        "https://cs107e.github.io/assignments/",
+        "https://cs107e.github.io/labs/",
+        "https://cs107e.github.io/project/",
+        "https://web.stanford.edu/class/cs107e/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 59,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/059.zh.md",
+        "en": "content/course-guides/059.en.md"
+      },
+      "primary_sources": [
+        "https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/",
+        "https://users.ece.utexas.edu/~valvano/mspm0/EE319KSp26.html",
+        "https://users.ece.utexas.edu/~valvano/mspm0/ebook/toc.htm",
+        "https://users.ece.utexas.edu/~valvano/mspm0/labs.html",
+        "https://users.ece.utexas.edu/~valvano/mspm0/downloads.htm",
+        "https://users.ece.utexas.edu/~valvano/mspm0/exams.htm",
+        "https://www.ti.com/lit/ug/slau873d/slau873d.pdf",
+        "https://cs107e.github.io/about/",
+        "https://cs107e.github.io/assignments/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 60,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/060.zh.md",
+        "en": "content/course-guides/060.en.md"
+      },
+      "primary_sources": [
+        "https://ptolemy.berkeley.edu/books/leeseshia/index.html",
+        "https://ptolemy.berkeley.edu/books/leeseshia/structure.html",
+        "https://ptolemy.berkeley.edu/projects/chess/eecs149/",
+        "https://ptolemy.berkeley.edu/projects/chess/eecs149/logistics.html",
+        "https://ptolemy.berkeley.edu/projects/chess/eecs149/lectures/index.html",
+        "https://ptolemy.berkeley.edu/projects/chess/eecs149/homework/index.html",
+        "https://ptolemy.berkeley.edu/projects/chess/eecs149/project.html",
+        "https://www.lf-lang.org/embedded-lab/",
+        "https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 67,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/067.zh.md",
+        "en": "content/course-guides/067.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/",
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/recitations/",
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/labs/",
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/exams/",
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/tools/",
+        "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/video-resources/",
+        "https://fbswiki.org/wiki/index.php/FBS"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 68,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/068.zh.md",
+        "en": "content/course-guides/068.en.md"
+      },
+      "primary_sources": [
+        "https://ee263.stanford.edu/",
+        "https://ee263.stanford.edu/lectures.html",
+        "https://ee263.stanford.edu/homework.html",
+        "https://ee263.stanford.edu/exams.html",
+        "https://ee263.stanford.edu/archive/",
+        "https://see.stanford.edu/Course/EE263",
+        "https://web.stanford.edu/class/archive/ee/ee263/ee263.1082/courseinfo.html"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 73,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/073.zh.md",
+        "en": "content/course-guides/073.en.md"
+      },
+      "primary_sources": [
+        "https://fbswiki.org/wiki/index.php/FBS",
+        "https://fbswiki.org/wiki/index.php/Feedback_Principles",
+        "https://fbswiki.org/wiki/index.php/Software",
+        "https://fbswiki.org/wiki/index.php/Robust_Performance",
+        "https://fbswiki.org/wiki/index.php/Fundamental_Limits",
+        "https://github.com/murrayrm/fbs2e-python",
+        "https://www.cds.caltech.edu/~murray/books/AM05/wiki/Solutions_manual.html",
+        "https://ee263.stanford.edu/",
+        "https://ee263.stanford.edu/archive/",
+        "https://ee363.stanford.edu/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 74,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/074.zh.md",
+        "en": "content/course-guides/074.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-4210-robotic-manipulation-fall-2022/",
+        "https://manipulation.csail.mit.edu/Fall2022/index.html",
+        "https://manipulation.csail.mit.edu/Fall2022/schedule.html",
+        "https://manipulation.csail.mit.edu/Fall2022/project.html",
+        "https://manipulation.csail.mit.edu/",
+        "https://github.com/RussTedrake/manipulation/commit/cdb8c90f402c9201999bb90a27a034cf2e5d166c",
+        "https://github.com/RussTedrake/manipulation/blob/cdb8c90f402c9201999bb90a27a034cf2e5d166c/pyproject.toml"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 75,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/075.zh.md",
+        "en": "content/course-guides/075.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-832-underactuated-robotics-spring-2022/",
+        "https://underactuated.mit.edu/Spring2022/index.html",
+        "https://underactuated.mit.edu/Spring2022/faqs.html",
+        "https://underactuated.mit.edu/Spring2022/schedule.html",
+        "https://underactuated.mit.edu/Spring2022/assignments.html",
+        "https://underactuated.csail.mit.edu/",
+        "https://github.com/RussTedrake/underactuated",
+        "https://underactuated.mit.edu/Spring2022/project.html",
+        "https://ocw.mit.edu/courses/6-4210-robotic-manipulation-fall-2022/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 83,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/083.zh.md",
+        "en": "content/course-guides/083.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/video_galleries/lecture-videos/",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/exams/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 88,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/088.zh.md",
+        "en": "content/course-guides/088.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/res-6-008-digital-signal-processing-spring-2011/",
+        "https://ocw.mit.edu/courses/res-6-008-digital-signal-processing-spring-2011/pages/introduction/",
+        "https://ocw.mit.edu/courses/res-6-008-digital-signal-processing-spring-2011/pages/readings/",
+        "https://ocw.mit.edu/courses/res-6-008-digital-signal-processing-spring-2011/pages/study-materials/",
+        "https://ocw.mit.edu/courses/res-6-008-digital-signal-processing-spring-2011/video_galleries/video-lectures/",
+        "https://ocw.mit.edu/courses/res-6-008-digital-signal-processing-spring-2011/resources/lecture-1-introduction/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/pages/projects/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 89,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/089.zh.md",
+        "en": "content/course-guides/089.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/pages/exams/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/pages/projects/",
+        "https://ocw.mit.edu/courses/6-341-discrete-time-signal-processing-fall-2005/10708be42872804058d76fe3113939e5_projectf05.pdf"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 97,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/097.zh.md",
+        "en": "content/course-guides/097.en.md"
+      },
+      "primary_sources": [
+        "https://see.stanford.edu/Course/EE261",
+        "https://see.stanford.edu/materials/lsoftaee261/Syllabus.pdf",
+        "https://see.stanford.edu/materials/lsoftaee261/Course-info-2007.pdf",
+        "https://see.stanford.edu/materials/lsoftaee261/FourierTransformAllMaterials.zip",
+        "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/",
+        "https://ocw.mit.edu/courses/res-6-008-digital-signal-processing-spring-2011/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 99,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/099.zh.md",
+        "en": "content/course-guides/099.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/readings/",
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/tutorials/",
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/syllabus/software/",
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/exams/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 100,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/100.zh.md",
+        "en": "content/course-guides/100.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/",
+        "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/pages/exams/",
+        "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/video_galleries/video-lectures/",
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+        "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/",
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/syllabus/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 101,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/101.zh.md",
+        "en": "content/course-guides/101.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/",
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/readings-and-lecture-notes/",
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/video_galleries/video-lectures/",
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/exams/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 102,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/102.zh.md",
+        "en": "content/course-guides/102.en.md"
+      },
+      "primary_sources": [
+        "https://web.stanford.edu/class/ee276/",
+        "https://web.stanford.edu/class/ee276/info.html",
+        "https://web.stanford.edu/class/ee276/outline.html",
+        "https://web.stanford.edu/class/ee276/homework.html",
+        "https://web.stanford.edu/class/ee276/exam.html",
+        "https://web.stanford.edu/class/ee276/files/exams/EE276_midterm_sol.pdf",
+        "https://web.stanford.edu/class/ee276/files/exams/EE276_final_sol.pdf",
+        "https://web.stanford.edu/class/ee276/previous_notes.html",
+        "https://web.stanford.edu/class/ee276/reading.html",
+        "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010/",
+        "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010/pages/assignments/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 107,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/107.zh.md",
+        "en": "content/course-guides/107.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.ece.cornell.edu/courses/ece-3030-electromagnetic-fields-and-waves-2/",
+        "https://ocw.ece.cornell.edu/courses/ece-3030-electromagnetic-fields-and-waves-2/ece-3030-lectures-notes-and-handouts-2/",
+        "https://ocw.ece.cornell.edu/courses/ece-3030-electromagnetic-fields-and-waves-2/ece-3030-homework-and-exams-2/",
+        "https://courses.cornell.edu/courses/ece/ece.pdf"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 108,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/108.zh.md",
+        "en": "content/course-guides/108.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/",
+        "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/resources/mit6_013s09_notes/",
+        "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/exams/",
+        "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/movie-demonstrations/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 110,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/110.zh.md",
+        "en": "content/course-guides/110.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.ece.cornell.edu/courses/ece-4880-radio-frequency-systems",
+        "https://ocw.ece.cornell.edu/courses/ece-4880-radio-frequency-systems/ece-4880-syllabus/",
+        "https://ocw.ece.cornell.edu/files/2017/03/ece4880_syllabus-1nkp8uy.pdf",
+        "https://ocw.ece.cornell.edu/courses/ece-4880-radio-frequency-systems/ece-4880-lectures-notes-and-handouts",
+        "https://ocw.ece.cornell.edu/courses/ece-4880-radio-frequency-systems/ece-4880-homework-and-exams",
+        "https://ocw.ece.cornell.edu/courses/ece-4880-radio-frequency-systems/ece-4880-projects-and-labs",
+        "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003/",
+        "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003/pages/syllabus/",
+        "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 111,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/111.zh.md",
+        "en": "content/course-guides/111.en.md"
+      },
+      "primary_sources": [
+        "https://www.coursera.org/learn/rf-mmwave-circuit-design",
+        "https://github.com/ra3xdh/qucs_s",
+        "https://qucs-s-help.readthedocs.io/en/latest/installation/installing-qucs-s.html",
+        "https://octave.org/download.html",
+        "https://research.tue.nl/en/publications/rf-circuits-laboratory-for-remote-learning-and-massive-open-onlin/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 112,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/112.zh.md",
+        "en": "content/course-guides/112.en.md"
+      },
+      "primary_sources": [
+        "https://nptel.ac.in/courses/108105114",
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108105114.pdf",
+        "https://nptel.ac.in/api/downloads/108105114",
+        "https://archive.nptel.ac.in/noc/noc_faq.html"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 114,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/114.zh.md",
+        "en": "content/course-guides/114.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-622-power-electronics-spring-2023/",
+        "https://ocw.mit.edu/courses/6-622-power-electronics-spring-2023/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-622-power-electronics-spring-2023/resources/lecture-videos/",
+        "https://ocw.mit.edu/courses/6-622-power-electronics-spring-2023/resources/problem-sets/",
+        "https://ocw.mit.edu/courses/6-622-power-electronics-spring-2023/pages/design-project/",
+        "https://ocw.mit.edu/courses/6-622-power-electronics-spring-2023/lists/assessments/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 118,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/118.zh.md",
+        "en": "content/course-guides/118.en.md"
+      },
+      "primary_sources": [
+        "https://nptel.ac.in/courses/117105140",
+        "https://archive.nptel.ac.in/content/syllabus_pdf/117105140.pdf",
+        "https://nptel.ac.in/api/downloads/117105140",
+        "https://archive.nptel.ac.in/noc/noc_faq.html"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 120,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/120.zh.md",
+        "en": "content/course-guides/120.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/course-notes/",
+        "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/exams/",
+        "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/instructor-insights/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 122,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/122.zh.md",
+        "en": "content/course-guides/122.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/?view=lectures",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/?view=readings",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/subjects/module-1-introduction/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/subjects/module-2-semiconductor-physics/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/subjects/module-3-generation-recombination/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/subjects/module-4-p-n-junction/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/subjects/module-5-advanced-concepts-semiconductors/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/subjects/module-6-light-management-1/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/subjects/module-7-light-management-2/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/subjects/module-8-solar-cell-engineering/",
+        "https://www.edx.org/learn/solar-energy/delft-university-of-technology-solar-energy-photovoltaic-pv-energy-conversion",
+        "https://edxsupport.zendesk.com/hc/en-us/articles/1500003964681-What-is-the-audit-track",
+        "https://ocw.tudelft.nl/courses/solar-energy-photovoltaic-pv-systems/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 123,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/123.zh.md",
+        "en": "content/course-guides/123.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/10-626-electrochemical-energy-systems-spring-2014/pages/syllabus/",
+        "https://ocw.mit.edu/courses/10-626-electrochemical-energy-systems-spring-2014/pages/calendar/",
+        "https://ocw.mit.edu/courses/10-626-electrochemical-energy-systems-spring-2014/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/10-626-electrochemical-energy-systems-spring-2014/pages/assignments/",
+        "https://ocw.mit.edu/courses/10-626-electrochemical-energy-systems-spring-2014/pages/exams/",
+        "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 124,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/124.zh.md",
+        "en": "content/course-guides/124.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.ece.cornell.edu/courses/ece-4070-course-details",
+        "https://ocw.ece.cornell.edu/courses/ece-4070-course-details/ece-4070-lectures-notes-handouts-2/",
+        "https://ocw.ece.cornell.edu/courses/ece-4070-course-details/homework-and-exams/",
+        "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010/pages/open-textbook/",
+        "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010/pages/exams/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 126,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/126.zh.md",
+        "en": "content/course-guides/126.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/",
+        "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/resources/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/resources/assignments/",
+        "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/pages/labs/",
+        "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/resources/exams/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 129,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/129.zh.md",
+        "en": "content/course-guides/129.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/syllabus/",
+        "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/calendar/",
+        "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/assignments/",
+        "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/projects/",
+        "https://www.osha.gov/semiconductors/silicon/device-fabrication",
+        "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 131,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/131.zh.md",
+        "en": "content/course-guides/131.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.ece.cornell.edu/courses/ece-5330-semiconductor-optoelectronics/",
+        "https://ocw.ece.cornell.edu/courses/ece-5330-semiconductor-optoelectronics/ece-5330-lectures-notes-and-handouts/",
+        "https://ocw.ece.cornell.edu/courses/ece-5330-semiconductor-optoelectronics/ece-5330-homework-and-exams/",
+        "https://ocw.ece.cornell.edu/files/2017/03/ece5330_homework8-2fz4yrw.pdf",
+        "https://ocw.mit.edu/courses/6-977-semiconductor-optoelectronics-theory-and-design-fall-2002/",
+        "https://www.osha.gov/laser-hazards"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 132,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/132.zh.md",
+        "en": "content/course-guides/132.en.md"
+      },
+      "primary_sources": [
+        "https://nptel.ac.in/courses/108106135",
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108106135.pdf",
+        "https://nptel.ac.in/api/downloads/108106135",
+        "https://archive.nptel.ac.in/noc/noc_faq.html"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 133,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/133.zh.md",
+        "en": "content/course-guides/133.en.md"
+      },
+      "primary_sources": [
+        "https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana",
+        "https://s3.amazonaws.com/edx-course-phot1x-chrostowski/2016T3/UBCxPhot1x_Course%20Syllabus%20Schedule_2016_11b.pdf",
+        "https://www.edx.org/edx-terms-service"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 134,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/134.zh.md",
+        "en": "content/course-guides/134.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/2-71-optics-spring-2014/",
+        "https://ocw.mit.edu/courses/2-71-optics-spring-2014/pages/syllabus/",
+        "https://ocw.mit.edu/courses/2-71-optics-spring-2014/pages/calendar/",
+        "https://ocw.mit.edu/courses/2-71-optics-spring-2014/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/2-71-optics-spring-2014/pages/assignments/",
+        "https://ocw.mit.edu/courses/2-71-optics-spring-2014/pages/exams/",
+        "https://nptel.ac.in/courses/108106135",
+        "https://nptel.ac.in/api/downloads/108106135"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 136,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/136.zh.md",
+        "en": "content/course-guides/136.en.md"
+      },
+      "primary_sources": [
+        "https://nptel.ac.in/courses/108105153",
+        "https://nptel.ac.in/courses/108105153/__data.json",
+        "https://nptel.ac.in/api/downloads/108105153",
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108105153.pdf",
+        "https://archive.nptel.ac.in/content/storage2/courses/downloads_new/108105153/Week_01_Assignment_1a.pdf",
+        "https://archive.nptel.ac.in/content/storage2/courses/downloads_new/108105153/Week_06_Assignment_6.pdf",
+        "https://www.coursera.org/learn/sensors-circuit-interface"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 138,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/138.zh.md",
+        "en": "content/course-guides/138.en.md"
+      },
+      "primary_sources": [
+        "https://www.coursera.org/learn/sensors-circuit-interface",
+        "https://www.colorado.edu/ecee/media/2412",
+        "https://www.infineon.com/evaluation-board/CY8CKIT-059",
+        "https://www.infineon.com/assets/row/public/documents/30/96/infineon-psoc-creator-4.4-release-notes-software-en.pdf?fileId=8ac78c8c7e7124d1017ed9c7639e367a",
+        "https://www.infineon.com/assets/row/public/documents/30/44/infineon-cy8ckit-059-psoc-5lp-prototyping-kit-guide-usermanual-en.pdf?fileId=8ac78c8c7d0d8da4017d0ef981770f63",
+        "https://nptel.ac.in/courses/108105153"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 139,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/139.zh.md",
+        "en": "content/course-guides/139.en.md"
+      },
+      "primary_sources": [
+        "https://nptel.ac.in/courses/102106669",
+        "https://archive.nptel.ac.in/content/syllabus_pdf/102106669.pdf",
+        "https://physionet.org/content/mitdb/1.0.0/",
+        "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 140,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/140.zh.md",
+        "en": "content/course-guides/140.en.md"
+      },
+      "primary_sources": [
+        "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/syllabus/",
+        "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/calendar/",
+        "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/lecture-notes/",
+        "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/labs/",
+        "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/assignments/"
+      ],
+      "learner_reviews": []
+    },
+    {
+      "course_id": 141,
+      "editorial_status": "researched",
+      "evidence_level": "R0",
+      "reviewed_at": "2026-07-29",
+      "files": {
+        "zh": "content/course-guides/141.zh.md",
+        "en": "content/course-guides/141.en.md"
+      },
+      "primary_sources": [
+        "https://people.eecs.berkeley.edu/~pister/140sp25/",
+        "https://www2.eecs.berkeley.edu/Courses/ELENG140/",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/lectures/",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/hw/",
+        "https://people.eecs.berkeley.edu/~pister/140sp23/labs/lab1.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp23/labs/lab3_1.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp23/labs/lab3_2.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab2.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab4.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab5.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab6.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab7.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab8.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/labs/project.pdf",
+        "https://people.eecs.berkeley.edu/~pister/140sp25/resources/",
+        "https://people.eecs.berkeley.edu/~pister/140sp23/resources/",
+        "https://ocw.ece.cornell.edu/courses/ece-3150-microelectronics/"
+      ],
+      "learner_reviews": []
+    }
+  ]
+}

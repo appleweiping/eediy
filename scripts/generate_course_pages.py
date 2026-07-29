@@ -13,6 +13,7 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.course_data import ROLE_TEXT, catalogue_statistics
+from scripts.course_guides import load_course_guides
 from scripts.quality_common import (
     Issue,
     QualityError,
@@ -200,14 +201,27 @@ def mainline_audit_annotations(
     return annotations, issues
 
 
-def _front_matter(title: str, description: str, page_type: str) -> str:
-    return (
-        "---\n"
-        f"title: {_yaml_string(title)}\n"
-        f"description: {_yaml_string(description)}\n"
-        f"page_type: {page_type}\n"
-        "---\n\n"
-    )
+def _front_matter(
+    title: str,
+    description: str,
+    page_type: str,
+    extra: Mapping[str, Any] | None = None,
+) -> str:
+    lines = [
+        "---",
+        f"title: {_yaml_string(title)}",
+        f"description: {_yaml_string(description)}",
+        f"page_type: {page_type}",
+    ]
+    for key, value in (extra or {}).items():
+        if isinstance(value, bool):
+            rendered = "true" if value else "false"
+        elif isinstance(value, (int, float)):
+            rendered = str(value)
+        else:
+            rendered = _yaml_string(str(value))
+        lines.append(f"{key}: {rendered}")
+    return "\n".join([*lines, "---", ""]) + "\n"
 
 
 def _marker(source_payload: Any) -> str:
@@ -350,7 +364,7 @@ def _render_projects(course: Mapping[str, Any], language: str) -> str:
     return "\n".join(f"{index}. {_safe(step)}" for index, step in enumerate(steps, 1))
 
 
-def render_course_page(
+def _render_legacy_course_page(
     course: Mapping[str, Any],
     track: Mapping[str, Any],
     language: str,
@@ -542,6 +556,393 @@ def render_course_page(
         + "\n"
     )
     return content
+
+
+RESOURCE_KIND_LABELS = {
+    "course": ("课程主页", "Course home"),
+    "video": ("视频", "Videos"),
+    "notes": ("讲义", "Notes"),
+    "textbook": ("教材", "Textbook"),
+    "assignments": ("作业", "Assignments"),
+    "labs": ("实验", "Labs"),
+    "projects": ("项目", "Projects"),
+    "exams": ("考试", "Exams"),
+    "code": ("代码", "Code"),
+    "dataset": ("数据集", "Dataset"),
+    "simulator": ("仿真器", "Simulator"),
+    "community": ("社区", "Community"),
+    "other": ("其他", "Other"),
+}
+RESOURCE_PROFILE_LABELS = {
+    "S": ("较完整", "Broadly complete"),
+    "A": ("核心材料可访问", "Core materials available"),
+    "B": ("部分材料", "Partial materials"),
+}
+EDITORIAL_STATUS_LABELS = {
+    "catalogue": ("资料索引", "Resource catalogue"),
+    "researched": ("资料考察", "Desk-researched"),
+    "learner-reviewed": ("学习者复核", "Learner-reviewed"),
+}
+
+
+def _course_metadata(
+    course: Mapping[str, Any],
+    track: Mapping[str, Any],
+    language: str,
+    *,
+    reviewed_at: str,
+) -> str:
+    index = 0 if language == "zh" else 1
+    separator = "：" if language == "zh" else ":"
+    labels = (
+        {
+            "institution": "所属大学",
+            "code": "课程编号",
+            "prerequisites": "先修要求",
+            "track": "方向",
+            "role": "路线角色",
+            "resources": "公开材料",
+            "reviewed": "最近复核",
+        }
+        if language == "zh"
+        else {
+            "institution": "University",
+            "code": "Course code",
+            "prerequisites": "Prerequisites",
+            "track": "Track",
+            "role": "Path role",
+            "resources": "Public materials",
+            "reviewed": "Last reviewed",
+        }
+    )
+    track_title = _safe(track["title"][language])
+    prerequisite_items = [
+        _safe(str(item)) for item in course["prerequisites"][language] if str(item).strip()
+    ]
+    prerequisites = (
+        ("；" if language == "zh" else "; ").join(prerequisite_items)
+        if prerequisite_items
+        else ("无硬性先修" if language == "zh" else "No hard prerequisite recorded")
+    )
+    rows = [
+        (labels["institution"], _safe(course["institution"])),
+        (labels["code"], _safe(course["course_code"] or "—")),
+        (labels["prerequisites"], prerequisites),
+        (labels["track"], f"[{track_title}](index.md)"),
+        (labels["role"], ROLE_LABELS[str(course["role"])][index]),
+        (
+            labels["resources"],
+            RESOURCE_PROFILE_LABELS.get(str(course["tier"]), ("—", "—"))[index],
+        ),
+        (labels["reviewed"], reviewed_at),
+    ]
+    return "\n".join(
+        f"- **{label}{separator}** {value}" for label, value in rows
+    )
+
+
+def _resource_label(resource: Mapping[str, Any], language: str) -> str:
+    index = 0 if language == "zh" else 1
+    resource_kind = str(resource["kind"])
+    kind = RESOURCE_KIND_LABELS.get(resource_kind, ("资源", "Resource"))[index]
+    title = str(resource["title"][language]).strip()
+    generic_by_kind = {
+        "course": {"course home", "course homepage", "课程主页"},
+        "assignments": {"assignments", "作业"},
+        "labs": {"labs", "laboratory", "实验"},
+        "notes": {"lecture notes", "notes", "讲义"},
+        "video": {"videos", "video", "视频"},
+        "exams": {"exams", "考试"},
+        "code": {"code", "代码"},
+    }
+    aliases = {
+        item.casefold() for item in generic_by_kind.get(resource_kind, set())
+    }
+    if title.casefold() in aliases:
+        return kind
+    # A syllabus or calendar may share the broad "course" kind with the
+    # homepage. Preserve its precise provider title instead of presenting two
+    # different destinations as identical course-home links.
+    if resource_kind == "course":
+        return title
+    return f"{kind} · {title}"
+
+
+def _curated_resources(
+    course: Mapping[str, Any],
+    *,
+    limit: int = 6,
+) -> list[Mapping[str, Any]]:
+    priority = {
+        "course": 0,
+        "assignments": 1,
+        "labs": 2,
+        "projects": 3,
+        "video": 4,
+        "notes": 5,
+        "exams": 6,
+        "code": 7,
+        "textbook": 8,
+        "dataset": 9,
+        "simulator": 10,
+        "community": 11,
+        "other": 12,
+    }
+    ordered = sorted(
+        enumerate(course["resources"]),
+        key=lambda item: (
+            priority.get(str(item[1]["kind"]), 99),
+            0 if item[1]["id"] == "primary" else 1,
+            item[0],
+        ),
+    )
+    selected: list[Mapping[str, Any]] = []
+    used_kinds: set[str] = set()
+    used_urls: set[str] = set()
+    for _, resource in ordered:
+        kind = str(resource["kind"])
+        url = str(resource["url"])
+        if url in used_urls:
+            continue
+        if kind in used_kinds and kind not in {"course", "other"}:
+            continue
+        selected.append(resource)
+        used_kinds.add(kind)
+        used_urls.add(url)
+        if len(selected) == limit:
+            break
+    return selected
+
+
+def _render_resource_index(course: Mapping[str, Any], language: str) -> str:
+    index = 0 if language == "zh" else 1
+    if language == "zh":
+        summary = f"展开完整资源索引（{len(course['resources'])} 项）"
+        labels = {
+            "resource": "资源",
+            "access": "访问",
+            "status": "状态",
+            "verified": "复核日期",
+            "coverage": "材料覆盖",
+            "type": "类型",
+            "level": "完整度",
+            "notice": (
+                "链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、"
+                "第三方版权和后续改版仍可能改变实际可用性。"
+            ),
+        }
+    else:
+        summary = f"Expand the complete resource index ({len(course['resources'])} items)"
+        labels = {
+            "resource": "Resource",
+            "access": "Access",
+            "status": "Status",
+            "verified": "Verified",
+            "coverage": "Material coverage",
+            "type": "Type",
+            "level": "Completeness",
+            "notice": (
+                "Links were discovered from official sources on the recorded date. "
+                "Access does not grant redistribution rights, and region, account, "
+                "third-party rights, or later redesigns may change availability."
+            ),
+        }
+    resource_rows = []
+    for resource in course["resources"]:
+        access = ACCESS_LABELS[str(resource["access"])][index]
+        status = STATUS_LABELS[str(resource["status"])][index]
+        resource_rows.append(
+            f"| [{_safe(resource['title'][language])}]({resource['url']}) "
+            f"| {_safe(access)} | {_safe(status)} | {resource['last_verified']} |"
+        )
+    coverage_rows = "\n".join(
+        f"| {COVERAGE_NAMES[key][index]} | "
+        f"{COVERAGE_LABELS[int(course['resource_coverage'][key])][index]} |"
+        for key in COVERAGE_NAMES
+    )
+    return (
+        '<details markdown="1">\n'
+        f"<summary>{summary}</summary>\n\n"
+        f"### {labels['coverage']}\n\n"
+        f"| {labels['type']} | {labels['level']} |\n|---|---|\n"
+        f"{coverage_rows}\n\n"
+        f"### {labels['resource']}\n\n"
+        f"| {labels['resource']} | {labels['access']} | {labels['status']} | "
+        f"{labels['verified']} |\n|---|---|---|---|\n"
+        + "\n".join(resource_rows)
+        + f"\n\n> {_safe(labels['notice'])}\n\n"
+        "</details>"
+    )
+
+
+def _editorial_notice(
+    language: str,
+    *,
+    status: str,
+    evidence_level: str,
+    reviewed_at: str,
+) -> str:
+    if language == "zh":
+        if status == "catalogue":
+            return (
+                "> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；"
+                "还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，"
+                "不要单独据此选课。\n"
+            )
+        if status == "learner-reviewed":
+            return (
+                f"> **学习者复核（{evidence_level}）：** 正文已纳入可追溯的完成记录，"
+                f"最近复核于 {reviewed_at}；课程事实、学习者报告和编辑判断仍分开表述。\n"
+            )
+        return (
+            f"> **资料考察（{evidence_level}）：** 正文于 {reviewed_at} 逐项核对"
+            "课程官方材料，但还没有可核验的完整学习复盘，因此不冒充亲历。"
+            "完成过课程的读者可以从页末提交复盘。\n"
+        )
+    if status == "catalogue":
+        return (
+            "> **Resource catalogue:** This page confirms the course identity, official "
+            "entry points, and public materials. The assignments have not yet been reviewed "
+            "one by one, and this is not a completion report; use it to find the course, "
+            "not as a stand-alone enrollment decision.\n"
+        )
+    if status == "learner-reviewed":
+        return (
+            f"> **Learner-reviewed ({evidence_level}):** This guide includes traceable "
+            f"completion evidence and was last reviewed on {reviewed_at}. Course facts, "
+            "learner reports, and editorial judgement remain separately attributed.\n"
+        )
+    return (
+        f"> **Desk-researched ({evidence_level}):** The official course materials were checked "
+        f"item by item on {reviewed_at}, but no traceable full-course report has been accepted. "
+        "This guide therefore makes no first-hand claims; completers can submit a report below.\n"
+    )
+
+
+def _mainline_audit_notice(
+    audit: Mapping[str, Any] | None,
+    language: str,
+) -> str:
+    if not audit or audit.get("status") != "review":
+        return ""
+    if language == "zh":
+        return (
+            '\n!!! warning "主线审计复核中"\n'
+            f"    {_safe(audit['limitation_zh'])} "
+            f"最近审计：{_safe(audit['verified_at'])}。\n"
+        )
+    return (
+        '\n!!! warning "Mainline audit review"\n'
+        f"    {_safe(audit['limitation_en'])} "
+        f"Last audited: {_safe(audit['verified_at'])}.\n"
+    )
+
+
+def render_course_page(
+    course: Mapping[str, Any],
+    track: Mapping[str, Any],
+    language: str,
+    courses_by_source: Mapping[int, Mapping[str, Any]],
+    audit: Mapping[str, Any] | None = None,
+    guide: Mapping[str, Any] | None = None,
+) -> str:
+    title = str(course["title"][language])
+    summary = str(course["summary"][language])
+    status = str(guide["editorial_status"]) if guide else "catalogue"
+    evidence_level = str(guide["evidence_level"]) if guide else "R0"
+    reviewed_at = str(guide["reviewed_at"]) if guide else str(course["last_reviewed"])
+    metadata = _course_metadata(
+        course,
+        track,
+        language,
+        reviewed_at=reviewed_at,
+    )
+    marker_payload = {
+        "course": course,
+        "guide": guide if guide else None,
+        "language": language,
+    }
+    prefix = (
+        _front_matter(
+            title,
+            summary,
+            "course",
+            {
+                "course_id": course["id"],
+                "editorial_status": status,
+                "evidence_level": evidence_level,
+                "comments": True,
+            },
+        )
+        + _marker(marker_payload)
+        + f"# {_safe(title)}\n\n"
+        + ("## 课程简介\n\n" if language == "zh" else "## Course Overview\n\n")
+        + metadata
+        + "\n\n"
+        + _editorial_notice(
+            language,
+            status=status,
+            evidence_level=evidence_level,
+            reviewed_at=reviewed_at,
+        )
+        + _mainline_audit_notice(audit, language)
+        + "\n"
+    )
+    resource_index_heading = "课程资源" if language == "zh" else "Course Resources"
+    if guide:
+        body = str(guide.get("bodies", {}).get(language, "")).strip()
+        return (
+            prefix
+            + body
+            + f"\n\n## {resource_index_heading}\n\n"
+            + _render_resource_index(course, language)
+            + "\n"
+        )
+
+    curated = _curated_resources(course)
+    resource_lines = "\n".join(
+        f"- [{_safe(_resource_label(resource, language))}]({resource['url']})"
+        for resource in curated
+    )
+    prerequisites = _render_prerequisites(course, courses_by_source, language)
+    if language == "zh":
+        body = (
+            f"{_safe(summary)}\n\n"
+            "**开始前先核对**\n\n"
+            f"{prerequisites}\n\n"
+            "## 先看这些入口\n\n"
+            "先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾"
+            "的完整索引中。\n\n"
+            f"{resource_lines}\n\n"
+            "## 已知边界\n\n"
+            f"{_safe(course['review_note']['zh'])}\n\n"
+            "这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。"
+            "若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和"
+            "踩坑证据。\n\n"
+        )
+    else:
+        body = (
+            f"{_safe(summary)}\n\n"
+            "**Check before starting**\n\n"
+            f"{prerequisites}\n\n"
+            "## Start with these links\n\n"
+            "Use these entry points to decide whether the course fits. Per-lecture files and "
+            "historical exams are kept in the complete index at the end of the page.\n\n"
+            f"{resource_lines}\n\n"
+            "## Known Boundaries\n\n"
+            f"{_safe(course['review_note']['en'])}\n\n"
+            "This catalogue record does not present a maintainer-invented project, uniform "
+            "workload, or generic acceptance test as a course fact. If you completed the "
+            "course, use the discussion below to report assignment structure, actual effort, "
+            "broken access, and concrete pitfalls.\n\n"
+        )
+    return (
+        prefix
+        + body
+        + f"## {resource_index_heading}\n\n"
+        + _render_resource_index(course, language)
+        + "\n"
+    )
 
 
 def render_track_page(
@@ -1101,6 +1502,7 @@ def build_expected_pages(
     routes_data: Mapping[str, Any],
     docs_root: Path,
     mainline_audit: Mapping[str, Any] | None = None,
+    course_guides: Mapping[int, Mapping[str, Any]] | None = None,
 ) -> dict[Path, str]:
     tracks = sorted(catalogue["tracks"], key=lambda item: (item["order"], item["id"]))
     tracks_by_id = {track["id"]: track for track in tracks}
@@ -1114,6 +1516,7 @@ def build_expected_pages(
         if mainline_audit is not None
         else ({}, [])
     )
+    course_guides = course_guides or {}
     pages: dict[Path, str] = {}
     for language in ("zh", "en"):
         language_root = docs_root if language == "zh" else docs_root / "en"
@@ -1137,6 +1540,7 @@ def build_expected_pages(
                     language,
                     courses_by_source,
                     audits_by_course.get(int(course["source_id"])),
+                    course_guides.get(int(course["source_id"])),
                 )
         route_root = language_root / "routes"
         routes = routes_data["routes"]
@@ -1283,6 +1687,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--routes", default="data/routes.json")
     parser.add_argument("--route-schema", default="data/route.schema.json")
     parser.add_argument("--mainline-audit", default="data/mainline_audit.json")
+    parser.add_argument("--course-guides", default="data/course_guides.json")
     parser.add_argument("--docs-root", default="docs")
     parser.add_argument("--nav-fragment", default="build/generated_nav.yml")
     parser.add_argument("--minimum-courses", type=int, default=125)
@@ -1335,12 +1740,21 @@ def main(argv: list[str] | None = None) -> int:
     ):
         emit_issues(issues)
         return exit_code(issues)
+    course_guides, guide_issues = load_course_guides(
+        repo_path(args.course_guides),
+        catalogue,
+    )
+    issues.extend(guide_issues)
+    if any(issue.severity == "error" for issue in issues):
+        emit_issues(issues)
+        return exit_code(issues)
     docs_root = repo_path(args.docs_root)
     expected = build_expected_pages(
         catalogue,
         routes_data,
         docs_root,
         mainline_audit=mainline_audit,
+        course_guides=course_guides,
     )
     nav_path = repo_path(args.nav_fragment)
     nav_content = render_nav_fragment(catalogue, routes_data)

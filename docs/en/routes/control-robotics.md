@@ -28,7 +28,7 @@ Close the perception–planning–control loop in simulation or on safe hardware
 - [Differential Equations](../courses/mathematics/003-18-03sc.md) — **Required**; MIT; Mainline; S
 - [Linear Algebra](../courses/mathematics/004-18-06sc.md) — **Required**; MIT; Mainline; S
 - [Classical Mechanics](../courses/physics/010-8-01sc.md) — **Required**; MIT; Mainline; S
-- [Introduction to Linear Dynamical Systems](../courses/control-systems/068-ee-263.md) — **Required**; Stanford University; Mainline; S
+- [Introduction to Linear Dynamical Systems (2008 Archive)](../courses/control-systems/068-ee-263.md) — **Required**; Stanford University; Mainline; S
 
 **Stage exit criterion:** Derive a multistate system from physical assumptions, identify its parameters, and validate on a trajectory excluded from fitting; normalized state-prediction error must be below 10%, with controllability and observability rank checks completed.
 

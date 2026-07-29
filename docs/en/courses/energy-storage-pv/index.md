@@ -21,13 +21,14 @@ Electrochemical storage, solar cells, system modeling, and energy management wit
 ## Suggested order
 
 1. [Solar Energy Engineering: Photovoltaic Energy Conversion](122-pv-energy-conversion.md)
+2. [Electrochemical Energy Systems](123-10-626.md)
 
 ## Courses
 
 | Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
 | [Solar Energy Engineering: Photovoltaic Energy Conversion](122-pv-energy-conversion.md) | Delft University of Technology | Mainline | A | Partial |
-| [Electrochemical Energy Systems](123-10-626.md) | MIT | Alternative | A | Partial |
+| [Electrochemical Energy Systems](123-10-626.md) | MIT | Mainline | A | Partial |
 
 ## How to choose
 

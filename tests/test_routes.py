@@ -270,6 +270,30 @@ def test_control_robotics_declares_two_complete_production_paths() -> None:
     ]
 
 
+def test_instrumentation_route_keeps_access_dependent_practice_optional() -> None:
+    routes_path = Path(__file__).resolve().parents[1] / "data" / "routes.json"
+    routes = json.loads(routes_path.read_text(encoding="utf-8"))["routes"]
+    route = next(
+        item for item in routes if item["id"] == "instrumentation-biomedical"
+    )
+    measurement = next(
+        item
+        for item in route["stages"]
+        if item["name_en"] == "Circuits and measurement"
+    )
+    sensors = next(
+        item
+        for item in route["stages"]
+        if item["name_en"] == "Sensors and interfaces"
+    )
+
+    assert measurement["required_course_ids"] == [21, 24, 83]
+    assert sensors["course_ids"] == [136, 138, 137]
+    assert sensors["required_course_ids"] == [136]
+    assert sensors["elective_count"] == 0
+    assert "do not claim a physical experiment" in sensors["exit_en"]
+
+
 def test_review_mainlines_are_not_hard_required_in_production_routes() -> None:
     routes_path = Path(__file__).resolve().parents[1] / "data" / "routes.json"
     routes = json.loads(routes_path.read_text(encoding="utf-8"))["routes"]

@@ -2,68 +2,94 @@
 title: "Embedded Systems: Shape the World"
 description: "The University of Texas at Austin's Embedded Systems: Shape the World provides an embedded-systems introduction through an open text, chapter-embedded videos, and activities created for EE 319K; the dead aggregate video index is excluded, the edX run is archived, and learners should prefer the MSPM0 edition while preserving their own lab records."
 page_type: course
+course_id: "course-059"
+editorial_status: "researched"
+evidence_level: "R0"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 81e8b99da9ada593 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 92d8dcf236d0d4da -->
 
 # Embedded Systems: Shape the World
 
 ## Course Overview
 
-- **Institution:** The University of Texas at Austin
+- **University:** The University of Texas at Austin
 - **Course code:** EE 319K / Volume 1
+- **Prerequisites:** Recommended foundation: Digital Logic and Computation Structures; Recommended foundation: Programming and Engineering Computing; Recommended foundation: Electronics Laboratory and Measurement
 - **Track:** [Embedded Systems](index.md)
-- **Tier:** S
-- **Role:** Mainline
-- **Level:** Not standardized by provider (use prerequisites)
-- **Last reviewed:** 2026-07-28
+- **Path role:** Mainline
+- **Public materials:** Broadly complete
+- **Last reviewed:** 2026-07-29
 
-The University of Texas at Austin's Embedded Systems: Shape the World provides an embedded-systems introduction through an open text, chapter-embedded videos, and activities created for EE 319K; the dead aggregate video index is excluded, the edX run is archived, and learners should prefer the MSPM0 edition while preserving their own lab records.
+> **Desk-researched (R0):** The official course materials were checked item by item on 2026-07-29, but no traceable full-course report has been accepted. This guide therefore makes no first-hand claims; completers can submit a report below.
 
-**Why choose this course**
+## Choose one board first: the 2022 Volume 1 is not the Spring 2026 lab manual
 
-Mainline course. A particularly complete and well-structured option for this track. Review note: S/A
+“Embedded Systems: Shape the World” now has two public routes that are easy to conflate. The [older open text](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/) is a 2022 reprint written for EE319K, organized as 10 chapters around the TM4C123 and Cortex-M4. The [Spring 2026 syllabus](https://users.ece.utexas.edu/~valvano/mspm0/EE319KSp26.html) instead puts every physical lab on the LP-MSPM0G3507 (Cortex-M0+) and uses current Code Composer Studio, assembly, and C. They teach the same processor-to-I/O intellectual arc, but they are not interchangeable engineering versions.
 
-**Before you start**
+An independent repository should state `target = LP-MSPM0G3507 / Spring 2026` on its front page. Use the old Volume 1 as a conceptual reference, not as a source of TM4C123 register addresses, startup files, Keil projects, or pin definitions. The current MSPM0+ e-book has 9 chapters: Introduction, Switches/LEDs, C Programming, Finite State Machines, Interrupts/DAC/Sound, Locals/LCD, ADC/Sampling, Communication, and System Design. When the target board changes, similar function names do not remove the need to recheck GPIO muxing, clocks, exception entry, and peripheral registers.
 
-- Recommended foundation: Digital Logic and Computation Structures
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Electronics Laboratory and Measurement
+## The prerequisite diagnostic is not “some C experience”
 
-**Verifiable learning outcomes**
+The campus prerequisite is EE306, ECE306, or BME306 with at least C-. The syllabus explicitly expects binary and two’s complement, ASCII, Boolean gates and DeMorgan’s laws, CPU/memory/I/O, LC-3 assembly, addressing modes, algorithms and flowcharts, data types, pointers, arrays, interrupts, and debugging. An outside learner can replace the course-number check with three short tasks:
 
-- Explain the core models in Embedded Systems, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+1. Without executing it, translate a C fragment containing signed 8/16/32-bit values, array indexing, and a function call into a table of registers, stack frames, and memory accesses.
+2. Draw a low-voltage button-input and LED-output interface, calculate the LED resistor, and explain floating input, pull-up, and switch bounce.
+3. Produce a timing budget for a periodic sampler and explain what happens when interrupt service exceeds the sampling period.
 
-**Workload and pacing**
+If the first two cannot be completed independently, review digital logic, C pointers, and elementary circuits before continuing. The third may be learned after Lab 1, but it must be in place before Lab 7. The original course continues a bottom-up path from ECE302/ECE306 and emphasizes understanding and analysis. Connecting library calls is not by itself the intended design work.
 
-**13 weeks at 11 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+## Nine labs form one dependency graph
 
-**Safety level**
+The [Spring 2026 Labs](https://users.ece.utexas.edu/~valvano/mspm0/labs.html) page lists Lab 1–9 after setup and a board demonstration. The first 5 are individual and the last 4 are normally in pairs. Two official pages disagree on the later language split: the syllabus summary says Labs 6–7 combine assembly and C and Labs 8–9 use C in ECE319K (C++ in the honors version), while the itemized Labs index calls Lab 6 assembly, Labs 7–8 mixed assembly/C, and Lab 9 C. For any current run, use the linked handout and starter for that lab as the implementation specification, and record the page date and this disagreement instead of silently normalizing it.
 
-**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
+### Labs 1–5: prove each layer independently
+
+Lab 1 brings up Cortex-M0+ assembly and the toolchain; Lab 2 interfaces a switch and LED in assembly; Lab 3 introduces C and a debugging dump; Lab 4 implements a traffic-light finite-state machine; Lab 5 makes a digital piano with a 5-bit DAC. Each laboratory record should retain source, link-map or symbol information, wiring, pre-power checks, known input, observed output, and one failure record.
+
+The valuable evidence is not merely a blinking LED or audible speaker. Lab 2 should explain the behavior from pin voltage and port bits. Lab 3 should show how the dump isolates a repeatable defect. Lab 4 should supply a state-transition table, illegal-input policy, and timing measurements. Lab 5 should connect sample rate, table length, DAC weights, and audible frequency. Without such intermediate evidence, a demonstration video cannot distinguish a correct implementation from an accidental success.
+
+### Labs 6–9: interfaces begin to constrain one another
+
+Lab 6 develops an ST7735R LCD driver, fixed-point decimal output, and local variables. Lab 7 combines ADC, interrupts, and the LCD into a real-time position monitor. Lab 8 builds a distributed data-acquisition system with serial interrupts and a FIFO. Lab 9 is an in-class game design competition. These 4 labs should leave traceable interface contracts: display input ranges, ADC calibration and residuals, FIFO full/empty behavior, worst-case interrupt occupancy, the game-loop budget, and storage cost for sound and graphics.
+
+EEDIY recommends treating Lab 7 as the first formal design review: submit raw ADC codes, physical reference positions, fit method, an error plot, and out-of-range behavior, not just a photograph displaying “1.234 cm.” Stress Lab 8 with burst input that deliberately overflows the FIFO and explain the drop, block, or back-pressure policy. Lab 9 should include repeatable startup instructions, controls, at least one long-run record, and known defects. A competition rank has no outside-course equivalent.
+
+## Public code means partial starters, not a complete course repository
+
+The [Downloads](https://users.ece.utexas.edu/~valvano/mspm0/downloads.htm) page makes the Spring 2026 installer available in step 3 of the CCS setup instructions and describes starter files for “some ECE319K labs” plus other MSPM0G3507 examples. It does not promise complete reference implementations for Labs 1–9. Separate public items include an MSPM0 pin card, KiCad starters, `mspm0g350x.h`, the Lab 7 accuracy calculator, the Lab 9 `WC.m` MATLAB/Octave audio converter, and a BMP converter. Record provenance, download date, checksum, CCS version, and board revision for each dependency; a current installer is not a permanent interface.
+
+The course recommends duplicating a working project rather than reconstructing hidden configuration from an empty project. An outside repository can retain a minimal blink `toolchain-smoke-test` and tag every lab separately, but that Git organization, automatic testing, and README are EEDIY reproducibility supplements, not UT assignments. The public site does not promise that every starter, reference implementation, or lab answer is downloadable. Missing work must be implemented and marked as not officially graded.
+
+## Separate the practice grader from official feedback
+
+The public [Exams](https://users.ece.utexas.edu/~valvano/mspm0/exams.htm) inventory is unusually useful. Exam 1 has many older papers converted to MSPM0 with solutions. An Exam 2 practice ZIP runs an embedded grader in CCS. The Final section supplies selected historical papers and explicitly says that only some solutions are available. That practice grader is excellent for checking strings, arrays, structures, and assembly functions; it is not the Spring 2026 Exam 2 service.
+
+In the enrolled course, weekly Canvas quizzes are 10%, laboratories 25%, Exam 1 and Exam 2 are 20% each, and the Final is 25%. Canvas quizzes, submission and grade data, some course files, in-person TA supervision and checkoffs, and staff review of old exams are not public to an ordinary outside learner. Open solutions should be read only after a first timed attempt and test freeze. Local unit tests, the practice grader, and instrument measurements create self-assessment evidence, not a UT grade or official pass.
+
+## EE319K and CS107E optimize for different first questions
+
+The Spring 2026 Stanford CS107E uses a Mango Pi MQ-Pro, Allwinner D1, and RISC-V. Its [assignments page](https://cs107e.github.io/assignments/) describes a set of 7 weekly assignments but currently lists Assignment 0 through Assignment 7 before the Final Project. This guide preserves that numbering/count mismatch instead of forcing a cleaner total. The cumulative work emphasizes command-line tools, Git, a low-level software library, and a complete computer system. EE319K reaches the breadboard, multimeter, switches/LEDs, DAC, ADC, LCD, UART, and real-time interrupts much earlier on the smaller MSPM0G3507.
+
+Choose CS107E first for a deeper treatment of compilers, linkers, allocation, and bare-metal systems software. Choose EE319K when the immediate goal is to connect assembly/C to analog and digital I/O, instrument debugging, and sensor data in one undergraduate introduction. Their hardware, ISAs, and assignment dependencies are incompatible; do not work one course’s assignment while silently substituting the other course’s drivers. Completing one route and then filling the other route’s missing emphasis is more auditable than creating a blended “generic embedded lab.”
+
+## Hardware, safety boundary, and final evidence
+
+The Spring 2026 kit contains red/yellow/green LEDs; 270 Ω, 10 kΩ, 12 kΩ, and 1.5 kΩ resistors; 4 switches; a 10 kΩ slide potentiometer; a 32 Ω speaker; and a ULN2003A. Students separately obtain an LP-MSPM0G3507, ST7735R, breadboard, wires, USB-capable laptop, and digital multimeter. The speaker needs 2 solder joints. Honors Lab 8 adds an IR LED and 38 kHz sensor. Verify current part numbers and each LCD module’s pinout before purchase; the label “ST7735R” does not make every breakout interchangeable.
+
+Keep physical work to USB-powered, host-referenced, current-limited board-level voltages. The [TI LP-MSPM0G3507 user's guide](https://www.ti.com/lit/ug/slau873d/slau873d.pdf) shows J101 installed by default across GND, 5 V, 3V3, UART, and SWD connections to the XDS110/USB side; the name “isolation block” describes removable jumpers, not default safety isolation. Wire with power removed and check supply-to-ground shorts, LED polarity, and ratings before power-up. Soldering requires ventilation, eye protection, and a heat-safe stand; do not try to catch a falling iron, and wash after handling solder. This route includes no mains work, lithium-cell charging, or connection to unknown external supplies. The honors IR link is not an invitation to conduct a high-power free-space optics experiment.
+
+Using the official Lab 1–9 sequence above, EEDIY-recommended final evidence should not be the sentence “completed 9 labs.” Retain 9 identifiable code versions, 1 version matrix, 3 review packages, and 1 access-boundary statement. The reviews can cover the Lab 4 FSM, Lab 7 ADC calibration, and Lab 8/9 real-time integration. The boundary statement should name unavailable Canvas quizzes, TA checkoffs, official grader, and answers. That package can demonstrate a reviewable learning route, implementation, and hardware result without impersonating an enrolled-course experience.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+<details markdown="1">
+<summary>Expand the complete resource index (4 items)</summary>
 
-**Software**
+### Material coverage
 
-- Maintainer-suggested open-source/free verification path: GCC or LLVM, CMake, GDB, OpenOCD, and Renode or QEMU
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a course-supported microcontroller development board, USB debugger, current-limited low-voltage supply, and logic analyzer. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
-
-**Cost note**
-
-The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
+| Type | Completeness |
 |---|---|
 | Video | Complete |
 | Notes | Complete |
@@ -72,56 +98,15 @@ The suggested software stack is available open source or free; this is not a pro
 | Exams | Partial |
 | Code | Complete |
 
-**Resources and access**
+### Resource
 
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
-| [Alternate course entry](https://users.ece.utexas.edu/~valvano/mspm0/ebook) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
-| [TM4C123 Hardware Reference Material](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/Appendix.htm) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
-| [Assembly reference](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/AssemblyReference.htm) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
+| Resource | Access | Status | Verified |
+|---|---|---|---|
+| [Course home](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys) | Open access | Listed by official page | 2026-07-28 |
+| [Alternate course entry](https://users.ece.utexas.edu/~valvano/mspm0/ebook) | Open access | Listed by official page | 2026-07-28 |
+| [TM4C123 Hardware Reference Material](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/Appendix.htm) | Open access | Listed by official page | 2026-07-28 |
+| [Assembly reference](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/AssemblyReference.htm) | Open access | Listed by official page | 2026-07-28 |
 
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
 
-## Practice and Verification
-
-**Practice loop**
-
-**Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1: Deterministic Sampling and Fault-Recovery Node**
-
-This is a maintainer-suggested self-study project for Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1, not an official course assignment. Implement a low-voltage sensing node or its simulation for Embedded Systems, including timed sampling, buffering, checksummed communication, a watchdog, and power-loss recovery.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A specification of tasks and interrupts, timing budget, buffering, communication frames, and fault states
-- Firmware, host decoder, hardware abstraction or simulator, and automated test sources
-- At least one hour of raw timestamp, loss, latency, reset, and power-estimate logs
-- A report quantifying timing margin and reviewing a buffer-overflow or communication-corruption failure
-
-**Verification**
-
-- During a one-hour nominal run, keep 99.9th-percentile sample-period error below 5% of the period with no silent loss
-- Cover timer wrap, full buffers, disconnects, checksum failures, and repeated resets
-- Cross-check counts and latency with host reference timestamps and an independent frame parser
-- Inject packet loss and simulated power failure and show recovery within five seconds with diagnostic evidence retained
-
-**Reproducibility**
-
-- Commit firmware, host tools, simulator, tests, wiring diagram, and a README
-- Pin compiler, SDK, and board versions, build flags, clock configuration, and test seeds
-- Preserve raw serial or network logs, firmware hashes, and the generated report
-
-**Safety boundary:** Low energy — Limit physical nodes to isolated, current-limited operation at or below 5 V; verify pins and ratings and wire with power removed. No mains, human connection, heaters, motors, or battery packs.
-
-**Risks, gaps, and boundaries**
-
-The primary is an open textbook and course-material site created for EE 319K rather than a current course run; chapter pages still embed videos and activities, but the dead aggregate video index is excluded. The edX run is archived and the TM4C123 toolchain is old, so the MSPM0 edition is preferred.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
-- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data
+</details>

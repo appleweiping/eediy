@@ -11,6 +11,7 @@ All captures use the same browser, page state, color scheme, and viewport within
 | Home, desktop, light | 1280 × 720 CSS px | `.artifacts/source/source-desktop-light-top.png` | `.artifacts/source/local-home-desktop-final.png` | `.artifacts/source/qa-desktop-home.png` |
 | Home, mobile, light | 390 × 844 CSS px | `.artifacts/source/source-mobile-top.png` | `.artifacts/source/local-mobile-home-final2.png` | `.artifacts/source/qa-mobile-home.png` |
 | Course, mobile, light | 390 × 844 CSS px | `.artifacts/source/source-course-mobile.png` | `.artifacts/source/local-course-mobile-final.png` | `.artifacts/source/qa-mobile-course.png` |
+| Course, desktop, light — CS126 recheck | same browser state; 1265 × 712 emitted px | `.artifacts/final-qa/csdiy-cs126-1440x1000.png` | `.artifacts/source/local-course-desktop-final.png` | `.artifacts/final-qa/csdiy-cs126-vs-eediy-course-layout.png` |
 
 The browser emitted 1265 × 712 desktop images and 375 × 811 mobile images after accounting for its scrollbar.
 
@@ -39,6 +40,17 @@ All findings were corrected before the final captures.
 - Focus labels, semantic controls, image alternatives, reduced motion, and wide-table keyboard access are present.
 - No P0, P1, or P2 finding remains.
 
+### Final editorial integration pass
+
+- The CSDIY CS126 page named in the review was captured again and compared in one image with the EEDIY course shell at the same emitted size. The header, three-column document grid, navigation density, article measure, table of contents, typography, link treatment, and unboxed reading flow remain visibly aligned. EEDIY keeps only product-specific differences: its identity, EE direction names, and a denser 35-direction course tree.
+- After the 62-guide regeneration, the rendered `course-132` page was inspected in the same in-app browser. Its ten level-two course-content sections comprise the generated introduction/resources shell and eight authored guide sections, totaling roughly 6,500 Markdown characters. They include placement diagnostics, a 12-week/48-item execution map, explicit assignment-access limits, ten lab-observation prompts, a computational project loop, laser/fiber safety boundaries, exit evidence, official links, and an R0 evidence disclosure. The content generation did not alter the verified visual shell.
+- A final cache-busted browser pass after date normalization showed `2026-07-29`, no `2026-07-30` snapshot, one stable `course-132` discussion iframe, twelve rendered level-two headings including feedback/discussion, and no horizontal overflow at the 747 CSS-pixel viewport.
+- The final navigation exposes the active direction and neighboring photonics courses. The English deep path loads with `lang=en`, the same `course-132` identity, English editorial headings, and the same feedback/discussion mapping.
+- A browser query for `6.003` returned ten indexed results, including the Chinese and English Signals and Systems course pages and contextual mentions.
+- Each researched course page exposes three structured Issue actions, an existing-feedback search, a course-specific Discussions fallback, and a Giscus iframe configured with the stable course ID. Repository Issues and Discussions are enabled. Actual embedded posting still depends on GitHub authentication and installation of the third-party Giscus GitHub App; that authorization is tracked as a release dependency rather than being reported as already working.
+- The release-time external-link gate now requires a current reviewer, review date, method, structured allowed reason, and independently checked HTTPS evidence. Target/evidence overlaps run both policies; inconsistent HTTP outcomes and poisoned cache entries fail closed. Two independent adversarial reviewers replayed the bypass cases and returned GREEN with no remaining P0/P1.
+- The generated site passed 62/62 bilingual editorial checks, 60/60 independently audited mainline coverage, 216/216 translation pairs, 274/274 reachable navigation targets, 6,040 Markdown-link checks, 253 tests, a strict MkDocs build, and a fresh external-link report covering 1,886 unique URLs. Its 1,880 content targets contain 1,842 healthy and 38 reason-bound manual reviews; 13 review-evidence URLs contain 7 healthy and 6 access-policy reviews; no target or evidence URL failed.
+
 ## Final result
 
-passed
+Visual, content, navigation, search, bilingual, feedback, and build QA passed. Embedded comment posting remains conditional on explicit Giscus App authorization.

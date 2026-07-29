@@ -37,7 +37,7 @@ page_type: route
 
 - [Differential Equations](../courses/mathematics/003-18-03sc.md) — **必修**; MIT; 主线; S
 - [Circuits and Electronics](../courses/circuits/021-6-002.md) — **必修**; MIT; 主线; S
-- [Introduction to Electronics, Signals, and Measurement](../courses/electronics-laboratory/024-6-071j.md) — **可选补充**; MIT; 替代; A
+- [Introduction to Electronics, Signals, and Measurement](../courses/electronics-laboratory/024-6-071j.md) — **可选补充**; MIT; 主线; A
 - [Signals and Systems](../courses/signals-systems/083-6-003.md) — **必修**; MIT; 主线; S
 
 **阶段退出条件：** 从微分方程推导一个二阶电路的状态与频域模型，测量或仿真其阶跃和扫频响应；主极点、稳态增益和带宽与预测值偏差均不超过 5%。
@@ -69,10 +69,10 @@ page_type: route
 
 - [Digital Signal Processing](../courses/dsp/088-res-6-008.md) — **必修**; MIT; 主线; S
 - [Principles of Digital Communications I](../courses/communications/100-6-450.md) — **选修候选**; MIT; 主线; S
-- [Introduction to Linear Dynamical Systems](../courses/control-systems/068-ee-263.md) — **选修候选**; Stanford University; 主线; S
+- [Introduction to Linear Dynamical Systems (2008 Archive)](../courses/control-systems/068-ee-263.md) — **选修候选**; Stanford University; 主线; S
 - [Power Electronics](../courses/power-electronics/114-6-622.md) — **选修候选**; MIT; 主线; S
 - [Physics of Semiconductors and Nanostructures](../courses/semiconductor-devices/124-ece-4070.md) — **选修候选**; Cornell University; 主线; A
-- [Introduction to Photonics](../courses/optics-photonics/132-108106135.md) — **选修候选**; IIT Madras / NPTEL; 主线; S
+- [Introduction to Photonics](../courses/optics-photonics/132-108106135.md) — **选修候选**; IIT Madras / NPTEL; 主线; A
 
 **阶段退出条件：** 把信号处理主干与所选两个专项整合为一份综合设计评审，分别定义不少于 2 个子系统指标，并用仿真、测量或公开数据验证；最终报告须包含接口风险与一次失败迭代。
 

@@ -4,13 +4,13 @@ description: "按方向、角色、资源完整度和实践条件筛选的电子
 page_type: catalogue
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 02385fe58d5fb857 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 7b40fefc54bc31f4 -->
 
 # 课程导航
 
 [学习路线](../routes/index.md)
 
-当前目录收录 **140** 门经过结构化复核的课程，覆盖 **35** 个有课程方向。每个资源都记录访问条件、许可、状态和最近复核日期。
+当前目录收录 **141** 门经过结构化复核的课程，覆盖 **35** 个有课程方向。每个资源都记录访问条件、许可、状态和最近复核日期。
 
 ## 使用方法
 
@@ -35,7 +35,7 @@ page_type: catalogue
 | 方向 | 课程数 | S 级 | 主线 |
 |---|---:|---:|---:|
 | [电路分析](circuits/index.md) | 4 | 1 | 1 |
-| [电子实验与测量](electronics-laboratory/index.md) | 3 | 0 | 1 |
+| [电子实验与测量](electronics-laboratory/index.md) | 3 | 0 | 2 |
 | [模拟电子](analog-electronics/index.md) | 5 | 1 | 1 |
 | [信号与系统](signals-systems/index.md) | 6 | 3 | 2 |
 | [数字逻辑与计算结构](digital-logic/index.md) | 4 | 3 | 1 |
@@ -45,7 +45,7 @@ page_type: catalogue
 
 | 方向 | 课程数 | S 级 | 主线 |
 |---|---:|---:|---:|
-| [计算机体系结构](computer-architecture/index.md) | 5 | 1 | 1 |
+| [计算机体系结构](computer-architecture/index.md) | 5 | 1 | 2 |
 | [FPGA 与片上系统](fpga-soc/index.md) | 4 | 0 | 1 |
 | [嵌入式系统](embedded-systems/index.md) | 2 | 2 | 2 |
 | [实时与信息物理系统](real-time-cps/index.md) | 5 | 0 | 1 |
@@ -60,7 +60,7 @@ page_type: catalogue
 | [信息论与编码](information-theory-coding/index.md) | 2 | 0 | 1 |
 | [控制系统](control-systems/index.md) | 7 | 2 | 3 |
 | [机器人与自主系统](robotics/index.md) | 9 | 2 | 2 |
-| [射频、微波与天线](rf-microwave-antennas/index.md) | 4 | 0 | 2 |
+| [射频、微波与天线](rf-microwave-antennas/index.md) | 4 | 0 | 3 |
 
 ### 器件、芯片与微纳
 
@@ -68,10 +68,10 @@ page_type: catalogue
 |---|---:|---:|---:|
 | [半导体器件](semiconductor-devices/index.md) | 2 | 0 | 1 |
 | [微电子学](microelectronics/index.md) | 3 | 1 | 1 |
-| [模拟与混合信号集成电路](analog-ic/index.md) | 1 | 0 | 1 |
+| [模拟与混合信号集成电路](analog-ic/index.md) | 2 | 0 | 1 |
 | [数字 VLSI 与芯片设计](vlsi-ic/index.md) | 4 | 0 | 1 |
 | [微纳工艺与 MEMS](fabrication-mems/index.md) | 4 | 1 | 2 |
-| [光学、光电与光子学](optics-photonics/index.md) | 6 | 2 | 3 |
+| [光学、光电与光子学](optics-photonics/index.md) | 6 | 1 | 4 |
 
 ### 电能与可持续能源
 
@@ -79,7 +79,7 @@ page_type: catalogue
 |---|---:|---:|---:|
 | [电力电子](power-electronics/index.md) | 4 | 1 | 1 |
 | [电力系统与电机](power-systems-machines/index.md) | 4 | 1 | 2 |
-| [储能与光伏](energy-storage-pv/index.md) | 2 | 0 | 1 |
+| [储能与光伏](energy-storage-pv/index.md) | 2 | 0 | 2 |
 
 ### 仪器、设计与跨学科实践
 

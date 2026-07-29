@@ -4,7 +4,7 @@ description: "ISA、流水线、缓存、并行与性能分析，解释数字系
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 69299c7d3d349ed8 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4c4b9c33bec3d3fa -->
 
 # 计算机体系结构
 
@@ -20,15 +20,16 @@ ISA、流水线、缓存、并行与性能分析，解释数字系统如何执�
 ## 建议顺序
 
 1. [Computer Architecture](046-ece-4750.md)
+2. [Great Ideas in Computer Architecture](048-cs-61c.md)
 
 ## 课程清单
 
 | 课程 | 机构 | 角色 | 评级 | 实践资源 |
 |---|---|---|---|---|
-| [Computer Architecture](046-ece-4750.md) | Cornell University | 主线 | A | 完整 |
+| [Computer Architecture](046-ece-4750.md) | Cornell University | 主线 | A | 部分 |
+| [Great Ideas in Computer Architecture](048-cs-61c.md) | University of California, Berkeley | 主线 | A | 完整 |
 | [Build a Modern Computer from First Principles: From Nand to Tetris, Part II](040-nand2tetris-ii.md) | Hebrew University of Jerusalem | 替代 | S | 完整 |
 | [Computer System Architecture](047-6-823.md) | MIT | 替代 | A | 部分 |
-| [Great Ideas in Computer Architecture](048-cs-61c.md) | University of California, Berkeley | 替代 | A | 完整 |
 | [Operating System Engineering](054-6-1810.md) | MIT | 替代 | A | 完整 |
 
 ## 如何选课

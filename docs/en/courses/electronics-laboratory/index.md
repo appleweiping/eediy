@@ -4,7 +4,7 @@ description: "Breadboards, oscilloscopes, uncertainty, and reproducible lab repo
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 1348d520257907d0 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4d43f3d340bdaf81 -->
 
 # Electronics Laboratory and Measurement
 
@@ -18,14 +18,15 @@ Breadboards, oscilloscopes, uncertainty, and reproducible lab reports for safe a
 
 ## Suggested order
 
-1. [Real Analog Courses](027-real-analog.md)
+1. [Introduction to Electronics, Signals, and Measurement](024-6-071j.md)
+2. [Real Analog Courses](027-real-analog.md)
 
 ## Courses
 
 | Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
+| [Introduction to Electronics, Signals, and Measurement](024-6-071j.md) | MIT | Mainline | A | Complete |
 | [Real Analog Courses](027-real-analog.md) | Digilent | Mainline | A | Complete |
-| [Introduction to Electronics, Signals, and Measurement](024-6-071j.md) | MIT | Alternative | A | Complete |
 | [Hands-On Introduction to Electrical Engineering Lab Skills](025-6-091.md) | MIT | Supplement | B | Complete |
 
 ## How to choose

@@ -336,12 +336,12 @@
     "code": "6.071J",
     "url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/",
     "track": "electronics-laboratory",
-    "role": "alternative",
+    "role": "mainline",
     "tier": "A",
     "tier_note": "A",
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 2, "code": 1 },
-    "risk": "LabVIEW virtual instruments and the instrument ecosystem are dated.",
-    "verified_at": "2026-07-28"
+    "risk": "Twenty-five laboratory sessions and selected Lab 2, Lab 3, Lab 4, and heart-rate-monitor solution materials are public, but the LabVIEW virtual instruments and hardware ecosystem are dated, and the ten homework sets, three quizzes, and final do not include solutions.",
+    "verified_at": "2026-07-29"
   },
   {
     "id": 25,
@@ -507,7 +507,7 @@
       "https://onlinecourses-archive.nptel.ac.in/noc18_ec05/preview"
     ],
     "track": "analog-ic",
-    "role": "mainline",
+    "role": "supplement",
     "tier": "A",
     "tier_note": "A content / B completion",
     "level": "advanced",
@@ -633,9 +633,9 @@
     "role": "alternative",
     "tier": "B",
     "tier_note": "A curriculum identity / B public completion",
-    "resources": { "video": 0, "notes": 0, "practice": 0, "labs": 0, "exams": 0, "code": 0 },
-    "risk": "The current catalog confirms the curriculum, but its course archives require CalNet and the industrial EDA laboratories are restricted; this record is not an independently executable public course.",
-    "verified_at": "2026-07-28"
+    "resources": { "video": 0, "notes": 0, "practice": 0, "labs": 0, "exams": 2, "code": 0 },
+    "risk": "The catalog and Berkeley HKN's instructor-consented solved exam archive are public, but the live current and historical course archives redirect anonymous users to CalNet. Search-engine-indexed static lecture and lab pages are not directly landable. The ASIC flow requires institutional VCS/DC/Innovus access and the FPGA path requires Vivado plus a PYNQ-class board; this is a curriculum-and-assessment companion, not a publicly executable course.",
+    "verified_at": "2026-07-29"
   },
   {
     "id": 45,
@@ -660,8 +660,8 @@
     "track": "computer-architecture",
     "role": "mainline",
     "tier": "A",
-    "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
+    "tier_note": "A content / C public completion",
+    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "RISC-V notes, problems, and laboratory descriptions are public, but the group repository, server, and some starter code are private.",
     "verified_at": "2026-07-28"
   },
@@ -686,7 +686,7 @@
     "code": "CS 61C",
     "url": "https://cs61c.org/su26/",
     "track": "computer-architecture",
-    "role": "alternative",
+    "role": "mainline",
     "tier": "A",
     "tier_note": "A content / B completion",
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 1, "code": 2 },
@@ -830,8 +830,8 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "The Spring 2026 RISC-V course uses a Mango Pi board and kit whose regional availability varies.",
+    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "risk": "Spring 2026 lectures are not recorded, and the required Mango Pi board and kit have variable regional availability.",
     "verified_at": "2026-07-28"
   },
   {
@@ -969,7 +969,7 @@
   {
     "id": 68,
     "practice_modality": "simulation-only",
-    "title": "Introduction to Linear Dynamical Systems",
+    "title": "Introduction to Linear Dynamical Systems (2008 Archive)",
     "institution": "Stanford University",
     "code": "EE 263",
     "url": "https://see.stanford.edu/Course/EE263",
@@ -978,7 +978,7 @@
     "tier": "S",
     "tier_note": "S",
     "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 2, "code": 2 },
-    "risk": "The MATLAB materials are old but can be migrated to Python; the remaining learning loop is unusually complete.",
+    "risk": "This record is the Stephen Boyd 2008 LDS archive. Since Fall 2025, EE263 denotes a different Matrix Methods/SVD course; archive MATLAB data and current Julia homework must not be mixed.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1303,7 +1303,7 @@
     "tier": "S",
     "tier_note": "S/A",
     "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 0, "code": 0 },
-    "risk": "Nineteen solved problem sets and a complete lecture series are excellent, but the core text dates to 1975 and there is no coding laboratory.",
+    "risk": "Problems are embedded in twenty lesson notes and Lectures 2–20 have solution packets; the core text dates to 1975 and there is no coding laboratory.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1518,7 +1518,7 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 0, "code": 0 },
+    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
     "risk": "Current slides and homework solutions are public, but lecture video is restricted to Canvas.",
     "verified_at": "2026-07-28"
   },
@@ -1595,7 +1595,7 @@
     "tier": "S",
     "tier_note": "S",
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
-    "risk": "Twenty-eight notes, twelve solved homework sets, and four solved exams form a complete text loop, but the 2007 course has no video.",
+    "risk": "Thirty-six handout groups, twelve solved homework sets, and four solved exams form a strong text loop, but the 2007 course has no video.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1633,7 +1633,7 @@
     "code": "ECE 4880",
     "url": "https://ocw.ece.cornell.edu/courses/ece-4880-radio-frequency-systems/",
     "track": "rf-microwave-antennas",
-    "role": "alternative",
+    "role": "mainline",
     "tier": "A",
     "tier_note": "A content / B spine",
     "resources": { "video": 0, "notes": 1, "practice": 2, "labs": 2, "exams": 2, "code": 1 },
@@ -1836,12 +1836,12 @@
     "code": "10.626",
     "url": "https://ocw.mit.edu/courses/10-626-electrochemical-energy-systems-spring-2014/",
     "track": "energy-storage-pv",
-    "role": "alternative",
+    "role": "mainline",
     "tier": "A",
     "tier_note": "A",
     "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
-    "risk": "Graduate electrochemistry and transport mathematics are prerequisites; problem sets lack solutions even though exam solutions are complete.",
-    "verified_at": "2026-07-28"
+    "risk": "Graduate electrochemistry and transport mathematics are prerequisites. The five problem sets explicitly have no solutions; the 2014 midterm has a solution, while the final does not.",
+    "verified_at": "2026-07-29"
   },
   {
     "id": 124,
@@ -1968,11 +1968,11 @@
     "url": "https://nptel.ac.in/courses/108106135",
     "track": "optics-photonics",
     "role": "mainline",
-    "tier": "S",
-    "tier_note": "S/A",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 1, "exams": 1, "code": 0 },
-    "risk": "Assignments, solutions, and demonstrations are strong, but current assessment access may depend on enrollment.",
-    "verified_at": "2026-07-28"
+    "tier": "A",
+    "tier_note": "A",
+    "resources": { "video": 2, "notes": 1, "practice": 0, "labs": 1, "exams": 0, "code": 0 },
+    "risk": "The laboratory items are demonstrations rather than home optics labs; no public assignments or answers were verified, so independent learners need a separate feedback loop.",
+    "verified_at": "2026-07-29"
   },
   {
     "id": 133,
@@ -1996,12 +1996,12 @@
     "code": "2.71",
     "url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/",
     "track": "optics-photonics",
-    "role": "alternative",
+    "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
-    "risk": "The theory and assessment loop is excellent, but there is no full lecture-video series or reproducible physical laboratory.",
-    "verified_at": "2026-07-28"
+    "risk": "The theory and assessment loop is strong: problem sets 1–4 have solutions, while 5–6 do not, and multiple quiz and final sets include solutions. There is no full lecture-video series or public reproducible physical laboratory.",
+    "verified_at": "2026-07-29"
   },
   {
     "id": 135,
@@ -2027,7 +2027,7 @@
     "track": "sensors-instrumentation",
     "role": "mainline",
     "tier": "A",
-    "tier_note": "A",
+    "tier_note": "A content / B completion",
     "level": "intermediate",
     "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
     "workload": { "weeks": 12 },
@@ -2041,9 +2041,9 @@
     "code": "108106193",
     "url": "https://nptel.ac.in/courses/108106193",
     "track": "sensors-instrumentation",
-    "role": "mainline",
+    "role": "supplement",
     "tier": "A",
-    "tier_note": "A",
+    "tier_note": "A content / C completion",
     "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "risk": "The course covers sensor physics through circuits but does not provide an open build-and-test loop.",
     "verified_at": "2026-07-28"
@@ -2055,12 +2055,12 @@
     "code": "ECEA 5340",
     "url": "https://www.coursera.org/learn/sensors-circuit-interface",
     "track": "sensors-instrumentation",
-    "role": "alternative",
+    "role": "mainline",
     "tier": "A",
-    "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "The laboratory depends on an older PSoC 5LP kit and Windows toolchain, and Coursera access may require payment.",
-    "verified_at": "2026-07-28"
+    "tier_note": "A content / C independent access",
+    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 0 },
+    "risk": "The public landing page documents five modules, five assignments, a thermistor laboratory, a course project, and an explicit PSoC 5LP/LCD/components/oscilloscope bill of materials. The actual learning materials and assignments require the paid certificate experience (a trial may be offered and no-certificate access is not guaranteed), and the laboratory depends on an older PSoC 5LP and Windows toolchain. Treat this as an access-dependent practical spine, not a fully open or hardware-neutral course.",
+    "verified_at": "2026-07-29"
   },
   {
     "id": 139,
@@ -2092,5 +2092,36 @@
     "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 2, "exams": 0, "code": 1 },
     "risk": "The MATLAB workflow and old MIT-hosted data links should be migrated to Python and current datasets.",
     "verified_at": "2026-07-28"
+  },
+  {
+    "id": 141,
+    "title": "Analog Integrated Circuits",
+    "institution": "University of California, Berkeley",
+    "code": "EE 140 / EE 240A",
+    "url": "https://people.eecs.berkeley.edu/~pister/140sp25/",
+    "alternate_urls": [
+      "https://www2.eecs.berkeley.edu/Courses/ELENG140/"
+    ],
+    "track": "analog-ic",
+    "role": "mainline",
+    "tier": "A",
+    "tier_note": "A content / B tooling",
+    "level": "advanced",
+    "prerequisite_course_ids": [
+      31
+    ],
+    "resources": {
+      "video": 0,
+      "notes": 2,
+      "practice": 2,
+      "labs": 2,
+      "exams": 2,
+      "code": 0
+    },
+    "workload": {
+      "weeks": 15
+    },
+    "risk": "The official prerequisite is EE 105 (existing course ID 31). Lab 1 uses LTspice; Labs 2–8 and the project depend on Berkeley's Cadence/Virtuoso servers and SKY130 environment. The Razavi or Gray text is paid and no redistribution license is stated. EEDIY may link the originals and teach the simulation spine, but must not claim full off-campus reproducibility until an open PDK/EDA port is independently validated.",
+    "verified_at": "2026-07-29"
   }
 ]

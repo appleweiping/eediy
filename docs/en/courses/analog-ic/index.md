@@ -4,16 +4,13 @@ description: "Biasing, gain stages, feedback, noise, data conversion, and layout
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0a44b979e99076d1 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: be821fa0576b3252 -->
 
 # Analog and Mixed-Signal IC Design
 
 ## Track position
 
 Biasing, gain stages, feedback, noise, data conversion, and layout-aware tradeoffs validated in simulation.
-
-!!! warning "Mainline audit review"
-    - [Analog IC Design](036-108106105-noc26-ee66.md): The official 2026 twelve-week video syllabus is confirmed, but graded feedback and the certificate exam depend on enrollment, no open EDA project is supplied, and the resource manifest still contains only the older archive.
 
 ## Recommended prerequisite tracks
 
@@ -22,13 +19,14 @@ Biasing, gain stages, feedback, noise, data conversion, and layout-aware tradeof
 
 ## Suggested order
 
-1. [Analog IC Design](036-108106105-noc26-ee66.md) — Audit review
+1. [Analog Integrated Circuits](141-ee-140-ee-240a.md)
 
 ## Courses
 
 | Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
-| [Analog IC Design](036-108106105-noc26-ee66.md) | IIT Madras / NPTEL | Mainline — Audit review | A | Partial |
+| [Analog Integrated Circuits](141-ee-140-ee-240a.md) | University of California, Berkeley | Mainline | A | Complete |
+| [Analog IC Design](036-108106105-noc26-ee66.md) | IIT Madras / NPTEL | Supplement | A | Partial |
 
 ## How to choose
 

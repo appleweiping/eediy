@@ -336,6 +336,52 @@
     update();
   }
 
+  function setupGiscusTheme(signal) {
+    const discussion = document.querySelector(".ee-course-discussion");
+    if (!discussion) return;
+
+    const selectedTheme = () => {
+      const scheme = document.body?.getAttribute("data-md-color-scheme")
+        || document.documentElement.getAttribute("data-md-color-scheme");
+      return scheme === "slate" ? "dark" : "light";
+    };
+
+    const sync = () => {
+      const frame = discussion.querySelector("iframe.giscus-frame");
+      if (!frame?.contentWindow) return;
+      frame.contentWindow.postMessage(
+        {
+          giscus: {
+            setConfig: {
+              theme: selectedTheme()
+            }
+          }
+        },
+        "https://giscus.app"
+      );
+    };
+
+    const observer = new MutationObserver(sync);
+    observer.observe(discussion, { childList: true, subtree: true });
+    if (document.body) {
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ["data-md-color-scheme"]
+      });
+    }
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-md-color-scheme"]
+    });
+
+    const handleMessage = (event) => {
+      if (event.origin === "https://giscus.app") sync();
+    };
+    window.addEventListener("message", handleMessage, { signal });
+    signal.addEventListener("abort", () => observer.disconnect(), { once: true });
+    sync();
+  }
+
   function initialize() {
     teardown();
     const controller = new AbortController();
@@ -346,6 +392,7 @@
     setupNavigationAndSearch(controller.signal);
     setupChecklists(controller.signal);
     improveScrollableTables(controller.signal);
+    setupGiscusTheme(controller.signal);
     document.documentElement.dataset.eeReady = "true";
   }
 

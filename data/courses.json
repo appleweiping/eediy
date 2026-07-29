@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-07-28",
+  "updated_at": "2026-07-29",
   "tracks": [
     {
       "id": "mathematics",
@@ -12793,20 +12793,20 @@
         "en": "Introduction to Electronics, Signals, and Measurement"
       },
       "summary": {
-        "zh": "MIT 的《Introduction to Electronics, Signals, and Measurement》把电子学、信号与测量放入同一实验框架；讲义、练习、实验和考试完整，但 LabVIEW 环境较旧。",
-        "en": "MIT's Introduction to Electronics, Signals, and Measurement unifies electronics, signals, and measurement in one laboratory framework, with strong notes, practice, labs, and exams but a dated LabVIEW environment."
+        "zh": "MIT 的《Introduction to Electronics, Signals, and Measurement》把电子学、信号与测量放入 25 次实验、10 份作业、3 次 quiz 和期末考试的框架；部分实验有解，但作业与考试没有答案，LabVIEW 和仪器生态也较旧。",
+        "en": "MIT's Introduction to Electronics, Signals, and Measurement unifies electronics, signals, and measurement across twenty-five laboratory sessions, ten homework sets, three quizzes, and a final, with selected lab solutions but no homework or exam answers and a dated LabVIEW instrument ecosystem."
       },
       "institution": "MIT",
       "course_code": "6.071J",
-      "role": "alternative",
+      "role": "mainline",
       "tier": "A",
       "level": "unspecified",
       "languages": [
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 11,
-        "hours_per_week": 9,
+        "estimated_weeks": 13,
+        "hours_per_week": 11,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -12879,12 +12879,12 @@
         ]
       },
       "selection_note": {
-        "zh": "替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
-        "en": "Alternative course. A reliable option that can serve as a main course or strong alternative."
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative."
       },
       "review_note": {
-        "zh": "LabVIEW 虚拟仪器及其配套仪器生态已经过时。",
-        "en": "LabVIEW virtual instruments and the instrument ecosystem are dated."
+        "zh": "25 次实验以及 Lab 2、Lab 3、Lab 4 和心率监测器的部分解答材料已公开；但 LabVIEW 虚拟仪器和硬件生态较旧，10 份作业、3 次 quiz 与期末考试也没有答案。",
+        "en": "Twenty-five laboratory sessions and selected Lab 2, Lab 3, Lab 4, and heart-rate-monitor solution materials are public, but the LabVIEW virtual instruments and hardware ecosystem are dated, and the ten homework sets, three quizzes, and final do not include solutions."
       },
       "resource_coverage": {
         "video": 0,
@@ -13100,6 +13100,23 @@
           }
         },
         {
+          "id": "assignments-7eab42a554",
+          "kind": "assignments",
+          "title": {
+            "zh": "Laboratory assignments resource index (includes selected lab solutions)",
+            "en": "Laboratory assignments resource index (includes selected lab solutions)"
+          },
+          "url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/resources/laboratory-assignments",
+          "access": "open",
+          "license": "CC BY-NC-SA 4.0 for site materials; third-party exclusions may apply",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
           "id": "course-cbf72681fc",
           "kind": "course",
           "title": {
@@ -13260,7 +13277,7 @@
           }
         }
       ],
-      "last_reviewed": "2026-07-28"
+      "last_reviewed": "2026-07-29"
     },
     {
       "id": "course-025",
@@ -16721,12 +16738,12 @@
         "en": "Analog IC Design"
       },
       "summary": {
-        "zh": "IIT Madras / NPTEL 的《Analog IC Design》以 2026 年 12 周视频大纲提供模拟集成电路设计主线，并保留 2018 年归档作为补充；分级反馈与证书考试依赖注册，且没有公开 EDA 项目。",
-        "en": "IIT Madras / NPTEL's Analog IC Design provides a current 2026 twelve-week video spine for analog integrated-circuit design with the 2018 archive retained as a supplement, while graded feedback and the certificate exam depend on enrollment and no open EDA project is provided."
+        "zh": "IIT Madras / NPTEL 的《Analog IC Design》以 2026 年 12 周视频大纲提供模拟集成电路视频伴学，并保留 2018 年归档作为补充；分级反馈与证书考试依赖注册，且没有公开 EDA 项目。",
+        "en": "IIT Madras / NPTEL's Analog IC Design provides a current 2026 twelve-week video companion for analog integrated-circuit study with the 2018 archive retained as a supplement, while graded feedback and the certificate exam depend on enrollment and no open EDA project is provided."
       },
       "institution": "IIT Madras / NPTEL",
       "course_code": "108106105 / NOC26-EE66",
-      "role": "mainline",
+      "role": "supplement",
       "tier": "A",
       "level": "advanced",
       "languages": [
@@ -16734,7 +16751,7 @@
       ],
       "study_plan": {
         "estimated_weeks": 12,
-        "hours_per_week": 8,
+        "hours_per_week": 4,
         "note": {
           "zh": "提供方公布 12 周；上方每周工时是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方承诺。先试学两周，若实际偏差超过 25%，据实调整。",
           "en": "The provider publishes 12 weeks; the weekly effort above is a maintainer planning estimate derived from course role and public practice/lab density, not a provider promise. Pilot two weeks and adjust when actual effort differs by more than 25%."
@@ -16805,8 +16822,8 @@
         ]
       },
       "selection_note": {
-        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / B completion）",
-        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative. Review note: A content / B completion"
+        "zh": "补充课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / B completion）",
+        "en": "Supplement course. A reliable option that can serve as a main course or strong alternative. Review note: A content / B completion"
       },
       "review_note": {
         "zh": "当前 2026 年课程提供结构化的 12 周视频大纲，但分级反馈与可选证书考试依赖注册，且没有公开 EDA 项目。",
@@ -19396,8 +19413,8 @@
         "en": "Digital Design and Integrated Circuits"
       },
       "summary": {
-        "zh": "University of California, Berkeley 的《Digital Design and Integrated Circuits》提供数字集成电路设计的当前课程身份与目标，可用于校准学习范围；公开目录不提供可独立完成的教学骨架，课程归档需 CalNet，工业 EDA 实验也受限。",
-        "en": "University of California, Berkeley's Digital Design and Integrated Circuits provides a current curriculum identity and scope for digital IC design, but the public catalog is not an independently executable teaching spine, its archives require CalNet, and industrial EDA labs are restricted."
+        "zh": "University of California, Berkeley 的《Digital Design and Integrated Circuits》以公开目录和 HKN 经教师同意发布的已解考试提供数字集成电路课程范围与考核参照；当前及历史课程归档会把匿名用户转到 CalNet，课程本身并不是可公开独立执行的教学主线。",
+        "en": "University of California, Berkeley's Digital Design and Integrated Circuits provides a current digital-IC curriculum reference and solved assessment samples through the public catalog and Berkeley HKN's instructor-consented exam archive, while current and historical course sites redirect anonymous users to CalNet and do not form a publicly executable teaching spine."
       },
       "institution": "University of California, Berkeley",
       "course_code": "EECS 151",
@@ -19408,8 +19425,8 @@
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 8,
-        "hours_per_week": 6,
+        "estimated_weeks": 9,
+        "hours_per_week": 7,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -19459,10 +19476,12 @@
       },
       "outcomes": {
         "zh": [
-          "解释数字 VLSI 与芯片设计中的核心模型，并说明主要假设与适用边界"
+          "解释数字 VLSI 与芯片设计中的核心模型，并说明主要假设与适用边界",
+          "独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查"
         ],
         "en": [
-          "Explain the core models in Digital VLSI and Chip Design, including their assumptions and limits"
+          "Explain the core models in Digital VLSI and Chip Design, including their assumptions and limits",
+          "Solve representative derivations and problems, checking units, limiting cases, or numerical results"
         ]
       },
       "completion_evidence": {
@@ -19484,15 +19503,15 @@
         "en": "Alternative course. Useful for specific topics and best paired with a more complete mainline resource. Review note: A curriculum identity / B public completion"
       },
       "review_note": {
-        "zh": "当前目录能够确认课程范围，但课程归档需要 CalNet，工业 EDA 实验也受限；本条记录不能作为可独立完成的公开课程。",
-        "en": "The current catalog confirms the curriculum, but its course archives require CalNet and the industrial EDA laboratories are restricted; this record is not an independently executable public course."
+        "zh": "公开目录与 Berkeley HKN 经教师同意发布的已解考试可用，但当前和历史课程归档会把匿名用户转到 CalNet；搜索引擎索引的静态讲义与实验页不能作为可直接访问的证据。ASIC 流程需要机构 VCS/DC/Innovus，FPGA 路径需要 Vivado 与 PYNQ 类板卡；本记录只是课程范围与考核伴学，不是可公开独立执行的课程。",
+        "en": "The catalog and Berkeley HKN's instructor-consented solved exam archive are public, but the live current and historical course archives redirect anonymous users to CalNet. Search-engine-indexed static lecture and lab pages are not directly landable. The ASIC flow requires institutional VCS/DC/Innovus access and the FPGA path requires Vivado plus a PYNQ-class board; this is a curriculum-and-assessment companion, not a publicly executable course."
       },
       "resource_coverage": {
         "video": 0,
         "notes": 0,
         "practice": 0,
         "labs": 0,
-        "exams": 0,
+        "exams": 2,
         "code": 0
       },
       "resources": [
@@ -19507,7 +19526,24 @@
           "access": "open",
           "license": "Provider-specific terms; verify before reuse",
           "status": "available",
-          "last_verified": "2026-07-28",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "exams-a0f26e79ed",
+          "kind": "exams",
+          "title": {
+            "zh": "Berkeley HKN EECS 151 exam archive (2017, 2019, 2020; multiple instructor-consented solutions)",
+            "en": "Berkeley HKN EECS 151 exam archive (2017, 2019, 2020; multiple instructor-consented solutions)"
+          },
+          "url": "https://hkn.eecs.berkeley.edu/exams/course/EECS/151",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
           "note": {
             "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
             "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
@@ -19572,7 +19608,7 @@
           }
         }
       ],
-      "last_reviewed": "2026-07-28"
+      "last_reviewed": "2026-07-29"
     },
     {
       "id": "course-045",
@@ -19791,7 +19827,7 @@
       ],
       "study_plan": {
         "estimated_weeks": 12,
-        "hours_per_week": 10,
+        "hours_per_week": 8,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -19866,8 +19902,8 @@
         ]
       },
       "selection_note": {
-        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
-        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative."
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / C public completion）",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative. Review note: A content / C public completion"
       },
       "review_note": {
         "zh": "RISC-V 讲义、问题和实验说明已公开，但团队仓库、服务器和部分起始代码为私有资源。",
@@ -19879,7 +19915,7 @@
         "practice": 1,
         "labs": 1,
         "exams": 0,
-        "code": 2
+        "code": 1
       },
       "resources": [
         {
@@ -20660,15 +20696,15 @@
       },
       "institution": "University of California, Berkeley",
       "course_code": "CS 61C",
-      "role": "alternative",
+      "role": "mainline",
       "tier": "A",
       "level": "unspecified",
       "languages": [
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 11,
-        "hours_per_week": 9,
+        "estimated_weeks": 13,
+        "hours_per_week": 11,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -20743,8 +20779,8 @@
         ]
       },
       "selection_note": {
-        "zh": "替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / B completion）",
-        "en": "Alternative course. A reliable option that can serve as a main course or strong alternative. Review note: A content / B completion"
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / B completion）",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative. Review note: A content / B completion"
       },
       "review_note": {
         "zh": "讲义、讨论、实验和项目均已公开，但录像位于 bCourses，评分器需要 Berkeley 账号。",
@@ -23425,8 +23461,8 @@
         "en": "Computer Systems from the Ground Up"
       },
       "summary": {
-        "zh": "Stanford University 的《Computer Systems from the Ground Up》用 2026 年 RISC-V 材料、视频、实验与代码连接底层计算机系统和嵌入式实践；Mango Pi 套件的地区供应是主要限制。",
-        "en": "Stanford University's Computer Systems from the Ground Up connects low-level computer systems and embedded practice through 2026 RISC-V videos, labs, and code, with regional Mango Pi kit availability as its main constraint."
+        "zh": "Stanford University 的《Computer Systems from the Ground Up》用 2026 年 RISC-V 讲义、实验与代码连接底层计算机系统和嵌入式实践；正式 lecture 不录制，Mango Pi 套件的地区供应也是限制。",
+        "en": "Stanford University's Computer Systems from the Ground Up connects low-level computer systems and embedded practice through 2026 RISC-V notes, labs, and code; formal lectures are not recorded, and regional Mango Pi kit availability is another constraint."
       },
       "institution": "Stanford University",
       "course_code": "CS 107E",
@@ -23519,11 +23555,11 @@
         "en": "Mainline course. A particularly complete and well-structured option for this track."
       },
       "review_note": {
-        "zh": "2026 年春季的 RISC-V 课程使用 Mango Pi 开发板与套件，其地区供应情况不一。",
-        "en": "The Spring 2026 RISC-V course uses a Mango Pi board and kit whose regional availability varies."
+        "zh": "2026 年春季课程的 lecture 不录制；课程使用 Mango Pi 开发板与套件，其地区供应情况不一。",
+        "en": "Spring 2026 lectures are not recorded, and the required Mango Pi board and kit have variable regional availability."
       },
       "resource_coverage": {
-        "video": 2,
+        "video": 0,
         "notes": 2,
         "practice": 2,
         "labs": 2,
@@ -26225,12 +26261,12 @@
       "slug": "068-ee-263",
       "track": "control-systems",
       "title": {
-        "zh": "Introduction to Linear Dynamical Systems",
-        "en": "Introduction to Linear Dynamical Systems"
+        "zh": "Introduction to Linear Dynamical Systems (2008 Archive)",
+        "en": "Introduction to Linear Dynamical Systems (2008 Archive)"
       },
       "summary": {
-        "zh": "Stanford University 的《Introduction to Linear Dynamical Systems》以视频、讲义、练习、考试和代码提供线性动态系统主线；MATLAB 材料虽旧，但整体学习闭环异常完整。",
-        "en": "Stanford University's Introduction to Linear Dynamical Systems provides a linear-systems spine through videos, notes, practice, exams, and code, with an unusually complete loop despite dated MATLAB materials."
+        "zh": "Stanford University 的《Introduction to Linear Dynamical Systems (2008 Archive)》提供视频、讲义、作业、考试和代码；自 Fall 2025 起，EE263 已换成 Matrix Methods/SVD，新旧课程必须分开。",
+        "en": "Stanford University's Introduction to Linear Dynamical Systems (2008 Archive) provides videos, notes, homework, exams, and code. Since Fall 2025, EE263 has denoted a different Matrix Methods/SVD course, so the two versions must remain separate."
       },
       "institution": "Stanford University",
       "course_code": "EE 263",
@@ -26321,8 +26357,8 @@
         "en": "Mainline course. A particularly complete and well-structured option for this track."
       },
       "review_note": {
-        "zh": "MATLAB 材料已经过时，但可以迁移到 Python；其余学习闭环异常完整。",
-        "en": "The MATLAB materials are old but can be migrated to Python; the remaining learning loop is unusually complete."
+        "zh": "本条目是 Stephen Boyd 的 2008 LDS 归档。自 Fall 2025 起，EE263 指另一门 Matrix Methods/SVD 课程；归档 MATLAB 数据和当前 Julia 作业不得混用。",
+        "en": "This record is the Stephen Boyd 2008 LDS archive. Since Fall 2025, EE263 denotes a different Matrix Methods/SVD course; archive MATLAB data and current Julia homework must not be mixed."
       },
       "resource_coverage": {
         "video": 2,
@@ -26728,12 +26764,12 @@
       "projects": [
         {
           "title": {
-            "zh": "《Introduction to Linear Dynamical Systems · Stanford University EE 263》鲁棒闭环与模型失配审计",
-            "en": "Introduction to Linear Dynamical Systems · Stanford University EE 263: Robust Closed-Loop and Model-Mismatch Audit"
+            "zh": "《Introduction to Linear Dynamical Systems (2008 Archive) · Stanford University EE 263》鲁棒闭环与模型失配审计",
+            "en": "Introduction to Linear Dynamical Systems (2008 Archive) · Stanford University EE 263: Robust Closed-Loop and Model-Mismatch Audit"
           },
           "brief": {
-            "zh": "这是维护者为《Introduction to Linear Dynamical Systems · Stanford University EE 263》建议的自学项目，不是课程官方作业。为控制系统在仿真受控对象上设计基线与改进控制器，量化稳定性、跟踪、扰动抑制、饱和和参数失配。",
-            "en": "This is a maintainer-suggested self-study project for Introduction to Linear Dynamical Systems · Stanford University EE 263, not an official course assignment. Design baseline and improved controllers for a simulated plant in Control Systems, quantifying stability, tracking, disturbance rejection, saturation, and parameter mismatch."
+            "zh": "这是维护者为《Introduction to Linear Dynamical Systems (2008 Archive) · Stanford University EE 263》建议的自学项目，不是课程官方作业。为控制系统在仿真受控对象上设计基线与改进控制器，量化稳定性、跟踪、扰动抑制、饱和和参数失配。",
+            "en": "This is a maintainer-suggested self-study project for Introduction to Linear Dynamical Systems (2008 Archive) · Stanford University EE 263, not an official course assignment. Design baseline and improved controllers for a simulated plant in Control Systems, quantifying stability, tracking, disturbance rejection, saturation, and parameter mismatch."
           },
           "origin": "suggested",
           "deliverables": {
@@ -33435,8 +33471,8 @@
         "en": "Digital Signal Processing"
       },
       "summary": {
-        "zh": "MIT 的《Digital Signal Processing》以完整视频和十九套带解答习题建立 DSP 理论主线；反馈质量高，但核心教材年代较早且没有编程实验。",
-        "en": "MIT's Digital Signal Processing builds a DSP theory spine from a complete lecture series and nineteen solved problem sets, with excellent feedback but an old core text and no coding lab."
+        "zh": "MIT 的《Digital Signal Processing》以 20 课完整视频、讲义内习题和后 19 课对应的解答包建立 DSP 理论主线；反馈质量高，但核心教材年代较早且没有编程实验。",
+        "en": "MIT's Digital Signal Processing builds a DSP theory spine from twenty complete video lessons, problems embedded in the notes, and solution packets for Lessons 2–20; feedback is strong, but the core text is old and there is no coding lab."
       },
       "institution": "MIT",
       "course_code": "RES.6-008",
@@ -33525,8 +33561,8 @@
         "en": "Mainline course. A particularly complete and well-structured option for this track. Review note: S/A"
       },
       "review_note": {
-        "zh": "十九套带解答习题和完整授课视频系列非常出色，但核心教材出版于 1975 年，且没有编程实验。",
-        "en": "Nineteen solved problem sets and a complete lecture series are excellent, but the core text dates to 1975 and there is no coding laboratory."
+        "zh": "20 课视频与讲义内习题形成连续主线，后 19 课另有解答包；但核心教材出版于 1975 年，且没有编程实验。",
+        "en": "Problems are embedded in twenty lesson notes and Lectures 2–20 have solution packets; the core text dates to 1975 and there is no coding laboratory."
       },
       "resource_coverage": {
         "video": 2,
@@ -38561,7 +38597,7 @@
         "notes": 2,
         "practice": 2,
         "labs": 0,
-        "exams": 0,
+        "exams": 2,
         "code": 0
       },
       "resources": [
@@ -38815,6 +38851,23 @@
           "license": "Provider-specific terms; verify before reuse",
           "status": "available",
           "last_verified": "2026-07-28",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "notes-17e3368f5e",
+          "kind": "notes",
+          "title": {
+            "zh": "Previous course notes",
+            "en": "Previous course notes"
+          },
+          "url": "https://web.stanford.edu/class/ee276/previous_notes.html",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
           "note": {
             "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
             "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
@@ -40329,8 +40382,8 @@
         "en": "Electromagnetic Fields and Waves"
       },
       "summary": {
-        "zh": "Cornell University 的《Electromagnetic Fields and Waves》以 28 份讲义、12 套带解答作业和四套带解答考试建立电磁场与波的文本主线；虽无视频，反馈闭环完整。",
-        "en": "Cornell University's Electromagnetic Fields and Waves builds a text-first electromagnetics spine from 28 notes, twelve solved homework sets, and four solved exams, providing a complete loop without video."
+        "zh": "Cornell University 的《Electromagnetic Fields and Waves》以 36 组讲义、12 套带解答作业和四套带解答考试建立电磁场与波的文本主线；虽无视频，反馈闭环完整。",
+        "en": "Cornell University's Electromagnetic Fields and Waves builds a text-first electromagnetics spine from thirty-six handout groups, twelve solved homework sets, and four solved exams, providing a complete loop without video."
       },
       "institution": "Cornell University",
       "course_code": "ECE 3030",
@@ -40417,8 +40470,8 @@
         "en": "Mainline course. A particularly complete and well-structured option for this track."
       },
       "review_note": {
-        "zh": "28 份讲义、12 套带解答作业和四套带解答考试组成完整文本闭环，但这门 2007 年课程没有视频。",
-        "en": "Twenty-eight notes, twelve solved homework sets, and four solved exams form a complete text loop, but the 2007 course has no video."
+        "zh": "36 组讲义、12 套带解答作业和四套带解答考试组成完整文本闭环，但这门 2007 年课程没有视频。",
+        "en": "Thirty-six handout groups, twelve solved homework sets, and four solved exams form a strong text loop, but the 2007 course has no video."
       },
       "resource_coverage": {
         "video": 0,
@@ -41599,15 +41652,15 @@
       },
       "institution": "Cornell University",
       "course_code": "ECE 4880",
-      "role": "alternative",
+      "role": "mainline",
       "tier": "A",
       "level": "unspecified",
       "languages": [
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 11,
-        "hours_per_week": 9,
+        "estimated_weeks": 13,
+        "hours_per_week": 11,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -41688,8 +41741,8 @@
         ]
       },
       "selection_note": {
-        "zh": "替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / B spine）",
-        "en": "Alternative course. A reliable option that can serve as a main course or strong alternative. Review note: A content / B spine"
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / B spine）",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative. Review note: A content / B spine"
       },
       "review_note": {
         "zh": "第 1 至第 5 讲缺失，课程还引用付费教材和 Simulink；不过十套作业、带解答考试和六个实验仍很有价值。",
@@ -45460,20 +45513,20 @@
         "en": "Electrochemical Energy Systems"
       },
       "summary": {
-        "zh": "MIT 的《Electrochemical Energy Systems》以讲义和考试补充电化学储能系统；考试答案完整，但课程要求研究生层次电化学与传输数学，习题也没有答案。",
-        "en": "MIT's Electrochemical Energy Systems supplements energy-storage study through notes and exams, with complete exam solutions but graduate electrochemistry and transport prerequisites and unsolved problem sets."
+        "zh": "MIT 的《Electrochemical Energy Systems》以 38 次课程讲义、5 份无解习题、一次带解答期中和一次无解期末构成电化学储能主线；课程要求研究生层次的电化学与传输数学。",
+        "en": "MIT's Electrochemical Energy Systems builds an electrochemical-storage spine from thirty-eight class-note sessions, five unsolved problem sets, one solved midterm, and one unsolved final, under graduate electrochemistry and transport-mathematics prerequisites."
       },
       "institution": "MIT",
       "course_code": "10.626",
-      "role": "alternative",
+      "role": "mainline",
       "tier": "A",
       "level": "unspecified",
       "languages": [
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 9,
-        "hours_per_week": 7,
+        "estimated_weeks": 11,
+        "hours_per_week": 9,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -45546,12 +45599,12 @@
         ]
       },
       "selection_note": {
-        "zh": "替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
-        "en": "Alternative course. A reliable option that can serve as a main course or strong alternative."
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative."
       },
       "review_note": {
-        "zh": "需要研究生层次的电化学与传输数学基础；尽管考试答案完整，习题集仍没有答案。",
-        "en": "Graduate electrochemistry and transport mathematics are prerequisites; problem sets lack solutions even though exam solutions are complete."
+        "zh": "课程要求研究生层次的电化学与传输数学基础。5 份习题明确没有答案；2014 年期中有解答，期末没有解答。",
+        "en": "Graduate electrochemistry and transport mathematics are prerequisites. The five problem sets explicitly have no solutions; the 2014 midterm has a solution, while the final does not."
       },
       "resource_coverage": {
         "video": 0,
@@ -45842,7 +45895,7 @@
           }
         }
       ],
-      "last_reviewed": "2026-07-28"
+      "last_reviewed": "2026-07-29"
     },
     {
       "id": "course-124",
@@ -48885,20 +48938,20 @@
         "en": "Introduction to Photonics"
       },
       "summary": {
-        "zh": "IIT Madras / NPTEL 的《Introduction to Photonics》以视频、练习答案和演示建立光子学主线；反馈资源较强，但当前考核访问可能依赖报名。",
-        "en": "IIT Madras / NPTEL's Introduction to Photonics builds a photonics spine through videos, solved assignments, and demonstrations, with current assessment access potentially depending on enrollment."
+        "zh": "IIT Madras / NPTEL 的《Introduction to Photonics》公开 34 个主题讲次、4 个 tutorial 和 10 个实验演示，能形成宽口径光子学主线；匿名公开 API 没有作业、答案或评分入口。",
+        "en": "IIT Madras / NPTEL's Introduction to Photonics provides thirty-four topic lectures, four tutorials, and ten laboratory demonstrations for a broad photonics spine, but the anonymous public API exposes no assignments, answers, or grading endpoint."
       },
       "institution": "IIT Madras / NPTEL",
       "course_code": "108106135",
       "role": "mainline",
-      "tier": "S",
+      "tier": "A",
       "level": "unspecified",
       "languages": [
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 13,
-        "hours_per_week": 9,
+        "estimated_weeks": 12,
+        "hours_per_week": 8,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -48951,12 +49004,10 @@
       "outcomes": {
         "zh": [
           "解释光学、光电与光子学中的核心模型，并说明主要假设与适用边界",
-          "独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查",
           "完成可复现实验或实现，保留原始数据、参数、版本和验证记录"
         ],
         "en": [
           "Explain the core models in Optics, Optoelectronics, and Photonics, including their assumptions and limits",
-          "Solve representative derivations and problems, checking units, limiting cases, or numerical results",
           "Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification"
         ]
       },
@@ -48973,19 +49024,19 @@
         ]
       },
       "selection_note": {
-        "zh": "主线课程，资源完整、教学设计清晰，适合作为该方向的优先选择。（审阅记录：S/A）",
-        "en": "Mainline course. A particularly complete and well-structured option for this track. Review note: S/A"
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative."
       },
       "review_note": {
-        "zh": "作业、答案与演示都很强，但当前考核的访问可能取决于是否报名。",
-        "en": "Assignments, solutions, and demonstrations are strong, but current assessment access may depend on enrollment."
+        "zh": "实验条目是演示而非家庭光学实验；公开层未核验到作业与答案，独立学习者需要另建反馈链。",
+        "en": "The laboratory items are demonstrations rather than home optics labs; no public assignments or answers were verified, so independent learners need a separate feedback loop."
       },
       "resource_coverage": {
         "video": 2,
         "notes": 1,
-        "practice": 2,
+        "practice": 0,
         "labs": 1,
-        "exams": 1,
+        "exams": 0,
         "code": 0
       },
       "resources": [
@@ -49065,7 +49116,7 @@
           }
         }
       ],
-      "last_reviewed": "2026-07-28"
+      "last_reviewed": "2026-07-29"
     },
     {
       "id": "course-133",
@@ -49271,20 +49322,20 @@
         "en": "Optics"
       },
       "summary": {
-        "zh": "MIT 的《Optics》以讲义、习题和考试提供严格的光学理论主线；理论与考核闭环优秀，但没有完整视频或可复现实体实验。",
-        "en": "MIT's Optics provides a rigorous optics theory spine through notes, problems, and exams, with an excellent assessment loop but no full video series or reproducible physical lab."
+        "zh": "MIT 的《Optics》以 10 组讲义、6 份习题和多套 quiz/期末考试提供严格光学理论主线；习题 1–4 有解而 5–6 无解，考试反馈较强，但没有完整视频或公开可复现实验。",
+        "en": "MIT's Optics provides a rigorous theory spine through ten groups of notes, six problem sets, and multiple quiz and final sets; problem sets 1–4 are solved while 5–6 are not, assessment feedback is strong, and no full video series or public reproducible lab is available."
       },
       "institution": "MIT",
       "course_code": "2.71",
-      "role": "alternative",
+      "role": "mainline",
       "tier": "S",
       "level": "unspecified",
       "languages": [
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 9,
-        "hours_per_week": 7,
+        "estimated_weeks": 11,
+        "hours_per_week": 9,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -49357,12 +49408,12 @@
         ]
       },
       "selection_note": {
-        "zh": "替代课程，资源完整、教学设计清晰，适合作为该方向的优先选择。（审阅记录：S/A）",
-        "en": "Alternative course. A particularly complete and well-structured option for this track. Review note: S/A"
+        "zh": "主线课程，资源完整、教学设计清晰，适合作为该方向的优先选择。（审阅记录：S/A）",
+        "en": "Mainline course. A particularly complete and well-structured option for this track. Review note: S/A"
       },
       "review_note": {
-        "zh": "理论与考核闭环非常出色，但没有完整授课视频系列或可复现的实体实验。",
-        "en": "The theory and assessment loop is excellent, but there is no full lecture-video series or reproducible physical laboratory."
+        "zh": "理论与考核闭环较强：习题 1–4 有解、5–6 无解，多套 quiz 与期末考试带解答；但没有完整授课视频系列或公开可复现的实体实验。",
+        "en": "The theory and assessment loop is strong: problem sets 1–4 have solutions, while 5–6 do not, and multiple quiz and final sets include solutions. There is no full lecture-video series or public reproducible physical laboratory."
       },
       "resource_coverage": {
         "video": 0,
@@ -49789,7 +49840,7 @@
           }
         }
       ],
-      "last_reviewed": "2026-07-28"
+      "last_reviewed": "2026-07-29"
     },
     {
       "id": "course-135",
@@ -50061,8 +50112,8 @@
         "en": "Electrical Measurement and Electronic Instruments"
       },
       "summary": {
-        "zh": "IIT Kharagpur / NPTEL 的《Electrical Measurement and Electronic Instruments》以 84 个以上视频和演示广泛覆盖电测量与电子仪器；讲授面广，但没有可复现家庭实验或代码闭环。",
-        "en": "IIT Kharagpur / NPTEL's Electrical Measurement and Electronic Instruments surveys measurement and instrumentation through more than 84 videos and demonstrations, while lacking a reproducible home lab and code loop."
+        "zh": "IIT Kharagpur / NPTEL 的《Electrical Measurement and Electronic Instruments》以 84 个以上视频和演示提供电测量与电子仪器的开放理论主线；讲授面广，但没有可复现家庭实验、代码或答案闭环。",
+        "en": "IIT Kharagpur / NPTEL's Electrical Measurement and Electronic Instruments provides an open theory spine for measurement and instrumentation through more than eighty-four videos and demonstrations, while lacking a reproducible home lab, code, and answer loop."
       },
       "institution": "IIT Kharagpur / NPTEL",
       "course_code": "108105153",
@@ -50149,8 +50200,8 @@
         ]
       },
       "selection_note": {
-        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
-        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative."
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / B completion）",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative. Review note: A content / B completion"
       },
       "review_note": {
         "zh": "84 个以上的视频与演示带来广泛覆盖，但没有可复现的家庭实验或编程闭环。",
@@ -50253,20 +50304,20 @@
         "en": "Sensor Technologies: Physics, Fabrication, and Circuits"
       },
       "summary": {
-        "zh": "IISER Bhopal / NPTEL 的《Sensor Technologies: Physics, Fabrication, and Circuits》从传感器物理延伸到制造与电路；视频主线覆盖面完整，但没有开放的搭建测试闭环。",
-        "en": "IISER Bhopal / NPTEL's Sensor Technologies: Physics, Fabrication, and Circuits spans sensor physics, fabrication, and circuits through a broad video spine, but provides no open build-and-test loop."
+        "zh": "IISER Bhopal / NPTEL 的《Sensor Technologies: Physics, Fabrication, and Circuits》以公开视频补充从传感器物理到制造与电路的广泛主题；没有开放的搭建测试或答案闭环，因此定位为理论补充。",
+        "en": "IISER Bhopal / NPTEL's Sensor Technologies: Physics, Fabrication, and Circuits supplements sensor study through a broad public video sequence spanning physics, fabrication, and circuits, but remains a theory companion because it has no open build-and-test or answer loop."
       },
       "institution": "IISER Bhopal / NPTEL",
       "course_code": "108106193",
-      "role": "mainline",
+      "role": "supplement",
       "tier": "A",
       "level": "unspecified",
       "languages": [
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 10,
-        "hours_per_week": 8,
+        "estimated_weeks": 5,
+        "hours_per_week": 4,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -50337,8 +50388,8 @@
         ]
       },
       "selection_note": {
-        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
-        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative."
+        "zh": "补充课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / C completion）",
+        "en": "Supplement course. A reliable option that can serve as a main course or strong alternative. Review note: A content / C completion"
       },
       "review_note": {
         "zh": "课程覆盖从传感器物理到电路的完整范围，但没有开放的搭建与测试闭环。",
@@ -50441,20 +50492,20 @@
         "en": "Sensors and Sensor Circuit Design"
       },
       "summary": {
-        "zh": "University of Colorado Boulder 的《Sensors and Sensor Circuit Design》以视频、练习、实验和代码训练传感器接口电路；实践链较强，但依赖旧款 PSoC 5LP 与 Windows 工具链。",
-        "en": "University of Colorado Boulder's Sensors and Sensor Circuit Design develops sensor-interface circuits through videos, practice, labs, and code, with a strong sequence tied to an older PSoC 5LP and Windows toolchain."
+        "zh": "University of Colorado Boulder 的《Sensors and Sensor Circuit Design》以 5 个模块、5 项作业、热敏电阻实验和课程项目构成有条件的传感器实践主线；实际材料与作业需要付费课程体验，实验还依赖 PSoC 5LP、配套器件、示波器和 Windows 工具链。",
+        "en": "University of Colorado Boulder's Sensors and Sensor Circuit Design forms an access-dependent practical sensor spine from five modules, five assignments, a thermistor laboratory, and a course project, while the actual materials and assignments require the paid course experience and the lab depends on a PSoC 5LP, supporting parts, an oscilloscope, and a Windows toolchain."
       },
       "institution": "University of Colorado Boulder",
       "course_code": "ECEA 5340",
-      "role": "alternative",
+      "role": "mainline",
       "tier": "A",
       "level": "unspecified",
       "languages": [
         "en"
       ],
       "study_plan": {
-        "estimated_weeks": 11,
-        "hours_per_week": 9,
+        "estimated_weeks": 13,
+        "hours_per_week": 11,
         "note": {
           "zh": "这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。",
           "en": "This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%."
@@ -50464,11 +50515,11 @@
         "software": {
           "zh": [
             "维护者建议的开源/免费验证路径：Python 3、Jupyter、sigrok/PulseView、KiCad 与 SciPy",
-            "资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本"
+            "资源清单未标注公开代码覆盖；上述工具仅用于维护者建议的独立验证，不代表提供方要求"
           ],
           "en": [
             "Maintainer-suggested open-source/free verification path: Python 3, Jupyter, sigrok/PulseView, KiCad, and SciPy",
-            "The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable"
+            "The resource inventory does not list public code coverage; the tools above are only a maintainer-suggested independent check, not a provider requirement"
           ]
         },
         "hardware": {
@@ -50520,23 +50571,21 @@
         "zh": [
           "按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物",
           "设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验",
-          "代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明",
           "实验包：原理图/装置设置、校准记录、原始数据、不确定度、安全检查、失败记录与从原始数据重建图表的步骤"
         ],
         "en": [
           "Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts",
           "Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test",
-          "Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes",
           "Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data"
         ]
       },
       "selection_note": {
-        "zh": "替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。",
-        "en": "Alternative course. A reliable option that can serve as a main course or strong alternative."
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / C independent access）",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative. Review note: A content / C independent access"
       },
       "review_note": {
-        "zh": "实验依赖较旧的 PSoC 5LP 套件与 Windows 工具链，且 Coursera 访问可能需要付费。",
-        "en": "The laboratory depends on an older PSoC 5LP kit and Windows toolchain, and Coursera access may require payment."
+        "zh": "公开落地页列出 5 个模块、5 项作业、热敏电阻实验、课程项目及 PSoC 5LP/LCD/器件/示波器清单。实际材料与作业需要付费证书体验；平台可能提供试用，但不保证无证书访问。实验依赖较旧的 PSoC 5LP 与 Windows 工具链，因此本课是有条件实践主线，不是完全开放或硬件中立的课程。",
+        "en": "The public landing page documents five modules, five assignments, a thermistor laboratory, a course project, and an explicit PSoC 5LP/LCD/components/oscilloscope bill of materials. The actual learning materials and assignments require the paid certificate experience (a trial may be offered and no-certificate access is not guaranteed), and the laboratory depends on an older PSoC 5LP and Windows toolchain. Treat this as an access-dependent practical spine, not a fully open or hardware-neutral course."
       },
       "resource_coverage": {
         "video": 2,
@@ -50544,7 +50593,7 @@
         "practice": 2,
         "labs": 2,
         "exams": 0,
-        "code": 2
+        "code": 0
       },
       "resources": [
         {
@@ -50623,7 +50672,7 @@
           }
         }
       ],
-      "last_reviewed": "2026-07-28"
+      "last_reviewed": "2026-07-29"
     },
     {
       "id": "course-139",
@@ -51093,6 +51142,455 @@
         }
       ],
       "last_reviewed": "2026-07-28"
+    },
+    {
+      "id": "course-141",
+      "source_id": 141,
+      "slug": "141-ee-140-ee-240a",
+      "track": "analog-ic",
+      "title": {
+        "zh": "Analog Integrated Circuits",
+        "en": "Analog Integrated Circuits"
+      },
+      "summary": {
+        "zh": "University of California, Berkeley 的《Analog Integrated Circuits》以 2025 年 21 份公开讲义、10 份作业、部分当前答案、历年已解考试、8 个实验和一项模拟 IC 设计项目构成高强度主线；课程从单级与差分放大器推进到稳定性补偿、偏置、折叠共栅、开关电容、ADC、比较器与噪声。",
+        "en": "University of California, Berkeley's Analog Integrated Circuits forms a demanding analog-IC spine from twenty-one public 2025 lecture decks, ten homework sets, partial current solutions, archived solved exams, eight laboratories, and a design project, progressing from single-stage and differential amplifiers through compensation, biasing, folded cascodes, switched capacitors, ADCs, comparators, and noise."
+      },
+      "institution": "University of California, Berkeley",
+      "course_code": "EE 140 / EE 240A",
+      "role": "mainline",
+      "tier": "A",
+      "level": "advanced",
+      "languages": [
+        "en"
+      ],
+      "study_plan": {
+        "estimated_weeks": 15,
+        "hours_per_week": 11,
+        "note": {
+          "zh": "提供方公布 15 周；上方每周工时是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方承诺。先试学两周，若实际偏差超过 25%，据实调整。",
+          "en": "The provider publishes 15 weeks; the weekly effort above is a maintainer planning estimate derived from course role and public practice/lab density, not a provider promise. Pilot two weeks and adjust when actual effort differs by more than 25%."
+        }
+      },
+      "tooling": {
+        "software": {
+          "zh": [
+            "维护者建议的开源/免费验证路径：xschem、ngspice、KLayout、Magic，以及教程明确支持的开放 PDK",
+            "资源清单未标注公开代码覆盖；上述工具仅用于维护者建议的独立验证，不代表提供方要求"
+          ],
+          "en": [
+            "Maintainer-suggested open-source/free verification path: xschem, ngspice, KLayout, Magic, and an open PDK explicitly supported by the tutorial",
+            "The resource inventory does not list public code coverage; the tools above are only a maintainer-suggested independent check, not a provider requirement"
+          ]
+        },
+        "hardware": {
+          "zh": [
+            "资源清单包含实验覆盖；维护者路径将其按计算/仿真实验处理，除非提供方实验手册另有明确说明。只假设可运行 PDK、角落仿真和版图检查的计算机；不假设流片或实体芯片。提供方如另列设备或算力要求，以其课程页面为准"
+          ],
+          "en": [
+            "The resource inventory lists lab coverage; the maintainer path treats it as computational/simulation work unless the provider lab manual explicitly says otherwise. It assumes only a computer that can run the PDK, corner simulations, and layout checks; no tape-out or physical chip is assumed. If the provider lists different equipment or compute requirements, follow its course page"
+          ]
+        },
+        "cost_note": {
+          "zh": "建议软件栈可开源或免费使用；这只是维护者规划，不是提供方要求。商业许可证、云计算、存储和机构资源如被提供方指定，其费用随方案、地区与机构而变，本文不设固定价格。",
+          "en": "The suggested software stack is available open source or free; this is maintainer planning, not a provider requirement. If the provider specifies commercial licenses, cloud compute, storage, or institutional resources, costs vary by plan, region, and institution, so no fixed price is asserted here."
+        }
+      },
+      "safety": {
+        "level": "simulation-only",
+        "note": {
+          "zh": "默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。",
+          "en": "The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment."
+        }
+      },
+      "prerequisite_course_ids": [
+        31
+      ],
+      "prerequisites": {
+        "zh": [
+          "建议先完成方向基础：微电子学",
+          "建议先完成方向基础：模拟电子",
+          "课程顺序要求：先完成《Microelectronic Devices and Circuits》（University of California, Berkeley EE 105）"
+        ],
+        "en": [
+          "Recommended foundation: Microelectronics",
+          "Recommended foundation: Analog Electronics",
+          "Course-sequence requirement: complete Microelectronic Devices and Circuits (University of California, Berkeley EE 105) first"
+        ]
+      },
+      "outcomes": {
+        "zh": [
+          "解释模拟与混合信号集成电路中的核心模型，并说明主要假设与适用边界",
+          "独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查",
+          "完成可复现实验或实现，保留原始数据、参数、版本和验证记录"
+        ],
+        "en": [
+          "Explain the core models in Analog and Mixed-Signal IC Design, including their assumptions and limits",
+          "Solve representative derivations and problems, checking units, limiting cases, or numerical results",
+          "Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification"
+        ]
+      },
+      "completion_evidence": {
+        "zh": [
+          "按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物",
+          "设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验",
+          "仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令"
+        ],
+        "en": [
+          "Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts",
+          "Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test",
+          "Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command"
+        ]
+      },
+      "selection_note": {
+        "zh": "主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A content / B tooling）",
+        "en": "Mainline course. A reliable option that can serve as a main course or strong alternative. Review note: A content / B tooling"
+      },
+      "review_note": {
+        "zh": "官方先修是 EE 105（现有课程 ID 31）。Lab 1 可用 LTspice；Lab 2–8 与项目依赖伯克利 Cadence/Virtuoso 服务器和 SKY130 环境。Razavi 或 Gray 教材需付费，页面未声明可再分发许可。EEDIY 可以链接原资料并给出模拟主线，但在独立验证开源 PDK/EDA 移植前，不能声称完整实验可在校外复现。",
+        "en": "The official prerequisite is EE 105 (existing course ID 31). Lab 1 uses LTspice; Labs 2–8 and the project depend on Berkeley's Cadence/Virtuoso servers and SKY130 environment. The Razavi or Gray text is paid and no redistribution license is stated. EEDIY may link the originals and teach the simulation spine, but must not claim full off-campus reproducibility until an open PDK/EDA port is independently validated."
+      },
+      "resource_coverage": {
+        "video": 0,
+        "notes": 2,
+        "practice": 2,
+        "labs": 2,
+        "exams": 2,
+        "code": 0
+      },
+      "resources": [
+        {
+          "id": "primary",
+          "kind": "course",
+          "title": {
+            "zh": "课程主页",
+            "en": "Course home"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "alternate-1",
+          "kind": "course",
+          "title": {
+            "zh": "备用课程入口",
+            "en": "Alternate course entry"
+          },
+          "url": "https://www2.eecs.berkeley.edu/Courses/ELENG140",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "assignments-b4d64d99e0",
+          "kind": "assignments",
+          "title": {
+            "zh": "Spring 2025 homework directory (HW 1–10 and partial solutions)",
+            "en": "Spring 2025 homework directory (HW 1–10 and partial solutions)"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "assignments-a042ed867c",
+          "kind": "assignments",
+          "title": {
+            "zh": "Homework 10 solution",
+            "en": "Homework 10 solution"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw/hw10soln.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "assignments-5c136d2316",
+          "kind": "assignments",
+          "title": {
+            "zh": "Homework 8 solution",
+            "en": "Homework 8 solution"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw/hw8soln.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "exams-a533187660",
+          "kind": "exams",
+          "title": {
+            "zh": "Spring 2025 Midterm 2 solution",
+            "en": "Spring 2025 Midterm 2 solution"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw/2025midterm2soln.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "exams-dd170c9898",
+          "kind": "exams",
+          "title": {
+            "zh": "Spring 2025 Midterm 2",
+            "en": "Spring 2025 Midterm 2"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/resources/25midterm2.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "labs-0a9f9f9476",
+          "kind": "labs",
+          "title": {
+            "zh": "Lab 1 — op-amp circuits with LTspice",
+            "en": "Lab 1 — op-amp circuits with LTspice"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp23/labs/lab1.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "labs-9120531f70",
+          "kind": "labs",
+          "title": {
+            "zh": "Lab 2 — Cadence introduction and device characterization",
+            "en": "Lab 2 — Cadence introduction and device characterization"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab2.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "labs-1b5a19e412",
+          "kind": "labs",
+          "title": {
+            "zh": "Lab 4",
+            "en": "Lab 4"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab4.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "labs-ecae20db0e",
+          "kind": "labs",
+          "title": {
+            "zh": "Lab 5",
+            "en": "Lab 5"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab5.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "labs-1532defe86",
+          "kind": "labs",
+          "title": {
+            "zh": "Lab 6",
+            "en": "Lab 6"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab6.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "labs-fcc77c1dad",
+          "kind": "labs",
+          "title": {
+            "zh": "Lab 7",
+            "en": "Lab 7"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab7.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "labs-839f2dfb5f",
+          "kind": "labs",
+          "title": {
+            "zh": "Lab 8",
+            "en": "Lab 8"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab8.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "labs-7c7e31660f",
+          "kind": "labs",
+          "title": {
+            "zh": "Spring 2025 analog IC design project",
+            "en": "Spring 2025 analog IC design project"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/project.pdf",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        },
+        {
+          "id": "notes-ff249272a8",
+          "kind": "notes",
+          "title": {
+            "zh": "Spring 2025 lecture directory (21 PDFs)",
+            "en": "Spring 2025 lecture directory (21 PDFs)"
+          },
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/lectures",
+          "access": "open",
+          "license": "Provider-specific terms; verify before reuse",
+          "status": "available",
+          "last_verified": "2026-07-29",
+          "note": {
+            "zh": "资源由独立证据清单核对；许可按提供方或仓库记录，权利不明确时不得转载。",
+            "en": "Checked through the evidence manifest; licensing follows the provider or repository, and unclear rights prohibit redistribution."
+          }
+        }
+      ],
+      "projects": [
+        {
+          "title": {
+            "zh": "《Analog Integrated Circuits · University of California, Berkeley EE 140 / EE 240A》运放/数据转换器规格闭环",
+            "en": "Analog Integrated Circuits · University of California, Berkeley EE 140 / EE 240A: Op-Amp or Data-Converter Specification Closure"
+          },
+          "brief": {
+            "zh": "这是维护者为《Analog Integrated Circuits · University of California, Berkeley EE 140 / EE 240A》建议的自学项目，不是课程官方作业。为模拟与混合信号集成电路完成一个运放或小型数据转换器的晶体管级规格闭环，覆盖稳定性、噪声、线性、PVT 与蒙特卡洛失配。",
+            "en": "This is a maintainer-suggested self-study project for Analog Integrated Circuits · University of California, Berkeley EE 140 / EE 240A, not an official course assignment. Close transistor-level specifications for an op-amp or compact data converter in Analog and Mixed-Signal IC Design, covering stability, noise, linearity, PVT, and mismatch Monte Carlo."
+          },
+          "origin": "suggested",
+          "deliverables": {
+            "zh": [
+              "含负载/共模/输出摆幅/功耗/噪声的规格与测试台矩阵",
+              "晶体管级设计、偏置、所有测试台和自动规格提取脚本",
+              "标称、PVT 与至少 200 次失配蒙特卡洛的原始波形/指标",
+              "一份报告，给出规格良率、Pareto 取舍、最坏样本和修正"
+            ],
+            "en": [
+              "A specification and testbench matrix covering load, common mode, output swing, power, and noise",
+              "Transistor-level design, bias network, every testbench, and automated metric-extraction scripts",
+              "Raw waveforms and metrics for nominal, PVT, and at least 200 mismatch Monte Carlo runs",
+              "A report giving specification yield, Pareto tradeoffs, worst sample, and corrective change"
+            ]
+          },
+          "verification": {
+            "zh": [
+              "标称条件全部关键规格通过，开环/闭环增益关系与手算相差低于 15%",
+              "覆盖共模与输出摆幅边界、最大电容负载、最低电源和温度极值",
+              "用噪声积分或 FFT 第二种方法交叉核对输入等效噪声/线性",
+              "蒙特卡洛规格良率达到预设目标，且能复现并解释最坏失败样本"
+            ],
+            "en": [
+              "Pass every primary nominal specification and keep hand-estimated versus simulated open or closed-loop gain within 15%",
+              "Cover common-mode and output-swing limits, maximum capacitive load, minimum supply, and temperature extremes",
+              "Cross-check input-referred noise or linearity through a second noise-integration or FFT method",
+              "Meet the predeclared Monte Carlo yield and reproduce and explain the worst failing sample"
+            ]
+          },
+          "reproducibility": {
+            "zh": [
+              "提交设计、偏置、测试台、规格提取与报告源文件",
+              "固定 PDK/模型、仿真器、角落、蒙特卡洛种子与容差",
+              "保存全部原始波形/指标、失败样本配置和自动报告"
+            ],
+            "en": [
+              "Commit design, bias, testbench, metric-extraction, and report sources",
+              "Pin PDK or models, simulator, corners, Monte Carlo seeds, and tolerances",
+              "Preserve all raw waveforms and metrics, failing-sample configurations, and the generated report"
+            ]
+          },
+          "safety_level": "simulation-only",
+          "safety_note": {
+            "zh": "仅做晶体管级仿真并遵守 PDK/模型许可；不进行流片、探针台、高压或未经授权的商业 EDA 操作。",
+            "en": "Use transistor-level simulation only and honor PDK or model licenses; no tape-out, probe-station, high-voltage, or unauthorized commercial-EDA activity."
+          }
+        }
+      ],
+      "last_reviewed": "2026-07-29"
     }
   ]
 }

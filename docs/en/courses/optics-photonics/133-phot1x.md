@@ -2,71 +2,91 @@
 title: "Silicon Photonics Design, Fabrication and Data Analysis"
 description: "University of British Columbia's Silicon Photonics Design, Fabrication and Data Analysis forms a rare full silicon-photonics loop across a KLayout, SiEPIC, gdsfactory, remote-fabrication, and measurement toolchain, with timing, licensing, and regional conditions requiring recheck."
 page_type: course
+course_id: "course-133"
+editorial_status: "researched"
+evidence_level: "R0"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0b9a880d9ba84c58 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 2e5a13fce9cffae8 -->
 
 # Silicon Photonics Design, Fabrication and Data Analysis
 
 ## Course Overview
 
-- **Institution:** University of British Columbia
+- **University:** University of British Columbia
 - **Course code:** Phot1x
+- **Prerequisites:** Recommended foundation: Electromagnetic Fields and Waves; Recommended foundation: Semiconductor Devices; Recommended foundation: Physics Foundations
 - **Track:** [Optics, Optoelectronics, and Photonics](index.md)
-- **Tier:** A
-- **Role:** Mainline
-- **Level:** Not standardized by provider (use prerequisites)
-- **Last reviewed:** 2026-07-28
+- **Path role:** Mainline
+- **Public materials:** Core materials available
+- **Last reviewed:** 2026-07-29
 
-University of British Columbia's Silicon Photonics Design, Fabrication and Data Analysis forms a rare full silicon-photonics loop across a KLayout, SiEPIC, gdsfactory, remote-fabrication, and measurement toolchain, with timing, licensing, and regional conditions requiring recheck.
+> **Desk-researched (R0):** The official course materials were checked item by item on 2026-07-29, but no traceable full-course report has been accepted. This guide therefore makes no first-hand claims; completers can submit a report below.
 
 !!! warning "Mainline audit review"
-    This mainline course still requires manual review: The course is instructor-paced, and commercial-tool licenses, regional registration, tapeout dates, and payment terms can change; learners receive measurement data rather than a mailed chip, so every run needs manual recheck. Last audited: 2026-07-29.
+    The course is instructor-paced, and commercial-tool licenses, regional registration, tapeout dates, and payment terms can change; learners receive measurement data rather than a mailed chip, so every run needs manual recheck. Last audited: 2026-07-29.
 
-**Why choose this course**
+## Record the exact 2026 run before planning anything else
 
-Mainline course. A reliable option that can serve as a main course or strong alternative.
+UBCx **Silicon Photonics Design, Fabrication and Data Analysis (Phot1x)** is not an on-demand video library. It is an instructor-paced workflow spanning design, submission, fabrication, measurement, and data analysis. On 2026-07-29, the official [edX course page](https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana) listed `course-v1:UBCx+Phot1x+3T2026` as the active run: it starts 2026-09-15, ends 2026-12-08, and closes enrollment on 2026-09-22. It lists 6 weeks at 3–25 hours per week, but the longer calendar span means that content duration does not establish tapeout or data-return dates.
 
-**Before you start**
+The active seat was `Professional Only` and cost USD 495 at review time. Course metadata may say “Partially Free,” but this run listed no audit seat. Do not assume that a free account has access to graded design submissions, commercial-tool entitlements, fabrication, or measurement data. Check taxes, currency conversion, refunds, financial aid, institutional purchasing, and the final amount in the learner's region and account; USD 495 is only a dated baseline.
 
-- Recommended foundation: Electromagnetic Fields and Waves
-- Recommended foundation: Semiconductor Devices
-- Recommended foundation: Physics Foundations
+The active-run metadata also marks `hasOfacRestrictions`, while the course FAQ identifies Iran, Cuba, and the Crimea region of Ukraine as unable to register. Sanctions and platform compliance can change, so an old country list does not replace an account-level eligibility check at checkout. Check eligibility using your actual residence and account before planning the course; do not evade a restriction through a VPN, borrowed purchasing account, or false location.
 
-**Verifiable learning outcomes**
+## Complete three entry checks before paying
 
-- Explain the core models in Optics, Optoelectronics, and Photonics, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+Problem 1: for a 220 nm SOI strip waveguide with stated geometry and indices, explain how effective index, group index, confinement, and propagation loss from a mode solver enter a circuit model. Exact simulation is not required, but boundary and dispersion assumptions are. Problem 2: derive the ideal power transfer of a Mach–Zehnder interferometer from 2 couplers and an arm phase difference, then explain how FSR, extinction ratio, imbalance, and fabrication bias alter the spectrum. Problem 3: use Python to read a synthetic transmission trace containing a baseline and noise, preserve the raw array, extract a peak spacing such as the FSR or an autocorrelation period, and report residuals and uncertainty.
 
-**Workload and pacing**
+Complete Problem 3 and at least 1 of the first 2 before paying for the course. The provider expects introductory physics and optics, such as an undergraduate optics or electromagnetics course. Integrated-optics background is not assumed; microwave/RF is an asset, and basic MATLAB/Python-style programming is useful. If the interface between waveguide propagation constant and circuit phase is still opaque, review guided-wave electromagnetics. If a script produces only a smooth plot without units, raw data, or residuals, review numerical analysis. This is an EEDIY pre-purchase readiness check, not a UBCx admission test.
 
-**13 weeks at 11 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+## “Full cycle” is a contract to verify, not a reproducible experiment on a landing page
 
-**Safety level**
+The course page says that a first-time designer normally builds a Mach–Zehnder interferometer from grating couplers, splitters, and waveguides. Advanced options include directional couplers; ring, racetrack, and disk resonators; Bragg gratings; photonic crystals; MMI; polarization or MDM components; and SWG or slot waveguides. The provider says submitted designs will be fabricated with 100 keV electron-beam lithography and measured on an automated optical probe station, with the resulting measurement data returned for analysis. This states the course intent, but the public page does not publicly list a 2026 module checklist, assignment count, rubric, PDK revision, GDS acceptance rule, design-review eligibility, final-layout deadline, or measurement-data release date. Keep three promises separate: institutional fabrication and measurement capability does not ensure that every layout is accepted; fabrication on the shared chip does not ensure a valid trace from every test structure; and receiving data does not ensure enough references, metrology, or licensing information for a reproducible conclusion.
 
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+Obtain 5 answers before payment. First, can the account actually join `3T2026`, rather than merely view its landing page? Second, what do USD 495 and successful registration include across graded access, certificate, software entitlements, fabrication, and data delivery? Third, what operating system, hardware, license server, start/expiry date, and regional limits apply to each commercial license? Fourth, what are the draft review, final GDS, DRC waiver, IP/export-control forms, and late-submission policy? Fifth, if a design fails review or misses tapeout, are practice data, feedback, refund, or migration to a later run available? A marketing sentence is not a sufficient answer to any of these.
+
+## Borrow the workflow from the 2016 syllabus, not its dates or grades
+
+A still-accessible [archived syllabus](https://s3.amazonaws.com/edx-course-phot1x-chrostowski/2016T3/UBCxPhot1x_Course%20Syllabus%20Schedule_2016_11b.pdf) dated 2016-11-15 records a concrete loop: mode solving and a compact circuit model, a design PDF, draft layout, review of 3 peer designs, final layout, fabrication, practice data, measurement data for the learner's design, and a final report. It explains why the course is more than “watch lectures and make a GDS.” Model, manufacturability, design for test, peer review, and the data/model residual belong to one evidence chain.
+
+That file is for 2016T3. Its 4-week design period, UTC deadlines, grading weights, and 70% pass line cannot be transferred to 2026. It also said the merged whole-chip design file would be shared with the group. The current public page does not establish whether the 2026 run still shares it, so this is a confidentiality red flag rather than a claim about current policy. The current dashboard, courseware, announcements, and course-specific terms must override the historical PDF.
+
+## Understand “one shared chip” before calling a device yours
+
+The current page states a 220 nm silicon-on-insulator process, a 60 nm minimum isolated feature, and an allocation of about 410 µm × 605 µm per participant—described as room for more than 10 devices. Fabrication is to be performed by the University of Washington Nanofabrication Facility and Applied Nanotools Inc.; measurement takes place at UBC. The decisive wording is **one chip for the course**. Participant layouts are aggregated for fabrication and automated measurement; no learner is promised a separately packaged die.
+
+The page says no physical chip is mailed; participants receive measurement data, while purchasing a personal chip is separate. “Fabricated” therefore does not mean “I possess and have personally measured the chip,” and receiving a trace does not mean “I operated the probe station.” Before claiming reproducibility, obtain the current design-acceptance rules, data fields, wavelength grid, reference or loopback traces, normalization, missing-trace handling, SEM or metrology, licensing, and release timing from the course materials or learner account. The public page lists no 2026 tapeout date; record it only as a dynamic in-course deadline and never reuse a 2016 date.
+
+## Put tool entitlements and the PDK in the reproducibility manifest
+
+The course page says commercial licenses for Lumerical Solutions, MATLAB, Luceda, and Tidy3D are included, alongside KLayout, SiEPIC-Tools, gdsfactory, and Python. The public landing page pins no release, PDK commit, layer map, foundry rule deck, license feature, entitlement duration, or supported platform. “License included” does not mean perpetual, transferable, valid for an employer project, or available to a free observer. Only the current account entitlement and each third-party EULA can answer those questions.
+
+When the authorized environment is first launched, capture the OS, CPU/GPU, tool and solver versions, license expiry, Python lockfile, KLayout/SiEPIC/gdsfactory versions, PDK hash, layer map, DRC rules, material model, and wavelength grid. At design freeze, add netlist and GDS checksums, parameter provenance, corner or Monte Carlo settings, DRC report, and rendered review PDF. Commercial-solver output needs exportable neutral data and an analytical or open-source sanity check so a reviewer without the same license can inspect trends. Do not bypass licensing, copy a restricted PDK, or publish a foundry rule deck.
+
+If regional availability, cost, or hardware constraints prevent enrollment, the EEDIY fallback is only an open MZI model/layout plus synthetic-measurement analysis. Use PDK-free geometry, cross-check the analytical transfer function with a second implementation, inject linewidth or etch bias, and produce residual and tolerance reports. This is an EEDIY supplement, not a Phot1x submission, fabrication, UBC measurement dataset, grade, certificate, or evidence of a full design–fabricate–test cycle.
+
+## A layout is user content and may also be confidential or controlled
+
+The edX [Terms of Service](https://www.edx.org/edx-terms-service) say that a learner retains rights in posted User Content while granting edX and the relevant member broad rights to host, display, reproduce, reformat, and distribute it; course-specific terms may add conditions. Combined with the whole-chip sharing described in the 2016 syllabus, the safe default is a clean-room educational design. Do not upload employer IP, an unpublished research layout, a third-party NDA PDK, an export-controlled structure, personal data, or code for which the necessary platform rights cannot be granted.
+
+A remote learner does not operate fabrication or measurement hardware by default. Do not recreate electron-beam lithography, cleanroom wet chemistry, plasma etching, high-temperature processing, or an automated probe station, and do not turn “measure my own chip” into a home experiment with a telecom laser. Light at 1550 nm is invisible but can still injure an eye; bare fiber can leave sharp fragments. A separately purchased chip may be tested only in an institutionally approved laser laboratory under a qualified laser supervisor designated by the institution, with classification, enclosure/interlock, wavelength-specific eyewear, beam stop, power meter, fiber-sharps handling, and de-energization procedures. This page authorizes no physical measurement.
+
+## There are two completion routes, and they must not be merged
+
+The active-run dossier should contain registration and price/region snapshots; the entitlement and PDK manifest; entry diagnostics; a design specification; model and corner evidence; draft/final submission receipts; DRC and design-review status; measurement data in the form supplied by the provider, with the delivered files preserved unchanged; processing code; simulation-to-measurement residuals and uncertainty; and the final report. If the layout was rejected, no data arrived, or the course was not passed, report that outcome. A certificate exists only if edX/UBCx actually issues it.
+
+The public-only route can deliver only the EEDIY fallback: MZI model, layout source, synthetic dataset, tests, and discrepancy report, plus an explicit list of the unavailable commercial entitlements, current PDK, design review, tapeout, fabrication, measurement data, grader, and certificate. Completion on either route requires carrying effective and group index into a circuit spectrum, layout rules into manufacturability, and residuals plus uncertainty into an explanation of model–data mismatch. This page is an R0 desk review of official material. The course remains in mainline `review`, and every new run requires fresh checks of schedule, price, region, licensing, and tapeout.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+<details markdown="1">
+<summary>Expand the complete resource index (1 items)</summary>
 
-**Software**
+### Material coverage
 
-- Maintainer-suggested open-source/free verification path: MEEP, MPB, Python 3, Jupyter, and ParaView
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect course-specified sources, optics, detectors, beam containment, and laser safety controls in a compliant optics lab
-
-**Cost note**
-
-The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
+| Type | Completeness |
 |---|---|
 | Video | Complete |
 | Notes | Complete |
@@ -75,53 +95,12 @@ The current maintainer path uses computation and simulation only, with no dedica
 | Exams | Partial |
 | Code | Complete |
 
-**Resources and access**
+### Resource
 
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana) | Free audit | edX Terms of Service | Listed by official page | 2026-07-28 |
+| Resource | Access | Status | Verified |
+|---|---|---|---|
+| [Course home](https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana) | Free audit | Listed by official page | 2026-07-28 |
 
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
 
-## Practice and Verification
-
-**Practice loop**
-
-**Silicon Photonics Design, Fabrication and Data Analysis · University of British Columbia Phot1x: Waveguide or Imaging-System Parameter Sweep**
-
-This is a maintainer-suggested self-study project for Silicon Photonics Design, Fabrication and Data Analysis · University of British Columbia Phot1x, not an official course assignment. Simulate a waveguide, resonator, or imaging system for Optics, Optoelectronics, and Photonics and validate mode, loss, or image quality using analytic limits, mesh convergence, and manufacturing tolerances.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A specification of wavelength, materials, geometry, polarization, boundaries, and target metrics
-- Executable optical or electromagnetic model, parameter sweeps, and post-processing sources
-- Raw fields, modes or point-spread functions, transmission or loss, and tolerance data
-- A report comparing analytic and numeric results and explaining cutoff, dispersion, or aberration failure
-
-**Verification**
-
-- Keep effective index, focal length, or diffraction scale within 3% of an analytic simple baseline
-- Cover near-cutoff, band-edge, material-extreme, and polarization-switch boundaries
-- Keep the key metric change below 3% after mesh refinement or a second propagation method
-- Inject ±5% geometry variation and report mode loss, resonance shift, or image degradation
-
-**Reproducibility**
-
-- Commit geometry, material, solver, sweep, and plotting sources
-- Pin solver, wavelength grid, material-data version, and convergence parameters
-- Preserve raw fields or images, solver logs, material provenance, and the generated report
-
-**Safety boundary:** Simulation only — Use optical or photonic simulation only; do not use lasers, intense sources, high-voltage drivers, bare fiber ends, or unsupervised optical experiments.
-
-**Risks, gaps, and boundaries**
-
-KLayout, SiEPIC, gdsfactory, remote fabrication, and measurement form a rare full loop, but tapeout dates, tool licenses, regional access, and the fact that chips are not mailed must be rechecked.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Theory dossier with explicit assumptions, notation, derivation, units, and boundary conditions, checked by at least one independent method
-- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+</details>

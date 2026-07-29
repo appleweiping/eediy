@@ -4,7 +4,7 @@ description: "Goal-oriented, staged electrical-engineering pathways with reviewe
 page_type: routes
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 80a784b73ec677bc -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: e81ec23564b05fc2 -->
 
 # Learning Routes
 

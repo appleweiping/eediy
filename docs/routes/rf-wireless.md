@@ -37,7 +37,7 @@ page_type: route
 
 **选课要求：** 完成全部 1 门必修，并从 2 门选修候选中选择 1 门。其余 1 门为可选补充，不计入本阶段选修数。
 
-- [Radio Frequency Systems](../courses/rf-microwave-antennas/110-ece-4880.md) — **选修候选**; Cornell University; 替代; A
+- [Radio Frequency Systems](../courses/rf-microwave-antennas/110-ece-4880.md) — **选修候选**; Cornell University; 主线; A
 - [RF and Millimeter-Wave Circuit Design](../courses/rf-microwave-antennas/111-rf-and-millimeter-wave-circuit-design.md) — **必修**; Eindhoven University of Technology; 主线; A
 - [Analysis and Design Principles of Microwave Antennas](../courses/rf-microwave-antennas/112-108105114.md) — **可选补充**; IIT Kharagpur / NPTEL; 主线; A; **审计复核中**
 - [Receivers, Antennas, and Signals](../courses/rf-microwave-antennas/113-6-661.md) — **选修候选**; MIT; 补充; B

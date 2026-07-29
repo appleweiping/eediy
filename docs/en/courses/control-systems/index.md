@@ -22,7 +22,7 @@ State space, stability, frequency-domain design, estimation, and optimal control
 
 ## Suggested order
 
-1. [Introduction to Linear Dynamical Systems](068-ee-263.md)
+1. [Introduction to Linear Dynamical Systems (2008 Archive)](068-ee-263.md)
 2. [Feedback Systems: An Introduction for Scientists and Engineers](073-cds-101-cds-110.md) — Audit review
 3. [Feedback Systems](067-6-302.md)
 
@@ -30,7 +30,7 @@ State space, stability, frequency-domain design, estimation, and optimal control
 
 | Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
-| [Introduction to Linear Dynamical Systems](068-ee-263.md) | Stanford University | Mainline | S | Complete |
+| [Introduction to Linear Dynamical Systems (2008 Archive)](068-ee-263.md) | Stanford University | Mainline | S | Complete |
 | [Feedback Systems: An Introduction for Scientists and Engineers](073-cds-101-cds-110.md) | Caltech | Mainline — Audit review | S | Complete |
 | [Feedback Systems](067-6-302.md) | MIT | Mainline | A | Complete |
 | [Dynamic Systems and Control](069-6-241j.md) | MIT | Alternative | A | Partial |

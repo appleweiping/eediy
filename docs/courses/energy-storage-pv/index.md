@@ -21,13 +21,14 @@ page_type: track
 ## 建议顺序
 
 1. [Solar Energy Engineering: Photovoltaic Energy Conversion](122-pv-energy-conversion.md)
+2. [Electrochemical Energy Systems](123-10-626.md)
 
 ## 课程清单
 
 | 课程 | 机构 | 角色 | 评级 | 实践资源 |
 |---|---|---|---|---|
 | [Solar Energy Engineering: Photovoltaic Energy Conversion](122-pv-energy-conversion.md) | Delft University of Technology | 主线 | A | 部分 |
-| [Electrochemical Energy Systems](123-10-626.md) | MIT | 替代 | A | 部分 |
+| [Electrochemical Energy Systems](123-10-626.md) | MIT | 主线 | A | 部分 |
 
 ## 如何选课
 

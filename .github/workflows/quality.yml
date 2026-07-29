@@ -66,6 +66,22 @@ jobs:
           python scripts/validate_courses.py
           python scripts/validate_mainline_audit.py
           python scripts/validate_routes.py
+          python scripts/check_course_guides.py --minimum-guides 60 --require-track-coverage --require-mainline-coverage
+
+      - name: Check editorial quality for changed course guides
+        if: github.event_name == 'pull_request'
+        run: >-
+          python scripts/check_editorial_quality.py
+          --changed-from "${{ github.event.pull_request.base.sha }}"
+          --warnings-as-errors
+          --json-report build/editorial-quality.json
+
+      - name: Check editorial quality for the full guide corpus
+        if: github.event_name != 'pull_request'
+        run: >-
+          python scripts/check_editorial_quality.py
+          --warnings-as-errors
+          --json-report build/editorial-quality.json
 
       - name: Check generated page drift
         run: |
@@ -136,6 +152,7 @@ jobs:
           path: |
             build/quality-report.json
             build/quality-report.md
+            build/editorial-quality.json
             build/external-links.json
           if-no-files-found: warn
           retention-days: 30

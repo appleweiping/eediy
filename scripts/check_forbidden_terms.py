@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import sys
 from pathlib import Path
@@ -30,6 +31,7 @@ TEXT_SUFFIXES = {
 SKIP_PARTS = {
     ".git",
     ".cache",
+    ".artifacts",
     ".mypy_cache",
     ".pytest_cache",
     ".ruff_cache",
@@ -41,12 +43,9 @@ SKIP_PARTS = {
 
 
 def default_denied_terms() -> tuple[tuple[str, str], ...]:
-    # Sensitive comparison names are assembled so the checker does not itself
-    # publish those names in repository text.
+    # Upstream project names are valid in attribution and design-lineage notes.
+    # This scanner blocks unfinished copy and credentials, not honest provenance.
     return (
-        ("reference-brand-a", "".join(("cs", "diy"))),
-        ("reference-repository", "".join(("cs-self", "-learning"))),
-        ("reference-account", "".join(("PKU", "FlyingPig"))),
         ("copy-claim", "".join(("\u4eff", "\u5236"))),
         ("unfinished-marker-a", "".join(("TO", "DO"))),
         ("unfinished-marker-b", "".join(("T", "BD"))),
@@ -66,14 +65,21 @@ SECRET_PATTERNS = (
 
 
 def iter_text_files(root: Path) -> Iterable[Path]:
-    for path in sorted(root.rglob("*")):
-        if not path.is_file() or any(part in SKIP_PARTS for part in path.parts):
-            continue
-        if path.suffix.lower() in TEXT_SUFFIXES or path.name in {
-            "CODEOWNERS",
-            "LICENSE",
-        }:
-            yield path
+    # Prune generated and dependency directories before descending into them.
+    # Filtering only after Path.rglob() has already walked those trees makes a
+    # repository-wide quality report needlessly scan tens of thousands of
+    # irrelevant files.
+    for directory, child_directories, filenames in os.walk(root):
+        child_directories[:] = sorted(
+            name for name in child_directories if name not in SKIP_PARTS
+        )
+        for filename in sorted(filenames):
+            path = Path(directory) / filename
+            if path.suffix.lower() in TEXT_SUFFIXES or path.name in {
+                "CODEOWNERS",
+                "LICENSE",
+            }:
+                yield path
 
 
 def forbidden_issues(

@@ -4,13 +4,13 @@ description: "Open electrical-engineering courses screened by track, role, resou
 page_type: catalogue
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 02385fe58d5fb857 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 7b40fefc54bc31f4 -->
 
 # Course Catalogue
 
 [Learning routes](../routes/index.md)
 
-The catalogue contains **140** structurally reviewed courses across **35** populated tracks. Every resource records access, license, status, and its latest verification date.
+The catalogue contains **141** structurally reviewed courses across **35** populated tracks. Every resource records access, license, status, and its latest verification date.
 
 ## How to use the catalogue
 
@@ -35,7 +35,7 @@ The catalogue contains **140** structurally reviewed courses across **35** popul
 | Track | Courses | S tier | Mainline |
 |---|---:|---:|---:|
 | [Circuit Analysis](circuits/index.md) | 4 | 1 | 1 |
-| [Electronics Laboratory and Measurement](electronics-laboratory/index.md) | 3 | 0 | 1 |
+| [Electronics Laboratory and Measurement](electronics-laboratory/index.md) | 3 | 0 | 2 |
 | [Analog Electronics](analog-electronics/index.md) | 5 | 1 | 1 |
 | [Signals and Systems](signals-systems/index.md) | 6 | 3 | 2 |
 | [Digital Logic and Computation Structures](digital-logic/index.md) | 4 | 3 | 1 |
@@ -45,7 +45,7 @@ The catalogue contains **140** structurally reviewed courses across **35** popul
 
 | Track | Courses | S tier | Mainline |
 |---|---:|---:|---:|
-| [Computer Architecture](computer-architecture/index.md) | 5 | 1 | 1 |
+| [Computer Architecture](computer-architecture/index.md) | 5 | 1 | 2 |
 | [FPGA and System-on-Chip Design](fpga-soc/index.md) | 4 | 0 | 1 |
 | [Embedded Systems](embedded-systems/index.md) | 2 | 2 | 2 |
 | [Real-Time and Cyber-Physical Systems](real-time-cps/index.md) | 5 | 0 | 1 |
@@ -60,7 +60,7 @@ The catalogue contains **140** structurally reviewed courses across **35** popul
 | [Information Theory and Coding](information-theory-coding/index.md) | 2 | 0 | 1 |
 | [Control Systems](control-systems/index.md) | 7 | 2 | 3 |
 | [Robotics and Autonomous Systems](robotics/index.md) | 9 | 2 | 2 |
-| [RF, Microwave, and Antennas](rf-microwave-antennas/index.md) | 4 | 0 | 2 |
+| [RF, Microwave, and Antennas](rf-microwave-antennas/index.md) | 4 | 0 | 3 |
 
 ### Devices, Integrated Circuits, and Micro/Nano
 
@@ -68,10 +68,10 @@ The catalogue contains **140** structurally reviewed courses across **35** popul
 |---|---:|---:|---:|
 | [Semiconductor Devices](semiconductor-devices/index.md) | 2 | 0 | 1 |
 | [Microelectronics](microelectronics/index.md) | 3 | 1 | 1 |
-| [Analog and Mixed-Signal IC Design](analog-ic/index.md) | 1 | 0 | 1 |
+| [Analog and Mixed-Signal IC Design](analog-ic/index.md) | 2 | 0 | 1 |
 | [Digital VLSI and Chip Design](vlsi-ic/index.md) | 4 | 0 | 1 |
 | [Micro/Nanofabrication and MEMS](fabrication-mems/index.md) | 4 | 1 | 2 |
-| [Optics, Optoelectronics, and Photonics](optics-photonics/index.md) | 6 | 2 | 3 |
+| [Optics, Optoelectronics, and Photonics](optics-photonics/index.md) | 6 | 1 | 4 |
 
 ### Electric Energy and Sustainability
 
@@ -79,7 +79,7 @@ The catalogue contains **140** structurally reviewed courses across **35** popul
 |---|---:|---:|---:|
 | [Power Electronics](power-electronics/index.md) | 4 | 1 | 1 |
 | [Power Systems and Electric Machines](power-systems-machines/index.md) | 4 | 1 | 2 |
-| [Energy Storage and Photovoltaics](energy-storage-pv/index.md) | 2 | 0 | 1 |
+| [Energy Storage and Photovoltaics](energy-storage-pv/index.md) | 2 | 0 | 2 |
 
 ### Instrumentation, Design, and Practice
 

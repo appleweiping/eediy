@@ -36,11 +36,23 @@ def _project_navigation() -> list[dict[str, object]]:
         load_json(ROOT / "data" / "courses.json"),
         load_json(ROOT / "data" / "tracks.json"),
         load_json(ROOT / "data" / "routes.json"),
+        course_guides_value=load_json(ROOT / "data" / "course_guides.json"),
         docs_root=ROOT / "docs",
     )
 
 
-def test_generated_navigation_lists_every_page_exactly_once() -> None:
+def _is_course_detail(path: str) -> bool:
+    parts = path.split("/")
+    if parts and parts[0] == "en":
+        parts = parts[1:]
+    return (
+        len(parts) == 3
+        and parts[0] == "courses"
+        and parts[2] != "index.md"
+    )
+
+
+def test_generated_navigation_curates_researched_course_articles() -> None:
     navigation = _project_navigation()
     targets = list(nav_targets(navigation))
     counts = Counter(targets)
@@ -48,8 +60,25 @@ def test_generated_navigation_lists_every_page_exactly_once() -> None:
         path.relative_to(ROOT / "docs").as_posix()
         for path in (ROOT / "docs").rglob("*.md")
     }
-    assert set(targets) == existing | NEW_PAGES
+    catalogue = load_json(ROOT / "data" / "courses.json")
+    guides = load_json(ROOT / "data" / "course_guides.json")["guides"]
+    courses_by_id = {
+        course["source_id"]: course for course in catalogue["courses"]
+    }
+    researched_paths: set[str] = set()
+    for guide in guides:
+        course = courses_by_id[guide["course_id"]]
+        relative = f"courses/{course['track']}/{course['slug']}.md"
+        researched_paths.update({relative, f"en/{relative}"})
+    expected = {
+        path for path in existing | NEW_PAGES if not _is_course_detail(path)
+    } | researched_paths
+    assert set(targets) == expected
     assert all(count == 1 for count in counts.values())
+    assert any(
+        _is_course_detail(path) and path not in targets
+        for path in existing
+    )
 
 
 def test_generated_navigation_follows_group_track_and_course_order() -> None:
@@ -88,15 +117,8 @@ def test_generated_navigation_follows_group_track_and_course_order() -> None:
     physics = rendered.index('"物理基础"', probability)
     assert mathematics < probability < physics
 
-    first_math = rendered.index(
-        '"courses/mathematics/001-18-01sc.md"',
-        mathematics,
-    )
-    second_math = rendered.index(
-        '"courses/mathematics/002-18-02sc.md"',
-        first_math,
-    )
-    assert first_math < second_math
+    assert '"courses/probability-statistics/007-6-041sc.md"' in rendered
+    assert '"courses/mathematics/001-18-01sc.md"' in rendered
 
 
 def test_marker_replacement_is_stable() -> None:
@@ -147,6 +169,8 @@ def test_cli_check_and_write_round_trip(tmp_path: Path) -> None:
         str(ROOT / "data" / "tracks.json"),
         "--routes",
         str(ROOT / "data" / "routes.json"),
+        "--course-guides",
+        str(ROOT / "data" / "course_guides.json"),
         "--docs-dir",
         str(ROOT / "docs"),
     ]

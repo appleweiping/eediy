@@ -1,6 +1,6 @@
 ---
 title: Foreword
-description: A systematic course map, learning roadmap, and project-practice guide for electrical engineering.
+description: Turn public electrical-engineering courses into learning routes that can be judged, executed, and corrected.
 ---
 
 <p align="center">
@@ -9,23 +9,44 @@ description: A systematic course map, learning roadmap, and project-practice gui
 
 # Foreword
 
-Welcome to **EEDIY**, a systematic self-learning guide for electrical engineering. It begins with mathematics, physics, and programming, then moves into circuits, signals, digital systems, control, electromagnetics, energy, semiconductors, and related fields. Public courses are connected to exercises, experiments, and projects whose results can be inspected.
+Public electrical-engineering courses are not scarce. What is scarce is a careful answer after someone has inspected the syllabus, assignments, solutions, laboratories, tool versions, and access conditions: can an independent learner actually complete this course, where does the path break, and when should they switch?
 
-Electrical engineering is dense, and its branches depend on one another. The hard part is rarely finding a video. It is deciding whether the prerequisites are sound, the public materials are complete, the work produces feedback, and the experiment fits the available equipment and safety conditions. This guide therefore focuses on four things:
+A playable video is not a self-contained course. A downloadable lab handout does not give you a course account, campus instruments, a private repository, or a safe bench. An older edition may have the best archive but depend on obsolete software. A current edition may still run while keeping feedback behind a login or paid service. EEDIY is concerned with these unglamorous details because they determine whether learning continues.
 
-- **Course coverage:** organize public courses by discipline and distinguish mainline, alternative, and supplementary resources.
-- **Route planning:** connect courses through prerequisites and milestone evidence instead of presenting an unstructured list.
-- **Project practice:** require inspectable design, calculation, simulation, measurement, or review evidence at each stage.
-- **Ongoing verification:** record open materials, access constraints, hardware needs, risk boundaries, and review dates.
+This site deliberately follows the editorial model of [CSDIY](https://csdiy.wiki/). The useful lesson is not merely its navigation or colors. It is the decision to treat each real course as an article worth maintaining: explain its resources, work, projects, experience boundary, and community corrections. EEDIY applies that model to electrical engineering and adds hardware cost, measurement evidence, and laboratory safety.
+
+## Why another guide is still needed
+
+A catalogue answers “what exists.” Once learning begins, the questions become specific:
+
+- Problems are public, but are solutions or a grader public too? Without feedback, how can a learner tell a modeling error from an algebra error?
+- A lab says “use an oscilloscope,” but does it also require a proprietary teaching platform, campus EDA, a licence, or instructor sign-off?
+- Which edition is on the page? Has the current course been renamed, split, moved to another platform, or turned into a paid service?
+- Which claim can simulation test, and which measurement, safety, or fabrication problem cannot be replaced by a polished plot?
+- What should remain at the end: a first attempt and correction log, waveforms, raw data, layout checks, or a reproducible project report?
+
+Every researched guide should answer these questions in a course-specific way. Reusing one calendar, project template, and set of compliments under a different course name does not count.
+
+## Say what is known, and what is not
+
+EEDIY is currently an open editorial project, not one author’s complete memoir of studying EE. It will not imitate personal writing by inventing “I took this” or “I struggled here.” Pages distinguish three states:
+
+| State | What it establishes | What it does not yet establish |
+| --- | --- | --- |
+| Catalogue | Course identity, official entry points, material scope, and obvious limits were checked | The assignments were not audited in depth, so the page is not a standalone recommendation |
+| Researched | The syllabus, structure, work, labs, exams, and version were reviewed against primary sources | Without a learner record, it does not claim real workload or first-hand experience |
+| Learner-reviewed | A traceable completion scope, artifacts, time record, and sticking points were reviewed | One learner’s experience still does not become a universal rule |
+
+This boundary leaves some pages deliberately short. That is more honest than presenting generated prose as a mature recommendation. Course-page discussions and structured reports are how desk research can become real learning evidence.
 
 ## Where to begin
 
-You do not need to read the whole site first. Choose the closest entry point, complete one small loop, and return to revise your route.
+Do not read the whole site first. Choose the entry nearest to your current position, complete one small loop, then revise the route.
 
-- Starting nearly from zero: complete the [starting diagnostic](getting-started.md), then repair algebra, trigonometry, calculus, basic physics, and computing foundations.
+- Starting nearly from zero: take the [starting diagnostic](getting-started.md) and find the first break in algebra, trigonometry, calculus, physics, or computing.
 - Comfortable with mathematics and physics: enter through [Mathematical Foundations](math-foundations.md) and the [Global Roadmap](roadmap.md), using circuits and signals as the shared spine.
-- Familiar with basic circuits: browse the [Course Catalog](courses/index.md), complete one analog, one digital or embedded, and one signal or control project, then choose a depth area.
-- Working toward research or a role: trace the shortest prerequisite chain backward from a [Learning Route](routes/index.md), then organize evidence with the [Project Practice Guide](guides/projects.md).
+- Familiar with basic circuits: open the [Course Catalogue](courses/index.md) and compare one theory course with one practice course that has a feedback path; do not choose by institution or tier alone.
+- Working toward research or a role: trace the shortest prerequisite chain backward from a [Learning Route](routes/index.md), then specify reviewable artifacts with the [Project Practice Guide](guides/projects.md).
 
 ## Electrical engineering is not one straight line
 
@@ -44,33 +65,37 @@ The branches share mathematical, physical, computational, and measurement founda
 
 [See the complete prerequisite and branch map](roadmap.md)
 
-## How to judge whether a course is worth the effort
+## The freedom and cost of self-study
 
-Every course page should answer these questions:
+The advantage of self-study is straightforward. A learner can pause, replay, choose another instructor’s explanation, and spend several days on a model that is genuinely unclear instead of being pulled along by a term schedule. Open courses also make it possible to compare how different institutions frame the same subject, which is especially valuable across device, system, and software boundaries.
 
-1. **What will I be able to do?** Outcomes must be explainable, calculable, designable, implementable, or measurable.
-2. **What are the real prerequisites?** Separate hard requirements, knowledge that can be repaired in parallel, and optional background.
-3. **What is actually public?** Check videos, notes, problems, solutions, labs, code, and exams separately.
-4. **Where does feedback come from?** If solutions or autograding are absent, plan peer review, simulation, or measurement.
-5. **What are the costs and constraints?** Surface paywalls, regional restrictions, old software, specialist hardware, and accessibility issues.
-6. **When was it last verified?** External links and access policies change; stale information must be clearly marked.
+The cost is equally direct. There may be no teaching assistant, peers, common bench, or hidden tests. Failing to notice an error is often more dangerous than being unable to start. EE adds a physical limit: some work requires expensive instruments, controlled fabrication, or trained supervision and cannot be supplied by persistence alone. These routes do not replace a university laboratory, instructor feedback, or formal qualification. They help distinguish what is publicly executable, what needs different evidence, and where a learner should stop.
+
+## A course page should speak plainly
+
+Look for six things on a course page:
+
+1. Real lectures, units, assignments, labs, exams, or projects—not course marketing.
+2. A comparison with nearby alternatives: what fits a first pass, repair work, or an advanced pass?
+3. The actual boundary of solutions, graders, staff feedback, equipment, and software.
+4. A diagnostic before starting and a precise prerequisite repair when it fails.
+5. Concrete completion artifacts, with EEDIY supplements distinguished from official work.
+6. Version, login, payment, licence, and safety limits, plus the latest review date.
 
 A tier describes the **executability of the currently public edition for independent study**. It is not a ranking of institutions, instructors, or disciplines.
-
-## A sustainable learning loop
-
-1. **Define the evidence:** write what you will explain, calculate, design, or measure before choosing a course.
-2. **Acquire the minimum theory:** build a model from notes, lectures, and derivations, including its assumptions and range of validity.
-3. **Practice and implement:** attempt the work independently, then compare against solutions, simulation, or test data and classify errors.
-4. **Measure and review:** retain raw data, versions, units, uncertainty, and failed attempts, then decide whether to continue, repair a prerequisite, or change route.
 
 !!! danger "Read the safety guide before applying power"
     A lab appearing in course material does not make it suitable for a home setting. Mains electricity, energy-storage capacitors, high-power batteries, moving machinery, lasers, RF power, and high-temperature processes require facilities, training, and supervision matched to the risk. When the boundary is unclear, use simulation or a validated low-energy teaching platform. Read [Laboratory Safety](guides/safety.md) before starting.
 
+## Discussion, correction, and real learning records
+
+Each course page uses a stable course ID so its Chinese and English versions point to the same public record. Report broken links, edition changes, assignment structure, and first-hand sticking points, or share learning artifacts that do not contain answers. Factual corrections need primary evidence; experience reports need a completion scope. Credentials, private contact details, restricted answers, and unlicensed copies do not belong in comments.
+
+Once verified, a correction should return to the article instead of remaining buried in a thread. See the [Contribution Guide](contributing.md) for the review process.
+
 ## Start today
 
-- Have 30 minutes: complete the [starting diagnostic](getting-started.md#start-diagnostic).
-- Have one hour: select a four-week milestone from the [Global Roadmap](roadmap.md).
-- Already taking a class: use its course page to find missing feedback or project work.
+- Have 30 minutes: complete the [starting diagnostic](getting-started.md#start-diagnostic) and repair only the first failed item.
+- Already taking a course: use its page to identify whether the missing piece is work, feedback, tooling, or laboratory access.
 - Have a project idea: write a [one-page specification](guides/projects.md#project-spec) before buying parts.
-- Found stale information: submit an evidence-backed correction through the [Contribution Guide](contributing.md).
+- Found an inaccurate claim: choose the closest report type at the bottom of the course page and attach evidence.

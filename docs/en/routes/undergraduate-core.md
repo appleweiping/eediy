@@ -37,7 +37,7 @@ Covers mathematics, natural science, engineering core, laboratory practice, and 
 
 - [Differential Equations](../courses/mathematics/003-18-03sc.md) — **Required**; MIT; Mainline; S
 - [Circuits and Electronics](../courses/circuits/021-6-002.md) — **Required**; MIT; Mainline; S
-- [Introduction to Electronics, Signals, and Measurement](../courses/electronics-laboratory/024-6-071j.md) — **Optional supplement**; MIT; Alternative; A
+- [Introduction to Electronics, Signals, and Measurement](../courses/electronics-laboratory/024-6-071j.md) — **Optional supplement**; MIT; Mainline; A
 - [Signals and Systems](../courses/signals-systems/083-6-003.md) — **Required**; MIT; Mainline; S
 
 **Stage exit criterion:** Derive state-space and frequency-domain models for a second-order circuit from its differential equation, then measure or simulate its step and swept-frequency responses; dominant pole, DC gain, and bandwidth must each agree with prediction within 5%.
@@ -69,10 +69,10 @@ Covers mathematics, natural science, engineering core, laboratory practice, and 
 
 - [Digital Signal Processing](../courses/dsp/088-res-6-008.md) — **Required**; MIT; Mainline; S
 - [Principles of Digital Communications I](../courses/communications/100-6-450.md) — **Elective option**; MIT; Mainline; S
-- [Introduction to Linear Dynamical Systems](../courses/control-systems/068-ee-263.md) — **Elective option**; Stanford University; Mainline; S
+- [Introduction to Linear Dynamical Systems (2008 Archive)](../courses/control-systems/068-ee-263.md) — **Elective option**; Stanford University; Mainline; S
 - [Power Electronics](../courses/power-electronics/114-6-622.md) — **Elective option**; MIT; Mainline; S
 - [Physics of Semiconductors and Nanostructures](../courses/semiconductor-devices/124-ece-4070.md) — **Elective option**; Cornell University; Mainline; A
-- [Introduction to Photonics](../courses/optics-photonics/132-108106135.md) — **Elective option**; IIT Madras / NPTEL; Mainline; S
+- [Introduction to Photonics](../courses/optics-photonics/132-108106135.md) — **Elective option**; IIT Madras / NPTEL; Mainline; A
 
 **Stage exit criterion:** Integrate the signal-processing spine with two selected concentrations in one design review, defining at least two subsystem metrics per concentration and validating them with simulation, measurement, or public data; the final report must include interface risks and one failed iteration.
 

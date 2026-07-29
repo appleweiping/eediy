@@ -4,7 +4,7 @@ description: "几何与波动光学、半导体光电器件、集成光子和量
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 3c13334e3ca46256 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: f193229df8c7ff11 -->
 
 # 光学、光电与光子学
 
@@ -23,18 +23,19 @@ page_type: track
 
 ## 建议顺序
 
-1. [Introduction to Photonics](132-108106135.md)
+1. [Optics](134-2-71.md)
 2. [Semiconductor Optoelectronics](131-ece-5330.md)
-3. [Silicon Photonics Design, Fabrication and Data Analysis](133-phot1x.md) — 审计复核中
+3. [Introduction to Photonics](132-108106135.md)
+4. [Silicon Photonics Design, Fabrication and Data Analysis](133-phot1x.md) — 审计复核中
 
 ## 课程清单
 
 | 课程 | 机构 | 角色 | 评级 | 实践资源 |
 |---|---|---|---|---|
-| [Introduction to Photonics](132-108106135.md) | IIT Madras / NPTEL | 主线 | S | 完整 |
+| [Optics](134-2-71.md) | MIT | 主线 | S | 完整 |
 | [Semiconductor Optoelectronics](131-ece-5330.md) | Cornell University | 主线 | A | 完整 |
+| [Introduction to Photonics](132-108106135.md) | IIT Madras / NPTEL | 主线 | A | 部分 |
 | [Silicon Photonics Design, Fabrication and Data Analysis](133-phot1x.md) | University of British Columbia | 主线 — 审计复核中 | A | 完整 |
-| [Optics](134-2-71.md) | MIT | 替代 | S | 完整 |
 | [Quantum Optics for Photonics](130-ece-5310.md) | Cornell University | 替代 | A | 完整 |
 | [Photonic Materials and Devices](135-3-46.md) | MIT | 补充 | B | 部分 |
 

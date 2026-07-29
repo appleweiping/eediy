@@ -13,38 +13,27 @@ This is a **dependency graph**, not a universal syllabus. Time ranges assume rou
 
 ## Route overview
 
-<div class="ee-route">
-  <div class="ee-route__stage">
-    <div>
-      <h3>Stage 0 · Engineering language (months 0–3)</h3>
-      <p>Algebra, trigonometry, complex numbers, single-variable calculus, units, and estimation; basic mechanics and electromagnetism; Python or an equivalent computational tool; Git and reproducible notes.</p>
-    </div>
-  </div>
-  <div class="ee-route__stage">
-    <div>
-      <h3>Stage 1 · Shared core (months 3–12)</h3>
-      <p>Linear algebra, differential equations, probability; circuits and electronics; signals and systems; digital logic; instruments, simulation, programming, and safe low-energy experimentation.</p>
-    </div>
-  </div>
-  <div class="ee-route__stage">
-    <div>
-      <h3>Stage 2 · Explore directions (months 12–18)</h3>
-      <p>Compare three cross-direction projects: one analog/device project, one digital/embedded project, and one signal/control/field project.</p>
-    </div>
-  </div>
-  <div class="ee-route__stage">
-    <div>
-      <h3>Stage 3 · Depth track (months 18–30)</h3>
-      <p>Choose one or two adjacent directions. Complete advanced study, toolchain practice, and at least one system project with a documented design review.</p>
-    </div>
-  </div>
-  <div class="ee-route__stage">
-    <div>
-      <h3>Stage 4 · Integration and transfer (ongoing)</h3>
-      <p>Integrate specification, modeling, implementation, verification, cost, safety, and communication—and transfer the method to a new device, platform, or problem.</p>
-    </div>
-  </div>
-</div>
+1. **Stage 0 · Engineering language (months 0–3)**
+   Review algebra, trigonometry, complex numbers, single-variable calculus,
+   units, and order-of-magnitude reasoning. Build basic mechanics and
+   electromagnetism, Python or an equivalent computational tool, Git, and
+   reproducible-note habits at the same time.
+2. **Stage 1 · Shared core (months 3–12)**
+   Study linear algebra, differential equations, probability, circuits,
+   signals and systems, and digital logic. Begin using instruments, simulation,
+   and programming, with low-energy experiments only.
+3. **Stage 2 · Explore directions (months 12–18)**
+   Use three small projects to compare continuous devices, digital/embedded
+   systems, and signals, control, or fields. The point is not project size; it
+   is learning which kinds of failure you are willing to investigate.
+4. **Stage 3 · Depth track (months 18–30)**
+   Choose one or two adjacent directions, complete advanced study and
+   toolchain practice, and deliver at least one system project with a
+   documented design review.
+5. **Stage 4 · Integration and transfer (ongoing)**
+   Put specifications, models, implementation, verification, cost, safety,
+   and communication into one body of engineering evidence, then transfer the
+   method to a new device, platform, or problem.
 
 ## Stage 0: engineering language (months 0–3)
 

@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict
 from dataclasses import dataclass
+from datetime import date
 import hashlib
 from html.parser import HTMLParser
 import json
@@ -44,7 +45,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "data" / "course_candidates.json"
 DEFAULT_OUTPUT = ROOT / "data" / "course_resources.json"
 DEFAULT_CHECKPOINT = ROOT / "data" / ".course_resources.checkpoint.json"
-VERIFIED_DATE = "2026-07-28"
+VERIFIED_DATE = "2026-07-29"
 SCHEMA_VERSION = "1.0"
 PRECISION_FILTER_VERSION = 1
 USER_AGENT = (
@@ -2001,6 +2002,7 @@ def validate_payload(
         raise ValueError("unsupported resource schema version")
     if payload.get("last_verified") != VERIFIED_DATE:
         raise ValueError("unexpected verification date")
+    manifest_verified_date = date.fromisoformat(VERIFIED_DATE)
     resources = payload.get("resources")
     if not isinstance(resources, list):
         raise ValueError("resources must be an array")
@@ -2046,7 +2048,15 @@ def validate_payload(
             raise ValueError(f"resource {index} has an invalid access value")
         if resource["status"] not in STATUS_VALUES:
             raise ValueError(f"resource {index} has an invalid status")
-        if resource["last_verified"] != VERIFIED_DATE:
+        try:
+            resource_verified_date = date.fromisoformat(
+                str(resource["last_verified"])
+            )
+        except ValueError as exc:
+            raise ValueError(
+                f"resource {index} has an invalid verification date"
+            ) from exc
+        if resource_verified_date > manifest_verified_date:
             raise ValueError(f"resource {index} has an invalid verification date")
         if not isinstance(resource["title"], str) or not resource["title"].strip():
             raise ValueError(f"resource {index} has an empty title")

@@ -2,67 +2,55 @@
 title: "Real-Time Mission-Critical Systems Design"
 description: "University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances real-time study into mission-critical design through videos, practice, labs, and code, with specified hardware and paid access as barriers."
 page_type: course
+course_id: "course-065"
+editorial_status: "catalogue"
+evidence_level: "R0"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d6b668b8cd279521 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d05e841f5577835e -->
 
 # Real-Time Mission-Critical Systems Design
 
 ## Course Overview
 
-- **Institution:** University of Colorado Boulder
+- **University:** University of Colorado Boulder
 - **Course code:** Real-Time Embedded Systems 3
+- **Prerequisites:** Recommended foundation: Embedded Systems; Recommended foundation: Signals and Systems
 - **Track:** [Real-Time and Cyber-Physical Systems](index.md)
-- **Tier:** A
-- **Role:** Alternative
-- **Level:** Not standardized by provider (use prerequisites)
+- **Path role:** Alternative
+- **Public materials:** Core materials available
 - **Last reviewed:** 2026-07-28
+
+> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
 
 University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances real-time study into mission-critical design through videos, practice, labs, and code, with specified hardware and paid access as barriers.
 
-**Why choose this course**
-
-Alternative course. A reliable option that can serve as a main course or strong alternative.
-
-**Before you start**
+**Check before starting**
 
 - Recommended foundation: Embedded Systems
 - Recommended foundation: Signals and Systems
 
-**Verifiable learning outcomes**
+## Start with these links
 
-- Explain the core models in Real-Time and Cyber-Physical Systems, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
 
-**Workload and pacing**
+- [Course home](https://www.coursera.org/learn/real-time-mission-critical-systems-design)
 
-**11 weeks at 9 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+## Known Boundaries
 
-**Safety level**
+ECC, flash, redundancy, and FMEA exercises use specified hardware, and platform access may require payment.
 
-**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
+This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+<details markdown="1">
+<summary>Expand the complete resource index (1 items)</summary>
 
-**Software**
+### Material coverage
 
-- Maintainer-suggested open-source/free verification path: Zephyr or FreeRTOS source, GCC or LLVM, CMake, GDB, and Renode or QEMU
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a course-supported real-time control board, USB debugger, logic analyzer, and low-voltage sensors/actuators. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
-
-**Cost note**
-
-The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
+| Type | Completeness |
 |---|---|
 | Video | Complete |
 | Notes | Partial |
@@ -71,53 +59,12 @@ The suggested software stack is available open source or free; this is not a pro
 | Exams | Partial |
 | Code | Complete |
 
-**Resources and access**
+### Resource
 
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/real-time-mission-critical-systems-design) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
+| Resource | Access | Status | Verified |
+|---|---|---|---|
+| [Course home](https://www.coursera.org/learn/real-time-mission-critical-systems-design) | Registration required | Listed by official page | 2026-07-28 |
 
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
 
-## Practice and Verification
-
-**Practice loop**
-
-**Real-Time Mission-Critical Systems Design · University of Colorado Boulder Real-Time Embedded Systems 3: Real-Time Closed-Loop Deadline Stress Test**
-
-This is a maintainer-suggested self-study project for Real-Time Mission-Critical Systems Design · University of Colorado Boulder Real-Time Embedded Systems 3, not an official course assignment. Build a discrete-event scheduler and simulated plant for Real-Time and Cyber-Physical Systems, quantifying how jitter, missed deadlines, and sensor loss affect closed-loop safety margin.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A task set with period, deadline, and WCET assumptions, scheduling policy, and plant model
-- An executable scheduler, closed-loop simulation, fault injector, and monitoring assertions
-- Raw response-time, jitter, miss, and state trajectories across multiple loads
-- A report defining the schedulability boundary, control degradation, and safe degraded state
-
-**Verification**
-
-- Produce zero deadline misses at nominal load and keep analytic response-time bound within 10% of the simulated worst case
-- Cover zero load, near-100% utilization, burst blocking, and clock-drift boundaries
-- Cross-check schedulability with a second analysis or exhaustive enumeration over a short hyperperiod
-- Increase WCET until the first miss and report miss rate and closed-loop error growth
-
-**Reproducibility**
-
-- Commit scheduler, plant, fault scenarios, assertions, and analysis sources
-- Pin event ordering, random seeds, time units, solver, and dependency versions
-- Preserve raw event and state logs and automatically generated timelines and report
-
-**Safety boundary:** Simulation only — Inject deadlines and faults only into a simulated plant; do not connect unvalidated scheduling or degradation logic to real machinery, vehicles, medical, or power systems.
-
-**Risks, gaps, and boundaries**
-
-ECC, flash, redundancy, and FMEA exercises use specified hardware, and platform access may require payment.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
-- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data
+</details>

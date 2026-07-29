@@ -58,4 +58,7 @@ For a broken link, misattribution, incompatible license, or material that should
 
 Maintainers should prevent further distribution of disputed material when appropriate, retain the minimum audit record, inspect the source, and document the resolution. A good-faith rights request does not require the claimant to write replacement copy.
 
-See `CONTENT_LICENSE.md` and `LICENSE` at the repository root for the complete terms; use those files as authoritative before redistribution.
+See `CONTENT_LICENSE.md`, `LICENSE`, and `THIRD_PARTY_NOTICES.md` at the
+repository root for the complete terms. The latter preserves the CSDIY
+template lineage and upstream MIT notice; use these files as authoritative
+before redistribution.

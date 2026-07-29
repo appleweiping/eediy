@@ -26,7 +26,7 @@ docs/
 ├── courses/                     # 生成的中文课程与方向页
 ├── guides/                      # 中文工具、安全、项目指南
 ├── en/                          # 英文镜像
-└── assets/                      # 原创品牌图、独立样式与渐进增强脚本
+└── assets/                      # 站点品牌资源、样式与渐进增强脚本
 ```
 
 Course, track, and route pages are generated from reviewed structured records.
@@ -57,8 +57,8 @@ canonical data/courses.json + data/routes.json + data/mainline_audit.json
         ↓  generate_course_pages.py
 docs/courses + docs/routes + docs/en/...
   generated bilingual Markdown / 生成的双语 Markdown
-        ↓  sync_navigation.py
-mkdocs.yml complete bilingual navigation / 完整双语导航
+        ↓  sync_navigation.py + data/course_guides.json
+mkdocs.yml curated bilingual navigation / 只直列深度导读的双语导航
 
 data/mainline_audit.json ── validate_mainline_audit.py ──┐
 other validators and tests / 其他验证器与测试 ────────────┴─ release gate / 发布门禁
@@ -116,6 +116,23 @@ MkDocs 启动后会打印本地访问地址。提交修改前，请运行上方�
 `run_quality.py` 会执行依赖一致性、生成数据漂移、测试与严格生产构建检查。
 MkDocs 的可丢弃产物位于 `site/`，源内容始终位于 `docs/`。
 
+## Community feedback / 社区反馈
+
+Every researched course page uses one stable course ID for Chinese and English.
+It offers structured GitHub Issue forms for factual corrections, broken links,
+and learner reports, plus a course-specific GitHub Discussions fallback.
+Embedded discussion uses Giscus and therefore requires repository Issues and
+Discussions to remain enabled, the Giscus GitHub App to be installed for this
+repository, and the production origin to remain allowed by `giscus.json`.
+Without that third-party app authorization, the direct Issues and Discussions
+links still work, but the embedded comment composer is not considered enabled.
+
+每份研究型课程导读都以同一个稳定课程 ID 连接中英文页面，提供事实纠错、失效链接
+和学习复盘三类结构化 GitHub Issue 表单，并保留按课程 ID 检索 GitHub Discussions
+的直接入口。页内讨论使用 Giscus，因此仓库必须保持 Issues 与 Discussions 开启，
+为本仓库安装 Giscus GitHub App，并让 `giscus.json` 继续允许生产域名。若没有这项
+第三方应用授权，直接反馈与讨论链接仍可用，但不能把页内评论框标记为已经启用。
+
 ## Contribution standard / 贡献标准
 
 A course recommendation must state prerequisites, learning outcomes, resource completeness, assessment evidence, tooling or hardware needs, access constraints, safety concerns, and the last verification date. “Good course” is not enough: another learner should be able to decide whether the course fits and know how to finish it.
@@ -139,14 +156,24 @@ options; a path-options stage has no counted electives.
 
 Read the site’s contribution guide before opening a change. Keep factual claims traceable to primary course pages whenever possible, disclose conflicts of interest, and update both language versions together.
 
-## Original visual system / 原创视觉系统
+## Template lineage / 模板来源
 
-The visual language combines the EEDIY circuit-book mark with a CSS-only signal lattice, evidence cards, route rails, and safety states. The interface uses system fonts and local assets, so core reading, search, theme switching, and navigation do not depend on an analytics or font CDN. Decorative elements never carry information by themselves, and motion is disabled when the reader requests reduced motion.
+EEDIY deliberately follows the information architecture and MkDocs Material
+reading patterns of [CSDIY](https://github.com/PKUFlyingPig/cs-self-learning):
+topic navigation, focused course articles, search, bilingual pages, theme
+switching, and page-level discussion belong to the same product family. EEDIY
+adds EE-specific routes, evidence records, laboratory-safety boundaries,
+resource audits, and reproducible-project review gates. It does not present
+that shared template lineage as an original visual invention.
 
-视觉语言以 EEDIY 的“电路与书页”标志为核心，配合纯 CSS 信号网格、证据卡片、路线轨道与安全状态。界面使用系统字体和本地资产，核心阅读、搜索、主题切换与导航不依赖统计或字体 CDN。装饰元素不单独承载信息，并尊重读者的“减少动态效果”偏好。
+EEDIY 有意沿用
+[CSDIY](https://github.com/PKUFlyingPig/cs-self-learning)
+的内容架构与 MkDocs Material 阅读方式：按主题导航、聚焦单课的文章、搜索、双语页面、
+主题切换和页面讨论属于同一套产品范式。在此基础上，EEDIY 增加 EE 专属路线、证据记录、
+实验安全边界、资源审计与可复现项目门禁，不再把这层模板继承包装成原创视觉发明。
 
 ## License / 许可
 
-Source code and site configuration are available under the [MIT License](LICENSE). Original editorial content is available under [CC BY 4.0](CONTENT_LICENSE.md). Linked courses, books, videos, software, trademarks, and other third-party materials remain under their respective owners’ terms.
+Source code and site configuration are available under the [MIT License](LICENSE). Original editorial content is available under [CC BY 4.0](CONTENT_LICENSE.md). The CSDIY template lineage and other reused components are credited in [Third-Party Notices](THIRD_PARTY_NOTICES.md). Linked courses, books, videos, software, trademarks, and other third-party materials remain under their respective owners’ terms.
 
-源代码与站点配置采用 [MIT License](LICENSE)；原创编辑内容采用 [CC BY 4.0](CONTENT_LICENSE.md)。链接到的课程、书籍、视频、软件、商标及其他第三方材料仍受各自权利人的条款约束。
+源代码与站点配置采用 [MIT License](LICENSE)；原创编辑内容采用 [CC BY 4.0](CONTENT_LICENSE.md)。CSDIY 模板来源及其他复用组件列在[第三方声明](THIRD_PARTY_NOTICES.md)中。链接到的课程、书籍、视频、软件、商标及其他第三方材料仍受各自权利人的条款约束。

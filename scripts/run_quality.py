@@ -45,6 +45,27 @@ def commands(*, include_external: bool, include_build: bool) -> list[Command]:
             "mainline audit",
             (python, "scripts/validate_mainline_audit.py"),
         ),
+        Command(
+            "researched course guides",
+            (
+                python,
+                "scripts/check_course_guides.py",
+                "--minimum-guides",
+                "60",
+                "--require-track-coverage",
+                "--require-mainline-coverage",
+            ),
+        ),
+        Command(
+            "editorial anti-template gate",
+            (
+                python,
+                "scripts/check_editorial_quality.py",
+                "--warnings-as-errors",
+                "--json-report",
+                "build/editorial-quality.json",
+            ),
+        ),
         Command("learning routes", (python, "scripts/validate_routes.py")),
         Command("generated pages", (python, "scripts/generate_course_pages.py", "--check")),
         Command("generated navigation", (python, "scripts/sync_navigation.py", "--check")),

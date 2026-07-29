@@ -22,7 +22,7 @@ page_type: track
 
 ## 建议顺序
 
-1. [Introduction to Linear Dynamical Systems](068-ee-263.md)
+1. [Introduction to Linear Dynamical Systems (2008 Archive)](068-ee-263.md)
 2. [Feedback Systems: An Introduction for Scientists and Engineers](073-cds-101-cds-110.md) — 审计复核中
 3. [Feedback Systems](067-6-302.md)
 
@@ -30,7 +30,7 @@ page_type: track
 
 | 课程 | 机构 | 角色 | 评级 | 实践资源 |
 |---|---|---|---|---|
-| [Introduction to Linear Dynamical Systems](068-ee-263.md) | Stanford University | 主线 | S | 完整 |
+| [Introduction to Linear Dynamical Systems (2008 Archive)](068-ee-263.md) | Stanford University | 主线 | S | 完整 |
 | [Feedback Systems: An Introduction for Scientists and Engineers](073-cds-101-cds-110.md) | Caltech | 主线 — 审计复核中 | S | 完整 |
 | [Feedback Systems](067-6-302.md) | MIT | 主线 | A | 完整 |
 | [Dynamic Systems and Control](069-6-241j.md) | MIT | 替代 | A | 部分 |

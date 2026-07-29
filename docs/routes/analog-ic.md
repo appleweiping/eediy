@@ -16,9 +16,6 @@ page_type: route
 
 完成一个带规格、角落仿真、噪声/功耗权衡和版图检查的模拟或混合信号设计。
 
-!!! warning "路线中的主线审计复核项"
-    - [Analog IC Design](../courses/analog-ic/036-108106105-noc26-ee66.md)：2026 年官方 12 周视频大纲已确认，但评分反馈和证书考试依赖注册，没有公开 EDA 项目；资源清单仍只收录旧版归档入口。 最近审计：2026-07-29。
-
 ## 阶段安排
 
 ### 电路与器件
@@ -41,7 +38,7 @@ page_type: route
 - [Solid-State Circuits](../courses/analog-electronics/032-6-301.md) — **选修候选**; MIT; 补充; B
 - [Analog Circuits](../courses/analog-electronics/034-108101094.md) — **选修候选**; IIT Bombay / NPTEL; 替代; A
 - [Integrated Circuits, MOSFETs, OP-Amps and Their Applications](../courses/analog-electronics/035-108108111.md) — **选修候选**; Indian Institute of Science / NPTEL; 替代; A
-- [Analog IC Design](../courses/analog-ic/036-108106105-noc26-ee66.md) — **可选补充**; IIT Madras / NPTEL; 主线; A; **审计复核中**
+- [Analog IC Design](../courses/analog-ic/036-108106105-noc26-ee66.md) — **可选补充**; IIT Madras / NPTEL; 补充; A
 
 **阶段退出条件：** 设计运算放大器或低噪声前端，逐项验证增益、带宽、相位裕量、噪声、摆率和功耗规格；PVT 与负载角落均通过，未通过项必须形成可复现的权衡记录。
 

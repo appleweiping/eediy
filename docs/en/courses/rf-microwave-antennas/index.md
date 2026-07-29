@@ -4,7 +4,7 @@ description: "Network parameters, matching, noise, receivers, microwave circuits
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4db5b572f6299b2f -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0636ac350bac1407 -->
 
 # RF, Microwave, and Antennas
 
@@ -23,16 +23,17 @@ Network parameters, matching, noise, receivers, microwave circuits, and antennas
 
 ## Suggested order
 
-1. [RF and Millimeter-Wave Circuit Design](111-rf-and-millimeter-wave-circuit-design.md)
-2. [Analysis and Design Principles of Microwave Antennas](112-108105114.md) — Audit review
+1. [Radio Frequency Systems](110-ece-4880.md)
+2. [RF and Millimeter-Wave Circuit Design](111-rf-and-millimeter-wave-circuit-design.md)
+3. [Analysis and Design Principles of Microwave Antennas](112-108105114.md) — Audit review
 
 ## Courses
 
 | Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
+| [Radio Frequency Systems](110-ece-4880.md) | Cornell University | Mainline | A | Complete |
 | [RF and Millimeter-Wave Circuit Design](111-rf-and-millimeter-wave-circuit-design.md) | Eindhoven University of Technology | Mainline | A | Complete |
 | [Analysis and Design Principles of Microwave Antennas](112-108105114.md) | IIT Kharagpur / NPTEL | Mainline — Audit review | A | Partial |
-| [Radio Frequency Systems](110-ece-4880.md) | Cornell University | Alternative | A | Complete |
 | [Receivers, Antennas, and Signals](113-6-661.md) | MIT | Supplement | B | Complete |
 
 ## How to choose

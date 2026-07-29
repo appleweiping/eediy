@@ -4,7 +4,7 @@ description: "网络参数、匹配、噪声、接收机、微波电路和天线
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4db5b572f6299b2f -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0636ac350bac1407 -->
 
 # 射频、微波与天线
 
@@ -23,16 +23,17 @@ page_type: track
 
 ## 建议顺序
 
-1. [RF and Millimeter-Wave Circuit Design](111-rf-and-millimeter-wave-circuit-design.md)
-2. [Analysis and Design Principles of Microwave Antennas](112-108105114.md) — 审计复核中
+1. [Radio Frequency Systems](110-ece-4880.md)
+2. [RF and Millimeter-Wave Circuit Design](111-rf-and-millimeter-wave-circuit-design.md)
+3. [Analysis and Design Principles of Microwave Antennas](112-108105114.md) — 审计复核中
 
 ## 课程清单
 
 | 课程 | 机构 | 角色 | 评级 | 实践资源 |
 |---|---|---|---|---|
+| [Radio Frequency Systems](110-ece-4880.md) | Cornell University | 主线 | A | 完整 |
 | [RF and Millimeter-Wave Circuit Design](111-rf-and-millimeter-wave-circuit-design.md) | Eindhoven University of Technology | 主线 | A | 完整 |
 | [Analysis and Design Principles of Microwave Antennas](112-108105114.md) | IIT Kharagpur / NPTEL | 主线 — 审计复核中 | A | 部分 |
-| [Radio Frequency Systems](110-ece-4880.md) | Cornell University | 替代 | A | 完整 |
 | [Receivers, Antennas, and Signals](113-6-661.md) | MIT | 补充 | B | 完整 |
 
 ## 如何选课

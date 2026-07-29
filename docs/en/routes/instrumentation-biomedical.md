@@ -4,7 +4,7 @@ description: "Build a measurement system with calibration, uncertainty, isolatio
 page_type: route
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: cac14cc66ccffd61 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 729269b3763e4f06 -->
 
 # Sensors, Instrumentation, and Biomedical Electronics
 
@@ -23,21 +23,21 @@ Build a measurement system with calibration, uncertainty, isolation/safety analy
 **Selection rule:** Complete all 3 required courses; use the other 1 option only to close a specific gap.
 
 - [Circuits and Electronics](../courses/circuits/021-6-002.md) — **Required**; MIT; Mainline; S
-- [Introduction to Electronics, Signals, and Measurement](../courses/electronics-laboratory/024-6-071j.md) — **Optional supplement**; MIT; Alternative; A
-- [Real Analog Courses](../courses/electronics-laboratory/027-real-analog.md) — **Required**; Digilent; Mainline; A
+- [Introduction to Electronics, Signals, and Measurement](../courses/electronics-laboratory/024-6-071j.md) — **Required**; MIT; Mainline; A
+- [Real Analog Courses](../courses/electronics-laboratory/027-real-analog.md) — **Optional supplement**; Digilent; Mainline; A
 - [Signals and Systems](../courses/signals-systems/083-6-003.md) — **Required**; MIT; Mainline; S
 
 **Stage exit criterion:** Build a traceable measurement chain and perform a calibration at five or more points, submitting an uncertainty budget for gain, offset, bandwidth, noise, and quantization; every calibration residual must fall within the predeclared tolerance band.
 
 ### Sensors and interfaces
 
-**Selection rule:** Complete all 2 required courses; use the other 1 option only to close a specific gap.
+**Selection rule:** Complete all 1 required course; use the other 2 options only to close a specific gap.
 
 - [Electrical Measurement and Electronic Instruments](../courses/sensors-instrumentation/136-108105153.md) — **Required**; IIT Kharagpur / NPTEL; Mainline; A
-- [Sensor Technologies: Physics, Fabrication, and Circuits](../courses/sensors-instrumentation/137-108106193.md) — **Required**; IISER Bhopal / NPTEL; Mainline; A
-- [Sensors and Sensor Circuit Design](../courses/sensors-instrumentation/138-ecea-5340.md) — **Optional supplement**; University of Colorado Boulder; Alternative; A
+- [Sensors and Sensor Circuit Design](../courses/sensors-instrumentation/138-ecea-5340.md) — **Optional supplement**; University of Colorado Boulder; Mainline; A
+- [Sensor Technologies: Physics, Fabrication, and Circuits](../courses/sensors-instrumentation/137-108106193.md) — **Optional supplement**; IISER Bhopal / NPTEL; Supplement; A
 
-**Stage exit criterion:** Complete excitation, conditioning, sampling, and digital output for one sensor, measuring linearity, hysteresis, noise, and drift across full scale; compare every result against a reference instrument or trustworthy datasheet.
+**Stage exit criterion:** Complete excitation, conditioning, sampling, and digital output for one sensor using public or synthetic data, simulation, or a safe low-voltage bench; evaluate full-scale linearity, hysteresis, noise, and drift against a reference instrument or trustworthy datasheet. When course access or hardware is unavailable, disclose the simulation or replay boundary and do not claim a physical experiment.
 
 ### Biomedical applications
 

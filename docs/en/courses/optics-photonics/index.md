@@ -4,7 +4,7 @@ description: "Geometric and wave optics, optoelectronic devices, integrated phot
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 3c13334e3ca46256 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: f193229df8c7ff11 -->
 
 # Optics, Optoelectronics, and Photonics
 
@@ -23,18 +23,19 @@ Geometric and wave optics, optoelectronic devices, integrated photonics, and qua
 
 ## Suggested order
 
-1. [Introduction to Photonics](132-108106135.md)
+1. [Optics](134-2-71.md)
 2. [Semiconductor Optoelectronics](131-ece-5330.md)
-3. [Silicon Photonics Design, Fabrication and Data Analysis](133-phot1x.md) — Audit review
+3. [Introduction to Photonics](132-108106135.md)
+4. [Silicon Photonics Design, Fabrication and Data Analysis](133-phot1x.md) — Audit review
 
 ## Courses
 
 | Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
-| [Introduction to Photonics](132-108106135.md) | IIT Madras / NPTEL | Mainline | S | Complete |
+| [Optics](134-2-71.md) | MIT | Mainline | S | Complete |
 | [Semiconductor Optoelectronics](131-ece-5330.md) | Cornell University | Mainline | A | Complete |
+| [Introduction to Photonics](132-108106135.md) | IIT Madras / NPTEL | Mainline | A | Partial |
 | [Silicon Photonics Design, Fabrication and Data Analysis](133-phot1x.md) | University of British Columbia | Mainline — Audit review | A | Complete |
-| [Optics](134-2-71.md) | MIT | Alternative | S | Complete |
 | [Quantum Optics for Photonics](130-ece-5310.md) | Cornell University | Alternative | A | Complete |
 | [Photonic Materials and Devices](135-3-46.md) | MIT | Supplement | B | Partial |
 

@@ -7,6 +7,14 @@ fails, even if the site can still be built locally.
 本文件定义公开学习导航的发布门禁。它是一份可执行的质量契约，而不是宣传清单：
 任何必需门禁失败时，即使网站能够本地构建，也不能发布。
 
+Course-guide depth, evidence levels, hard failures, and adversarial review are
+defined in [EDITORIAL_QUALITY.md](EDITORIAL_QUALITY.md). A large generated
+catalogue does not satisfy the researched-guide gate.
+
+课程导读的深度、证据等级、硬失败与对抗审查以
+[EDITORIAL_QUALITY.md](EDITORIAL_QUALITY.md) 为准。批量生成的资料目录不能计入
+深度课程导读。
+
 ## 1. Catalogue coverage / 课程覆盖
 
 - At least 125 reviewed courses across at least 24 populated EE tracks.
@@ -25,6 +33,9 @@ fails, even if the site can still be built locally.
   tracks has exactly one explicit preferred entry, while unresolved identity,
   resource, access, tooling, licence, age, or safety evidence remains labelled
   `review` rather than being silently promoted.
+- Every one of the 60 independently audited `mainline` courses has a
+  researched bilingual guide. Catalogue-only pages and extra non-mainline
+  guides cannot be used to satisfy this coverage gate.
 
 ## 2. Resource evidence / 资源证据
 
@@ -41,6 +52,21 @@ fails, even if the site can still be built locally.
 - External availability checks are evidence, not proof of teaching quality.
   Redirects, authentication walls, region limits, and intermittent failures are
   reported separately instead of being hidden.
+- A release-time automated `review` result must be adjudicated against a
+  primary official index, rendered primary page, or repository API. The exact
+  targets, evidence, method, and retain/replace/remove decision are recorded in
+  `data/external_link_reviews.json`; an unrecorded review result cannot be
+  silently counted as healthy.
+- The manual-review ledger names its reviewer, uses a strict non-future ISO
+  review date no more than 14 days old by default, and records a concrete
+  automation reason, method, and at least one unique canonical HTTPS evidence
+  URL for every group. Its optional summary must equal the target-level decision
+  counts exactly.
+- Evidence URLs are checked in the same release run as content targets. A
+  missing evidence URL (`404`/`410`) blocks release. A current manually verified
+  evidence-only URL blocked by `robots.txt` or HTTP `403` may remain a warning
+  under `--allow-review`, but it is reported separately and never counts as a
+  retained content target.
 
 ## 3. Routes and practice / 路线与实践
 
@@ -88,6 +114,8 @@ python scripts/apply_course_editorial.py
 python scripts/validate_courses.py
 python scripts/validate_mainline_audit.py
 python scripts/validate_routes.py
+python scripts/check_course_guides.py --minimum-guides 60 --require-track-coverage --require-mainline-coverage
+python scripts/check_editorial_quality.py
 python scripts/generate_course_pages.py
 python scripts/run_quality.py
 ```
@@ -132,11 +160,26 @@ failed or cancelled quality run cannot publish.
   rendering for core reading and navigation.
 - Browser console errors, broken assets, horizontal page overflow, and obscured
   focus are release blockers.
+- When course pages advertise embedded discussion, repository Issues and
+  Discussions must be enabled, the configured Giscus GitHub App must be
+  authorized for the repository, and the production-origin iframe must load.
+  A direct Discussions fallback is required but cannot be used to claim that an
+  unavailable embedded composer is working.
 
 ## 7. Review and publication / 复核与发布
 
 - Editorial claims are traceable to primary evidence or clearly marked as
   maintainer judgement.
+- Every course page declares `catalogue`, `researched`, or `learner-reviewed`.
+  Only the latter two count as researched guides; learner-reviewed status
+  requires traceable R2–R4 evidence.
+- The primary sidebar lists only `researched` or `learner-reviewed` course
+  articles. `catalogue` records remain reachable through track indexes and
+  search, but cannot borrow the visual prominence of an editorial guide.
+- Researched guides pass the editorial hard-failure checks, the per-page
+  content rubric, narrative-link limits, bilingual fact-parity checks, and the
+  cross-page swap test. The calibrated guide corpus has no unresolved
+  editorial warnings at release time.
 - A release report records exact counts, check outputs, known limitations, and
   the date of the external-link sample.
 - The public repository must have a clean default branch, a green continuous

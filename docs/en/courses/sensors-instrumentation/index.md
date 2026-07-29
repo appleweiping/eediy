@@ -4,7 +4,7 @@ description: "Sensing mechanisms, interfaces, calibration, noise, and uncertaint
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 8ace76aa46a875c2 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9561e53c8a26a906 -->
 
 # Sensors and Instrumentation
 
@@ -21,15 +21,15 @@ Sensing mechanisms, interfaces, calibration, noise, and uncertainty with traceab
 ## Suggested order
 
 1. [Electrical Measurement and Electronic Instruments](136-108105153.md)
-2. [Sensor Technologies: Physics, Fabrication, and Circuits](137-108106193.md)
+2. [Sensors and Sensor Circuit Design](138-ecea-5340.md)
 
 ## Courses
 
 | Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
 | [Electrical Measurement and Electronic Instruments](136-108105153.md) | IIT Kharagpur / NPTEL | Mainline | A | Partial |
-| [Sensor Technologies: Physics, Fabrication, and Circuits](137-108106193.md) | IISER Bhopal / NPTEL | Mainline | A | Partial |
-| [Sensors and Sensor Circuit Design](138-ecea-5340.md) | University of Colorado Boulder | Alternative | A | Complete |
+| [Sensors and Sensor Circuit Design](138-ecea-5340.md) | University of Colorado Boulder | Mainline | A | Complete |
+| [Sensor Technologies: Physics, Fabrication, and Circuits](137-108106193.md) | IISER Bhopal / NPTEL | Supplement | A | Partial |
 
 ## How to choose
 

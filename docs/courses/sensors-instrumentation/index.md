@@ -4,7 +4,7 @@ description: "传感机理、接口电路、校准、噪声和测量不确定度
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 8ace76aa46a875c2 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9561e53c8a26a906 -->
 
 # 传感器与仪器
 
@@ -21,15 +21,15 @@ page_type: track
 ## 建议顺序
 
 1. [Electrical Measurement and Electronic Instruments](136-108105153.md)
-2. [Sensor Technologies: Physics, Fabrication, and Circuits](137-108106193.md)
+2. [Sensors and Sensor Circuit Design](138-ecea-5340.md)
 
 ## 课程清单
 
 | 课程 | 机构 | 角色 | 评级 | 实践资源 |
 |---|---|---|---|---|
 | [Electrical Measurement and Electronic Instruments](136-108105153.md) | IIT Kharagpur / NPTEL | 主线 | A | 部分 |
-| [Sensor Technologies: Physics, Fabrication, and Circuits](137-108106193.md) | IISER Bhopal / NPTEL | 主线 | A | 部分 |
-| [Sensors and Sensor Circuit Design](138-ecea-5340.md) | University of Colorado Boulder | 替代 | A | 完整 |
+| [Sensors and Sensor Circuit Design](138-ecea-5340.md) | University of Colorado Boulder | 主线 | A | 完整 |
+| [Sensor Technologies: Physics, Fabrication, and Circuits](137-108106193.md) | IISER Bhopal / NPTEL | 补充 | A | 部分 |
 
 ## 如何选课
 

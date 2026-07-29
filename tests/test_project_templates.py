@@ -89,7 +89,7 @@ def test_application_is_deterministic_contextual_and_non_mutating() -> None:
         track["id"]: {"zh": track["title_zh"], "en": track["title_en"]}
         for track in taxonomy["tracks"]
     }
-    assert len(first["courses"]) == 140
+    assert len(first["courses"]) == len(original["courses"])
     rendered_fingerprints: set[tuple[str, tuple[str, ...]]] = set()
     for course in first["courses"]:
         assert len(course["projects"]) == 1

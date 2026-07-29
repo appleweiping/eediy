@@ -48,7 +48,7 @@ page_type: route
 - [Electric Machines](../courses/power-systems-machines/120-6-685.md) — **必修**; MIT; 主线; S
 - [Electrical Machines II](../courses/power-systems-machines/121-108105131.md) — **选修候选**; IIT Kharagpur / NPTEL; 替代; A
 - [Solar Energy Engineering: Photovoltaic Energy Conversion](../courses/energy-storage-pv/122-pv-energy-conversion.md) — **选修候选**; Delft University of Technology; 主线; A
-- [Electrochemical Energy Systems](../courses/energy-storage-pv/123-10-626.md) — **选修候选**; MIT; 替代; A
+- [Electrochemical Energy Systems](../courses/energy-storage-pv/123-10-626.md) — **选修候选**; MIT; 主线; A
 
 **阶段退出条件：** 构建含电网、电机及所选能源技术的统一场景，潮流或能量平衡残差低于 1%；再执行一次 N−1、故障或工况跃迁分析并报告约束违例与恢复时间。
 

@@ -48,7 +48,7 @@ Safely complete simulation, control, and design review for a converter, motor dr
 - [Electric Machines](../courses/power-systems-machines/120-6-685.md) — **Required**; MIT; Mainline; S
 - [Electrical Machines II](../courses/power-systems-machines/121-108105131.md) — **Elective option**; IIT Kharagpur / NPTEL; Alternative; A
 - [Solar Energy Engineering: Photovoltaic Energy Conversion](../courses/energy-storage-pv/122-pv-energy-conversion.md) — **Elective option**; Delft University of Technology; Mainline; A
-- [Electrochemical Energy Systems](../courses/energy-storage-pv/123-10-626.md) — **Elective option**; MIT; Alternative; A
+- [Electrochemical Energy Systems](../courses/energy-storage-pv/123-10-626.md) — **Elective option**; MIT; Mainline; A
 
 **Stage exit criterion:** Construct one scenario combining a grid, machine, and selected energy technology with power-flow or energy-balance residual below 1%; then run an N-1, fault, or operating-point transition analysis and report constraint violations and recovery time.
 

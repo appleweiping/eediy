@@ -19,9 +19,19 @@ particular:
 - never commit credentials, restricted course files, personal data, or copied
   paid material.
 
+For researched course guides, also read the
+[course-page editorial standard](EDITORIAL_QUALITY.md). It defines the
+`catalogue` / `researched` / `learner-reviewed` states, F/L/C/E claim
+provenance, R0–R4 experience evidence, hard failures, and the adversarial review
+required before publication.
+
 请先阅读完整的[编辑贡献指南](docs/contributing.md)。事实应优先引用课程或机构官方
 页面；核验事实与编辑判断必须分开；访问、许可、硬件、成本与安全约束不能隐藏；
 中英文内容要同步更新；不得提交凭证、受限课程文件、个人数据或复制的付费材料。
+
+深度课程导读还必须遵守
+[课程页编辑标准](EDITORIAL_QUALITY.md)：页面状态、事实与经验来源、R0–R4 证据、
+硬失败和对抗审查都不能省略。
 
 ## Development setup / 开发环境
 
@@ -49,10 +59,11 @@ course_candidates + tracks + course_resources
   → project-enriched courses.json + course_editorial
   → apply_course_editorial.py
   → canonical courses.json + routes + mainline_audit review annotations
+  + course_guides.json + bilingual content/course-guides fragments
   → generate_course_pages.py
   → generated bilingual Markdown / 生成的双语 Markdown
-  → sync_navigation.py
-  → complete bilingual navigation / 完整双语导航
+  → sync_navigation.py + course_guides manifest
+  → curated bilingual navigation / 只直列深度导读的双语导航
 
 mainline_audit → validate_mainline_audit.py ─┐
 other validators and tests / 其他验证器与测试 ┴→ release gate / 发布门禁
@@ -60,16 +71,17 @@ other validators and tests / 其他验证器与测试 ┴→ release gate / 发�
 
 The compiler joins `data/course_candidates.json`, `data/tracks.json`, and
 `data/course_resources.json`. Project and editorial records are subsequent
-overlays on `data/courses.json`; canonical courses and `data/routes.json` feed
-the page generator. `data/mainline_audit.json` does not alter canonical course
-data: it supplies visible review annotations to generated pages and remains an
-independent release gate. Edit the layer that owns the claim. Do not hand-edit
+overlays on `data/courses.json`; canonical courses, `data/routes.json`, and the
+researched-guide manifest plus bilingual fragments feed the page generator.
+`data/mainline_audit.json` does not alter canonical course data: it supplies
+visible review annotations to generated pages and remains an independent
+release gate. Edit the layer that owns the claim. Do not hand-edit
 `data/courses.json` or generated pages under `docs/courses/`,
 `docs/en/courses/`, `docs/routes/`, or `docs/en/routes/`.
 
 编译器合并 `data/course_candidates.json`、`data/tracks.json` 与
 `data/course_resources.json`；项目和编辑记录随后叠加到 `data/courses.json`。
-权威课程目录与 `data/routes.json` 共同驱动页面生成。
+权威课程目录、`data/routes.json`、导读清单和双语导读片段共同驱动页面生成。
 `data/mainline_audit.json` 不改写权威课程数据，只向生成页面提供可见复核标注，
 同时仍是独立发布门禁。请修改对事实负责的权威层；不得手改 `data/courses.json`，
 也不得手改 `docs/courses/`、
@@ -88,6 +100,8 @@ python scripts/apply_course_editorial.py
 python scripts/validate_courses.py
 python scripts/validate_mainline_audit.py
 python scripts/validate_routes.py
+python scripts/check_course_guides.py
+python scripts/check_editorial_quality.py
 python scripts/generate_course_pages.py
 python scripts/sync_navigation.py --write
 python scripts/run_quality.py

@@ -255,12 +255,12 @@
   {
     "source_id": 24,
     "summary": {
-      "zh": "MIT 的《Introduction to Electronics, Signals, and Measurement》把电子学、信号与测量放入同一实验框架；讲义、练习、实验和考试完整，但 LabVIEW 环境较旧。",
-      "en": "MIT's Introduction to Electronics, Signals, and Measurement unifies electronics, signals, and measurement in one laboratory framework, with strong notes, practice, labs, and exams but a dated LabVIEW environment."
+      "zh": "MIT 的《Introduction to Electronics, Signals, and Measurement》把电子学、信号与测量放入 25 次实验、10 份作业、3 次 quiz 和期末考试的框架；部分实验有解，但作业与考试没有答案，LabVIEW 和仪器生态也较旧。",
+      "en": "MIT's Introduction to Electronics, Signals, and Measurement unifies electronics, signals, and measurement across twenty-five laboratory sessions, ten homework sets, three quizzes, and a final, with selected lab solutions but no homework or exam answers and a dated LabVIEW instrument ecosystem."
     },
     "review_note": {
-      "zh": "LabVIEW 虚拟仪器及其配套仪器生态已经过时。",
-      "en": "LabVIEW virtual instruments and the instrument ecosystem are dated."
+      "zh": "25 次实验以及 Lab 2、Lab 3、Lab 4 和心率监测器的部分解答材料已公开；但 LabVIEW 虚拟仪器和硬件生态较旧，10 份作业、3 次 quiz 与期末考试也没有答案。",
+      "en": "Twenty-five laboratory sessions and selected Lab 2, Lab 3, Lab 4, and heart-rate-monitor solution materials are public, but the LabVIEW virtual instruments and hardware ecosystem are dated, and the ten homework sets, three quizzes, and final do not include solutions."
     }
   },
   {
@@ -387,8 +387,8 @@
   {
     "source_id": 36,
     "summary": {
-      "zh": "IIT Madras / NPTEL 的《Analog IC Design》以 2026 年 12 周视频大纲提供模拟集成电路设计主线，并保留 2018 年归档作为补充；分级反馈与证书考试依赖注册，且没有公开 EDA 项目。",
-      "en": "IIT Madras / NPTEL's Analog IC Design provides a current 2026 twelve-week video spine for analog integrated-circuit design with the 2018 archive retained as a supplement, while graded feedback and the certificate exam depend on enrollment and no open EDA project is provided."
+      "zh": "IIT Madras / NPTEL 的《Analog IC Design》以 2026 年 12 周视频大纲提供模拟集成电路视频伴学，并保留 2018 年归档作为补充；分级反馈与证书考试依赖注册，且没有公开 EDA 项目。",
+      "en": "IIT Madras / NPTEL's Analog IC Design provides a current 2026 twelve-week video companion for analog integrated-circuit study with the 2018 archive retained as a supplement, while graded feedback and the certificate exam depend on enrollment and no open EDA project is provided."
     },
     "review_note": {
       "zh": "当前 2026 年课程提供结构化的 12 周视频大纲，但分级反馈与可选证书考试依赖注册，且没有公开 EDA 项目。",
@@ -475,12 +475,12 @@
   {
     "source_id": 44,
     "summary": {
-      "zh": "University of California, Berkeley 的《Digital Design and Integrated Circuits》提供数字集成电路设计的当前课程身份与目标，可用于校准学习范围；公开目录不提供可独立完成的教学骨架，课程归档需 CalNet，工业 EDA 实验也受限。",
-      "en": "University of California, Berkeley's Digital Design and Integrated Circuits provides a current curriculum identity and scope for digital IC design, but the public catalog is not an independently executable teaching spine, its archives require CalNet, and industrial EDA labs are restricted."
+      "zh": "University of California, Berkeley 的《Digital Design and Integrated Circuits》以公开目录和 HKN 经教师同意发布的已解考试提供数字集成电路课程范围与考核参照；当前及历史课程归档会把匿名用户转到 CalNet，课程本身并不是可公开独立执行的教学主线。",
+      "en": "University of California, Berkeley's Digital Design and Integrated Circuits provides a current digital-IC curriculum reference and solved assessment samples through the public catalog and Berkeley HKN's instructor-consented exam archive, while current and historical course sites redirect anonymous users to CalNet and do not form a publicly executable teaching spine."
     },
     "review_note": {
-      "zh": "当前目录能够确认课程范围，但课程归档需要 CalNet，工业 EDA 实验也受限；本条记录不能作为可独立完成的公开课程。",
-      "en": "The current catalog confirms the curriculum, but its course archives require CalNet and the industrial EDA laboratories are restricted; this record is not an independently executable public course."
+      "zh": "公开目录与 Berkeley HKN 经教师同意发布的已解考试可用，但当前和历史课程归档会把匿名用户转到 CalNet；搜索引擎索引的静态讲义与实验页不能作为可直接访问的证据。ASIC 流程需要机构 VCS/DC/Innovus，FPGA 路径需要 Vivado 与 PYNQ 类板卡；本记录只是课程范围与考核伴学，不是可公开独立执行的课程。",
+      "en": "The catalog and Berkeley HKN's instructor-consented solved exam archive are public, but the live current and historical course archives redirect anonymous users to CalNet. Search-engine-indexed static lecture and lab pages are not directly landable. The ASIC flow requires institutional VCS/DC/Innovus access and the FPGA path requires Vivado plus a PYNQ-class board; this is a curriculum-and-assessment companion, not a publicly executable course."
     }
   },
   {
@@ -629,12 +629,12 @@
   {
     "source_id": 58,
     "summary": {
-      "zh": "Stanford University 的《Computer Systems from the Ground Up》用 2026 年 RISC-V 材料、视频、实验与代码连接底层计算机系统和嵌入式实践；Mango Pi 套件的地区供应是主要限制。",
-      "en": "Stanford University's Computer Systems from the Ground Up connects low-level computer systems and embedded practice through 2026 RISC-V videos, labs, and code, with regional Mango Pi kit availability as its main constraint."
+      "zh": "Stanford University 的《Computer Systems from the Ground Up》用 2026 年 RISC-V 讲义、实验与代码连接底层计算机系统和嵌入式实践；正式 lecture 不录制，Mango Pi 套件的地区供应也是限制。",
+      "en": "Stanford University's Computer Systems from the Ground Up connects low-level computer systems and embedded practice through 2026 RISC-V notes, labs, and code; formal lectures are not recorded, and regional Mango Pi kit availability is another constraint."
     },
     "review_note": {
-      "zh": "2026 年春季的 RISC-V 课程使用 Mango Pi 开发板与套件，其地区供应情况不一。",
-      "en": "The Spring 2026 RISC-V course uses a Mango Pi board and kit whose regional availability varies."
+      "zh": "2026 年春季课程的 lecture 不录制；课程使用 Mango Pi 开发板与套件，其地区供应情况不一。",
+      "en": "Spring 2026 lectures are not recorded, and the required Mango Pi board and kit have variable regional availability."
     }
   },
   {
@@ -739,12 +739,12 @@
   {
     "source_id": 68,
     "summary": {
-      "zh": "Stanford University 的《Introduction to Linear Dynamical Systems》以视频、讲义、练习、考试和代码提供线性动态系统主线；MATLAB 材料虽旧，但整体学习闭环异常完整。",
-      "en": "Stanford University's Introduction to Linear Dynamical Systems provides a linear-systems spine through videos, notes, practice, exams, and code, with an unusually complete loop despite dated MATLAB materials."
+      "zh": "Stanford University 的《Introduction to Linear Dynamical Systems (2008 Archive)》提供视频、讲义、作业、考试和代码；自 Fall 2025 起，EE263 已换成 Matrix Methods/SVD，新旧课程必须分开。",
+      "en": "Stanford University's Introduction to Linear Dynamical Systems (2008 Archive) provides videos, notes, homework, exams, and code. Since Fall 2025, EE263 has denoted a different Matrix Methods/SVD course, so the two versions must remain separate."
     },
     "review_note": {
-      "zh": "MATLAB 材料已经过时，但可以迁移到 Python；其余学习闭环异常完整。",
-      "en": "The MATLAB materials are old but can be migrated to Python; the remaining learning loop is unusually complete."
+      "zh": "本条目是 Stephen Boyd 的 2008 LDS 归档。自 Fall 2025 起，EE263 指另一门 Matrix Methods/SVD 课程；归档 MATLAB 数据和当前 Julia 作业不得混用。",
+      "en": "This record is the Stephen Boyd 2008 LDS archive. Since Fall 2025, EE263 denotes a different Matrix Methods/SVD course; archive MATLAB data and current Julia homework must not be mixed."
     }
   },
   {
@@ -959,12 +959,12 @@
   {
     "source_id": 88,
     "summary": {
-      "zh": "MIT 的《Digital Signal Processing》以完整视频和十九套带解答习题建立 DSP 理论主线；反馈质量高，但核心教材年代较早且没有编程实验。",
-      "en": "MIT's Digital Signal Processing builds a DSP theory spine from a complete lecture series and nineteen solved problem sets, with excellent feedback but an old core text and no coding lab."
+      "zh": "MIT 的《Digital Signal Processing》以 20 课完整视频、讲义内习题和后 19 课对应的解答包建立 DSP 理论主线；反馈质量高，但核心教材年代较早且没有编程实验。",
+      "en": "MIT's Digital Signal Processing builds a DSP theory spine from twenty complete video lessons, problems embedded in the notes, and solution packets for Lessons 2–20; feedback is strong, but the core text is old and there is no coding lab."
     },
     "review_note": {
-      "zh": "十九套带解答习题和完整授课视频系列非常出色，但核心教材出版于 1975 年，且没有编程实验。",
-      "en": "Nineteen solved problem sets and a complete lecture series are excellent, but the core text dates to 1975 and there is no coding laboratory."
+      "zh": "20 课视频与讲义内习题形成连续主线，后 19 课另有解答包；但核心教材出版于 1975 年，且没有编程实验。",
+      "en": "Problems are embedded in twenty lesson notes and Lectures 2–20 have solution packets; the core text dates to 1975 and there is no coding laboratory."
     }
   },
   {
@@ -1168,12 +1168,12 @@
   {
     "source_id": 107,
     "summary": {
-      "zh": "Cornell University 的《Electromagnetic Fields and Waves》以 28 份讲义、12 套带解答作业和四套带解答考试建立电磁场与波的文本主线；虽无视频，反馈闭环完整。",
-      "en": "Cornell University's Electromagnetic Fields and Waves builds a text-first electromagnetics spine from 28 notes, twelve solved homework sets, and four solved exams, providing a complete loop without video."
+      "zh": "Cornell University 的《Electromagnetic Fields and Waves》以 36 组讲义、12 套带解答作业和四套带解答考试建立电磁场与波的文本主线；虽无视频，反馈闭环完整。",
+      "en": "Cornell University's Electromagnetic Fields and Waves builds a text-first electromagnetics spine from thirty-six handout groups, twelve solved homework sets, and four solved exams, providing a complete loop without video."
     },
     "review_note": {
-      "zh": "28 份讲义、12 套带解答作业和四套带解答考试组成完整文本闭环，但这门 2007 年课程没有视频。",
-      "en": "Twenty-eight notes, twelve solved homework sets, and four solved exams form a complete text loop, but the 2007 course has no video."
+      "zh": "36 组讲义、12 套带解答作业和四套带解答考试组成完整文本闭环，但这门 2007 年课程没有视频。",
+      "en": "Thirty-six handout groups, twelve solved homework sets, and four solved exams form a strong text loop, but the 2007 course has no video."
     }
   },
   {
@@ -1344,12 +1344,12 @@
   {
     "source_id": 123,
     "summary": {
-      "zh": "MIT 的《Electrochemical Energy Systems》以讲义和考试补充电化学储能系统；考试答案完整，但课程要求研究生层次电化学与传输数学，习题也没有答案。",
-      "en": "MIT's Electrochemical Energy Systems supplements energy-storage study through notes and exams, with complete exam solutions but graduate electrochemistry and transport prerequisites and unsolved problem sets."
+      "zh": "MIT 的《Electrochemical Energy Systems》以 38 次课程讲义、5 份无解习题、一次带解答期中和一次无解期末构成电化学储能主线；课程要求研究生层次的电化学与传输数学。",
+      "en": "MIT's Electrochemical Energy Systems builds an electrochemical-storage spine from thirty-eight class-note sessions, five unsolved problem sets, one solved midterm, and one unsolved final, under graduate electrochemistry and transport-mathematics prerequisites."
     },
     "review_note": {
-      "zh": "需要研究生层次的电化学与传输数学基础；尽管考试答案完整，习题集仍没有答案。",
-      "en": "Graduate electrochemistry and transport mathematics are prerequisites; problem sets lack solutions even though exam solutions are complete."
+      "zh": "课程要求研究生层次的电化学与传输数学基础。5 份习题明确没有答案；2014 年期中有解答，期末没有解答。",
+      "en": "Graduate electrochemistry and transport mathematics are prerequisites. The five problem sets explicitly have no solutions; the 2014 midterm has a solution, while the final does not."
     }
   },
   {
@@ -1443,12 +1443,12 @@
   {
     "source_id": 132,
     "summary": {
-      "zh": "IIT Madras / NPTEL 的《Introduction to Photonics》以视频、练习答案和演示建立光子学主线；反馈资源较强，但当前考核访问可能依赖报名。",
-      "en": "IIT Madras / NPTEL's Introduction to Photonics builds a photonics spine through videos, solved assignments, and demonstrations, with current assessment access potentially depending on enrollment."
+      "zh": "IIT Madras / NPTEL 的《Introduction to Photonics》公开 34 个主题讲次、4 个 tutorial 和 10 个实验演示，能形成宽口径光子学主线；匿名公开 API 没有作业、答案或评分入口。",
+      "en": "IIT Madras / NPTEL's Introduction to Photonics provides thirty-four topic lectures, four tutorials, and ten laboratory demonstrations for a broad photonics spine, but the anonymous public API exposes no assignments, answers, or grading endpoint."
     },
     "review_note": {
-      "zh": "作业、答案与演示都很强，但当前考核的访问可能取决于是否报名。",
-      "en": "Assignments, solutions, and demonstrations are strong, but current assessment access may depend on enrollment."
+      "zh": "实验条目是演示而非家庭光学实验；公开层未核验到作业与答案，独立学习者需要另建反馈链。",
+      "en": "The laboratory items are demonstrations rather than home optics labs; no public assignments or answers were verified, so independent learners need a separate feedback loop."
     }
   },
   {
@@ -1465,12 +1465,12 @@
   {
     "source_id": 134,
     "summary": {
-      "zh": "MIT 的《Optics》以讲义、习题和考试提供严格的光学理论主线；理论与考核闭环优秀，但没有完整视频或可复现实体实验。",
-      "en": "MIT's Optics provides a rigorous optics theory spine through notes, problems, and exams, with an excellent assessment loop but no full video series or reproducible physical lab."
+      "zh": "MIT 的《Optics》以 10 组讲义、6 份习题和多套 quiz/期末考试提供严格光学理论主线；习题 1–4 有解而 5–6 无解，考试反馈较强，但没有完整视频或公开可复现实验。",
+      "en": "MIT's Optics provides a rigorous theory spine through ten groups of notes, six problem sets, and multiple quiz and final sets; problem sets 1–4 are solved while 5–6 are not, assessment feedback is strong, and no full video series or public reproducible lab is available."
     },
     "review_note": {
-      "zh": "理论与考核闭环非常出色，但没有完整授课视频系列或可复现的实体实验。",
-      "en": "The theory and assessment loop is excellent, but there is no full lecture-video series or reproducible physical laboratory."
+      "zh": "理论与考核闭环较强：习题 1–4 有解、5–6 无解，多套 quiz 与期末考试带解答；但没有完整授课视频系列或公开可复现的实体实验。",
+      "en": "The theory and assessment loop is strong: problem sets 1–4 have solutions, while 5–6 do not, and multiple quiz and final sets include solutions. There is no full lecture-video series or public reproducible physical laboratory."
     }
   },
   {
@@ -1487,8 +1487,8 @@
   {
     "source_id": 136,
     "summary": {
-      "zh": "IIT Kharagpur / NPTEL 的《Electrical Measurement and Electronic Instruments》以 84 个以上视频和演示广泛覆盖电测量与电子仪器；讲授面广，但没有可复现家庭实验或代码闭环。",
-      "en": "IIT Kharagpur / NPTEL's Electrical Measurement and Electronic Instruments surveys measurement and instrumentation through more than 84 videos and demonstrations, while lacking a reproducible home lab and code loop."
+      "zh": "IIT Kharagpur / NPTEL 的《Electrical Measurement and Electronic Instruments》以 84 个以上视频和演示提供电测量与电子仪器的开放理论主线；讲授面广，但没有可复现家庭实验、代码或答案闭环。",
+      "en": "IIT Kharagpur / NPTEL's Electrical Measurement and Electronic Instruments provides an open theory spine for measurement and instrumentation through more than eighty-four videos and demonstrations, while lacking a reproducible home lab, code, and answer loop."
     },
     "review_note": {
       "zh": "84 个以上的视频与演示带来广泛覆盖，但没有可复现的家庭实验或编程闭环。",
@@ -1498,8 +1498,8 @@
   {
     "source_id": 137,
     "summary": {
-      "zh": "IISER Bhopal / NPTEL 的《Sensor Technologies: Physics, Fabrication, and Circuits》从传感器物理延伸到制造与电路；视频主线覆盖面完整，但没有开放的搭建测试闭环。",
-      "en": "IISER Bhopal / NPTEL's Sensor Technologies: Physics, Fabrication, and Circuits spans sensor physics, fabrication, and circuits through a broad video spine, but provides no open build-and-test loop."
+      "zh": "IISER Bhopal / NPTEL 的《Sensor Technologies: Physics, Fabrication, and Circuits》以公开视频补充从传感器物理到制造与电路的广泛主题；没有开放的搭建测试或答案闭环，因此定位为理论补充。",
+      "en": "IISER Bhopal / NPTEL's Sensor Technologies: Physics, Fabrication, and Circuits supplements sensor study through a broad public video sequence spanning physics, fabrication, and circuits, but remains a theory companion because it has no open build-and-test or answer loop."
     },
     "review_note": {
       "zh": "课程覆盖从传感器物理到电路的完整范围，但没有开放的搭建与测试闭环。",
@@ -1509,12 +1509,12 @@
   {
     "source_id": 138,
     "summary": {
-      "zh": "University of Colorado Boulder 的《Sensors and Sensor Circuit Design》以视频、练习、实验和代码训练传感器接口电路；实践链较强，但依赖旧款 PSoC 5LP 与 Windows 工具链。",
-      "en": "University of Colorado Boulder's Sensors and Sensor Circuit Design develops sensor-interface circuits through videos, practice, labs, and code, with a strong sequence tied to an older PSoC 5LP and Windows toolchain."
+      "zh": "University of Colorado Boulder 的《Sensors and Sensor Circuit Design》以 5 个模块、5 项作业、热敏电阻实验和课程项目构成有条件的传感器实践主线；实际材料与作业需要付费课程体验，实验还依赖 PSoC 5LP、配套器件、示波器和 Windows 工具链。",
+      "en": "University of Colorado Boulder's Sensors and Sensor Circuit Design forms an access-dependent practical sensor spine from five modules, five assignments, a thermistor laboratory, and a course project, while the actual materials and assignments require the paid course experience and the lab depends on a PSoC 5LP, supporting parts, an oscilloscope, and a Windows toolchain."
     },
     "review_note": {
-      "zh": "实验依赖较旧的 PSoC 5LP 套件与 Windows 工具链，且 Coursera 访问可能需要付费。",
-      "en": "The laboratory depends on an older PSoC 5LP kit and Windows toolchain, and Coursera access may require payment."
+      "zh": "公开落地页列出 5 个模块、5 项作业、热敏电阻实验、课程项目及 PSoC 5LP/LCD/器件/示波器清单。实际材料与作业需要付费证书体验；平台可能提供试用，但不保证无证书访问。实验依赖较旧的 PSoC 5LP 与 Windows 工具链，因此本课是有条件实践主线，不是完全开放或硬件中立的课程。",
+      "en": "The public landing page documents five modules, five assignments, a thermistor laboratory, a course project, and an explicit PSoC 5LP/LCD/components/oscilloscope bill of materials. The actual learning materials and assignments require the paid certificate experience (a trial may be offered and no-certificate access is not guaranteed), and the laboratory depends on an older PSoC 5LP and Windows toolchain. Treat this as an access-dependent practical spine, not a fully open or hardware-neutral course."
     }
   },
   {
@@ -1537,6 +1537,17 @@
     "review_note": {
       "zh": "应将 MATLAB 工作流与旧的 MIT 托管数据链接迁移到 Python 和当前数据集。",
       "en": "The MATLAB workflow and old MIT-hosted data links should be migrated to Python and current datasets."
+    }
+  },
+  {
+    "source_id": 141,
+    "summary": {
+      "zh": "University of California, Berkeley 的《Analog Integrated Circuits》以 2025 年 21 份公开讲义、10 份作业、部分当前答案、历年已解考试、8 个实验和一项模拟 IC 设计项目构成高强度主线；课程从单级与差分放大器推进到稳定性补偿、偏置、折叠共栅、开关电容、ADC、比较器与噪声。",
+      "en": "University of California, Berkeley's Analog Integrated Circuits forms a demanding analog-IC spine from twenty-one public 2025 lecture decks, ten homework sets, partial current solutions, archived solved exams, eight laboratories, and a design project, progressing from single-stage and differential amplifiers through compensation, biasing, folded cascodes, switched capacitors, ADCs, comparators, and noise."
+    },
+    "review_note": {
+      "zh": "官方先修是 EE 105（现有课程 ID 31）。Lab 1 可用 LTspice；Lab 2–8 与项目依赖伯克利 Cadence/Virtuoso 服务器和 SKY130 环境。Razavi 或 Gray 教材需付费，页面未声明可再分发许可。EEDIY 可以链接原资料并给出模拟主线，但在独立验证开源 PDK/EDA 移植前，不能声称完整实验可在校外复现。",
+      "en": "The official prerequisite is EE 105 (existing course ID 31). Lab 1 uses LTspice; Labs 2–8 and the project depend on Berkeley's Cadence/Virtuoso servers and SKY130 environment. The Razavi or Gray text is paid and no redistribution license is stated. EEDIY may link the originals and teach the simulation spine, but must not claim full off-campus reproducibility until an open PDK/EDA port is independently validated."
     }
   }
 ]

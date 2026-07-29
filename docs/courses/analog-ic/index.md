@@ -4,16 +4,13 @@ description: "偏置、增益级、反馈、噪声、数据转换与版图意识
 page_type: track
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0a44b979e99076d1 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: be821fa0576b3252 -->
 
 # 模拟与混合信号集成电路
 
 ## 方向定位
 
 偏置、增益级、反馈、噪声、数据转换与版图意识，以仿真和设计权衡为核心。
-
-!!! warning "主线审计复核中"
-    - [Analog IC Design](036-108106105-noc26-ee66.md)：2026 年官方 12 周视频大纲已确认，但评分反馈和证书考试依赖注册，没有公开 EDA 项目；资源清单仍只收录旧版归档入口。
 
 ## 建议先修方向
 
@@ -22,13 +19,14 @@ page_type: track
 
 ## 建议顺序
 
-1. [Analog IC Design](036-108106105-noc26-ee66.md) — 审计复核中
+1. [Analog Integrated Circuits](141-ee-140-ee-240a.md)
 
 ## 课程清单
 
 | 课程 | 机构 | 角色 | 评级 | 实践资源 |
 |---|---|---|---|---|
-| [Analog IC Design](036-108106105-noc26-ee66.md) | IIT Madras / NPTEL | 主线 — 审计复核中 | A | 部分 |
+| [Analog Integrated Circuits](141-ee-140-ee-240a.md) | University of California, Berkeley | 主线 | A | 完整 |
+| [Analog IC Design](036-108106105-noc26-ee66.md) | IIT Madras / NPTEL | 补充 | A | 部分 |
 
 ## 如何选课
 

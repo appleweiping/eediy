@@ -171,3 +171,29 @@ def test_forbidden_scanner_reports_custom_pattern(tmp_path: Path) -> None:
     )
     assert len(issues) == 1
     assert issues[0].line == 1
+
+
+def test_forbidden_scanner_allows_honest_upstream_attribution(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "NOTICE.md"
+    path.write_text(
+        "Template lineage: CSDIY / PKUFlyingPig/cs-self-learning.\n",
+        encoding="utf-8",
+    )
+
+    assert forbidden_issues(tmp_path) == []
+
+
+def test_forbidden_scanner_prunes_generated_directories(tmp_path: Path) -> None:
+    generated = tmp_path / "build" / "nested"
+    generated.mkdir(parents=True)
+    (generated / "page.md").write_text("unfinished marker", encoding="utf-8")
+
+    assert (
+        forbidden_issues(
+            tmp_path,
+            denied_terms=(("unfinished", "unfinished marker"),),
+        )
+        == []
+    )

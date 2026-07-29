@@ -45,7 +45,7 @@ page_type: route
 
 - [Computer Architecture](../courses/computer-architecture/046-ece-4750.md) — **必修**; Cornell University; 主线; A
 - [Computer System Architecture](../courses/computer-architecture/047-6-823.md) — **选修候选**; MIT; 替代; A
-- [Great Ideas in Computer Architecture](../courses/computer-architecture/048-cs-61c.md) — **选修候选**; University of California, Berkeley; 替代; A
+- [Great Ideas in Computer Architecture](../courses/computer-architecture/048-cs-61c.md) — **选修候选**; University of California, Berkeley; 主线; A
 - [Advanced Microcontroller Design and System-on-Chip](../courses/fpga-soc/052-ece-5760.md) — **选修候选**; Cornell University; 替代; A
 - [Secure Hardware Design](../courses/hardware-security/053-6-5950.md) — **必修**; MIT; 主线; A
 

@@ -104,6 +104,29 @@ def _as_list(value: Any, source: str) -> list[Any]:
     return value
 
 
+def _guide_course_ids(value: Any | None) -> set[int] | None:
+    if value is None:
+        return None
+    data = _as_mapping(value, "course guide data")
+    guides = _as_list(data.get("guides"), "course guide data.guides")
+    course_ids: set[int] = set()
+    for index, raw_guide in enumerate(guides):
+        guide = _as_mapping(raw_guide, f"course guide data.guides[{index}]")
+        course_id = guide.get("course_id")
+        if (
+            not isinstance(course_id, int)
+            or isinstance(course_id, bool)
+            or course_id < 1
+        ):
+            raise QualityError(
+                f"course guide data.guides[{index}].course_id must be a positive integer"
+            )
+        if course_id in course_ids:
+            raise QualityError(f"duplicate course guide id: {course_id}")
+        course_ids.add(course_id)
+    return course_ids
+
+
 def _localized(
     value: Mapping[str, Any],
     language: str,
@@ -191,13 +214,16 @@ def generate_navigation(
     tracks_value: Any,
     routes_value: Any,
     *,
+    course_guides_value: Any | None = None,
     docs_root: Path | None = None,
 ) -> list[dict[str, Any]]:
-    """Build the complete bilingual MkDocs navigation tree.
+    """Build the curated bilingual MkDocs navigation tree.
 
     Track groups and tracks follow their declaration order/order values in
     ``tracks.json``. Courses use an explicit ``order`` when present and fall
-    back to the stable source id used to generate their filenames.
+    back to the stable source id used to generate their filenames. When a
+    course-guide manifest is supplied, only researched guides appear as direct
+    sidebar articles; catalogue records remain reachable from track indexes.
     """
 
     courses_data = _as_mapping(courses_value, "courses data")
@@ -208,6 +234,7 @@ def generate_navigation(
     tracks = _as_list(tracks_data.get("tracks"), "tracks.tracks")
     courses = _as_list(courses_data.get("courses"), "courses.courses")
     routes = _as_list(routes_data.get("routes"), "routes.routes")
+    guide_course_ids = _guide_course_ids(course_guides_value)
 
     group_ids: set[str] = set()
     for index, raw_group in enumerate(groups):
@@ -242,21 +269,42 @@ def generate_navigation(
         track_id: [] for track_id in tracks_by_id
     }
     course_paths: set[tuple[str, str]] = set()
+    catalogue_course_ids: set[int] = set()
     for index, raw_course in enumerate(courses):
         course = _as_mapping(raw_course, f"courses.courses[{index}]")
         track_id = course.get("track")
         slug = course.get("slug")
+        source_id = course.get("source_id")
         if not isinstance(track_id, str) or track_id not in courses_by_track:
             raise QualityError(
                 f"course at index {index} references unknown track {track_id!r}"
             )
         if not isinstance(slug, str) or not slug:
             raise QualityError(f"courses.courses[{index}].slug must be non-empty")
+        if (
+            not isinstance(source_id, int)
+            or isinstance(source_id, bool)
+            or source_id < 1
+        ):
+            raise QualityError(
+                f"courses.courses[{index}].source_id must be a positive integer"
+            )
+        if source_id in catalogue_course_ids:
+            raise QualityError(f"duplicate course source id: {source_id}")
+        catalogue_course_ids.add(source_id)
         key = (track_id, slug)
         if key in course_paths:
             raise QualityError(f"duplicate course path: {track_id}/{slug}.md")
         course_paths.add(key)
-        courses_by_track[track_id].append(course)
+        if guide_course_ids is None or source_id in guide_course_ids:
+            courses_by_track[track_id].append(course)
+    if guide_course_ids is not None:
+        missing_guide_ids = sorted(guide_course_ids - catalogue_course_ids)
+        if missing_guide_ids:
+            raise QualityError(
+                "course guide ids are missing from the catalogue: "
+                + ", ".join(str(course_id) for course_id in missing_guide_ids)
+            )
 
     route_ids: set[str] = set()
     normalized_routes: list[Mapping[str, Any]] = []
@@ -472,12 +520,14 @@ def _load_navigation(
     courses_path: Path,
     tracks_path: Path,
     routes_path: Path,
+    course_guides_path: Path,
     docs_root: Path,
 ) -> str:
     navigation = generate_navigation(
         load_json(courses_path),
         load_json(tracks_path),
         load_json(routes_path),
+        course_guides_value=load_json(course_guides_path),
         docs_root=docs_root,
     )
     return render_navigation(navigation)
@@ -491,6 +541,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--courses", default="data/courses.json")
     parser.add_argument("--tracks", default="data/tracks.json")
     parser.add_argument("--routes", default="data/routes.json")
+    parser.add_argument("--course-guides", default="data/course_guides.json")
     parser.add_argument("--docs-dir", default="docs")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--write", action="store_true")
@@ -506,6 +557,7 @@ def main(argv: list[str] | None = None) -> int:
             repo_path(args.courses),
             repo_path(args.tracks),
             repo_path(args.routes),
+            repo_path(args.course_guides),
             repo_path(args.docs_dir),
         )
         config_text = config_path.read_text(encoding="utf-8")

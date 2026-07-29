@@ -1,29 +1,29 @@
 {
   "schema_version": "1.0",
-  "last_verified": "2026-07-28",
+  "last_verified": "2026-07-29",
   "verification_semantics": "available means the resource was discoverable on a successfully fetched official source page on the verification date; review-needed means the seed could not be fetched or an extracted link leaves the official or trusted educational host.",
   "stats": {
-    "candidate_courses": 140,
-    "courses_with_any_resource": 140,
-    "courses_with_available_landing": 94,
-    "courses_with_extracted_resources": 96,
-    "total_resources": 1512,
-    "available_resources": 1502,
+    "candidate_courses": 141,
+    "courses_with_any_resource": 141,
+    "courses_with_available_landing": 95,
+    "courses_with_extracted_resources": 97,
+    "total_resources": 1531,
+    "available_resources": 1520,
     "review_needed_resources": 10,
     "by_kind": {
-      "assignments": 346,
+      "assignments": 350,
       "code": 40,
-      "course": 215,
-      "exams": 205,
-      "labs": 108,
-      "notes": 506,
+      "course": 217,
+      "exams": 208,
+      "labs": 116,
+      "notes": 507,
       "projects": 34,
       "textbook": 5,
-      "video": 53
+      "video": 54
     },
     "by_access": {
       "free-audit": 3,
-      "open": 1482,
+      "open": 1501,
       "open-registration": 27
     },
     "fetches": {
@@ -49,10 +49,12 @@
         "platform-unrelated": 34,
         "same-host-outside-course": 88
       },
-      "final_resources_after_balanced_cap": 1512,
-      "refilter_input_resources": 1512,
-      "refilter_output_resources": 1512,
-      "refilter_removed_by_reason": {}
+      "final_resources_after_balanced_cap": 1531,
+      "refilter_input_resources": 1534,
+      "refilter_output_resources": 1531,
+      "refilter_removed_by_reason": {
+        "same-host-outside-course": 3
+      }
     },
     "hard_blacklist_matches": 0,
     "title_quality": {
@@ -254,7 +256,7 @@
         "sampled_courses": [
           {
             "course_id": 27,
-            "course_title": "Real Analog Coursework",
+            "course_title": "Real Analog Courses",
             "resource_count": 1,
             "by_kind": {
               "course": 1
@@ -262,7 +264,7 @@
             "sample_resources": [
               {
                 "kind": "course",
-                "title": "Real Analog Coursework — official course overview",
+                "title": "Real Analog Courses — official course overview",
                 "url": "https://digilent.com/shop/coursework-learning-resources"
               }
             ]
@@ -301,7 +303,7 @@
         "sampled_courses": [
           {
             "course_id": 57,
-            "course_title": "Designing with Microcontrollers",
+            "course_title": "Digital Systems Design Using Microcontrollers",
             "resource_count": 1,
             "by_kind": {
               "course": 1
@@ -309,7 +311,7 @@
             "sample_resources": [
               {
                 "kind": "course",
-                "title": "Designing with Microcontrollers — official course overview",
+                "title": "Digital Systems Design Using Microcontrollers — official course overview",
                 "url": "https://ece4760.github.io/"
               }
             ]
@@ -317,12 +319,12 @@
         ]
       },
       {
-        "domain": "nptel.ac.in",
-        "available_courses": 2,
+        "domain": "fbswiki.org",
+        "available_courses": 1,
         "sampled_courses": [
           {
-            "course_id": 128,
-            "course_title": "Basic Overview of Semiconductor Device Processing and IC Fabrication",
+            "course_id": 73,
+            "course_title": "Feedback Systems: An Introduction for Scientists and Engineers",
             "resource_count": 1,
             "by_kind": {
               "course": 1
@@ -330,14 +332,35 @@
             "sample_resources": [
               {
                 "kind": "course",
-                "title": "Basic Overview of Semiconductor Device Processing and IC Fabrication — official course overview",
-                "url": "https://nptel.ac.in/courses/108104865"
+                "title": "Feedback Systems: An Introduction for Scientists and Engineers — official course overview",
+                "url": "https://www.cds.caltech.edu/~murray/books/AM05/wiki"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "domain": "nptel.ac.in",
+        "available_courses": 12,
+        "sampled_courses": [
+          {
+            "course_id": 136,
+            "course_title": "Electrical Measurement and Electronic Instruments",
+            "resource_count": 1,
+            "by_kind": {
+              "course": 1
+            },
+            "sample_resources": [
+              {
+                "kind": "course",
+                "title": "Electrical Measurement and Electronic Instruments — official course overview",
+                "url": "https://www.nptel.ac.in/courses/108105153"
               }
             ]
           },
           {
-            "course_id": 132,
-            "course_title": "Introduction to Photonics",
+            "course_id": 36,
+            "course_title": "Analog IC Design",
             "resource_count": 1,
             "by_kind": {
               "course": 1
@@ -345,8 +368,23 @@
             "sample_resources": [
               {
                 "kind": "course",
-                "title": "Introduction to Photonics — official course overview",
-                "url": "https://nptel.ac.in/courses/108106135"
+                "title": "Analog IC Design — official course overview",
+                "url": "https://onlinecourses-archive.nptel.ac.in/noc18_ec05/preview"
+              }
+            ]
+          },
+          {
+            "course_id": 35,
+            "course_title": "Integrated Circuits, MOSFETs, OP-Amps and Their Applications",
+            "resource_count": 1,
+            "by_kind": {
+              "course": 1
+            },
+            "sample_resources": [
+              {
+                "kind": "course",
+                "title": "Integrated Circuits, MOSFETs, OP-Amps and Their Applications — official course overview",
+                "url": "https://www.nptel.ac.in/courses/108108111"
               }
             ]
           }
@@ -622,8 +660,52 @@
       },
       {
         "domain": "people.eecs.berkeley.edu",
-        "available_courses": 1,
+        "available_courses": 2,
         "sampled_courses": [
+          {
+            "course_id": 141,
+            "course_title": "Analog Integrated Circuits",
+            "resource_count": 16,
+            "by_kind": {
+              "assignments": 3,
+              "course": 2,
+              "exams": 2,
+              "labs": 8,
+              "notes": 1
+            },
+            "sample_resources": [
+              {
+                "kind": "course",
+                "title": "Analog Integrated Circuits — official course overview — people.eecs.berkeley.edu/140sp25",
+                "url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+              },
+              {
+                "kind": "course",
+                "title": "Analog Integrated Circuits — official course overview — www2.eecs.berkeley.edu/ELENG140",
+                "url": "https://www2.eecs.berkeley.edu/Courses/ELENG140"
+              },
+              {
+                "kind": "notes",
+                "title": "Spring 2025 lecture directory (21 PDFs)",
+                "url": "https://people.eecs.berkeley.edu/~pister/140sp25/lectures"
+              },
+              {
+                "kind": "assignments",
+                "title": "Homework 10 solution",
+                "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw/hw10soln.pdf"
+              },
+              {
+                "kind": "assignments",
+                "title": "Homework 8 solution",
+                "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw/hw8soln.pdf"
+              },
+              {
+                "kind": "assignments",
+                "title": "Spring 2025 homework directory (HW 1–10 and partial solutions)",
+                "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw"
+              }
+            ]
+          },
           {
             "course_id": 31,
             "course_title": "Microelectronic Devices and Circuits",
@@ -689,7 +771,7 @@
         "sampled_courses": [
           {
             "course_id": 68,
-            "course_title": "Introduction to Linear Dynamical Systems",
+            "course_title": "Introduction to Linear Dynamical Systems (2008 Archive)",
             "resource_count": 23,
             "by_kind": {
               "assignments": 5,
@@ -701,7 +783,7 @@
             "sample_resources": [
               {
                 "kind": "course",
-                "title": "Introduction to Linear Dynamical Systems — official course overview",
+                "title": "Introduction to Linear Dynamical Systems (2008 Archive) — official course overview",
                 "url": "https://see.stanford.edu/Course/EE263"
               },
               {
@@ -908,12 +990,12 @@
           {
             "course_id": 102,
             "course_title": "Information Theory",
-            "resource_count": 18,
+            "resource_count": 19,
             "by_kind": {
               "assignments": 10,
               "course": 2,
               "exams": 3,
-              "notes": 1,
+              "notes": 2,
               "video": 2
             },
             "sample_resources": [
@@ -939,13 +1021,13 @@
               },
               {
                 "kind": "notes",
-                "title": "Readings",
-                "url": "https://web.stanford.edu/class/ee276/reading.html"
+                "title": "Previous course notes",
+                "url": "https://web.stanford.edu/class/ee276/previous_notes.html"
               },
               {
-                "kind": "assignments",
-                "title": "Homework",
-                "url": "https://web.stanford.edu/class/ee276/homework.html"
+                "kind": "notes",
+                "title": "Readings",
+                "url": "https://web.stanford.edu/class/ee276/reading.html"
               }
             ]
           },
@@ -961,27 +1043,6 @@
                 "kind": "course",
                 "title": "Digital Systems Architecture — official course overview",
                 "url": "https://web.stanford.edu/class/ee180"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "domain": "www.cds.caltech.edu",
-        "available_courses": 1,
-        "sampled_courses": [
-          {
-            "course_id": 73,
-            "course_title": "Feedback Systems: An Introduction for Scientists and Engineers",
-            "resource_count": 1,
-            "by_kind": {
-              "course": 1
-            },
-            "sample_resources": [
-              {
-                "kind": "course",
-                "title": "Feedback Systems: An Introduction for Scientists and Engineers — official course overview",
-                "url": "https://www.cds.caltech.edu/~murray/books/AM05/wiki"
               }
             ]
           }
@@ -1109,7 +1170,7 @@
               },
               {
                 "kind": "course",
-                "title": "Solar Energy Engineering: Photovoltaic Energy Conversion — official TU Delft OpenCourseWare overview",
+                "title": "Solar Energy Engineering: Photovoltaic Energy Conversion — official course overview — ocw.tudelft.nl/solar-energy-engineering-photovoltaic-energy-conversion",
                 "url": "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion"
               },
               {
@@ -1151,57 +1212,6 @@
                 "kind": "course",
                 "title": "Micro and Nanofabrication (MEMS) — official course overview",
                 "url": "https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "domain": "www.nptel.ac.in",
-        "available_courses": 10,
-        "sampled_courses": [
-          {
-            "course_id": 137,
-            "course_title": "Sensor Technologies: Physics, Fabrication, and Circuits",
-            "resource_count": 1,
-            "by_kind": {
-              "course": 1
-            },
-            "sample_resources": [
-              {
-                "kind": "course",
-                "title": "Sensor Technologies: Physics, Fabrication, and Circuits — official course overview",
-                "url": "https://www.nptel.ac.in/courses/108106193"
-              }
-            ]
-          },
-          {
-            "course_id": 112,
-            "course_title": "Analysis and Design Principles of Microwave Antennas",
-            "resource_count": 1,
-            "by_kind": {
-              "course": 1
-            },
-            "sample_resources": [
-              {
-                "kind": "course",
-                "title": "Analysis and Design Principles of Microwave Antennas — official course overview",
-                "url": "https://www.nptel.ac.in/courses/108105114"
-              }
-            ]
-          },
-          {
-            "course_id": 118,
-            "course_title": "Power System Analysis",
-            "resource_count": 1,
-            "by_kind": {
-              "course": 1
-            },
-            "sample_resources": [
-              {
-                "kind": "course",
-                "title": "Power System Analysis — official course overview",
-                "url": "https://www.nptel.ac.in/courses/117105140"
               }
             ]
           }
@@ -1263,15 +1273,21 @@
           {
             "course_id": 44,
             "course_title": "Digital Design and Integrated Circuits",
-            "resource_count": 1,
+            "resource_count": 2,
             "by_kind": {
-              "course": 1
+              "course": 1,
+              "exams": 1
             },
             "sample_resources": [
               {
                 "kind": "course",
                 "title": "Digital Design and Integrated Circuits — official course overview",
                 "url": "https://www2.eecs.berkeley.edu/Courses/EECS151"
+              },
+              {
+                "kind": "exams",
+                "title": "Berkeley HKN EECS 151 exam archive (2017, 2019, 2020; multiple instructor-consented solutions)",
+                "url": "https://hkn.eecs.berkeley.edu/exams/course/EECS/151"
               }
             ]
           }
@@ -1279,9 +1295,23 @@
       }
     ],
     "manual_review": {
-      "total_flagged": 33,
-      "shown": 33,
+      "total_flagged": 48,
+      "shown": 48,
       "items": [
+        {
+          "course_id": 34,
+          "title": "Analog Circuits — official course overview",
+          "url": "https://www.nptel.ac.in/courses/108101094",
+          "source_url": "https://www.nptel.ac.in/courses/108101094",
+          "reason": "review-needed-status"
+        },
+        {
+          "course_id": 35,
+          "title": "Integrated Circuits, MOSFETs, OP-Amps and Their Applications — official course overview",
+          "url": "https://www.nptel.ac.in/courses/108108111",
+          "source_url": "https://www.nptel.ac.in/courses/108108111",
+          "reason": "review-needed-status"
+        },
         {
           "course_id": 52,
           "title": "2D wave equation and Verilog gen block",
@@ -1423,6 +1453,13 @@
           "reason": "external-link-relies-on-course-page-provenance"
         },
         {
+          "course_id": 73,
+          "title": "Feedback Systems: An Introduction for Scientists and Engineers — official course overview",
+          "url": "https://www.cds.caltech.edu/~murray/books/AM05/wiki",
+          "source_url": "https://www.cds.caltech.edu/~murray/books/AM05/wiki",
+          "reason": "review-needed-status"
+        },
+        {
           "course_id": 95,
           "title": "Lab 1 Walkthrough",
           "url": "https://mediaspace.illinois.edu/media/t/1_1xw6bgin",
@@ -1512,6 +1549,90 @@
           "url": "https://web.stanford.edu/~dntse/papers/book121004.pdf",
           "source_url": "https://ocw.mit.edu/courses/6-452-principles-of-wireless-communications-spring-2006/pages/readings",
           "reason": "external-link-relies-on-course-page-provenance"
+        },
+        {
+          "course_id": 106,
+          "title": "Principles of Digital Communications — official course overview",
+          "url": "https://www.nptel.ac.in/courses/108101113",
+          "source_url": "https://www.nptel.ac.in/courses/108101113",
+          "reason": "review-needed-status"
+        },
+        {
+          "course_id": 112,
+          "title": "Analysis and Design Principles of Microwave Antennas — official course overview",
+          "url": "https://www.nptel.ac.in/courses/108105114",
+          "source_url": "https://www.nptel.ac.in/courses/108105114",
+          "reason": "review-needed-status"
+        },
+        {
+          "course_id": 118,
+          "title": "Power System Analysis — official course overview",
+          "url": "https://www.nptel.ac.in/courses/117105140",
+          "source_url": "https://www.nptel.ac.in/courses/117105140",
+          "reason": "review-needed-status"
+        },
+        {
+          "course_id": 121,
+          "title": "Electrical Machines II — official course overview",
+          "url": "https://www.nptel.ac.in/courses/108105131",
+          "source_url": "https://www.nptel.ac.in/courses/108105131",
+          "reason": "review-needed-status"
+        },
+        {
+          "course_id": 136,
+          "title": "Electrical Measurement and Electronic Instruments — official course overview",
+          "url": "https://www.nptel.ac.in/courses/108105153",
+          "source_url": "https://www.nptel.ac.in/courses/108105153",
+          "reason": "review-needed-status"
+        },
+        {
+          "course_id": 137,
+          "title": "Sensor Technologies: Physics, Fabrication, and Circuits — official course overview",
+          "url": "https://www.nptel.ac.in/courses/108106193",
+          "source_url": "https://www.nptel.ac.in/courses/108106193",
+          "reason": "review-needed-status"
+        },
+        {
+          "course_id": 139,
+          "title": "Biomedical Instrumentation — official course overview",
+          "url": "https://www.nptel.ac.in/courses/102106669",
+          "source_url": "https://www.nptel.ac.in/courses/102106669",
+          "reason": "review-needed-status"
+        },
+        {
+          "course_id": 141,
+          "title": "Lab 4",
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab4.pdf",
+          "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25",
+          "reason": "short-title-without-course-token"
+        },
+        {
+          "course_id": 141,
+          "title": "Lab 5",
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab5.pdf",
+          "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25",
+          "reason": "short-title-without-course-token"
+        },
+        {
+          "course_id": 141,
+          "title": "Lab 6",
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab6.pdf",
+          "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25",
+          "reason": "short-title-without-course-token"
+        },
+        {
+          "course_id": 141,
+          "title": "Lab 7",
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab7.pdf",
+          "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25",
+          "reason": "short-title-without-course-token"
+        },
+        {
+          "course_id": 141,
+          "title": "Lab 8",
+          "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab8.pdf",
+          "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25",
+          "reason": "short-title-without-course-token"
         }
       ]
     }
@@ -6339,6 +6460,16 @@
     },
     {
       "course_id": 24,
+      "kind": "assignments",
+      "title": "Laboratory assignments resource index (includes selected lab solutions)",
+      "url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/resources/laboratory-assignments",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/download"
+    },
+    {
+      "course_id": 24,
       "kind": "labs",
       "title": "Labs",
       "url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/labs",
@@ -6710,7 +6841,7 @@
     {
       "course_id": 27,
       "kind": "course",
-      "title": "Real Analog Coursework — official course overview",
+      "title": "Real Analog Courses — official course overview",
       "url": "https://digilent.com/shop/coursework-learning-resources",
       "access": "open",
       "status": "available",
@@ -8004,8 +8135,18 @@
       "url": "https://www2.eecs.berkeley.edu/Courses/EECS151",
       "access": "open",
       "status": "available",
-      "last_verified": "2026-07-28",
+      "last_verified": "2026-07-29",
       "source_url": "https://www2.eecs.berkeley.edu/Courses/EECS151"
+    },
+    {
+      "course_id": 44,
+      "kind": "exams",
+      "title": "Berkeley HKN EECS 151 exam archive (2017, 2019, 2020; multiple instructor-consented solutions)",
+      "url": "https://hkn.eecs.berkeley.edu/exams/course/EECS/151",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://hkn.eecs.berkeley.edu/exams/course/EECS/151"
     },
     {
       "course_id": 45,
@@ -8920,7 +9061,7 @@
     {
       "course_id": 57,
       "kind": "course",
-      "title": "Designing with Microcontrollers — official course overview",
+      "title": "Digital Systems Design Using Microcontrollers — official course overview",
       "url": "https://ece4760.github.io/",
       "access": "open",
       "status": "available",
@@ -9530,7 +9671,7 @@
     {
       "course_id": 68,
       "kind": "course",
-      "title": "Introduction to Linear Dynamical Systems — official course overview",
+      "title": "Introduction to Linear Dynamical Systems (2008 Archive) — official course overview",
       "url": "https://see.stanford.edu/Course/EE263",
       "access": "open",
       "status": "available",
@@ -10640,7 +10781,7 @@
     {
       "course_id": 82,
       "kind": "course",
-      "title": "Modern Robotics, Course 6: Mobile Manipulation Capstone — official course overview",
+      "title": "Modern Robotics, Course 6: Capstone Project, Mobile Manipulation — official course overview",
       "url": "https://www.coursera.org/learn/modernrobotics-course6",
       "access": "open-registration",
       "status": "available",
@@ -13250,6 +13391,16 @@
     {
       "course_id": 102,
       "kind": "notes",
+      "title": "Previous course notes",
+      "url": "https://web.stanford.edu/class/ee276/previous_notes.html",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://web.stanford.edu/class/ee276"
+    },
+    {
+      "course_id": 102,
+      "kind": "notes",
       "title": "Readings",
       "url": "https://web.stanford.edu/class/ee276/reading.html",
       "access": "open",
@@ -15130,7 +15281,7 @@
     {
       "course_id": 122,
       "kind": "course",
-      "title": "Solar Energy Engineering: Photovoltaic Energy Conversion — official TU Delft OpenCourseWare overview",
+      "title": "Solar Energy Engineering: Photovoltaic Energy Conversion — official course overview — ocw.tudelft.nl/solar-energy-engineering-photovoltaic-energy-conversion",
       "url": "https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion",
       "access": "open",
       "status": "available",
@@ -16636,6 +16787,166 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/lecture-notes"
+    },
+    {
+      "course_id": 141,
+      "kind": "course",
+      "title": "Analog Integrated Circuits — official course overview — people.eecs.berkeley.edu/140sp25",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "course",
+      "title": "Analog Integrated Circuits — official course overview — www2.eecs.berkeley.edu/ELENG140",
+      "url": "https://www2.eecs.berkeley.edu/Courses/ELENG140",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://www2.eecs.berkeley.edu/Courses/ELENG140"
+    },
+    {
+      "course_id": 141,
+      "kind": "notes",
+      "title": "Spring 2025 lecture directory (21 PDFs)",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/lectures",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "assignments",
+      "title": "Homework 10 solution",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw/hw10soln.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw"
+    },
+    {
+      "course_id": 141,
+      "kind": "assignments",
+      "title": "Homework 8 solution",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw/hw8soln.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw"
+    },
+    {
+      "course_id": 141,
+      "kind": "assignments",
+      "title": "Spring 2025 homework directory (HW 1–10 and partial solutions)",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "labs",
+      "title": "Lab 1 — op-amp circuits with LTspice",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp23/labs/lab1.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "labs",
+      "title": "Lab 2 — Cadence introduction and device characterization",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab2.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "labs",
+      "title": "Lab 4",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab4.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "labs",
+      "title": "Lab 5",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab5.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "labs",
+      "title": "Lab 6",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab6.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "labs",
+      "title": "Lab 7",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab7.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "labs",
+      "title": "Lab 8",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/lab8.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "labs",
+      "title": "Spring 2025 analog IC design project",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/labs/project.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "exams",
+      "title": "Spring 2025 Midterm 2",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/resources/25midterm2.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25"
+    },
+    {
+      "course_id": 141,
+      "kind": "exams",
+      "title": "Spring 2025 Midterm 2 solution",
+      "url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw/2025midterm2soln.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-29",
+      "source_url": "https://people.eecs.berkeley.edu/~pister/140sp25/hw"
     }
   ],
   "failures": [

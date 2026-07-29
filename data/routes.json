@@ -474,7 +474,7 @@
           "name_zh": "电路与测量",
           "name_en": "Circuits and measurement",
           "course_ids": [21, 24, 27, 83],
-          "required_course_ids": [21, 27, 83],
+          "required_course_ids": [21, 24, 83],
           "elective_count": 0,
           "exit_zh": "搭建可追溯测量链并完成不少于 5 点校准，提交增益、偏置、带宽、噪声和量化误差的不确定度预算；校准残差全部落入预先声明的容差带。",
           "exit_en": "Build a traceable measurement chain and perform a calibration at five or more points, submitting an uncertainty budget for gain, offset, bandwidth, noise, and quantization; every calibration residual must fall within the predeclared tolerance band."
@@ -482,11 +482,11 @@
         {
           "name_zh": "传感与接口",
           "name_en": "Sensors and interfaces",
-          "course_ids": [136, 137, 138],
-          "required_course_ids": [136, 137],
+          "course_ids": [136, 138, 137],
+          "required_course_ids": [136],
           "elective_count": 0,
-          "exit_zh": "为一种传感器完成激励、调理、采样与数字输出接口，在全量程测量线性度、迟滞、噪声和漂移；结果须与参考仪器或可信数据表逐项对照。",
-          "exit_en": "Complete excitation, conditioning, sampling, and digital output for one sensor, measuring linearity, hysteresis, noise, and drift across full scale; compare every result against a reference instrument or trustworthy datasheet."
+          "exit_zh": "用公开或合成数据、仿真，或安全低压台面为一种传感器完成激励、调理、采样与数字输出链，评估全量程线性度、迟滞、噪声和漂移；结果须与参考仪器或可信数据表逐项对照。没有课程访问或器材时必须注明仿真/回放边界，不得声称完成实体实验。",
+          "exit_en": "Complete excitation, conditioning, sampling, and digital output for one sensor using public or synthetic data, simulation, or a safe low-voltage bench; evaluate full-scale linearity, hysteresis, noise, and drift against a reference instrument or trustworthy datasheet. When course access or hardware is unavailable, disclose the simulation or replay boundary and do not claim a physical experiment."
         },
         {
           "name_zh": "生医应用",

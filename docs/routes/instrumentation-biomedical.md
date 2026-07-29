@@ -4,7 +4,7 @@ description: "完成带校准、不确定度、隔离/安全分析和信号处�
 page_type: route
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: cac14cc66ccffd61 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 729269b3763e4f06 -->
 
 # 传感、仪器与生物医学电子
 
@@ -23,21 +23,21 @@ page_type: route
 **选课要求：** 完成全部 3 门必修；其余 1 门仅在需要补缺时选学。
 
 - [Circuits and Electronics](../courses/circuits/021-6-002.md) — **必修**; MIT; 主线; S
-- [Introduction to Electronics, Signals, and Measurement](../courses/electronics-laboratory/024-6-071j.md) — **可选补充**; MIT; 替代; A
-- [Real Analog Courses](../courses/electronics-laboratory/027-real-analog.md) — **必修**; Digilent; 主线; A
+- [Introduction to Electronics, Signals, and Measurement](../courses/electronics-laboratory/024-6-071j.md) — **必修**; MIT; 主线; A
+- [Real Analog Courses](../courses/electronics-laboratory/027-real-analog.md) — **可选补充**; Digilent; 主线; A
 - [Signals and Systems](../courses/signals-systems/083-6-003.md) — **必修**; MIT; 主线; S
 
 **阶段退出条件：** 搭建可追溯测量链并完成不少于 5 点校准，提交增益、偏置、带宽、噪声和量化误差的不确定度预算；校准残差全部落入预先声明的容差带。
 
 ### 传感与接口
 
-**选课要求：** 完成全部 2 门必修；其余 1 门仅在需要补缺时选学。
+**选课要求：** 完成全部 1 门必修；其余 2 门仅在需要补缺时选学。
 
 - [Electrical Measurement and Electronic Instruments](../courses/sensors-instrumentation/136-108105153.md) — **必修**; IIT Kharagpur / NPTEL; 主线; A
-- [Sensor Technologies: Physics, Fabrication, and Circuits](../courses/sensors-instrumentation/137-108106193.md) — **必修**; IISER Bhopal / NPTEL; 主线; A
-- [Sensors and Sensor Circuit Design](../courses/sensors-instrumentation/138-ecea-5340.md) — **可选补充**; University of Colorado Boulder; 替代; A
+- [Sensors and Sensor Circuit Design](../courses/sensors-instrumentation/138-ecea-5340.md) — **可选补充**; University of Colorado Boulder; 主线; A
+- [Sensor Technologies: Physics, Fabrication, and Circuits](../courses/sensors-instrumentation/137-108106193.md) — **可选补充**; IISER Bhopal / NPTEL; 补充; A
 
-**阶段退出条件：** 为一种传感器完成激励、调理、采样与数字输出接口，在全量程测量线性度、迟滞、噪声和漂移；结果须与参考仪器或可信数据表逐项对照。
+**阶段退出条件：** 用公开或合成数据、仿真，或安全低压台面为一种传感器完成激励、调理、采样与数字输出链，评估全量程线性度、迟滞、噪声和漂移；结果须与参考仪器或可信数据表逐项对照。没有课程访问或器材时必须注明仿真/回放边界，不得声称完成实体实验。
 
 ### 生医应用
 

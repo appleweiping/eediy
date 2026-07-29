@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eediy.dev/schemas/course-guide.schema.json",
+  "title": "EEDIY researched course guides",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "guides"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "guides": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/guide"
+      }
+    }
+  },
+  "$defs": {
+    "guide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "course_id",
+        "editorial_status",
+        "evidence_level",
+        "reviewed_at",
+        "files",
+        "primary_sources",
+        "learner_reviews"
+      ],
+      "properties": {
+        "course_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "editorial_status": {
+          "enum": [
+            "researched",
+            "learner-reviewed"
+          ]
+        },
+        "evidence_level": {
+          "enum": [
+            "R0",
+            "R1",
+            "R2",
+            "R3",
+            "R4"
+          ]
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "files": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "zh",
+            "en"
+          ],
+          "properties": {
+            "zh": {
+              "type": "string",
+              "pattern": "^content/course-guides/.+\\.zh\\.md$"
+            },
+            "en": {
+              "type": "string",
+              "pattern": "^content/course-guides/.+\\.en\\.md$"
+            }
+          }
+        },
+        "primary_sources": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          }
+        },
+        "learner_reviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "author",
+              "url",
+              "completed_at"
+            ],
+            "properties": {
+              "author": {
+                "type": "string",
+                "minLength": 1
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://"
+              },
+              "completed_at": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

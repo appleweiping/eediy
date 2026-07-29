@@ -6,6 +6,8 @@ from pathlib import Path
 from scripts.check_markdown_links import markdown_link_issues
 from scripts.generate_course_pages import (
     GENERATED_MARKER,
+    RESOURCE_PROFILE_LABELS,
+    _resource_label,
     build_expected_pages,
     generated_page_issues,
     mainline_audit_annotations,
@@ -14,6 +16,33 @@ from scripts.generate_course_pages import (
     write_pages,
 )
 from scripts.quality_common import markdown_headings
+
+
+def test_course_subpage_resource_label_keeps_its_precise_title() -> None:
+    resource = {
+        "kind": "course",
+        "title": {"zh": "Syllabus", "en": "Syllabus"},
+    }
+
+    assert _resource_label(resource, "zh") == "Syllabus"
+    assert _resource_label(resource, "en") == "Syllabus"
+
+
+def test_generic_resource_label_collapses_only_for_its_own_kind() -> None:
+    resource = {
+        "kind": "assignments",
+        "title": {"zh": "作业", "en": "Assignments"},
+    }
+
+    assert _resource_label(resource, "zh") == "作业"
+    assert _resource_label(resource, "en") == "Assignments"
+
+
+def test_a_profile_label_describes_access_without_promising_completeness() -> None:
+    assert RESOURCE_PROFILE_LABELS["A"] == (
+        "核心材料可访问",
+        "Core materials available",
+    )
 
 
 def test_generator_builds_complete_bilingual_graph(
@@ -104,88 +133,52 @@ def test_generated_translation_heading_structure_matches(
     ]
     assert [(level, title) for level, title, _ in zh_headings if level == 2] == [
         (2, "课程简介"),
+        (2, "先看这些入口"),
+        (2, "已知边界"),
         (2, "课程资源"),
-        (2, "实践与验收"),
     ]
     assert [(level, title) for level, title, _ in en_headings if level == 2] == [
         (2, "Course Overview"),
+        (2, "Start with these links"),
+        (2, "Known Boundaries"),
         (2, "Course Resources"),
-        (2, "Practice and Verification"),
     ]
-    assert all(level in {1, 2} for level, _, _ in zh_headings)
-    assert all(level in {1, 2} for level, _, _ in en_headings)
-    for label in (
-        "为什么选择这门课",
-        "学习前准备",
-        "可验证的学习成果",
-        "工时与节奏",
-        "软件、硬件与成本",
-        "软件",
-        "硬件",
-        "成本说明",
-        "安全等级",
-        "公开资源完整度",
-        "资源与访问条件",
-        "实践闭环",
-        "风险、缺口与边界",
-        "完成证据",
-    ):
-        assert f"**{label}**" in zh
-    for label in (
-        "Why choose this course",
-        "Before you start",
-        "Verifiable learning outcomes",
-        "Workload and pacing",
-        "Software, hardware, and cost",
-        "Software",
-        "Hardware",
-        "Cost note",
-        "Safety level",
-        "Public resource coverage",
-        "Resources and access",
-        "Practice loop",
-        "Risks, gaps, and boundaries",
-        "Completion evidence",
-    ):
-        assert f"**{label}**" in en
-    zh_overview = zh.split("## 课程简介\n\n", 1)[1].split("\n## 课程资源", 1)[0]
+    assert all(level in {1, 2, 3} for level, _, _ in zh_headings)
+    assert all(level in {1, 2, 3} for level, _, _ in en_headings)
+    zh_overview = zh.split("## 课程简介\n\n", 1)[1].split("\n## 先看这些入口", 1)[0]
     en_overview = en.split("## Course Overview\n\n", 1)[1].split(
-        "\n## Course Resources", 1
+        "\n## Start with these links", 1
     )[0]
-    assert [line for line in zh_overview.splitlines() if line.startswith("- **")] == [
-        "- **机构：** Example University",
+    assert [line for line in zh.splitlines() if line.startswith("- **")][:7] == [
+        "- **所属大学：** Example University",
         "- **课程编号：** EE-101",
+        "- **先修要求：** 无硬性先修",
         "- **方向：** [工程数学](index.md)",
-        "- **评级：** S",
-        "- **角色：** 主线",
-        "- **难度：** 提供方未标准化（请按先修判断）",
+        "- **路线角色：** 主线",
+        "- **公开材料：** 较完整",
         "- **最近复核：** 2026-07-28",
     ]
-    assert [line for line in en_overview.splitlines() if line.startswith("- **")] == [
-        "- **Institution:** Example University",
+    assert [line for line in en.splitlines() if line.startswith("- **")][:7] == [
+        "- **University:** Example University",
         "- **Course code:** EE-101",
+        "- **Prerequisites:** No hard prerequisite recorded",
         "- **Track:** [Engineering Mathematics](index.md)",
-        "- **Tier:** S",
-        "- **Role:** Mainline",
-        "- **Level:** Not standardized by provider (use prerequisites)",
+        "- **Path role:** Mainline",
+        "- **Public materials:** Broadly complete",
         "- **Last reviewed:** 2026-07-28",
     ]
-    assert "| 属性 | 值 |" not in zh
-    assert "| Attribute | Value |" not in en
-    assert not any(line.startswith("> ") for line in zh_overview.splitlines())
-    assert not any(line.startswith("> ") for line in en_overview.splitlines())
-    zh_summary = zh_overview.split("- **最近复核：** 2026-07-28\n\n", 1)[1].split(
-        "\n\n", 1
-    )[0]
-    en_summary = en_overview.split("- **Last reviewed:** 2026-07-28\n\n", 1)[
-        1
-    ].split("\n\n", 1)[0]
-    assert zh_summary and not zh_summary.startswith(("-", "**", "!!!"))
-    assert en_summary and not en_summary.startswith(("-", "**", "!!!"))
-    assert "# Signals Through Calculus\n\n## 课程简介" in zh
-    assert "# Signals Through Calculus\n\n## Course Overview" in en
-    assert "maintainer planning estimate" in en
-    assert "维护者规划估计" in zh
+    assert "# Signals Through Calculus" in zh and "## 课程简介" in zh
+    assert "# Signals Through Calculus" in en and "## Course Overview" in en
+    assert "**资料索引：**" in zh
+    assert "**Resource catalogue:**" in en
+    assert '<details markdown="1">' in zh and "展开完整资源索引" in zh
+    assert '<details markdown="1">' in en and "Expand the complete resource index" in en
+    assert "维护者规划估计" not in zh
+    assert "maintainer planning estimate" not in en
+    assert "实践闭环" not in zh
+    assert "Practice loop" not in en
+    assert 'course_id: "course-001"' in zh
+    assert "comments: true" in en
     en_route = expected[tmp_path / "docs" / "en" / "routes" / "starter.md"]
     assert "**Stage exit criterion:**" in en_route
     assert "criterion：**" not in en_route
@@ -342,7 +335,6 @@ def test_review_courses_render_as_optional_not_counted_electives() -> None:
     courses_by_source = {course["source_id"]: course for course in catalogue["courses"]}
     route_map = {route["id"]: route for route in routes}
     cases = (
-        ("analog-ic", 36),
         ("control-robotics", 73),
         ("rf-wireless", 112),
         ("photonics-mems", 133),

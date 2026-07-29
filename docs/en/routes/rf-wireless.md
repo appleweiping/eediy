@@ -37,7 +37,7 @@ Complete an RF design or simulation with matching, link budget, antenna/channel 
 
 **Selection rule:** Complete all 1 required course and choose 1 of 2 elective options. The other course is an optional supplement and does not count toward the elective requirement.
 
-- [Radio Frequency Systems](../courses/rf-microwave-antennas/110-ece-4880.md) — **Elective option**; Cornell University; Alternative; A
+- [Radio Frequency Systems](../courses/rf-microwave-antennas/110-ece-4880.md) — **Elective option**; Cornell University; Mainline; A
 - [RF and Millimeter-Wave Circuit Design](../courses/rf-microwave-antennas/111-rf-and-millimeter-wave-circuit-design.md) — **Required**; Eindhoven University of Technology; Mainline; A
 - [Analysis and Design Principles of Microwave Antennas](../courses/rf-microwave-antennas/112-108105114.md) — **Optional supplement**; IIT Kharagpur / NPTEL; Mainline; A; **Audit review**
 - [Receivers, Antennas, and Signals](../courses/rf-microwave-antennas/113-6-661.md) — **Elective option**; MIT; Supplement; B

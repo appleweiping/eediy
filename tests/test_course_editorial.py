@@ -23,9 +23,11 @@ def _load_inputs() -> tuple[list[dict], list[dict], dict]:
 def test_editorial_has_exact_unique_bilingual_coverage() -> None:
     candidates, editorial, _ = _load_inputs()
     assert validate_editorial(editorial, candidates) == []
-    assert [entry["source_id"] for entry in editorial] == list(range(1, 141))
-    assert len({entry["summary"]["zh"] for entry in editorial}) == 140
-    assert len({entry["summary"]["en"] for entry in editorial}) == 140
+    assert [entry["source_id"] for entry in editorial] == [
+        candidate["id"] for candidate in candidates
+    ]
+    assert len({entry["summary"]["zh"] for entry in editorial}) == len(candidates)
+    assert len({entry["summary"]["en"] for entry in editorial}) == len(candidates)
     assert all(
         re.search(r"[\u3400-\u4dbf\u4e00-\u9fff]", entry["review_note"]["zh"])
         for entry in editorial
@@ -93,3 +95,22 @@ def test_command_writes_then_checks_the_same_result(tmp_path: Path) -> None:
     ]
     assert main(arguments) == 0
     assert main([*arguments, "--check"]) == 0
+
+
+def test_researched_inventory_corrections_survive_the_authoritative_pipeline() -> None:
+    _, _, catalogue = _load_inputs()
+    courses = {course["source_id"]: course for course in catalogue["courses"]}
+
+    cs107e = courses[58]
+    assert cs107e["resource_coverage"]["video"] == 0
+    assert "lectures are not recorded" in cs107e["summary"]["en"]
+    assert "lecture 不录制" in cs107e["summary"]["zh"]
+
+    res_6008 = courses[88]
+    assert "solution packets for Lessons 2–20" in res_6008["summary"]["en"]
+    assert "nineteen solved problem sets" not in res_6008["summary"]["en"].lower()
+    assert "后 19 课对应的解答包" in res_6008["summary"]["zh"]
+
+    ece3030 = courses[107]
+    assert "thirty-six handout groups" in ece3030["summary"]["en"].lower()
+    assert "36 组讲义" in ece3030["summary"]["zh"]

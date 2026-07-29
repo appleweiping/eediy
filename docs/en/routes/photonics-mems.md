@@ -48,9 +48,9 @@ Complete a photonic or MEMS design with mode/device simulation, process constrai
 
 **Selection rule:** Complete all 1 required course and choose 1 of 2 elective options. The other course is an optional supplement and does not count toward the elective requirement.
 
-- [Introduction to Photonics](../courses/optics-photonics/132-108106135.md) — **Required**; IIT Madras / NPTEL; Mainline; S
+- [Introduction to Photonics](../courses/optics-photonics/132-108106135.md) — **Required**; IIT Madras / NPTEL; Mainline; A
 - [Silicon Photonics Design, Fabrication and Data Analysis](../courses/optics-photonics/133-phot1x.md) — **Optional supplement**; University of British Columbia; Mainline; A; **Audit review**
-- [Optics](../courses/optics-photonics/134-2-71.md) — **Elective option**; MIT; Alternative; S
+- [Optics](../courses/optics-photonics/134-2-71.md) — **Elective option**; MIT; Mainline; S
 - [Photonic Materials and Devices](../courses/optics-photonics/135-3-46.md) — **Elective option**; MIT; Supplement; B
 
 **Stage exit criterion:** Complete an on-chip or free-space optical link budget and verify insertion loss, bandwidth, crosstalk, and energy per bit; run at least 200 Monte Carlo trials over dimensional and material variations and report specification yield.
