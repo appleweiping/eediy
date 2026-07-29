@@ -8,8 +8,6 @@ page_type: track
 
 # Digital Signal Processing
 
-[中文](../../../courses/dsp/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Discrete transforms, filters, spectral estimation, multirate systems, and implementations validated with code and metrics.

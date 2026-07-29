@@ -8,8 +8,6 @@ page_type: track
 
 # Engineering Mathematics
 
-[中文](../../../courses/mathematics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Calculus, linear algebra, differential equations, complex variables, and numerical reasoning for modeling across EE.

@@ -8,8 +8,6 @@ page_type: track
 
 # 实时与信息物理系统
 
-[English](../../en/courses/real-time-cps/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 调度、时序分析、可靠性与物理闭环，关注任务错过截止期时系统会发生什么。

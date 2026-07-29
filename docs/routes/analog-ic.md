@@ -8,8 +8,6 @@ page_type: route
 
 # 模拟、混合信号与集成电路
 
-[English](../en/routes/analog-ic.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望从电路和器件进入晶体管级设计、仿真与版图的学习者

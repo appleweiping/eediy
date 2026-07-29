@@ -8,8 +8,6 @@ page_type: track
 
 # 电子工程导论
 
-[English](../../en/courses/ee-introduction/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 用跨越电路、信号、计算和机电系统的综合课程建立全景认知，并尽早完成小型系统。

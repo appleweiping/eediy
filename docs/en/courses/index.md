@@ -8,7 +8,7 @@ page_type: catalogue
 
 # Course Catalogue
 
-[中文](../../courses/index.md) · [Learning routes](../routes/index.md)
+[Learning routes](../routes/index.md)
 
 The catalogue contains **140** structurally reviewed courses across **35** populated tracks. Every resource records access, license, status, and its latest verification date.
 

@@ -8,8 +8,6 @@ page_type: track
 
 # 控制系统
 
-[English](../../en/courses/control-systems/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 状态空间、稳定性、频域设计、估计与最优控制，强调仿真、实验和模型失配。

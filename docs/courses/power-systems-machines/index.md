@@ -8,8 +8,6 @@ page_type: track
 
 # 电力系统与电机
 
-[English](../../en/courses/power-systems-machines/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 潮流、故障、稳定性、电能质量和机电能量转换，兼顾模型与现实电网约束。

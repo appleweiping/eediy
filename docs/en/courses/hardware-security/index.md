@@ -8,8 +8,6 @@ page_type: track
 
 # Hardware Security
 
-[中文](../../../courses/hardware-security/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Side channels, fault attacks, trusted execution, and secure architecture using real processors and testable threat models.

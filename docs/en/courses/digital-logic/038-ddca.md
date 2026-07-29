@@ -8,61 +8,59 @@ page_type: course
 
 # Digital Design and Computer Architecture
 
-[中文](../../../courses/digital-logic/038-ddca.md) · [← Digital Logic and Computation Structures](index.md)
+## Course Overview
 
-> ETH Zurich's Digital Design and Computer Architecture connects digital design and computer architecture through complete 2025 videos, notes, exercises, and code, while its separately hosted materials need manual access checks.
+- **Institution:** ETH Zurich
+- **Course code:** DDCA
+- **Track:** [Digital Logic and Computation Structures](index.md)
+- **Tier:** S
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-## Course position
+ETH Zurich's Digital Design and Computer Architecture connects digital design and computer architecture through complete 2025 videos, notes, exercises, and code, while its separately hosted materials need manual access checks.
 
-| Attribute | Value |
-|---|---|
-| **Institution** | ETH Zurich |
-| **Course code** | DDCA |
-| **Track** | [Digital Logic and Computation Structures](index.md) |
-| **Tier** | S |
-| **Role** | Alternative |
-| **Level** | Not standardized by provider (use prerequisites) |
-| **Last reviewed** | 2026-07-28 |
-
-## Why choose this course
+**Why choose this course**
 
 Alternative course. A particularly complete and well-structured option for this track. Review note: S/A
 
-## Before you start
+**Before you start**
 
 - Recommended foundation: Programming and Engineering Computing
 - Recommended foundation: Circuit Analysis
 
-## Verifiable learning outcomes
+**Verifiable learning outcomes**
 
 - Explain the core models in Digital Logic and Computation Structures, including their assumptions and limits
 - Solve representative derivations and problems, checking units, limiting cases, or numerical results
 - Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-## Workload and pacing
+**Workload and pacing**
 
 **11 weeks at 9 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-## Software, hardware, and cost
+**Safety level**
 
-### Software
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
+
+## Course Resources
+
+**Software, hardware, and cost**
+
+**Software**
 
 - Maintainer-suggested open-source/free verification path: Logisim Evolution, Icarus Verilog or Verilator, and GTKWave
 - The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
 
-### Hardware
+**Hardware**
 
 - The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a logic training board, USB programmer, and logic analyzer explicitly specified by the course. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
 
-### Cost note
+**Cost note**
 
 The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
 
-## Safety level
-
-**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
-
-## Public resource coverage
+**Public resource coverage**
 
 | Resource type | Completeness |
 |---|---|
@@ -73,7 +71,7 @@ The suggested software stack is available open source or free; this is not a pro
 | Exams | Partial |
 | Code | Complete |
 
-## Resources and access
+**Resources and access**
 
 | Resource | Access | License | Status | Verified |
 |---|---|---|---|---|
@@ -81,9 +79,11 @@ The suggested software stack is available open source or free; this is not a pro
 
 > “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
 
-## Practice loop
+## Practice and Verification
 
-### Digital Design and Computer Architecture · ETH Zurich DDCA: Streaming Digital Unit with Formal Checks
+**Practice loop**
+
+**Digital Design and Computer Architecture · ETH Zurich DDCA: Streaming Digital Unit with Formal Checks**
 
 This is a maintainer-suggested self-study project for Digital Design and Computer Architecture · ETH Zurich DDCA, not an official course assignment. Implement a parameterized, handshaked streaming unit for Digital Logic and Computation Structures and verify function, timing protocol, and reset boundaries with RTL simulation, assertions, and randomized testing.
 
@@ -111,11 +111,11 @@ This is a maintainer-suggested self-study project for Digital Design and Compute
 
 **Safety boundary:** Simulation only — Use RTL simulation and synthesis reports only by default; do not load a design with unaudited clocks, resets, or interfaces into physical systems.
 
-## Risks, gaps, and boundaries
+**Risks, gaps, and boundaries**
 
 The official landing page links complete 2025 videos and materials; the Safari-hosted material server needs a manual robots and download-health check.
 
-## Completion evidence
+**Completion evidence**
 
 - Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
 - Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test

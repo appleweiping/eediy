@@ -8,8 +8,6 @@ page_type: route
 
 # Power, Machines, Power Electronics, and Energy
 
-[中文](../../routes/power-energy.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners covering conversion, machines, grids, and energy storage systems

@@ -8,8 +8,6 @@ page_type: track
 
 # 模拟电子
 
-[English](../../en/courses/analog-electronics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 二极管、晶体管、运放、反馈、滤波与模拟系统设计，兼顾小信号模型和实际非理想因素。

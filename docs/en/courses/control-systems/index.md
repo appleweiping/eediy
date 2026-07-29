@@ -8,8 +8,6 @@ page_type: track
 
 # Control Systems
 
-[中文](../../../courses/control-systems/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 State space, stability, frequency-domain design, estimation, and optimal control with simulation and model mismatch.

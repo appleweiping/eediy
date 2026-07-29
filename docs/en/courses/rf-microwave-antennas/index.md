@@ -8,8 +8,6 @@ page_type: track
 
 # RF, Microwave, and Antennas
 
-[中文](../../../courses/rf-microwave-antennas/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Network parameters, matching, noise, receivers, microwave circuits, and antennas with instrumentation, spectrum, and RF safety.

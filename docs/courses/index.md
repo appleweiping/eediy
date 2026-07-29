@@ -8,7 +8,7 @@ page_type: catalogue
 
 # 课程导航
 
-[English](../en/courses/index.md) · [学习路线](../routes/index.md)
+[学习路线](../routes/index.md)
 
 当前目录收录 **140** 门经过结构化复核的课程，覆盖 **35** 个有课程方向。每个资源都记录访问条件、许可、状态和最近复核日期。
 

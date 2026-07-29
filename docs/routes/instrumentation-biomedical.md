@@ -8,8 +8,6 @@ page_type: route
 
 # 传感、仪器与生物医学电子
 
-[English](../en/routes/instrumentation-biomedical.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望把传感器、模拟前端、测量和生理信号处理连成系统的学习者

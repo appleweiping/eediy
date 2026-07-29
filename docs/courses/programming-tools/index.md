@@ -8,8 +8,6 @@ page_type: track
 
 # 编程与工程计算
 
-[English](../../en/courses/programming-tools/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 Python、C、版本控制、可复现实验与数值工具，强调把分析变成可验证的软件。

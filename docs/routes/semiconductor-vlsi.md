@@ -8,8 +8,6 @@ page_type: route
 
 # 半导体、微纳工艺与 VLSI
 
-[English](../en/routes/semiconductor-vlsi.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望理解器件、制造、数字集成电路和物理实现完整链条的学习者

@@ -8,8 +8,6 @@ page_type: route
 
 # 电磁、射频、微波与无线
 
-[English](../en/routes/rf-wireless.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望从场与波进入射频电路、天线、接收机和无线链路的学习者

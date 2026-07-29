@@ -8,8 +8,6 @@ page_type: track
 
 # 微电子学
 
-[English](../../en/courses/microelectronics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 从器件模型到晶体管级放大器和数字门，连接半导体物理、模拟和集成电路设计。

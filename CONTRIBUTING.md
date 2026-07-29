@@ -51,6 +51,8 @@ course_candidates + tracks + course_resources
   → canonical courses.json + routes + mainline_audit review annotations
   → generate_course_pages.py
   → generated bilingual Markdown / 生成的双语 Markdown
+  → sync_navigation.py
+  → complete bilingual navigation / 完整双语导航
 
 mainline_audit → validate_mainline_audit.py ─┐
 other validators and tests / 其他验证器与测试 ┴→ release gate / 发布门禁
@@ -87,6 +89,7 @@ python scripts/validate_courses.py
 python scripts/validate_mainline_audit.py
 python scripts/validate_routes.py
 python scripts/generate_course_pages.py
+python scripts/sync_navigation.py --write
 python scripts/run_quality.py
 ```
 

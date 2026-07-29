@@ -8,62 +8,60 @@ page_type: course
 
 # Introduction to Power Electronics
 
-[中文](../../../courses/power-electronics/115-power-electronics-1.md) · [← Power Electronics](index.md)
+## Course Overview
 
-> University of Colorado Boulder's Introduction to Power Electronics provides an entry through videos, exercises, simulation, and code, with useful practice subject to changing or paid platform and grading access.
+- **Institution:** University of Colorado Boulder
+- **Course code:** Power Electronics 1
+- **Track:** [Power Electronics](index.md)
+- **Tier:** A
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-## Course position
+University of Colorado Boulder's Introduction to Power Electronics provides an entry through videos, exercises, simulation, and code, with useful practice subject to changing or paid platform and grading access.
 
-| Attribute | Value |
-|---|---|
-| **Institution** | University of Colorado Boulder |
-| **Course code** | Power Electronics 1 |
-| **Track** | [Power Electronics](index.md) |
-| **Tier** | A |
-| **Role** | Alternative |
-| **Level** | Not standardized by provider (use prerequisites) |
-| **Last reviewed** | 2026-07-28 |
-
-## Why choose this course
+**Why choose this course**
 
 Alternative course. A reliable option that can serve as a main course or strong alternative.
 
-## Before you start
+**Before you start**
 
 - Recommended foundation: Circuit Analysis
 - Recommended foundation: Control Systems
 - Recommended foundation: Electronics Laboratory and Measurement
 
-## Verifiable learning outcomes
+**Verifiable learning outcomes**
 
 - Explain the core models in Power Electronics, including their assumptions and limits
 - Solve representative derivations and problems, checking units, limiting cases, or numerical results
 - Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-## Workload and pacing
+**Workload and pacing**
 
 **11 weeks at 7 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-## Software, hardware, and cost
+**Safety level**
 
-### Software
+**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+
+## Course Resources
+
+**Software, hardware, and cost**
+
+**Software**
 
 - Maintainer-suggested open-source/free verification path: Qucs-S, ngspice, Python 3, Jupyter, and GNU Octave
 - The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
 
-### Hardware
+**Hardware**
 
 - The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect isolated/current-limited power, differential probes, electronic load, oscilloscope, and course-specified power stage in a compliant lab
 
-### Cost note
+**Cost note**
 
 The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
 
-## Safety level
-
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
-
-## Public resource coverage
+**Public resource coverage**
 
 | Resource type | Completeness |
 |---|---|
@@ -74,7 +72,7 @@ The current maintainer path uses computation and simulation only, with no dedica
 | Exams | No public material |
 | Code | Partial |
 
-## Resources and access
+**Resources and access**
 
 | Resource | Access | License | Status | Verified |
 |---|---|---|---|---|
@@ -82,9 +80,11 @@ The current maintainer path uses computation and simulation only, with no dedica
 
 > “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
 
-## Practice loop
+## Practice and Verification
 
-### Introduction to Power Electronics · University of Colorado Boulder Power Electronics 1: Converter Loss and Closed-Loop Protection Simulation
+**Practice loop**
+
+**Introduction to Power Electronics · University of Colorado Boulder Power Electronics 1: Converter Loss and Closed-Loop Protection Simulation**
 
 This is a maintainer-suggested self-study project for Introduction to Power Electronics · University of Colorado Boulder Power Electronics 1, not an official course assignment. Simulate a DC–DC converter for Power Electronics and quantify ripple, efficiency proxy, device stress, control stability, and overcurrent or open-load protection.
 
@@ -112,11 +112,11 @@ This is a maintainer-suggested self-study project for Introduction to Power Elec
 
 **Safety boundary:** Simulation only — Use converter simulation only; do not build mains, high-voltage, high-current, magnetic-component, battery-powered, or power-switching hardware.
 
-## Risks, gaps, and boundaries
+**Risks, gaps, and boundaries**
 
 The simulation exercises are useful, but Coursera access and graded work availability may require payment and can change.
 
-## Completion evidence
+**Completion evidence**
 
 - Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
 - Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test

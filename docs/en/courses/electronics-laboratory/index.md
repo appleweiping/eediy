@@ -8,8 +8,6 @@ page_type: track
 
 # Electronics Laboratory and Measurement
 
-[中文](../../../courses/electronics-laboratory/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Breadboards, oscilloscopes, uncertainty, and reproducible lab reports for safe and reliable hands-on work.

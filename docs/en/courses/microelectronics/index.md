@@ -8,8 +8,6 @@ page_type: track
 
 # Microelectronics
 
-[中文](../../../courses/microelectronics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 From device models to transistor-level amplifiers and gates, linking semiconductor physics to analog and IC design.

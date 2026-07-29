@@ -8,8 +8,6 @@ page_type: track
 
 # Signals and Systems
 
-[中文](../../../courses/signals-systems/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Convolution, transforms, sampling, filtering, and feedback as a common language for DSP, communications, and control.

@@ -8,8 +8,6 @@ page_type: track
 
 # 生物医学电子与信号
 
-[English](../../en/courses/biomedical/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 生理信号、医学成像、仪器与患者安全；人体实验必须遵守伦理、隔离和监督要求。

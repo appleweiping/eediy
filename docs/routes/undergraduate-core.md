@@ -8,8 +8,6 @@ page_type: route
 
 # 本科核心审计路线
 
-[English](../en/routes/undergraduate-core.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望按本科培养深度系统补齐基础的学习者

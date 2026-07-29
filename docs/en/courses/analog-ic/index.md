@@ -8,8 +8,6 @@ page_type: track
 
 # Analog and Mixed-Signal IC Design
 
-[中文](../../../courses/analog-ic/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Biasing, gain stages, feedback, noise, data conversion, and layout-aware tradeoffs validated in simulation.

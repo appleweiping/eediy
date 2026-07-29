@@ -8,8 +8,6 @@ page_type: route
 
 # Electromagnetics, RF, Microwave, and Wireless
 
-[中文](../../routes/rf-wireless.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners progressing from fields and waves to RF circuits, antennas, receivers, and wireless links

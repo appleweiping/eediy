@@ -114,6 +114,54 @@ def test_navigation_uses_reachability_not_sidebar_enumeration(tmp_path: Path) ->
     assert statistics["reachability_percent"] == 100.0
 
 
+def test_navigation_requires_direct_enumeration_when_enabled(tmp_path: Path) -> None:
+    docs = tmp_path / "docs"
+    _write_pair(docs, "index.md", ZH_PAGE, EN_PAGE)
+    _write_pair(docs, "child.md", ZH_CHILD, EN_CHILD)
+    config = tmp_path / "mkdocs.yml"
+    config.write_text(
+        "docs_dir: docs\n"
+        "use_directory_urls: true\n"
+        "extra:\n"
+        "  navigation_requires_all_docs: true\n"
+        "nav:\n"
+        "  - 中文:\n"
+        "      - 首页: index.md\n"
+        "  - English:\n"
+        "      - Home: en/index.md\n",
+        encoding="utf-8",
+    )
+    issues, statistics = navigation_issues(config)
+    missing = [issue.path for issue in issues if issue.code == "nav.direct_missing"]
+    assert missing == ["child.md", "en/child.md"]
+    assert statistics["directly_listed_pages"] == 2
+    assert statistics["direct_coverage_percent"] == 50.0
+    assert statistics["reachability_percent"] == 100.0
+
+
+def test_navigation_direct_enumeration_passes_at_full_coverage(tmp_path: Path) -> None:
+    docs = tmp_path / "docs"
+    _write_pair(docs, "index.md", ZH_PAGE, EN_PAGE)
+    _write_pair(docs, "child.md", ZH_CHILD, EN_CHILD)
+    config = tmp_path / "mkdocs.yml"
+    config.write_text(
+        "docs_dir: docs\n"
+        "extra:\n"
+        "  navigation_requires_all_docs: true\n"
+        "nav:\n"
+        "  - 中文:\n"
+        "      - 首页: index.md\n"
+        "      - 子页: child.md\n"
+        "  - English:\n"
+        "      - Home: en/index.md\n"
+        "      - Child: en/child.md\n",
+        encoding="utf-8",
+    )
+    issues, statistics = navigation_issues(config)
+    assert issues == []
+    assert statistics["direct_coverage_percent"] == 100.0
+
+
 def test_forbidden_scanner_reports_custom_pattern(tmp_path: Path) -> None:
     path = tmp_path / "page.md"
     path.write_text("A deliberately unfinished marker appears here.", encoding="utf-8")

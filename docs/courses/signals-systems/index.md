@@ -8,8 +8,6 @@ page_type: track
 
 # 信号与系统
 
-[English](../../en/courses/signals-systems/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 卷积、变换、采样、滤波和反馈的统一语言，贯通信号处理、通信与控制。

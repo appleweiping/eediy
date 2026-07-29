@@ -8,8 +8,6 @@ page_type: track
 
 # PCB、EDA 与硬件验证
 
-[English](../../en/courses/pcb-eda/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 原理图、版图、制造文件、BOM、调试与设计评审，让电路从仿真走到可制造、可测试硬件。

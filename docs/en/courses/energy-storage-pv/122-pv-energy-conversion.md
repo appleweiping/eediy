@@ -8,62 +8,60 @@ page_type: course
 
 # Solar Energy Engineering: Photovoltaic Energy Conversion
 
-[中文](../../../courses/energy-storage-pv/122-pv-energy-conversion.md) · [← Energy Storage and Photovoltaics](index.md)
+## Course Overview
 
-> Delft University of Technology's Solar Energy Engineering: Photovoltaic Energy Conversion builds a photovoltaic-conversion spine from videos, notes, practice, labs, and code, with a matching TU Delft open-course entry, public videos, and notes while edX audit and certificate access remain limited.
+- **Institution:** Delft University of Technology
+- **Course code:** PV Energy Conversion
+- **Track:** [Energy Storage and Photovoltaics](index.md)
+- **Tier:** A
+- **Role:** Mainline
+- **Level:** Advanced
+- **Last reviewed:** 2026-07-28
 
-## Course position
+Delft University of Technology's Solar Energy Engineering: Photovoltaic Energy Conversion builds a photovoltaic-conversion spine from videos, notes, practice, labs, and code, with a matching TU Delft open-course entry, public videos, and notes while edX audit and certificate access remain limited.
 
-| Attribute | Value |
-|---|---|
-| **Institution** | Delft University of Technology |
-| **Course code** | PV Energy Conversion |
-| **Track** | [Energy Storage and Photovoltaics](index.md) |
-| **Tier** | A |
-| **Role** | Mainline |
-| **Level** | Advanced |
-| **Last reviewed** | 2026-07-28 |
-
-## Why choose this course
+**Why choose this course**
 
 Mainline course. A reliable option that can serve as a main course or strong alternative.
 
-## Before you start
+**Before you start**
 
 - Recommended foundation: Semiconductor Devices
 - Recommended foundation: Circuit Analysis
 - Recommended foundation: Engineering Mathematics
 
-## Verifiable learning outcomes
+**Verifiable learning outcomes**
 
 - Explain the core models in Energy Storage and Photovoltaics, including their assumptions and limits
 - Solve representative derivations and problems, checking units, limiting cases, or numerical results
 - Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-## Workload and pacing
+**Workload and pacing**
 
 **12 weeks at 10.5 hours/week.** The provider publishes 12 weeks at 10–11 hours per week; the midpoint is shown above for planning. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-## Software, hardware, and cost
+**Safety level**
 
-### Software
+**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+
+## Course Resources
+
+**Software, hardware, and cost**
+
+**Software**
 
 - Maintainer-suggested open-source/free verification path: pvlib-python, PyBaMM, Python 3, Jupyter, and pandas
 - The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
 
-### Hardware
+**Hardware**
 
 - The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect course-specified protected low-voltage PV/battery training modules, temperature/current sensors, electronic load, and protective enclosure
 
-### Cost note
+**Cost note**
 
 The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
 
-## Safety level
-
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
-
-## Public resource coverage
+**Public resource coverage**
 
 | Resource type | Completeness |
 |---|---|
@@ -74,7 +72,7 @@ The current maintainer path uses computation and simulation only, with no dedica
 | Exams | No public material |
 | Code | Partial |
 
-## Resources and access
+**Resources and access**
 
 | Resource | Access | License | Status | Verified |
 |---|---|---|---|---|
@@ -85,9 +83,11 @@ The current maintainer path uses computation and simulation only, with no dedica
 
 > “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
 
-## Practice loop
+## Practice and Verification
 
-### Solar Energy Engineering: Photovoltaic Energy Conversion · Delft University of Technology PV Energy Conversion: Battery or PV Energy-Management Digital Twin
+**Practice loop**
+
+**Solar Energy Engineering: Photovoltaic Energy Conversion · Delft University of Technology PV Energy Conversion: Battery or PV Energy-Management Digital Twin**
 
 This is a maintainer-suggested self-study project for Solar Energy Engineering: Photovoltaic Energy Conversion · Delft University of Technology PV Energy Conversion, not an official course assignment. Build a battery or PV digital twin from public or synthetic data for Energy Storage and Photovoltaics and evaluate state estimation, energy scheduling, temperature or irradiance changes, and safety constraints.
 
@@ -115,11 +115,11 @@ This is a maintainer-suggested self-study project for Solar Energy Engineering: 
 
 **Safety boundary:** Simulation only — Use public or synthetic data and simulation only; do not charge, discharge, or open real cells or connect PV arrays, mains, high voltage, or laser sources.
 
-## Risks, gaps, and boundaries
+**Risks, gaps, and boundaries**
 
 The edX audit path is limited and certificate pricing can change; the companion open materials use a CC BY-NC-SA license.
 
-## Completion evidence
+**Completion evidence**
 
 - Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
 - Theory dossier with explicit assumptions, notation, derivation, units, and boundary conditions, checked by at least one independent method

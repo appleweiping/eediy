@@ -8,8 +8,6 @@ page_type: track
 
 # Electromagnetic Fields and Waves
 
-[中文](../../../courses/electromagnetics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Maxwell equations, boundaries, transmission lines, waveguides, and radiation for RF, photonics, and high-speed interconnects.

@@ -47,6 +47,7 @@ def commands(*, include_external: bool, include_build: bool) -> list[Command]:
         ),
         Command("learning routes", (python, "scripts/validate_routes.py")),
         Command("generated pages", (python, "scripts/generate_course_pages.py", "--check")),
+        Command("generated navigation", (python, "scripts/sync_navigation.py", "--check")),
         Command("forbidden text", (python, "scripts/check_forbidden_terms.py")),
         Command("translations", (python, "scripts/check_translations.py")),
         Command("navigation", (python, "scripts/check_navigation.py")),

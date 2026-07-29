@@ -8,8 +8,6 @@ page_type: track
 
 # 储能与光伏
 
-[English](../../en/courses/energy-storage-pv/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 电化学储能、太阳能电池、系统建模与能量管理，明确电池、激光和高压安全边界。

@@ -8,8 +8,6 @@ page_type: track
 
 # Circuit Analysis
 
-[中文](../../../courses/circuits/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 DC, AC, dynamic circuits, network theorems, and frequency-domain methods shared by electronics, control, power, and instrumentation.

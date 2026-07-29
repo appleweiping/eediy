@@ -8,7 +8,7 @@ page_type: routes
 
 # 学习路线
 
-[English](../en/routes/index.md) · [课程导航](../courses/index.md)
+[课程导航](../courses/index.md)
 
 路线用于控制范围和顺序，不是必须逐门完成的固定培养方案。先选择一条主路线，再按先修缺口补课。
 

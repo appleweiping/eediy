@@ -8,8 +8,6 @@ page_type: track
 
 # 机器人与自主系统
 
-[English](../../en/courses/robotics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 运动学、动力学、规划、感知和操控，通过仿真或实体平台完成可演示系统。

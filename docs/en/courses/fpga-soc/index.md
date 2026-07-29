@@ -8,8 +8,6 @@ page_type: track
 
 # FPGA and System-on-Chip Design
 
-[中文](../../../courses/fpga-soc/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 RTL, verification, interfaces, and hardware/software co-design with synthesizable designs and board-level demonstrations.

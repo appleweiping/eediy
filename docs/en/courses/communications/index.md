@@ -8,8 +8,6 @@ page_type: track
 
 # Communication Systems
 
-[中文](../../../courses/communications/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Modulation, detection, channels, synchronization, link budgets, and wireless systems from waveforms to reliable links.

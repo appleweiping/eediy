@@ -8,8 +8,6 @@ page_type: track
 
 # Programming and Engineering Computing
 
-[中文](../../../courses/programming-tools/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Python, C, version control, reproducible experiments, and numerical tools that turn analysis into verifiable software.

@@ -8,8 +8,6 @@ page_type: route
 
 # Sensors, Instrumentation, and Biomedical Electronics
 
-[中文](../../routes/instrumentation-biomedical.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners combining sensors, analog front ends, measurement, and physiological signal processing

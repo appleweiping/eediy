@@ -8,8 +8,6 @@ page_type: track
 
 # Information Theory and Coding
 
-[中文](../../../courses/information-theory-coding/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Entropy, capacity, rate-distortion, and modern error-correcting codes for both limits and constructions.

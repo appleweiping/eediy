@@ -8,8 +8,6 @@ page_type: route
 
 # 精简核心路线
 
-[English](../en/routes/essential-core.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 时间有限、希望先建立完整 EE 骨架的学习者

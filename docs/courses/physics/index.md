@@ -8,8 +8,6 @@ page_type: track
 
 # 物理基础
 
-[English](../../en/courses/physics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 力学、电磁学、波动与量子基础，面向机器人、场与波、器件和光电方向。

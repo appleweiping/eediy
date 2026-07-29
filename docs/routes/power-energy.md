@@ -8,8 +8,6 @@ page_type: route
 
 # 电力、电机、电力电子与能源
 
-[English](../en/routes/power-energy.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望覆盖能量变换、设备、电网和储能系统的学习者

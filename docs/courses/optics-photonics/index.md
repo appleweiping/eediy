@@ -8,8 +8,6 @@ page_type: track
 
 # 光学、光电与光子学
 
-[English](../../en/courses/optics-photonics/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 几何与波动光学、半导体光电器件、集成光子和量子光学，结合可复现的仿真设计。

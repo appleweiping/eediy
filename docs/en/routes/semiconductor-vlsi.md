@@ -8,8 +8,6 @@ page_type: route
 
 # Semiconductors, Micro/Nanofabrication, and VLSI
 
-[中文](../../routes/semiconductor-vlsi.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners seeking the full chain from devices and fabrication to digital IC physical implementation

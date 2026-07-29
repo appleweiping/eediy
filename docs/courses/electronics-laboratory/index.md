@@ -8,8 +8,6 @@ page_type: track
 
 # 电子实验与测量
 
-[English](../../en/courses/electronics-laboratory/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 从面包板、示波器和误差分析到可复现实验报告，建立安全、可靠的动手能力。

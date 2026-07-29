@@ -8,8 +8,6 @@ page_type: route
 
 # 数字系统、FPGA 与体系结构
 
-[English](../en/routes/digital-fpga-architecture.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望理解从 RTL 到处理器和 SoC 的硬件学习者

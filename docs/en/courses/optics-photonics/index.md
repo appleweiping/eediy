@@ -8,8 +8,6 @@ page_type: track
 
 # Optics, Optoelectronics, and Photonics
 
-[中文](../../../courses/optics-photonics/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Geometric and wave optics, optoelectronic devices, integrated photonics, and quantum optics with reproducible simulation.

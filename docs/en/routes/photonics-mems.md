@@ -8,8 +8,6 @@ page_type: route
 
 # Optoelectronics, Photonics, and MEMS
 
-[中文](../../routes/photonics-mems.md) · [← Learning routes](index.md)
-
 ## Audience
 
 Learners moving from electromagnetics and quantum foundations to optoelectronic devices, integrated photonics, and MEMS

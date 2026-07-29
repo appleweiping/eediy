@@ -8,8 +8,6 @@ page_type: track
 
 # Sensors and Instrumentation
 
-[中文](../../../courses/sensors-instrumentation/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Sensing mechanisms, interfaces, calibration, noise, and uncertainty with traceable test methods.

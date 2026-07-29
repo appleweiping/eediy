@@ -8,8 +8,6 @@ page_type: track
 
 # 计算机体系结构
 
-[English](../../en/courses/computer-architecture/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 ISA、流水线、缓存、并行与性能分析，解释数字系统如何执行真实程序。

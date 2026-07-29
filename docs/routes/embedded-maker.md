@@ -8,8 +8,6 @@ page_type: route
 
 # 嵌入式与智能硬件
 
-[English](../en/routes/embedded-maker.md) · [← 学习路线](index.md)
-
 ## 适合人群
 
 希望从数字逻辑走到 MCU、实时系统、PCB 和完整硬件作品的学习者

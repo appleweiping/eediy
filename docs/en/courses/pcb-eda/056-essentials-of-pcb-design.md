@@ -8,60 +8,58 @@ page_type: course
 
 # Essentials of PCB Design
 
-[中文](../../../courses/pcb-eda/056-essentials-of-pcb-design.md) · [← PCB, EDA, and Hardware Verification](index.md)
+## Course Overview
 
-> Worcester Polytechnic Institute's Essentials of PCB Design supplements PCB practice with slides, starter files, KiCad materials, and GitHub resources, while recordings are restricted and fabrication is self-funded.
+- **Institution:** Worcester Polytechnic Institute
+- **Course code:** Essentials of PCB Design
+- **Track:** [PCB, EDA, and Hardware Verification](index.md)
+- **Tier:** B
+- **Role:** Supplement
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-## Course position
+Worcester Polytechnic Institute's Essentials of PCB Design supplements PCB practice with slides, starter files, KiCad materials, and GitHub resources, while recordings are restricted and fabrication is self-funded.
 
-| Attribute | Value |
-|---|---|
-| **Institution** | Worcester Polytechnic Institute |
-| **Course code** | Essentials of PCB Design |
-| **Track** | [PCB, EDA, and Hardware Verification](index.md) |
-| **Tier** | B |
-| **Role** | Supplement |
-| **Level** | Not standardized by provider (use prerequisites) |
-| **Last reviewed** | 2026-07-28 |
-
-## Why choose this course
+**Why choose this course**
 
 Supplement course. Useful for specific topics and best paired with a more complete mainline resource.
 
-## Before you start
+**Before you start**
 
 - Recommended foundation: Circuit Analysis
 - Recommended foundation: Electronics Laboratory and Measurement
 
-## Verifiable learning outcomes
+**Verifiable learning outcomes**
 
 - Explain the core models in PCB, EDA, and Hardware Verification, including their assumptions and limits
 - Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-## Workload and pacing
+**Workload and pacing**
 
 **7 weeks at 6 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-## Software, hardware, and cost
+**Safety level**
 
-### Software
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
+
+## Course Resources
+
+**Software, hardware, and cost**
+
+**Software**
 
 - Maintainer-suggested open-source/free verification path: KiCad (schematic, PCB, and ngspice), gerbv, and Git
 - The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
 
-### Hardware
+**Hardware**
 
 - The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: course-specified components, prototype PCB, current-limited supply, digital multimeter, and oscilloscope only after design checks pass. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
 
-### Cost note
+**Cost note**
 
 The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
 
-## Safety level
-
-**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
-
-## Public resource coverage
+**Public resource coverage**
 
 | Resource type | Completeness |
 |---|---|
@@ -72,7 +70,7 @@ The suggested software stack is available open source or free; this is not a pro
 | Exams | No public material |
 | Code | Complete |
 
-## Resources and access
+**Resources and access**
 
 | Resource | Access | License | Status | Verified |
 |---|---|---|---|---|
@@ -80,9 +78,11 @@ The suggested software stack is available open source or free; this is not a pro
 
 > “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
 
-## Practice loop
+## Practice and Verification
 
-### Essentials of PCB Design · Worcester Polytechnic Institute Essentials of PCB Design: Manufacturable Low-Voltage Test Board Review
+**Practice loop**
+
+**Essentials of PCB Design · Worcester Polytechnic Institute Essentials of PCB Design: Manufacturable Low-Voltage Test Board Review**
 
 This is a maintainer-suggested self-study project for Essentials of PCB Design · Worcester Polytechnic Institute Essentials of PCB Design, not an official course assignment. Design a passive or small-signal test board at or below 5 V for PCB, EDA, and Hardware Verification, completing rule checks, BOM, manufacturing outputs, testability, and an optional current-limited bring-up plan.
 
@@ -110,11 +110,11 @@ This is a maintainer-suggested self-study project for Essentials of PCB Design �
 
 **Safety boundary:** Low energy — If fabricated, limit operation to isolated, current-limited supplies at or below 5 V; verify component and connector ratings, solder and wire with power removed, and current-limit first power-up. No mains, battery packs, high current, or hot loads.
 
-## Risks, gaps, and boundaries
+**Risks, gaps, and boundaries**
 
 Slides, starter files, KiCad materials, and GitHub resources are public; recordings require a WPI account and fabrication is self-funded.
 
-## Completion evidence
+**Completion evidence**
 
 - Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
 - Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test

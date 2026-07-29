@@ -8,8 +8,6 @@ page_type: track
 
 # PCB, EDA, and Hardware Verification
 
-[中文](../../../courses/pcb-eda/index.md) · [← Course catalogue](../index.md)
-
 ## Track position
 
 Schematics, layout, fabrication outputs, BOMs, debugging, and reviews that turn simulations into manufacturable hardware.

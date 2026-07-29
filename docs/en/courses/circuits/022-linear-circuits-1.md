@@ -8,61 +8,59 @@ page_type: course
 
 # Linear Circuits 1: DC Analysis
 
-[中文](../../../courses/circuits/022-linear-circuits-1.md) · [← Circuit Analysis](index.md)
+## Course Overview
 
-> Georgia Institute of Technology's Linear Circuits 1: DC Analysis strengthens DC circuit analysis through videos and more than one hundred drills, while lacking a true home-lab loop.
+- **Institution:** Georgia Institute of Technology
+- **Course code:** Linear Circuits 1
+- **Track:** [Circuit Analysis](index.md)
+- **Tier:** A
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-## Course position
+Georgia Institute of Technology's Linear Circuits 1: DC Analysis strengthens DC circuit analysis through videos and more than one hundred drills, while lacking a true home-lab loop.
 
-| Attribute | Value |
-|---|---|
-| **Institution** | Georgia Institute of Technology |
-| **Course code** | Linear Circuits 1 |
-| **Track** | [Circuit Analysis](index.md) |
-| **Tier** | A |
-| **Role** | Alternative |
-| **Level** | Not standardized by provider (use prerequisites) |
-| **Last reviewed** | 2026-07-28 |
-
-## Why choose this course
+**Why choose this course**
 
 Alternative course. A reliable option that can serve as a main course or strong alternative.
 
-## Before you start
+**Before you start**
 
 - Recommended foundation: Engineering Mathematics
 - Recommended foundation: Physics Foundations
 
-## Verifiable learning outcomes
+**Verifiable learning outcomes**
 
 - Explain the core models in Circuit Analysis, including their assumptions and limits
 - Solve representative derivations and problems, checking units, limiting cases, or numerical results
 - Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-## Workload and pacing
+**Workload and pacing**
 
 **11 weeks at 7 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-## Software, hardware, and cost
+**Safety level**
 
-### Software
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
+
+## Course Resources
+
+**Software, hardware, and cost**
+
+**Software**
 
 - Maintainer-suggested open-source/free verification path: Qucs-S, ngspice, Python 3, and Jupyter
 - The resource inventory does not list public code coverage; the tools above are only a maintainer-suggested independent check, not a provider requirement
 
-### Hardware
+**Hardware**
 
 - The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a current-limited low-voltage supply, breadboard, digital multimeter, oscilloscope, and function generator. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
 
-### Cost note
+**Cost note**
 
 The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
 
-## Safety level
-
-**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
-
-## Public resource coverage
+**Public resource coverage**
 
 | Resource type | Completeness |
 |---|---|
@@ -73,7 +71,7 @@ The suggested software stack is available open source or free; this is not a pro
 | Exams | Partial |
 | Code | No public material |
 
-## Resources and access
+**Resources and access**
 
 | Resource | Access | License | Status | Verified |
 |---|---|---|---|---|
@@ -81,9 +79,11 @@ The suggested software stack is available open source or free; this is not a pro
 
 > “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
 
-## Practice loop
+## Practice and Verification
 
-### Linear Circuits 1: DC Analysis · Georgia Institute of Technology Linear Circuits 1: Dynamic Network Model and Tolerance Validation
+**Practice loop**
+
+**Linear Circuits 1: DC Analysis · Georgia Institute of Technology Linear Circuits 1: Dynamic Network Model and Tolerance Validation**
 
 This is a maintainer-suggested self-study project for Linear Circuits 1: DC Analysis · Georgia Institute of Technology Linear Circuits 1, not an official course assignment. Design a low-voltage resistive, capacitive, and optionally op-amp network for Circuit Analysis; compare hand analysis, SPICE, and current-limited measurements while studying tolerance and saturation failures.
 
@@ -111,11 +111,11 @@ This is a maintainer-suggested self-study project for Linear Circuits 1: DC Anal
 
 **Safety boundary:** Low energy — Use only isolated, current-limited circuits at or below 12 V; verify power ratings and polarity, wire with power removed, and never use mains or unknown supplies.
 
-## Risks, gaps, and boundaries
+**Risks, gaps, and boundaries**
 
 More than one hundred drills but no true home-lab loop; Coursera subscription, trial, or preview access can change.
 
-## Completion evidence
+**Completion evidence**
 
 - Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
 - Theory dossier with explicit assumptions, notation, derivation, units, and boundary conditions, checked by at least one independent method

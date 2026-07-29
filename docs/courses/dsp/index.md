@@ -8,8 +8,6 @@ page_type: track
 
 # 数字信号处理
 
-[English](../../en/courses/dsp/index.md) · [← 课程总览](../index.md)
-
 ## 方向定位
 
 离散变换、滤波器、谱估计、多率系统与实现，以代码、数据和误差指标闭环。
