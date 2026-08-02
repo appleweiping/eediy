@@ -1,4 +1,6 @@
-{# Render a standard Material language menu with a deep link to the translated
+{# Modified from Material for MkDocs 9.7.7, partials/alternate.html.
+   Copyright (c) 2016-2025 Martin Donath; MIT License.
+   Render a standard language menu with a deep link to the translated
    counterpart. Both language trees use matching paths below /en/. #}
 {% set is_english = page and (page.url == "en/" or page.url.startswith("en/")) %}
 {% if is_english %}

@@ -10,7 +10,12 @@
     "tier": "S",
     "tier_note": "S",
     "level": "introductory",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 18.01SC syllabus 只要求高中代数与三角学，没有大学课程先修",
+      "en": "The MIT 18.01SC syllabus requires only high-school algebra and trigonometry; it lists no prior college course"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
     "risk": "No critical gap.",
     "verified_at": "2026-07-28"
   },
@@ -24,7 +29,13 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
+    "prerequisite_course_ids": [1],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 18.02SC syllabus 将 18.01 单变量微积分列为正式先修",
+      "en": "The MIT 18.02SC syllabus lists 18.01 Single Variable Calculus as the formal prerequisite"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
     "risk": "Requires single-variable calculus.",
     "verified_at": "2026-07-28"
   },
@@ -38,7 +49,12 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 18.03SC syllabus 要求单变量微积分，并建议具备基础矩阵运算能力",
+      "en": "The MIT 18.03SC syllabus requires single-variable calculus and recommends basic matrix fluency"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
     "risk": "Multivariable calculus is recommended as a co-requisite.",
     "verified_at": "2026-07-28"
   },
@@ -52,7 +68,16 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "本站建议先熟悉矩阵运算与向量几何；这是独立学习准备，不是 MIT 列出的额外先修",
+      "en": "EEDIY recommends familiarity with matrix arithmetic and vector geometry for independent study; this is not an additional MIT prerequisite"
+    },
+    "prerequisite_note": {
+      "zh": "MIT 目录列出 18.02，但课程说明同时明确完成本课内容并不需要微积分",
+      "en": "MIT's catalogue lists 18.02, while the course description says calculus is not needed to complete the material"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
     "risk": "Calculus is formally listed, but the central linear algebra content can be learned without it.",
     "verified_at": "2026-07-28"
   },
@@ -66,8 +91,18 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
+    "prerequisite_course_ids": [2],
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "本站的 18.03SC 页面可作为微分方程的公开复习入口，但不是满足 MIT 要求的唯一方式",
+      "en": "EEDIY's 18.03SC page is one public review route for differential equations, not the only way to meet MIT's requirement"
+    },
+    "prerequisite_note": {
+      "zh": "MIT 的正式先修是 18.02，以及 18.03 或 18.032 二选一",
+      "en": "MIT formally requires 18.02 and either 18.03 or 18.032"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 1 },
-    "risk": "No lecture videos; MATLAB tutorials are included.",
+    "risk": "The official prerequisites are 18.02 and either 18.03 or 18.032. No lecture videos are published; MATLAB tutorials are included.",
     "verified_at": "2026-07-28"
   },
   {
@@ -80,6 +115,11 @@
     "role": "alternative",
     "tier": "S",
     "tier_note": "S",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 18.05 syllabus 要求 18.02 水平的多元微积分，不要求先学统计学",
+      "en": "The MIT 18.05 syllabus requires multivariable calculus at the 18.02 level and no prior statistics"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 2, "code": 2 },
     "risk": "No lecture videos; the free MIT Open Learning Library version supplies interactive questions and R activities.",
     "verified_at": "2026-07-28"
@@ -94,7 +134,13 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
+    "prerequisite_course_ids": [1, 2],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.041SC syllabus 要求 18.01 与 18.02，并明确涉及数列、极限、级数和多重积分",
+      "en": "The MIT 6.041SC syllabus requires 18.01 and 18.02 and explicitly names sequences, limits, series, and multiple integrals"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
     "risk": "Requires single-variable and multivariable calculus.",
     "verified_at": "2026-07-28"
   },
@@ -136,13 +182,17 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
-    "risk": "No critical gap; serves as a mechanics foundation for robotics and electromechanics.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 8.01SC syllabus 不列正式先修，并将 18.01SC 设为同步课程（corequisite）",
+      "en": "The MIT 8.01SC syllabus lists no formal prerequisite and makes 18.01SC a corequisite"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 2, "labs": 0, "exams": 0, "code": 0 },
+    "risk": "The public navigation does not expose an exam archive. The problem-set sequence remains useful as a mechanics foundation for robotics and electromechanics, but it should not be presented as a complete assessment loop.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 11,
-    "practice_modality": "supervised",
     "title": "Physics II: Electricity and Magnetism with an Experimental Focus",
     "institution": "MIT",
     "code": "8.02X",
@@ -165,7 +215,12 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 8.03SC syllabus 列出 18.02 与 8.02，并预期已熟悉 8.01、18.01 和部分 18.06",
+      "en": "The MIT 8.03SC syllabus lists 18.02 and 8.02 and expects familiarity with 8.01, 18.01, and some 18.06"
+    },
+    "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
     "risk": "Requires mechanics and calculus.",
     "verified_at": "2026-07-28"
   },
@@ -179,6 +234,12 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
+    "prerequisite_course_ids": [12],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 8.04 syllabus 要求 8.03 成绩至少为 C",
+      "en": "The MIT 8.04 syllabus requires a grade of at least C in 8.03"
+    },
     "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 0 },
     "risk": "Public problem sets and exams do not include solutions.",
     "verified_at": "2026-07-28"
@@ -194,6 +255,11 @@
     "tier": "A",
     "tier_note": "A",
     "prerequisite_course_ids": [13],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 8.05 syllabus 要求 8.04 成绩至少为 C",
+      "en": "The MIT 8.05 syllabus requires a grade of at least C in 8.04"
+    },
     "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 0 },
     "risk": "Requires Quantum Physics I; public practice and exams lack complete solution feedback.",
     "verified_at": "2026-07-28"
@@ -209,7 +275,12 @@
     "tier": "S",
     "tier_note": "S",
     "level": "introductory",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.100L 面向很少或没有编程经验的学习者",
+      "en": "MIT 6.100L targets learners with little to no programming experience"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 2, "labs": 1, "exams": 0, "code": 2 },
     "risk": "Current Python 3 materials; the absence of exams is not a critical gap for this skills course.",
     "verified_at": "2026-07-28"
   },
@@ -223,7 +294,12 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.087 假定学习者已有循环、函数分解和调试经验，但不要求先学过 C",
+      "en": "MIT 6.087 assumes prior experience with loops, functional decomposition, and debugging, but not with C itself"
+    },
+    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 0, "code": 2 },
     "risk": "No videos; some UNIX tool examples are dated.",
     "verified_at": "2026-07-28"
   },
@@ -251,6 +327,12 @@
     "role": "supplement",
     "tier": "A",
     "tier_note": "A-",
+    "prerequisite_course_ids": [10, 1],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.055J syllabus 只列 8.01 与 18.01 为先修",
+      "en": "The MIT 6.055J syllabus lists only 8.01 and 18.01 as prerequisites"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 1, "code": 0 },
     "risk": "No video; useful for dimensional reasoning and estimation, not as a replacement for core mathematics.",
     "verified_at": "2026-07-28"
@@ -265,7 +347,12 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S content / A reproducibility",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 2, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.01SC 不列正式先修，并将 8.02 设为同步课程（corequisite）",
+      "en": "MIT 6.01SC lists no formal prerequisite and makes 8.02 a corequisite"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 2, "exams": 2, "code": 2 },
     "risk": "Designed for independent study, but the mobile-robot hardware and software stack are dated.",
     "verified_at": "2026-07-28"
   },
@@ -279,6 +366,11 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.007 syllabus 要求 8.02 或 6.01；这是二选一要求，不能改写成必须同时完成两门",
+      "en": "The MIT 6.007 syllabus requires either 8.02 or 6.01; this is an alternative, not a requirement to complete both"
+    },
     "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "Only laboratory demonstration videos are public, problem sets have no solutions, and the course is broad enough to work best as a bridge.",
     "verified_at": "2026-07-28"
@@ -293,8 +385,17 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 2, "code": 1 },
-    "risk": "The tools and component references are dated, but the teaching and assessment spine is exceptionally complete.",
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "本站的 8.02X 与 18.03SC 页面只是补齐对应背景的两条公开路径，不是必须完成的特定课程实例",
+      "en": "EEDIY's 8.02X and 18.03SC pages are two public preparation routes, not mandatory course instances"
+    },
+    "prerequisite_note": {
+      "zh": "MIT syllabus 列出 8.02 电磁学与 18.03 微分方程，并允许具备同等背景",
+      "en": "The MIT syllabus lists 8.02 electricity and magnetism plus 18.03 differential equations, or equivalent preparation"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 2, "labs": 2, "exams": 2, "code": 1 },
+    "risk": "Lecture 24 notes and video are unavailable, the 2007 and 2000 archives do not map one-to-one, and the tools and component references are dated. The surviving teaching and assessment spine is still unusually useful.",
     "verified_at": "2026-07-28"
   },
   {
@@ -307,7 +408,7 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 1, "exams": 1, "code": 0 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 1, "code": 0 },
     "risk": "More than one hundred drills but no true home-lab loop; Coursera subscription, trial, or preview access can change.",
     "verified_at": "2026-07-28"
   },
@@ -325,7 +426,7 @@
       "zh": "直流电路分析或同等基础；第一门课程可作为配套，但不是不可替代的硬先修",
       "en": "DC circuit analysis or equivalent background; Course 1 is useful context but not an irreplaceable hard prerequisite"
     },
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 1, "exams": 1, "code": 0 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 1, "code": 0 },
     "risk": "Includes 45 assignments and experiment demonstrations but no build loop; Coursera access is paid or variable.",
     "verified_at": "2026-07-28"
   },
@@ -367,6 +468,11 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S content / A hardware",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.101 将 6.002 或 6.071 的及格水平列为足够背景",
+      "en": "MIT 6.101 names passing-level performance in either 6.002 or 6.071 as sufficient background"
+    },
     "resources": { "video": 0, "notes": 1, "practice": 2, "labs": 2, "exams": 1, "code": 1 },
     "risk": "Six labs and a seven-week project are strong, but paid readings and old parts require a substitute BOM.",
     "verified_at": "2026-07-28"
@@ -381,7 +487,7 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 1, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 1 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "Requires an Analog Discovery 2 or 3, creating a hardware-cost and regional-availability constraint.",
     "verified_at": "2026-07-28"
   },
@@ -395,7 +501,7 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
-    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 2, "exams": 0, "code": 0 },
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
     "risk": "Some notes are missing; homework and labs have no solutions, and exams are absent.",
     "verified_at": "2026-07-28"
   },
@@ -410,7 +516,7 @@
     "tier": "S",
     "tier_note": "S",
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 2, "code": 0 },
-    "risk": "No videos and taught in 2016, but 27 notes, twelve solved homeworks, solved exams, and four labs form a complete spine.",
+    "risk": "No videos and taught in 2016, but 27 notes, twelve solved homeworks, solved exams, and three regular solved labs form a strong spine; Lab 4 is optional bonus work without a public solution.",
     "verified_at": "2026-07-28"
   },
   {
@@ -437,7 +543,12 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 2, "exams": 1, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Berkeley EE 105 的课程信息预期已具备 EE 40 水平的 KCL/KVL、节点分析、阻抗、Bode 图与基础仪器使用能力",
+      "en": "Berkeley EE 105 course information expects EE 40-level KCL/KVL, node analysis, impedance, Bode plots, and basic instrument use"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 1, "exams": 1, "code": 1 },
     "risk": "Public notes, homework, and labs are useful, but the Razavi text is paid and solutions are incomplete.",
     "verified_at": "2026-07-28"
   },
@@ -451,6 +562,12 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
+    "prerequisite_course_ids": [30],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.301 syllabus 要求 6.012，并假定已掌握 6.003 中的 Bode 图、Laplace 变换、传递函数与复阻抗",
+      "en": "The MIT 6.301 syllabus requires 6.012 and assumes the Bode plots, Laplace transforms, transfer functions, and complex impedance of 6.003"
+    },
     "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 2, "exams": 1, "code": 0 },
     "risk": "The primary classroom notes are missing; the course depends on 6.012-equivalent preparation and outside readings.",
     "verified_at": "2026-07-28"
@@ -465,6 +582,12 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
+    "prerequisite_course_ids": [32, 67],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.331 syllabus 要求 6.301 与 6.302，并明确写明不接受等效课程替代",
+      "en": "The MIT 6.331 syllabus requires 6.301 and 6.302 and explicitly says no equivalents are accepted"
+    },
     "resources": { "video": 0, "notes": 0, "practice": 1, "labs": 2, "exams": 0, "code": 0 },
     "risk": "No public teaching spine; appropriate only for prepared learners using the six problem sets and three labs.",
     "verified_at": "2026-07-28"
@@ -479,7 +602,7 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "risk": "Current 2026 videos and weekly assignments, but no laboratory, code, or public solution feedback.",
     "verified_at": "2026-07-28"
   },
@@ -493,7 +616,7 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
     "risk": "Includes filter experiment demonstrations, not a reproducible home laboratory.",
     "verified_at": "2026-07-28"
   },
@@ -511,14 +634,13 @@
     "tier": "A",
     "tier_note": "A content / B completion",
     "level": "advanced",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "workload": { "weeks": 12 },
     "risk": "The current 2026 run provides a structured 12-week video syllabus, but graded feedback and the optional certificate exam depend on enrollment, and no open EDA project is provided.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 37,
-    "practice_modality": "simulation-only",
     "title": "Computation Structures",
     "institution": "MIT",
     "code": "6.004",
@@ -530,8 +652,8 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 2, "code": 2 },
-    "risk": "The course page should explain that the 2017 edition supplies videos and notes while the 2009 edition supplies laboratories and exams.",
+    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 1, "code": 1 },
+    "risk": "The 2017 edition supplies videos and notes while the 2009 edition supplies laboratories, tools, and exams. Quiz 4 lacks its question paper, and the downloadable tool bundle belongs to the older edition, so neither exams nor code form a complete same-version set.",
     "verified_at": "2026-07-28"
   },
   {
@@ -544,13 +666,12 @@
     "role": "alternative",
     "tier": "S",
     "tier_note": "S/A",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 1, "code": 2 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 1, "code": 2 },
     "risk": "The official landing page links complete 2025 videos and materials; the Safari-hosted material server needs a manual robots and download-health check.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 39,
-    "practice_modality": "simulation-only",
     "title": "Build a Modern Computer from First Principles: From Nand to Tetris, Part I",
     "institution": "Hebrew University of Jerusalem",
     "code": "Nand2Tetris I",
@@ -559,7 +680,12 @@
     "role": "alternative",
     "tier": "S",
     "tier_note": "S content / A access",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Nand2Tetris 官方页面明确写明第一部分不要求任何先前知识",
+      "en": "The official Nand2Tetris site states that Part I requires no prior knowledge"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "risk": "The HDL simulator and projects are self-contained, but Coursera trial, payment, and full-course access terms can change.",
     "verified_at": "2026-07-28"
   },
@@ -577,7 +703,7 @@
       "zh": "入门编程能力；第一部分可配套学习，但第二部分官方说明为自成体系",
       "en": "Introductory programming; Part I is a useful companion, but the provider describes Part II as self-contained"
     },
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "risk": "Six substantial projects require Python or Java setup, and Coursera access terms can change.",
     "verified_at": "2026-07-28"
   },
@@ -605,6 +731,11 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.111 syllabus 不要求 6.004，但预期具备基础电路理论",
+      "en": "The MIT 6.111 syllabus does not require 6.004, but it expects basic circuit theory"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 2, "exams": 1, "code": 1 },
     "risk": "The Verilog laboratories and final projects are strong, but the FPGA boards and EDA workflow are dated.",
     "verified_at": "2026-07-28"
@@ -614,14 +745,19 @@
     "title": "Digital Systems Laboratory",
     "institution": "University of Illinois Urbana-Champaign",
     "code": "ECE 385",
-    "url": "https://ece.illinois.edu/academics/courses/ece385-120258",
+    "url": "https://ece.illinois.edu/academics/courses/ece385",
     "track": "fpga-soc",
     "role": "alternative",
-    "tier": "A",
-    "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 2, "exams": 1, "code": 2 },
-    "risk": "The current SystemVerilog and Vivado sequence depends on a specified FPGA board and some campus infrastructure.",
-    "verified_at": "2026-07-28"
+    "tier": "B",
+    "tier_note": "B / catalogue-only; independent project map",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Illinois ECE 385 的系级页面与课程目录将 ECE 110 和 ECE 220 列为先修",
+      "en": "Illinois's ECE 385 department page and catalogue list ECE 110 and ECE 220 as prerequisites"
+    },
+    "resources": { "video": 0, "notes": 0, "practice": 0, "labs": 0, "exams": 0, "code": 0 },
+    "risk": "The current department page, catalogue, and Course Explorer expose no assignments, starter files, rubrics, staff feedback, or complete project package. Any reconstructed RTL or FPGA exercise must remain an independent project rather than being presented as official ECE 385 laboratory work.",
+    "verified_at": "2026-07-30"
   },
   {
     "id": 44,
@@ -645,11 +781,11 @@
     "url": "https://web.stanford.edu/class/ee180/",
     "track": "fpga-soc",
     "role": "supplement",
-    "tier": "A",
-    "tier_note": "A content / B completion",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 1, "exams": 1, "code": 1 },
-    "risk": "Public notes, homework, and laboratories remain useful, but Canvas, Gradescope, the textbook, and specified FPGA hardware limit independent completion.",
-    "verified_at": "2026-07-28"
+    "tier": "B",
+    "tier_note": "B / restricted syllabus index",
+    "resources": { "video": 0, "notes": 0, "practice": 0, "labs": 0, "exams": 0, "code": 0 },
+    "risk": "The public Winter 2026 page exposes the topic and reading schedule plus the names and release dates of Homework 1–3 and Lab 1–4. Complete handouts, starters, slides, solutions, Gradescope, FPGA allocation, and feedback require SUNet or Canvas access, so this is a restricted syllabus index rather than an independently executable course.",
+    "verified_at": "2026-07-31"
   },
   {
     "id": 46,
@@ -661,6 +797,11 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A content / C public completion",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Cornell ECE 4750 的课程材料假定已具备编程、数字逻辑与组织结构、系统编程基础",
+      "en": "Cornell ECE 4750 course materials assume foundations in programming, digital logic and organization, and systems programming"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "RISC-V notes, problems, and laboratory descriptions are public, but the group repository, server, and some starter code are private.",
     "verified_at": "2026-07-28"
@@ -675,6 +816,11 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.823 syllabus 要求 6.004 或同等背景",
+      "en": "The MIT 6.823 syllabus requires 6.004 or equivalent preparation"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 1, "exams": 1, "code": 1 },
     "risk": "Architecture examples are old, and the public problems and exams do not include a complete solution loop.",
     "verified_at": "2026-07-28"
@@ -684,14 +830,19 @@
     "title": "Great Ideas in Computer Architecture",
     "institution": "University of California, Berkeley",
     "code": "CS 61C",
-    "url": "https://cs61c.org/su26/",
+    "url": "https://www2.eecs.berkeley.edu/Courses/CS61C/",
     "track": "computer-architecture",
     "role": "mainline",
     "tier": "A",
     "tier_note": "A content / B completion",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 1, "code": 2 },
-    "risk": "Notes, discussions, laboratories, and projects are public, but recordings live in bCourses and the grader requires a Berkeley account.",
-    "verified_at": "2026-07-28"
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Berkeley CS 61C 系级页面要求与 CS 61A 加 CS 61B 相当的编程准备",
+      "en": "The Berkeley CS 61C department page calls for programming preparation comparable to CS 61A plus CS 61B"
+    },
+    "resources": { "video": 0, "notes": 2, "practice": 0, "labs": 1, "exams": 0, "code": 2 },
+    "risk": "The department page and official course notes remain public, as do the Fall 2024 lab and four project starter repositories. The old semester calendar, discussions, homework, recordings, graders, instructional accounts, and some nested campus services now require Berkeley access.",
+    "verified_at": "2026-07-31"
   },
   {
     "id": 49,
@@ -703,7 +854,12 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
-    "resources": { "video": 0, "notes": 2, "practice": 0, "labs": 1, "exams": 1, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.884 syllabus 预期熟练编程与 6.004 水平的数字逻辑；6.002、6.374、6.823 有帮助但不是必需",
+      "en": "The MIT 6.884 syllabus expects comfortable programming and 6.004-level digital logic; 6.002, 6.374, and 6.823 are useful but not mandatory"
+    },
+    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 1, "exams": 1, "code": 1 },
     "risk": "Commercial EDA dependencies and old standard-cell assumptions make the laboratories and projects difficult to reproduce.",
     "verified_at": "2026-07-28"
   },
@@ -717,6 +873,11 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A content / B tooling",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.374 syllabus 预期 6.012 或同等器件物理，以及 6.004 或同等逻辑设计背景",
+      "en": "The MIT 6.374 syllabus expects 6.012 or equivalent device physics and 6.004 or equivalent logic design"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 2, "code": 1 },
     "risk": "The open notes, problems, examinations, and design materials form a usable teaching spine, but the paid textbook and 2003 process, SPICE, and layout workflows are dated; pair it with the current curriculum record and modern open simulation.",
     "verified_at": "2026-07-28"
@@ -731,22 +892,25 @@
     "role": "supplement",
     "tier": "A",
     "tier_note": "A content / B completion",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 2, "exams": 0, "code": 1 },
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "Five laboratories are public, but solutions, exams, and the final project are missing, and the tools represent a commercial EDA workflow.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 52,
-    "title": "Advanced Microcontroller Design and System-on-Chip",
+    "title": "Hardware Acceleration via FPGA",
     "institution": "Cornell University",
     "code": "ECE 5760",
-    "url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/",
+    "url": "https://people.ece.cornell.edu/land/courses/ece5760/",
+    "alternate_urls": [
+      "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/"
+    ],
     "track": "fpga-soc",
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 0, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "The rich 2017 project archive is tied to the DE1-SoC and Cyclone V platform.",
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 2, "exams": 0, "code": 2 },
+    "risk": "The current Spring 2026 page and its lab-design index publish C, Verilog, MATLAB, headers, and full Quartus project ZIPs, while the historical project archive remains tied to the DE1-SoC and Cyclone V platform. Verilog-titled YouTube lectures count as video, not code; Quartus 18.1 and board availability are the main reproducibility constraints.",
     "verified_at": "2026-07-28"
   },
   {
@@ -759,8 +923,8 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "The open text, CTF, and laboratories are modern, but exercises target real processors and require checking hardware availability.",
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
+    "risk": "The open text, CTF, and official starter repository are modern, but only part of the laboratory sequence is independently executable: several labs require assigned bare-metal hosts, DRAM/HTCondor, or course infrastructure. Check hardware and service availability before starting.",
     "verified_at": "2026-07-28"
   },
   {
@@ -773,7 +937,12 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.1810 官方 overview 假定已具备 C 与系统编程经验",
+      "en": "The official MIT 6.1810 overview assumes C and systems-programming experience"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "risk": "The RISC-V xv6 laboratories are current, but there is no full video series or public grading feedback.",
     "verified_at": "2026-07-28"
   },
@@ -787,8 +956,13 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "The CC BY-SA course includes eight KiCad and Altium laboratories; fabrication and BOM costs remain, and Panopto links need a manual access check.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT IAP PCB 2026 syllabus 建议先具备基础 R/L/C、运放与功率分析能力；“All experience levels”不等于无先修",
+      "en": "The MIT IAP PCB 2026 syllabus recommends basic R/L/C, op-amp, and power analysis; “All experience levels” does not mean no preparation"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
+    "risk": "The CC BY-SA course includes eight KiCad and Altium laboratories, but most Panopto recordings are restricted and the Lab 08 firmware is on an internal MIT repository. Public design files are useful but do not form a complete firmware-and-video set; fabrication and BOM costs remain.",
     "verified_at": "2026-07-28"
   },
   {
@@ -801,7 +975,7 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
-    "resources": { "video": 0, "notes": 1, "practice": 0, "labs": 2, "exams": 0, "code": 2 },
+    "resources": { "video": 0, "notes": 1, "practice": 0, "labs": 1, "exams": 0, "code": 2 },
     "risk": "Slides, starter files, KiCad materials, and GitHub resources are public; recordings require a WPI account and fabrication is self-funded.",
     "verified_at": "2026-07-28"
   },
@@ -816,7 +990,12 @@
     "tier": "S",
     "tier_note": "S+",
     "level": "advanced",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Cornell ECE 4760/5730 policy 要求 ECE 3140 或任课教师许可，并预期 C、电子装配与数学基础",
+      "en": "Cornell ECE 4760/5730 policy requires ECE 3140 or instructor permission and expects C, electronics construction, and mathematics"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
     "risk": "The current RP2350 and Pico 2 sequence assumes prior C programming, digital systems, and basic electronics.",
     "verified_at": "2026-07-28"
   },
@@ -830,8 +1009,8 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "Spring 2026 lectures are not recorded, and the required Mango Pi board and kit have variable regional availability.",
+    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 1 },
+    "risk": "Spring 2026 lectures are not recorded, and the required Mango Pi board and kit have variable regional availability. Only limited public lecture sample-code directories were verified; enrolled-course starter and staff repositories are not public.",
     "verified_at": "2026-07-28"
   },
   {
@@ -847,8 +1026,13 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 1, "code": 2 },
-    "risk": "The primary is an open textbook and course-material site created for EE 319K rather than a current course run; chapter pages still embed videos and activities, but the dead aggregate video index is excluded. The edX run is archived and the TM4C123 toolchain is old, so the MSPM0 edition is preferred.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "UT Austin EE 319K 的正式先修是 EE 306、ECE 306 或 BME 306，且成绩至少为 C-",
+      "en": "UT Austin EE 319K requires EE 306, ECE 306, or BME 306 with a grade of at least C-"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 1, "exams": 1, "code": 1 },
+    "risk": "The primary is an open textbook and course-material site created for EE 319K rather than a current course run; chapter pages still embed videos and activities, but the dead aggregate video index is excluded. Only partial lab starters, not a complete course repository, were verified. The edX run is archived and the TM4C123 toolchain is old, so the MSPM0 edition is preferred.",
     "verified_at": "2026-07-28"
   },
   {
@@ -861,7 +1045,12 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 1, "exams": 1, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Berkeley EECS 149 的 Fall 2015 logistics 列出 EECS 16B 或 20、CS 61C，以及 EECS 70 或 Math 55",
+      "en": "Berkeley EECS 149 Fall 2015 logistics list EECS 16B or 20, CS 61C, and EECS 70 or Math 55"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 1, "code": 1 },
     "risk": "The open textbook is strong, but recorded course captures, laboratories, hardware, and toolchains are dated.",
     "verified_at": "2026-07-28"
   },
@@ -875,9 +1064,8 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 0, "notes": 1, "practice": 0, "labs": 2, "exams": 0, "code": 1 },
-    "risk": "The 2005 mobile platform is obsolete; use this only as a project-method reference.",
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 2, "exams": 0, "code": 1 },
+    "risk": "The 2005 mobile platform is obsolete. Official daily assignments and checkpoints remain useful, but use them only as project-method references.",
     "verified_at": "2026-07-28"
   },
   {
@@ -890,7 +1078,12 @@
     "role": "alternative",
     "tier": "B",
     "tier_note": "B",
-    "resources": { "video": 0, "notes": 0, "practice": 0, "labs": 1, "exams": 0, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Cornell ECE 3400 假定已具备基础模拟/数字电路、微控制器编程、焊接与测量、状态机背景",
+      "en": "Cornell ECE 3400 assumes basic analog and digital circuits, microcontroller programming, soldering and measurement, and state machines"
+    },
+    "resources": { "video": 0, "notes": 0, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "The maze-robot project is valuable, but teaching notes, homework, exams, and some linked pages are missing.",
     "verified_at": "2026-07-28"
   },
@@ -904,8 +1097,13 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 1, "code": 2 },
-    "risk": "The Raspberry Pi and Linux hardware requirement is explicit, and Coursera access may require payment.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "CU Boulder ECEA 5315 官方课程说明假定已掌握 C、编译流程、计算机体系结构、操作系统与 Linux",
+      "en": "CU Boulder's official ECEA 5315 description assumes C, the compilation pipeline, computer architecture, operating systems, and Linux"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 1, "code": 0 },
+    "risk": "The Raspberry Pi and Linux hardware requirement is explicit, Coursera access may require payment, and no anonymously downloadable official starter or code package was verified. A neighbouring Coursera course page is not code evidence for this course.",
     "verified_at": "2026-07-28"
   },
   {
@@ -919,7 +1117,12 @@
     "tier": "A",
     "tier_note": "A",
     "prerequisite_course_ids": [63],
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 1, "exams": 1, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "CU Boulder 将 ECEA 5316 设为序列第 2 门；它要求 ECEA 5315，并要求 C、体系结构、操作系统与 Linux",
+      "en": "CU Boulder places ECEA 5316 second in the sequence; it requires ECEA 5315 plus C, architecture, operating systems, and Linux"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 1, "code": 1 },
     "risk": "This course requires the preceding concepts course, and platform access may require payment.",
     "verified_at": "2026-07-28"
   },
@@ -933,8 +1136,14 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 1, "code": 2 },
-    "risk": "ECC, flash, redundancy, and FMEA exercises use specified hardware, and platform access may require payment.",
+    "prerequisite_course_ids": [63, 64],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "CU Boulder 将 ECEA 5317 设为完成 5315 与 5316 后的第 3 门，并继续要求 C、体系结构、操作系统与 Linux",
+      "en": "CU Boulder places ECEA 5317 third after 5315 and 5316 and continues to require C, architecture, operating systems, and Linux"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 1, "code": 0 },
+    "risk": "ECC, flash, redundancy, and FMEA exercises use specified hardware, platform access may require payment, and no anonymously downloadable official starter or code package was verified.",
     "verified_at": "2026-07-28"
   },
   {
@@ -947,9 +1156,14 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "prerequisite_course_ids": [63, 64],
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "The camera and Raspberry Pi home project requires the first two courses and paid-platform access may apply.",
+    "prerequisite_course_ids": [63, 64, 65],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "CU Boulder ECEA 5318 要求先完成 5315、5316 与 5317，并要求 C、体系结构、操作系统与 Linux",
+      "en": "CU Boulder ECEA 5318 requires 5315, 5316, and 5317 plus C, architecture, operating systems, and Linux"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
+    "risk": "The camera and Raspberry Pi home project requires the first three courses, paid-platform access may apply, and the public product page does not expose an official downloadable project package.",
     "verified_at": "2026-07-28"
   },
   {
@@ -962,13 +1176,17 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 1, "practice": 2, "labs": 2, "exams": 2, "code": 1 },
-    "risk": "Primary textbook notes are not public, and the motor, thermal, and op-amp laboratories need a substitute BOM.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.302 syllabus 列出 6.003、2.003、16.04 或同等背景，并假定电路、物理、数学和既往电路实验经验",
+      "en": "The MIT 6.302 syllabus lists 6.003, 2.003, 16.04, or equivalent preparation and assumes circuits, physics, mathematics, and prior circuit-laboratory experience"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 2, "labs": 1, "exams": 2, "code": 1 },
+    "risk": "Primary textbook notes are not public. The linked 1985 Electronic Feedback Systems videos are supplements, not Spring 2007 classroom recordings, and the motor, thermal, and op-amp laboratories need a substitute BOM.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 68,
-    "practice_modality": "simulation-only",
     "title": "Introduction to Linear Dynamical Systems (2008 Archive)",
     "institution": "Stanford University",
     "code": "EE 263",
@@ -977,7 +1195,7 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 2, "code": 2 },
+    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 1, "code": 1 },
     "risk": "This record is the Stephen Boyd 2008 LDS archive. Since Fall 2025, EE263 denotes a different Matrix Methods/SVD course; archive MATLAB data and current Julia homework must not be mixed.",
     "verified_at": "2026-07-28"
   },
@@ -1005,6 +1223,11 @@
     "role": "supplement",
     "tier": "A",
     "tier_note": "A-",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.243J syllabus 假定已学过 6.241 或同等线性控制课程",
+      "en": "The MIT 6.243J syllabus assumes 6.241 or equivalent linear-control preparation"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 0 },
     "risk": "This graduate, older course has limited feedback and no video or laboratory loop.",
     "verified_at": "2026-07-28"
@@ -1019,6 +1242,12 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B+",
+    "prerequisite_course_ids": [67],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.245 syllabus 要求经典 SISO 控制 6.302，以及研究生线性系统 6.241 或 16.30",
+      "en": "The MIT 6.245 syllabus requires classical SISO control in 6.302 and graduate linear systems in either 6.241 or 16.30"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 1 },
     "risk": "The MATLAB and LMI workflow is dated and public solution coverage is incomplete.",
     "verified_at": "2026-07-28"
@@ -1033,13 +1262,17 @@
     "role": "supplement",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 0 },
-    "risk": "The material is mathematically heavy at graduate level and offers limited independent feedback.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.231 syllabus 预期本科概率基础，尤其是条件分布、条件期望和 Markov 链，并要求严谨论证能力",
+      "en": "The MIT 6.231 syllabus expects undergraduate probability, especially conditional distributions and expectations and Markov chains, plus precise mathematical arguments"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 0 },
+    "risk": "The material is mathematically heavy at graduate level and offers limited independent feedback. The linked Related Video Lectures are six long-form supplements, not recordings of this course.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 73,
-    "practice_modality": "simulation-only",
     "title": "Feedback Systems: An Introduction for Scientists and Engineers",
     "institution": "Caltech",
     "code": "CDS 101 / CDS 110",
@@ -1048,8 +1281,8 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 2, "code": 1 },
-    "risk": "The author-maintained second-edition companion provides the open text, examples, exercises, and updated Python sources, but it is not a complete current course run; the instructor exercise manual remains restricted.",
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
+    "risk": "The author-maintained second-edition companion provides the open text, examples, exercises, and updated Python sources, but it is not a complete current course run and has no public course-exam inventory. The instructor exercise manual remains restricted.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1062,8 +1295,12 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.4210 Course Information 要求基础线性代数，并列出概率、算法、基础神经网络和 Python/Jupyter；不要求机器人学背景",
+      "en": "MIT 6.4210 Course Information requires basic linear algebra and lists probability, algorithms, basic neural networks, and Python/Jupyter; prior robotics is not required"
+    },
+    "resources": { "video": 1, "notes": 2, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "risk": "Modern Drake notes and code are public, but some graded assignments and feedback are not.",
     "verified_at": "2026-07-28"
   },
@@ -1077,8 +1314,12 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.832 FAQ 预期基础线性代数、微分方程与 Python，不要求机器人学背景",
+      "en": "The MIT 6.832 FAQ expects basic linear algebra, differential equations, and Python, but no robotics background"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "risk": "Current notes, Drake examples, and Colab exercises are strong, but assignment feedback is incomplete.",
     "verified_at": "2026-07-28"
   },
@@ -1092,9 +1333,13 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 0, "notes": 1, "practice": 0, "labs": 2, "exams": 0, "code": 1 },
-    "risk": "The controller and sensors are obsolete, so this should be used only for design-process and competition-method lessons.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.270 不设硬性先修，但课程会调用 6.001、6.002、6.004 与 2.007 中的编程、电路、数字系统和机械设计能力",
+      "en": "MIT 6.270 has no hard prerequisite, but draws on programming, circuits, digital systems, and mechanical design from 6.001, 6.002, 6.004, and 2.007"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 2, "labs": 1, "exams": 0, "code": 1 },
+    "risk": "The controller and sensors are obsolete. Assignments 1–7 are complete, while the competition videos document outcomes rather than lectures; use the archive only for design-process and competition-method lessons.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1107,15 +1352,19 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "practice_modality": "simulation-only",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Modern Robotics Course 1 假定熟悉叉积、特征值、矩阵求逆、正定性、受力图，并能使用一种矩阵计算语言",
+      "en": "Modern Robotics Course 1 assumes familiarity with cross products, eigenvalues, matrix inverses, positive definiteness, free-body diagrams, and a matrix language"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "workload": {
       "weeks": 2,
       "hours_per_week": { "min": 10, "max": 10 }
     },
     "risk": "The open preprint, software library, and CoppeliaSim exercises are strong, but Coursera explicitly does not provide the full experience for free.",
-    "verified_at": "2026-07-28"
+    "verified_at": "2026-07-31"
   },
   {
     "id": 78,
@@ -1127,15 +1376,22 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "prerequisite_course_ids": [77],
-    "practice_modality": "simulation-only",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "建议先掌握 Course 1 的 SE(3)、twist、adjoint 与矩阵指数/对数；课程系列可按顺序学习，但这不是平台声明的硬性先修",
+      "en": "Study Course 1's SE(3), twists, adjoints, and matrix exponential/logarithm first; the series is best followed in order, but the provider does not state a hard prerequisite"
+    },
+    "prerequisite_note": {
+      "zh": "Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积",
+      "en": "The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "workload": {
       "weeks": 2,
       "hours_per_week": { "min": 10, "max": 10 }
     },
-    "risk": "This course requires the first course in the sequence, and full Coursera access may require payment.",
+    "risk": "The provider highly recommends taking the series in order because this course builds on Course 1; full Coursera access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1148,15 +1404,22 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "prerequisite_course_ids": [77, 78],
-    "practice_modality": "simulation-only",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "建议先完成 Course 1–2 或具备同等的刚体运动与运动学基础；这是本站按内容给出的学习顺序",
+      "en": "Complete Courses 1–2 first or bring equivalent rigid-motion and kinematics background; this is EEDIY's content-based study order"
+    },
+    "prerequisite_note": {
+      "zh": "Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积",
+      "en": "The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "workload": {
       "weeks": 2,
       "hours_per_week": { "min": 10, "max": 10 }
     },
-    "risk": "This course requires the preceding kinematics material, and full Coursera access may require payment.",
+    "risk": "The provider highly recommends the series order because dynamics builds on the earlier rigid-motion and kinematics material; full Coursera access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1169,15 +1432,22 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "prerequisite_course_ids": [77, 78, 79],
-    "practice_modality": "simulation-only",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "建议先完成 Course 1–3 或具备同等的 SE(3)、运动学、动力学与轨迹基础；这是本站按内容给出的学习顺序",
+      "en": "Complete Courses 1–3 first or bring equivalent SE(3), kinematics, dynamics, and trajectory background; this is EEDIY's content-based study order"
+    },
+    "prerequisite_note": {
+      "zh": "Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积",
+      "en": "The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "workload": {
       "weeks": 3,
       "hours_per_week": { "min": 10, "max": 10 }
     },
-    "risk": "The course depends on the first three parts of the sequence, and full Coursera access may require payment.",
+    "risk": "The provider highly recommends the series order because planning and control build on the earlier material; full Coursera access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1190,15 +1460,22 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "prerequisite_course_ids": [77, 78, 79, 80],
-    "practice_modality": "simulation-only",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "建议先完成 Course 1–4 或具备同等的建模、运动学、动力学、规划与控制基础；这是本站按内容给出的学习顺序",
+      "en": "Complete Courses 1–4 first or bring equivalent modeling, kinematics, dynamics, planning, and control background; this is EEDIY's content-based study order"
+    },
+    "prerequisite_note": {
+      "zh": "Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积",
+      "en": "The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "workload": {
       "weeks": 4,
       "hours_per_week": { "min": 10, "max": 10 }
     },
-    "risk": "Instructions may use the former V-REP name for CoppeliaSim; the prior sequence and paid-platform access may be required.",
+    "risk": "Instructions may use the former V-REP name for CoppeliaSim; the provider highly recommends the series order, and full platform access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1211,15 +1488,22 @@
     "role": "supplement",
     "tier": "A",
     "tier_note": "A",
-    "prerequisite_course_ids": [77, 78, 79, 80, 81],
-    "practice_modality": "simulation-only",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "建议先完成 Course 1–5，因为 capstone 会直接复用前序软件与轨迹规划、里程计和反馈控制；这是本站按项目依赖给出的学习顺序",
+      "en": "Complete Courses 1–5 first because the capstone reuses prior software plus trajectory planning, odometry, and feedback control; this is EEDIY's project-dependency study order"
+    },
+    "prerequisite_note": {
+      "zh": "Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积",
+      "en": "The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "workload": {
       "weeks": 2,
       "hours_per_week": { "min": 10, "max": 10 }
     },
-    "risk": "The complete simulated pick-and-place capstone assumes all first five courses, and full Coursera access may require payment.",
+    "risk": "The project reuses software and concepts from the first five courses, so the provider's highly recommended order matters in practice; full Coursera access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1246,6 +1530,11 @@
     "role": "alternative",
     "tier": "S",
     "tier_note": "S/A",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT RES.6-007 官方 introduction 假定微积分、复数运算和部分微分方程；电路或力学有帮助但不是必需",
+      "en": "The official MIT RES.6-007 introduction assumes calculus, complex-number manipulation, and some differential equations; circuits or mechanics help but are optional"
+    },
     "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 0, "code": 0 },
     "risk": "The companion textbook is paid, but the notes and solved problems are sufficient for study; there is no exam set.",
     "verified_at": "2026-07-28"
@@ -1302,13 +1591,12 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 0, "code": 0 },
+    "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "risk": "Problems are embedded in twenty lesson notes and Lectures 2–20 have solution packets; the core text dates to 1975 and there is no coding laboratory.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 89,
-    "practice_modality": "simulation-only",
     "title": "Discrete-Time Signal Processing",
     "institution": "MIT",
     "code": "6.341",
@@ -1317,13 +1605,18 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 2, "code": 1 },
-    "risk": "The Athena and MATLAB project workflow is old and should be accompanied by a Python migration path.",
+    "prerequisite_course_ids": [98],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.341 的直接先修是 6.011，并假定已掌握 LTI 系统、采样、Fourier 变换、双边 z 变换与随机信号",
+      "en": "MIT 6.341 directly requires 6.011 and assumes LTI systems, sampling, the Fourier transform, bilateral z-transforms, and random signals"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 2, "labs": 1, "exams": 2, "code": 1 },
+    "risk": "Several lecture positions have no public notes, and the Athena and MATLAB project workflow is old. Use the surviving handouts as a partial sequence and add a Python migration path.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 90,
-    "practice_modality": "simulation-only",
     "title": "Digital Signal Processing 1: Basic Concepts and Algorithms",
     "institution": "EPFL",
     "code": "DSP 1",
@@ -1332,13 +1625,12 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "Hands-on notebooks and exercises are strong, but full Coursera access may require payment.",
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
+    "risk": "The official DSPNumex repository supplies real notebooks and data for the older combined-course modules, but it does not map to every current DSP 1 guided lab. Treat code coverage as cross-version and partial; full Coursera access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 91,
-    "practice_modality": "simulation-only",
     "title": "Digital Signal Processing 2: Filtering",
     "institution": "EPFL",
     "code": "DSP 2",
@@ -1351,13 +1643,12 @@
       "zh": "基础微积分与线性代数；按专业课编号顺序学习是建议，而不是硬性先修",
       "en": "Basic calculus and linear algebra; following the specialization numbering is recommended, not required"
     },
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "The provider recommends basic calculus and linear algebra but does not list the first DSP course as a hard prerequisite; full Coursera access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 92,
-    "practice_modality": "simulation-only",
     "title": "Digital Signal Processing 3: Analog versus Digital",
     "institution": "EPFL",
     "code": "DSP 3",
@@ -1370,13 +1661,12 @@
       "zh": "基础微积分与线性代数；按专业课编号顺序学习是建议，而不是硬性先修",
       "en": "Basic calculus and linear algebra; following the specialization numbering is recommended, not required"
     },
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "The provider recommends basic calculus and linear algebra but does not list the earlier sequence as a hard prerequisite; full Coursera access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 93,
-    "practice_modality": "simulation-only",
     "title": "Digital Signal Processing 4: Applications",
     "institution": "EPFL",
     "code": "DSP 4",
@@ -1385,7 +1675,7 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 2 },
     "risk": "Image, communications, and microcontroller applications are useful, but there is no single cumulative capstone and platform access may require payment.",
     "verified_at": "2026-07-28"
   },
@@ -1397,31 +1687,30 @@
     "url": "https://courses.physics.illinois.edu/ece310/su2026/",
     "track": "dsp",
     "role": "alternative",
-    "tier": "A",
-    "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
-    "risk": "The current notes, assignments, and exams are public, but there is no video or coding laboratory.",
-    "verified_at": "2026-07-28"
+    "tier": "B",
+    "tier_note": "B / resource map; assessment files gated",
+    "resources": { "video": 0, "notes": 0, "practice": 0, "labs": 0, "exams": 0, "code": 0 },
+    "risk": "In anonymous checks on 2026-07-30, 18 linked note, homework, and exam files returned HTTP 401. Only the public information pages and indexes are verified; do not claim an anonymously accessible notes sequence, assessment loop, or coding laboratory.",
+    "verified_at": "2026-07-31"
   },
   {
     "id": 95,
-    "practice_modality": "simulation-only",
     "title": "Digital Signal Processing Laboratory",
     "institution": "University of Illinois Urbana-Champaign",
     "code": "ECE 311",
     "url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
     "track": "dsp",
     "role": "alternative",
-    "tier": "A",
-    "tier_note": "A",
+    "tier": "B",
+    "tier_note": "B / laboratory files gated",
     "recommended_background": {
       "zh": "数字信号处理基础，例如 ECE 310 或同等课程",
       "en": "Digital signal processing foundations, such as ECE 310 or an equivalent course"
     },
     "level": "intermediate",
-    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "The public Summer 2025 archive uses Python and Jupyter notebooks, assumes ECE 310 or equivalent DSP preparation, and is not a current continuously maintained course run.",
-    "verified_at": "2026-07-28"
+    "resources": { "video": 0, "notes": 0, "practice": 0, "labs": 0, "exams": 0, "code": 0 },
+    "risk": "The Summer 2025 schedule describes a Python/Jupyter laboratory sequence and assumes ECE 310 or equivalent DSP preparation, but the Lab 1–7 and final ZIP files use /secure/ paths and returned HTTP 401; the walkthrough videos redirected to Illinois SSO in anonymous checks on 2026-07-30. The public page is useful for scope, not a reproducible off-campus lab archive.",
+    "verified_at": "2026-07-31"
   },
   {
     "id": 96,
@@ -1433,8 +1722,13 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A content / B tooling",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 2, "exams": 1, "code": 2 },
-    "risk": "The 2019 SDR and amateur-radio laboratories require hardware, local frequency-law awareness, license checks, and tool-version updates.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Berkeley EE 123 Spring 2019 要求 EECS 120 或任课教师许可",
+      "en": "Berkeley EE 123 Spring 2019 requires EECS 120 or instructor permission"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 2, "exams": 1, "code": 1 },
+    "risk": "The 2019 SDR and amateur-radio laboratories require hardware, local frequency-law awareness, license checks, and tool-version updates. The only verified machine package is an HW11 notebook/data archive, so code coverage is partial rather than course-wide.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1447,7 +1741,7 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 1 },
+    "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 1 },
     "risk": "Thirty videos, transcripts, nine solved problem sets, and exams form a strong loop; only the small MATLAB utilities are dated.",
     "verified_at": "2026-07-28"
   },
@@ -1461,6 +1755,15 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "本站可用 6.003、6.041SC 与 18.03SC 页面补齐相应知识，但它们只是满足要求的一组公开路径，不是必须完成的三个本站课程实例",
+      "en": "EEDIY's 6.003, 6.041SC, and 18.03SC pages provide one public preparation route, but the three EEDIY course instances are not themselves mandatory"
+    },
+    "prerequisite_note": {
+      "zh": "MIT syllabus 要求掌握 6.003 与 6.041（或同等内容），以及 18.03 中用 eigenvalue/eigenvector 解一阶 LTI 微分方程组的相关内容",
+      "en": "The MIT syllabus requires mastery of 6.003 and 6.041 or equivalents, plus the 18.03 material on solving first-order LTI differential systems with eigenvalues and eigenvectors"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 0, "labs": 0, "exams": 2, "code": 0 },
     "risk": "The open textbook and exam solutions are useful, but there are no public problem sets or videos.",
     "verified_at": "2026-07-28"
@@ -1475,7 +1778,7 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 1 },
+    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 1, "code": 1 },
     "risk": "Compression, coding, channels, and networks are integrated well, but the public solution and feedback loop is incomplete.",
     "verified_at": "2026-07-28"
   },
@@ -1489,7 +1792,13 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
+    "prerequisite_course_ids": [98],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.450 假定先学过 6.011，并具备扎实的概率与线性系统背景",
+      "en": "MIT 6.450 assumes prior 6.011 plus strong probability and linear-systems preparation"
+    },
+    "resources": { "video": 2, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 0 },
     "risk": "The public course is otherwise complete, but homework solutions are not open; the incomplete 2009 edition should not be substituted.",
     "verified_at": "2026-07-28"
   },
@@ -1504,6 +1813,11 @@
     "tier": "S",
     "tier_note": "S",
     "prerequisite_course_ids": [100],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.451 syllabus 将 6.450 列为严格先修",
+      "en": "The MIT 6.451 syllabus lists 6.450 as a strict prerequisite"
+    },
     "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
     "risk": "This advanced course has a strong resource loop but strictly assumes the first digital communications course.",
     "verified_at": "2026-07-28"
@@ -1518,8 +1832,13 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
-    "risk": "Current slides and homework solutions are public, but lecture video is restricted to Canvas.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Stanford EE 276 的课程信息列出本科概率论背景",
+      "en": "Stanford EE 276 course information lists undergraduate probability"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
+    "risk": "Only one current slide deck was verified; the broader public notes belong to an older offering and should be treated as auxiliary. Current homework solutions are public, lecture video is Canvas-only, and external playlists are supplements, not Stanford lecture recordings.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1538,7 +1857,6 @@
   },
   {
     "id": 104,
-    "practice_modality": "simulation-only",
     "title": "Principles of Wireless Communications",
     "institution": "MIT",
     "code": "6.452",
@@ -1547,13 +1865,17 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
-    "resources": { "video": 0, "notes": 0, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
-    "risk": "Only problem sets, a project, and readings are public, so there is no independent teaching spine.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.452 syllabus 要求 6.450 或任课教师许可，并要求数字通信、概率与线性代数背景",
+      "en": "The MIT 6.452 syllabus requires 6.450 or instructor permission plus digital communications, probability, and linear algebra"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
+    "risk": "Problem sets, a project, and public readings are available, but there are no lecture videos or public lecture-note sequence for an independent teaching spine.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 105,
-    "practice_modality": "simulation-only",
     "title": "Wireless Communications",
     "institution": "Stanford University",
     "code": "EE 359",
@@ -1562,8 +1884,13 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 1, "code": 1 },
-    "risk": "The reader, homework, project, and practice exam are public, but video is in Canvas and some protocol context dates to 2020.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Stanford EE 359 course info 要求 EE 279 或同等背景",
+      "en": "Stanford EE 359 course information requires EE 279 or equivalent preparation"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 2, "labs": 1, "exams": 1, "code": 1 },
+    "risk": "The reader, homework, project, and public exam questions are useful, but video is in Canvas, one linked midterm solution redirects to Stanford login, and some protocol context dates to 2020. The restricted solution is excluded from the anonymous resource sample.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1577,7 +1904,12 @@
     "tier": "A",
     "tier_note": "A",
     "level": "advanced",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "NPTEL 108101113 syllabus 要求信号与系统，以及基础概率与随机变量",
+      "en": "The NPTEL 108101113 syllabus requires signals and systems plus basic probability and random variables"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "workload": {
       "weeks": 12
     },
@@ -1594,9 +1926,14 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Cornell Fall 2026 ECE 3030 roster 列出 PHYS 2213、MATH 2930，以及 ECE 2100 或 ENGRD 2100；这些要求属于 2026–2027 目录中的课程，不能自动外推到本站使用的 Fall 2007 archive",
+      "en": "Cornell's Fall 2026 ECE 3030 roster lists PHYS 2213, MATH 2930, and either ECE 2100 or ENGRD 2100; those requirements belong to the 2026–2027 catalogue course and must not be projected automatically onto the Fall 2007 archive used here"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
     "risk": "Thirty-six handout groups, twelve solved homework sets, and four solved exams form a strong text loop, but the 2007 course has no video.",
-    "verified_at": "2026-07-28"
+    "verified_at": "2026-07-31"
   },
   {
     "id": 108,
@@ -1608,6 +1945,11 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.013 syllabus 将 18.01/18.02 微积分（或同等背景）和 8.01/8.02 物理（或同等背景）列为准备要求，另列出 6.002 电路与 6.00 编程，并说明课程会使用 Fourier 方法",
+      "en": "The MIT 6.013 syllabus lists 18.01/18.02 calculus or equivalent and 8.01/8.02 physics or equivalent, together with 6.002 circuits and 6.00 programming, and notes that the course uses Fourier methods"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
     "risk": "The open text, solutions, and demonstrations are excellent, but there is no full lecture-video series.",
     "verified_at": "2026-07-28"
@@ -1622,8 +1964,8 @@
     "role": "supplement",
     "tier": "B",
     "tier_note": "B",
-    "resources": { "video": 1, "notes": 0, "practice": 1, "labs": 0, "exams": 1, "code": 1 },
-    "risk": "Simulation video, MATLAB files, problems, and exams are public, but a complete teaching spine is not.",
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 1, "code": 1 },
+    "risk": "Simulation video, MATLAB files, problems, exams, and partial reading and study-material indexes are public, but a complete teaching spine is not.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1636,7 +1978,12 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A content / B spine",
-    "resources": { "video": 0, "notes": 1, "practice": 2, "labs": 2, "exams": 2, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Cornell ECE 4880 的正式先修是 ECE 3030 或任课教师同意",
+      "en": "Cornell ECE 4880 formally requires ECE 3030 or instructor consent"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 2, "labs": 2, "exams": 1, "code": 1 },
     "risk": "Lectures one through five are missing and the course references a paid text and Simulink, although ten homework sets, solved exams, and six laboratories are valuable.",
     "verified_at": "2026-07-28"
   },
@@ -1650,9 +1997,8 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A+",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 2 },
-    "risk": "About seventy percent of the course uses reproducible Qucs-S and Octave simulations, but Coursera access may require payment and hardware is optional.",
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
+    "risk": "About seventy percent of the enrolled course uses Qucs-S and Octave simulations, but Coursera access may require payment and no fixed, anonymously downloadable official course starter package was verified. Qucs-S and Octave are general tools, not course-code evidence.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1666,10 +2012,15 @@
     "tier": "A",
     "tier_note": "A",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "NPTEL 108105114 面向已具备电磁理论、传输线与网络理论的进阶学习者",
+      "en": "NPTEL 108105114 targets advanced learners with electromagnetic theory, transmission lines, and network theory"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "workload": { "weeks": 12 },
     "risk": "This is an antenna-focused course rather than a general microwave-engineering spine; its lecture and assignment sequence is substantial, but there is no open laboratory or coding project.",
-    "verified_at": "2026-07-28"
+    "verified_at": "2026-07-31"
   },
   {
     "id": 113,
@@ -1695,8 +2046,7 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 2, "code": 1 },
+    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 1, "exams": 1, "code": 1 },
     "risk": "The current theory and design loop is unusually complete, but it does not provide a fully reproducible hardware laboratory; independent learners should default to simulation or current-limited low-energy work and must not attempt unsupervised high-voltage or high-current hardware.",
     "verified_at": "2026-07-28"
   },
@@ -1710,14 +2060,12 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 1, "exams": 0, "code": 1 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "The simulation exercises are useful, but Coursera access and graded work availability may require payment and can change.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 116,
-    "practice_modality": "simulation-only",
     "title": "Converter Circuits",
     "institution": "University of Colorado Boulder",
     "code": "Power Electronics 2",
@@ -1727,13 +2075,17 @@
     "tier": "A",
     "tier_note": "A",
     "prerequisite_course_ids": [115],
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 1, "exams": 0, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "CU Boulder Converter Circuits 是 power-electronics 序列第 2 门，并假定已学过 Introduction to Power Electronics",
+      "en": "CU Boulder Converter Circuits is the second course in its power-electronics sequence and assumes prior Introduction to Power Electronics"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "This course assumes the introductory power-electronics course, and platform access may require payment.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 117,
-    "practice_modality": "simulation-only",
     "title": "Converter Control",
     "institution": "University of Colorado Boulder",
     "code": "Power Electronics 3",
@@ -1743,7 +2095,12 @@
     "tier": "A",
     "tier_note": "A",
     "prerequisite_course_ids": [115, 116],
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 1, "exams": 0, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "CU Boulder Converter Control 是序列第 3 门，官方页面将 Introduction to Power Electronics 与 Converter Circuits 列为前序课程",
+      "en": "CU Boulder Converter Control is the third course in the sequence; its official page names Introduction to Power Electronics and Converter Circuits as preceding courses"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
     "risk": "Prior converter and feedback-control knowledge is required, and platform access may require payment.",
     "verified_at": "2026-07-28"
   },
@@ -1758,14 +2115,13 @@
     "tier": "A",
     "tier_note": "A",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "workload": { "weeks": 12 },
     "risk": "Lectures and assignments are open, but certification uses a timed paid exam and there is no laboratory or code loop.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 119,
-    "practice_modality": "simulation-only",
     "title": "Seminar in Electric Power Systems",
     "institution": "MIT",
     "code": "6.691",
@@ -1774,6 +2130,11 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.691 要求电力系统背景（例如 6.061）；另一条明确路径是扎实的电网络理论加控制与电磁学，经济学也有帮助",
+      "en": "MIT 6.691 requires a power-systems background such as 6.061; another stated route is strong electrical-network theory together with controls and electromagnetics, with economics helpful"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 0, "code": 1 },
     "risk": "Solved problem sets and project examples are valuable, but 2006 grid and market context needs explicit updating annotations.",
     "verified_at": "2026-07-28"
@@ -1788,8 +2149,13 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
-    "risk": "This rigorous graduate course assumes a prior electric-power background.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.685 syllabus 将 6.061/6.690 Introduction to Electric Power Systems 或任课教师许可列为先修",
+      "en": "The MIT 6.685 syllabus lists 6.061/6.690 Introduction to Electric Power Systems or instructor permission as the prerequisite"
+    },
+    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 1, "code": 0 },
+    "risk": "This rigorous graduate course assumes a prior electric-power background. Public assessments are useful, but the scheduled three-hour final is absent from the archive.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1802,13 +2168,17 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "NPTEL 108105131 syllabus 列出 Basic Electrical Technology，具体包括电路分析、变压器工作原理与等效电路",
+      "en": "The NPTEL 108105131 syllabus lists Basic Electrical Technology: circuit analysis plus transformer operating principle and equivalent circuit"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "risk": "The current video sequence is useful but has no reproducible laboratory or open feedback loop.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 122,
-    "practice_modality": "simulation-only",
     "title": "Solar Energy Engineering: Photovoltaic Energy Conversion",
     "institution": "Delft University of Technology",
     "code": "PV Energy Conversion",
@@ -1839,7 +2209,16 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "本站目前没有能单独替代 10.50 transport 背景的课程页；开始前应另行补足传输现象与相应数学",
+      "en": "EEDIY currently has no single course page that substitutes for the 10.50 transport background; study transport phenomena and its mathematics separately before starting"
+    },
+    "prerequisite_note": {
+      "zh": "MIT syllabus 将 10.50 Analysis of Transport Phenomena 列为正式先修",
+      "en": "The MIT syllabus lists 10.50 Analysis of Transport Phenomena as the formal prerequisite"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 0, "exams": 2, "code": 0 },
     "risk": "Graduate electrochemistry and transport mathematics are prerequisites. The five problem sets explicitly have no solutions; the 2014 midterm has a solution, while the final does not.",
     "verified_at": "2026-07-29"
   },
@@ -1868,9 +2247,14 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.701 syllabus 的正式先修是 6.007 Electromagnetic Energy 或 6.003 Signals and Systems；这是二选一要求",
+      "en": "The MIT 6.701 syllabus formally requires either 6.007 Electromagnetic Energy or 6.003 Signals and Systems"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 0 },
-    "risk": "The open textbook is valuable, but problem sets and exams lack solutions and the course assumes quantum-mechanics readiness.",
-    "verified_at": "2026-07-28"
+    "risk": "The open textbook is valuable, but the twelve homework sets and three exams have no official solutions, and there are no lecture videos. The formal prerequisite is 6.007 or 6.003; quantum mechanics begins with an in-course introduction rather than a separate formal prerequisite.",
+    "verified_at": "2026-07-30"
   },
   {
     "id": 126,
@@ -1882,9 +2266,13 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S theory / A laboratory access",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 2, "code": 0 },
-    "risk": "Cleanroom work can only be a case study or virtual process for independent learners and must not be described as a home laboratory.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.152J syllabus 将 instructor permission 列为入课要求，而不是“无先修”",
+      "en": "The MIT 6.152J syllabus lists instructor permission as the entry requirement, not “no prerequisite”"
+    },
+    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 1, "exams": 1, "code": 0 },
+    "risk": "Only problem sets 1–8 and a mixed-term sample of quizzes are public; the take-home design prompt and a same-term complete exam set are not. Cleanroom work can only be a case study or virtual process for independent learners and must not be described as a home laboratory.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1897,8 +2285,12 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "EPFL memsX/edX 页面列出基础物理与化学为先修",
+      "en": "The EPFL memsX/edX page lists basic physics and chemistry as prerequisites"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
     "risk": "The audit path is limited and premium access is about USD 249; cleanroom demonstrations are observational rather than reproducible home laboratories.",
     "verified_at": "2026-07-28"
   },
@@ -1912,7 +2304,16 @@
     "role": "supplement",
     "tier": "A",
     "tier_note": "A-",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "本站建议先熟悉 MOS capacitor、diode、MOSFET、crystal 与 doping；这是为了减少器件与工艺之间的概念跳跃",
+      "en": "EEDIY recommends prior familiarity with MOS capacitors, diodes, MOSFETs, crystals, and doping to reduce the conceptual jump from devices to process steps"
+    },
+    "prerequisite_note": {
+      "zh": "NPTEL 108104865 不列正式先修",
+      "en": "NPTEL 108104865 lists no formal prerequisite"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "risk": "The 2026 archive provides a strong lecture spine but no reproducible laboratory, code, or open grading feedback.",
     "verified_at": "2026-07-28"
   },
@@ -1926,9 +2327,13 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 1, "exams": 0, "code": 1 },
-    "risk": "Problem solutions, programming, and design work are public, but fabrication is unavailable to most independent learners and prior microfabrication is desirable.",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT 6.777J syllabus 说明既往微制造经验是 desirable，而不是硬性课程代码要求",
+      "en": "The MIT 6.777J syllabus says prior microfabrication experience is desirable rather than naming a hard course prerequisite"
+    },
+    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 1, "exams": 0, "code": 1 },
+    "risk": "Most problem and programming work is public, but problem set 5 lacks a solution and the take-home design prompt is missing. Fabrication is unavailable to most independent learners and prior microfabrication is desirable.",
     "verified_at": "2026-07-28"
   },
   {
@@ -1941,6 +2346,11 @@
     "role": "alternative",
     "tier": "A",
     "tier_note": "A",
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Cornell ECE 5310 Course Information 明确预期 electrodynamics/optics 与 quantum mechanics",
+      "en": "Cornell ECE 5310 Course Information explicitly expects electrodynamics/optics and quantum mechanics"
+    },
     "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 1, "code": 0 },
     "risk": "Ten solved homework sets are public and one exam is solved, but the final is not, there is no video, and the material is graduate-level.",
     "verified_at": "2026-07-28"
@@ -1955,13 +2365,18 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A+",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 1, "code": 0 },
-    "risk": "Sixteen notes and eight solved homework sets are excellent, but there is no laboratory or video and quantum mechanics, electromagnetics, and device physics are firm prerequisites.",
+    "prerequisite_course_ids": [107],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Cornell ECE 5330 要求 quantum mechanics、ECE 3030 electromagnetic radiation，以及 ECE 4570 semiconductor device physics 或 ECE 4070 solid-state physics；任一领域缺失都不建议入课",
+      "en": "Cornell ECE 5330 requires quantum mechanics, ECE 3030 electromagnetic radiation, and either ECE 4570 semiconductor device physics or ECE 4070 solid-state physics; the provider advises against entering with any area missing"
+    },
+    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 0, "exams": 1, "code": 0 },
+    "risk": "Sixteen notes and the early solved homework sets are excellent, but later assignments depend on the unavailable ece533solver executable. There is no laboratory or video, and quantum mechanics, electromagnetics, and device physics are firm prerequisites.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 132,
-    "practice_modality": "simulation-only",
     "title": "Introduction to Photonics",
     "institution": "IIT Madras / NPTEL",
     "code": "108106135",
@@ -1970,7 +2385,12 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A",
-    "resources": { "video": 2, "notes": 1, "practice": 0, "labs": 1, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "NPTEL 108106135 syllabus 将 basic electromagnetics 标为 preferred background，而不是硬性先修",
+      "en": "The NPTEL 108106135 syllabus calls basic electromagnetics preferred background rather than a hard prerequisite"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 0, "labs": 1, "exams": 0, "code": 0 },
     "risk": "The laboratory items are demonstrations rather than home optics labs; no public assignments or answers were verified, so independent learners need a separate feedback loop.",
     "verified_at": "2026-07-29"
   },
@@ -1981,13 +2401,17 @@
     "code": "Phot1x",
     "url": "https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana",
     "track": "optics-photonics",
-    "role": "mainline",
+    "role": "alternative",
     "tier": "A",
     "tier_note": "A",
-    "practice_modality": "simulation-only",
-    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 1, "code": 2 },
-    "risk": "KLayout, SiEPIC, gdsfactory, remote fabrication, and measurement form a rare full loop, but tapeout dates, tool licenses, regional access, and the fact that chips are not mailed must be rechecked.",
-    "verified_at": "2026-07-28"
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Phot1x 提供方列出 introductory physics/optics，未将 integrated optics 列为先修",
+      "en": "The Phot1x provider lists introductory physics/optics and does not name integrated optics as a prerequisite"
+    },
+    "resources": { "video": 2, "notes": 2, "practice": 2, "labs": 2, "exams": 1, "code": 0 },
+    "risk": "KLayout, SiEPIC, gdsfactory, remote fabrication, and measurement form a rare enrolled-course loop, but the public edX page does not expose a fixed official PDK, layout, solver, or measurement-data package. The included course flow does not mail each participant a personal chip; the current FAQ says a personal chip may be purchased separately during or after the course, so tapeout dates, tool licenses, regional access, purchase availability, price, shipping, and other terms must be rechecked.",
+    "verified_at": "2026-07-31"
   },
   {
     "id": 134,
@@ -1999,13 +2423,21 @@
     "role": "mainline",
     "tier": "S",
     "tier_note": "S/A",
-    "resources": { "video": 0, "notes": 2, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "recommended_background": {
+      "zh": "本站路线建议先具备电磁场与波、微分方程和 LTI 系统基础；这不等同于 MIT 官方课程先修",
+      "en": "The EEDIY route recommends prior work in electromagnetic waves, differential equations, and LTI systems; this is separate from MIT's official course prerequisites"
+    },
+    "prerequisite_note": {
+      "zh": "MIT 2.71 列出 8.02 Physics II、18.03 Differential Equations 与 2.004 Dynamics and Control II",
+      "en": "MIT 2.71 lists 8.02 Physics II, 18.03 Differential Equations, and 2.004 Dynamics and Control II"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 2, "labs": 0, "exams": 2, "code": 0 },
     "risk": "The theory and assessment loop is strong: problem sets 1–4 have solutions, while 5–6 do not, and multiple quiz and final sets include solutions. There is no full lecture-video series or public reproducible physical laboratory.",
-    "verified_at": "2026-07-29"
+    "verified_at": "2026-07-30"
   },
   {
     "id": 135,
-    "practice_modality": "simulation-only",
     "title": "Photonic Materials and Devices",
     "institution": "MIT",
     "code": "3.46",
@@ -2029,7 +2461,12 @@
     "tier": "A",
     "tier_note": "A content / B completion",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "NPTEL 108105153 syllabus 预期 circuit theory，以及基础 digital 与 analog electronics",
+      "en": "The NPTEL 108105153 syllabus expects circuit theory plus basic digital and analog electronics"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
     "workload": { "weeks": 12 },
     "risk": "More than eighty-four videos and demonstrations provide broad coverage, but there is no reproducible home laboratory or coding loop.",
     "verified_at": "2026-07-28"
@@ -2044,7 +2481,12 @@
     "role": "supplement",
     "tier": "A",
     "tier_note": "A content / C completion",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "NPTEL 108106193 syllabus 将 Basic Electronics 或 Electronic Devices and Circuits 列为 desirable preparation",
+      "en": "The NPTEL 108106193 syllabus lists Basic Electronics or Electronic Devices and Circuits as desirable preparation"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "risk": "The course covers sensor physics through circuits but does not provide an open build-and-test loop.",
     "verified_at": "2026-07-28"
   },
@@ -2058,7 +2500,7 @@
     "role": "mainline",
     "tier": "A",
     "tier_note": "A content / C independent access",
-    "resources": { "video": 2, "notes": 1, "practice": 2, "labs": 2, "exams": 0, "code": 0 },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 1, "exams": 0, "code": 0 },
     "risk": "The public landing page documents five modules, five assignments, a thermistor laboratory, a course project, and an explicit PSoC 5LP/LCD/components/oscilloscope bill of materials. The actual learning materials and assignments require the paid certificate experience (a trial may be offered and no-certificate access is not guaranteed), and the laboratory depends on an older PSoC 5LP and Windows toolchain. Treat this as an access-dependent practical spine, not a fully open or hardware-neutral course.",
     "verified_at": "2026-07-29"
   },
@@ -2073,14 +2515,18 @@
     "tier": "A",
     "tier_note": "A-",
     "level": "intermediate",
-    "resources": { "video": 2, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "NPTEL 102106669 是本科 core 课，预期 basic electrical engineering、sensing、measurement 与 transduction",
+      "en": "NPTEL 102106669 is an undergraduate core course expecting basic electrical engineering, sensing, measurement, and transduction"
+    },
+    "resources": { "video": 1, "notes": 1, "practice": 1, "labs": 0, "exams": 0, "code": 0 },
     "workload": { "weeks": 12 },
     "risk": "The lecture sequence is broad, but it does not provide a reproducible instrumentation project and must not be treated as authorization for diagnosis or human experimentation; human data or body-connected measurement requires ethics approval and qualified supervision.",
     "verified_at": "2026-07-28"
   },
   {
     "id": 140,
-    "practice_modality": "simulation-only",
     "title": "Biomedical Signal and Image Processing",
     "institution": "MIT",
     "code": "HST.582J",
@@ -2089,7 +2535,12 @@
     "role": "supplement",
     "tier": "A",
     "tier_note": "A content / B tooling",
-    "resources": { "video": 0, "notes": 2, "practice": 1, "labs": 2, "exams": 0, "code": 1 },
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "MIT HST.582J 列出的先修可为 6.003、2.004、16.004 或 18.085，属于多选一要求",
+      "en": "MIT HST.582J names 6.003, 2.004, 16.004, or 18.085 as alternative prerequisites"
+    },
+    "resources": { "video": 0, "notes": 1, "practice": 1, "labs": 2, "exams": 0, "code": 1 },
     "risk": "The MATLAB workflow and old MIT-hosted data links should be migrated to Python and current datasets.",
     "verified_at": "2026-07-28"
   },
@@ -2110,18 +2561,23 @@
     "prerequisite_course_ids": [
       31
     ],
+    "inherit_track_prerequisites": false,
+    "prerequisite_note": {
+      "zh": "Berkeley EE 140 / EE 240A catalog 将 EE 105 列为正式先修",
+      "en": "The Berkeley EE 140 / EE 240A catalogue lists EE 105 as the formal prerequisite"
+    },
     "resources": {
       "video": 0,
       "notes": 2,
       "practice": 2,
-      "labs": 2,
-      "exams": 2,
-      "code": 0
+      "labs": 1,
+      "exams": 1,
+      "code": 1
     },
     "workload": {
       "weeks": 15
     },
-    "risk": "The official prerequisite is EE 105 (existing course ID 31). Lab 1 uses LTspice; Labs 2–8 and the project depend on Berkeley's Cadence/Virtuoso servers and SKY130 environment. The Razavi or Gray text is paid and no redistribution license is stated. EEDIY may link the originals and teach the simulation spine, but must not claim full off-campus reproducibility until an open PDK/EDA port is independently validated.",
-    "verified_at": "2026-07-29"
+    "risk": "The official prerequisite is EE 105 (existing course ID 31). Publicly runnable simulation is limited to the LTspice portions of Lab 1 and old Lab 3 Part 1, including the downloadable BJTopamp.asc base circuit. Breadboard measurements, instrument readings, and GSI sign-off form a separate bench layer. Lab 2, Labs 4–8, and the project depend on Berkeley's Cadence/Virtuoso servers, SKY130 libraries, and campus review. The Razavi or Gray text is paid, and an independently validated open-PDK port must not be presented as the original Berkeley lab flow.",
+    "verified_at": "2026-07-31"
   }
 ]

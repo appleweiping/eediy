@@ -1,76 +1,64 @@
 ---
 title: "Modern Robotics, Course 6: Capstone Project, Mobile Manipulation"
-description: "Northwestern University 的《Modern Robotics, Course 6: Capstone Project, Mobile Manipulation》以完整仿真抓取与放置项目收束机器人系列；项目和代码资源强，但要求先完成前五课并可能付费。"
+description: "Northwestern University 的《Modern Robotics, Course 6: Capstone Project, Mobile Manipulation》以完整仿真抓取与放置项目收束机器人系列；项目会复用前五课的软件与概念，平台高度建议按顺序学习，完整访问可能收费。"
 page_type: course
 course_id: "course-082"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: be51bfb6c097e070 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 1736ff09e933b2f3 -->
 
-# Modern Robotics, Course 6: Capstone Project, Mobile Manipulation
+# Northwestern University Modern Robotics 6: Modern Robotics, Course 6: Capstone Project, Mobile Manipulation
 
 ## 课程简介
 
 - **所属大学：** Northwestern University
 - **课程编号：** Modern Robotics 6
-- **先修要求：** 建议先完成方向基础：控制系统；建议先完成方向基础：编程与工程计算；建议先完成方向基础：物理基础；课程顺序要求：先完成《Modern Robotics, Course 1: Foundations of Robot Motion》（Northwestern University Modern Robotics 1）；课程顺序要求：先完成《Modern Robotics, Course 2: Robot Kinematics》（Northwestern University Modern Robotics 2）；课程顺序要求：先完成《Modern Robotics, Course 3: Robot Dynamics》（Northwestern University Modern Robotics 3）；课程顺序要求：先完成《Modern Robotics, Course 4: Robot Motion Planning and Control》（Northwestern University Modern Robotics 4）；课程顺序要求：先完成《Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots》（Northwestern University Modern Robotics 5）
-- **方向：** [机器人与自主系统](index.md)
-- **路线角色：** 补充
-- **公开材料：** 核心材料可访问
-- **最近复核：** 2026-07-28
+- **官方先修：** Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积
+- **本站建议背景：** 建议先完成 Course 1–5，因为 capstone 会直接复用前序软件与轨迹规划、里程计和反馈控制；这是本站按项目依赖给出的学习顺序
+- **访问条件：** 公开入口；部分材料需注册或受限
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### youBot capstone 把三个明确接口接成搬运任务
 
-Northwestern University 的《Modern Robotics, Course 6: Capstone Project, Mobile Manipulation》以完整仿真抓取与放置项目收束机器人系列；项目和代码资源强，但要求先完成前五课并可能付费。
+Coursera [Mobile Manipulation Capstone](https://www.coursera.org/learn/modernrobotics-course6) 是 specialization 第 6 门，把前五门接成 pipeline。[项目规格](https://hades.mech.northwestern.edu/index.php/Mobile_Manipulation_Capstone) 指定 KUKA youBot：omnidirectional chassis、5-joint arm，在 CoppeliaSim 中把方块搬到目标 configuration。若 kinematics、trajectory、feedback 与 Chapter 13 base update 仍无独立测试，整场动画很难调，也很难定位错误来源。
 
-**开始前先核对**
+锁定 [MR repository](https://github.com/NxRLab/ModernRobotics) 的 language/commit、scene 与 \(\Delta t\)；教材公式以 [Modern Robotics home](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) 为准。
 
-- 建议先完成方向基础：控制系统
-- 建议先完成方向基础：编程与工程计算
-- 建议先完成方向基础：物理基础
-- 课程顺序要求：先完成[《Modern Robotics, Course 1: Foundations of Robot Motion》](../robotics/077-modern-robotics-1.md)（Northwestern University Modern Robotics 1）
-- 课程顺序要求：先完成[《Modern Robotics, Course 2: Robot Kinematics》](../robotics/078-modern-robotics-2.md)（Northwestern University Modern Robotics 2）
-- 课程顺序要求：先完成[《Modern Robotics, Course 3: Robot Dynamics》](../robotics/079-modern-robotics-3.md)（Northwestern University Modern Robotics 3）
-- 课程顺序要求：先完成[《Modern Robotics, Course 4: Robot Motion Planning and Control》](../robotics/080-modern-robotics-4.md)（Northwestern University Modern Robotics 4）
-- 课程顺序要求：先完成[《Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots》](../robotics/081-modern-robotics-5.md)（Northwestern University Modern Robotics 5）
+### 3 个 milestone 各有 numeric oracle
 
-## 先看这些入口
+Milestone 1 的 `NextState` 接收 12-vector state（3 chassis、5 arm、4 wheel）与 9-vector controls（4 wheel、5 joint），做 Euler update 和 speed clipping。官方 1 秒测试中，forward/sideways 各约 0.475 m，rotation 约 1.234 rad；speed limit 从 10 降到 5，位移应减半。通过 zero、single-joint、single-wheel 与 clipping 测试后才写 13-column CSV。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+Milestone 2 的 `TrajectoryGenerator` 把路径拆成 8 段：approach、descend、grasp、rise、transfer、descend、release、retreat。每段都明确 pose、interpolation、duration、gripper state 和 boundary duplicate；reference 单独播放通过后再闭环。
 
-- [课程主页](https://www.coursera.org/learn/modernrobotics-course6)
+Milestone 3 的 `FeedbackControl` 从 \(X,X_d,X_{d,next},K_p,K_i,\Delta t\) 计算 feedforward + PI body twist，再用 mobile-manipulator Jacobian pseudoinverse 得到 wheel/joint speed。官方 fixture 的 \(V_d\)、adjoint、\(X_{err}\)、\(J_e\) 与 controls 提供基准，额外测试覆盖 zero error、position-only、orientation-only、near-singular 与 saturation。
 
-## 已知边界
+三个模块之间只通过显式数据传递。`NextState` 不读取 controller global state，trajectory 每行的 transform 与 gripper state 有固定 schema，feedback 同时返回 error 与 command。把 shape、finite-value、frame 和 clipping assertions 直接放在各函数边界；这样任何 milestone 都可在没有 notebook history 的进程中重跑。
 
-完整的仿真抓取与放置结课项目要求先完成前五门课程，且 Coursera 完整访问可能需要付费。
+Trajectory 的段连接处检查 pose continuity、monotonic timestamp、row count 与 gripper transition。夹爪动作前后留出静止窗口，避免接触开关与高速运动同时发生。若 reference 本身交换了 block 与 end-effector frame，反馈 gain 再高也无法补救。
 
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+### Final run 用 error log 判断
+
+完整运行从至少 30° orientation error 与 0.2 m position error 开始，比较 feedforward-only、feedforward+P 和 feedforward+PI。让同一组 plot 与日志展示 6-vector \(X_{err}(t)\)、commands、saturation、condition number、configuration CSV、抓取/释放时刻与视频。Scene 6 建议保持 10 ms；contact engine 造成的滑落可单列，但 frame、CSV order 与 clipping 错误不能归因于 physics。
+
+最终运行至少比较 feedforward、P 与 PI 三种情况。第一段末误差、全程最大误差、command saturation fraction 和最终 block pose 已足以说明差别；再挑一次失败抓取，判断根因究竟在 reference、frame、Jacobian、saturation 还是 contact。
+
+[CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) 定义 chassis/arm/wheel/gripper 列顺序。官方 example 可用于核对播放链；自己的 milestone 输出旁应注明 simulator、physics engine 与 scene hash。
+
+官方 submission 包含 README、自写或修改过的 `code/`、各任务的运行脚本，以及 configuration、error 与 video。自学时保留能重建 CSV 和误差图的脚本，再附上那次失败抓取，就已经比一段完整动画更能说明实现是否可靠；configuration 列顺序、units 和 scene version 也应写清。
+
+[Coursera Resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) 汇总公开 spec、preprint、code 与 scene；peer assessment、certificate 与平台测试仍受访问条件限制。模拟器里的成功也不能外推到实体 youBot：calibration、motor current、真实接触与 perception 都没有在这个项目里被验证。
+
+若时间不足，先完成三个 milestone 和一次 P/PI 对照，再缩减 gain sweep 与动画美化。方块偶然落到目标附近不如一条解释得清的失败轨迹有价值。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（1 项）</summary>
+- [课程主页](https://www.coursera.org/learn/modernrobotics-course6)
+- [代码 · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 完整 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 无公开材料 |
-| 代码 | 完整 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/modernrobotics-course6) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

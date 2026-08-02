@@ -1,76 +1,64 @@
 ---
 title: "Modern Robotics, Course 6: Capstone Project, Mobile Manipulation"
-description: "Northwestern University's Modern Robotics, Course 6: Capstone Project, Mobile Manipulation closes the sequence with a complete simulated pick-and-place project, requiring all five prior courses and potentially paid access."
+description: "Northwestern University's Modern Robotics, Course 6: Capstone Project, Mobile Manipulation closes the sequence with a complete simulated pick-and-place project that reuses earlier software and concepts; the provider highly recommends the series order, and full access may be paid."
 page_type: course
 course_id: "course-082"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: c39ba030960c99be -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0b24533ac17d5b16 -->
 
-# Modern Robotics, Course 6: Capstone Project, Mobile Manipulation
+# Northwestern University Modern Robotics 6: Modern Robotics, Course 6: Capstone Project, Mobile Manipulation
 
 ## Course Overview
 
 - **University:** Northwestern University
 - **Course code:** Modern Robotics 6
-- **Prerequisites:** Recommended foundation: Control Systems; Recommended foundation: Programming and Engineering Computing; Recommended foundation: Physics Foundations; Course-sequence requirement: complete Modern Robotics, Course 1: Foundations of Robot Motion (Northwestern University Modern Robotics 1) first; Course-sequence requirement: complete Modern Robotics, Course 2: Robot Kinematics (Northwestern University Modern Robotics 2) first; Course-sequence requirement: complete Modern Robotics, Course 3: Robot Dynamics (Northwestern University Modern Robotics 3) first; Course-sequence requirement: complete Modern Robotics, Course 4: Robot Motion Planning and Control (Northwestern University Modern Robotics 4) first; Course-sequence requirement: complete Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots (Northwestern University Modern Robotics 5) first
-- **Track:** [Robotics and Autonomous Systems](index.md)
-- **Path role:** Supplement
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself
+- **EEDIY preparation:** Complete Courses 1–5 first because the capstone reuses prior software plus trajectory planning, odometry, and feedback control; this is EEDIY's project-dependency study order
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### The youBot capstone connects three explicit interfaces into one transfer
 
-Northwestern University's Modern Robotics, Course 6: Capstone Project, Mobile Manipulation closes the sequence with a complete simulated pick-and-place project, requiring all five prior courses and potentially paid access.
+Coursera’s [Mobile Manipulation Capstone](https://www.coursera.org/learn/modernrobotics-course6) is the specialization's sixth course and joins the first five in one pipeline. The [project specification](https://hades.mech.northwestern.edu/index.php/Mobile_Manipulation_Capstone) fixes a KUKA youBot with an omnidirectional chassis and 5-joint arm, moving a block to a target configuration in CoppeliaSim. It fits learners who can test kinematics, trajectories, feedback, and Chapter 13 base updates separately; otherwise the animation is difficult to debug.
 
-**Check before starting**
+Pin the [MR repository](https://github.com/NxRLab/ModernRobotics) language/commit, scene, and \(\Delta t\). Use the formulas on [Modern Robotics home](https://hades.mech.northwestern.edu/index.php/Modern_Robotics).
 
-- Recommended foundation: Control Systems
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Physics Foundations
-- Course-sequence requirement: complete [Modern Robotics, Course 1: Foundations of Robot Motion](../robotics/077-modern-robotics-1.md) (Northwestern University Modern Robotics 1) first
-- Course-sequence requirement: complete [Modern Robotics, Course 2: Robot Kinematics](../robotics/078-modern-robotics-2.md) (Northwestern University Modern Robotics 2) first
-- Course-sequence requirement: complete [Modern Robotics, Course 3: Robot Dynamics](../robotics/079-modern-robotics-3.md) (Northwestern University Modern Robotics 3) first
-- Course-sequence requirement: complete [Modern Robotics, Course 4: Robot Motion Planning and Control](../robotics/080-modern-robotics-4.md) (Northwestern University Modern Robotics 4) first
-- Course-sequence requirement: complete [Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots](../robotics/081-modern-robotics-5.md) (Northwestern University Modern Robotics 5) first
+### The 3 milestones each have a numerical oracle
 
-## Start with these links
+Milestone 1 `NextState` takes a 12-vector state (3 chassis, 5 arm, 4 wheel) and 9-vector controls (4 wheel, 5 joint), with an Euler update and speed clipping. In the official 1-second tests, forward and sideways motion are each about 0.475 m, rotation about 1.234 rad, and a speed limit reduced from 10 to 5 halves displacement. Test zero, single-joint, single-wheel, and clipping cases before writing the 13-column CSV.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+Milestone 2 `TrajectoryGenerator` divides the path into 8 segments: approach, descend, grasp, rise, transfer, descend, release, and retreat. Define each segment’s pose, interpolation, duration, gripper state, and boundary-duplicate handling. Replay the reference alone before closing the loop.
 
-- [Course home](https://www.coursera.org/learn/modernrobotics-course6)
+Milestone 3 `FeedbackControl` computes a feedforward + PI body twist from \(X,X_d,X_{d,next},K_p,K_i,\Delta t\), then maps it through the mobile-manipulator Jacobian pseudoinverse to wheel/joint speed. Check the official fixture’s \(V_d\), adjoint, \(X_{err}\), \(J_e\), and controls before testing zero error, position-only, orientation-only, near-singular, and saturated cases.
 
-## Known Boundaries
+The three modules communicate through explicit data. `NextState` does not read controller globals, each trajectory row has a fixed transform-and-gripper schema, and feedback returns error and command. Shape, finite-value, frame, and clipping assertions at the function boundaries let each milestone run without notebook history.
 
-The complete simulated pick-and-place capstone assumes all first five courses, and full Coursera access may require payment.
+At trajectory boundaries, check pose continuity, monotonic timestamps, row count, and gripper transitions. Leave a stationary window around gripper actions so contact does not coincide with fast motion. If the reference swaps block and end-effector frames, no feedback gain can repair it.
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+### Judge the final run by its error log
+
+Start the final experiment with at least 30° orientation error and 0.2 m position error, comparing feedforward-only, feedforward+P, and feedforward+PI. Show the 6-vector \(X_{err}(t)\), commands, saturation, condition number, configuration CSV, grasp/release times, and video in the same set of plots and logs. Scene 6 recommends 10 ms. Contact-engine slip can be discussed separately, but frame, CSV-order, and clipping mistakes cannot be blamed on physics.
+
+Compare at least feedforward, P, and PI in the final run. Error at the end of the first segment, maximum error, command-saturation fraction, and final block pose are enough to expose the difference; then use one failed grasp to decide whether the cause was the reference, a frame, the Jacobian, saturation, or contact.
+
+The [CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) defines chassis/arm/wheel/gripper column order. The official example can check the playback chain; identify the simulator, physics engine, and scene hash beside your own output.
+
+The official submission includes a README, authored or modified `code/`, runnable scripts for each task, and configuration, error, and video outputs. For independent study, a script that rebuilds the CSV and error plots plus the failed-grasp case says more about reliability than a seamless animation; record the configuration-column order, units, and scene version as well.
+
+[Coursera Resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) collects the public specification, preprint, code, and scene; peer assessment, certificate, and platform tests remain access-controlled. Success in the simulator does not establish calibration, motor current, physical contact, or perception on a real youBot.
+
+If time is limited, finish all three milestones and one P/PI comparison before reducing gain sweeps and animation polish. A block that happens to land near the target is less useful than one failed trajectory you can explain.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.coursera.org/learn/modernrobotics-course6)
+- [Code · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/modernrobotics-course6) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

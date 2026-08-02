@@ -1,72 +1,53 @@
 ---
 title: "Real-Time Embedded Systems Concepts and Practices"
-description: "University of Colorado Boulder 的《Real-Time Embedded Systems Concepts and Practices》以 Raspberry Pi、Linux、视频、实验与代码建立实时嵌入式实践入口；硬件要求明确，平台访问可能收费。"
+description: "University of Colorado Boulder 的《Real-Time Embedded Systems Concepts and Practices》以 Raspberry Pi、Linux、视频和平台内实验建立实时嵌入式入口；公开产品页未提供可匿名下载的官方代码包。"
 page_type: course
 course_id: "course-063"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: c736d9ff06cb958c -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: bf7ede70080e8ec1 -->
 
-# Real-Time Embedded Systems Concepts and Practices
+# University of Colorado Boulder Real-Time Embedded Systems 1: Real-Time Embedded Systems Concepts and Practices
 
 ## 课程简介
 
 - **所属大学：** University of Colorado Boulder
 - **课程编号：** Real-Time Embedded Systems 1
-- **先修要求：** 建议先完成方向基础：嵌入式系统；建议先完成方向基础：信号与系统
-- **方向：** [实时与信息物理系统](index.md)
-- **路线角色：** 替代
-- **公开材料：** 核心材料可访问
-- **最近复核：** 2026-07-28
+- **官方先修：** CU Boulder ECEA 5315 官方课程说明假定已掌握 C、编译流程、计算机体系结构、操作系统与 Linux
+- **本站建议背景：** 本站未另设准备条件
+- **访问条件：** 需注册；可用范围以平台为准
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### 适合用实测 deadline 进入实时系统
 
-University of Colorado Boulder 的《Real-Time Embedded Systems Concepts and Practices》以 Raspberry Pi、Linux、视频、实验与代码建立实时嵌入式实践入口；硬件要求明确，平台访问可能收费。
+Coursera [ECEA 5315](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices) 是 CU Boulder 四门 Real-Time Embedded Systems specialization 的第 1 门。[5315 官方 assignments 与 syllabus](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5315-concept-and-practices) 默认学生会 C、编译流程、计算机体系结构、操作系统与 Linux。它比较 cyclic executive、RTOS 和 Linux POSIX real-time extension，不负责从 GPIO 入门；最适合想把“是否实时”落实到 deadline 实测的人。
 
-**开始前先核对**
+### 编程与互评各占 30%
 
-- 建议先完成方向基础：嵌入式系统
-- 建议先完成方向基础：信号与系统
+官方课程页把学习分成 4 周，时数依次为 13、14、11、15，之后是 2 小时 final。第 1 周比较 Linux POSIX real-time thread、RTOS 与 cyclic executive；第 2 周进入 QoS、hard real-time、rate-monotonic 与绝对时间；第 3 周处理 service sequencing；第 4 周比较 multicore 与不同实时软件栈。第 3 周是转折点：线程和调度政策必须落到一组有顺序、会错过 deadline 的 service，而不再只是 API 名词。
 
-## 先看这些入口
+成绩结构更能说明课程怎样运行：quizzes 10%，programming assignments 30%，peer reviews 30%，final exam 30%。因此编程结果只占一半故事；时序设计还要经过同伴审读，最后再由考试检查概念。公开 CU 页面给出这些类别和比例，但题面、starter、互评反馈与考试的实际可见范围取决于 Coursera 注册状态。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+未注册者若想预习，可做一个**非官方替代练习**：让两个 pthread 以不同周期运行，比较普通 Linux、POSIX real-time thread 与 cyclic executive 的 release、finish 和 deadline miss。CU 未把它列为 5315 assignment，它也不能替代 peer review。这个小实验看 response-time 尾部而非平均吞吐；短时 CPU/I/O 干扰常会暴露“平均负载不高却仍超时”的情况。
 
-- [课程主页](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices)
-- [代码 · Introduction to Embedded Systems Software and Development Environments](https://www.coursera.org/learn/introduction-embedded-systems)
+### 硬件差异会直接改变测量
 
-## 已知边界
+[硬件要求](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements) 以 Raspberry Pi 3B+/4B、32/64-bit Raspberry Pi OS 和 Logitech C270 为基线。Pi 5、其他相机或 Ubuntu 仍可做本地练习，但 kernel、architecture、governor、affinity 与 camera format 不同，数字不能直接和原平台横比。
 
-课程明确要求 Raspberry Pi 与 Linux 硬件环境，且 Coursera 访问可能需要付费。
+同一 service body 在 cyclic executive、实时线程与普通 Linux 上的差异，主要落在 release control、preemption、tail latency 和 miss recovery。把所有线程都设成最高优先级不会证明实时性，还可能饿死系统服务。换平台后最值得重做的是 deadline 分布；直接复制一个来自不同 kernel 与 governor 的漂亮数字没有意义。
 
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+### 访问与版本说明
+
+课程页公开 syllabus 与成绩骨架；[Specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems) 把调度数学放在 5316，mission-critical architecture 放在 5317，camera project 放在 5318。[访问说明](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses) 不保证所有 graded item 或 certificate 免费。5315 的特色是让编程、互评和考试共同检验 Linux 实测；若更需要严格 schedulability analysis，下一门 5316 才是重点。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（2 项）</summary>
+- [课程主页](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 部分 |
-| 代码 | 完整 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-| [Introduction to Embedded Systems Software and Development Environments](https://www.coursera.org/learn/introduction-embedded-systems) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

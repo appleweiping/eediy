@@ -3,69 +3,46 @@ title: "Build a Modern Computer from First Principles: From Nand to Tetris, Part
 description: "Hebrew University of Jerusalem 的《Build a Modern Computer from First Principles: From Nand to Tetris, Part II》以六个自成体系的项目实现虚拟机、编译器与操作系统；需要入门编程能力、Python 或 Java 环境，且平台完整访问可能收费。"
 page_type: course
 course_id: "course-040"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 8ba505ced0e207ad -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 74c2fb9bdc836422 -->
 
-# Build a Modern Computer from First Principles: From Nand to Tetris, Part II
+# Hebrew University of Jerusalem Nand2Tetris II: Build a Modern Computer from First Principles: From Nand to Tetris, Part II
 
 ## 课程简介
 
 - **所属大学：** Hebrew University of Jerusalem
 - **课程编号：** Nand2Tetris II
-- **先修要求：** 建议先完成方向基础：数字逻辑与计算结构；建议先完成方向基础：编程与工程计算；建议背景：入门编程能力；第一部分可配套学习，但第二部分官方说明为自成体系
-- **方向：** [计算机体系结构](index.md)
-- **路线角色：** 替代
-- **公开材料：** 较完整
-- **最近复核：** 2026-07-28
+- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
+- **本站建议背景：** 数字逻辑与计算结构；编程与工程计算；入门编程能力；第一部分可配套学习，但第二部分官方说明为自成体系
+- **访问条件：** 公开入口；部分材料需注册或受限
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### 课程定位
 
-Hebrew University of Jerusalem 的《Build a Modern Computer from First Principles: From Nand to Tetris, Part II》以六个自成体系的项目实现虚拟机、编译器与操作系统；需要入门编程能力、Python 或 Java 环境，且平台完整访问可能收费。
+Nand2Tetris Part II 对应官方 [Course Page](https://www.nand2tetris.org/course) 的 Projects 7–12：2 个 VM translator 阶段、1 个 Jack app、2 个 compiler 阶段，以及 Project 12 的 Jack OS。它适合已经完成 Part I，想亲手看见高级语言怎样落到 Hack 指令的人。recursion、object state、parser、symbol table、stack frame 和 file I/O 是实际先修；进程、文件系统与网络则属于后续操作系统课程。
 
-**开始前先核对**
+### 课程任务
 
-- 建议先完成方向基础：数字逻辑与计算结构
-- 建议先完成方向基础：编程与工程计算
-- 建议背景：入门编程能力；第一部分可配套学习，但第二部分官方说明为自成体系
+Projects 7–8 从 arithmetic 和 memory segment 走到 branch、call/return、bootstrap 与 recursion。最容易出错的是 function frame：LCL、ARG、THIS、THAT 与 return address 的保存和恢复只要偏一格，递归程序才会暴露问题。Projects 10–11 把 tokenizer、parser、symbol table 和 VM generation 串成编译器；这一段的乐趣在于，一个 Jack 语义错误最终会变成一段可以逐层追踪的 VM 输出。
 
-## 先看这些入口
+官方 [Project 12](https://www.nand2tetris.org/project12) 要用 Jack 实现 Math、String、Array、Output、Screen、Keyboard、Memory 与 Sys 共 8 个 class。Memory allocator 与 String 最能体现课程的取舍：它们足以支撑 Jack 程序，却没有 process isolation、filesystem 或 networking，因此这里的 “OS” 更像一组运行时库，而非现代 kernel。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+### 课程材料
 
-- [课程主页](https://www.coursera.org/learn/nand2tetris2)
+[Software](https://www.nand2tetris.org/software) 提供 browser 和 Java tools，调试时可以让官方实现暂时代替尚未完成的一层。这个设计非常适合定位问题：同一个最小 Jack program 分别经过自己的 compiler、VM translator 和 assembler，哪一次替换让错误消失，问题大致就落在哪一层。
 
-## 已知边界
-
-六个大型项目需要配置 Python 或 Java 环境，且 Coursera 的访问条款可能变化。
-
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+官方 [Home](https://www.nand2tetris.org/) 免费提供 specifications 与 tools；[License](https://www.nand2tetris.org/license) 请求 solutions 保持非公开，因此 translator、compiler、OS 和 Jack app 源码适合放在 private repository。Part II 最值得抵达的时刻，是一个 Jack app 穿过 compiler、VM、assembler 和 Hack machine 正常运行，而你仍能说清 `Sys.init`、call frame、heap object 与 screen output 分别来自哪一层。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（1 项）</summary>
+- [代码 · Nand2Tetris projects and software suite](https://www.nand2tetris.org/software)
+- [课程主页](https://www.coursera.org/learn/nand2tetris2)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 无公开材料 |
-| 代码 | 完整 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/nand2tetris2) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

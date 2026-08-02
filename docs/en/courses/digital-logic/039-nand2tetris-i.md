@@ -3,70 +3,85 @@ title: "Build a Modern Computer from First Principles: From Nand to Tetris, Part
 description: "Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part I teaches digital logic through a self-contained HDL simulator and staged projects, subject to changing platform access terms."
 page_type: course
 course_id: "course-039"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 48c3083bb11109ed -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 5e189dc7e03afcaf -->
 
-# Build a Modern Computer from First Principles: From Nand to Tetris, Part I
+# Hebrew University of Jerusalem Nand2Tetris I: Build a Modern Computer from First Principles: From Nand to Tetris, Part I
 
 ## Course Overview
 
 - **University:** Hebrew University of Jerusalem
 - **Course code:** Nand2Tetris I
-- **Prerequisites:** Recommended foundation: Programming and Engineering Computing; Recommended foundation: Circuit Analysis
-- **Track:** [Digital Logic and Computation Structures](index.md)
-- **Path role:** Alternative
-- **Public materials:** Broadly complete
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The official Nand2Tetris site states that Part I requires no prior knowledge
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Labs and projects
 
-Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part I teaches digital logic through a self-contained HDL simulator and staged projects, subject to changing platform access terms.
+Nand2Tetris Part I is cumulative rather than organized around lectures and
+exams. Projects 1–6 on the official
+[course page](https://www.nand2tetris.org/course) build logic gates, an
+adder/ALU, registers and RAM, Hack assembly programs, a CPU/computer, and an
+assembler. The official [home](https://www.nand2tetris.org/) supplies
+lectures, specifications, and tools and states that no prior knowledge is
+required. Projects 4 and 6 do involve programming and files; a complete
+beginner should first learn variables, loops, functions, and command-line
+basics.
+Choose it if you want to construct a machine interface by interface; a short
+HDL course is more direct when syntax is the only goal.
 
-**Check before starting**
+### Use Only Interfaces Already Built
 
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Circuit Analysis
+[Project 1](https://www.nand2tetris.org/project01) demonstrates the common
+contract: an `.hdl` interface, `.tst` script, and `.cmp` output. Do not call a
+future-project chip or host-language library. Keep a truth or state table,
+design sketch, official test transcript, added edge tests, and bug log for
+each project. Hand-trace registers, memory, and jumps in Project 4; draw the
+datapath and control truth table before Project 5; and preserve the tokenizer,
+two-pass symbol table, and malformed-input tests for the Project 6 assembler.
 
-## Start with these links
+The official [software](https://www.nand2tetris.org/software) includes a
+browser IDE and legacy Java desktop tools. Choose one path for all 6 projects
+and export source regularly. Switching tools halfway can make formatting or
+time-step behavior look like a design defect.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+### Trace One Instruction from NAND without Notes
 
-- [Course home](https://www.coursera.org/learn/build-a-computer)
-- [Projects · Build a Modern Computer from First Principles: Nand to Tetris Part II (project-centered course)](https://www.coursera.org/learn/nand2tetris2)
+At the end, choose one Hack C-instruction and write its assembler encoding,
+control bits, ALU function, destination and jump behavior, CPU datapath, and
+register/memory timing. Flip one control bit, predict the machine behavior,
+and then verify it in the emulator. This demonstrates accumulated abstraction
+better than 6 separately green projects.
 
-## Known Boundaries
+The official [license](https://www.nand2tetris.org/license) asks learners not
+to publish project solutions. Keep HDL and assembler source private; a public
+portfolio can discuss design decisions, testing, and non-solution
+demonstrations. A physical FPGA is not a Part I requirement. Continue to Part
+II's VM, compiler, and OS only after the assembler reliably produces machine
+code for the Project 5 computer.
 
-The HDL simulator and projects are self-contained, but Coursera trial, payment, and full-course access terms can change.
-
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+Run one dependency audit from the lowest gate through the CPU: every chip may
+refer only to components already completed. For each sequential component,
+state the current-cycle input, the state-update boundary, and what becomes
+visible next cycle. If one fault looks different in a chip test and a computer
+test, use the smallest test script to pin down the first divergence instead of
+repeatedly changing wiring by guesswork.
+That check should include bit widths, reset state, and the boundary between
+combinational output and registered state. After every repair, rerun the older
+chip tests as well as the computer test; otherwise a passing upper layer can
+hide a lower-level interface that has quietly changed.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (2 items)</summary>
+- [Code · Nand2Tetris projects and software suite](https://www.nand2tetris.org/software)
+- [Course home](https://www.coursera.org/learn/build-a-computer)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/build-a-computer) | Registration required | Listed by official page | 2026-07-28 |
-| [Build a Modern Computer from First Principles: Nand to Tetris Part II (project-centered course)](https://www.coursera.org/learn/nand2tetris2) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

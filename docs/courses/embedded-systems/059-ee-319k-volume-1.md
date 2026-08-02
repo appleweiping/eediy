@@ -5,108 +5,71 @@ page_type: course
 course_id: "course-059"
 editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-29"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 78a184cf7f6d9229 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0421ba7161498035 -->
 
-# Embedded Systems: Shape the World
+# The University of Texas at Austin EE 319K / Volume 1: Embedded Systems: Shape the World
 
 ## 课程简介
 
 - **所属大学：** The University of Texas at Austin
 - **课程编号：** EE 319K / Volume 1
-- **先修要求：** 建议先完成方向基础：数字逻辑与计算结构；建议先完成方向基础：编程与工程计算；建议先完成方向基础：电子实验与测量
-- **方向：** [嵌入式系统](index.md)
-- **路线角色：** 主线
-- **公开材料：** 较完整
-- **最近复核：** 2026-07-29
+- **官方先修：** UT Austin EE 319K 的正式先修是 EE 306、ECE 306 或 BME 306，且成绩至少为 C-
+- **本站建议背景：** 本站未另设准备条件
+- **访问条件：** 无需注册公开访问
+- **资料状态：** 2026-07-29；公开材料导读
 
-> **资料考察（R0）：** 正文于 2026-07-29 逐项核对课程官方材料，但还没有可核验的完整学习复盘，因此不冒充亲历。完成过课程的读者可以从页末提交复盘。
+### 课程定位
 
-## 先选定一块板：2022 版 Volume 1 不是 Spring 2026 实验手册
+UT Austin EE319K 的 [2022 版 Volume 1](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/) 围绕 TM4C123/Cortex-M4，共 10 章；[Spring 2026 syllabus](https://users.ece.utexas.edu/~valvano/mspm0/EE319KSp26.html) 已改用 LP-MSPM0G3507/Cortex-M0+、当前 CCS 和 9 章 e-book。知识顺序可互证，寄存器地址、startup、工程文件和 pinout 不能混搭。主仓库用 `LP-MSPM0G3507 / Spring 2026` 标明基线，旧教材只作概念参考。
 
-“Embedded Systems: Shape the World” 现在有两条容易混淆的公开路径。[旧版开放教材](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/) 是为 EE319K 编写的 2022 重印本，围绕 TM4C123 和 Cortex-M4 展开，共 10 章；[Spring 2026 syllabus](https://users.ece.utexas.edu/~valvano/mspm0/EE319KSp26.html) 则把真实实验板换成 LP-MSPM0G3507（Cortex-M0+），并以当前 Code Composer Studio、汇编与 C 为实现环境。两者讲的是同一条“从处理器到 I/O”的知识链，却不是可交叉拼接的工程版本。
+先修是 EE306、ECE306 或 BME306，最低 C-。读简单汇编、画有限状态机、解释电压电流与二进制表示，是购买 kit 前值得确认的基础。
 
-独立学习应在仓库首页写清 `target = LP-MSPM0G3507 / Spring 2026`，把旧 Volume 1 当作概念参考，而不复制其中的 TM4C123 寄存器地址、启动文件、Keil 工程或引脚定义。当前 MSPM0+ e-book 目录只有 9 章：Introduction、Switches/LEDs、C Programming、Finite State Machines、Interrupts/DAC/Sound、Locals/LCD、ADC/Sampling、Communication、System Design。只要目标板不同，即使函数名相似，GPIO 复用、时钟、异常入口和外设寄存器也必须重新核对。
+### 实验与项目
 
-## 先修诊断不是“会一点 C”
+[Labs](https://users.ece.utexas.edu/~valvano/mspm0/labs.html) 从 Lab 1–9 递进：前 5 项个人完成，后 4 项结对。Lab 1 建工具链与汇编，Lab 2 做 switch/LED，Lab 3 用 C 和 debug dump，Lab 4 实现 traffic-light FSM，Lab 5 用 5-bit DAC 做 piano；随后是 LCD/fixed-point、ADC 实时位置、serial FIFO 数据采集，最后做 game。
 
-原课要求 EE306、ECE306 或 BME306 至少 C-，并明确假定学生记得二进制与二补码、ASCII、布尔门和 DeMorgan 定律、CPU/内存/I/O、LC-3 汇编、寻址模式、算法与流程图、数据类型、指针、数组、中断和调试。自学者可以用三个短任务代替课程号核验：
+成功视频之外，每项至少留源码、接线图、输入条件、logic trace 或 dump、失败边界和修复。Lab 4 应能从 transition table 重建代码；Lab 7 应保留 ADC 标定曲线；Lab 8 应给出 FIFO 在峰值输入下的丢样结果；Lab 9 则解释 frame timing、输入和声音怎样共享预算。
 
-1. 不运行代码，把一个含有 8/16/32 位有符号数、数组下标和函数调用的 C 片段翻译成寄存器、栈帧与内存访问表。
-2. 写出按钮输入和 LED 输出的低压接口图，计算 LED 限流电阻，并解释浮空输入、上拉和按键抖动。
-3. 给出一个周期采样系统的时序预算，说明中断服务时间超过采样周期会怎样影响数据。
+### 访问与版本说明
 
-前两项若无法独立完成，应先补数字逻辑、C 指针和基本电路；第三项暂时不会，并不妨碍从 Lab 1 起步，但必须在 Lab 7 前补齐。原课从 ECE302/ECE306 继续“bottom-up”路线，重点是理解与分析，不是把库函数连起来就算设计完成。
+[Downloads](https://users.ece.utexas.edu/~valvano/mspm0/downloads.htm) 提供软件与部分 starter，[Exams](https://users.ece.utexas.edu/~valvano/mspm0/exams.htm) 可用来检验汇编、FSM、I/O 和实时性，但 Canvas quiz、现场签核、完整 grader 与未公开解答仍缺席。先不看答案做一遍，再用波形、极限输入和第二种实现找错；搜索到的答案无法提供同等反馈。
 
-## 九个实验构成一张依赖图
+[ValvanoWare](https://github.com/kk4ead/ValvanoWare) 是 kk4ead 整理的公开子集，
+README 说明源自 Jonathan Valvano，并保留 BSD-compatible license；其中有 TM4C123 的
+traffic-light、ADC、FIFO 与 SysTick 示例。它适合核对 2022 Volume 1 的旧板接口，与
+2026 MSPM0 starter 分属不同平台。FSM table 或 FIFO contract 可以比较，寄存器代码则需按当前芯片重写。
 
-[Spring 2026 Labs](https://users.ece.utexas.edu/~valvano/mspm0/labs.html) 在 setup 和 board demo 之后列出 Lab 1–9。前 5 个为个人实验，后 4 个通常两人一组。这里必须保留两份官方页面的冲突：syllabus 总述写 Lab 6–7 混合汇编与 C、Lab 8–9 在 ECE319K 使用 C（honors 使用 C++）；Labs 索引的逐项说明却写 Lab 6 为汇编、Lab 7 与 Lab 8 为汇编/C 混合、Lab 9 为 C。实施某个实验时，以当期链接的题面与 starter 为准，并在版本记录中注明页面日期和这处差异，不能替课程方擅自统一口径。
+与 Stanford CS107E 相比，本课更适合第一次系统练 MCU I/O、仪器和实时 loop；CS107E 更深入 runtime、linker、allocator 与 interrupt-driven library。两者可串联，不能把不同 ISA 和开发板拼成一个工程。
 
-### Lab 1–5：先证明每一层可以单独工作
+### FSM、标定和实时性，各留一个失败案例
 
-Lab 1 是 Cortex-M0+ 汇编与工具链 bring-up；Lab 2 用汇编连接开关和 LED；Lab 3 转入 C 与 debugging dump；Lab 4 实现 traffic-light finite-state machine；Lab 5 用 5-bit DAC 制作 digital piano。每个实验至少保留源码、链接映射或符号信息、接线图、上电前检查、已知输入、实际输出和一个故障记录。
+硬件连接以 [TI LP-MSPM0G3507 guide](https://www.ti.com/lit/ug/slau873d/slau873d.pdf) 为准；默认 J101 暴露 GND、5 V、3V3、UART 和 SWD，不代表安全隔离。断电接线、限流供电，speaker 驱动与 LED 电阻按当前 schematic 核算，避开市电、锂电充放电和未知外部电源。
 
-这里最有价值的不是最终 LED 闪烁或扬声器发声，而是证据链。Lab 2 应能从引脚电压和端口位解释现象；Lab 3 应展示 dump 如何定位一个可重复错误；Lab 4 应提供状态转移表、非法输入策略和定时测量；Lab 5 应把采样率、查表长度、DAC 权值与听到的频率联系起来。没有这些中间证据，演示视频无法区分正确实现与偶然工作。
-
-### Lab 6–9：接口开始相互约束
-
-Lab 6 编写 ST7735R LCD driver、fixed-point decimal output 与局部变量；Lab 7 把 ADC、中断和 LCD 组合成 real-time position monitor；Lab 8 通过串口中断和 FIFO 构造 distributed data-acquisition system；Lab 9 是课堂 game design competition。后四个实验应形成可追溯的接口契约：显示函数的输入范围、ADC 标定曲线和残差、FIFO 满/空行为、最坏中断占用、游戏循环预算以及声音/图形资源的存储成本。
-
-EEDIY 建议把 Lab 7 作为第一次正式设计审查：提交原始 ADC code、物理位置参考点、拟合方法、误差图和超量程行为，而不仅是显示“1.234 cm”的照片。Lab 8 要用突发输入主动制造 FIFO overflow，并说明丢弃、阻塞或回压策略。Lab 9 的交付物应包含可重复启动步骤、控制说明、至少一次长时间运行记录和已知缺陷；比赛排名与站外完成无关。
-
-## 公开代码是“部分 starter”，不是完整课程仓库
-
-[Downloads](https://users.ece.utexas.edu/~valvano/mspm0/downloads.htm) 把 Spring 2026 installer 放在 CCS 安装说明的 step 3，描述为“some ECE319K labs”的 starter files 与若干示例项目，而不是 Lab 1–9 的完整参考实现。页面另行公开 MSPM0 引脚卡、KiCad starter、`mspm0g350x.h`、Lab 7 accuracy calculator、Lab 9 的 `WC.m` MATLAB/Octave 音频转换脚本，以及 BMP 转换器。应逐项记录文件来源、下载日期、校验和、CCS 版本与板卡版本，不要把今天下载到的 installer 当成永久稳定依赖。
-
-课程建议复制已有工程再修改，避免从空项目重建隐藏配置。站外仓库可以保留一个只含最小 blink 的 `toolchain-smoke-test`，然后为每个实验建立独立 tag；但这套 Git 组织、自动测试和 README 是 EEDIY 的复现补充，不是 UT 官方作业要求。公开页面没有承诺所有 starter、参考代码或实验答案都可下载，缺失部分应由学习者实现并标注未获官方评分。
-
-## 练习 grader 与正式反馈必须分开
-
-[Exams](https://users.ece.utexas.edu/~valvano/mspm0/exams.htm) 的开放度很高：Exam 1 有多份已转换到 MSPM0 的旧卷及解答；Exam 2 practice ZIP 可在 CCS 中运行内嵌 grader；Final 页面提供若干历史试卷，但明确写着只有部分解答。这个 practice grader 适合反复检查字符串、数组、结构体和汇编函数，却不是 Spring 2026 的正式 Exam 2 环境。
-
-原课每周 Canvas quiz 占 10%，实验占 25%，Exam 1 和 Exam 2 各 20%，Final 占 25%。Canvas 中的 quiz、提交、成绩与部分课程文件，实验室中的 TA supervision/checkoff，以及教师对旧卷的复核，都不向普通站外学习者开放。公开解答应在首次限时作答和测试冻结之后再看；本地单元测试、practice grader 和示波测量只能形成自评证据，不能写成 UT 成绩或官方通过。
-
-## EE319K 与 CS107E 解决的不是同一个首要问题
-
-Stanford CS107E 的 Spring 2026 版本使用 Mango Pi MQ-Pro、Allwinner D1 与 RISC-V，从裸机、编译链接、内存管理一路构造键盘、图形、声音和 shell。它的[作业页](https://cs107e.github.io/assignments/)称课程以 7 个 weekly assignments 起步，却在当前列表中显示 Assignment 0–7，之后另列 Final Project；本页保留这处编号与数量差异，不强行改成一个看似整齐的数字。连续任务强调 command line、Git、底层软件库和完整计算机系统。EE319K 则在较小的 MSPM0G3507 上更早进入 breadboard、万用表、开关/LED、DAC、ADC、LCD、UART 与实时中断。
-
-想理解编译器、链接器、内存分配和裸机系统软件，可以优先选 CS107E；想用一门本科入门课把汇编/C 与模拟/数字 I/O、仪器调试和传感数据连接起来，EE319K 更直接。二者硬件、ISA 和作业链都不兼容，不宜边做一门的作业边替换另一门的驱动。完成 EE319K 后再做 CS107E，或反向补齐 I/O 实验，比拼成一套“通用嵌入式实验”更可审计。
-
-## 硬件清单、安全边界与最终证据
-
-Spring 2026 kit 包含红/黄/绿 LED、270 Ω、10 kΩ、12 kΩ、1.5 kΩ 电阻、4 个按键、10 kΩ slide potentiometer、32 Ω speaker 和 ULN2003A；学生另备 LP-MSPM0G3507、ST7735R、breadboard、导线、USB 电脑和数字万用表。speaker 需要 2 个焊点；honors Lab 8 另有 IR LED 与 38 kHz sensor。采购前应逐项核对当前料号和 LCD 引脚排列，不能用“ST7735R”名称推断任意模块都兼容。
-
-实体实验只做 USB 供电、与主机共参考、限流的板级低压电路。[TI 的 LP-MSPM0G3507 用户指南](https://www.ti.com/lit/ug/slau873d/slau873d.pdf)显示，默认安装的 J101 把 GND、5 V、3V3、UART 与 SWD 等信号接到 XDS110/USB 一侧；“isolation block”是可拔跳线组，不代表默认具有安全隔离。断电接线，上电前检查电源与地短路、LED 极性和器件额定值。焊接需通风、护目与耐热支架，烙铁掉落时不要徒手接，操作后洗手；不做市电、锂电池充放电或未知外部电源连接。IR honors 任务也不是自由空间高功率光学实验。
-
-依据前述官方 Lab 1–9 编号，EEDIY 建议的最终证据不是一句“9 个 lab 已完成”，而是 9 个可定位版本、1 份版本矩阵、3 份审查包和 1 份边界说明。审查包可分别覆盖 Lab 4 的 FSM、Lab 7 的 ADC 标定、Lab 8/9 的实时集成；边界说明列出未取得的 Canvas quiz、TA checkoff、正式 grader 与答案。这样能证明学习路线、代码和硬件现象可复核，同时不会把站外复现冒充原班经历。
+从 Lab 4 的 FSM、Lab 7 的传感标定与 Lab 8/9 的实时集成各挑一个真实失败，再做一个小系统，
+把输入、状态、输出和时序从原始数据串起来。解释版本、波形和一次性能取舍，比“跑过 9 个
+lab”更能看出 MCU I/O、instrument 与 real-time loop 是否真的接通。
 
 ## 课程资源
 
+- [课程主页](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys)
+- [备用课程入口](https://users.ece.utexas.edu/~valvano/mspm0/ebook)
+- [讲义 · Assembly reference](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/AssemblyReference.htm)
+
+## 资源汇总
+
 <details markdown="1">
-<summary>展开完整资源索引（4 项）</summary>
+<summary>展开更多官方资源（1 项）</summary>
 
-### 材料覆盖
-
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 完整 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 部分 |
-| 代码 | 完整 |
-
-### 资源
+**资源**
 
 | 资源 | 访问 | 状态 | 复核日期 |
 |---|---|---|---|
-| [课程主页](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys) | 无需注册公开访问 | 官方页已列出 | 2026-07-28 |
-| [备用课程入口](https://users.ece.utexas.edu/~valvano/mspm0/ebook) | 无需注册公开访问 | 官方页已列出 | 2026-07-28 |
 | [TM4C123 Hardware Reference Material](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/Appendix.htm) | 无需注册公开访问 | 官方页已列出 | 2026-07-28 |
-| [Assembly reference](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/AssemblyReference.htm) | 无需注册公开访问 | 官方页已列出 | 2026-07-28 |
 
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
+> 其余条目保留访问状态与复核日期；材料权利归原提供方，实际可用性可能随账号、地区或课程改版变化。
 
 </details>

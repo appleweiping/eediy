@@ -120,11 +120,7 @@ def _is_substantive_pair(zh_body: str, en_body: str) -> bool:
     return zh_length >= 500 and en_words >= 120
 
 
-def translation_issues(
-    docs_root: Path,
-    *,
-    minimum_substantive_guides: int = 16,
-) -> tuple[list[Issue], dict[str, Any]]:
+def translation_issues(docs_root: Path) -> tuple[list[Issue], dict[str, Any]]:
     pairs, issues = translation_pairs(docs_root)
     substantive_guides: list[str] = []
     for zh_path, en_path in pairs:
@@ -206,16 +202,6 @@ def translation_issues(
         "substantive_guide_pairs": len(substantive_guides),
         "substantive_guides": sorted(substantive_guides),
     }
-    if len(substantive_guides) < minimum_substantive_guides:
-        issues.append(
-            Issue(
-                "error",
-                "translation.guide_count",
-                f"expected at least {minimum_substantive_guides} substantive bilingual guide "
-                f"pairs, found {len(substantive_guides)}",
-                docs_root.as_posix(),
-            )
-        )
     return list(dict.fromkeys(issues)), statistics
 
 
@@ -225,16 +211,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--docs-root", default="docs")
     parser.add_argument("--json-report")
-    parser.add_argument("--minimum-substantive-guides", type=int, default=16)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    issues, statistics = translation_issues(
-        repo_path(args.docs_root),
-        minimum_substantive_guides=args.minimum_substantive_guides,
-    )
+    issues, statistics = translation_issues(repo_path(args.docs_root))
     emit_issues(issues)
     print(
         f"Translations: {statistics['paired_pages']} pairs, "

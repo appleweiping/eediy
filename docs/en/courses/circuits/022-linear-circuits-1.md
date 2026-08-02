@@ -3,68 +3,73 @@ title: "Linear Circuits 1: DC Analysis"
 description: "Georgia Institute of Technology's Linear Circuits 1: DC Analysis strengthens DC circuit analysis through videos and more than one hundred drills, while lacking a true home-lab loop."
 page_type: course
 course_id: "course-022"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: c76841b4d14b9826 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: e85ff5c7704b10ba -->
 
-# Linear Circuits 1: DC Analysis
+# Georgia Institute of Technology: Linear Circuits 1: DC Analysis
 
 ## Course Overview
 
 - **University:** Georgia Institute of Technology
 - **Course code:** Linear Circuits 1
-- **Prerequisites:** Recommended foundation: Engineering Mathematics; Recommended foundation: Physics Foundations
-- **Track:** [Circuit Analysis](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
+- **EEDIY preparation:** Engineering Mathematics; Physics Foundations
+- **Access:** Registration required; scope varies by platform
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Many Short Problems Drill Method Choice
 
-Georgia Institute of Technology's Linear Circuits 1: DC Analysis strengthens DC circuit analysis through videos and more than one hundred drills, while lacking a true home-lab loop.
+Georgia Tech's official [Linear Circuits 1 course and assignments](https://www.coursera.org/learn/linear-circuits-dcanalysis)
+is a 7-module Coursera course. It moves from current, voltage, and power
+through KVL/KCL, node and mesh methods, dependent sources, Thévenin/Norton
+equivalents, RC/RL transients, and second-order RLC behavior. Georgia Tech's
+[course description](https://pe.gatech.edu/courses/linear-circuits-1-dc-analysis)
+recommends calculus and physics; the practical entry skills are linear
+equations and consistent voltage/current reference directions. Choose it when
+you need problem volume to make the methods automatic, not an
+experienced analyst seeking only a lab project.
+The official Coursera page places graded assignments inside the modules;
+their exact access depends on current platform permissions.
 
-**Check before starting**
+### Study advice
 
-- Recommended foundation: Engineering Mathematics
-- Recommended foundation: Physics Foundations
+Pause before each sample solution. Mark branch directions, reference node,
+unknowns, and units, then write the equations. Solve one small network with
+node analysis and at least one other method, comparing the number of unknowns
+and sign conventions. Check both KCL residuals and total delivered versus
+absorbed power.
 
-## Start with these links
+For dynamics, write \(0^-\), \(0^+\), infinity, and the continuity rule before
+finding a time constant. For second-order circuits, identify the roots,
+damping case, and initial stored energy first. The platform may accept one
+number, but retain this derivation or the skill will remain tied to diagrams
+you have already seen.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+### Build One Low-Voltage End-to-End Example
 
-- [Course home](https://www.coursera.org/learn/linear-circuits-dcanalysis)
+Choose a Wheatstone sensor, RC transient, or RLC response. Predict it by hand
+and in SPICE, then measure under isolated, current-limited low voltage. Keep
+wiring, instrument settings, and raw waveforms, and explain component
+tolerance, source/load impedance, and probe loading. Without instruments,
+simulate tolerance and loading as well as the ideal case, and do not label the
+curve a measurement.
 
-## Known Boundaries
-
-More than one hundred drills but no true home-lab loop; Coursera subscription, trial, or preview access can change.
-
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+You should finish able to derive equations for an unfamiliar network with a
+dependent source and obtain a response from initial and final values. Continue
+with [Linear Circuits 2](https://www.coursera.org/learn/linear-circuits-ac-analysis)
+for phasors, frequency response, filters, and AC power. Coursera preview and
+graded access can change. What matters is choosing the right equations and
+checks on a new topology; the progress bar says only how far you clicked.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.coursera.org/learn/linear-circuits-dcanalysis)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | Partial |
-| Code | No public material |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/linear-circuits-dcanalysis) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

@@ -69,6 +69,34 @@ def routes_data() -> dict[str, Any]:
                 "audience_en": "Learners building a foundation",
                 "outcome_zh": "完成一个可复现的基础成果。",
                 "outcome_en": "Complete one reproducible foundational artifact.",
+                "guidance_sections": [
+                    {
+                        "id": "diagnose-first",
+                        "title_zh": "先做诊断",
+                        "title_en": "Diagnose first",
+                        "style": "prose",
+                        "items_zh": ["先做一道基础诊断题，再决定是否打开课程。"],
+                        "items_en": [
+                            "Begin with one diagnostic problem before opening the course."
+                        ],
+                    },
+                    {
+                        "id": "close-the-loop",
+                        "title_zh": "闭合练习",
+                        "title_en": "Close the loop",
+                        "style": "list",
+                        "items_zh": [
+                            "完成一项可重跑的基础练习。",
+                            "已经掌握的单元直接跳过。",
+                            "新参数下仍能独立重现结果时停止。",
+                        ],
+                        "items_en": [
+                            "Complete one repeatable foundation exercise.",
+                            "Skip units you already command.",
+                            "Stop when the result reproduces independently on new parameters.",
+                        ],
+                    },
+                ],
                 "stages": [
                     {
                         "name_zh": "基础",
@@ -76,6 +104,8 @@ def routes_data() -> dict[str, Any]:
                         "course_ids": [1],
                         "required_course_ids": [1],
                         "elective_count": 0,
+                        "selection_zh": "先完成基础课，再以阶段产物检验是否具备继续学习的条件。",
+                        "selection_en": "Complete the foundation course first, then use the stage artifact to decide whether to continue.",
                         "exit_zh": "提交可复现的基础成果并通过五项自动检查。",
                         "exit_en": "Submit a reproducible foundation artifact that passes five automated checks.",
                     }

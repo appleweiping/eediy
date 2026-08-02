@@ -5,103 +5,51 @@ page_type: course
 course_id: "course-027"
 editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-29"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4a3a732256576886 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: ea7c865d24be1d3a -->
 
-# Real Analog Courses
+# Digilent: Real Analog Courses
 
 ## Course Overview
 
 - **University:** Digilent
 - **Course code:** Real Analog
-- **Prerequisites:** Recommended foundation: Circuit Analysis
-- **Track:** [Electronics Laboratory and Measurement](index.md)
-- **Path role:** Mainline
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-29
+- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
+- **EEDIY preparation:** Circuit Analysis
+- **Access:** Open without registration
+- **Material status:** 2026-07-29; public-material guide
 
-> **Desk-researched (R0):** The official course materials were checked item by item on 2026-07-29, but no traceable full-course report has been accepted. This guide therefore makes no first-hand claims; completers can submit a report below.
+### Real Analog turns calculation into measurement
 
-## Treat the instrument as part of the circuit
+Digilent's [Real Analog](https://digilent.com/shop/coursework-learning-resources/) places 12 chapters of Circuits 1 theory and Analog Discovery experiments on one path. Chapters 1–5 move from voltage, current, power, and KCL/KVL to network theorems and op-amps. Chapters 6–9 add storage, first- and second-order systems, and state variables. Chapters 10–12 cover sinusoidal steady state, frequency response, filtering, and power. It suits learners with basic algebra who cannot yet explain instrument loading, grounding, or measurement discrepancy. The material was written mainly for AD2. Digilent says its concepts are compatible with AD3, not that every old button, range, and wiring diagram has been updated.
 
-Real Analog does not place oscilloscope screenshots at the back of a circuit textbook. Analysis and measurement are meant to challenge each other. Digilent's [current coursework page](https://digilent.com/shop/coursework-learning-resources/) lists it as free analog-electronics material and explicitly says that the courses are based primarily on Analog Discovery 2 (AD2), while their concepts and exercises are compatible with Analog Discovery 3 (AD3). That statement supports migration of the learning objectives; it does not promise that old WaveForms buttons, ranges, wiring diagrams, and the current AD3 interface agree step by step. Inspect representative lab PDFs before purchasing hardware on the strength of the word “compatible.”
+### Chapter 1 Teaches Measurement; Chapter 9 Teaches State Models
 
-The official [table of contents for Chapters 1–12](https://digilent.com/reference/_media/learn/courses/real-analog/real-analog-chapters-1-12-toc.pdf) reveals a deliberate spine. Chapters 1–5 move from voltage, current, power, and KCL/KVL through circuit reduction, nodal/mesh analysis, network theorems, and op-amps. Chapters 6–9 introduce energy-storage elements, first- and second-order circuits, and state-variable methods. Chapters 10–12 cover sinusoidal steady state, frequency response/filtering, and sinusoidal power. The important feature is not merely the presence of 12 documents. One notation survives the move from static models to time-domain dynamics, state space, and frequency domain, while the laboratory questions change with the model.
+[Chapter 1](https://digilent.com/reference/_media/learn/courses/real-analog-chapter-1/real-analog-chapter-1.pdf) combines exposition, exercises, worksheets, and 9 experiments. Beginning with breadboards, sources and meters, and V–I regression, place prediction and measurement side by side with the AD model, WaveForms version, reference ground, ranges, raw data, and residuals. Its table of contents names Exercise and Homework Solutions, but the current PDF contains no solution section. A broken contents entry is not an answer chain.
 
-## Entrance Diagnostic: Predict Before Opening WaveForms
+[Chapter 9](https://digilent.com/reference/_media/learn/courses/real-analog-chapter-9/real-analog-chapter-9.pdf) uses A, b, c, and d matrices and two experiments to express an RLC in state form. Compare the hand-derived model, initial conditions, simulated and measured curves, overlay residual, and state trajectory in one view. A wrong initial point points first to state definitions and probe reference; an incorrect envelope points to coil resistance and tolerance. Calling every discrepancy “noise” discards the diagnostic lesson.
 
-The official material reviewed for this guide does not provide a course-number prerequisite that an outside learner can simply copy, so EEDIY does not invent one. Use a direct diagnostic instead. Given a network with an independent source and 3 resistors, mark the passive sign convention, then use KCL/KVL or nodal analysis to obtain node voltages, currents, and powers. Explain next why the finite input resistance of a DMM changes the circuit being measured. If the algebra works but reference ground, polarity, and instrument loading do not, start at Chapter 1. If all of those actions are reliable, Chapters 1–4 can be read faster, but their experimental predictions should still be written.
+### Instrument versions determine whether automation is interpretable
 
-The official [Chapter 1 PDF](https://digilent.com/reference/_media/learn/courses/real-analog-chapter-1/real-analog-chapter-1.pdf) is 82 pages and its title page says Revised 2017. It combines prose, section exercises, lab projects, lab worksheets, and Homework in one file rather than hiding experiments in an unrelated manual. Chapter 1 contains 9 numbered experiments: 1.1, 1.2.1, 1.2.2, 1.3.1, 1.3.2, and 1.4.1–1.4.4. Try the breadboard/ohmmeter work in 1.1 and the source/meter work in 1.2.1 first. If power-off short checks, range selection, or putting an ammeter in series remain unreliable, do not rush to the op-amp material.
+[WaveForms](https://digilent.com/shop/waveforms/) is free to use and has a hardware-free demo mode. Demo mode teaches the interface but does not generate circuit data. Marius Greuel's [DwfPy](https://github.com/mariusgreuel/dwfpy) is a useful unofficial companion: an MIT-licensed, documented, CI-tested Python binding for WaveForms devices, with oscilloscope, generator, logic, supply, and acquisition examples. It is not a Digilent course requirement. Use it to automate repeated sweeps and export raw arrays beside their parameter settings, never to skip manual verification of probes, ranges, and ground.
 
-## Compress Every Lab into Prediction–Measurement–Residual
+Begin automation with a known resistor and an internal loopback. Have the script emit device enumeration, channel configuration, sample rate, trigger conditions, and raw arrays, then compare them with a one-shot GUI reading. Each sweep point also needs its settle time and clipping decision. A final Bode plot alone cannot separate an instrument setting, a script-unit error, and a circuit discrepancy.
 
-The original laboratory symbol key distinguishes pre-lab analysis, PSpice or MATLAB numerical work, notebook records, and demos that require a TA to initial a notebook or grade sheet. In 1.3.2 the task is not merely to read a resistance: it derives resistance from V–I data with a least-squares fit. Lab 1.4.4 joins a temperature-sensitive resistor, signal conditioning, and design judgment in one measurement chain. A public visitor can perform calculations and safe low-voltage wiring, but cannot obtain the classroom TA's observation, initials, or follow-up questions. A trace that “looks right” cannot replace that feedback.
+The AD2 ground shares the USB host reference and must not be assumed galvanically isolated. Restrict physical reconstruction to low-voltage, current-limited circuits disconnected from mains and other hazardous sources. Power down before rewiring and discharge capacitors. Without a trustworthy DMM, current-limited source, and known ground path, stop at analysis and SPICE rather than labeling a demo-mode screen as measurement.
 
-For each official Lab, EEDIY recommends a linked record set. This is an EEDIY supplement, not an official Digilent assignment. `prediction` holds the schematic, model, units, expected value, and acceptable interval; `setup` records AD2/AD3, DMM, probes, ranges, WaveForms version, and ground point; `raw` preserves unprocessed exports; `residual` computes measured minus predicted and plots the discrepancy; `correction` decides whether component tolerance, instrument loading, parasitics, wiring, or model limits account for it. This form preserves a chain of judgment specific to measurement, rather than attaching an empty weekly template to every experiment.
+### Three Experiments Expose Model Failure
 
-## Chapter 1 Exposes Both the Strength and the Public-Release Gap
+Select one static, one dynamic, and one frequency-domain experiment. Use V–I fitting to expose input loading and residuals; use the Chapter 9 RLC to expose state and initial conditions; then place hand-derived Bode values, point measurements, and a Network Analyzer sweep for one filter on the same axes. Put the schematic, bill of materials, software version, wiring, raw data, and script together, then use one failed waveform to show what the correction actually changed.
 
-Official Chapter 1 connects the 1.1 breadboard, 1.2.2 dependent source/MOSFET, 1.3.1 resistance variation, 1.3.2 V–I regression, 1.4.1 dusk-to-dawn light, 1.4.2 power dissipation, 1.4.3 input resistance, and 1.4.4 temperature measurement. The early work turns the measuring instrument into an object of analysis before later work adds devices and system function. Preserve that order in the record: establish that the measurement chain is credible, then use it to establish that the circuit is credible. Reversing the order turns probe, ground, and range mistakes into apparent circuit-theory failures.
-
-The answer boundary must follow the current file itself. The table of contents in the 82-page PDF does list “Exercise Solutions” and “Homework Solutions,” but both entries say “Error! Bookmark not defined.” The body actually ends after Homework 1.16; no subsequent solution pages or public grader appear. A solution label in the contents is not evidence of a complete Chapter 1 answer loop, and older provider publicity must not be extrapolated into a claim that every problem across all 12 chapters currently has a usable solution. Freeze the first attempt, then check units, power balance, limiting cases, a second derivation, or SPICE, and write “still lacks official grading” on the correction page.
-
-## Chapter 9 Is the Pivot from Waveforms to State
-
-The official [Chapter 9 PDF](https://digilent.com/reference/_media/learn/courses/real-analog-chapter-9/real-analog-chapter-9.pdf) is only 26 pages, but it is not a disposable appendix. It writes circuits with the state-equation A, b, c, and d objects, explains the choice of energy-storage variables, and uses the MATLAB Control System Toolbox commands `ss`, `step`, and `initial` to inspect the model; the text also gives an Octave route. A learner who can substitute into a second-order response formula but cannot derive states and initial conditions from an RLC schematic should return to Chapters 6–8 for energy continuity and differential equations instead of copying MATLAB commands.
-
-The same official file contains 2 labs. Lab 9.3.1 builds a state-variable model for a series RLC circuit, and Lab 9.3.2 compares a second-order system response. A defensible record includes the hand-derived equations, parameters and initial conditions, simulated trace, measured trace, overlay residual, and state trajectory. Similar peak time but the wrong decay envelope points toward inductor series resistance and component tolerance; a mismatch at the starting point points first toward state definition, probe reference, and initial conditions. Calling every discrepancy “noise” discards the chapter's main model-diagnostic lesson.
-
-## Lock the AD Hardware and the WaveForms Software
-
-The physical Real Analog route needs AD2 or AD3, an Analog Parts Kit or verified equivalents, a breadboard, and a DMM where the selected Lab specifies one. Check the actual part list experiment by experiment. The coursework page's AD3 compatibility statement does not rewrite old UI language in the PDFs or prove that a third-party kit has the same resistor values, sensors, op-amps, or pinouts. Preserve board model, serial/firmware information when available, measured component values, and wiring photographs. Do not bundle the Digilent PDFs into the repository: current Chapter 1 says Copyright Digilent, Inc.; public download is not permission to redistribute.
-
-The official [WaveForms page](https://digilent.com/shop/waveforms/) says the software is free to download and use and can run in demo mode without hardware; the installed SDK includes C, Python, and other examples. On review, the official [version page](https://digilent.com/reference/software/waveforms/waveforms-3/previous-versions) identifies 3.25.1 as current, released 2026-03-06. Its Qt6 packages require Windows 10+ or macOS 12+, and the baseline Linux package says Ubuntu 22.04+; separate Qt5 packages cover older platforms. Record the actual OS, WaveForms build, and export format. Free software does not make the AD hardware, components, or DMM free, and demo mode does not create physical-circuit data.
-
-## A USB Instrument Is Not an Isolation Transformer
-
-Keep “portable” separate from “floating.” The [AD2 Reference Manual](https://digilent.com/reference/_media/reference/test-and-measurement/analog-discovery-2/ad2_rm.pdf) calls scope GND the USB ground and says that applications unable to share that ground need a separate USB-isolation solution. Treat AD ground as host-referenced by default. Do not assume galvanic isolation or attach scope ground casually to a floating supply or unknown node. With power removed, measure resistance between supply and ground, verify AD input/output ratings, component dissipation, and polarity, set a current limit, and then watch supply current during power-up. Remove power before changing wires, ranges, or parts, and verify capacitor discharge before touching the circuit.
-
-EEDIY's physical reconstruction is restricted to current-limited, low-energy circuits disconnected from mains and other hazardous external sources. It excludes body connections and high-power loads, and a USB cable is not a safety-isolation device. If a procedure exceeds available equipment ratings, stop the physical step and retain analysis, SPICE, and clearly labeled demo-mode screenshots. Those substitutions practice models and software but are not the original measurement. Without a trustworthy DMM, current-limited source, and understood ground path, borrow equipment instead of improvising a connection.
-
-## The Difference from MIT 6.071J Determines Which to Choose
-
-The official MIT 6.071J Spring 2006 archive publishes 25 numbered Labs plus a heart-rate monitor project and ranges more widely across electronics, signals, and measurement. The cost of that breadth is dependence on legacy NI ELVIS, LabVIEW, and the PC/PCI stack of that period. Real Analog binds 12 chapters of Circuits 1 theory more tightly to AD instrumentation. Its AD2/AD3 route is usually the better match for someone who wants KCL/KVL, transients, state space, and frequency response in one portable experimental chain.
-
-Do not decide by counting which page has more resources. Choose 6.071J for broader device, signal, and instrumentation work if rebuilding the legacy-platform differences is acceptable. Prefer Real Analog for a circuit-analysis spine with repeated predicted-versus-measured comparisons inside one AD environment. Neither course is wholly replaceable by simulation, and neither can be described as equivalently completed without the original TA, uniform hardware, and classroom checkoffs.
-
-## Finish with Three Review Packets, Not a Folder of Screenshots
-
-Work through the official exercises, Homework, Labs, and worksheets in their dependency order. EEDIY additionally selects 3 review points to test whether the material has connected; these 3 points are not Digilent grading items. The static packet uses 1.3.2 and 1.4.4 to show V–I fitting, input loading, the temperature chain, and residuals. The dynamic packet uses 9.3.1 and 9.3.2 for state equations, initial conditions, a simulation/measurement overlay, and a state trajectory. The frequency packet selects a Chapter 11 filter and places hand-derived Bode expectations, point-by-point scope measurements, and a Network Analyzer sweep on the same axes.
-
-Each packet should be reproducible from power-off and include a schematic, BOM, instrument and software versions, wiring photograph, raw data, analysis source, residual plot, failed run, and correction note. A reader must be able to distinguish original prediction, raw observation, and post-hoc explanation. A final fitted curve alone cannot reveal whether metadata, rejected points, or a range change altered the conclusion. List every omitted experiment, AD3 migration, demo-only result, and assessment without official answers on the cover.
-
-The final optional artifact is an EEDIY measurement-chain calibration and uncertainty ledger, not an official Real Analog project. Choose one low-voltage source–network–instrument chain; use known references to inspect offset, gain, linearity, and repeatability, then deliberately enter one wrong probe factor or range and test whether the checklist catches it in the first readings. Test ground-reference faults only offline by changing the reference node in saved data or a SPICE model, never by making a hazardous physical connection. This condenses the course's recurring prediction–measurement–residual method into an auditable artifact while preserving the crucial boundary: public material can reconstruct knowledge and experimental reasoning, but not TA initials, an official grader, or enrolled status.
+Real Analog is more portable than the old NI bench, but simulation still does not replace measurement. The lasting skill is explaining how an instrument changes a circuit, how residual structure separates a model error from a wiring error, and why a curve without range and version metadata cannot support that diagnosis.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://digilent.com/shop/coursework-learning-resources)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Partial |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Partial |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://digilent.com/shop/coursework-learning-resources) | Open access | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

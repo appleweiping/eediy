@@ -9,7 +9,12 @@ from typing import Any
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from scripts.course_data import compile_catalogue, load_taxonomy, validate_candidates
+from scripts.course_data import (
+    compile_catalogue,
+    load_taxonomy,
+    normalize_url,
+    validate_candidates,
+)
 from scripts.course_data import validate_resource_manifest
 from scripts.quality_common import (
     Issue,
@@ -28,6 +33,7 @@ def compile_from_files(
     taxonomy_path: Path,
     output_path: Path,
     resources_path: Path | None = None,
+    resource_overrides_path: Path | None = None,
 ) -> tuple[dict[str, Any] | None, list[Issue]]:
     try:
         candidates = load_json(candidates_path)
@@ -59,6 +65,37 @@ def compile_from_files(
             )
             resource_records = [dict(record) for record in records]
             issues.extend(resource_issues)
+    if resource_overrides_path is not None and resource_overrides_path.exists():
+        try:
+            override_value = load_json(resource_overrides_path)
+        except (OSError, QualityError) as exc:
+            issues.append(Issue("error", "resource_overrides.input", str(exc)))
+        else:
+            overrides, override_issues = validate_resource_manifest(
+                override_value,
+                candidate_ids={
+                    int(item["id"])
+                    for item in candidates
+                    if isinstance(item, dict) and isinstance(item.get("id"), int)
+                },
+                source=resource_overrides_path.as_posix(),
+            )
+            issues.extend(override_issues)
+            merged_records = {
+                (
+                    int(record["course_id"]),
+                    normalize_url(str(record["url"])),
+                ): dict(record)
+                for record in resource_records
+            }
+            for record in overrides:
+                merged_records[
+                    (
+                        int(record["course_id"]),
+                        normalize_url(str(record["url"])),
+                    )
+                ] = dict(record)
+            resource_records = list(merged_records.values())
     if any(issue.severity == "error" for issue in issues):
         return None, issues
     existing: dict[str, Any] | None = None
@@ -101,6 +138,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Optional evidence manifest merged into canonical resources when present.",
     )
     parser.add_argument(
+        "--resource-overrides",
+        default="data/course_resource_overrides.json",
+        help="Human-reviewed resource evidence merged after automated discovery.",
+    )
+    parser.add_argument(
         "--check",
         action="store_true",
         help="Fail when the canonical file is missing or differs; do not write it.",
@@ -114,11 +156,15 @@ def main(argv: list[str] | None = None) -> int:
     taxonomy_path = repo_path(args.taxonomy)
     output_path = repo_path(args.output)
     resources_path = repo_path(args.resources) if args.resources else None
+    resource_overrides_path = (
+        repo_path(args.resource_overrides) if args.resource_overrides else None
+    )
     result, issues = compile_from_files(
         candidates_path,
         taxonomy_path,
         output_path,
         resources_path,
+        resource_overrides_path,
     )
     if result is None:
         emit_issues(issues)

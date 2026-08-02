@@ -30,7 +30,12 @@ def _write_report(
     for index, outcome in enumerate(
         ["ok"] * ok + ["review"] * review + ["failed"] * failed
     ):
-        result = {"url": f"https://example.com/{index}", "outcome": outcome}
+        result = {
+            "url": f"https://example.com/{index}",
+            "outcome": outcome,
+            "checked_at": generated_at,
+            "from_cache": False,
+        }
         if outcome == "review" and include_review_adjudication:
             retained = review_index < review_approved
             result["review_adjudication"] = {
@@ -209,23 +214,10 @@ def test_markdown_report_displays_review_adjudication_counts() -> None:
                 "courses": 141,
                 "tracks_used": 35,
                 "resource_metadata_percent": 100.0,
-                "unique_high_value_resources": 1531,
-                "courses_with_projects": 141,
                 "courses_by_tier": {},
                 "courses_by_role": {},
             },
-            "execution": {
-                "workload_explicit": 141,
-                "workload_explicit_percent": 100.0,
-                "tooling_complete": 141,
-                "tooling_complete_percent": 100.0,
-                "safety_complete": 141,
-                "safety_complete_percent": 100.0,
-                "completion_evidence_complete": 141,
-                "completion_evidence_complete_percent": 100.0,
-                "safety_levels": {},
-                "resource_statuses": {},
-            },
+            "resources": {"resource_statuses": {"available": 1531}},
             "editorial": {
                 "guides_checked": 62,
                 "guides_total": 62,
@@ -233,22 +225,23 @@ def test_markdown_report_displays_review_adjudication_counts() -> None:
                 "warnings": 0,
             },
             "course_guides": {
-                "minimum_guides": 60,
-                "tracks_covered": 35,
+                "authored_guides": 141,
+                "deep_guides": 135,
+                "catalogue_guides": 6,
+                "tracks_deep_covered": 35,
                 "tracks_populated": 35,
-                "mainlines_covered": 60,
-                "mainlines_audited": 60,
+                "mainlines_deep_covered": 59,
+                "mainlines_audited": 59,
             },
             "mainline_audit": {
                 "tracks": 35,
-                "mainlines": 60,
+                "mainlines": 59,
                 "preferred": 35,
-                "pass": 60,
-                "review": 0,
+                "pass": 57,
+                "review": 2,
             },
             "routes": {"catalogue_coverage_percent": 100.0},
             "docs": {
-                "researched_course_guides": 62,
                 "translation": {
                     "pair_coverage_percent": 100.0,
                     "substantive_guide_pairs": 62,
@@ -277,6 +270,13 @@ def test_markdown_report_displays_review_adjudication_counts() -> None:
 
     assert "- Manual review approved: 38" in report
     assert "- Manual review unapproved: 0" in report
+    assert "suggested-project" not in report
+    assert "completion-evidence" not in report
+    assert "Resource status" in report
+    assert "| Authored bilingual course records | 141 |" in report
+    assert "| Deep course guides | 135 |" in report
+    assert "| Catalogue-only course records | 6 |" in report
+    assert "| Tracks with a deep guide | 35 / 35 |" in report
 
 
 def test_report_verdict_respects_warnings_as_errors() -> None:
@@ -295,6 +295,7 @@ def _write_role_aware_external_report(
 ) -> None:
     target_url = "https://example.edu/course"
     evidence_url = "https://example.edu/index"
+    checked_at = datetime.now(timezone.utc).isoformat()
     reviewed_at = datetime.now(timezone.utc).date().isoformat()
     evidence_reason_code = (
         "http_403"
@@ -311,6 +312,8 @@ def _write_role_aware_external_report(
             "reason": "client access policy",
             "reason_code": "http_403",
             "link_roles": ["target"],
+            "checked_at": checked_at,
+            "from_cache": False,
             "review_adjudication": {
                 "recorded": True,
                 "decision": "retain",
@@ -330,6 +333,8 @@ def _write_role_aware_external_report(
             "reason": evidence_reason,
             "reason_code": evidence_reason_code,
             "link_roles": ["evidence"],
+            "checked_at": checked_at,
+            "from_cache": False,
             "evidence_attestation": {
                 "recorded": True,
                 "manually_verified": True,
@@ -588,6 +593,134 @@ def test_external_report_rejects_invalid_max_age(
     assert [(issue.severity, issue.code) for issue in issues] == [
         ("error", "external.max_age")
     ]
+
+
+def test_required_external_report_rejects_cached_result(tmp_path: Path) -> None:
+    report = tmp_path / "external.json"
+    _write_role_aware_external_report(report)
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    payload["results"][0]["from_cache"] = True
+    report.write_text(json.dumps(payload), encoding="utf-8")
+
+    _statistics, issues = _external_statistics(report, require_external=True)
+
+    assert any(
+        issue.code == "external.result_cached" and issue.severity == "error"
+        for issue in issues
+    )
+
+
+@pytest.mark.parametrize("from_cache", [None, "false", 0])
+def test_required_external_report_requires_boolean_cache_flag(
+    tmp_path: Path,
+    from_cache: object,
+) -> None:
+    report = tmp_path / "external.json"
+    _write_role_aware_external_report(report)
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    if from_cache is None:
+        payload["results"][0].pop("from_cache")
+    else:
+        payload["results"][0]["from_cache"] = from_cache
+    report.write_text(json.dumps(payload), encoding="utf-8")
+
+    _statistics, issues = _external_statistics(report, require_external=True)
+
+    assert any(
+        issue.code == "external.result_cache_flag" and issue.severity == "error"
+        for issue in issues
+    )
+
+
+@pytest.mark.parametrize("checked_at", [None, "not-a-timestamp", "2026-07-31T12:00:00"])
+def test_required_external_report_rejects_invalid_result_checked_at(
+    tmp_path: Path,
+    checked_at: str | None,
+) -> None:
+    report = tmp_path / "external.json"
+    _write_role_aware_external_report(report)
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    if checked_at is None:
+        payload["results"][0].pop("checked_at")
+    else:
+        payload["results"][0]["checked_at"] = checked_at
+    report.write_text(json.dumps(payload), encoding="utf-8")
+
+    _statistics, issues = _external_statistics(report, require_external=True)
+
+    assert any(
+        issue.code == "external.result_checked_at" and issue.severity == "error"
+        for issue in issues
+    )
+
+
+def test_required_external_report_rejects_future_result_checked_at(
+    tmp_path: Path,
+) -> None:
+    report = tmp_path / "external.json"
+    _write_role_aware_external_report(report)
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    payload["results"][0]["checked_at"] = (
+        datetime.now(timezone.utc) + timedelta(hours=1)
+    ).isoformat()
+    report.write_text(json.dumps(payload), encoding="utf-8")
+
+    _statistics, issues = _external_statistics(report, require_external=True)
+
+    assert any(
+        issue.code == "external.result_checked_at_future"
+        and issue.severity == "error"
+        for issue in issues
+    )
+
+
+def test_required_external_report_rejects_stale_result_in_fresh_report(
+    tmp_path: Path,
+) -> None:
+    report = tmp_path / "external.json"
+    _write_role_aware_external_report(report)
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    payload["results"][0]["checked_at"] = (
+        datetime.now(timezone.utc) - timedelta(days=15)
+    ).isoformat()
+    report.write_text(json.dumps(payload), encoding="utf-8")
+
+    _statistics, issues = _external_statistics(
+        report,
+        require_external=True,
+        max_age_days=14,
+    )
+
+    assert any(
+        issue.code == "external.result_checked_at_stale"
+        and issue.severity == "error"
+        for issue in issues
+    )
+
+
+def test_required_external_report_rejects_result_later_than_generation(
+    tmp_path: Path,
+) -> None:
+    report = tmp_path / "external.json"
+    _write_role_aware_external_report(report)
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    generated_at = datetime.now(timezone.utc) - timedelta(hours=2)
+    payload["generated_at"] = generated_at.isoformat()
+    payload["results"][0]["checked_at"] = (
+        generated_at + timedelta(hours=1)
+    ).isoformat()
+    payload["results"][1]["checked_at"] = (
+        generated_at - timedelta(minutes=1)
+    ).isoformat()
+    report.write_text(json.dumps(payload), encoding="utf-8")
+
+    _statistics, issues = _external_statistics(report, require_external=True)
+
+    assert any(
+        issue.code == "external.result_after_report"
+        and issue.severity == "error"
+        for issue in issues
+    )
 
 
 @pytest.mark.parametrize(

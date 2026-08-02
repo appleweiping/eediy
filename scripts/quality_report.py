@@ -18,7 +18,7 @@ from scripts.check_external_links import (
     MANUAL_REVIEW_REASON_CODES,
     reason_code_matches_result,
 )
-from scripts.check_course_guides import release_gate_issues
+from scripts.check_course_guides import corpus_style_issues, release_gate_issues
 from scripts.check_forbidden_terms import forbidden_issues
 from scripts.check_markdown_links import markdown_link_issues
 from scripts.check_navigation import navigation_issues
@@ -36,63 +36,20 @@ from scripts.quality_common import (
     repo_path,
     stable_json,
 )
+from scripts.track_guides import load_track_guides
 from scripts.validate_courses import validate_file
 from scripts.validate_mainline_audit import validate_mainline_audit_files
 from scripts.validate_routes import validate_route_files
 
 
-def _execution_statistics(catalogue: Mapping[str, Any]) -> dict[str, Any]:
-    courses = catalogue.get("courses", [])
-    workload_explicit = 0
-    tooling_complete = 0
-    safety_complete = 0
-    evidence_complete = 0
-    safety_levels: Counter[str] = Counter()
+def _resource_statistics(catalogue: Mapping[str, Any]) -> dict[str, Any]:
+    """Summarize reviewed resource states without inventing course metadata."""
+
     resource_statuses: Counter[str] = Counter()
-    for course in courses:
-        study = course.get("study_plan", {})
-        note = study.get("note", {})
-        if (
-            "estimated_weeks" in study
-            and "hours_per_week" in study
-            and all(note.get(language) for language in ("zh", "en"))
-        ):
-            workload_explicit += 1
-        tooling = course.get("tooling", {})
-        if all(
-            tooling.get(key, {}).get(language)
-            for key in ("software", "hardware")
-            for language in ("zh", "en")
-        ) and all(tooling.get("cost_note", {}).get(language) for language in ("zh", "en")):
-            tooling_complete += 1
-        safety = course.get("safety", {})
-        if safety.get("level") and all(
-            safety.get("note", {}).get(language) for language in ("zh", "en")
-        ):
-            safety_complete += 1
-            safety_levels[str(safety["level"])] += 1
-        evidence = course.get("completion_evidence", {})
-        if all(evidence.get(language) for language in ("zh", "en")):
-            evidence_complete += 1
+    for course in catalogue.get("courses", []):
         for resource in course.get("resources", []):
             resource_statuses[str(resource.get("status"))] += 1
-    total = len(courses)
-
-    def percentage(value: int) -> float:
-        return round(value * 100 / total, 2) if total else 0.0
-
-    return {
-        "workload_explicit": workload_explicit,
-        "workload_explicit_percent": percentage(workload_explicit),
-        "tooling_complete": tooling_complete,
-        "tooling_complete_percent": percentage(tooling_complete),
-        "safety_complete": safety_complete,
-        "safety_complete_percent": percentage(safety_complete),
-        "completion_evidence_complete": evidence_complete,
-        "completion_evidence_complete_percent": percentage(evidence_complete),
-        "safety_levels": dict(sorted(safety_levels.items())),
-        "resource_statuses": dict(sorted(resource_statuses.items())),
-    }
+    return {"resource_statuses": dict(sorted(resource_statuses.items()))}
 
 
 def _report_ok(
@@ -614,6 +571,7 @@ def _external_statistics(
                 )
             )
 
+    now = datetime.now(timezone.utc)
     generated_at = payload.get("generated_at")
     generated: datetime | None = None
     if isinstance(generated_at, str):
@@ -634,7 +592,7 @@ def _external_statistics(
             )
         )
     else:
-        age = datetime.now(timezone.utc) - generated
+        age = now - generated
         summary["generated_at"] = generated.isoformat()
         summary["report_age_hours"] = round(age.total_seconds() / 3600, 2)
         if age < -timedelta(minutes=15):
@@ -656,13 +614,99 @@ def _external_statistics(
                 )
             )
 
+    if require_external and isinstance(results, list):
+        freshness_failures: dict[str, list[str]] = {
+            "external.result_cache_flag": [],
+            "external.result_cached": [],
+            "external.result_checked_at": [],
+            "external.result_checked_at_future": [],
+            "external.result_checked_at_stale": [],
+            "external.result_after_report": [],
+        }
+
+        def record_failure(code: str, result: Mapping[str, Any]) -> None:
+            value = result.get("url")
+            freshness_failures[code].append(
+                str(value) if isinstance(value, str) and value else "<unknown URL>"
+            )
+
+        for result in results:
+            if not isinstance(result, Mapping):
+                continue
+
+            from_cache = result.get("from_cache")
+            if from_cache is True:
+                record_failure("external.result_cached", result)
+            elif from_cache is not False:
+                record_failure("external.result_cache_flag", result)
+
+            checked_at = result.get("checked_at")
+            checked: datetime | None = None
+            if isinstance(checked_at, str):
+                try:
+                    checked = datetime.fromisoformat(
+                        checked_at.replace("Z", "+00:00")
+                    )
+                    if checked.tzinfo is None:
+                        raise ValueError("timestamp has no timezone")
+                    checked = checked.astimezone(timezone.utc)
+                except ValueError:
+                    checked = None
+            if checked is None:
+                record_failure("external.result_checked_at", result)
+                continue
+
+            if checked > now:
+                record_failure("external.result_checked_at_future", result)
+            if now - checked > timedelta(days=max_age_days):
+                record_failure("external.result_checked_at_stale", result)
+            if generated is not None and checked > generated:
+                record_failure("external.result_after_report", result)
+
+        failure_messages = {
+            "external.result_cache_flag": (
+                "external-link result(s) need an explicit boolean from_cache flag"
+            ),
+            "external.result_cached": (
+                "release evidence cannot contain cached external-link result(s)"
+            ),
+            "external.result_checked_at": (
+                "external-link result(s) need a valid timezone-aware checked_at "
+                "timestamp"
+            ),
+            "external.result_checked_at_future": (
+                "external-link result checked_at timestamp(s) are in the future"
+            ),
+            "external.result_checked_at_stale": (
+                f"external-link result(s) are older than {max_age_days:g} days"
+            ),
+            "external.result_after_report": (
+                "external-link result checked_at timestamp(s) are later than the "
+                "report generated_at timestamp"
+            ),
+        }
+        for code, urls in freshness_failures.items():
+            if not urls:
+                continue
+            examples = ", ".join(urls[:3])
+            if len(urls) > 3:
+                examples += f", and {len(urls) - 3} more"
+            issues.append(
+                Issue(
+                    "error",
+                    code,
+                    f"{failure_messages[code]} ({len(urls)} affected: {examples})",
+                    path.as_posix(),
+                )
+            )
+
     return summary, issues
 
 
 def _markdown_report(payload: Mapping[str, Any]) -> str:
     status = "PASS" if payload["ok"] else "FAIL"
     catalogue = payload["catalogue"]
-    execution = payload["execution"]
+    resources = payload["resources"]
     editorial = payload["editorial"]
     guide_release = payload["course_guides"]
     mainline_audit = payload["mainline_audit"]
@@ -676,43 +720,32 @@ def _markdown_report(payload: Mapping[str, Any]) -> str:
         "",
         f"Generated: {payload['generated_at']}",
         "",
-        "## Coverage gates",
+        "## Catalogue health",
         "",
-        "| Gate | Result | Required |",
-        "|---|---:|---:|",
-        f"| Courses | {catalogue['courses']} | ≥ 125 |",
-        f"| Tracks with courses | {catalogue['tracks_used']} | ≥ 24 |",
-        f"| Resource metadata | {catalogue['resource_metadata_percent']:.2f}% | 100% |",
-        f"| Unique high-value resources | {catalogue['unique_high_value_resources']} | ≥ 550 |",
-        f"| Courses with projects | {catalogue['courses_with_projects']} | ≥ 100 |",
-        f"| Audited mainline tracks | {mainline_audit['tracks']} | = 35 |",
-        f"| Audited mainline courses | {mainline_audit['mainlines']} | exact candidate set |",
-        f"| Tracks with one preferred mainline | {mainline_audit['preferred']} | = 35 |",
-        f"| Researched bilingual course guides | {docs['researched_course_guides']} | ≥ {guide_release['minimum_guides']} |",
-        f"| Tracks with a researched guide | {guide_release['tracks_covered']} / {guide_release['tracks_populated']} | all populated tracks |",
-        f"| Audited mainlines with a researched guide | {guide_release['mainlines_covered']} / {guide_release['mainlines_audited']} | all audited mainlines |",
-        f"| Editorial guide pairs checked | {editorial['guides_checked']} / {editorial['guides_total']} | all |",
-        f"| Editorial errors / warnings | {editorial['errors']} / {editorial['warnings']} | 0 / 0 |",
-        f"| Bilingual page pairs | {docs['translation']['pair_coverage_percent']:.2f}% | 100% |",
-        f"| Substantive bilingual guides | {docs['translation']['substantive_guide_pairs']} | ≥ 16 |",
-        f"| Navigation reachability | {docs['navigation']['reachability_percent']:.2f}% | 100% |",
-        f"| Route course coverage | {routes['catalogue_coverage_percent']:.2f}% | report |",
-        "",
-        "## Course executability",
-        "",
-        "| Field | Complete | Coverage |",
-        "|---|---:|---:|",
-        f"| Workload with provenance and calibration | {execution['workload_explicit']} | {execution['workload_explicit_percent']:.2f}% |",
-        f"| Software, hardware, and cost | {execution['tooling_complete']} | {execution['tooling_complete_percent']:.2f}% |",
-        f"| Safety level and note | {execution['safety_complete']} | {execution['safety_complete_percent']:.2f}% |",
-        f"| Completion evidence | {execution['completion_evidence_complete']} | {execution['completion_evidence_complete_percent']:.2f}% |",
+        "| Check | Result |",
+        "|---|---:|",
+        f"| Courses | {catalogue['courses']} |",
+        f"| Tracks with courses | {catalogue['tracks_used']} |",
+        f"| Resource metadata complete | {catalogue['resource_metadata_percent']:.2f}% |",
+        f"| Audited mainline tracks | {mainline_audit['tracks']} |",
+        f"| Audited mainline courses | {mainline_audit['mainlines']} |",
+        f"| Tracks with one preferred mainline | {mainline_audit['preferred']} |",
+        f"| Authored bilingual course records | {guide_release['authored_guides']} |",
+        f"| Deep course guides | {guide_release['deep_guides']} |",
+        f"| Catalogue-only course records | {guide_release['catalogue_guides']} |",
+        f"| Tracks with a deep guide | {guide_release['tracks_deep_covered']} / {guide_release['tracks_populated']} |",
+        f"| Audited mainlines with a deep guide | {guide_release['mainlines_deep_covered']} / {guide_release['mainlines_audited']} |",
+        f"| Editorial guide pairs checked | {editorial['guides_checked']} / {editorial['guides_total']} |",
+        f"| Editorial errors / warnings | {editorial['errors']} / {editorial['warnings']} |",
+        f"| Bilingual page pairs | {docs['translation']['pair_coverage_percent']:.2f}% |",
+        f"| Navigation reachability | {docs['navigation']['reachability_percent']:.2f}% |",
+        f"| Route course coverage | {routes['catalogue_coverage_percent']:.2f}% |",
         "",
         "## Catalogue distribution",
         "",
         f"- Tier: `{json.dumps(catalogue['courses_by_tier'], ensure_ascii=False, sort_keys=True)}`",
         f"- Role: `{json.dumps(catalogue['courses_by_role'], ensure_ascii=False, sort_keys=True)}`",
-        f"- Safety: `{json.dumps(execution['safety_levels'], ensure_ascii=False, sort_keys=True)}`",
-        f"- Resource status: `{json.dumps(execution['resource_statuses'], ensure_ascii=False, sort_keys=True)}`",
+        f"- Resource status: `{json.dumps(resources['resource_statuses'], ensure_ascii=False, sort_keys=True)}`",
         f"- Mainline audit: `{mainline_audit['pass']} pass, {mainline_audit['review']} review`",
         "",
         "## Documentation",
@@ -772,6 +805,7 @@ def build_report(
     resources_path: Path,
     course_guides_path: Path,
     course_guide_schema_path: Path,
+    track_guides_root: Path,
     docs_root: Path,
     config_path: Path,
     external_report_path: Path,
@@ -804,6 +838,11 @@ def build_report(
         course_guide_schema_path,
     )
     issues.extend(course_guide_issues)
+    track_guides, track_guide_issues = load_track_guides(
+        catalogue,
+        track_guides_root,
+    )
+    issues.extend(track_guide_issues)
     guide_release_issues, guide_release_statistics = release_gate_issues(
         catalogue,
         course_guides,
@@ -812,6 +851,16 @@ def build_report(
         audit_source=mainline_audit_path.as_posix(),
     )
     issues.extend(guide_release_issues)
+    guide_style_issues, guide_style_statistics = corpus_style_issues(
+        catalogue,
+        course_guides,
+        source=course_guides_path.as_posix(),
+    )
+    issues.extend(guide_style_issues)
+    guide_release_statistics = {
+        **guide_release_statistics,
+        **guide_style_statistics,
+    }
     guide_pairs, guide_pair_issues = load_guide_pairs(
         course_guides_path,
         catalogue_path,
@@ -835,6 +884,7 @@ def build_report(
         docs_root,
         mainline_audit=mainline_audit_data,
         course_guides=course_guides,
+        track_guides=track_guides,
     )
     generated_findings = generated_page_issues(expected, docs_root)
     issues.extend(generated_findings)
@@ -846,17 +896,7 @@ def build_report(
     )
     issues.extend(external_findings)
     catalogue_statistics_value = catalogue_statistics(catalogue)
-    execution = _execution_statistics(catalogue)
-    for metric in (
-        "workload_explicit_percent",
-        "tooling_complete_percent",
-        "safety_complete_percent",
-        "completion_evidence_complete_percent",
-    ):
-        if execution[metric] != 100.0:
-            issues.append(
-                Issue("error", f"execution.{metric}", "course execution metadata must be 100%")
-            )
+    resources = _resource_statistics(catalogue)
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "ok": _report_ok(
@@ -865,7 +905,7 @@ def build_report(
         ),
         "warnings_as_errors": warnings_as_errors,
         "catalogue": catalogue_statistics_value,
-        "execution": execution,
+        "resources": resources,
         "editorial": editorial_statistics,
         "course_guides": guide_release_statistics,
         "mainline_audit": mainline_statistics,
@@ -875,7 +915,6 @@ def build_report(
             "navigation": navigation_statistics,
             "links": link_statistics,
             "generated_expected": len(expected),
-            "researched_course_guides": len(course_guides),
         },
         "external": external_statistics,
         "issues": [
@@ -921,6 +960,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--course-guide-schema",
         default="data/course-guide.schema.json",
     )
+    parser.add_argument("--track-guides-root", default="content/track-guides")
     parser.add_argument("--docs-root", default="docs")
     parser.add_argument("--config", default="mkdocs.yml")
     parser.add_argument("--external-report", default="build/external-links.json")
@@ -960,6 +1000,7 @@ def main(argv: list[str] | None = None) -> int:
         resources_path=repo_path(args.resources),
         course_guides_path=repo_path(args.course_guides),
         course_guide_schema_path=repo_path(args.course_guide_schema),
+        track_guides_root=repo_path(args.track_guides_root),
         docs_root=repo_path(args.docs_root),
         config_path=repo_path(args.config),
         external_report_path=repo_path(args.external_report),

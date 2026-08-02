@@ -3,69 +3,83 @@ title: "Modern Robotics, Course 1: Foundations of Robot Motion"
 description: "Northwestern University's Modern Robotics, Course 1: Foundations of Robot Motion builds robot-motion foundations from an open preprint, software library, and CoppeliaSim exercises, while the platform's free experience is incomplete."
 page_type: course
 course_id: "course-077"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-31"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d22253827177493a -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: b1cf7092859d78b9 -->
 
-# Modern Robotics, Course 1: Foundations of Robot Motion
+# Northwestern University Modern Robotics 1: Modern Robotics, Course 1: Foundations of Robot Motion
 
 ## Course Overview
 
 - **University:** Northwestern University
 - **Course code:** Modern Robotics 1
-- **Prerequisites:** Recommended foundation: Control Systems; Recommended foundation: Programming and Engineering Computing; Recommended foundation: Physics Foundations
-- **Track:** [Robotics and Autonomous Systems](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** Modern Robotics Course 1 assumes familiarity with cross products, eigenvalues, matrix inverses, positive definiteness, free-body diagrams, and a matrix language
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-31; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Chapters 2–3 establish degrees of freedom and rigid transforms
 
-Northwestern University's Modern Robotics, Course 1: Foundations of Robot Motion builds robot-motion foundations from an open preprint, software library, and CoppeliaSim exercises, while the platform's free experience is incomplete.
+Coursera [Foundations of Robot Motion](https://www.coursera.org/learn/modernrobotics-course1) opens the 6-course specialization. It suits learners willing to establish the coordinate conventions of robotics before moving ahead. It covers only *Modern Robotics* Chapter 2, Configuration Space, and Chapter 3, Rigid-Body Motions, but establishes every later frame, twist, and wrench convention. The [book home](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) provides the December 2019 updated first-edition preprint; it matches the 3rd printing from 2019 in content but not pagination. As of 2026-07-31, the platform page lists 5 modules and 21 assignments and estimates 2 weeks at 10 hours per week; weak linear algebra will usually take longer.
 
-**Check before starting**
+The course assumes familiarity with cross products, eigenvalues, matrix inverses, positive definiteness, free-body diagrams, and a matrix language. Review linear algebra first rather than carrying a frame error into the manipulator courses.
 
-- Recommended foundation: Control Systems
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Physics Foundations
+### The human-arm DOF prompt makes configuration explicit
 
-## Start with these links
+[Official Course 1 resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources)
+lists a human-arm degrees-of-freedom discussion prompt as Course 1's one
+course-specific item on the shared page. Its inputs are modeling choices for
+joints, rigid bodies, contacts, and independent constraints. Its output
+should be a DOF argument that distinguishes configuration, C-space, task
+space, and workspace rather than counting motors. Chapter 2 then connects
+the Grübler formula, topology, holonomic/nonholonomic constraints, and
+Pfaffian form to planar closed chains, spatial bodies, and wheeled bases.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+Chapter 3 introduces SO(3)/so(3), SE(3)/se(3), rotations and transforms, angular velocity, twists, screw axes, exp/log, adjoints, and wrenches. When pose, twist, and wrench move between space and body frames, the coordinate conventions must agree; power \(F^TV\) provides an elegant invariant check.
 
-- [Course home](https://www.coursera.org/learn/modernrobotics-course1)
+This chapter deserves a convention sheet listing subscripts, action direction, and multiplication order for \(R_{sb}\), \(T_{sb}\), space/body twists, and wrenches. When signs reverse, unit-axis and pure-translation examples usually isolate active/passive interpretation, left/right multiplication, or a frame label quickly. Later kinematics, dynamics, and control repeatedly reuse these choices.
 
-## Known Boundaries
+### `MatrixExp6` and `MatrixLog6` turn conventions into testable interfaces
 
-The open preprint, software library, and CoppeliaSim exercises are strong, but Coursera explicitly does not provide the full experience for free.
+The [ModernRobotics repository](https://github.com/NxRLab/ModernRobotics)
+provides educational implementations in Python, MATLAB, and Mathematica and
+explicitly favors readability over production robustness. The
+[library guide](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_Modern_Robotics_Code_Library)
+walks through `MatrixExp6`. Feed the \(4\times4\) se(3) matrix from
+`VecTose3(Sθ)` into `MatrixExp6` to obtain \(T\in SE(3)\), then use
+`MatrixLog6(T)` to return to se(3). Compare the final transform on the round
+trip and test rotation orthogonality, determinant, inverse, pure translation,
+and pure rotation.
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+Library functions are most useful beside hand-computable examples. For SO(3)/SE(3), orthogonality, determinant, inverse, and exp/log round trips catch most convention errors. Axis-angle descriptions need not be unique, so compare the final transform rather than every element.
+
+The [CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) supplies UR5 and youBot CSV scenes. Inspect the frames, translation units, rotation direction, and column order in the first 3 poses, then try pure rotation, pure translation, and screw motion. A simulator displays motion but cannot validate the matrix convention.
+
+Coursera graded tests and peer assignments may require payment, while the public preprint, code, and simulator setup are enough to reconstruct the central Chapter 2–3 examples. The value of this short course is not its animation; it is fixing the notation of the entire robotics sequence at the beginning.
 
 ## Course Resources
 
+- [Course home](https://www.coursera.org/learn/modernrobotics-course1)
+- [Code · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
+- [Code · Getting started with the Modern Robotics code library](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_Modern_Robotics_Code_Library)
+- [Other · Modern Robotics shared six-course resources index](https://hades.mech.northwestern.edu/index.php/Coursera_Resources)
+- [Simulator · Modern Robotics CoppeliaSim setup guide](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator)
+
+## Resource Summary
+
 <details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+<summary>Show more official resources (1 item)</summary>
 
-### Material coverage
-
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | No public material |
-| Code | Complete |
-
-### Resource
+**Resource**
 
 | Resource | Access | Status | Verified |
 |---|---|---|---|
-| [Course home](https://www.coursera.org/learn/modernrobotics-course1) | Registration required | Listed by official page | 2026-07-28 |
+| [Modern Robotics textbook home and public-preprint link](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) | Open access | Listed by official page | 2026-07-31 |
 
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
+> These remaining entries retain access status and review dates. Rights stay with the original providers, and actual access may change with account, region, or course redesign.
 
 </details>

@@ -1,72 +1,58 @@
 ---
 title: "Real-Time Project for Embedded Systems"
-description: "University of Colorado Boulder 的《Real-Time Project for Embedded Systems》以摄像头和 Raspberry Pi 家庭项目收束实时嵌入式序列；项目、代码和练习完整，但有明确前序与平台成本。"
+description: "University of Colorado Boulder 的《Real-Time Project for Embedded Systems》以摄像头和 Raspberry Pi 家庭项目收束序列；项目说明位于 Coursera 内，公开产品页没有官方机器文件。"
 page_type: course
 course_id: "course-066"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 470690d03eebbfa3 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: f003ec51753d13bb -->
 
-# Real-Time Project for Embedded Systems
+# University of Colorado Boulder Real-Time Embedded Systems 4: Real-Time Project for Embedded Systems
 
 ## 课程简介
 
 - **所属大学：** University of Colorado Boulder
 - **课程编号：** Real-Time Embedded Systems 4
-- **先修要求：** 建议先完成方向基础：嵌入式系统；建议先完成方向基础：信号与系统；课程顺序要求：先完成《Real-Time Embedded Systems Concepts and Practices》（University of Colorado Boulder Real-Time Embedded Systems 1）；课程顺序要求：先完成《Real-Time Embedded Systems Theory and Analysis》（University of Colorado Boulder Real-Time Embedded Systems 2）
-- **方向：** [实时与信息物理系统](index.md)
-- **路线角色：** 替代
-- **公开材料：** 核心材料可访问
-- **最近复核：** 2026-07-28
+- **官方先修：** CU Boulder ECEA 5318 要求先完成 5315、5316 与 5317，并要求 C、体系结构、操作系统与 Linux
+- **本站建议背景：** 本站未另设准备条件
+- **访问条件：** 需注册；可用范围以平台为准
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### Camera pipeline 是边界明确的指定题目
 
-University of Colorado Boulder 的《Real-Time Project for Embedded Systems》以摄像头和 Raspberry Pi 家庭项目收束实时嵌入式序列；项目、代码和练习完整，但有明确前序与平台成本。
+完成 5315–5317、愿意按指定 camera pipeline 收束整条路线，再选 Coursera [ECEA 5318](https://www.coursera.org/learn/real-time-project-embedded-systems)；想自由选题则不适合。它的 capstone 固定为 visual synchronome。[课程页](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5318-real-time-embedded) 要求 Raspberry Pi 从 camera 获取外部时钟图像，在 1 Hz 与 10 Hz 下选择稳定、非模糊 frame 写入 flash，并把 RMA 预测与 timing log 对照。
 
-**开始前先核对**
+先修是 5315、5316、5317，以及 C、architecture、OS 与 Linux。开工时应已有 periodic-service framework、task table、timestamp logger 和 failure analysis；1 Hz 的行为能够解释后，10 Hz 扩展才有可靠基线。
 
-- 建议先完成方向基础：嵌入式系统
-- 建议先完成方向基础：信号与系统
-- 课程顺序要求：先完成[《Real-Time Embedded Systems Concepts and Practices》](../real-time-cps/063-real-time-embedded-systems-1.md)（University of Colorado Boulder Real-Time Embedded Systems 1）
-- 课程顺序要求：先完成[《Real-Time Embedded Systems Theory and Analysis》](../real-time-cps/064-real-time-embedded-systems-2.md)（University of Colorado Boulder Real-Time Embedded Systems 2）
+### 评测顺序就是项目路线
 
-## 先看这些入口
+官方六周时数依次为 11、9、10、10、11、8。第 1 周定义 visual synchronome、services、RMA 与 timing diagram；第 2 周阅读 starter，比较 shotgun start、continuous tick detection、V4L2/UVC 与 OpenCV；第 3 周完成 1 Hz timing analysis；第 4 周用 tracing/profiling 推进 10 Hz；第 5 周完成 design review 与 presentation；第 6 周是 final。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+成绩按阶段拆开计算。五次 peer review——initial services/RMA、starter-code walkthrough、1 Hz operation、10 Hz design、final presentation——各占 10%，合计 50%。三次 quiz 各 5%，合计 15%。1 Hz 与 10 Hz programming 各 5%，final 的 1 Hz test 与 10 Hz test 各 12.5%，编程类合计 35%。这条评测链要求设计在两个速率都经过代码检查、同伴审读和最终运行，一次 demo 无法覆盖全部考核。
 
-- [课程主页](https://www.coursera.org/learn/real-time-project-embedded-systems)
+### 1 Hz 与 10 Hz 要回答同一个问题
 
-## 已知边界
+系统围绕 capture、frame selection 与 flash write 展开。1 Hz 先建立 service execution time、RMA 预测与实际 timestamp 的对应关系；10 Hz 再检查 copy、queue、classification 与 storage 是否成为新瓶颈。相同的 sequence number 应贯穿 capture、classification 和 write，这样一帧的延迟才能定位到输入、排队或存储，避免被平均 frame rate 掩盖。
 
-摄像头与 Raspberry Pi 家庭项目要求先完成前两门课程，且可能需要付费平台访问。
+“平均达到 10 fps”和“跟随外部时钟”并不相同。课程项目通过 camera 观察 external clock，并在 1 Hz 与 10 Hz 选择稳定、非模糊 frame；software timer 或预录输入只能练 pipeline，不能证明 external-clock synchronization。两次运行还应保持 camera resolution、pixel format、exposure/focus 与 timestamp source 一致，否则 RMA 预测和实测失去可比性。
 
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+### 访问与版本说明
+
+[硬件页](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements) 指定 Pi 3B+/4B、Raspberry Pi OS 与 Logitech C270，并只承诺 starter code 在这些平台测试。[Specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems) 把 5318 列为第 4 门、0.8-credit 课程；[访问说明](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses) 不保证全部评测免费。
+
+拿不到 starter、peer review 与 final tests 时，可做一个明确标为**非官方替代**的缩小版：用
+预录 frames 比较 1 Hz/10 Hz pipeline 的 latency 与 drop，结果止于 pipeline validation。
+CU 的五轮 peer review、指定 camera 与 final 的两次速率测试仍是 5318 独有的部分；若需要
+external-clock synchronization 的反馈，就应走原平台路线。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（1 项）</summary>
+- [课程主页](https://www.coursera.org/learn/real-time-project-embedded-systems)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 无公开材料 |
-| 代码 | 完整 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/real-time-project-embedded-systems) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

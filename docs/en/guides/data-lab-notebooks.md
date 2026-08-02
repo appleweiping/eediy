@@ -1,98 +1,64 @@
 ---
 title: Data and Laboratory Records
-description: Make experiments reviewable and recomputable with an immutable raw layer, structured metadata, and traceable analysis.
+description: Trace a measurement back through wiring, instruments, raw files, and processing code so the record can explain where the number came from.
+page_type: guide
+comments: true
 ---
 
-<div class="ee-language" markdown>
-[简体中文](../../guides/data-lab-notebooks.md)
-</div>
 
 # Data and Laboratory Records
 
-A laboratory record lets your future self or another learner answer what actually happened. A strong record connects plan, equipment, connection, raw data, anomalies, processing, and conclusions while protecting personal and restricted information.
+The hardest part of a lab record to reconstruct is rarely the conclusion. It is the detail that seemed impossible to forget at the time: whether the probe was at 1× or 10×, which firmware commit was running, or whether the CSV time column meant seconds or milliseconds. Once a curve looks suspicious, any one of those omissions can make the measurement impossible to interpret.
 
-## Purpose and learning outcomes
+Do not begin by shopping for an electronic lab notebook. Begin with one small measurement, such as a safe low-voltage RC step response, and require a path from any point in the final plot back to a run, a raw file, a wiring and instrument state, the processing code, and the reason that point appears in the figure.
 
-- Define samples, fields, units, naming, and stop conditions before an experiment.
-- Separate an immutable raw layer from rebuildable processing.
-- Record instrument settings, calibration, environment, and hardware revision.
-- Trace every plot and conclusion to source data and code.
-- Decide explicitly on privacy, retention, licensing, and sharing.
+## First ask what produced this row
 
-## Minimal environment
+Before power is applied, assign a short, stable `run_id`. Record UTC time, hardware revision, firmware commit, instrument model, probe ratio, range, sample rate, stimulus, relevant environment, and calibration reference. The ID is a join key, not a filename into which every condition must be compressed. A changed condition creates a new run. A mistaken entry gets an appended correction rather than a rewrite that makes the past look cleaner than it was.
 
-- An append-only paper or digital laboratory log.
-- Open text or tabular data formats and version control.
-- A way to generate unique run identifiers.
-- A checksum tool and backup location.
-- One low-risk simulated or measured dataset.
+Place a machine-readable data dictionary beside each raw CSV. At minimum it should define column names, types, units, allowed ranges, missing-value representation, and the time basis. The W3C [Model for Tabular Data and Metadata on the Web](https://www.w3.org/TR/tabular-data-model/) describes metadata at table, row, column, and cell level and treats validation separately from display. A small project need not implement the full standard; the useful lesson is that units and constraints are part of the data interface, not facts kept in someone's memory.
 
-A computational notebook may support analysis but does not replace a chronological laboratory log. Record actual tool and format versions, and do not let a cloud service become the only copy.
+A compact run record should answer questions like these:
 
-## Learning sequence
+| Object | Minimum information | When it matters |
+| --- | --- | --- |
+| Device under test | board or part ID, revision, connection drawing | two nominally identical boards behave differently |
+| Acquisition chain | instrument, channel, probe, range, sample settings | diagnosing clipping, aliasing, or probe-ratio errors |
+| Time | UTC, device-relative time, trigger point | joining streams from multiple devices |
+| Data | file checksum, schema version, missing-data note | a file is moved, renamed, or damaged |
+| Processing | code revision, parameters, input and output IDs | a plot no longer agrees with the measurement |
 
-1. **Plan template:** state objective, variables, controls, risks, stop conditions, and acceptance before work.
-2. **Run identity:** assign a stable ID to each run and link hardware, firmware, operator, and time.
-3. **Raw layer:** append without overwriting, then record checksums and any missing data immediately.
-4. **Processing layer:** generate cleaned data by script and retain parameters, logs, and source-file mappings.
-5. **Quality checks:** validate schema, units, ranges, monotonic time, missing values, and duplicate records.
-6. **Conclusion links:** make report plots, tables, and numbers point to run IDs and analysis commits.
+## A notebook may explain data, but it must not rewrite the event
 
-## Verification task: record three repeated measurements
+When acquisition finishes, close the file and calculate its checksum before analysis is allowed to read it. Keep instrument exports and acquisition-time metadata under `data/raw/`; write baseline correction, resampling, filtering, and unit conversion to `data/derived/`. If a raw file contains a malformed row, do not quietly repair it in place. Make the transform report the row, the chosen treatment, and the new output. That separation preserves the difference between what the instrument emitted and how it was later interpreted.
 
-Use synthetic data or a safe low-voltage RC measurement:
+Jupyter is useful for placing equations, plots, and commentary together, but it is a poor sole chronology. Cells can run out of order and memory can retain stale variables. Let the notebook call ordinary read and analysis functions, and make it run top to bottom from an empty kernel; retain acquisition logs, raw files, and parameters elsewhere. When the chain spans several datasets or people, the Entity, Activity, and Agent relations in W3C [PROV-O](https://www.w3.org/TR/prov-o/) are a useful naming test: an activity uses an input entity, generates another entity, and is associated with a person or software agent. The point is a legible lineage, not a knowledge graph for a single RC experiment.
 
-1. Create a data dictionary with fields, types, units, allowed ranges, and missing-value conventions.
-2. Complete three independent runs and record settings, environment, and anomalies.
-3. Freeze raw files and create a manifest with checksums.
-4. Validate the schema and produce a tidy derived table by script.
-5. Calculate repeatability and one uncertainty measure.
-6. Starting from one run ID, locate the connection drawing, raw file, script, and final plot.
+There is a direct test of whether this works. Pick a point in the final figure at random and locate, within a few minutes, the derived-table row, transform parameters, raw row, and run settings. A notebook screenshot is not enough. A CSV with the right name but a different checksum is not enough either.
 
-Acceptance requires an explicit quality-check failure when a unit is deleted or a run ID is duplicated.
+The repository's [offline RC low-pass
+starter](https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass)
+provides a small version of that trace. Its `manifest.json` labels the data
+`analytic_reference` and records units, parameters, row counts, and CSV
+SHA-256 values; a test tampers with one row and requires analysis to stop.
+Because no instrument was involved, that manifest is not a measurement log.
 
-## Common failures and diagnosis
+## Make three RC steps expose the weak parts of the record
 
-- **File names cannot distinguish runs:** use stable IDs and put conditions in metadata rather than endlessly extending names.
-- **Raw data was overwritten by cleaning:** restore a read-only raw layer and write every transform to a new directory.
-- **Timestamps disagree:** record time zone, clock source, and mapping from device-relative time.
-- **Units depend on memory:** define a data dictionary and preserve units in headers or metadata.
-- **A plot has no provenance:** embed data ID, script commit, and parameter summary during generation.
-- **An anomaly is deleted as an outlier:** first record a physical cause; exclusions need predefined, auditable rules.
+Use synthetic data, or collect three RC step responses under limited low-voltage conditions. Before the first run, state the nominal resistor and capacitor values and tolerances, predicted time constant, sample rate, and stop conditions. The circuit may remain unchanged across the three runs, or one run may deliberately use a different sample rate. What matters is that each run retains its identity instead of becoming three anonymous traces pasted into one table.
 
-## Reproducible evidence
+Then make the automated checks encounter three bad inputs:
 
-- Experiment plan, risks, and stop conditions.
-- Run manifest, data dictionary, and naming rules.
-- Hardware, firmware, instrument identity, and settings.
-- Read-only raw files, checksums, and backup record.
-- Schema checks, cleaning scripts, and processing logs.
-- Derived data and source mapping.
-- Deviation, anomaly, exclusion, and correction logs.
+- relabel one file's time unit from `ms` to `s`; a range or order-of-magnitude check should stop before fitting;
+- duplicate a `run_id`; the uniqueness check should identify both conflicting records;
+- remove the probe ratio or calibration date; the run should be marked insufficiently described rather than silently receiving a default.
 
-## Cost, licensing, and accessibility
+For the valid files, use one script to estimate all three time constants. Report repeatability and identify other uncertainty components from instrument resolution, component tolerance, or calibration. NIST [Technical Note 1297](https://www.nist.gov/pml/nist-technical-note-1297) distinguishes components evaluated statistically from those evaluated by other information and describes how to combine and report them. It is useful after the measurand and inputs are explicit; it is not a formal name for an unexplained standard deviation. A sound result presents value, unit, uncertainty, and domain together instead of displaying unsupported decimal places.
 
-Text, CSV, and open compression formats are generally free and durable. For cloud storage, check capacity, export, region, and retention terms. Preserve license, citation, and redistribution conditions for third-party data in the manifest.
+## Recomputable does not automatically mean publishable
 
-Use complete headers and units and do not encode status only by color. Give plots textual summaries and accessible tables. Low-bandwidth sharing can send metadata, summaries, and checksums first, then fetch large raw files when needed.
+Before sharing, separate what another person needs for recomputation from what you have no right to disclose. Identity, health, location, credentials, vendor-confidential models, and license-restricted datasets do not become public merely because the project uses a public repository. For human or patient data, self-study should use lawfully published, de-identified datasets; removing names alone is not a sufficient analysis of re-identification risk.
 
-## Safety boundaries
+If the dataset is ready for a durable deposit, add a stable title, creators, publisher, publication year, resource type, version, rights, and related-resource identifiers. The DataCite [Metadata Schema](https://schema.datacite.org/) is a practical way to check the information needed to identify, discover, and cite data. It belongs at publication time and does not replace probe settings or anomaly notes captured during acquisition. Citation and redistribution permission for third-party data are separate questions.
 
-- Do not publish identity, health, location, credentials, or restricted device data.
-- Do not use real human-subject or patient data for unapproved self-study; prefer public de-identified data.
-- A log is not a reason to continue past a real-time stop condition.
-- On unexpected heat, current, odor, or damage, stop and isolate first, then record.
-- Deletion must follow consent, institutional, and legal requirements, including backups.
-
-## Completion checklist
-
-- [ ] The data dictionary includes fields, types, units, and allowed ranges.
-- [ ] Every run has a unique ID and complete environment/equipment metadata.
-- [ ] The raw layer is append-only and checksummed.
-- [ ] Processing is scripted and retains logs.
-- [ ] Schema, missing, duplicate, range, and time checks are automated.
-- [ ] Plots and conclusions trace to data and code.
-- [ ] Anomalies, exclusions, and corrections are recorded explicitly.
-- [ ] Licensing, privacy, sharing, and retention decisions are complete.
-
-Next, create the experiment report with [Technical Writing](technical-writing.md), or automate data-quality checks through [Reproducible Engineering](reproducibility.md).
+Finally, rerun the analysis from an empty directory and have another machine locate the same input using only the run record. If a large raw file cannot be public, publish its schema, field definitions, checksum, a way to create a small synthetic example, and the lawful access path. The analysis entry point can then move into [Reproducible Engineering](reproducibility.md), while [Technical Writing](technical-writing.md) can carry the plot lineage into the report.

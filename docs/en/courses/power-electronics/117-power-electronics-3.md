@@ -3,71 +3,47 @@ title: "Converter Control"
 description: "University of Colorado Boulder's Converter Control advances the power-electronics sequence into converter control through videos, practice, simulation, and code, requiring prior converter and feedback-control knowledge."
 page_type: course
 course_id: "course-117"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 24918583629e35db -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9d1e1387de7d4ebd -->
 
-# Converter Control
+# University of Colorado Boulder Power Electronics 3: Converter Control
 
 ## Course Overview
 
 - **University:** University of Colorado Boulder
 - **Course code:** Power Electronics 3
-- **Prerequisites:** Recommended foundation: Circuit Analysis; Recommended foundation: Control Systems; Recommended foundation: Electronics Laboratory and Measurement; Course-sequence requirement: complete Introduction to Power Electronics (University of Colorado Boulder Power Electronics 1) first; Course-sequence requirement: complete Converter Circuits (University of Colorado Boulder Power Electronics 2) first
-- **Track:** [Power Electronics](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** CU Boulder Converter Control is the third course in the sequence; its official page names Introduction to Power Electronics and Converter Circuits as preceding courses
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Registration required; scope varies by platform
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Course fit and prerequisites
 
-University of Colorado Boulder's Converter Control advances the power-electronics sequence into converter control through videos, practice, simulation, and code, requiring prior converter and feedback-control knowledge.
+The University of Colorado Boulder [Converter Control](https://www.coursera.org/learn/converter-control) course is the third step in its power-electronics sequence. Its official page lists 4 modules and 5 graded assignments, with a reference pace of 2 weeks at 10 hours per week, and names [Introduction to Power Electronics](https://www.coursera.org/learn/power-electronics) and [Converter Circuits](https://www.coursera.org/learn/converter-circuits) as preceding courses. Before starting, derive a CCM buck averaged model and linearize it about an operating point. If a transfer function must be copied from a table, review state space, the Laplace transform, and Bode plots first.
 
-**Check before starting**
+### From Power-Stage Modeling to Closed-Loop Verification
 
-- Recommended foundation: Circuit Analysis
-- Recommended foundation: Control Systems
-- Recommended foundation: Electronics Laboratory and Measurement
-- Course-sequence requirement: complete [Introduction to Power Electronics](../power-electronics/115-power-electronics-1.md) (University of Colorado Boulder Power Electronics 1) first
-- Course-sequence requirement: complete [Converter Circuits](../power-electronics/116-power-electronics-2.md) (University of Colorado Boulder Power Electronics 2) first
+Chapter 7 on the official course page covers averaging, perturbation and linearization, the canonical model, the PWM switch, and state-space averaging. Keep the operating point, input and output definitions, and neglected terms beside every model. A transfer function named `Gvd` need not remain valid after the load or conduction mode changes.
 
-## Start with these links
+Chapter 8 first develops Bode-plot construction, then converter transfer functions and graphical impedance construction. Sketch DC gain, pole and zero slope changes, and phase direction before using software to refine the corners. Distinguish control-to-output, line-to-output, and output impedance; command following alone is insufficient. Chapter 9 turns to stability, phase margin, closed-loop Q, regulator or op-amp compensation, and a point-of-load regulator. Specify crossover, steady-state error, and disturbance rejection before placing compensator poles and zeros. That order is more reliable than starting with a familiar Type-II or Type-III circuit.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+### A Complete Case Study Beats Disconnected Bode Plots
 
-- [Course home](https://www.coursera.org/learn/converter-control)
+Take a buck or boost already checked in the preceding course and preserve its full chain: operating point, averaged model, small-signal model, analytic poles and zeros, numerical Bode plot, compensation targets, loop gain, closed-loop response, and line and load steps. Compare at least 3 representations—the analytic transfer function, an averaged time-domain model, and a switched model—and check agreement below `fs/20`. Then vary input voltage and load while recording crossover, phase margin, duty limits, saturation, and recovery. Build a separate model if the converter enters DCM instead of extrapolating the CCM result.
 
-## Known Boundaries
+This course is easily reduced to “tuning phase margin” while the underlying plant remains uncalibrated. Cross-check analytic DC gain against the steady-state time-domain disturbance response, and verify whether an ESR zero or right-half-plane zero moves with topology, load, and operating point. If the averaged model follows switching waveforms only over a limited band, put that validity boundary in the figure caption instead of hiding it in code.
 
-Prior converter and feedback-control knowledge is required, and platform access may require payment.
-
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+The prompts, feedback, and retry rules for the 5 assignments depend on Coursera login access. The [Power Electronics specialization](https://www.coursera.org/specializations/power-electronics) confirms sequence but does not promise anonymous access to graded material. The continuous case study is learner-built and does not replace training in digital-control firmware, sampling delay, PWM quantization, current-mode control, EMI, layout, or physical loop measurement. The useful result is the ability to identify the operating point and approximations behind every Bode plot, not merely to produce a stable-looking curve.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.coursera.org/learn/converter-control)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | No public material |
-| Code | Partial |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/converter-control) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

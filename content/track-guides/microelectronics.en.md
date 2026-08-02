@@ -1,0 +1,21 @@
+## Three historical archives expose three device-circuit interfaces
+
+The [official OCW page](https://ocw.ece.cornell.edu/courses/ece-3150-microelectronics/) for [Cornell ECE 3150](029-ece-3150.md) uses 27 notes, 12 solved assignments, solved examinations, and 4 laboratories to connect diodes, BJTs, MOS devices, amplifiers, and digital logic in the most continuous paper route. The [official syllabus](https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/pages/syllabus/) for [MIT 6.012](030-6-012.md) emphasizes device physics and take-home design. Its problems and exams are strong, but it has no video, and tools and process references belong to Fall 2009. The [official historical site](https://people.eecs.berkeley.edu/~boser/courses/105/index.html) for [Berkeley EE 105](031-ee-105.md) follows models into an AM radio. Notes, homework, and laboratories are public; the Razavi text is paid and solutions are incomplete. Use ECE 3150 for continuity and select either a 6.012 design or EE 105 radio thread for a specific need instead of repeating three small-signal sequences.
+
+## Make one MOSFET travel from carrier model to node equation
+
+[Semiconductor devices](../semiconductor-devices/index.md) supplies junctions, MOS electrostatics, carriers, and current-voltage approximations. [Circuit analysis](../circuits/index.md) supplies KCL and KVL, Thevenin and Norton models, frequency response, and transients. For one MOSFET, determine operating region and \(g_m,r_o\) from a course model or datasheet. Draw common-source DC bias and small-signal equivalents, then predict how load, body effect, or capacitance moves gain, swing, and bandwidth. Label direction and units at every node and check supply current, power, and limiting cases.
+
+Threshold, overdrive, and saturation condition are different voltages, and \(g_m\) changes with bias current. A substituted gain formula with no equivalent circuit calls for a return to node equations. A device-parameter change that leaves every circuit conclusion unchanged means that the two levels have not actually been connected. Repeat the chain on one BJT common-emitter problem to test whether the method transfers across device types.
+
+## Public laboratory prompts do not reconstruct the period bench
+
+The 4 ECE 3150 laboratories are not equally public, and the historical curve tracer, oscilloscope, device stock, and classroom feedback cannot be recreated from PDFs. 6.012 and EE 105 also depend on period processes, texts, or campus facilities. Outside study can compare bias, gain, bandwidth, transients, and corners in SPICE and then select the node that most clearly distinguishes models for a low-voltage bench. A compliant measurement states probes, supply current, temperature, and raw CSV. If the bench is unsuitable, the conclusion remains explicitly simulation-level.
+
+Every BJT or MOS substitution requires a fresh check of pinout, voltage, power, frequency, safe operating area (SOA), and thermal limits. A modern part does not automatically reproduce a historical device. Fabrication, high-voltage breakdown, and mains work are not home experiments authorized by these public pages. Simulated traces also do not observe real temperature rise, probe loading, or abnormal supply current, so those quantities remain unmeasured.
+
+## Let an I-V residual change the amplifier
+
+Characterize a diode, BJT, or MOS device and use the same part in a single-stage or differential amplifier. Fit important parameters from public or safely measured I-V data and plot residuals. Use the fitted model to predict DC bias, small-signal response, frequency response, and large-signal swing. Select an operating point with a material discrepancy and decide whether to change a resistor, load, device size, operating current, or the model itself, then recalculate the same metrics.
+
+Close with a before-and-after table for the discrepant operating point: fitted device parameters and residuals on the left, the resulting bias, gain, bandwidth, or swing decision on the right. Recomputing the same metrics after one justified resistor, load, size, current, or model change demonstrates exactly how device-model error propagated into the amplifier.

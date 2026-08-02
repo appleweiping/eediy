@@ -1,172 +1,144 @@
 ---
-title: Global Roadmap
-description: Organize EE learning around a shared core, direction sampling, and depth tracks instead of course accumulation.
+title: One Possible EE Study Plan
+description: A course map from the common core into circuits, chips, embedded systems, signals, control, fields, energy, and instrumentation.
+page_type: guide
+comments: true
 ---
 
-<div class="ee-language" markdown>
-[简体中文](../roadmap.md)
-</div>
 
-# Global Roadmap
+# One Possible EE Study Plan
 
-This is a **dependency graph**, not a universal syllabus. Time ranges assume roughly ten hours per week. Use the exit checks to skip material you already command, and extend the calendar if you have less time. Maintain one mainline and at most one parallel prerequisite at any moment.
+Electrical engineering is not a one-way road from “basic” to “advanced.” Analog circuits, digital systems, communications, control, electromagnetics, power, and devices share part of a mathematical and physical language, then diverge quickly. Any one branch can fill an entire graduate education.
 
-## Route overview
+This plan describes relationships among courses, not a semester schedule everyone should copy. Prerequisites and public resources on course pages come from provider material; the choices in the route are EEDIY editorial judgments. New readers should begin with [How to Use This Guide](getting-started.md): choose one mainline for a topic, do not treat alternatives as extra requirements, and never describe simulation as measurement when laboratory access is missing.
 
-1. **Stage 0 · Engineering language (months 0–3)**
-   Review algebra, trigonometry, complex numbers, single-variable calculus,
-   units, and order-of-magnitude reasoning. Build basic mechanics and
-   electromagnetism, Python or an equivalent computational tool, Git, and
-   reproducible-note habits at the same time.
-2. **Stage 1 · Shared core (months 3–12)**
-   Study linear algebra, differential equations, probability, circuits,
-   signals and systems, and digital logic. Begin using instruments, simulation,
-   and programming, with low-energy experiments only.
-3. **Stage 2 · Explore directions (months 12–18)**
-   Use three small projects to compare continuous devices, digital/embedded
-   systems, and signals, control, or fields. The point is not project size; it
-   is learning which kinds of failure you are willing to investigate.
-4. **Stage 3 · Depth track (months 18–30)**
-   Choose one or two adjacent directions, complete advanced study and
-   toolchain practice, and deliver at least one system project with a
-   documented design review.
-5. **Stage 4 · Integration and transfer (ongoing)**
-   Put specifications, models, implementation, verification, cost, safety,
-   and communication into one body of engineering evidence, then transfer the
-   method to a new device, platform, or problem.
+## Learn tools until they stop obstructing the work
 
-## Stage 0: engineering language (months 0–3)
+An EE student does not need to become a software engineer first, but code, versioning, and records recur in almost every track. Develop these abilities inside the first computational or laboratory course that needs them:
 
-### Content
+- use [Python and Jupyter](guides/python-jupyter.md) to read data, plot figures with units, and regenerate results from raw inputs;
+- use [Git](guides/version-control.md) to preserve reversible versions of code, netlists, reports, and hardware;
+- learn [C and CMake](guides/c-cmake.md) when native compilation becomes necessary, not as a large environment prepared for hypothetical future work;
+- use [SPICE](guides/spice-simulation.md) alongside circuits, with a hand baseline or limiting-case check for every simulation;
+- read [Instrumentation and Measurement](guides/instrumentation-measurement.md) and [Laboratory Safety](guides/safety.md) before first contact with instruments.
 
-- Mathematics: functions, equations, trigonometry, complex numbers, derivatives, integrals, and vector intuition.
-- Physics: force, energy, fields, potential, current, and basic waves.
-- Computing: scripts, arrays, plots, numerical error, and version control.
-- Engineering habits: units, significant figures, order-of-magnitude estimates, sources, and assumptions.
+For a broad first look at EE, [MIT 6.01SC](courses/ee-introduction/019-6-01sc.md) places software, signals, probability, state machines, and robotics in one introduction. It does not replace later specialist courses, but it can reveal which kind of problem deserves more of your patience.
 
-### Exit check
+## The common core: languages that the branches keep borrowing
 
-Skip this stage if you can independently:
+### Interleave mathematics and physics with engineering
 
-1. express a sinusoid with phasors or complex numbers and convert rectangular/polar forms;
-2. explain steady state, a time constant, and an initial condition in a first-order dynamic equation;
-3. write a script that loads data, plots with units, and identifies numerical error sources;
-4. estimate the scale of a simple system and catch an obviously unreasonable answer.
+Calculus, linear algebra, differential equations, and probability all matter. That does not mean spending two closed years “finishing mathematics” before touching EE. A more useful interleaving is:
 
-## Stage 1: shared core (months 3–12) { #shared-core }
+1. establish single- and multivariable calculus through [MIT 18.01SC](courses/mathematics/001-18-01sc.md) and [18.02SC](courses/mathematics/002-18-02sc.md);
+2. take [MIT 18.06SC](courses/mathematics/004-18-06sc.md) alongside networks and linear systems;
+3. enter [MIT 18.03SC](courses/mathematics/003-18-03sc.md) when RC/RLC circuits, mechanical analogies, and state evolution appear;
+4. complete [MIT 6.041SC](courses/probability-statistics/007-6-041sc.md), or another probability mainline suited to your background, before noise, random signals, or communications depends on it.
 
-The shared core does not mean equal depth in every subject. It creates interoperable concepts and tools.
+[EE Mathematics Foundations](math-foundations.md) explains the choices in detail. In physics, mechanics trains modeling and energy reasoning, while electromagnetism feeds circuits, fields, devices, and machines directly. The [physics track](courses/physics/index.md) includes entries such as MIT 8.01SC, 8.02x, and 8.03SC. Do not reduce physics to symbolic manipulation; retain free-body diagrams, field geometry, boundaries, and dimensional explanations.
 
-| Module | Essential command | Minimum practice |
+### Circuits, signals, and digital logic form the first professional core
+
+- **Circuits:** [MIT 6.002](courses/circuits/021-6-002.md) is a complete mainline. After nodal analysis and equivalent circuits, do not skip dynamic elements, frequency response, and device models. They return in analog design, control, communications, power, and instrumentation.
+- **Signals and systems:** [MIT 6.003](courses/signals-systems/083-6-003.md) places LTI systems, convolution, transforms, sampling, and feedback in one language. It is a prerequisite for DSP, communications, and control, and valuable to anyone processing sensor data.
+- **Digital logic:** use [Nand2Tetris I](courses/digital-logic/039-nand2tetris-i.md) to see abstraction layers connect, or compare [MIT 6.004](courses/digital-logic/037-6-004.md) with alternatives in the track for a more conventional undergraduate EE route through logic, state machines, and processors.
+- **Programming:** if scripts or C still block assignments, repair them through [Programming and Engineering Tools](courses/programming-tools/index.md). The goal is to read, modify, and test course code—not to finish an unrelated software stack first.
+
+The common core need not be completed to identical depth in every course. It should at least leave you able to derive a low-order model from assumptions; compare hand analysis, simulation, and measurement; read a basic schematic, datasheet, and timing diagram; and preserve a small project that another person can rerun.
+
+## What to keep when time is limited
+
+People already working, changing fields late, or repairing an undergraduate foundation can begin with the six blocks below. They are not “EE in a hurry”; they are interfaces that become difficult to avoid later.
+
+| Block | Suggested mainline | Evidence before moving on |
 | --- | --- | --- |
-| Mathematics and probability | Linear systems, eigenvalues, convolution, random variables, estimation intuition | Use a numerical experiment to check an analytic result |
-| Circuits and electronics | KCL/KVL, equivalents, frequency response, diode/transistor, op-amp | Simulate and measure a filter or amplifier |
-| Signals and systems | LTI, Fourier/Laplace, sampling, noise | Extract a spectrum from real data and discuss aliasing |
-| Digital logic | Combinational/sequential logic, state machines, clock and metastability awareness | Verify a state machine with a testbench |
-| Programming and computation | C or another low-level language, Python, debugging, automation | Rebuild plots from code and pass minimal tests |
-| Measurement and safety | Instrument input, grounding, uncertainty, ratings, de-energized checks | Write a prediction–measurement–difference report |
+| Engineering mathematics | choose the needed 18.01/18.02/18.06/18.03 material from [mathematics foundations](math-foundations.md) | formulate a circuit or dynamic-system equation and check its scale |
+| Circuits | [MIT 6.002](courses/circuits/021-6-002.md) | analyze a network containing a dynamic element or device model |
+| Signals | [MIT 6.003](courses/signals-systems/083-6-003.md) | explain convolution, frequency response, sampling, and stability |
+| Digital systems | [Nand2Tetris I](courses/digital-logic/039-nand2tetris-i.md) or [MIT 6.004](courses/digital-logic/037-6-004.md) | verify combinational and sequential modules and a small processor structure with tests |
+| Computing and records | only the current task's part of the [practice guides](guides/index.md) | code, data, environment, and conclusions can be rerun |
+| One track project | choose from the [track routes](routes/index.md) | specifications, model, implementation, verification, and limitations are all present |
 
-### Exit check
+Skip a block when an existing project already proves it. Do not delete physics or mathematics merely because time is limited when neither is in place.
 
-- Build a linear model from physical assumptions and identify when it fails.
-- Put theory, simulation, and measurement on one plot with units.
-- Read a basic schematic, data sheet, and timing diagram.
-- Deliver a small tested, versioned, reproducible program or HDL module.
-- Stop when an experimental risk is unclear instead of “trying the connection.”
+## Where the route branches
 
-## Stage 2: explore directions (months 12–18) { #direction-sampling }
+The summaries below identify a first mainline and a common misconception. Each linked track and route page gives fuller course combinations, alternatives, and project evidence.
 
-Keep each trial project to four to six weeks. Compare working styles rather than chasing advanced difficulty:
+### Analog electronics and integrated circuits
 
-1. **Continuous world:** sensor front end, audio filter, or bounded low-voltage supply analysis. Notice whether devices, noise, and instrument detail engage you.
-2. **Discrete systems:** FPGA state machine, microcontroller data acquisition, or a simple real-time protocol. Notice whether timing, interfaces, and debugging engage you.
-3. **Models and algorithms:** filtering, a communication link, closed-loop control, or an electromagnetic simulation. Notice whether mathematical models and system behavior engage you.
+A common sequence is:
 
-Use the same [project evidence package](guides/projects.md#project-evidence-package) for each, then compare:
+`6.002 circuits → 6.101 analog laboratory → microelectronic devices → analog IC`
 
-- Which kind of failure do you investigate voluntarily?
-- Which abstractions energize you, and which details create sustained friction?
-- What hardware, mentors, laboratories, or datasets can you realistically access?
-- What evidence does the target research area or role require—not which course names?
-
-## Stage 3: direction depth (months 18–30)
-
-### Circuits, devices, and integrated systems
-
-`Microelectronic devices → analog/digital ICs → feedback and noise → layout/process constraints → chip- or board-level validation`
-
-Strengthen semiconductor physics, nonlinear circuits, small-signal models, statistical variation, thermal behavior, and reliability. Evidence should include corner conditions, an error budget, and design tradeoffs—not only a nominal simulation screenshot.
+[MIT 6.101](courses/analog-electronics/026-6-101.md) turns amplification, feedback, noise, and instrumentation into physical laboratory work. Without comparable equipment, read the course page's access gap rather than substituting a few ideal SPICE plots for the laboratory. Move through [Microelectronics](courses/microelectronics/index.md) into the [Analog IC route](routes/analog-ic.md) when transistor internals and chip design become the goal. The work continually trades approximation, swing, noise, mismatch, and process corners.
 
 ### Digital systems, FPGA, and architecture
 
-`Logic design → HDL and verification → computer organization → FPGA toolchain → interface/accelerator/processor`
+A common sequence is:
 
-Strengthen synchronous design, clock-domain crossing, memory hierarchy, protocols, verification coverage, and timing closure. Evidence should include a self-checking bench, resource/timing reports, and fault cases.
+`digital logic → computer organization → HDL verification → FPGA/SoC or architecture`
 
-### Embedded, PCB, and real-time systems
+[UC Berkeley CS61C](courses/computer-architecture/048-cs-61c.md) connects C, assembly, processors, and memory hierarchy. [MIT 6.111](courses/fpga-soc/042-6-111.md) turns toward larger digital designs and FPGA projects. Demonstrations can hide the missing part: verification. A design that occasionally works on a board still needs self-checking tests, constraints, timing reports, CDC handling, and a reproducible build.
 
-`C and debugging → MCU peripherals → buses and drivers → RTOS/real-time analysis → PCB and system validation`
+### Embedded systems, PCB design, and real-time work
 
-Strengthen data-sheet reading, interrupts and concurrency, power, EMC awareness, board integrity, and manufacturability. Preserve interface contracts, logic-analyzer traces, and hardware revisions.
+Between writing C and engineering an embedded system lie datasheets, startup and linking, debuggers, interrupts, buses, concurrency, power, and board behavior. [UT Austin EE 319K](courses/embedded-systems/059-ee-319k-volume-1.md) is the gentler first MCU entry; choose [Stanford CS107E](courses/embedded-systems/058-cs-107e.md) when you are ready to descend through reset, boot, linker, and register layers. They use different boards, so verify that the required hardware can still be obtained.
 
-### Signals, DSP, and communications
+Enter [KiCad and PCB Design](guides/pcb-kicad.md) when a real board becomes necessary, and [Real-Time and Cyber-Physical Systems](courses/real-time-cps/index.md) when deadlines become part of correctness. Arduino library calls are not a measure of depth; an explained bus timeout, stack overflow, or supply droop is more revealing.
 
-`Signals and systems → probability/random processes → DSP → detection/estimation → communication systems`
+### Signal processing, communications, and information theory
 
-Strengthen sampling, spectral analysis, filters, noise models, link budgets, and statistical validation. Report datasets, baselines, confidence or error distributions—not only attractive waveforms.
+A common sequence is:
+
+`6.003 signals and systems → 6.041SC probability → DSP → detection/estimation or communications`
+
+[MIT RES.6-008](courses/dsp/088-res-6-008.md) is the first systematic DSP spine. Move to [MIT 6.341](courses/dsp/089-6-341.md) after discrete systems are familiar and a longer graduate project is desirable. [MIT 6.450](courses/communications/100-6-450.md) draws heavily on probability when entering digital communication. A clean filtered waveform alone is not enough: retain sampling conditions, data provenance, baselines, noise assumptions, and an error distribution.
 
 ### Control, robotics, and autonomous systems
 
-`Dynamic modeling → linear control → state space → estimation → nonlinear/optimal/robotic systems`
+Learn to obtain a model from the physical plant before selecting a controller. [MIT 6.302](courses/control-systems/067-6-302.md) is an entry to classical feedback; the [Control and Robotics route](routes/control-robotics.md) continues into state space, estimation, optimal control, or robotics.
 
-Strengthen controllability/observability, stability, identification, and actuator/sensor limits. Validate in simulation and on bounded low-energy plants before considering large-motion or high-energy platforms.
+The dangerous control-project illusion is “stable in simulation, therefore safe in hardware.” Actuator saturation, delay, friction, sensor failure, and mechanical stops all violate models. Validate first in simulation and on low-energy teaching hardware, with an emergency stop and explicit fault states.
 
 ### Electromagnetics, RF, and photonics
 
-`Electromagnetic fields → transmission lines/waveguides → microwave networks or optics → antennas/photonic devices → measurement and calibration`
+Multivariable calculus, electromagnetism, and complex fields form the common entrance. Compare [Cornell ECE 3030](courses/electromagnetics/107-ece-3030.md) with [MIT 6.013](courses/electromagnetics/108-6-013.md), then branch through [RF, Microwave, and Antennas](routes/rf-wireless.md) or [Photonics and Microsystems](routes/photonics-mems.md).
 
-Strengthen multivariable calculus, boundary conditions, complex fields, scattering parameters, and numerical field methods. RF power, lasers, or high voltage require qualified facilities and supervision.
+This branch cannot be learned as algebra around formulas. Geometry, material regions, boundary conditions, modes, and calibration must be explicit. Physical work involving RF power, lasers, vacuum, or fabrication equipment requires a qualified facility.
 
-### Power, energy, and machines
+### Semiconductor devices, VLSI, and fabrication
 
-`Circuits and electromagnetism → machines/transformers → power electronics → control and grids → protection/thermal/reliability`
+[MIT 6.012](courses/microelectronics/030-6-012.md) connects semiconductor physics and device models to circuits. [MIT 6.152J](courses/fabrication-mems/126-6-152j.md) continues into processing. The [Semiconductor and VLSI route](routes/semiconductor-vlsi.md) then separates digital VLSI, analog IC, devices, and fabrication.
 
-Strengthen switched systems, magnetics, thermal design, insulation, fault energy, and protection. Start with simulation and isolated low-energy teaching hardware. Mains electricity is not an introductory material.
+Device curves, SPICE models, layouts, and process data live at different abstraction levels and cannot stand in for one another. Without cleanroom access, chemicals, and process supervision, fabrication practice remains in public data, design-rule work, and authorized remote or teaching flows.
 
-### Semiconductor manufacturing, microsystems, and instrumentation
+### Power electronics, machines, and power systems
 
-`Materials/devices → process and statistics → sensing/microsystems → measurement chain → reliability and calibration`
+This branch simultaneously calls on circuits, electromagnetics, control, thermal reasoning, and protection. [MIT 6.622](courses/power-electronics/114-6-622.md) is an entry to converter theory; machines, power systems, and energy courses are separated in the [Power and Energy route](routes/power-energy.md).
 
-Strengthen solid-state physics, chemistry/materials, clean processes, statistical process control, and metrology. Fabrication, vacuum, high temperature, chemicals, or radiation equipment require an authorized laboratory.
+Mains, high voltage, and large batteries are not introductory self-study materials. Without a laboratory, supervision, isolation, protection, and a discharge procedure, use simulation or low-energy teaching hardware and name the switching parasitics, thermal behavior, and fault energy that the model omits.
 
-## Stage 4: integration project
+### Instrumentation, sensors, and biomedical systems
 
-An integration project should expose all of these interfaces:
+This route starts from circuits, signals, probability, and measurement together. Connect sensor excitation, front end, sampling, calibration, and uncertainty into one measurement chain, then follow the [Instrumentation and Biomedical route](routes/instrumentation-biomedical.md). A biomedical-signal project that only plots data but omits electrode or sensor conditions, filter delay, statistical bias, and ethical boundaries cannot support strong conclusions.
 
-- **Need:** user, context, measurable acceptance criteria, and explicit non-goals;
-- **Model:** assumptions, parameter sources, sensitivity, and failure range;
-- **Implementation:** schematic/code/HDL/mechanical or process files with versions;
-- **Verification:** baselines, test matrix, raw data, error, and uncertainty;
-- **Engineering constraints:** cost, power, size, maintainability, license, and supply risk;
-- **Safety:** hazard identification, energy boundary, stop conditions, and supervision;
-- **Communication:** one-page summary, full report, reproduction guide, and design-review record.
+## Adapting the route for school, employment, or research
 
-## Adjusting the route
+### While enrolled in EE
 
-### For research
+Use public courses as alternate explanations and sources of feedback for local classes. Institutional laboratories, safety training, instructor access, and peers are resources that online courses struggle to replace. When content overlaps, a stronger public assignment or project may be worthwhile, but check academic-integrity rules and local requirements first.
 
-Add derivation, paper reproduction, and uncertainty analysis early. Track a narrow question deeply and treat “could not reproduce” as a valid result. Do not substitute a stack of surveys for research-method training.
+### Preparing for employment
 
-### For employment
+Extract recurring capabilities from several real job descriptions, then return to courses and projects for evidence. An FPGA position requires more than Verilog syntax, just as embedded work requires more than one MCU. Debugging, testing, interfaces, versioning, and written design judgments often reveal project depth. Do not chase tool names by skipping circuits, signals, or architecture.
 
-Extract repeated capabilities from five to ten real role descriptions and build a requirement-to-evidence matrix. Prioritize toolchains, debugging, testing, and collaboration records without skipping theory that limits long-term judgment.
+### Preparing for research
 
-### While enrolled in an EE program
+Practice reading papers, reconstructing derivations, reproducing results, and reporting negative findings early. Courses provide the language and classic models; research questions rarely include answer keys. One narrow, careful investigation is closer to research than simultaneous “introductions” to several fashionable areas.
 
-Use this roadmap as an interface layer. Add public explanations, answer feedback, and projects to institutional courses; bring laboratory access, safety training, and peer review to self-study. Do not sacrifice depth in current courses merely to move faster on the map.
+## Customizing the map
 
-### With software only
+Start from one problem. Open three candidate pages in the [course catalogue](courses/index.md) and compare their first assignments, public feedback, prerequisites, and laboratory conditions. After choosing one mainline, use the [learning routes](routes/index.md) to understand adjacent courses.
 
-You can complete substantial work in models, simulation, public data, HDL verification, and control algorithms. Mark hardware results “awaiting validation,” list parasitics, noise, quantization, thermal, and manufacturing effects that simulation omitted, and close the loop later.
-
-Next: choose one mainline matching your stage in the [course catalog](courses/index.md), not the largest number of courses.
+When the route changes, retain the exercises, code, and measurements already completed. Record why: missing material, mismatched prerequisites, unavailable equipment, or a teaching style that truly does not fit. That note will help you later and, when submitted through the course-report link, can help the next reader too.

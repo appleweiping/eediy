@@ -3,9 +3,6 @@ title: Licensing and Attribution
 description: How EEDIY code, original content, third-party resources, and brand assets may be used and cited.
 ---
 
-<div class="ee-language" markdown>
-[简体中文](../../about/license.md)
-</div>
 
 # Licensing and Attribution
 
@@ -46,6 +43,64 @@ When citing a course fact, also cite the official source. An EEDIY verification 
 - Use the name, mark, and visual appearance to mislead readers that a derivative is official.
 - Upload personal data, secrets, controlled technical information, or material that violates academic-integrity rules.
 
+## Third-party template and theme notices
+
+The site's structure and presentation are derived in part from
+[CSDIY / cs-self-learning](https://github.com/PKUFlyingPig/cs-self-learning), and
+the site uses
+[Material for MkDocs 9.7.7 LICENSE](https://raw.githubusercontent.com/squidfunk/mkdocs-material/9.7.7/LICENSE).
+EEDIY modifies Material's `partials/alternate.html`; the production site also
+distributes Material stylesheets, scripts, icons, and templates. The upstream
+license texts are reproduced below as part of the published site.
+
+### CSDIY / cs-self-learning
+
+```text
+MIT License
+
+Copyright © <2021> <copyright Yinmin Zhong>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### Material for MkDocs 9.7.7
+
+```text
+Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+```
+
 ## Broken links and rights requests
 
 For a broken link, misattribution, incompatible license, or material that should not appear, provide:
@@ -59,6 +114,6 @@ For a broken link, misattribution, incompatible license, or material that should
 Maintainers should prevent further distribution of disputed material when appropriate, retain the minimum audit record, inspect the source, and document the resolution. A good-faith rights request does not require the claimant to write replacement copy.
 
 See `CONTENT_LICENSE.md`, `LICENSE`, and `THIRD_PARTY_NOTICES.md` at the
-repository root for the complete terms. The latter preserves the CSDIY
-template lineage and upstream MIT notice; use these files as authoritative
-before redistribution.
+repository root for the complete terms. This page publishes the third-party
+notices as part of the site; the repository files remain the authoritative
+downloadable copies.

@@ -1,72 +1,87 @@
 ---
 title: "Real-Time Project for Embedded Systems"
-description: "University of Colorado Boulder's Real-Time Project for Embedded Systems closes the sequence with a camera-and-Raspberry-Pi home project, offering strong project and code practice under explicit prerequisites and possible platform cost."
+description: "University of Colorado Boulder's Real-Time Project for Embedded Systems closes the sequence with a camera-and-Raspberry-Pi home project; project instructions live inside Coursera and the public product page exposes no official machine files."
 page_type: course
 course_id: "course-066"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 2d70d683d92a7965 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 47e545e0f76fc3f7 -->
 
-# Real-Time Project for Embedded Systems
+# University of Colorado Boulder Real-Time Embedded Systems 4: Real-Time Project for Embedded Systems
 
 ## Course Overview
 
 - **University:** University of Colorado Boulder
 - **Course code:** Real-Time Embedded Systems 4
-- **Prerequisites:** Recommended foundation: Embedded Systems; Recommended foundation: Signals and Systems; Course-sequence requirement: complete Real-Time Embedded Systems Concepts and Practices (University of Colorado Boulder Real-Time Embedded Systems 1) first; Course-sequence requirement: complete Real-Time Embedded Systems Theory and Analysis (University of Colorado Boulder Real-Time Embedded Systems 2) first
-- **Track:** [Real-Time and Cyber-Physical Systems](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** CU Boulder ECEA 5318 requires 5315, 5316, and 5317 plus C, architecture, operating systems, and Linux
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Registration required; scope varies by platform
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### The Camera Pipeline Is the Assigned Capstone
 
-University of Colorado Boulder's Real-Time Project for Embedded Systems closes the sequence with a camera-and-Raspberry-Pi home project, offering strong project and code practice under explicit prerequisites and possible platform cost.
+Choose Coursera [ECEA 5318](https://www.coursera.org/learn/real-time-project-embedded-systems) after 5315–5317 only if you accept the assigned camera pipeline; it does not fit a learner seeking a free-form capstone. The fixed task is the visual synchronome. The [course page](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5318-real-time-embedded) asks a Raspberry Pi to capture an external clock through a camera, select stable non-blurred frames at 1 Hz and 10 Hz, write them to flash, and compare RMA predictions with timing logs.
 
-**Check before starting**
+Prerequisites are 5315, 5316, 5317, plus C, architecture, operating systems, and Linux. Begin with a periodic-service framework, task table, timestamp logger, and failure analysis already working. Do not chase 10 Hz while 1 Hz remains unexplained.
 
-- Recommended foundation: Embedded Systems
-- Recommended foundation: Signals and Systems
-- Course-sequence requirement: complete [Real-Time Embedded Systems Concepts and Practices](../real-time-cps/063-real-time-embedded-systems-1.md) (University of Colorado Boulder Real-Time Embedded Systems 1) first
-- Course-sequence requirement: complete [Real-Time Embedded Systems Theory and Analysis](../real-time-cps/064-real-time-embedded-systems-2.md) (University of Colorado Boulder Real-Time Embedded Systems 2) first
+### The Assessment Order Is the Project Route
 
-## Start with these links
+Official weekly estimates are 11, 9, 10, 10, 11, and 8 hours. Week 1 defines
+the visual synchronome, services, RMA, and timing diagrams; week 2 walks
+through the starter and compares shotgun start, continuous tick detection,
+V4L2/UVC, and OpenCV; week 3 completes 1 Hz timing analysis; week 4 uses
+tracing and profiling to reach 10 Hz; week 5 is design review and
+presentation; week 6 is the final.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+The grade is not one generic capstone score. Five peer reviews—initial
+services/RMA, starter-code walkthrough, 1 Hz operation, 10 Hz design, and the
+final presentation—are 10% each, or 50% total. Three quizzes are 5% each, or
+15%. The 1 Hz and 10 Hz programming items are 5% each, while the final's 1 Hz
+and 10 Hz tests are 12.5% each, making programming 35% in total. The design
+therefore faces code checks, peer inspection, and final operation at both
+rates rather than one polished demonstration.
 
-- [Course home](https://www.coursera.org/learn/real-time-project-embedded-systems)
+### One Question Must Survive Both 1 Hz and 10 Hz
 
-## Known Boundaries
+The system centers on capture, frame selection, and flash writes. At 1 Hz,
+service execution times, RMA predictions, and actual timestamps establish the
+model. At 10 Hz, copies, queues, classification, and storage may become new
+bottlenecks. A common sequence number across capture, classification, and
+write locates a frame's delay in input, queuing, or storage instead of hiding
+it inside average frame rate.
 
-The camera and Raspberry Pi home project requires the first two courses and paid-platform access may apply.
+“Averaging 10 fps” is not the same as following an external clock. The course
+uses a camera to observe that clock and select stable, non-blurred frames at
+1 Hz and 10 Hz. A software timer or prerecorded input can exercise the
+pipeline but cannot establish external-clock synchronization. Camera
+resolution, pixel format, exposure or focus, and timestamp source also need
+to stay comparable between rates if theory and measurement are to agree.
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+### Access and version notes
+
+The [hardware page](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements)
+specifies Pi 3B+/4B, Raspberry Pi OS, and Logitech C270, and only claims
+starter-code testing on those platforms. The
+[specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems)
+lists 5318 as course 4 worth 0.8 credit; the
+[access page](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses)
+does not promise that every assessment is free.
+
+Without the starter, peer reviews, and final tests, a clearly labeled
+**nonofficial substitute** can compare latency and drops for a 1 Hz/10 Hz
+pipeline over prerecorded frames. Its result stops at pipeline validation.
+CU's five peer reviews, assigned camera, and two-rate final tests remain
+distinctive to 5318; use the original platform route when feedback on
+external-clock synchronization is the goal.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.coursera.org/learn/real-time-project-embedded-systems)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/real-time-project-embedded-systems) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

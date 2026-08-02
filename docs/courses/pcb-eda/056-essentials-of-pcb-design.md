@@ -3,68 +3,52 @@ title: "Essentials of PCB Design"
 description: "Worcester Polytechnic Institute 的《Essentials of PCB Design》以幻灯片、起始文件、KiCad 材料和 GitHub 资源补充 PCB 实践；录屏受限且制板需自费。"
 page_type: course
 course_id: "course-056"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 852b97922c776c92 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4bb86112f5e8464b -->
 
-# Essentials of PCB Design
+# Worcester Polytechnic Institute: Essentials of PCB Design
 
 ## 课程简介
 
 - **所属大学：** Worcester Polytechnic Institute
 - **课程编号：** Essentials of PCB Design
-- **先修要求：** 建议先完成方向基础：电路分析；建议先完成方向基础：电子实验与测量
-- **方向：** [PCB、EDA 与硬件验证](index.md)
-- **路线角色：** 补充
-- **公开材料：** 部分材料
-- **最近复核：** 2026-07-28
+- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
+- **本站建议背景：** 电路分析；电子实验与测量
+- **访问条件：** 无需注册公开访问
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### 第一块完整 PCB，WPI 这门短课正合适
 
-Worcester Polytechnic Institute 的《Essentials of PCB Design》以幻灯片、起始文件、KiCad 材料和 GitHub 资源补充 PCB 实践；录屏受限且制板需自费。
+WPI [Essentials of PCB Design](https://pcb.wpi.edu/) 是一门 2024 年创建的短实践课：4 次晚间讲授之后，学生约用 2 周把给定原理图做成一块 Arduino-compatible MCU 板，最多驱动 30 颗 RGB LED。它教的是从原理图、封装到制造文件和上电调试的一次闭环；若目标是高速、RF、EMC 或量产可靠性，应换更专门的课程。
 
-**开始前先核对**
+所需基础是读懂电源、地和数字接口，能查 datasheet 并用万用表排查短路。KiCad 可以随课学习；MCU 供电、去耦和 connector pinout 则依赖基础电路知识。
 
-- 建议先完成方向基础：电路分析
-- 建议先完成方向基础：电子实验与测量
+### 课程材料
 
-## 先看这些入口
+WPI 官方课程的 project materials 位于 [课程仓库](https://github.com/ieee-wpi/pcb)，按 `slides`、`datasheets`、`starter_board`、`sample_board` 和 `code` 组织。[4 讲 slides](https://github.com/ieee-wpi/pcb/tree/main/slides) 解释设计方法，[starter board](https://github.com/ieee-wpi/pcb/tree/main/starter_board) 提供开工文件；[sample board](https://github.com/ieee-wpi/pcb/tree/main/sample_board) 适合核对器件分区、电源路径、connector 朝向和丝印，走线仍由自己的规则与网表决定。配套 [code](https://github.com/ieee-wpi/pcb/tree/main/code) 只能说明预期功能，symbol、footprint 和实物引脚仍要逐项对表。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+### 在 3 个设计节点做完整复核
 
-- [课程主页](https://pcb.wpi.edu/)
+原理图复核解释 ERC warning，并列出电压域、最大电流、下载口、测试点和关键器件来源。第 2 个节点检查 placement，包括板框、孔位、connector、MCU、去耦和大电流路径。第 3 个节点检查 routing 与 DRC，包括铜到板边、回流路径、丝印压焊盘和厂家能力。
 
-## 已知边界
+记录 [KiCad](https://www.kicad.org/) 主版本，把 Gerber、drill、BOM、position 文件和装配图作为同一批导出物；送厂依据是独立 viewer 中看到的文件。至少安排一次同伴 review，独学则隔日复核。
 
-幻灯片、起始文件、KiCad 材料和 GitHub 资源已公开；录屏需要 WPI 账号，制板费用由学习者自行承担。
+### Bring-up 比 DRC 更接近课程重点
 
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+装配后的检查顺序是方向与焊桥目检、电源对地测量、限流供电、rail 确认、连接下载器，以及分阶段验证 MCU、LED 和新增外设。记录每次故障的测点、预期值、实测值和修复。若没有制造，只能写“完成 fabrication package”，不能声称硬件已验证。
+
+公开仓库不含 WPI 的 office hour、免费制造、装配支持和账号受限录像。源工程、规则、ERC/DRC 处理、制造包、BOM、bring-up checklist 与照片应当能互相对上；没有制造就直说停在 fabrication package。第一块板最好只增加一个低压、低速外设，高速 USB、开关电源、射频、锂电充电和市电接口应留给后续课程。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（1 项）</summary>
+- [课程主页](https://pcb.wpi.edu/)
+- [代码 · WPI PCB course source, starter board, and sample board](https://github.com/ieee-wpi/pcb)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 无公开材料 |
-| 讲义 | 部分 |
-| 练习 | 无公开材料 |
-| 实验 | 完整 |
-| 考试 | 无公开材料 |
-| 代码 | 完整 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://pcb.wpi.edu/) | 无需注册公开访问 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

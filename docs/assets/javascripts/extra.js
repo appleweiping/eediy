@@ -41,6 +41,14 @@
     document.documentElement.lang = isEnglishPage() ? "en" : "zh-Hans";
   }
 
+  function setupLocalizedPermalinks() {
+    const label = isEnglishPage() ? "Permanent link" : "永久链接";
+    document.querySelectorAll("a.headerlink").forEach((link) => {
+      link.title = label;
+      link.setAttribute("aria-label", label);
+    });
+  }
+
   function setupSkipLink() {
     const article = document.querySelector(".md-content__inner");
     const skipLink = document.querySelector("[data-md-component='skip'] .md-skip");
@@ -62,35 +70,6 @@
     return directElement?.querySelector(".md-ellipsis")?.textContent.trim()
       || directElement?.textContent.trim()
       || "";
-  }
-
-  function setupLocalizedNavigation() {
-    const primary = document.querySelector(
-      ".md-sidebar--primary nav.md-nav--primary"
-    );
-    const rootList = primary?.querySelector(":scope > .md-nav__list");
-    if (!rootList) return;
-
-    const roots = Array.from(rootList.children).filter((item) =>
-      ["中文", "English"].includes(directNavigationTitle(item))
-    );
-    const activeTitle = isEnglishPage() ? "English" : "中文";
-
-    roots.forEach((item) => {
-      const isActive = directNavigationTitle(item) === activeTitle;
-      item.classList.toggle("ee-nav-language-root--active", isActive);
-      item.classList.toggle("ee-nav-language-root--hidden", !isActive);
-      item.toggleAttribute("inert", !isActive);
-      if (isActive) {
-        item.removeAttribute("aria-hidden");
-        const toggle = Array.from(item.children).find((child) =>
-          child.matches?.("input.md-nav__toggle")
-        );
-        if (toggle) toggle.checked = true;
-      } else {
-        item.setAttribute("aria-hidden", "true");
-      }
-    });
   }
 
   function makeToggleAccessible(labels, input, panel, getLabel, signal) {
@@ -180,7 +159,7 @@
       ".md-sidebar--primary input.md-nav__toggle[id^='__nav_']"
     ).forEach((input) => {
       const item = input.closest(".md-nav__item");
-      if (!item || item.classList.contains("ee-nav-language-root--active")) return;
+      if (!item) return;
       const panel = Array.from(item.children).find((child) =>
         child.matches?.("nav.md-nav")
       );
@@ -228,6 +207,21 @@
       mobile.removeEventListener("change", sync);
     }, { once: true });
     sync();
+  }
+
+  function setupLanguageScopedSearch(signal) {
+    const result = document.querySelector(
+      "[data-md-component='search-result']"
+    );
+    const resultList = result?.querySelector(".md-search-result__list");
+    if (!result || !resultList) return;
+
+    const english = isEnglishPage();
+    result.dataset.eeSearchLanguage = english ? "en" : "zh";
+    resultList.setAttribute(
+      "aria-label",
+      english ? "Search results in English" : "中文搜索结果"
+    );
   }
 
   function setupChecklists(signal) {
@@ -336,63 +330,17 @@
     update();
   }
 
-  function setupGiscusTheme(signal) {
-    const discussion = document.querySelector(".ee-course-discussion");
-    if (!discussion) return;
-
-    const selectedTheme = () => {
-      const scheme = document.body?.getAttribute("data-md-color-scheme")
-        || document.documentElement.getAttribute("data-md-color-scheme");
-      return scheme === "slate" ? "dark" : "light";
-    };
-
-    const sync = () => {
-      const frame = discussion.querySelector("iframe.giscus-frame");
-      if (!frame?.contentWindow) return;
-      frame.contentWindow.postMessage(
-        {
-          giscus: {
-            setConfig: {
-              theme: selectedTheme()
-            }
-          }
-        },
-        "https://giscus.app"
-      );
-    };
-
-    const observer = new MutationObserver(sync);
-    observer.observe(discussion, { childList: true, subtree: true });
-    if (document.body) {
-      observer.observe(document.body, {
-        attributes: true,
-        attributeFilter: ["data-md-color-scheme"]
-      });
-    }
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-md-color-scheme"]
-    });
-
-    const handleMessage = (event) => {
-      if (event.origin === "https://giscus.app") sync();
-    };
-    window.addEventListener("message", handleMessage, { signal });
-    signal.addEventListener("abort", () => observer.disconnect(), { once: true });
-    sync();
-  }
-
   function initialize() {
     teardown();
     const controller = new AbortController();
     teardown = () => controller.abort();
     setupDocumentLanguage();
-    setupLocalizedNavigation();
+    setupLocalizedPermalinks();
     setupSkipLink();
     setupNavigationAndSearch(controller.signal);
+    setupLanguageScopedSearch(controller.signal);
     setupChecklists(controller.signal);
     improveScrollableTables(controller.signal);
-    setupGiscusTheme(controller.signal);
     document.documentElement.dataset.eeReady = "true";
   }
 

@@ -52,33 +52,6 @@ label[role="button"] {
   width: 13rem;
 }
 
-/* Page-language switching lives in the standard header menu. */
-.ee-language {
-  display: none !important;
-}
-
-/* The configured navigation has one complete tree per language. Only the
-   current tree is exposed, and its wrapper is flattened to Material's native
-   primary-navigation level. */
-.ee-nav-language-root--hidden {
-  display: none !important;
-}
-
-.ee-nav-language-root--active > .md-nav__container,
-.ee-nav-language-root--active > .md-nav__link,
-.ee-nav-language-root--active > label.md-nav__link {
-  display: none !important;
-}
-
-.ee-nav-language-root--active > nav.md-nav {
-  display: block !important;
-  margin: 0;
-}
-
-.ee-nav-language-root--active > nav.md-nav > .md-nav__list {
-  padding: 0;
-}
-
 /* Keep wide engineering tables keyboard-accessible without changing their
    native Material appearance. */
 .md-typeset__table {
@@ -117,8 +90,8 @@ label[role="button"] {
   display: grid;
   gap: 0.55rem;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-  list-style: none;
-  margin: 0;
+  list-style: none !important;
+  margin: 0.75rem 0 0;
   padding: 0;
 }
 
@@ -145,31 +118,15 @@ label[role="button"] {
 
 .ee-course-feedback__actions span {
   color: var(--md-default-fg-color--light);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   line-height: 1.5;
   margin-top: 0.25rem;
 }
 
 .ee-course-feedback__privacy {
   color: var(--md-default-fg-color--light);
-  font-size: 0.68rem;
-  margin-top: 0.75rem;
-}
-
-.ee-course-discussion {
-  border-top: 0.05rem solid var(--md-default-fg-color--lightest);
-  margin-top: 2rem;
-  padding-top: 1.2rem;
-}
-
-.ee-course-discussion > p {
-  color: var(--md-default-fg-color--light);
   font-size: 0.72rem;
-}
-
-.ee-course-discussion .giscus,
-.ee-course-discussion .giscus-frame {
-  width: 100%;
+  margin-top: 0.75rem;
 }
 
 @media screen and (max-width: 48em) {
@@ -196,9 +153,7 @@ label[role="button"] {
 @media print {
   .md-header,
   .md-sidebar,
-  .ee-language,
-  .ee-course-feedback,
-  .ee-course-discussion {
+  .ee-course-feedback {
     display: none !important;
   }
 

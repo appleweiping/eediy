@@ -3,69 +3,62 @@ title: "Linear Circuits 2: AC Analysis"
 description: "Georgia Institute of Technology 的《Linear Circuits 2: AC Analysis》承接直流分析并训练交流电路方法；视频、45 项作业与实验演示可用，但没有完整搭建循环。"
 page_type: course
 course_id: "course-023"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: f57c3e72fc7b001c -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: ed52f562ac8a8d44 -->
 
-# Linear Circuits 2: AC Analysis
+# Georgia Institute of Technology: Linear Circuits 2: AC Analysis
 
 ## 课程简介
 
 - **所属大学：** Georgia Institute of Technology
 - **课程编号：** Linear Circuits 2
-- **先修要求：** 建议先完成方向基础：工程数学；建议先完成方向基础：物理基础；建议背景：直流电路分析或同等基础；第一门课程可作为配套，但不是不可替代的硬先修
-- **方向：** [电路分析](index.md)
-- **路线角色：** 替代
-- **公开材料：** 核心材料可访问
-- **最近复核：** 2026-07-28
+- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
+- **本站建议背景：** 工程数学；物理基础；直流电路分析或同等基础；第一门课程可作为配套，但不是不可替代的硬先修
+- **访问条件：** 需注册；可用范围以平台为准
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### 这门课从相量开始
 
-Georgia Institute of Technology 的《Linear Circuits 2: AC Analysis》承接直流分析并训练交流电路方法；视频、45 项作业与实验演示可用，但没有完整搭建循环。
+Georgia Tech 官方的 [Linear Circuits 2 课程与 assignments](https://www.coursera.org/learn/linear-circuits-ac-analysis)
+有 5 个 modules，主线是 sinusoid/phasor、frequency response、filter、complex power
+和 transformer。它不会重教 KVL/KCL、node/mesh、Thévenin/Norton 或一阶 transient；
+这些由前一门 [Linear Circuits 1](https://www.coursera.org/learn/linear-circuits-dcanalysis)
+覆盖。可拿串联 RLC 检查准备程度：从时域关系转到 impedance，求电流相量，再还原 amplitude
+与 phase，并解释频率变化时谁主导。若只能算复数却说不清超前/滞后，复数几何和储能元件就是当前缺口。
+官方 Coursera 页面中的 graded exercises 会受当期登录与访问权限影响。
 
-**开始前先核对**
+### 每次计算都要回到波形
 
-- 建议先完成方向基础：工程数学
-- 建议先完成方向基础：物理基础
-- 建议背景：直流电路分析或同等基础；第一门课程可作为配套，但不是不可替代的硬先修
+从 \(v(t)\) 得到 phasor 后，一定再还原时域；从 transfer function 画 Bode asymptote 后，
+选几个频点做精确计算。AC power 要声明 phasor 是 peak 还是 RMS，区分 W、var、VA；
+maximum power transfer 与 maximum efficiency 回答的是两个不同问题。transformer 则要确定 dot
+convention 和 reference direction，再反射 impedance。
 
-## 先看这些入口
+filter 设计不能只算 cutoff。写出 passband、stopband、source/load、元件系列和 tolerance，
+再考虑 op-amp gain-bandwidth、slew rate、output swing 与 probe loading 怎样移动原来的
+poles/zeros。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+画图前写下低频、高频和 resonance 附近的趋势预测；如果精确曲线违反这些极限，优先检查 phasor
+约定、传递函数归一化与测量负载。修改坐标范围只会把异常藏起来。
 
-- [课程主页](https://www.coursera.org/learn/linear-circuits-ac-analysis)
+### 用传感器滤波器检查相量、频响和波形
 
-## 已知边界
-
-课程包含 45 项作业和实验演示，但没有搭建闭环；Coursera 访问可能收费或随时变化。
-
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+课程演示 guitar filtering、RLC 与 sensors，但 Georgia Tech 校内
+[ECE 3710 说明](https://pe.gatech.edu/sites/default/files/agendas/ECE-3710-Circuits%20and%20Electronics.pdf)
+中的 myDAQ 实验属于校内配置，MOOC 页面并未公开对应的 lab 包。自学可为窄带传感器设计 filter：从 spectrum
+写规格，推导 transfer function，做 SPICE magnitude/phase sweep，再低压测几个关键频点。
+没有硬件时做 tolerance sweep，并明确是仿真。最后若能预测新网络的数量级、相位方向和频率
+极限，再用复数计算验证，相量才真正成了工程工具。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（1 项）</summary>
+- [课程主页](https://www.coursera.org/learn/linear-circuits-ac-analysis)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 完整 |
-| 实验 | 部分 |
-| 考试 | 部分 |
-| 代码 | 无公开材料 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/linear-circuits-ac-analysis) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

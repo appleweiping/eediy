@@ -3,68 +3,60 @@ title: "Essentials of PCB Design"
 description: "Worcester Polytechnic Institute's Essentials of PCB Design supplements PCB practice with slides, starter files, KiCad materials, and GitHub resources, while recordings are restricted and fabrication is self-funded."
 page_type: course
 course_id: "course-056"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 93a963af4c94a3c1 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4df78a52c41da7fe -->
 
-# Essentials of PCB Design
+# Worcester Polytechnic Institute: Essentials of PCB Design
 
 ## Course Overview
 
 - **University:** Worcester Polytechnic Institute
 - **Course code:** Essentials of PCB Design
-- **Prerequisites:** Recommended foundation: Circuit Analysis; Recommended foundation: Electronics Laboratory and Measurement
-- **Track:** [PCB, EDA, and Hardware Verification](index.md)
-- **Path role:** Supplement
-- **Public materials:** Partial materials
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
+- **EEDIY preparation:** Circuit Analysis; Electronics Laboratory and Measurement
+- **Access:** Open without registration
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### A Strong First Complete PCB
 
-Worcester Polytechnic Institute's Essentials of PCB Design supplements PCB practice with slides, starter files, KiCad materials, and GitHub resources, while recordings are restricted and fabrication is self-funded.
+WPI’s [Essentials of PCB Design](https://pcb.wpi.edu/) is a short practicum created in 2024: after 4 evening lectures, students spend about 2 weeks turning a supplied schematic into an Arduino-compatible MCU board that can drive up to 30 RGB LEDs. It teaches a complete pass from schematic and footprints to fabrication files and bring-up. Choose a specialist course instead for high-speed design, RF, EMC, or production reliability.
 
-**Check before starting**
+You should already read power, ground, and digital interfaces, consult a datasheet, and check for shorts with a multimeter. KiCad experience is optional. If MCU power, decoupling, and connector pinouts are still opaque, study basic circuits first.
 
-- Recommended foundation: Circuit Analysis
-- Recommended foundation: Electronics Laboratory and Measurement
+### Course materials
 
-## Start with these links
+WPI’s official course project materials live in the [course repository](https://github.com/ieee-wpi/pcb), organized into `slides`, `datasheets`, `starter_board`, `sample_board`, and `code`. Read the [4 lecture decks](https://github.com/ieee-wpi/pcb/tree/main/slides), then copy the [starter board](https://github.com/ieee-wpi/pcb/tree/main/starter_board). Use the [sample board](https://github.com/ieee-wpi/pcb/tree/main/sample_board) to inspect functional placement, power paths, connector orientation, and silkscreen—not to trace its routing. The companion [code](https://github.com/ieee-wpi/pcb/tree/main/code) establishes intended behavior, but symbols, footprints, and physical pins still need line-by-line verification.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+### Review the Design at 3 Milestones
 
-- [Course home](https://pcb.wpi.edu/)
+The schematic review resolves every ERC warning and lists voltage domains,
+peak current, programming access, test points, and sources for critical parts.
+Milestone 2 checks the outline, holes, connectors, MCU, decoupling, and
+high-current paths. Milestone 3 checks routing and DRC, including
+copper-to-edge clearance, return paths, silkscreen over pads, and fabricator
+limits.
 
-## Known Boundaries
+Record the major [KiCad](https://www.kicad.org/) version. Generate Gerbers,
+drill files, BOM, position files, and the assembly drawing as a single export set,
+then inspect those exports in an independent viewer. Arrange peer review; if
+working alone, review again on a later day.
 
-Slides, starter files, KiCad materials, and GitHub resources are public; recordings require a WPI account and fabrication is self-funded.
+### Bring-up Matters Beyond DRC
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+After assembly, inspect orientation and solder bridges, then measure power-to-ground resistance. Use a current-limited supply for first power, verify rails before attaching the programmer, and test the MCU, LEDs, and added peripheral in stages. Record each failure’s probe point, expected value, measured value, and repair. If the board was never fabricated, call the result a fabrication package—not validated hardware.
+
+The public repository does not include WPI office hours, free fabrication, assembly help, or account-gated recordings. Sources, rules, ERC/DRC dispositions, manufacturing files, BOM, bring-up checklist, and photos should remain consistent throughout; if the board was not made, stop explicitly at the fabrication package. Limit the first board to a low-voltage, low-speed peripheral. High-speed USB, switch-mode power, RF, lithium charging, and mains interfaces belong in later study.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://pcb.wpi.edu/)
+- [Code · WPI PCB course source, starter board, and sample board](https://github.com/ieee-wpi/pcb)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | No public material |
-| Notes | Partial |
-| Practice | No public material |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://pcb.wpi.edu/) | Open access | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

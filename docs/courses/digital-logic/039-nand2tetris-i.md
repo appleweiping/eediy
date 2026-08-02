@@ -3,70 +3,70 @@ title: "Build a Modern Computer from First Principles: From Nand to Tetris, Part
 description: "Hebrew University of Jerusalem 的《Build a Modern Computer from First Principles: From Nand to Tetris, Part I》以自包含 HDL 模拟器和逐级项目训练数字逻辑；项目链完整，但平台访问条款可能变化。"
 page_type: course
 course_id: "course-039"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 17d196d0f1cc8609 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: acd85af3ceffed49 -->
 
-# Build a Modern Computer from First Principles: From Nand to Tetris, Part I
+# Hebrew University of Jerusalem Nand2Tetris I: Build a Modern Computer from First Principles: From Nand to Tetris, Part I
 
 ## 课程简介
 
 - **所属大学：** Hebrew University of Jerusalem
 - **课程编号：** Nand2Tetris I
-- **先修要求：** 建议先完成方向基础：编程与工程计算；建议先完成方向基础：电路分析
-- **方向：** [数字逻辑与计算结构](index.md)
-- **路线角色：** 替代
-- **公开材料：** 较完整
-- **最近复核：** 2026-07-28
+- **官方先修：** Nand2Tetris 官方页面明确写明第一部分不要求任何先前知识
+- **本站建议背景：** 本站未另设准备条件
+- **访问条件：** 公开入口；部分材料需注册或受限
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### 实验与项目
 
-Hebrew University of Jerusalem 的《Build a Modern Computer from First Principles: From Nand to Tetris, Part I》以自包含 HDL 模拟器和逐级项目训练数字逻辑；项目链完整，但平台访问条款可能变化。
+Nand2Tetris Part I 不按 lecture/exam 组织，而是从 NAND 累积到整机。官方
+[Course Page](https://www.nand2tetris.org/course) 的 Projects 1–6 依次完成逻辑门、
+adder/ALU、register/RAM、Hack assembly、CPU/computer 与 assembler。官方
+[Home](https://www.nand2tetris.org/) 提供讲义、specification 和 tools，并说明无需先修。
+不过 Project 4 和 6 会用到程序与文件处理；variables、loops、functions 和命令行基础会让
+这两项顺畅许多。
+它适合愿意按接口逐层造整机的人；只想快速学一门 HDL 时，短课会更直接。
 
-**开始前先核对**
+### 每层只使用已经造好的接口
 
-- 建议先完成方向基础：编程与工程计算
-- 建议先完成方向基础：电路分析
+[Project 1](https://www.nand2tetris.org/project01) 展示了统一 contract：`.hdl` 接口、
+`.tst` script 和 `.cmp` output。调用未来 project 的 chip 或宿主语言库会违反这条依赖关系。每次保存
+truth/state table、设计草图、官方 test transcript、额外 edge tests 与 bug log。
+Project 4 要手工 trace register/memory/jump；Project 5 画出 datapath 和 control truth
+table；Project 6 的 assembler 则保留 tokenizer、two-pass symbol table 和 malformed input
+测试。
 
-## 先看这些入口
+官方 [Software](https://www.nand2tetris.org/software) 提供 browser IDE 与 legacy Java
+desktop tools。选一条路线贯穿 6 项并定期导出源文件；中途换工具时，格式和 time-step 差异
+很容易被误判为设计错误。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+### 从 NAND 闭卷追到一条指令
 
-- [课程主页](https://www.coursera.org/learn/build-a-computer)
-- [项目 · Build a Modern Computer from First Principles: Nand to Tetris Part II (project-centered course)](https://www.coursera.org/learn/nand2tetris2)
+完成后任选 Hack C-instruction，写 assembler encoding、control bits、ALU function、
+destination/jump、CPU data path 和 register/memory timing；再翻转一个 control bit，
+写下行为预测后用 emulator 验证。这比 6 个 project 分别亮绿灯更能证明抽象层真正接上。
 
-## 已知边界
+官方 [License](https://www.nand2tetris.org/license) 请求不要公开 project solutions。
+HDL 与 assembler 仓库保持 private；公开作品集只放设计反思、测试方法和不泄题的演示。
+Part I 没有实体 FPGA 要求。可靠的 assembler 能为 Project 5 computer 生成可执行机器码后，
+再进入 Part II 的 VM、compiler 与 OS。
 
-HDL 模拟器和项目可自包含完成，但 Coursera 的试用、付费及完整课程访问条款可能变化。
-
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+再核对一次依赖：从最底层逻辑门到 CPU，只允许引用已经完成的 chip；对每个
+sequential component，明确当前周期输入、状态更新边界和下一周期可见值。若同一故障在
+chip test 与 computer test 中表现不同，就用最小 test script 固定最早偏离；反复改
+wiring 只是在猜答案。接口检查还应覆盖 bit width、reset 初值、组合输出与寄存状态的边界；每次
+修复都用旧测试回归，防止上层通过而底层 contract 已被悄悄改坏。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（2 项）</summary>
+- [代码 · Nand2Tetris projects and software suite](https://www.nand2tetris.org/software)
+- [课程主页](https://www.coursera.org/learn/build-a-computer)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 无公开材料 |
-| 代码 | 完整 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/build-a-computer) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-| [Build a Modern Computer from First Principles: Nand to Tetris Part II (project-centered course)](https://www.coursera.org/learn/nand2tetris2) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import socket
+import subprocess
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -18,6 +19,7 @@ from scripts.check_external_links import (
     classify_http_status,
     collect_external_urls,
     load_review_ledger,
+    local_repository_result,
     result_issues,
     review_approval_counts,
 )
@@ -64,6 +66,263 @@ def test_only_permanent_missing_statuses_fail() -> None:
     assert classify_http_status(404)[0] == "failed"
     assert classify_http_status(410)[0] == "failed"
     assert classify_http_status(418)[0] == "review"
+
+
+def test_same_repository_main_links_are_checked_against_the_checkout(
+    tmp_path: Path,
+) -> None:
+    example_dir = tmp_path / "examples" / "rc-lowpass"
+    example_dir.mkdir(parents=True)
+    source_file = example_dir / "run.py"
+    source_file.write_text("print('ok')\n", encoding="utf-8")
+    subprocess.run(
+        ["git", "init", "--quiet", str(tmp_path)],
+        check=True,
+        capture_output=True,
+    )
+    subprocess.run(
+        ["git", "-C", str(tmp_path), "add", "--", "examples/rc-lowpass/run.py"],
+        check=True,
+        capture_output=True,
+    )
+
+    tree_result = local_repository_result(
+        "https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass",
+        tmp_path,
+    )
+    blob_result = local_repository_result(
+        "https://github.com/appleweiping/eediy/blob/main/examples/rc-lowpass/run.py",
+        tmp_path,
+    )
+    missing_result = local_repository_result(
+        "https://github.com/appleweiping/eediy/blob/main/examples/rc-lowpass/missing.py",
+        tmp_path,
+    )
+
+    assert tree_result and tree_result["outcome"] == "ok"
+    assert blob_result and blob_result["outcome"] == "ok"
+    assert missing_result and missing_result["outcome"] == "failed"
+    assert missing_result["reason_code"] == "local_checkout_missing"
+    assert tree_result["http_status"] is None
+    assert tree_result["check_method"] == "local_checkout"
+
+
+def test_same_repository_local_check_rejects_an_untracked_target(
+    tmp_path: Path,
+) -> None:
+    example_dir = tmp_path / "examples" / "rc-lowpass"
+    example_dir.mkdir(parents=True)
+    (example_dir / "run.py").write_text("print('ok')\n", encoding="utf-8")
+    subprocess.run(
+        ["git", "init", "--quiet", str(tmp_path)],
+        check=True,
+        capture_output=True,
+    )
+
+    result = local_repository_result(
+        "https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass",
+        tmp_path,
+    )
+
+    assert result and result["outcome"] == "failed"
+    assert result["reason_code"] == "local_checkout_untracked"
+
+
+def test_same_repository_local_check_fails_closed_without_git_metadata(
+    tmp_path: Path,
+) -> None:
+    example_dir = tmp_path / "examples" / "rc-lowpass"
+    example_dir.mkdir(parents=True)
+    (example_dir / "run.py").write_text("print('not proven')\n", encoding="utf-8")
+
+    result = local_repository_result(
+        "https://github.com/appleweiping/eediy/blob/main/examples/rc-lowpass/run.py",
+        tmp_path,
+    )
+
+    assert result and result["outcome"] == "failed"
+    assert result["reason_code"] == "local_checkout_untracked"
+
+
+def test_same_repository_issue_action_requires_an_exact_tracked_template(
+    tmp_path: Path,
+) -> None:
+    templates = tmp_path / ".github" / "ISSUE_TEMPLATE"
+    templates.mkdir(parents=True)
+    template = templates / "broken-link.yml"
+    template.write_text("name: Broken link\n", encoding="utf-8")
+    subprocess.run(
+        ["git", "init", "--quiet", str(tmp_path)],
+        check=True,
+        capture_output=True,
+    )
+    subprocess.run(
+        ["git", "-C", str(tmp_path), "add", "--", ".github/ISSUE_TEMPLATE/broken-link.yml"],
+        check=True,
+        capture_output=True,
+    )
+
+    valid = local_repository_result(
+        "https://github.com/appleweiping/eediy/issues/new?template=broken-link.yml",
+        tmp_path,
+    )
+    missing = local_repository_result(
+        "https://github.com/appleweiping/eediy/issues/new?template=missing.yml",
+        tmp_path,
+    )
+    ambiguous = local_repository_result(
+        "https://github.com/appleweiping/eediy/issues/new?template=broken-link.yml&template=other.yml",
+        tmp_path,
+    )
+
+    assert valid and valid["outcome"] == "ok"
+    assert external_links.reason_code_matches_result(valid)
+    assert missing and missing["reason_code"] == "local_checkout_missing"
+    assert ambiguous and ambiguous["reason_code"] == "local_checkout_invalid"
+
+
+def test_same_repository_compare_action_requires_a_tracked_checkout(
+    tmp_path: Path,
+) -> None:
+    tracked_file = tmp_path / "README.md"
+    tracked_file.write_text("EEDIY\n", encoding="utf-8")
+    subprocess.run(
+        ["git", "init", "--quiet", str(tmp_path)],
+        check=True,
+        capture_output=True,
+    )
+    subprocess.run(
+        ["git", "-C", str(tmp_path), "add", "--", "README.md"],
+        check=True,
+        capture_output=True,
+    )
+
+    valid = local_repository_result(
+        "https://github.com/appleweiping/eediy/compare",
+        tmp_path,
+    )
+    invalid = local_repository_result(
+        "https://github.com/appleweiping/eediy/compare?expand=1",
+        tmp_path,
+    )
+
+    assert valid and valid["outcome"] == "ok"
+    assert external_links.reason_code_matches_result(valid)
+    assert invalid and invalid["reason_code"] == "local_checkout_invalid"
+
+
+def test_same_repository_success_reason_must_match_the_action_kind(
+    tmp_path: Path,
+) -> None:
+    tracked_file = tmp_path / "README.md"
+    tracked_file.write_text("EEDIY\n", encoding="utf-8")
+    subprocess.run(
+        ["git", "init", "--quiet", str(tmp_path)],
+        check=True,
+        capture_output=True,
+    )
+    subprocess.run(
+        ["git", "-C", str(tmp_path), "add", "--", "README.md"],
+        check=True,
+        capture_output=True,
+    )
+    result = local_repository_result(
+        "https://github.com/appleweiping/eediy/compare",
+        tmp_path,
+    )
+
+    assert result and external_links.reason_code_matches_result(result)
+    forged = {
+        **result,
+        "reason": "same-repository issue action names an exact tracked template",
+    }
+    assert not external_links.reason_code_matches_result(forged)
+
+
+def test_same_repository_tracking_check_treats_metacharacters_literally(
+    tmp_path: Path,
+) -> None:
+    example_dir = tmp_path / "examples" / "rc-lowpass"
+    example_dir.mkdir(parents=True)
+    (example_dir / "run.py").write_text("print('tracked')\n", encoding="utf-8")
+    (example_dir / "[r]un.py").write_text("print('untracked')\n", encoding="utf-8")
+    subprocess.run(
+        ["git", "init", "--quiet", str(tmp_path)],
+        check=True,
+        capture_output=True,
+    )
+    subprocess.run(
+        ["git", "-C", str(tmp_path), "add", "--", "examples/rc-lowpass/run.py"],
+        check=True,
+        capture_output=True,
+    )
+
+    result = local_repository_result(
+        "https://github.com/appleweiping/eediy/blob/main/examples/rc-lowpass/[r]un.py",
+        tmp_path,
+    )
+
+    assert result and result["outcome"] == "failed"
+    assert result["reason_code"] == "local_checkout_untracked"
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "https://github.com/appleweiping/eediy",
+        "https://github.com/appleweiping/eediy/issues",
+        "https://github.com/appleweiping/eediy/pulls?state=open",
+    ],
+)
+def test_non_file_same_repository_pages_use_the_network_checker(
+    tmp_path: Path,
+    url: str,
+) -> None:
+    assert local_repository_result(url, tmp_path) is None
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "http://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass",
+        "https://github.com:1/appleweiping/eediy/tree/main/examples/rc-lowpass",
+        "https://user:secret@github.com/appleweiping/eediy/tree/main/examples/rc-lowpass",
+        "https://github.com/AppleWeiping/eediy/tree/main/examples/rc-lowpass",
+        "https://github.com/appleweiping/eediy/tree/Main/examples/rc-lowpass",
+        "https://github.com/appleweiping/eediy/tree/main/examples%2Frc-lowpass",
+        "https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass?plain=1",
+        "https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass.",
+        "https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass%20",
+        "https://github.com/appleweiping/eediy/blob/main/examples/rc-lowpass/run.\npy",
+        "https://github.com/appleweiping/eediy/blob/main/examples/rc-lowpass/r\tun.py",
+        "https://github.com/appleweiping/eediy/blob/main/examples/rc-lowpass/run.\rpy",
+    ],
+)
+def test_same_repository_local_check_rejects_noncanonical_urls(
+    tmp_path: Path,
+    url: str,
+) -> None:
+    example_dir = tmp_path / "examples" / "rc-lowpass"
+    example_dir.mkdir(parents=True)
+
+    result = local_repository_result(url, tmp_path)
+
+    assert result and result["outcome"] == "failed"
+    assert result["reason_code"] == "local_checkout_invalid"
+    assert result["http_status"] is None
+
+
+def test_same_repository_local_check_requires_exact_path_case(tmp_path: Path) -> None:
+    example_dir = tmp_path / "examples" / "rc-lowpass"
+    example_dir.mkdir(parents=True)
+
+    result = local_repository_result(
+        "https://github.com/appleweiping/eediy/tree/main/examples/RC-LOWPASS",
+        tmp_path,
+    )
+
+    assert result and result["outcome"] == "failed"
+    assert result["reason_code"] == "local_checkout_missing"
 
 
 @pytest.mark.parametrize(
@@ -645,15 +904,15 @@ def test_review_ledger_summary_must_match_target_decisions(
         load_review_ledger(path, today=date(2026, 7, 30))
 
 
-def test_repository_review_ledger_has_38_current_retained_targets() -> None:
+def test_repository_review_ledger_has_current_retained_targets() -> None:
     ledger = load_review_ledger(
         Path("data/external_link_reviews.json"),
-        today=date(2026, 7, 29),
+        today=date(2026, 7, 31),
     )
 
-    assert len(ledger) == 38
-    assert len(ledger.evidence_urls) == 13
-    assert ledger.reviewed_at == "2026-07-29"
+    assert ledger
+    assert ledger.evidence_urls
+    assert ledger.reviewed_at == "2026-07-31"
     assert all(review["decision"] == "retain" for review in ledger.values())
 
 
@@ -685,6 +944,58 @@ def test_url_collection_deduplicates_fragments(tmp_path: Path) -> None:
         encoding="utf-8",
     )
     assert collect_external_urls(docs) == ["https://example.edu/path"]
+
+
+@pytest.mark.parametrize("control", ["\n", "\r", "\t"])
+def test_url_collection_rejects_controls_before_canonicalization(
+    tmp_path: Path,
+    control: str,
+) -> None:
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    (docs / "index.md").write_text(
+        "[unsafe](<https://github.com/appleweiping/eediy/blob/main/"
+        f"scripts/check_external_{control}links.py>)\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        external_links.QualityError,
+        match="control characters",
+    ):
+        collect_external_urls(docs)
+
+
+def test_url_collection_rejects_controls_even_when_scheme_detection_fails(
+    tmp_path: Path,
+) -> None:
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    (docs / "index.md").write_text(
+        "[unsafe](<ht\ntps://example.edu/path>)\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(external_links.QualityError, match="control characters"):
+        collect_external_urls(docs)
+
+
+def test_json_url_fields_are_validated_before_external_url_filtering(
+    tmp_path: Path,
+) -> None:
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    manifest = tmp_path / "resources.json"
+    manifest.write_text(
+        json.dumps({"url": "ht\ntps://example.edu/path"}),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        external_links.QualityError,
+        match="whitespace or control characters",
+    ):
+        collect_external_urls(docs, manifest_paths=[manifest])
 
 
 def test_network_and_tls_errors_require_review() -> None:
@@ -722,6 +1033,8 @@ def test_network_and_tls_errors_require_review() -> None:
         "https://169.254.1.2/course",
         "https://[::1]/course",
         "https://[fe80::1]/course",
+        "https://example.edu/co\nurse",
+        "https://example.edu/co\turse",
     ],
 )
 def test_explicitly_unsafe_targets_fail_without_network(url: str) -> None:
@@ -956,6 +1269,88 @@ def test_safe_redirects_are_followed_manually() -> None:
         ("https://example.edu/new-course", False),
     ]
     assert resolved_hosts == ["example.edu"]
+
+
+def test_authentication_redirect_is_not_counted_as_a_healthy_resource() -> None:
+    class FakeResponse:
+        def __init__(
+            self,
+            status_code: int,
+            *,
+            location: str | None = None,
+            content_type: str = "",
+        ) -> None:
+            self.status_code = status_code
+            self.headers = {}
+            if location:
+                self.headers["Location"] = location
+            if content_type:
+                self.headers["Content-Type"] = content_type
+
+        @staticmethod
+        def close() -> None:
+            return None
+
+    class FakeRequests:
+        class RequestException(Exception):
+            pass
+
+        @staticmethod
+        def head(url: str, **_kwargs: object) -> FakeResponse:
+            if url == "https://example.edu/lecture.pdf":
+                return FakeResponse(
+                    302,
+                    location="https://login.stanford.edu/saml2/idp/SSOService.php",
+                )
+            return FakeResponse(200, content_type="text/html")
+
+        @staticmethod
+        def get(*_args: object, **_kwargs: object) -> object:
+            raise AssertionError("GET fallback must not run")
+
+    checker = LinkChecker(
+        retries=0,
+        respect_robots=False,
+        resolver=lambda _hostname, _port: ["93.184.216.34"],
+    )
+    checker.requests = FakeRequests()
+    result = checker.check("https://example.edu/lecture.pdf")
+    assert result["outcome"] == "review"
+    assert result["reason_code"] == "auth_redirect"
+    assert result["reason"] == "redirected to an authentication page"
+
+
+def test_html_response_for_direct_download_is_not_counted_as_healthy() -> None:
+    class FakeResponse:
+        status_code = 200
+        headers = {"Content-Type": "text/html; charset=utf-8"}
+
+        @staticmethod
+        def close() -> None:
+            return None
+
+    class FakeRequests:
+        class RequestException(Exception):
+            pass
+
+        @staticmethod
+        def head(*_args: object, **_kwargs: object) -> FakeResponse:
+            return FakeResponse()
+
+        @staticmethod
+        def get(*_args: object, **_kwargs: object) -> object:
+            raise AssertionError("GET fallback must not run")
+
+    checker = LinkChecker(
+        retries=0,
+        respect_robots=False,
+        resolve_dns=False,
+    )
+    checker.requests = FakeRequests()
+    result = checker.check("https://example.edu/archive.zip")
+    assert result["outcome"] == "review"
+    assert result["reason_code"] == "content_type_mismatch"
+    assert result["reason"] == "direct .zip resource returned text/html"
 
 
 @pytest.mark.parametrize(

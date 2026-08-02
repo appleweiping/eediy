@@ -114,3 +114,87 @@ def test_researched_inventory_corrections_survive_the_authoritative_pipeline() -
     ece3030 = courses[107]
     assert "thirty-six handout groups" in ece3030["summary"]["en"].lower()
     assert "36 组讲义" in ece3030["summary"]["zh"]
+
+    complex_variables = courses[5]
+    assert complex_variables["prerequisite_course_ids"] == [2]
+    assert "18.03 or 18.032" in " ".join(
+        complex_variables["official_prerequisites"]["en"]
+    )
+    assert "18.03 或 18.032" in " ".join(
+        complex_variables["official_prerequisites"]["zh"]
+    )
+    assert "one public review route" in " ".join(
+        complex_variables["recommended_background"]["en"]
+    )
+    assert "公开复习入口" in " ".join(
+        complex_variables["recommended_background"]["zh"]
+    )
+    assert "18.03 or 18.032" in complex_variables["review_note"]["en"]
+    assert "18.03 或 18.032" in complex_variables["review_note"]["zh"]
+
+    ece5760 = courses[52]
+    assert ece5760["resource_coverage"]["video"] == 1
+    assert ece5760["resource_coverage"]["practice"] == 1
+    assert any(resource["kind"] == "video" for resource in ece5760["resources"])
+    assert any(resource["kind"] == "projects" for resource in ece5760["resources"])
+
+    feedback_systems = courses[67]
+    assert feedback_systems["resource_coverage"]["video"] == 1
+    assert any(resource["kind"] == "video" for resource in feedback_systems["resources"])
+    assert "supplements, not Spring 2007" in feedback_systems["review_note"]["en"]
+
+    mobile_autonomy = courses[61]
+    assert mobile_autonomy["resource_coverage"]["practice"] == 1
+    assert any(resource["kind"] == "assignments" for resource in mobile_autonomy["resources"])
+
+    stochastic_control = courses[72]
+    assert stochastic_control["resource_coverage"]["video"] == 1
+    assert any(resource["kind"] == "video" for resource in stochastic_control["resources"])
+    assert "not recordings of this course" in stochastic_control["review_note"]["en"]
+
+    robot_competition = courses[76]
+    assert robot_competition["resource_coverage"]["video"] == 1
+    assert robot_competition["resource_coverage"]["practice"] == 2
+    assert any(resource["kind"] == "video" for resource in robot_competition["resources"])
+    assert any(resource["kind"] == "assignments" for resource in robot_competition["resources"])
+
+    ece3400 = courses[62]
+    assert ece3400["resource_coverage"]["practice"] == 1
+    assert any(resource["kind"] == "projects" for resource in ece3400["resources"])
+    assert not any(
+        resource["kind"] == "exams" and resource["title"]["en"] == "Final Project"
+        for resource in ece3400["resources"]
+    )
+
+    ee276 = courses[102]
+    assert ee276["resource_coverage"]["video"] == 1
+    assert "supplements, not Stanford lecture recordings" in ee276["review_note"]["en"]
+
+    wireless = courses[104]
+    assert wireless["resource_coverage"]["notes"] == 1
+    assert "public lecture-note sequence" in wireless["review_note"]["en"]
+
+    electromagnetics = courses[109]
+    assert electromagnetics["resource_coverage"]["notes"] == 1
+
+    quantum_physics = courses[13]
+    photon_note = next(
+        resource
+        for resource in quantum_physics["resources"]
+        if "Experiments with Photons" in resource["title"]["en"]
+    )
+    assert quantum_physics["resource_coverage"]["labs"] == 0
+    assert photon_note["kind"] == "notes"
+
+    advanced_circuits = courses[33]
+    calendar = next(
+        resource
+        for resource in advanced_circuits["resources"]
+        if resource["title"]["en"] == "Calendar"
+    )
+    assert advanced_circuits["resource_coverage"]["notes"] == 0
+    assert calendar["kind"] == "course"
+
+    complex_digital = courses[49]
+    assert complex_digital["resource_coverage"]["practice"] == 1
+    assert any(resource["kind"] == "projects" for resource in complex_digital["resources"])

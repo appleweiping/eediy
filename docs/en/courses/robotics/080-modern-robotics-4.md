@@ -1,74 +1,62 @@
 ---
 title: "Modern Robotics, Course 4: Robot Motion Planning and Control"
-description: "Northwestern University's Modern Robotics, Course 4: Robot Motion Planning and Control focuses on planning and control through complete practice resources, while requiring the first three courses and potentially paid access."
+description: "Northwestern University's Modern Robotics, Course 4: Robot Motion Planning and Control focuses on planning and control through complete practice resources; the provider highly recommends following the earlier modeling, kinematics, and dynamics material in order, and full access may be paid."
 page_type: course
 course_id: "course-080"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: fe2bfe7fc45f5d86 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: daa6a9156a353b92 -->
 
-# Modern Robotics, Course 4: Robot Motion Planning and Control
+# Northwestern University Modern Robotics 4: Modern Robotics, Course 4: Robot Motion Planning and Control
 
 ## Course Overview
 
 - **University:** Northwestern University
 - **Course code:** Modern Robotics 4
-- **Prerequisites:** Recommended foundation: Control Systems; Recommended foundation: Programming and Engineering Computing; Recommended foundation: Physics Foundations; Course-sequence requirement: complete Modern Robotics, Course 1: Foundations of Robot Motion (Northwestern University Modern Robotics 1) first; Course-sequence requirement: complete Modern Robotics, Course 2: Robot Kinematics (Northwestern University Modern Robotics 2) first; Course-sequence requirement: complete Modern Robotics, Course 3: Robot Dynamics (Northwestern University Modern Robotics 3) first
-- **Track:** [Robotics and Autonomous Systems](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself
+- **EEDIY preparation:** Complete Courses 1–3 first or bring equivalent SE(3), kinematics, dynamics, and trajectory background; this is EEDIY's content-based study order
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Course 4 connects A*, RRT/PRM, and reference tracking
 
-Northwestern University's Modern Robotics, Course 4: Robot Motion Planning and Control focuses on planning and control through complete practice resources, while requiring the first three courses and potentially paid access.
+Coursera [Robot Motion Planning and Control](https://www.coursera.org/learn/modernrobotics-course4) corresponds to *Modern Robotics* Chapters 10–11. Planning moves from C-space obstacles and A* through RRT/PRM, potential fields, and optimization; control moves from error dynamics through velocity, torque/force, and hybrid motion-force control. It fits learners who already command the first three courses’ SE(3), kinematics, dynamics, and trajectories and want to connect a planner to a controller.
 
-**Check before starting**
+Fix the interface early: the planner emits a path, the trajectory generator adds time, and the controller tracks the reference. Replay each layer independently to localize failure.
 
-- Recommended foundation: Control Systems
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Physics Foundations
-- Course-sequence requirement: complete [Modern Robotics, Course 1: Foundations of Robot Motion](../robotics/077-modern-robotics-1.md) (Northwestern University Modern Robotics 1) first
-- Course-sequence requirement: complete [Modern Robotics, Course 2: Robot Kinematics](../robotics/078-modern-robotics-2.md) (Northwestern University Modern Robotics 2) first
-- Course-sequence requirement: complete [Modern Robotics, Course 3: Robot Dynamics](../robotics/079-modern-robotics-3.md) (Northwestern University Modern Robotics 3) first
+### Two planning projects have explicit contracts
 
-## Start with these links
+The [A* project](https://hades.mech.northwestern.edu/index.php/A%2A_Graph_Search_Project) reads `nodes.csv` and `edges.csv`, then writes `path.csv` and a scene screenshot. Hand-calculate parent, cost-to-come, heuristic, and ties on a tiny graph before testing start=goal, unreachable, duplicate-edge, and malformed-input cases. Output total cost, expanded nodes, and an explicit failure state. Heuristic admissibility/consistency must be justified against the given costs.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+[Sampling-Based Planning](https://hades.mech.northwestern.edu/index.php/Sampling-Based_Planning) implements RRT or PRM among circular obstacles in \([-0.5,0.5]^2\), including a segment-circle collision checker. Fix map, radius, step, goal bias, maximum iterations, and seed. For narrow passages, isolated regions, and grazing edges, report success rate, path length, node count, and runtime. Recheck every segment after smoothing.
 
-- [Course home](https://www.coursera.org/learn/modernrobotics-course4)
+A* and the sampling planner should share input parsing, collision queries, and a path validator. With a zero heuristic, A* should reduce to Dijkstra; the PRM query stage should reuse the already tested A*. Give invalid map, start/goal collision, no path, and timeout distinct failures—an empty path cannot represent all four. Summarize the random planner across a fixed seed set rather than selecting its shortest run.
 
-## Known Boundaries
+### Validate the controller from known errors
 
-The course depends on the first three parts of the sequence, and full Coursera access may require payment.
+Chapter 11 starts with an analytically checkable error system before body/space errors, feedforward, P/PI/PID, computed torque, and force control. Under identical initial error/reference, compare feedforward-only, low-gain feedback, disturbance, and saturation. Plot 6D pose error, command peak, saturation time, and steady-state offset.
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+Fix the sampling interval and actuator limits for control experiments. Test reference jumps, model error, and external wrenches separately, showing integral behavior before and after anti-windup. When tracking error decreases while commands remain saturated, endpoint pose alone is insufficient; check whether trajectory duration exceeds system bandwidth.
+
+The [book home](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) supplies chapter boundaries and errata, while the [MR repository](https://github.com/NxRLab/ModernRobotics) supplies teaching implementations. Add no-path handling, input validation, tolerances, speed/torque limits, and anti-windup. Higher gain cannot repair frames, reference discontinuities, or an ill-conditioned Jacobian.
+
+### Deliver separately, then integrate
+
+[Coursera Resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) assigns both projects to Course 4; the [CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) defines scene/CSV boundaries. Retain fixed inputs, raw outputs, seeds, README, screenshots/video, and 1 rerun command.
+
+Keep separate results for the planner benchmark, controller tracking of the same timed reference in an obstacle-free setting, and failed integrated runs. The evidence should distinguish path discontinuity, time scale, IK conditioning, and control bandwidth. Simulation establishes an algorithm experiment, not physical collision or motor-safety certification.
+
+The integration contract should state waypoint frame, timestamp, velocity continuity, clearance, and failure codes. Validate the reference offline before controller replay. If integration fails, reproduce the saved path and control log separately. In the final report, place the planning-success distribution beside the tracking-error distribution so a best-case video cannot hide instability in either layer.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.coursera.org/learn/modernrobotics-course4)
+- [Code · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/modernrobotics-course4) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

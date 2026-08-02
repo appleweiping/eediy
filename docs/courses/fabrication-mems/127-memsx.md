@@ -3,68 +3,68 @@ title: "Micro and Nanofabrication (MEMS)"
 description: "EPFL 的《Micro and Nanofabrication (MEMS)》以视频和洁净室演示提供 MEMS 微纳加工替代路径；演示只能观察，且完整平台访问价格较高。"
 page_type: course
 course_id: "course-127"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: ed1d8d70d7a90d5e -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9ad96566a676213a -->
 
-# Micro and Nanofabrication (MEMS)
+# EPFL memsX: Micro and Nanofabrication (MEMS)
 
 ## 课程简介
 
 - **所属大学：** EPFL
 - **课程编号：** memsX
-- **先修要求：** 建议先完成方向基础：半导体器件；建议先完成方向基础：物理基础
-- **方向：** [微纳工艺与 MEMS](index.md)
-- **路线角色：** 替代
-- **公开材料：** 核心材料可访问
-- **最近复核：** 2026-07-28
+- **官方先修：** EPFL memsX/edX 页面列出基础物理与化学为先修
+- **本站建议背景：** 本站未另设准备条件
+- **访问条件：** 公开入口；部分材料需注册或受限
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### 课程定位
 
-EPFL 的《Micro and Nanofabrication (MEMS)》以视频和洁净室演示提供 MEMS 微纳加工替代路径；演示只能观察，且完整平台访问价格较高。
+EPFL [Micro and Nanofabrication (MEMS)](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems) 旧称 memsX；edX 将其标为 advanced、self-paced，建议 7 周、每周 3–5 小时，先修 basic physics and chemistry。EPFL [courseware 入口](https://courseware.epfl.ch/courses/course-v1%3AEPFL%2Bmems%2B2023/about) 署名 Jürgen Brugger 与 Martin Gijs，[MICRO-621 官方课程册与 quizzes 说明](https://edu.epfl.ch/coursebook/en/mooc-micro-and-nanofabrication-mems-MICRO-621-A) 则明确这是用视频展示 fabrication practice 的在线课。
 
-**开始前先核对**
+它的价值是近距离观察 equipment、wafer 与 process step，而非授予 tool qualification。视频没有 facility safety certification、recipe qualification、contamination control、waste procedure 或 supervisor sign-off。
 
-- 建议先完成方向基础：半导体器件
-- 建议先完成方向基础：物理基础
+### 选一个 virtual cantilever，每周重画它的截面
 
-## 先看这些入口
+Week 1 选 cantilever、membrane 或 interdigitated capacitor，画初始 cross-section、material stack、critical dimension 与 function。Week 2 的 CVD、Week 3 的 PVD 分别记录 deposition mechanism、conformality、thermal budget、stress、selectivity 与 contamination。Week 4 把 mask polarity、resist tone、alignment 和 lithography bias 写进 process traveler。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+Week 5 dry etch 与 Week 6 wet etch 要比较 anisotropy、selectivity、loading/undercut、damage 和所需环境；Week 7 inspection/metrology 则回答测什么、何时测、uncertainty 是否足以判定通过。每段视频把 direct observation 与 inference 分栏：看到 plasma glow 不能推出 gas chemistry，看到 cross-section 也不能推出 etch rate。[MediaSpace channel](https://mediaspace.epfl.ch/channel/channelid/29004) 可核对公开演示，recipe 仍以实验室批准文件为准。
 
-- [课程主页](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems)
+observation sheet 分成两栏：左栏写 incoming wafer、equipment class、visible process change 与
+outgoing cross-section；右栏写未公开的 recipe variable、主要 failure mode 和可用的 metrology。
+看不到 flow、temperature、duration 或 chemical concentration 就填 unknown，再写出区分两种可能
+解释所需的测量。这样暂停画面不会被误读成完整 recipe。
 
-## 已知边界
+### MEMSx 的证据是 observation 到 cross-section 的映射
 
-审计路径受限，高级访问价格约为 249 美元；洁净室演示仅供观察，并非可复现的家庭实验。
+平台 quizzes 的题面、反馈与完成状态依赖账号和当期页面，公开页面没有完整题解包。
+[可复现性指南](../../guides/reproducibility.md) 给出通用表格；MEMSx 这一页只填视频确实展示的
+incoming layer、visible process change、outgoing cross-section 与 metrology。recipe variable
+仍从画面看不出时，保留 unknown。
 
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+### 用器件 tolerance 解释七周工艺选择
+
+对 cantilever、membrane 或 interdigitated capacitor 做一份前后一致的 process flow，并让
+lithography bias、etch bias、film stress 或 thickness nonuniformity 进入 stiffness、resonance
+或 capacitance。视频索引与 cross-section 回答“看到了什么”，sensitivity 曲线回答某个
+process bias 会把器件推向哪里。
+
+设施与安全的通用边界见[实验安全指南](../../guides/safety.md)。没有 cleanroom 时，MEMSx
+特有的练习是视频观察、截面推演、文献参数与数值 tolerance。最有用的一次推演是只改变上游
+film、mask 或 bias 中的一项，再追到 downstream etch、release、metrology 与器件 observable：
+若 cantilever resonance 没有按预测方向移动，就回查是哪一个工艺敏感度或几何假设错了。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（1 项）</summary>
+- [课程主页](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems)
+- [EPFL MICRO-331 / MEMS 课程平台入口](https://courseware.epfl.ch/courses/course-v1%3AEPFL%2Bmems%2B2023/about)
+- [EPFL MICRO-621 课程手册与测验说明](https://edu.epfl.ch/coursebook/en/mooc-micro-and-nanofabrication-mems-MICRO-621-A)
+- [视频 · EPFL MEMS 公开演示视频频道](https://mediaspace.epfl.ch/channel/channelid/29004)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 部分 |
-| 实验 | 部分 |
-| 考试 | 无公开材料 |
-| 代码 | 无公开材料 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems) | 可免费旁听 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

@@ -1,73 +1,71 @@
 ---
 title: "Modern Robotics, Course 3: Robot Dynamics"
-description: "Northwestern University's Modern Robotics, Course 3: Robot Dynamics advances the sequence into robot dynamics with videos, notes, practice, simulation, and code, under a kinematics prerequisite and possible access fee."
+description: "Northwestern University's Modern Robotics, Course 3: Robot Dynamics advances the sequence into robot dynamics with videos, notes, practice, simulation, and code; the provider highly recommends first following the earlier rigid-motion and kinematics material, and full access may be paid."
 page_type: course
 course_id: "course-079"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 8a8e6b5053850bc7 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: aec0389077d6ba52 -->
 
-# Modern Robotics, Course 3: Robot Dynamics
+# Northwestern University Modern Robotics 3: Modern Robotics, Course 3: Robot Dynamics
 
 ## Course Overview
 
 - **University:** Northwestern University
 - **Course code:** Modern Robotics 3
-- **Prerequisites:** Recommended foundation: Control Systems; Recommended foundation: Programming and Engineering Computing; Recommended foundation: Physics Foundations; Course-sequence requirement: complete Modern Robotics, Course 1: Foundations of Robot Motion (Northwestern University Modern Robotics 1) first; Course-sequence requirement: complete Modern Robotics, Course 2: Robot Kinematics (Northwestern University Modern Robotics 2) first
-- **Track:** [Robotics and Autonomous Systems](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself
+- **EEDIY preparation:** Complete Courses 1–2 first or bring equivalent rigid-motion and kinematics background; this is EEDIY's content-based study order
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Course fit
 
-Northwestern University's Modern Robotics, Course 3: Robot Dynamics advances the sequence into robot dynamics with videos, notes, practice, simulation, and code, under a kinematics prerequisite and possible access fee.
+Coursera [Robot Dynamics](https://www.coursera.org/learn/modernrobotics-course3) corresponds to *Modern Robotics* Chapters 8–9. Its 4 modules are estimated at 7, 7, 5, and 4 hours. The first half derives Lagrange equations, mass matrices, and Newton–Euler methods, then covers forward/task-space/constrained dynamics, gearing, friction, and 1 project with peer assessment. The second half treats point/via-point trajectories and time-optimal scaling under dynamics and actuator limits. It fits learners whose Course 2 kinematics already runs reliably and who are ready for dynamics and trajectory constraints.
 
-**Check before starting**
+Courses 1–2 should already be complete. A 2R arm makes the prerequisites concrete: derive its kinetic and potential energy, check that its mass matrix is symmetric positive definite, and calculate one \(\ddot q\) from \(q,\dot q,\tau\).
 
-- Recommended foundation: Control Systems
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Physics Foundations
-- Course-sequence requirement: complete [Modern Robotics, Course 1: Foundations of Robot Motion](../robotics/077-modern-robotics-1.md) (Northwestern University Modern Robotics 1) first
-- Course-sequence requirement: complete [Modern Robotics, Course 2: Robot Kinematics](../robotics/078-modern-robotics-2.md) (Northwestern University Modern Robotics 2) first
+### Dynamics interfaces must round-trip on one model
 
-## Start with these links
+The core library interfaces are
+`InverseDynamics(q,dq,ddq,g,Ftip,Mlist,Glist,Slist) → tau` and
+`ForwardDynamics(q,dq,tau,g,Ftip,Mlist,Glist,Slist) → ddq`. Compute
+\(\tau\) with the first and feed it into the second under the same model,
+checking that \(\ddot q\) returns. Also test static gravity compensation,
+zero-gravity energy, tip wrenches, and friction/gearing signs. Store mass,
+COM, inertia, link transforms, screw axes, gravity, joint order, and units in
+a separate model file, validating positive masses and physically valid inertias.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+Interpret test errors relative to scale: report absolute and relative round-trip residuals; check that the Coriolis term vanishes at zero velocity; compare static gravity torque with a finite-difference gradient of potential energy; and use virtual work for a tip wrench. If energy drift does not converge as the integration step changes, suspect signs, frames, or model parameters before blaming the simulator.
 
-- [Course home](https://www.coursera.org/learn/modernrobotics-course3)
+The [ModernRobotics repository](https://github.com/NxRLab/ModernRobotics) prioritizes readable teaching code. Add shape, finite-value, energy, and round-trip assertions to each function; compare first against a pendulum or 1-DOF inertia before moving to multiple links.
 
-## Known Boundaries
+### Chapter 9 emits separate path and time-scaling arrays
 
-This course requires the preceding kinematics material, and full Coursera access may require payment.
+Use identical start/end poses and durations for joint, screw, and Cartesian trajectories, plotting \(q,\dot q,\ddot q,\tau\) for each. Check position/velocity continuity at via points, and state the source of velocity, acceleration, and torque limits in time scaling. Smooth animation does not establish continuous commands or satisfied limits.
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+Sample all three paths on a common grid and retain raw arrays, comparing end-effector geometry, joint peaks, and required torque. For torque-constrained time scaling, also show the path coordinate, allowable acceleration interval, and switching points; feasibility at sampled points does not establish feasibility between them. If a shorter duration violates a limit, retain the first violating location and joint.
+
+The [book home](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) supplies the preprint, errata, and UR5 parameters, while [Coursera Resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) collects resources for all 6 courses. Pin the book revision, MR commit, and language instead of silently mixing another spatial-vector convention.
+
+### CoppeliaSim replays an already checked state sequence
+
+[CoppeliaSim instructions](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) provides a dynamic scene and trajectory CSV. Fix scene/engine, integrator, step, initial state, and seed. If the arm diverges numerically, inspect model, step, joint order, and scene physics separately. In a zero-gravity, zero-input case, energy drift should fall as the step shrinks before discretization is a credible explanation.
+
+When the simulator behaves unexpectedly, replay the same joint sequence in the numerical program. If offline output is correct and the scene is wrong, inspect column order, joint direction, physics mode, and time step. If both are wrong, return to dynamics and control. Every run should preserve exact initial state, input, duration, and termination cause so the animation can be rebuilt from arrays.
+
+The course record includes Chapters 8/9 exercises, inverse/forward tests, a dynamics project, 3 trajectory classes, raw arrays, plots, and animation. Coursera peer/graded access may require payment; the public code and scene are rebuildable. A physical robot still requires fresh identification of friction, gearing, current, and collision limits.
+
+The most useful explanation is an error table comparing a hand-worked small system, MR functions, numerical integration, and CoppeliaSim: quantify each discrepancy, identify what shrinks with step size, and identify what comes from parameters or conventions. That turns “it plays” into a reviewable dynamics implementation.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.coursera.org/learn/modernrobotics-course3)
+- [Code · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/modernrobotics-course3) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

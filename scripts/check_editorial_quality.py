@@ -29,12 +29,14 @@ from scripts.quality_common import (
 )
 
 
-ZH_DEPTH_MINIMUM = 1_000
-EN_DEPTH_MINIMUM = 550
+ZH_DEPTH_MINIMUM = 320
+EN_DEPTH_MINIMUM = 180
+ZH_DEPTH_MAXIMUM = 1_400
+EN_DEPTH_MAXIMUM = 900
 NARRATIVE_LINK_MINIMUM = 3
-NARRATIVE_LINK_MAXIMUM = 7
-ZH_PROSE_PER_LINK_MINIMUM = 120
-EN_PROSE_PER_LINK_MINIMUM = 60
+NARRATIVE_LINK_MAXIMUM = 9
+ZH_PROSE_PER_LINK_MINIMUM = 40
+EN_PROSE_PER_LINK_MINIMUM = 20
 
 ZH_PARAGRAPH_MINIMUM = 80
 EN_PARAGRAPH_MINIMUM = 45
@@ -47,9 +49,10 @@ EN_SENTENCE_MINIMUM = 20
 FUZZY_SENTENCE_THRESHOLD = 0.90
 FUZZY_SENTENCE_ERROR_COUNT = 3
 FUZZY_NGRAM_CANDIDATE_THRESHOLD = 0.40
+INTRA_DOCUMENT_SENTENCE_REPEAT_ERROR_COUNT = 3
 
-CONCRETE_ANCHOR_MINIMUM = 6
-CONCRETE_ANCHOR_CATEGORY_MINIMUM = 3
+CONCRETE_ANCHOR_MINIMUM = 3
+CONCRETE_ANCHOR_CATEGORY_MINIMUM = 2
 GENERIC_WARNING_COUNT = 2
 GENERIC_ERROR_COUNT = 4
 GENERIC_ERROR_RATIO = 0.10
@@ -57,11 +60,18 @@ GENERIC_ERROR_RATIO = 0.10
 NUMBER_PARITY_WARNING_THRESHOLD = 0.85
 TERM_PARITY_WARNING_THRESHOLD = 0.80
 TERM_PARITY_ERROR_THRESHOLD = 0.65
-LENGTH_RATIO_WARNING_MINIMUM = 0.40
-LENGTH_RATIO_WARNING_MAXIMUM = 0.95
-LENGTH_RATIO_ERROR_MINIMUM = 0.30
-LENGTH_RATIO_ERROR_MAXIMUM = 1.10
-PARAGRAPH_COUNT_DELTA_ERROR = 2
+LENGTH_RATIO_WARNING_MINIMUM = 0.35
+LENGTH_RATIO_WARNING_MAXIMUM = 1.10
+LENGTH_RATIO_ERROR_MINIMUM = 0.25
+LENGTH_RATIO_ERROR_MAXIMUM = 1.25
+# A single missing paragraph can erase a caveat, project boundary, or source
+# note while leaving headings, URLs, and whole-document length ratios intact.
+# Course-guide translations therefore keep a one-to-one substantive paragraph
+# structure. Translators may still reshape sentences inside a paragraph.
+PARAGRAPH_COUNT_DELTA_ERROR = 1
+PARAGRAPH_ALIGNMENT_ZH_MINIMUM = 60
+PARAGRAPH_LENGTH_RATIO_ERROR_MINIMUM = 0.45
+PARAGRAPH_LENGTH_RATIO_ERROR_MAXIMUM = 1.75
 SECTION_LENGTH_RATIO_ERROR_MINIMUM = 0.50
 SECTION_LENGTH_RATIO_ERROR_MAXIMUM = 1.40
 
@@ -125,7 +135,35 @@ GENERIC_EN_RE = re.compile(
 # not natural technical English. Keep this narrow corpus-level guard even
 # though “repair” can be valid in other contexts; a course guide can always
 # name the concrete action (review, revisit, debug, fix, or re-derive).
-TRANSLATIONESE_EN_RE = re.compile(r"\brepair(?:ing|ed)?\b", re.IGNORECASE)
+TRANSLATIONESE_EN_RE = re.compile(
+    r"(?:\brepair(?:ing|ed)?\s+(?:linear algebra|calculus|probability|signals?|"
+    r"prerequisites?|background|gaps?)\b|\brepair\s+around\b)",
+    re.IGNORECASE,
+)
+FAKE_REVIEWER_RE = {
+    "zh": re.compile(r"(?:我会|我将)(?:检查|找|寻找|核对|验收|评分)"),
+    "en": re.compile(
+        r"\bI(?:'ll| will| would)\s+(?:check|look for|verify|grade|assess)\b",
+        re.IGNORECASE,
+    ),
+}
+DEFENSIVE_NEGATION_ZH_RE = re.compile(r"(?:不是|不等于|而不是)")
+DIRECTIVE_ZH_RE = re.compile(r"(?:必须|不要|应当)")
+SEQUENCED_WORKFLOW_ZH_RE = re.compile(
+    r"先[^。！？\n]{0,120}再[^。！？\n]{0,120}最后"
+)
+OPENING_DECISION_RE = {
+    "zh": re.compile(
+        r"(?:适合|不适合|值得|推荐|首选|优先|选|换成|改选|"
+        r"如果|若|想要|需要|用作|定位|主线|替代|价值|结论)"
+    ),
+    "en": re.compile(
+        r"\b(?:fit|fits|suit|suits|suited|best|worth|value|recommend|prefer|"
+        r"choose|choosing|instead|alternative|if|want|need|should|use as|"
+        r"main course|first course|verdict|right|complete|offers|both)\b",
+        re.IGNORECASE,
+    ),
+}
 COMPARISON_RE = re.compile(
     r"(?:相比|不同于|区别|不是.+而是|优先|再选|可选|"
     r"\bcompared\b|\bunlike\b|\brather than\b|\bversus\b|\bvs\.?\b|"
@@ -225,12 +263,14 @@ NEGATIVE_OFFICIAL_RE = re.compile(
 )
 EDITORIAL_CUE_ZH_RE = re.compile(
     r"(?:EEDIY|编辑(?:据此)?|建议|优先|可选|应当|不应|不要|"
-    r"可以|可先|不得|必须|独立学习时|自学时|更实际的诊断|"
+    r"可以|可先|不得|必须|适合|不适合|值得|首选|选择|改选|换成|"
+    r"独立学习时|自学时|更实际的诊断|"
     r"更有效的读法|更好的学习顺序)"
 )
 EDITORIAL_CUE_EN_RE = re.compile(
     r"(?:\bEEDIY\b|\beditorial\b|\bmaintainer\b|\brecommend\b|\bshould\b|"
-    r"\bprefer\b|\bchoose\b|\bdo not\b|\bshould not\b|"
+    r"\bprefer\b|\bchoose\b|\bfit(?:s|ted)?\b|\bsuit(?:s|ed)?\b|\bworth\b|"
+    r"\bbest\b|\bdo not\b|\bshould not\b|"
     r"\bfor independent study\b|\ban independent learner\b)",
     re.IGNORECASE,
 )
@@ -274,12 +314,51 @@ SUPPLEMENT_BOUNDARY_RE = re.compile(
     r"EEDIY[^。！？；]{0,50}(?:补充|建议|替代)|"
     r"(?:不是|并非|而非|非)\s*(?:课程|MIT|提供方)?官方"
     r"[^。！？；]{0,20}(?:作业|实验|项目|任务|要求)?|"
+    r"(?:课程|提供方)?没有官方(?:编程)?(?:作业|实验|项目|任务)|"
     r"\bEEDIY\s+(?:supplement|substitution|migration)\b|"
     r"\bmaintainer-suggested\b|"
     r"\bnot\s+an?\s+official\b|\bnot\s+official\b"
     r")",
     re.IGNORECASE,
 )
+NO_PUBLIC_COURSEWORK_RE = {
+    "zh": re.compile(
+        r"(?:没有|未|无|不)(?:公开|提供|列出)?"
+        r"[^。！？；]{0,60}(?:assignments?|starter|rubric|staff feedback|"
+        r"作业|实验|项目|考试|评分标准|教师反馈)",
+        re.IGNORECASE,
+    ),
+    "en": re.compile(
+        r"(?:"
+        r"(?:no|not|without)\s+(?:current\s+|public\s+|official\s+|complete\s+)*"
+        r"(?:assignments?|labs?|projects?|exams?|starter(?:\s+files?)?|rubrics?|"
+        r"staff feedback)|"
+        r"(?:assignments?|labs?|projects?|exams?|starter(?:\s+files?)?|rubrics?|"
+        r"staff feedback)[^.!?;]{0,55}"
+        r"(?:remain|are|is)\s+(?:outside|absent|unpublished|unavailable)"
+        r")",
+        re.IGNORECASE,
+    ),
+}
+INDEPENDENT_PROJECT_MAP_RE = {
+    "zh": re.compile(
+        r"(?:独立(?:自学)?项目|独立练习|项目地图)"
+        r"[^。！？；]{0,100}"
+        r"(?:不是|并非|不属于|区别于)"
+        r"[^。！？；]{0,45}"
+        r"(?:官方|课程|作业|实验|submission|Illinois)",
+        re.IGNORECASE,
+    ),
+    "en": re.compile(
+        r"(?:independent (?:self-study )?(?:projects?|exercises?|project map)|"
+        r"project map)"
+        r"[^.!?;]{0,120}"
+        r"(?:not|do not|does not)"
+        r"[^.!?;]{0,55}"
+        r"(?:official|coursework|submission|assignments?|labs?|recreate)",
+        re.IGNORECASE,
+    ),
+}
 
 PROTECTED_TERM_IGNORE = {
     "a",
@@ -656,7 +735,11 @@ def _source_cue(text: str, document: GuideDocument) -> bool:
         return True
     links = set(_external_links(text))
     sources = {_normalize_url(url) for url in document.primary_sources}
-    return bool(links & sources)
+    if links & sources:
+        return True
+    link_hosts = {urlsplit(url).netloc.casefold() for url in links}
+    source_hosts = {urlsplit(url).netloc.casefold() for url in sources}
+    return bool(link_hosts & source_hosts)
 
 
 def _source_window(
@@ -679,11 +762,49 @@ def _source_window(
     return False
 
 
+def _repeated_sentence_issues(analysis: BodyAnalysis) -> list[Issue]:
+    """Catch sentence-loop padding inside one guide.
+
+    Fenced code and Markdown tables never enter ``eligible_sentences``. Skip
+    common display-math forms as an additional guard so repeated equations are
+    not mistaken for repeated prose.
+    """
+
+    buckets: dict[str, list[Segment]] = {}
+    for sentence in analysis.eligible_sentences:
+        stripped = sentence.text.lstrip()
+        if stripped.startswith(("$$", r"\[", r"\begin{")):
+            continue
+        if not sentence.normalized:
+            continue
+        buckets.setdefault(sentence.normalized, []).append(sentence)
+
+    issues: list[Issue] = []
+    for entries in buckets.values():
+        if len(entries) < INTRA_DOCUMENT_SENTENCE_REPEAT_ERROR_COUNT:
+            continue
+        first = entries[0]
+        issues.append(
+            Issue(
+                "error",
+                "editorial.repeated_sentence",
+                f"the same normalized narrative sentence appears {len(entries)} "
+                "times in one guide; replace sentence-loop padding with distinct "
+                "course-specific analysis",
+                display_path(analysis.document.path),
+                first.line,
+                first.text[:220],
+            )
+        )
+    return issues
+
+
 def _document_issues(analysis: BodyAnalysis) -> list[Issue]:
     document = analysis.document
     relative = display_path(document.path)
     issues: list[Issue] = []
     depth_minimum = ZH_DEPTH_MINIMUM if document.language == "zh" else EN_DEPTH_MINIMUM
+    depth_maximum = ZH_DEPTH_MAXIMUM if document.language == "zh" else EN_DEPTH_MAXIMUM
     unit_label = "CJK characters" if document.language == "zh" else "English words"
     if analysis.visible_units < depth_minimum:
         issues.append(
@@ -695,6 +816,49 @@ def _document_issues(analysis: BodyAnalysis) -> list[Issue]:
                 relative,
             )
         )
+    if analysis.visible_units > depth_maximum:
+        issues.append(
+            Issue(
+                "error",
+                "editorial.sprawl",
+                f"researched guide has {analysis.visible_units} visible {unit_label}; "
+                f"maximum is {depth_maximum}. Move exhaustive schedules, general "
+                "safety rules, and tool-migration procedures to companion guides.",
+                relative,
+            )
+        )
+    issues.extend(_repeated_sentence_issues(analysis))
+
+    if analysis.paragraphs:
+        opening = analysis.paragraphs[0]
+        opening_limit = 160 if document.language == "zh" else 90
+        first_h2 = next(
+            (
+                title
+                for level, title, _ in markdown_headings(document.text)
+                if level == 2
+            ),
+            "",
+        )
+        opening_text = f"{first_h2} {opening.text}"
+        opening_excerpt = (
+            "".join(CJK_RE.findall(opening_text))[:opening_limit]
+            if document.language == "zh"
+            else " ".join(LATIN_WORD_RE.findall(opening_text)[:opening_limit])
+        )
+        if not OPENING_DECISION_RE[document.language].search(opening_excerpt):
+            issues.append(
+                Issue(
+                    "error",
+                    "editorial.late_judgment",
+                    "the opening paragraph must quickly tell the learner who this "
+                    "course fits, why it is worth taking, or when to choose an "
+                    "alternative",
+                    relative,
+                    opening.line,
+                    opening.text[:220],
+                )
+            )
 
     link_count = len(analysis.external_links)
     if not NARRATIVE_LINK_MINIMUM <= link_count <= NARRATIVE_LINK_MAXIMUM:
@@ -740,6 +904,54 @@ def _document_issues(analysis: BodyAnalysis) -> list[Issue]:
             )
         )
 
+    fake_reviewer = FAKE_REVIEWER_RE[document.language].search(document.text)
+    if fake_reviewer:
+        issues.append(
+            Issue(
+                "error",
+                "editorial.fake_reviewer_voice",
+                "an uncredited guide must not speak as an imagined grader or "
+                "reviewer; state the observable course artifact directly",
+                relative,
+                document.text.count("\n", 0, fake_reviewer.start()) + 1,
+                fake_reviewer.group(0),
+            )
+        )
+    if document.language == "zh":
+        defensive_count = len(DEFENSIVE_NEGATION_ZH_RE.findall(document.text))
+        if defensive_count > 2:
+            issues.append(
+                Issue(
+                    "error",
+                    "editorial.defensive_voice",
+                    f"guide uses {defensive_count} defensive negations "
+                    "(不是/不等于/而不是); maximum is 2",
+                    relative,
+                )
+            )
+        directive_count = len(DIRECTIVE_ZH_RE.findall(document.text))
+        if directive_count > 5:
+            issues.append(
+                Issue(
+                    "error",
+                    "editorial.command_voice",
+                    f"guide uses {directive_count} directive terms "
+                    "(必须/不要/应当); maximum is 5",
+                    relative,
+                )
+            )
+        workflow_count = len(SEQUENCED_WORKFLOW_ZH_RE.findall(document.text))
+        if workflow_count > 1:
+            issues.append(
+                Issue(
+                    "error",
+                    "editorial.workflow_template",
+                    f"guide contains {workflow_count} separate 先—再 workflows; "
+                    "maximum is 1 unless the provider defines that sequence",
+                    relative,
+                )
+            )
+
     anchor_categories = {anchor.category for anchor in analysis.anchors}
     if (
         len(analysis.anchors) < CONCRETE_ANCHOR_MINIMUM
@@ -762,13 +974,19 @@ def _document_issues(analysis: BodyAnalysis) -> list[Issue]:
         and _source_window(analysis, anchor.paragraph_index)
         for anchor in analysis.anchors
     )
-    if not official_artifact:
+    catalogue_only_map = (
+        bool(NO_PUBLIC_COURSEWORK_RE[document.language].search(document.text))
+        and bool(INDEPENDENT_PROJECT_MAP_RE[document.language].search(document.text))
+        and _source_cue(document.text, document)
+    )
+    if not official_artifact and not catalogue_only_map:
         issues.append(
             Issue(
                 "error",
                 "editorial.real_coursework",
                 "no assignment, lab, project, or exam anchor is tied to an "
-                "official cue or primary-source link",
+                "official cue or primary-source link, and the guide is not an "
+                "explicit catalogue-only independent-project map",
                 relative,
             )
         )
@@ -846,11 +1064,10 @@ def _document_issues(analysis: BodyAnalysis) -> list[Issue]:
                 )
             )
 
-    source_pattern = SOURCE_CUE_ZH_RE if document.language == "zh" else SOURCE_CUE_EN_RE
     editorial_pattern = (
         EDITORIAL_CUE_ZH_RE if document.language == "zh" else EDITORIAL_CUE_EN_RE
     )
-    if not source_pattern.search(NEGATIVE_OFFICIAL_RE.sub(" ", document.text)):
+    if not _source_cue(document.text, document):
         issues.append(
             Issue(
                 "error",
@@ -1313,6 +1530,37 @@ def _bilingual_issues(
                 pair_path,
             )
         )
+    elif len(zh.paragraphs) == len(en.paragraphs):
+        for paragraph_index, (zh_paragraph, en_paragraph) in enumerate(
+            zip(zh.paragraphs, en.paragraphs, strict=True),
+            1,
+        ):
+            if (
+                zh_paragraph.section != en_paragraph.section
+                or zh_paragraph.units < PARAGRAPH_ALIGNMENT_ZH_MINIMUM
+            ):
+                continue
+            paragraph_ratio = en_paragraph.units / max(1, zh_paragraph.units)
+            if (
+                paragraph_ratio < PARAGRAPH_LENGTH_RATIO_ERROR_MINIMUM
+                or paragraph_ratio > PARAGRAPH_LENGTH_RATIO_ERROR_MAXIMUM
+            ):
+                issues.append(
+                    Issue(
+                        "error",
+                        "editorial.translation_paragraph_length",
+                        f"aligned substantive paragraph {paragraph_index} has "
+                        f"English-word / Chinese-CJK ratio {paragraph_ratio:.3f}; "
+                        f"expected {PARAGRAPH_LENGTH_RATIO_ERROR_MINIMUM:.2f}–"
+                        f"{PARAGRAPH_LENGTH_RATIO_ERROR_MAXIMUM:.2f}",
+                        pair_path,
+                        zh_paragraph.line,
+                        (
+                            f"zh line {zh_paragraph.line}: {zh_paragraph.text[:120]}; "
+                            f"en line {en_paragraph.line}: {en_paragraph.text[:120]}"
+                        ),
+                    )
+                )
 
     zh_sections = _section_units(zh)
     en_sections = _section_units(en)

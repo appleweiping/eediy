@@ -3,71 +3,47 @@ title: "Converter Control"
 description: "University of Colorado Boulder 的《Converter Control》把电力电子序列推进到变换器控制；视频、练习、仿真和代码支持实践，但要求变换器与反馈控制基础。"
 page_type: course
 course_id: "course-117"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 033902e58c5dfc8e -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 424cd44e9ecea7fb -->
 
-# Converter Control
+# University of Colorado Boulder Power Electronics 3: Converter Control
 
 ## 课程简介
 
 - **所属大学：** University of Colorado Boulder
 - **课程编号：** Power Electronics 3
-- **先修要求：** 建议先完成方向基础：电路分析；建议先完成方向基础：控制系统；建议先完成方向基础：电子实验与测量；课程顺序要求：先完成《Introduction to Power Electronics》（University of Colorado Boulder Power Electronics 1）；课程顺序要求：先完成《Converter Circuits》（University of Colorado Boulder Power Electronics 2）
-- **方向：** [电力电子](index.md)
-- **路线角色：** 替代
-- **公开材料：** 核心材料可访问
-- **最近复核：** 2026-07-28
+- **官方先修：** CU Boulder Converter Control 是序列第 3 门，官方页面将 Introduction to Power Electronics 与 Converter Circuits 列为前序课程
+- **本站建议背景：** 本站未另设准备条件
+- **访问条件：** 需注册；可用范围以平台为准
+- **资料状态：** 2026-07-30；公开材料导读
 
-> **资料索引：** 本页只确认课程身份、官方入口和公开材料范围；还没有逐项审读作业，也不是完成者复盘。请把它当作找课入口，不要单独据此选课。
+### 课程定位与先修要求
 
-University of Colorado Boulder 的《Converter Control》把电力电子序列推进到变换器控制；视频、练习、仿真和代码支持实践，但要求变换器与反馈控制基础。
+University of Colorado Boulder 的 [Converter Control](https://www.coursera.org/learn/converter-control) 是功率电子课程链的第三步。官方课程页列出 4 个 module、5 次作业（graded assignments），参考进度为 2 周、每周 10 小时，并把 [Introduction to Power Electronics](https://www.coursera.org/learn/power-electronics) 与 [Converter Circuits](https://www.coursera.org/learn/converter-circuits) 作为前置课程。入场前最好能写出 CCM buck 的平均模型，并从工作点做小扰动线性化；若只能查表复制传递函数，先补状态空间、Laplace transform 和 Bode 图。
 
-**开始前先核对**
+### 从功率级建模做到闭环验证
 
-- 建议先完成方向基础：电路分析
-- 建议先完成方向基础：控制系统
-- 建议先完成方向基础：电子实验与测量
-- 课程顺序要求：先完成[《Introduction to Power Electronics》](../power-electronics/115-power-electronics-1.md)（University of Colorado Boulder Power Electronics 1）
-- 课程顺序要求：先完成[《Converter Circuits》](../power-electronics/116-power-electronics-2.md)（University of Colorado Boulder Power Electronics 2）
+官方课程页的 Chapter 7 讲 averaging、perturbation and linearization、canonical model、PWM switch 与 state-space averaging。模型旁边务必保留工作点、输入输出定义和忽略项，同名的 `Gvd` 在负载或工作模式改变后未必仍可使用。
 
-## 先看这些入口
+Chapter 8 先训练 Bode plot construction，再处理 converter transfer functions 和 graphical impedance construction。建议先手画 DC gain、pole/zero 造成的斜率变化与相位方向，再用软件校准拐点；同时区分 control-to-output、line-to-output 与 output impedance，不能只看命令跟随。Chapter 9 才进入 stability、phase margin、closed-loop Q、regulator/op-amp compensation 和 point-of-load regulator。先写 crossover、稳态误差与扰动抑制目标，再放置补偿器的 pole/zero，比套一张熟悉的 Type-II/III 电路可靠。
 
-先从下面几个入口判断课程是否适合自己；逐讲链接和历史试卷放在页面末尾的完整索引中。
+### 一套完整案例比零散 Bode 图更有用
 
-- [课程主页](https://www.coursera.org/learn/converter-control)
+用前一门已经验证过的 buck 或 boost 保存完整链条：工作点、平均模型、小信号模型、解析 pole/zero、数值 Bode、补偿目标、loop gain、闭环响应和 line/load step。至少比较 3 种表示——解析 transfer function、averaged time-domain model 与 switched model——并在 `fs/20` 以下检查一致性；随后改变输入电压和负载，记录 crossover、phase margin、duty limit、饱和与恢复时间。跨入 DCM 时另建模型，CCM 结果的适用范围到此为止。
 
-## 已知边界
+这门课最容易学成“只会调相位裕度”：图形看起来漂亮，plant 却没有校准。应把解析 DC gain 与时域稳态扰动互相核对，并确认 ESR zero 或 right-half-plane zero 是否随拓扑、负载和工作点移动。若 averaged model 只在有限频带内贴合开关波形，适用边界应写进图注，代码中的隐含限制无法支撑结论。
 
-需要先掌握变换器与反馈控制知识，且平台访问可能需要付费。
-
-这条记录没有把维护者自拟项目、统一工时或通用验收条件包装成课程事实。若你完成过这门课，可在页末讨论区提交作业结构、实际耗时、失效链接和踩坑证据。
+5 次作业的题面、反馈与重试规则随 Coursera 登录状态呈现；[Power Electronics 专项](https://www.coursera.org/specializations/power-electronics)可核对顺序，却不保证匿名访问评分内容。贯穿案例由学习者独立建立，也不能替代数字控制固件、sampling delay、PWM quantization、current-mode、EMI、layout 或实物环路测量。学到位的标志，是能说明每张 Bode 图对应哪个工作点和哪些近似，而不只是得到一条看起来稳定的曲线。
 
 ## 课程资源
 
-<details markdown="1">
-<summary>展开完整资源索引（1 项）</summary>
+- [课程主页](https://www.coursera.org/learn/converter-control)
 
-### 材料覆盖
+## 资源汇总
 
-| 类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 完整 |
-| 实验 | 部分 |
-| 考试 | 无公开材料 |
-| 代码 | 部分 |
-
-### 资源
-
-| 资源 | 访问 | 状态 | 复核日期 |
-|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/converter-control) | 注册后访问 | 官方页已列出 | 2026-07-28 |
-
-> 链接在所列日期由官方来源页发现；可访问不等于可转载。地区、账号、第三方版权和后续改版仍可能改变实际可用性。
-
-</details>
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

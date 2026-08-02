@@ -1,77 +1,66 @@
 ---
 title: "Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots"
-description: "Northwestern University's Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots connects manipulation and wheeled mobility through rich videos, simulation, and code, with terminology, prerequisites, and access conditions requiring attention."
+description: "Northwestern University's Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots connects manipulation and wheeled mobility through rich videos, simulation, and code; material may still use the V-REP name, the provider highly recommends the series order, and full access may be paid."
 page_type: course
 course_id: "course-081"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 98bfa8e01c82d91f -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 45011c03c7cf89e7 -->
 
-# Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots
+# Northwestern University Modern Robotics 5: Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots
 
 ## Course Overview
 
 - **University:** Northwestern University
 - **Course code:** Modern Robotics 5
-- **Prerequisites:** Recommended foundation: Control Systems; Recommended foundation: Programming and Engineering Computing; Recommended foundation: Physics Foundations; Course-sequence requirement: complete Modern Robotics, Course 1: Foundations of Robot Motion (Northwestern University Modern Robotics 1) first; Course-sequence requirement: complete Modern Robotics, Course 2: Robot Kinematics (Northwestern University Modern Robotics 2) first; Course-sequence requirement: complete Modern Robotics, Course 3: Robot Dynamics (Northwestern University Modern Robotics 3) first; Course-sequence requirement: complete Modern Robotics, Course 4: Robot Motion Planning and Control (Northwestern University Modern Robotics 4) first
-- **Track:** [Robotics and Autonomous Systems](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself
+- **EEDIY preparation:** Complete Courses 1–4 first or bring equivalent modeling, kinematics, dynamics, planning, and control background; this is EEDIY's content-based study order
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Course scope
 
-Northwestern University's Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots connects manipulation and wheeled mobility through rich videos, simulation, and code, with terminology, prerequisites, and access conditions requiring attention.
+Coursera [Robot Manipulation and Wheeled Mobile Robots](https://www.coursera.org/learn/modernrobotics-course5) corresponds to *Modern Robotics* Chapters 12–13. The first half uses contact wrenches, friction cones, and form/force closure for grasping and assembly. The second uses wheel constraints, nonholonomic models, planning, feedback, and odometry for mobile manipulation. It fits learners preparing for the Course 6 youBot capstone, where a missing half surfaces directly.
 
-**Check before starting**
+You should know wrenches, twists, Jacobians, linear programming, Pfaffian constraints, and frame transforms. Draw a friction cone and wrench balance for a planar body, then derive the wheel-speed-to-body-twist map from mecanum geometry.
 
-- Recommended foundation: Control Systems
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Physics Foundations
-- Course-sequence requirement: complete [Modern Robotics, Course 1: Foundations of Robot Motion](../robotics/077-modern-robotics-1.md) (Northwestern University Modern Robotics 1) first
-- Course-sequence requirement: complete [Modern Robotics, Course 2: Robot Kinematics](../robotics/078-modern-robotics-2.md) (Northwestern University Modern Robotics 2) first
-- Course-sequence requirement: complete [Modern Robotics, Course 3: Robot Dynamics](../robotics/079-modern-robotics-3.md) (Northwestern University Modern Robotics 3) first
-- Course-sequence requirement: complete [Modern Robotics, Course 4: Robot Motion Planning and Control](../robotics/080-modern-robotics-4.md) (Northwestern University Modern Robotics 4) first
+### Two contact projects turn geometry into optimization
 
-## Start with these links
+[Form Closure](https://hades.mech.northwestern.edu/index.php/Evaluating_Form_Closure_Project) converts planar contacts into a wrench matrix, then uses an LP to decide whether they resist arbitrary wrenches. Inspect normals, moment arms, rank, and positive-force conditions. Construct 1 obvious closure, 1 non-closure, and 1 normal-flipped case; interpret solver status together with residual and tolerance.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+[Stability of an Assembly](https://hades.mech.northwestern.edu/index.php/Stability_of_an_Assembly_Project) takes mass/COM and each contact’s body pair, position, normal, and friction coefficient to form static equilibrium under gravity and friction-cone-edge forces. Reproduce the official stand/collapse cases, then design at least one 2-body assembly and vary friction. Rest in a simulator does not prove that the analytical model is correct.
 
-- [Course home](https://www.coursera.org/learn/modernrobotics-course5)
-- [Projects · Modern Robotics, Course 6: Capstone Project, Mobile Manipulation](https://www.coursera.org/learn/modernrobotics-course6)
+Use one contact convention across both projects: record normal orientation, wrench origin, body frame, and friction-cone-edge ordering in the input. Draw each contact-wrench column and verify the sign for contacts that push but never pull. For boundary cases, vary cone discretization and solver tolerance and report slack; otherwise “feasible” may merely mean numerical tolerance accepted a physically unbalanced assembly.
 
-## Known Boundaries
+Retain units for assembly mass, COM, contact position, and external wrench. Vary mass, contact location, and friction independently and check whether the transition matches torque-balance intuition. Analytical LP, a hand-worked small case, and the scene are distinct evidence sources; when they disagree, inspect conventions before letting the picture overrule the calculation.
 
-Instructions may use the former V-REP name for CoppeliaSim; the prior sequence and paid-platform access may be required.
+### Wheel encoders produce odometry, not pose truth
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+Chapter 13 maps wheel speeds to body twist and integrates into a space pose; for a nonholonomic base, distinguish instantaneous constraints from long-term controllability. Test forward, sideways, rotation, and diagonal motion for an omni base, and identify unavailable lateral velocity for a constrained base. Compare first-order integration with the exponential map, checking wheel order, units, and conditioning.
+
+Odometry tests should include 1 m straight travel, 4 right-angle turns, a full circle, and a forward-reverse loop. Report endpoint, heading, drift per meter, and cumulative error while perturbing wheel radius, geometry, and sample interval separately. Simulator ground truth is only an error reference, never estimator input.
+
+Give the base-update function oracles for zero command, one wheel, opposing wheel pairs, and speed clipping. Output the body increment and space pose at every step. At larger \(\Delta t\), compare first-order integration with an exponential update and explain coordinate-integration error separately from wheel slip. Return a diagnostic for a near-singular wheel matrix rather than silently emitting a huge pseudoinverse command.
+
+### Leave reusable units for the capstone
+
+The [book home](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) and [MR repository](https://github.com/NxRLab/ModernRobotics) supply formulas and teaching code. [Coursera Resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) identifies project ownership, and the [CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) supplies the youBot scene.
+
+The course record includes Chapters 12/13 exercises, 2 contact projects, failure cases, base/odometry tests, and a replayable youBot CSV. Also expose a pure function that advances chassis/joint configuration with explicit \(\Delta t\), speed limits, and joint order. A physical mecanum base still requires separate measurement of roller friction, backlash, encoder quantization, and collision behavior.
+
+Use one interface file across the capstone, containing the configuration-vector order for chassis, arm, and wheels, plus wheel geometry, frame convention, and time step. Generate a CSV from a known wheel/joint command, calculate its first few steps by hand, and replay it. If the block task later fails, these units can eliminate base integration and contact math before whole-scene debugging.
+
+Contact and odometry meet at a subtle failure point: chassis-pose error changes the grasp frame, while grasp reaction can make the wheels slip and send encoder integration farther off course. Hold the end-effector target fixed and inject a chassis-pose bias, then wheel slip. Comparing wrench feasibility, end-effector error, and the recovery motion helps distinguish geometry, contact, and odometry faults before every capstone failure gets blamed on controller gains.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (2 items)</summary>
+- [Course home](https://www.coursera.org/learn/modernrobotics-course5)
+- [Code · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/modernrobotics-course5) | Registration required | Listed by official page | 2026-07-28 |
-| [Modern Robotics, Course 6: Capstone Project, Mobile Manipulation](https://www.coursera.org/learn/modernrobotics-course6) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

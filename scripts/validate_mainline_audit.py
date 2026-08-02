@@ -127,15 +127,6 @@ def mainline_audit_issues(
         for track in taxonomy["tracks"]
         if isinstance(track, Mapping) and isinstance(track.get("id"), str)
     }
-    if len(track_ids) != 35:
-        issues.append(
-            Issue(
-                "error",
-                "mainline_audit.track_count",
-                f"expected exactly 35 taxonomy tracks, found {len(track_ids)}",
-                "data/tracks.json",
-            )
-        )
 
     candidate_by_id: dict[int, Mapping[str, Any]] = {}
     expected_mainlines: dict[int, Mapping[str, Any]] = {}

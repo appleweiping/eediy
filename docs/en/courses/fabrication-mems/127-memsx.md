@@ -3,68 +3,77 @@ title: "Micro and Nanofabrication (MEMS)"
 description: "EPFL's Micro and Nanofabrication (MEMS) offers an alternative MEMS fabrication path through videos and cleanroom demonstrations, which remain observational under a costly premium-access model."
 page_type: course
 course_id: "course-127"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 172fa30c9a677244 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: bc9bebf5374d62cb -->
 
-# Micro and Nanofabrication (MEMS)
+# EPFL memsX: Micro and Nanofabrication (MEMS)
 
 ## Course Overview
 
 - **University:** EPFL
 - **Course code:** memsX
-- **Prerequisites:** Recommended foundation: Semiconductor Devices; Recommended foundation: Physics Foundations
-- **Track:** [Micro/Nanofabrication and MEMS](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The EPFL memsX/edX page lists basic physics and chemistry as prerequisites
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Course fit
 
-EPFL's Micro and Nanofabrication (MEMS) offers an alternative MEMS fabrication path through videos and cleanroom demonstrations, which remain observational under a costly premium-access model.
+EPFL [Micro and Nanofabrication (MEMS)](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems), formerly memsX, is labeled advanced and self-paced on edX, with an estimate of 7 weeks at 3–5 hours per week and prerequisites of basic physics and chemistry. The EPFL [courseware entry](https://courseware.epfl.ch/courses/course-v1%3AEPFL%2Bmems%2B2023/about) names Jürgen Brugger and Martin Gijs, while the [official MICRO-621 coursebook and quizzes](https://edu.epfl.ch/coursebook/en/mooc-micro-and-nanofabrication-mems-MICRO-621-A) describe online fabrication practice through video.
 
-**Check before starting**
+Its value is close observation of equipment, wafers, and process steps, not tool qualification. Videos do not provide facility safety certification, recipe qualification, contamination control, waste procedures, or supervisor sign-off.
 
-- Recommended foundation: Semiconductor Devices
-- Recommended foundation: Physics Foundations
+### Choose a virtual cantilever and redraw its cross-section every week
 
-## Start with these links
+In Week 1, choose a cantilever, membrane, or interdigitated capacitor and draw its initial cross-section, material stack, critical dimensions, and function. For Week 2 CVD and Week 3 PVD, record deposition mechanism, conformality, thermal budget, stress, selectivity, and contamination. In Week 4, put mask polarity, resist tone, alignment, and lithography bias into a process traveler.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+Compare Week 5 dry etching and Week 6 wet etching through anisotropy, selectivity, loading/undercut, damage, and required environment. Week 7 inspection/metrology should state what is measured, when, and whether uncertainty supports a pass decision. Separate direct observation from inference for every video: a plasma glow does not reveal gas chemistry, and a cross-section does not establish etch rate. The [MediaSpace channel](https://mediaspace.epfl.ch/channel/channelid/29004) helps verify public demonstrations, but it is not a recipe.
 
-- [Course home](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems)
+Split the observation sheet into two columns. On the left, put the incoming
+wafer, equipment class, visible process change, and outgoing cross-section. On
+the right, put undisclosed recipe variables, dominant failure modes, and
+available metrology. If flow, temperature, duration, or chemical concentration
+is not visible, write “unknown” and name the measurement that would distinguish
+two plausible explanations. A paused frame is not a complete recipe.
 
-## Known Boundaries
+### MEMSx evidence maps observation to a cross-section
 
-The audit path is limited and premium access is about USD 249; cleanroom demonstrations are observational rather than reproducible home laboratories.
+Platform quiz prompts, feedback, and completion state depend on the account
+and current presentation; the public page lacks a complete solution package.
+The [Reproducibility guide](../../guides/reproducibility.md) carries
+the generic table. On the MEMSx page, enter only what the
+video can support: incoming layer, visible process change, outgoing
+cross-section, and metrology. Leave a recipe variable as unknown when the
+footage still does not reveal it.
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+### Use device tolerance to explain the seven weeks of process choices
+
+Build an internally consistent flow for a cantilever, membrane, or
+interdigitated capacitor and carry lithography bias, etch bias, film stress,
+or thickness nonuniformity into stiffness, resonance, or capacitance. The
+video index and cross-sections answer what was observed; the sensitivity curve
+shows where a process bias pushes the device.
+
+The [Laboratory Safety guide](../../guides/safety.md) contains the general
+facility boundary. Without a cleanroom, the MEMSx-specific exercise is video
+observation, cross-section reasoning, sourced parameters, and numerical
+tolerance analysis. The most useful pass changes only one upstream film, mask,
+or bias and follows it into downstream etch, release, metrology, and the device
+observable. If cantilever resonance moves in the wrong direction, revisit the
+process sensitivity or geometry assumption that predicted it.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems)
+- [EPFL MICRO-331 / MEMS courseware landing](https://courseware.epfl.ch/courses/course-v1%3AEPFL%2Bmems%2B2023/about)
+- [EPFL MICRO-621 coursebook and quiz outline](https://edu.epfl.ch/coursebook/en/mooc-micro-and-nanofabrication-mems-MICRO-621-A)
+- [Videos · EPFL MEMS public demonstration-video channel](https://mediaspace.epfl.ch/channel/channelid/29004)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Partial |
-| Labs | Partial |
-| Exams | No public material |
-| Code | No public material |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems) | Free audit | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

@@ -11,6 +11,8 @@ docs_dir: docs
 site_dir: site
 use_directory_urls: true
 strict: true
+hooks:
+  - scripts/mkdocs_hooks.py
 
 theme:
   name: material
@@ -52,8 +54,10 @@ plugins:
       lang:
         - zh
         - en
+  - git-revision-date:
   - minify:
       minify_html: true
+  - open-in-new-tab:
 
 markdown_extensions:
   - abbr
@@ -65,7 +69,7 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-      permalink_title: 锚点链接 / Permalink
+      permalink_title: 永久链接
   - pymdownx.betterem
   - pymdownx.caret
   - pymdownx.details
@@ -96,13 +100,9 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/appleweiping/eediy
-  alternate:
-    - name: 简体中文
-      link: /
-      lang: zh-Hans
-    - name: English
-      link: /en/
-      lang: en
+  # Keep Material's language control enabled. Deep counterpart URLs and
+  # page-level hreflang metadata are rendered by the custom templates.
+  alternate: true
   status:
     verified: 已核验 / Verified
     review: 待复核 / Review due
@@ -110,14 +110,15 @@ extra:
 # BEGIN GENERATED NAV
 nav:
   - "中文":
-      - "前言": "index.md"
-      - "如何使用": "getting-started.md"
-      - "EE 学习规划":
+      - "开始学习":
+          - "前言": "index.md"
+          - "如何使用": "getting-started.md"
+      - "路线":
           - "总体规划": "roadmap.md"
           - "路线总览": "routes/index.md"
-          - "精简核心路线": "routes/essential-core.md"
-          - "本科核心审计路线": "routes/undergraduate-core.md"
-          - "嵌入式与智能硬件": "routes/embedded-maker.md"
+          - "精简 EE 核心": "routes/essential-core.md"
+          - "本科 EE 核心路线": "routes/undergraduate-core.md"
+          - "嵌入式、实时系统与板级设计": "routes/embedded-maker.md"
           - "数字系统、FPGA 与体系结构": "routes/digital-fpga-architecture.md"
           - "模拟、混合信号与集成电路": "routes/analog-ic.md"
           - "信号处理、通信与信息论": "routes/dsp-communications.md"
@@ -127,144 +128,54 @@ nav:
           - "电力、电机、电力电子与能源": "routes/power-energy.md"
           - "光电、光子与 MEMS": "routes/photonics-mems.md"
           - "传感、仪器与生物医学电子": "routes/instrumentation-biomedical.md"
-      - "必学工具": "guides/tools.md"
-      - "好书推荐": "books.md"
-      - "数学基础": "math-foundations.md"
-      - "数学进阶": "math-advanced.md"
-      - "课程总览": "courses/index.md"
-      - "工程数学":
-          - "方向总览": "courses/mathematics/index.md"
-          - "18.01SC · Single Variable Calculus": "courses/mathematics/001-18-01sc.md"
-          - "18.02SC · Multivariable Calculus": "courses/mathematics/002-18-02sc.md"
-          - "18.03SC · Differential Equations": "courses/mathematics/003-18-03sc.md"
-          - "18.06SC · Linear Algebra": "courses/mathematics/004-18-06sc.md"
-      - "概率、统计与随机过程":
-          - "方向总览": "courses/probability-statistics/index.md"
-          - "6.041SC · Probabilistic Systems Analysis and Applied Probability": "courses/probability-statistics/007-6-041sc.md"
-      - "物理基础":
-          - "方向总览": "courses/physics/index.md"
-          - "8.01SC · Classical Mechanics": "courses/physics/010-8-01sc.md"
-          - "8.02X · Physics II: Electricity and Magnetism with an Experimental Focus": "courses/physics/011-8-02x.md"
-          - "8.03SC · Physics III: Vibrations and Waves": "courses/physics/012-8-03sc.md"
-      - "编程与工程计算":
-          - "方向总览": "courses/programming-tools/index.md"
-          - "6.100L · Introduction to CS and Programming Using Python": "courses/programming-tools/015-6-100l.md"
-          - "6.087 · Practical Programming in C": "courses/programming-tools/016-6-087.md"
-      - "电子工程导论":
-          - "方向总览": "courses/ee-introduction/index.md"
-          - "6.01SC · Introduction to Electrical Engineering and Computer Science I": "courses/ee-introduction/019-6-01sc.md"
-      - "电路分析":
-          - "方向总览": "courses/circuits/index.md"
-          - "6.002 · Circuits and Electronics": "courses/circuits/021-6-002.md"
-      - "电子实验与测量":
-          - "方向总览": "courses/electronics-laboratory/index.md"
-          - "6.071J · Introduction to Electronics, Signals, and Measurement": "courses/electronics-laboratory/024-6-071j.md"
-          - "Real Analog · Real Analog Courses": "courses/electronics-laboratory/027-real-analog.md"
-      - "模拟电子":
-          - "方向总览": "courses/analog-electronics/index.md"
-          - "6.101 · Introductory Analog Electronics Laboratory": "courses/analog-electronics/026-6-101.md"
-      - "信号与系统":
-          - "方向总览": "courses/signals-systems/index.md"
-          - "6.003 · Signals and Systems": "courses/signals-systems/083-6-003.md"
-          - "EE 261 · The Fourier Transform and Its Applications": "courses/signals-systems/097-ee-261.md"
-      - "数字逻辑与计算结构":
-          - "方向总览": "courses/digital-logic/index.md"
-          - "6.004 · Computation Structures": "courses/digital-logic/037-6-004.md"
-      - "电磁场与波":
-          - "方向总览": "courses/electromagnetics/index.md"
-          - "ECE 3030 · Electromagnetic Fields and Waves": "courses/electromagnetics/107-ece-3030.md"
-          - "6.013 · Electromagnetics and Applications": "courses/electromagnetics/108-6-013.md"
-      - "计算机体系结构":
-          - "方向总览": "courses/computer-architecture/index.md"
-          - "ECE 4750 · Computer Architecture": "courses/computer-architecture/046-ece-4750.md"
-          - "CS 61C · Great Ideas in Computer Architecture": "courses/computer-architecture/048-cs-61c.md"
-      - "FPGA 与片上系统":
-          - "方向总览": "courses/fpga-soc/index.md"
-          - "6.111 · Introductory Digital Systems Laboratory": "courses/fpga-soc/042-6-111.md"
-      - "嵌入式系统":
-          - "方向总览": "courses/embedded-systems/index.md"
-          - "CS 107E · Computer Systems from the Ground Up": "courses/embedded-systems/058-cs-107e.md"
-          - "EE 319K / Volume 1 · Embedded Systems: Shape the World": "courses/embedded-systems/059-ee-319k-volume-1.md"
-      - "实时与信息物理系统":
-          - "方向总览": "courses/real-time-cps/index.md"
-          - "EECS 149 · Introduction to Embedded and Cyber-Physical Systems": "courses/real-time-cps/060-eecs-149.md"
-      - "硬件安全":
-          - "方向总览": "courses/hardware-security/index.md"
-          - "6.5950 · Secure Hardware Design": "courses/hardware-security/053-6-5950.md"
-      - "数字信号处理":
-          - "方向总览": "courses/dsp/index.md"
-          - "RES.6-008 · Digital Signal Processing": "courses/dsp/088-res-6-008.md"
-          - "6.341 · Discrete-Time Signal Processing": "courses/dsp/089-6-341.md"
-      - "通信系统":
-          - "方向总览": "courses/communications/index.md"
-          - "6.02 · Introduction to EECS II: Digital Communication Systems": "courses/communications/099-6-02.md"
-          - "6.450 · Principles of Digital Communications I": "courses/communications/100-6-450.md"
-          - "6.451 · Principles of Digital Communication II": "courses/communications/101-6-451.md"
-      - "信息论与编码":
-          - "方向总览": "courses/information-theory-coding/index.md"
-          - "EE 276 · Information Theory": "courses/information-theory-coding/102-ee-276.md"
-      - "控制系统":
-          - "方向总览": "courses/control-systems/index.md"
-          - "6.302 · Feedback Systems": "courses/control-systems/067-6-302.md"
-          - "EE 263 · Introduction to Linear Dynamical Systems (2008 Archive)": "courses/control-systems/068-ee-263.md"
-          - "CDS 101 / CDS 110 · Feedback Systems: An Introduction for Scientists and Engineers": "courses/control-systems/073-cds-101-cds-110.md"
-      - "机器人与自主系统":
-          - "方向总览": "courses/robotics/index.md"
-          - "6.4210 · Robotic Manipulation": "courses/robotics/074-6-4210.md"
-          - "6.832 · Underactuated Robotics": "courses/robotics/075-6-832.md"
-      - "射频、微波与天线":
-          - "方向总览": "courses/rf-microwave-antennas/index.md"
-          - "ECE 4880 · Radio Frequency Systems": "courses/rf-microwave-antennas/110-ece-4880.md"
-          - "RF and Millimeter-Wave Circuit Design · RF and Millimeter-Wave Circuit Design": "courses/rf-microwave-antennas/111-rf-and-millimeter-wave-circuit-design.md"
-          - "108105114 · Analysis and Design Principles of Microwave Antennas": "courses/rf-microwave-antennas/112-108105114.md"
-      - "半导体器件":
-          - "方向总览": "courses/semiconductor-devices/index.md"
-          - "ECE 4070 · Physics of Semiconductors and Nanostructures": "courses/semiconductor-devices/124-ece-4070.md"
-      - "微电子学":
-          - "方向总览": "courses/microelectronics/index.md"
-          - "ECE 3150 · Microelectronics": "courses/microelectronics/029-ece-3150.md"
-      - "模拟与混合信号集成电路":
-          - "方向总览": "courses/analog-ic/index.md"
-          - "EE 140 / EE 240A · Analog Integrated Circuits": "courses/analog-ic/141-ee-140-ee-240a.md"
-      - "数字 VLSI 与芯片设计":
-          - "方向总览": "courses/vlsi-ic/index.md"
-          - "6.374 · Analysis and Design of Digital Integrated Circuits": "courses/vlsi-ic/050-6-374.md"
-      - "微纳工艺与 MEMS":
-          - "方向总览": "courses/fabrication-mems/index.md"
-          - "6.152J · Micro/Nano Processing Technology": "courses/fabrication-mems/126-6-152j.md"
-          - "6.777J · Design and Fabrication of Microelectromechanical Devices": "courses/fabrication-mems/129-6-777j.md"
-      - "光学、光电与光子学":
-          - "方向总览": "courses/optics-photonics/index.md"
-          - "ECE 5330 · Semiconductor Optoelectronics": "courses/optics-photonics/131-ece-5330.md"
-          - "108106135 · Introduction to Photonics": "courses/optics-photonics/132-108106135.md"
-          - "Phot1x · Silicon Photonics Design, Fabrication and Data Analysis": "courses/optics-photonics/133-phot1x.md"
-          - "2.71 · Optics": "courses/optics-photonics/134-2-71.md"
-      - "电力电子":
-          - "方向总览": "courses/power-electronics/index.md"
-          - "6.622 · Power Electronics": "courses/power-electronics/114-6-622.md"
-      - "电力系统与电机":
-          - "方向总览": "courses/power-systems-machines/index.md"
-          - "117105140 · Power System Analysis": "courses/power-systems-machines/118-117105140.md"
-          - "6.685 · Electric Machines": "courses/power-systems-machines/120-6-685.md"
-      - "储能与光伏":
-          - "方向总览": "courses/energy-storage-pv/index.md"
-          - "PV Energy Conversion · Solar Energy Engineering: Photovoltaic Energy Conversion": "courses/energy-storage-pv/122-pv-energy-conversion.md"
-          - "10.626 · Electrochemical Energy Systems": "courses/energy-storage-pv/123-10-626.md"
-      - "PCB、EDA 与硬件验证":
-          - "方向总览": "courses/pcb-eda/index.md"
-          - "IAP PCB 2026 · The Art and Science of PCB Design": "courses/pcb-eda/055-iap-pcb-2026.md"
-      - "传感器与仪器":
-          - "方向总览": "courses/sensors-instrumentation/index.md"
-          - "108105153 · Electrical Measurement and Electronic Instruments": "courses/sensors-instrumentation/136-108105153.md"
-          - "ECEA 5340 · Sensors and Sensor Circuit Design": "courses/sensors-instrumentation/138-ecea-5340.md"
-      - "生物医学电子与信号":
-          - "方向总览": "courses/biomedical/index.md"
-          - "102106669 · Biomedical Instrumentation": "courses/biomedical/139-102106669.md"
-          - "HST.582J · Biomedical Signal and Image Processing": "courses/biomedical/140-hst-582j.md"
-      - "综合设计与毕业项目":
-          - "方向总览": "courses/capstone-practice/index.md"
-          - "ECE 4760 / ECE 5730 · Digital Systems Design Using Microcontrollers": "courses/capstone-practice/057-ece-4760-ece-5730.md"
-      - "实践指南":
+          - "数学基础": "math-foundations.md"
+          - "数学进阶": "math-advanced.md"
+      - "课程方向":
+          - "课程总览": "courses/index.md"
+          - "数理与工程基础":
+              - "工程数学": "courses/mathematics/index.md"
+              - "概率、统计与随机过程": "courses/probability-statistics/index.md"
+              - "物理基础": "courses/physics/index.md"
+              - "编程与工程计算": "courses/programming-tools/index.md"
+              - "电子工程导论": "courses/ee-introduction/index.md"
+          - "电子工程核心":
+              - "电路分析": "courses/circuits/index.md"
+              - "电子实验与测量": "courses/electronics-laboratory/index.md"
+              - "模拟电子": "courses/analog-electronics/index.md"
+              - "信号与系统": "courses/signals-systems/index.md"
+              - "数字逻辑与计算结构": "courses/digital-logic/index.md"
+              - "电磁场与波": "courses/electromagnetics/index.md"
+          - "数字、嵌入式与计算系统":
+              - "计算机体系结构": "courses/computer-architecture/index.md"
+              - "FPGA 与片上系统": "courses/fpga-soc/index.md"
+              - "嵌入式系统": "courses/embedded-systems/index.md"
+              - "实时与信息物理系统": "courses/real-time-cps/index.md"
+              - "硬件安全": "courses/hardware-security/index.md"
+          - "信号、通信与电磁":
+              - "数字信号处理": "courses/dsp/index.md"
+              - "通信系统": "courses/communications/index.md"
+              - "信息论与编码": "courses/information-theory-coding/index.md"
+              - "控制系统": "courses/control-systems/index.md"
+              - "机器人与自主系统": "courses/robotics/index.md"
+              - "射频、微波与天线": "courses/rf-microwave-antennas/index.md"
+          - "器件、芯片与微纳":
+              - "半导体器件": "courses/semiconductor-devices/index.md"
+              - "微电子学": "courses/microelectronics/index.md"
+              - "模拟与混合信号集成电路": "courses/analog-ic/index.md"
+              - "数字 VLSI 与芯片设计": "courses/vlsi-ic/index.md"
+              - "微纳工艺与 MEMS": "courses/fabrication-mems/index.md"
+              - "光学、光电与光子学": "courses/optics-photonics/index.md"
+          - "电能与可持续能源":
+              - "电力电子": "courses/power-electronics/index.md"
+              - "电力系统与电机": "courses/power-systems-machines/index.md"
+              - "储能与光伏": "courses/energy-storage-pv/index.md"
+          - "仪器、设计与跨学科实践":
+              - "PCB、EDA 与硬件验证": "courses/pcb-eda/index.md"
+              - "传感器与仪器": "courses/sensors-instrumentation/index.md"
+              - "生物医学电子与信号": "courses/biomedical/index.md"
+              - "综合设计与毕业项目": "courses/capstone-practice/index.md"
+      - "实践":
+          - "必学工具": "guides/tools.md"
           - "指南总览": "guides/index.md"
           - "实验安全": "guides/safety.md"
           - "版本控制与工程协作": "guides/version-control.md"
@@ -281,19 +192,21 @@ nav:
           - "技术写作与设计评审": "guides/technical-writing.md"
           - "可复现工程与自动验证": "guides/reproducibility.md"
           - "项目实践": "guides/projects.md"
-      - "参与共建":
+      - "资源与共建":
+          - "好书推荐": "books.md"
           - "贡献指南": "contributing.md"
           - "许可与引用": "about/license.md"
-      - "后记": "postscript.md"
+          - "编辑说明": "postscript.md"
   - "English":
-      - "Preface": "en/index.md"
-      - "How to Use This Guide": "en/getting-started.md"
-      - "EE Study Plan":
+      - "Start Learning":
+          - "Preface": "en/index.md"
+          - "How to Use This Guide": "en/getting-started.md"
+      - "Routes":
           - "Overall Plan": "en/roadmap.md"
           - "Route Index": "en/routes/index.md"
-          - "Essential Core": "en/routes/essential-core.md"
-          - "Undergraduate Core Audit": "en/routes/undergraduate-core.md"
-          - "Embedded Systems and Intelligent Hardware": "en/routes/embedded-maker.md"
+          - "Essential EE Core": "en/routes/essential-core.md"
+          - "Undergraduate EE Core": "en/routes/undergraduate-core.md"
+          - "Embedded, Real-Time, and Board-Level Systems": "en/routes/embedded-maker.md"
           - "Digital Systems, FPGA, and Architecture": "en/routes/digital-fpga-architecture.md"
           - "Analog, Mixed-Signal, and Integrated Circuits": "en/routes/analog-ic.md"
           - "Signal Processing, Communications, and Information Theory": "en/routes/dsp-communications.md"
@@ -303,144 +216,54 @@ nav:
           - "Power, Machines, Power Electronics, and Energy": "en/routes/power-energy.md"
           - "Optoelectronics, Photonics, and MEMS": "en/routes/photonics-mems.md"
           - "Sensors, Instrumentation, and Biomedical Electronics": "en/routes/instrumentation-biomedical.md"
-      - "Essential Tools": "en/guides/tools.md"
-      - "Recommended Books": "en/books.md"
-      - "Mathematical Foundations": "en/math-foundations.md"
-      - "Advanced Mathematics": "en/math-advanced.md"
-      - "Course Catalog": "en/courses/index.md"
-      - "Engineering Mathematics":
-          - "Track Overview": "en/courses/mathematics/index.md"
-          - "18.01SC · Single Variable Calculus": "en/courses/mathematics/001-18-01sc.md"
-          - "18.02SC · Multivariable Calculus": "en/courses/mathematics/002-18-02sc.md"
-          - "18.03SC · Differential Equations": "en/courses/mathematics/003-18-03sc.md"
-          - "18.06SC · Linear Algebra": "en/courses/mathematics/004-18-06sc.md"
-      - "Probability, Statistics, and Random Processes":
-          - "Track Overview": "en/courses/probability-statistics/index.md"
-          - "6.041SC · Probabilistic Systems Analysis and Applied Probability": "en/courses/probability-statistics/007-6-041sc.md"
-      - "Physics Foundations":
-          - "Track Overview": "en/courses/physics/index.md"
-          - "8.01SC · Classical Mechanics": "en/courses/physics/010-8-01sc.md"
-          - "8.02X · Physics II: Electricity and Magnetism with an Experimental Focus": "en/courses/physics/011-8-02x.md"
-          - "8.03SC · Physics III: Vibrations and Waves": "en/courses/physics/012-8-03sc.md"
-      - "Programming and Engineering Computing":
-          - "Track Overview": "en/courses/programming-tools/index.md"
-          - "6.100L · Introduction to CS and Programming Using Python": "en/courses/programming-tools/015-6-100l.md"
-          - "6.087 · Practical Programming in C": "en/courses/programming-tools/016-6-087.md"
-      - "Introduction to Electrical Engineering":
-          - "Track Overview": "en/courses/ee-introduction/index.md"
-          - "6.01SC · Introduction to Electrical Engineering and Computer Science I": "en/courses/ee-introduction/019-6-01sc.md"
-      - "Circuit Analysis":
-          - "Track Overview": "en/courses/circuits/index.md"
-          - "6.002 · Circuits and Electronics": "en/courses/circuits/021-6-002.md"
-      - "Electronics Laboratory and Measurement":
-          - "Track Overview": "en/courses/electronics-laboratory/index.md"
-          - "6.071J · Introduction to Electronics, Signals, and Measurement": "en/courses/electronics-laboratory/024-6-071j.md"
-          - "Real Analog · Real Analog Courses": "en/courses/electronics-laboratory/027-real-analog.md"
-      - "Analog Electronics":
-          - "Track Overview": "en/courses/analog-electronics/index.md"
-          - "6.101 · Introductory Analog Electronics Laboratory": "en/courses/analog-electronics/026-6-101.md"
-      - "Signals and Systems":
-          - "Track Overview": "en/courses/signals-systems/index.md"
-          - "6.003 · Signals and Systems": "en/courses/signals-systems/083-6-003.md"
-          - "EE 261 · The Fourier Transform and Its Applications": "en/courses/signals-systems/097-ee-261.md"
-      - "Digital Logic and Computation Structures":
-          - "Track Overview": "en/courses/digital-logic/index.md"
-          - "6.004 · Computation Structures": "en/courses/digital-logic/037-6-004.md"
-      - "Electromagnetic Fields and Waves":
-          - "Track Overview": "en/courses/electromagnetics/index.md"
-          - "ECE 3030 · Electromagnetic Fields and Waves": "en/courses/electromagnetics/107-ece-3030.md"
-          - "6.013 · Electromagnetics and Applications": "en/courses/electromagnetics/108-6-013.md"
-      - "Computer Architecture":
-          - "Track Overview": "en/courses/computer-architecture/index.md"
-          - "ECE 4750 · Computer Architecture": "en/courses/computer-architecture/046-ece-4750.md"
-          - "CS 61C · Great Ideas in Computer Architecture": "en/courses/computer-architecture/048-cs-61c.md"
-      - "FPGA and System-on-Chip Design":
-          - "Track Overview": "en/courses/fpga-soc/index.md"
-          - "6.111 · Introductory Digital Systems Laboratory": "en/courses/fpga-soc/042-6-111.md"
-      - "Embedded Systems":
-          - "Track Overview": "en/courses/embedded-systems/index.md"
-          - "CS 107E · Computer Systems from the Ground Up": "en/courses/embedded-systems/058-cs-107e.md"
-          - "EE 319K / Volume 1 · Embedded Systems: Shape the World": "en/courses/embedded-systems/059-ee-319k-volume-1.md"
-      - "Real-Time and Cyber-Physical Systems":
-          - "Track Overview": "en/courses/real-time-cps/index.md"
-          - "EECS 149 · Introduction to Embedded and Cyber-Physical Systems": "en/courses/real-time-cps/060-eecs-149.md"
-      - "Hardware Security":
-          - "Track Overview": "en/courses/hardware-security/index.md"
-          - "6.5950 · Secure Hardware Design": "en/courses/hardware-security/053-6-5950.md"
-      - "Digital Signal Processing":
-          - "Track Overview": "en/courses/dsp/index.md"
-          - "RES.6-008 · Digital Signal Processing": "en/courses/dsp/088-res-6-008.md"
-          - "6.341 · Discrete-Time Signal Processing": "en/courses/dsp/089-6-341.md"
-      - "Communication Systems":
-          - "Track Overview": "en/courses/communications/index.md"
-          - "6.02 · Introduction to EECS II: Digital Communication Systems": "en/courses/communications/099-6-02.md"
-          - "6.450 · Principles of Digital Communications I": "en/courses/communications/100-6-450.md"
-          - "6.451 · Principles of Digital Communication II": "en/courses/communications/101-6-451.md"
-      - "Information Theory and Coding":
-          - "Track Overview": "en/courses/information-theory-coding/index.md"
-          - "EE 276 · Information Theory": "en/courses/information-theory-coding/102-ee-276.md"
-      - "Control Systems":
-          - "Track Overview": "en/courses/control-systems/index.md"
-          - "6.302 · Feedback Systems": "en/courses/control-systems/067-6-302.md"
-          - "EE 263 · Introduction to Linear Dynamical Systems (2008 Archive)": "en/courses/control-systems/068-ee-263.md"
-          - "CDS 101 / CDS 110 · Feedback Systems: An Introduction for Scientists and Engineers": "en/courses/control-systems/073-cds-101-cds-110.md"
-      - "Robotics and Autonomous Systems":
-          - "Track Overview": "en/courses/robotics/index.md"
-          - "6.4210 · Robotic Manipulation": "en/courses/robotics/074-6-4210.md"
-          - "6.832 · Underactuated Robotics": "en/courses/robotics/075-6-832.md"
-      - "RF, Microwave, and Antennas":
-          - "Track Overview": "en/courses/rf-microwave-antennas/index.md"
-          - "ECE 4880 · Radio Frequency Systems": "en/courses/rf-microwave-antennas/110-ece-4880.md"
-          - "RF and Millimeter-Wave Circuit Design · RF and Millimeter-Wave Circuit Design": "en/courses/rf-microwave-antennas/111-rf-and-millimeter-wave-circuit-design.md"
-          - "108105114 · Analysis and Design Principles of Microwave Antennas": "en/courses/rf-microwave-antennas/112-108105114.md"
-      - "Semiconductor Devices":
-          - "Track Overview": "en/courses/semiconductor-devices/index.md"
-          - "ECE 4070 · Physics of Semiconductors and Nanostructures": "en/courses/semiconductor-devices/124-ece-4070.md"
-      - "Microelectronics":
-          - "Track Overview": "en/courses/microelectronics/index.md"
-          - "ECE 3150 · Microelectronics": "en/courses/microelectronics/029-ece-3150.md"
-      - "Analog and Mixed-Signal IC Design":
-          - "Track Overview": "en/courses/analog-ic/index.md"
-          - "EE 140 / EE 240A · Analog Integrated Circuits": "en/courses/analog-ic/141-ee-140-ee-240a.md"
-      - "Digital VLSI and Chip Design":
-          - "Track Overview": "en/courses/vlsi-ic/index.md"
-          - "6.374 · Analysis and Design of Digital Integrated Circuits": "en/courses/vlsi-ic/050-6-374.md"
-      - "Micro/Nanofabrication and MEMS":
-          - "Track Overview": "en/courses/fabrication-mems/index.md"
-          - "6.152J · Micro/Nano Processing Technology": "en/courses/fabrication-mems/126-6-152j.md"
-          - "6.777J · Design and Fabrication of Microelectromechanical Devices": "en/courses/fabrication-mems/129-6-777j.md"
-      - "Optics, Optoelectronics, and Photonics":
-          - "Track Overview": "en/courses/optics-photonics/index.md"
-          - "ECE 5330 · Semiconductor Optoelectronics": "en/courses/optics-photonics/131-ece-5330.md"
-          - "108106135 · Introduction to Photonics": "en/courses/optics-photonics/132-108106135.md"
-          - "Phot1x · Silicon Photonics Design, Fabrication and Data Analysis": "en/courses/optics-photonics/133-phot1x.md"
-          - "2.71 · Optics": "en/courses/optics-photonics/134-2-71.md"
-      - "Power Electronics":
-          - "Track Overview": "en/courses/power-electronics/index.md"
-          - "6.622 · Power Electronics": "en/courses/power-electronics/114-6-622.md"
-      - "Power Systems and Electric Machines":
-          - "Track Overview": "en/courses/power-systems-machines/index.md"
-          - "117105140 · Power System Analysis": "en/courses/power-systems-machines/118-117105140.md"
-          - "6.685 · Electric Machines": "en/courses/power-systems-machines/120-6-685.md"
-      - "Energy Storage and Photovoltaics":
-          - "Track Overview": "en/courses/energy-storage-pv/index.md"
-          - "PV Energy Conversion · Solar Energy Engineering: Photovoltaic Energy Conversion": "en/courses/energy-storage-pv/122-pv-energy-conversion.md"
-          - "10.626 · Electrochemical Energy Systems": "en/courses/energy-storage-pv/123-10-626.md"
-      - "PCB, EDA, and Hardware Verification":
-          - "Track Overview": "en/courses/pcb-eda/index.md"
-          - "IAP PCB 2026 · The Art and Science of PCB Design": "en/courses/pcb-eda/055-iap-pcb-2026.md"
-      - "Sensors and Instrumentation":
-          - "Track Overview": "en/courses/sensors-instrumentation/index.md"
-          - "108105153 · Electrical Measurement and Electronic Instruments": "en/courses/sensors-instrumentation/136-108105153.md"
-          - "ECEA 5340 · Sensors and Sensor Circuit Design": "en/courses/sensors-instrumentation/138-ecea-5340.md"
-      - "Biomedical Electronics and Signals":
-          - "Track Overview": "en/courses/biomedical/index.md"
-          - "102106669 · Biomedical Instrumentation": "en/courses/biomedical/139-102106669.md"
-          - "HST.582J · Biomedical Signal and Image Processing": "en/courses/biomedical/140-hst-582j.md"
-      - "Capstone Design and Engineering Practice":
-          - "Track Overview": "en/courses/capstone-practice/index.md"
-          - "ECE 4760 / ECE 5730 · Digital Systems Design Using Microcontrollers": "en/courses/capstone-practice/057-ece-4760-ece-5730.md"
-      - "Practice Guides":
+          - "Mathematical Foundations": "en/math-foundations.md"
+          - "Advanced Mathematics": "en/math-advanced.md"
+      - "Course Directions":
+          - "Course Catalog": "en/courses/index.md"
+          - "Mathematical and Engineering Foundations":
+              - "Engineering Mathematics": "en/courses/mathematics/index.md"
+              - "Probability, Statistics, and Random Processes": "en/courses/probability-statistics/index.md"
+              - "Physics Foundations": "en/courses/physics/index.md"
+              - "Programming and Engineering Computing": "en/courses/programming-tools/index.md"
+              - "Introduction to Electrical Engineering": "en/courses/ee-introduction/index.md"
+          - "Electrical Engineering Core":
+              - "Circuit Analysis": "en/courses/circuits/index.md"
+              - "Electronics Laboratory and Measurement": "en/courses/electronics-laboratory/index.md"
+              - "Analog Electronics": "en/courses/analog-electronics/index.md"
+              - "Signals and Systems": "en/courses/signals-systems/index.md"
+              - "Digital Logic and Computation Structures": "en/courses/digital-logic/index.md"
+              - "Electromagnetic Fields and Waves": "en/courses/electromagnetics/index.md"
+          - "Digital, Embedded, and Computing Systems":
+              - "Computer Architecture": "en/courses/computer-architecture/index.md"
+              - "FPGA and System-on-Chip Design": "en/courses/fpga-soc/index.md"
+              - "Embedded Systems": "en/courses/embedded-systems/index.md"
+              - "Real-Time and Cyber-Physical Systems": "en/courses/real-time-cps/index.md"
+              - "Hardware Security": "en/courses/hardware-security/index.md"
+          - "Signals, Communications, and Electromagnetics":
+              - "Digital Signal Processing": "en/courses/dsp/index.md"
+              - "Communication Systems": "en/courses/communications/index.md"
+              - "Information Theory and Coding": "en/courses/information-theory-coding/index.md"
+              - "Control Systems": "en/courses/control-systems/index.md"
+              - "Robotics and Autonomous Systems": "en/courses/robotics/index.md"
+              - "RF, Microwave, and Antennas": "en/courses/rf-microwave-antennas/index.md"
+          - "Devices, Integrated Circuits, and Micro/Nano":
+              - "Semiconductor Devices": "en/courses/semiconductor-devices/index.md"
+              - "Microelectronics": "en/courses/microelectronics/index.md"
+              - "Analog and Mixed-Signal IC Design": "en/courses/analog-ic/index.md"
+              - "Digital VLSI and Chip Design": "en/courses/vlsi-ic/index.md"
+              - "Micro/Nanofabrication and MEMS": "en/courses/fabrication-mems/index.md"
+              - "Optics, Optoelectronics, and Photonics": "en/courses/optics-photonics/index.md"
+          - "Electric Energy and Sustainability":
+              - "Power Electronics": "en/courses/power-electronics/index.md"
+              - "Power Systems and Electric Machines": "en/courses/power-systems-machines/index.md"
+              - "Energy Storage and Photovoltaics": "en/courses/energy-storage-pv/index.md"
+          - "Instrumentation, Design, and Interdisciplinary Practice":
+              - "PCB, EDA, and Hardware Verification": "en/courses/pcb-eda/index.md"
+              - "Sensors and Instrumentation": "en/courses/sensors-instrumentation/index.md"
+              - "Biomedical Electronics and Signals": "en/courses/biomedical/index.md"
+              - "Capstone Design and Engineering Practice": "en/courses/capstone-practice/index.md"
+      - "Practice":
+          - "Essential Tools": "en/guides/tools.md"
           - "Guide Index": "en/guides/index.md"
           - "Laboratory Safety": "en/guides/safety.md"
           - "Version Control and Collaboration": "en/guides/version-control.md"
@@ -457,8 +280,9 @@ nav:
           - "Technical Writing": "en/guides/technical-writing.md"
           - "Reproducible Engineering": "en/guides/reproducibility.md"
           - "Project Practice": "en/guides/projects.md"
-      - "Contribute":
+      - "Resources and Community":
+          - "Recommended Books": "en/books.md"
           - "Contribution Guide": "en/contributing.md"
           - "Licensing and Attribution": "en/about/license.md"
-      - "Postscript": "en/postscript.md"
+          - "Editorial Notes": "en/postscript.md"
 # END GENERATED NAV

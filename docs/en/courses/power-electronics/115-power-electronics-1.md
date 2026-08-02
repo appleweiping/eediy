@@ -3,69 +3,51 @@ title: "Introduction to Power Electronics"
 description: "University of Colorado Boulder's Introduction to Power Electronics provides an entry through videos, exercises, simulation, and code, with useful practice subject to changing or paid platform and grading access."
 page_type: course
 course_id: "course-115"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 1a7a1a70b22d31f8 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9137d82d02f614fb -->
 
-# Introduction to Power Electronics
+# University of Colorado Boulder Power Electronics 1: Introduction to Power Electronics
 
 ## Course Overview
 
 - **University:** University of Colorado Boulder
 - **Course code:** Power Electronics 1
-- **Prerequisites:** Recommended foundation: Circuit Analysis; Recommended foundation: Control Systems; Recommended foundation: Electronics Laboratory and Measurement
-- **Track:** [Power Electronics](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
+- **EEDIY preparation:** Circuit Analysis; Control Systems; Electronics Laboratory and Measurement
+- **Access:** Registration required; scope varies by platform
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Course fit
 
-University of Colorado Boulder's Introduction to Power Electronics provides an entry through videos, exercises, simulation, and code, with useful practice subject to changing or paid platform and grading access.
+The University of Colorado Boulder [Introduction to Power Electronics](https://www.coursera.org/learn/power-electronics) opens its [Power Electronics Specialization](https://www.coursera.org/specializations/power-electronics). The official course page currently shows 3 modules, 3 assignments, and “1 week at 10 hours”; those assignments cover boost simulation, converter analysis, and equivalent-circuit modeling. The specialization gives a separate 12-hour estimate. Allow 3–4 weeks if averaged models are new. This is a strong fit for learners who know circuits and want to derive buck and boost behavior from switching states.
 
-**Check before starting**
+Before enrolling, write the ideal buck inductor voltage in both states and recover its conversion ratio by volt-second balance. If that requires a copied formula, review KCL/KVL, RC/RL transients, power, and ideal switches first. LTspice appears in the course, but simulation is there to test a derivation.
 
-- Recommended foundation: Circuit Analysis
-- Recommended foundation: Control Systems
-- Recommended foundation: Electronics Laboratory and Measurement
+### Course structure
 
-## Start with these links
+Chapter 1 introduces switched converters through buck, boost, and a boost simulation. Chapter 2 develops steady state, the small-ripple approximation, and converter analysis. Chapter 3 builds averaged equivalent circuits, loss, and efficiency models. For each topology, keep its switching states, periodic constraint, average and ripple result, and assumption boundary together. If the converter enters DCM, revisit the CCM model instead of extending its formula.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+Exact prompts and feedback depend on signed-in Coursera access. “Enroll for free” does not guarantee that every account retains graded access, so inspect the enrollment screen before planning around it.
 
-- [Course home](https://www.coursera.org/learn/power-electronics)
+### Assignments and feedback
 
-## Known Boundaries
+Keep a separate low-power 12 V to 5 V buck notebook. Choose `L` and `C` from ripple targets, sweep duty ratio, load, and switching frequency, then add ESR and conduction loss. Put the analytic prediction, steady-state measurement window, and error beside each plot. Obtain the simulator and its current documentation from Analog Devices’ [LTspice page](https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html); a third-party circuit or troubleshooting suggestion still needs an assumption and model check.
 
-The simulation exercises are useful, but Coursera access and graded work availability may require payment and can change.
+A useful finish line is an averaged model derived from two states, LTspice current slopes and mean output that agree with hand predictions, a closed power balance, and an explanation of why startup is outside periodic volt-second balance.
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+### Continue through circuits and control
+
+Take [Converter Circuits](https://www.coursera.org/learn/converter-circuits) next, then [Converter Control](https://www.coursera.org/learn/converter-control). This course has no bench-lab sequence; magnetics, gate drives, layout, thermal design, and safe measurement need separate laboratory training.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.coursera.org/learn/power-electronics)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | No public material |
-| Code | Partial |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/power-electronics) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

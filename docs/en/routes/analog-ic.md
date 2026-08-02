@@ -1,59 +1,64 @@
 ---
 title: "Analog, Mixed-Signal, and Integrated Circuits"
-description: "Complete an analog or mixed-signal design with specifications, corner simulation, noise/power tradeoffs, and layout checks."
+description: "Use the public Berkeley EE 140/240A problems and lab specifications as the analog-IC spine, completing specifications, bias, noise, and only the PVT/load corners supported by the available models. The default exit is schematic-level. Add an independent layout study only after validating open EDA, a lawfully usable educational PDK, DRC/LVS, and extraction models; this route does not promise to reproduce Berkeley's campus Cadence flow or complete PEX."
 page_type: route
+route_id: "route-analog-ic"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 27c5f4701740fac0 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: fb3fbf2319786712 -->
 
 # Analog, Mixed-Signal, and Integrated Circuits
 
 ## Audience
 
-Learners progressing from circuits and devices to transistor-level design, simulation, and layout
+Learners moving from device curves and small-signal circuits to transistor-level design, corner simulation, and layout
 
-## Final outcome
+## What you should be able to do
 
-Complete an analog or mixed-signal design with specifications, corner simulation, noise/power tradeoffs, and layout checks.
+Use the public Berkeley EE 140/240A problems and lab specifications as the analog-IC spine, completing specifications, bias, noise, and only the PVT/load corners supported by the available models. The default exit is schematic-level. Add an independent layout study only after validating open EDA, a lawfully usable educational PDK, DRC/LVS, and extraction models; this route does not promise to reproduce Berkeley's campus Cadence flow or complete PEX.
 
-## Stages
+## Pass the EE 105 capability check before installing a PDK
 
-### Circuits and devices
+Attempt an EE 105/6.012-level MOS bias and small-signal problem, then open Spring 2025 EE 140/240A HW1 and the public Lab 1. If gm, ro, poles, and feedback are not yet independent skills, repair the device bridge before installing a PDK.
 
-**Selection rule:** Complete all 3 required courses and choose 1 of 2 elective options.
+Use EE 105, 6.002, and ECE 3150 to connect device curves, bias, and small-signal analysis. Read 6.012 or ECE 4070 only for a missing device-physics topic rather than repeating another survey.
 
-- [Circuits and Electronics](../courses/circuits/021-6-002.md) — **Required**; MIT; Mainline; S
-- [Microelectronics](../courses/microelectronics/029-ece-3150.md) — **Required**; Cornell University; Mainline; S
-- [Microelectronic Devices and Circuits](../courses/microelectronics/030-6-012.md) — **Elective option**; MIT; Alternative; A
-- [Microelectronic Devices and Circuits](../courses/microelectronics/031-ee-105.md) — **Elective option**; University of California, Berkeley; Alternative; A
-- [Physics of Semiconductors and Nanostructures](../courses/semiconductor-devices/124-ece-4070.md) — **Required**; Cornell University; Mainline; A
+## Make the schematic spine real first
 
-**Stage exit criterion:** Extract MOS-device parameters from public or simulated I–V/C–V curves and use the same model to predict a bias circuit's DC, AC, and transient responses; normalized RMSE on held-out data must stay below 10%.
+- Use EE 140/240A as the transistor-level spine: work through the public material on bias, gain, frequency response, feedback, noise, and output swing, establishing an off-campus baseline with the LTspice scope of Lab 1.
+- If an open toolchain and educational PDK are independently validated, take one frozen schematic through DRC/LVS. Compare pre- and post-parasitic behavior only when extraction rules and models actually exist, and scope every conclusion to the named PDK and tool versions.
 
-### Analog design
+## Layout is a separate claim, not a default bonus
 
-**Selection rule:** Complete all 1 required course and choose 2 of 3 elective options. The other course is an optional supplement and does not count toward the elective requirement.
+- Do not end the analog route with MIT 6.374 or Cornell ECE 4740 digital-IC/VLSI labs; those belong to the digital-layout route.
+- Without Berkeley server access, skip any claim of reproducing Labs 2–8 or the course project. Without a validated extraction model, omit PEX numbers instead of filling in a placeholder result.
+- The default stop is schematic-level: the specification table, bias, AC/transient/noise analysis, and supported PVT/load sweeps rerun, with failed corners and tradeoffs retained.
+- The independent layout branch ends only when DRC/LVS are clean under the stated rules. PEX is an optional next layer, not a gate to pretend to meet when public extraction evidence is absent.
 
-- [Introductory Analog Electronics Laboratory](../courses/analog-electronics/026-6-101.md) — **Required**; MIT; Mainline; S
-- [Solid-State Circuits](../courses/analog-electronics/032-6-301.md) — **Elective option**; MIT; Supplement; B
-- [Analog Circuits](../courses/analog-electronics/034-108101094.md) — **Elective option**; IIT Bombay / NPTEL; Alternative; A
-- [Integrated Circuits, MOSFETs, OP-Amps and Their Applications](../courses/analog-electronics/035-108108111.md) — **Elective option**; Indian Institute of Science / NPTEL; Alternative; A
-- [Analog IC Design](../courses/analog-ic/036-108106105-noc26-ee66.md) — **Optional supplement**; IIT Madras / NPTEL; Supplement; A
+## How to proceed
 
-**Stage exit criterion:** Design an op-amp or low-noise front end and verify gain, bandwidth, phase margin, noise, slew rate, and power specifications individually; all PVT and load corners must pass, or any miss must be captured as a reproducible tradeoff.
+### From device curves to bias
 
-### Integrated implementation
+**Why these courses:** 6.002 supplies circuit analysis and ECE 3150 supplies small-signal device work. EE 140/240A explicitly names EE 105 as its prerequisite, so EE 105 is the required bridge in this route. Existing equivalent competence may replace retaking the entire course only after an unaided diagnostic covering MOS bias, small-signal behavior, frequency response, and feedback; it cannot remove the capability check. Use 6.012 or ECE 4070 only for remaining device-derivation or semiconductor-physics gaps.
 
-**Selection rule:** Complete all 2 required courses; use the other 1 option only to close a specific gap.
+- [Circuits and Electronics](../courses/circuits/021-6-002.md) — **Required**; MIT
+- [Microelectronics](../courses/microelectronics/029-ece-3150.md) — **Required**; Cornell University
+- [Microelectronic Devices and Circuits](../courses/microelectronics/031-ee-105.md) — **Required**; University of California, Berkeley
+- [Microelectronic Devices and Circuits](../courses/microelectronics/030-6-012.md) — **Use if needed**; MIT
+- [Physics of Semiconductors and Nanostructures](../courses/semiconductor-devices/124-ece-4070.md) — **Use if needed**; Cornell University
 
-- [Analysis and Design of Digital Integrated Circuits](../courses/vlsi-ic/050-6-374.md) — **Required**; MIT; Mainline; A
-- [VLSI Systems](../courses/vlsi-ic/051-ece-4740.md) — **Optional supplement**; Cornell University; Supplement; A
-- [Micro/Nano Processing Technology](../courses/fabrication-mems/126-6-152j.md) — **Required**; MIT; Mainline; S
+**Move on when:** Extract MOS parameters from public or simulated I–V/C–V curves, then use that same model to predict a bias circuit's DC, AC, and transient behavior. Before fitting, state the allowed error from data resolution, noise, or solver accuracy. Report normalized RMSE on held-out data and mark the bias regions where the model fails.
 
-**Stage exit criterion:** Submit a layout and signoff package with explicit process assumptions, zero DRC and LVS errors, and a pre- versus post-layout comparison of key metrics; parasitic-driven changes must be quantified and every specification miss must have a layout-level remedy.
+### EE 140/240A spine and an honest layout ceiling
 
-## Execution rules
+**Why these courses:** The Spring 2025 EE 140/240A homework, partial solutions, exams, and Lab 1 form the spine. Labs 2–8 and the project depend on Cadence/Virtuoso, Berkeley servers, and a SKY130 environment that has not been validated as an off-campus reproduction package. Use NPTEL material for explanation, 6.152J only for process context, and 6.101 only with a real low-voltage bench. Layout is an independently validated study, not a course lab these public materials automatically provide.
 
-- Follow each stage's selection rule: complete every required course and the stated number of electives; when complete path options are provided, choose one and finish every course in its listed order; use optional supplements only to close a specific gap.
-- Produce at least one reproducible artifact per stage and include failed attempts in the retrospective.
-- Work involving mains voltage, high voltage, RF exposure, lasers, chemicals, or fabrication equipment requires local-law compliance and qualified supervision.
+- [Analog Integrated Circuits](../courses/analog-ic/141-ee-140-ee-240a.md) — **Required**; University of California, Berkeley
+- [Analog Circuits](../courses/analog-electronics/034-108101094.md) — **Use if needed**; IIT Bombay / NPTEL
+- [Integrated Circuits, MOSFETs, OP-Amps and Their Applications](../courses/analog-electronics/035-108108111.md) — **Use if needed**; Indian Institute of Science / NPTEL
+- [Analog IC Design](../courses/analog-ic/036-108106105-noc26-ee66.md) — **Use if needed**; IIT Madras / NPTEL
+- [Micro/Nano Processing Technology](../courses/fabrication-mems/126-6-152j.md) — **Use if needed**; MIT
+- [Introductory Analog Electronics Laboratory](../courses/analog-electronics/026-6-101.md) — **Use if needed**; MIT
+
+**Move on when:** First deliver a schematic-level design with repeatable gain, bandwidth, phase margin, noise, slew rate, power, and supported PVT/load corners, retaining every miss. If an independent layout is added, name the tool, educational PDK, and rule deck and obtain clean DRC/LVS. Report PEX only when extraction rules and models actually exist, and never call the result tapeout signoff.

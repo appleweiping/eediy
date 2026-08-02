@@ -6,6 +6,7 @@ import json
 import math
 import re
 import socket
+import subprocess
 import sys
 import threading
 import time
@@ -13,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping
-from urllib.parse import urljoin, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, unquote, urljoin, urlsplit, urlunsplit
 from urllib.robotparser import RobotFileParser
 
 if __package__ in {None, ""}:
@@ -35,7 +36,7 @@ from scripts.quality_common import (
 
 
 USER_AGENT = "EEDIY-LinkChecker/1.0"
-CACHE_VERSION = 3
+CACHE_VERSION = 4
 DEFAULT_REVIEW_LEDGER = "data/external_link_reviews.json"
 REVIEW_DECISIONS = frozenset({"retain", "replace", "remove"})
 DEFAULT_REVIEW_MAX_AGE_DAYS = 14
@@ -47,6 +48,32 @@ MANUAL_REVIEW_REASON_CODES = frozenset(
 PERMANENT_MISSING_STATUSES = frozenset({404, 410})
 REDIRECT_STATUSES = frozenset({301, 302, 303, 307, 308})
 MAX_REDIRECTS = 10
+AUTH_HOST_LABELS = frozenset({"auth", "idp", "login", "sso", "weblogin"})
+AUTH_PATH_RE = re.compile(
+    r"(?:^|/)(?:cas/login|login|oauth/authorize|saml2?|shibboleth|signin)(?:/|$)",
+    re.IGNORECASE,
+)
+NON_HTML_RESOURCE_SUFFIXES = frozenset(
+    {
+        ".7z",
+        ".csv",
+        ".doc",
+        ".docx",
+        ".gz",
+        ".ipynb",
+        ".m",
+        ".mat",
+        ".pdf",
+        ".ppt",
+        ".pptx",
+        ".rar",
+        ".tar",
+        ".tgz",
+        ".xls",
+        ".xlsx",
+        ".zip",
+    }
+)
 
 Resolver = Callable[[str, int], Iterable[str]]
 
@@ -141,6 +168,399 @@ def canonical_url(url: str) -> str:
     )
 
 
+def _has_forbidden_url_control(value: str) -> bool:
+    return any(ord(character) < 0x20 or ord(character) == 0x7F for character in value)
+
+
+_LOCAL_CHECKOUT_OK_REASONS = {
+    "compare": "same-repository compare action is backed by the tracked GitHub checkout",
+    "issue_template": "same-repository issue action names an exact tracked template",
+    "tracked_path": "same-repository main target exists with exact case in the tracked checkout",
+}
+
+
+def _local_checkout_action_kind(url: str) -> str | None:
+    """Identify the exact same-repository action represented by a canonical URL."""
+
+    try:
+        parsed = urlsplit(url)
+        port = parsed.port
+    except (TypeError, ValueError):
+        return None
+    if (
+        parsed.scheme != "https"
+        or parsed.netloc not in {"github.com", "github.com:443"}
+        or parsed.username is not None
+        or parsed.password is not None
+        or port not in {None, 443}
+        or bool(parsed.fragment)
+        or "%" in parsed.path
+        or _has_forbidden_url_control(url)
+    ):
+        return None
+
+    raw_segments = parsed.path.split("/")
+    if any(not segment for segment in raw_segments[1:]):
+        return None
+    parts = [unquote(part) for part in raw_segments[1:]]
+    if parts[:2] != ["appleweiping", "eediy"]:
+        return None
+
+    if parts[2:] == ["compare"] and not parsed.query:
+        return "compare"
+    if parts[2:] == ["issues", "new"]:
+        query_items = parse_qsl(parsed.query, keep_blank_values=True)
+        template = query_items[0][1] if len(query_items) == 1 else ""
+        if (
+            len(query_items) == 1
+            and query_items[0][0] == "template"
+            and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*\.ya?ml", template)
+            is not None
+            and "%" not in parsed.query
+        ):
+            return "issue_template"
+        return None
+    if (
+        len(parts) >= 5
+        and parts[2] in {"tree", "blob"}
+        and parts[3] == "main"
+        and not parsed.query
+    ):
+        return "tracked_path"
+    return None
+
+
+def local_repository_result(
+    url: str,
+    repo_root: Path,
+) -> dict[str, Any] | None:
+    """Resolve durable GitHub ``main`` links against the checkout under test.
+
+    A feature branch cannot receive HTTP 200 for a new ``tree/main`` or
+    ``blob/main`` target until after merge. Checking the exact local path keeps
+    pull-request CI strict without weakening the final URL: a missing local
+    target is still a permanent failure.
+    """
+
+    checked_at = datetime.now(timezone.utc).isoformat()
+
+    def local_result(
+        *,
+        canonical: str,
+        outcome: str,
+        reason_code: str,
+        reason: str,
+    ) -> dict[str, Any]:
+        return {
+            "url": canonical,
+            "outcome": outcome,
+            "reason_code": reason_code,
+            "http_status": None,
+            "reason": reason,
+            "final_url": canonical,
+            "check_method": "local_checkout",
+            "checked_at": checked_at,
+            "elapsed_ms": 0,
+            "from_cache": False,
+        }
+
+    try:
+        parsed = urlsplit(url)
+        hostname = parsed.hostname
+        port = parsed.port
+    except (TypeError, ValueError):
+        return None
+    if (hostname or "").casefold().rstrip(".") != "github.com":
+        return None
+
+    raw_segments = parsed.path.split("/")
+    decoded_segments = [unquote(part) for part in raw_segments]
+    looks_like_this_repo = (
+        len(decoded_segments) >= 3
+        and decoded_segments[1].casefold() == "appleweiping"
+        and decoded_segments[2].casefold() == "eediy"
+    )
+    if not looks_like_this_repo:
+        return None
+
+    try:
+        canonical = canonical_url(url)
+    except (TypeError, ValueError):
+        canonical = str(url)
+
+    common_invalid = (
+        url != url.strip()
+        or _has_forbidden_url_control(url)
+        or parsed.scheme != "https"
+        or parsed.netloc not in {"github.com", "github.com:443"}
+        or parsed.username is not None
+        or parsed.password is not None
+        or port not in {None, 443}
+        or bool(parsed.fragment)
+        or "%" in parsed.path
+        or not parsed.path.startswith("/")
+        or any(not segment for segment in raw_segments[1:])
+    )
+
+    raw_parts = decoded_segments[1:]
+    action_kind: str | None = None
+    if raw_parts[2:] == ["compare"]:
+        action_kind = "compare"
+    elif raw_parts[2:] == ["issues", "new"]:
+        action_kind = "issue_template"
+    elif len(raw_parts) >= 3 and raw_parts[2] in {"tree", "blob"}:
+        action_kind = "tracked_path"
+    else:
+        return None
+
+    if common_invalid:
+        return local_result(
+            canonical=canonical,
+            outcome="failed",
+            reason_code="local_checkout_invalid",
+            reason="same-repository link is not an exact canonical HTTPS GitHub path",
+        )
+
+    if raw_parts[0] != "appleweiping" or raw_parts[1] != "eediy":
+        return local_result(
+            canonical=canonical,
+            outcome="failed",
+            reason_code="local_checkout_invalid",
+            reason="same-repository owner or repository spelling is not canonical",
+        )
+
+    root = repo_root.resolve()
+
+    if action_kind == "compare":
+        if parsed.query:
+            return local_result(
+                canonical=canonical,
+                outcome="failed",
+                reason_code="local_checkout_invalid",
+                reason="same-repository compare link must not include a query",
+            )
+        try:
+            completed = subprocess.run(
+                ["git", "-C", str(root), "ls-files", "-z"],
+                check=False,
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            tracked = completed.returncode == 0 and bool(
+                [path for path in completed.stdout.split("\0") if path]
+            )
+        except (OSError, subprocess.TimeoutExpired):
+            tracked = False
+        if not tracked:
+            return local_result(
+                canonical=canonical,
+                outcome="failed",
+                reason_code="local_checkout_untracked",
+                reason="same-repository compare action is not backed by a tracked checkout",
+            )
+        return local_result(
+            canonical=canonical,
+            outcome="ok",
+            reason_code="local_checkout_ok",
+            reason="same-repository compare action is backed by the tracked GitHub checkout",
+        )
+
+    if action_kind == "issue_template":
+        query_items = parse_qsl(parsed.query, keep_blank_values=True)
+        template = query_items[0][1] if len(query_items) == 1 else ""
+        valid_template = (
+            len(query_items) == 1
+            and query_items[0][0] == "template"
+            and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*\.ya?ml", template)
+            is not None
+            and "%" not in parsed.query
+        )
+        if not valid_template:
+            return local_result(
+                canonical=canonical,
+                outcome="failed",
+                reason_code="local_checkout_invalid",
+                reason="same-repository issue action needs one literal YAML template name",
+            )
+        template_path = root / ".github" / "ISSUE_TEMPLATE" / template
+        try:
+            relative = template_path.relative_to(root).as_posix()
+            completed = subprocess.run(
+                [
+                    "git",
+                    "-C",
+                    str(root),
+                    "ls-files",
+                    "--error-unmatch",
+                    "--",
+                    relative,
+                ],
+                check=False,
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            tracked = (
+                template_path.is_file()
+                and template_path.name == template
+                and completed.returncode == 0
+            )
+        except (OSError, ValueError, subprocess.TimeoutExpired):
+            tracked = False
+        if not tracked:
+            return local_result(
+                canonical=canonical,
+                outcome="failed",
+                reason_code="local_checkout_missing",
+                reason="same-repository issue template is missing or untracked",
+            )
+        return local_result(
+            canonical=canonical,
+            outcome="ok",
+            reason_code="local_checkout_ok",
+            reason="same-repository issue action names an exact tracked template",
+        )
+
+    if parsed.query:
+        return local_result(
+            canonical=canonical,
+            outcome="failed",
+            reason_code="local_checkout_invalid",
+            reason="same-repository main path must not include a query",
+        )
+
+    if (
+        len(raw_parts) < 5
+        or raw_parts[2] not in {"tree", "blob"}
+        or raw_parts[3] != "main"
+    ):
+        return local_result(
+            canonical=canonical,
+            outcome="failed",
+            reason_code="local_checkout_invalid",
+            reason="same-repository owner, repository, link kind, or ref is not canonical",
+        )
+
+    target_parts = raw_parts[4:]
+    if any(
+        part in {".", ".."}
+        or part != part.rstrip(" .")
+        or any(character in part for character in ("/", "\\", "\x00", ":"))
+        for part in target_parts
+    ):
+        return local_result(
+            canonical=canonical,
+            outcome="failed",
+            reason_code="local_checkout_invalid",
+            reason="same-repository path contains an ambiguous or unsafe segment",
+        )
+
+    exact_target = root
+    exact_case = True
+    for segment in target_parts:
+        try:
+            children = {child.name: child for child in exact_target.iterdir()}
+        except OSError:
+            exact_case = False
+            break
+        child = children.get(segment)
+        if child is None:
+            exact_case = False
+            break
+        exact_target = child
+
+    target = exact_target.resolve() if exact_case else root.joinpath(*target_parts).resolve()
+    try:
+        target.relative_to(root)
+    except ValueError:
+        exists = False
+    else:
+        exists = exact_case and (
+            exact_target.is_dir()
+            if raw_parts[2] == "tree"
+            else exact_target.is_file()
+        )
+    if not exists:
+        return local_result(
+            canonical=canonical,
+            outcome="failed",
+            reason_code="local_checkout_missing",
+            reason="same-repository main target is missing or differs in path case",
+        )
+
+    tracked = False
+    try:
+        relative = exact_target.relative_to(root).as_posix()
+        completed = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-z"],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        tracked_paths = {
+            path
+            for path in completed.stdout.split("\0")
+            if path
+        }
+        if raw_parts[2] == "tree":
+            prefix = relative.rstrip("/") + "/"
+            tracked = completed.returncode == 0 and any(
+                path.startswith(prefix) for path in tracked_paths
+            )
+        else:
+            tracked = completed.returncode == 0 and relative in tracked_paths
+    except (OSError, ValueError, subprocess.TimeoutExpired):
+        tracked = False
+    if not tracked:
+        return local_result(
+            canonical=canonical,
+            outcome="failed",
+            reason_code="local_checkout_untracked",
+            reason="same-repository main target exists locally but is not tracked by Git",
+        )
+
+    return local_result(
+        canonical=canonical,
+        outcome="ok",
+        reason_code="local_checkout_ok",
+        reason="same-repository main target exists with exact case in the tracked checkout",
+    )
+
+
+def authentication_redirect_reason(original_url: str, final_url: str) -> str | None:
+    """Describe a redirect to a recognizable institutional login endpoint."""
+
+    if canonical_url(original_url) == canonical_url(final_url):
+        return None
+    parsed = urlsplit(final_url)
+    hostname = (parsed.hostname or "").lower()
+    labels = set(hostname.split("."))
+    query_keys = {key.lower() for key, _value in parse_qsl(parsed.query)}
+    if (
+        labels & AUTH_HOST_LABELS
+        or hostname == "login.microsoftonline.com"
+        or AUTH_PATH_RE.search(parsed.path)
+        or query_keys & {"relaystate", "samlrequest"}
+    ):
+        return "redirected to an authentication page"
+    return None
+
+
+def content_type_mismatch_reason(url: str, content_type: str) -> str | None:
+    """Flag direct downloadable-file URLs that resolve to HTML instead."""
+
+    suffix = Path(urlsplit(url).path).suffix.lower()
+    media_type = content_type.split(";", 1)[0].strip().lower()
+    if suffix in NON_HTML_RESOURCE_SUFFIXES and media_type in {
+        "text/html",
+        "application/xhtml+xml",
+    }:
+        return f"direct {suffix} resource returned {media_type}"
+    return None
+
+
 def classify_http_status(status: int) -> tuple[str, str]:
     if 200 <= status < 300:
         return "ok", "successful response"
@@ -174,10 +594,14 @@ def http_reason_code(status: int) -> str:
 def infer_reason_code(result: Mapping[str, Any]) -> str:
     """Infer a structured code for legacy cache entries and test fixtures."""
 
+    reason = str(result.get("reason", ""))
+    if reason == "redirected to an authentication page":
+        return "auth_redirect"
+    if reason.startswith("direct ") and " resource returned " in reason:
+        return "content_type_mismatch"
     status = result.get("http_status")
     if isinstance(status, int) and not isinstance(status, bool):
         return http_reason_code(status)
-    reason = str(result.get("reason", ""))
     if reason == ROBOTS_DENIED_REASON:
         return "robots_denied"
     if reason.startswith("SSLError:"):
@@ -209,6 +633,26 @@ def reason_code_matches_result(result: Mapping[str, Any]) -> bool:
             and code == http_reason_code(status)
         )
     reason = str(result.get("reason", ""))
+    if code == "auth_redirect":
+        status = result.get("http_status")
+        original_url = str(result.get("url", ""))
+        final_url = str(result.get("final_url", ""))
+        return (
+            result.get("outcome") == "review"
+            and isinstance(status, int)
+            and not isinstance(status, bool)
+            and authentication_redirect_reason(original_url, final_url) == reason
+        )
+    if code == "content_type_mismatch":
+        status = result.get("http_status")
+        content_type = str(result.get("content_type", ""))
+        return (
+            result.get("outcome") == "review"
+            and isinstance(status, int)
+            and not isinstance(status, bool)
+            and content_type_mismatch_reason(str(result.get("url", "")), content_type)
+            == reason
+        )
     if code == "robots_denied":
         return (
             result.get("outcome") == "review"
@@ -239,6 +683,29 @@ def reason_code_matches_result(result: Mapping[str, Any]) -> bool:
             and result.get("http_status") is None
             and reason == "not present in a fresh cache; network check required"
         )
+    if code == "local_checkout_ok":
+        url = str(result.get("url", ""))
+        action_kind = _local_checkout_action_kind(url)
+        expected_reason = _LOCAL_CHECKOUT_OK_REASONS.get(action_kind or "")
+        return (
+            result.get("outcome") == "ok"
+            and result.get("http_status") is None
+            and result.get("check_method") == "local_checkout"
+            and str(result.get("final_url", "")) == url
+            and expected_reason is not None
+            and reason == expected_reason
+        )
+    if code in {
+        "local_checkout_invalid",
+        "local_checkout_missing",
+        "local_checkout_untracked",
+    }:
+        return (
+            result.get("outcome") == "failed"
+            and result.get("http_status") is None
+            and result.get("check_method") == "local_checkout"
+            and reason.startswith("same-repository ")
+        )
     if code == "unsafe_target":
         return result.get("outcome") == "failed" and result.get("http_status") is None
     if code == "missing_result":
@@ -264,11 +731,11 @@ def _urls_from_json(value: Any) -> Iterable[str]:
     if isinstance(value, Mapping):
         for key, item in value.items():
             if key in {"url", "alternate_urls", "urls", "homepage"}:
-                if isinstance(item, str) and is_external_url(item):
+                if isinstance(item, str):
                     yield item
                 elif isinstance(item, list):
                     for nested in item:
-                        if isinstance(nested, str) and is_external_url(nested):
+                        if isinstance(nested, str):
                             yield nested
                         else:
                             yield from _urls_from_json(nested)
@@ -291,15 +758,30 @@ def collect_external_urls(
         if not path.exists():
             continue
         for target, _ in iter_markdown_links(path.read_text(encoding="utf-8")):
+            if _has_forbidden_url_control(target):
+                raise QualityError(
+                    f"{path.as_posix()} Markdown link contains control characters"
+                )
             if is_external_url(target):
-                urls.add(canonical_url(target))
+                urls.add(
+                    _canonical_https_url(
+                        target,
+                        field=f"{path.as_posix()} Markdown link",
+                    )
+                )
     json_paths = [path for path in [catalogue_path, *manifest_paths] if path and path.exists()]
     for path in json_paths:
         try:
             value = load_json(path)
         except (OSError, QualityError):
             continue
-        urls.update(canonical_url(url) for url in _urls_from_json(value))
+        urls.update(
+            _canonical_https_url(
+                url,
+                field=f"{path.as_posix()} JSON URL",
+            )
+            for url in _urls_from_json(value)
+        )
     return sorted(urls)
 
 
@@ -760,6 +1242,10 @@ class LinkChecker:
         }
 
     def _validate_target(self, url: str) -> str:
+        if url != url.strip() or _has_forbidden_url_control(url):
+            raise UnsafeTargetError(
+                "URL whitespace or control characters are not allowed"
+            )
         try:
             parsed = urlsplit(url.strip())
             scheme = parsed.scheme.lower()
@@ -1043,7 +1529,27 @@ class LinkChecker:
                         stream=True,
                     )
                 status = int(response.status_code)
+                content_type = str(
+                    getattr(response, "headers", {}).get("Content-Type", "")
+                )
                 response.close()
+                auth_reason = authentication_redirect_reason(url, final_url)
+                mismatch_reason = content_type_mismatch_reason(url, content_type)
+                if auth_reason or mismatch_reason:
+                    return {
+                        "url": url,
+                        "outcome": "review",
+                        "reason_code": (
+                            "auth_redirect" if auth_reason else "content_type_mismatch"
+                        ),
+                        "http_status": status,
+                        "reason": auth_reason or mismatch_reason,
+                        "final_url": final_url,
+                        "content_type": content_type,
+                        "checked_at": checked_at,
+                        "elapsed_ms": round((time.monotonic() - started) * 1000),
+                        "from_cache": False,
+                    }
                 outcome, reason = classify_http_status(status)
                 return {
                     "url": url,
@@ -1052,6 +1558,7 @@ class LinkChecker:
                     "http_status": status,
                     "reason": reason,
                     "final_url": final_url,
+                    "content_type": content_type,
                     "checked_at": checked_at,
                     "elapsed_ms": round((time.monotonic() - started) * 1000),
                     "from_cache": False,
@@ -1443,16 +1950,30 @@ def main(argv: list[str] | None = None) -> int:
     default_manifest = repo_path("data/external_resources.json")
     if default_manifest.exists() and default_manifest not in manifest_paths:
         manifest_paths.append(default_manifest)
-    target_urls = collect_external_urls(
-        repo_path(args.docs_root),
-        catalogue_path=repo_path(args.catalogue),
-        extra_markdown=root_markdown,
-        manifest_paths=manifest_paths,
-    )
+    try:
+        target_urls = collect_external_urls(
+            repo_path(args.docs_root),
+            catalogue_path=repo_path(args.catalogue),
+            extra_markdown=root_markdown,
+            manifest_paths=manifest_paths,
+        )
+    except QualityError as exc:
+        issues = [Issue("error", "external.url_source", str(exc))]
+        emit_issues(issues)
+        return 1
     urls = sorted({*target_urls, *review_ledger.evidence_urls})
+    local_results: list[dict[str, Any]] = []
+    network_urls: list[str] = []
+    repository_root = repo_path(".")
+    for url in urls:
+        local_result = local_repository_result(url, repository_root)
+        if local_result is None:
+            network_urls.append(url)
+        else:
+            local_results.append(local_result)
     try:
         results = check_urls(
-            urls,
+            network_urls,
             cache_path=repo_path(args.cache),
             cache_ttl_hours=args.cache_ttl_hours,
             workers=args.workers,
@@ -1461,6 +1982,7 @@ def main(argv: list[str] | None = None) -> int:
             offline=args.offline,
             respect_robots=not args.ignore_robots,
         )
+        results.extend(local_results)
     except QualityError as exc:
         issues = [Issue("error", "external.dependency", str(exc))]
         emit_issues(issues)

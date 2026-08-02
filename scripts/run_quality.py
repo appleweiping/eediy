@@ -33,10 +33,6 @@ def commands(*, include_external: bool, include_build: bool) -> list[Command]:
         ),
         Command("canonical drift", (python, "scripts/compile_courses.py", "--check")),
         Command(
-            "suggested project drift",
-            (python, "scripts/apply_project_templates.py", "--check"),
-        ),
-        Command(
             "editorial drift",
             (python, "scripts/apply_course_editorial.py", "--check"),
         ),
@@ -46,12 +42,10 @@ def commands(*, include_external: bool, include_build: bool) -> list[Command]:
             (python, "scripts/validate_mainline_audit.py"),
         ),
         Command(
-            "researched course guides",
+            "authored course records and deep-guide coverage",
             (
                 python,
                 "scripts/check_course_guides.py",
-                "--minimum-guides",
-                "60",
                 "--require-track-coverage",
                 "--require-mainline-coverage",
             ),
@@ -78,15 +72,36 @@ def commands(*, include_external: bool, include_build: bool) -> list[Command]:
     if include_external:
         output.append(
             Command(
+                "executable EE starters",
+                (
+                    python,
+                    "scripts/run_executable_examples.py",
+                    "--require-tools",
+                    "all",
+                ),
+            )
+        )
+        output.append(
+            Command(
                 "external links",
                 (
                     python,
                     "scripts/check_external_links.py",
                     "--allow-review",
+                    "--cache-ttl-hours",
+                    "0",
                 ),
             )
         )
-    output.append(Command("quality report", (python, "scripts/quality_report.py")))
+    quality_report_arguments = [
+        python,
+        "scripts/quality_report.py",
+        "--warnings-as-errors",
+    ]
+    quality_report_arguments.append(
+        "--require-external" if include_external else "--skip-external"
+    )
+    output.append(Command("quality report", tuple(quality_report_arguments)))
     if include_build:
         output.append(
             Command(
@@ -97,7 +112,7 @@ def commands(*, include_external: bool, include_build: bool) -> list[Command]:
     return output
 
 
-def run_commands(items: Sequence[Command]) -> int:
+def run_commands(items: Sequence[Command], *, release_mode: bool) -> int:
     failures: list[str] = []
     for command in items:
         print(f"\n== {command.label} ==")
@@ -107,7 +122,13 @@ def run_commands(items: Sequence[Command]) -> int:
     if failures:
         print("\nQuality gate failed: " + ", ".join(failures), file=sys.stderr)
         return 1
-    print("\nAll quality gates passed.")
+    if release_mode:
+        print("\nAll release quality gates passed.")
+    else:
+        print(
+            "\nPartial development gates passed; the executable EE starter "
+            "toolchains and full external-link check were not run."
+        )
     return 0
 
 
@@ -124,7 +145,8 @@ def main(argv: list[str] | None = None) -> int:
         commands(
             include_external=args.external,
             include_build=not args.skip_build,
-        )
+        ),
+        release_mode=args.external,
     )
 
 

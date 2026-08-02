@@ -1,10 +1,10 @@
 {
-  "reviewed_at": "2026-07-29",
+  "reviewed_at": "2026-07-31",
   "reviewer": "independent adversarial review",
   "policy": "An automated review result is retained only when a primary official index, a repository API, or the rendered primary page independently confirms the target. Automated 403, robots, and local TLS-chain failures are not treated as proof of a dead resource.",
   "summary": {
-    "reviewed": 38,
-    "retain": 38,
+    "reviewed": 59,
+    "retain": 59,
     "replace": 0,
     "remove": 0
   },
@@ -32,12 +32,14 @@
       "allowed_reason_codes": [
         "robots_denied"
       ],
-      "method": "Every target is an exact href on the public official homework or exams index; 18 matched and none were missing.",
+      "method": "The course-notes target is an exact href on the official course home; the other 18 targets are exact hrefs on the public official homework or exams index. All 19 matched and none were missing.",
       "evidence": [
+        "https://courses.physics.illinois.edu/ece310/su2026/",
         "https://courses.physics.illinois.edu/ece310/su2026/homework.html",
         "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
       ],
       "urls": [
+        "https://courses.physics.illinois.edu/ece310/su2026/secure/notes/ece310_notes.pdf",
         "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam1_su20.pdf",
         "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam3_practice2.pdf",
         "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam3_practice3.pdf",
@@ -65,11 +67,12 @@
       "allowed_reason_codes": [
         "robots_denied"
       ],
-      "method": "Every target is an exact href on the public official laboratory index; 8 matched and none were missing.",
+      "method": "The Getting Started file and all eight laboratory ZIP targets are exact hrefs on the public official laboratory index; all 9 matched and none were missing.",
       "evidence": [
         "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
       ],
       "urls": [
+        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab1/Getting_Started.pdf",
         "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab1/Lab1.zip",
         "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab2/Lab2.zip",
         "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab3/Lab3.zip",
@@ -83,16 +86,18 @@
     {
       "name": "Berkeley EE 123 public Drive schedule",
       "decision": "retain",
-      "automation_reason": "robots policy",
+      "automation_reason": "robots policy or local TLS-chain failure",
       "allowed_reason_codes": [
-        "robots_denied"
+        "robots_denied",
+        "tls_error"
       ],
-      "method": "The official Berkeley course site embeds the same public Drive identifier; the Drive page and embed both returned the Week schedule without an access-request prompt.",
+      "method": "The official Berkeley course site embeds the same public schedule identifier and links the exact LaTeX homework-template target. The rendered page labels both resources and requires no inference from a search result.",
       "evidence": [
         "https://sites.google.com/berkeley.edu/ee123-sp19"
       ],
       "urls": [
-        "https://drive.google.com/open?id=17A74lYDcEGZAFHgTAcS43zaVgR3l93T1MaLoKey-kA0"
+        "https://drive.google.com/open?id=17A74lYDcEGZAFHgTAcS43zaVgR3l93T1MaLoKey-kA0",
+        "https://drive.google.com/a/berkeley.edu/file/d/101uArM1ZRjVdC3xQKKt_YojIbnyw77vq/view?usp=sharing"
       ]
     },
     {
@@ -146,22 +151,141 @@
       ]
     },
     {
+      "name": "Caltech CDS 101 Fall 2003 homework archive",
+      "decision": "retain",
+      "automation_reason": "local Python CA-chain failure",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "On 2026-07-31 the exact official target returned HTTP 200 in an independent client and its rendered page listed HW1 through HW8, the midterm, final, FAQs, and solutions. A CaltechAUTHORS record by the course designers independently confirms the CDS 101 course identity and teaching design.",
+      "evidence": [
+        "https://authors.library.caltech.edu/records/rf9tb-den49"
+      ],
+      "urls": [
+        "https://www.cds.caltech.edu/~murray/courses/cds101/fa03/homework.html"
+      ]
+    },
+    {
       "name": "OSHA safety guidance",
       "decision": "retain",
       "automation_reason": "anti-automation 403",
       "allowed_reason_codes": [
         "http_403"
       ],
-      "method": "All three rendered primary OSHA pages remain available and support the cited laser, electrical, and semiconductor-fabrication safety boundaries.",
+      "method": "All five rendered primary OSHA pages remain available and support the cited laser, electrical, hazardous-energy, machine-guarding, and semiconductor-fabrication safety boundaries.",
       "evidence": [
         "https://www.osha.gov/laser-hazards",
         "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.212",
         "https://www.osha.gov/semiconductors/silicon/device-fabrication"
       ],
       "urls": [
         "https://www.osha.gov/laser-hazards",
         "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.212",
         "https://www.osha.gov/semiconductors/silicon/device-fabrication"
+      ]
+    },
+    {
+      "name": "LCAV DSPNumex repository directories",
+      "decision": "retain",
+      "automation_reason": "robots policy",
+      "allowed_reason_codes": [
+        "robots_denied"
+      ],
+      "method": "The public LCAV repository root lists NumEx2 through NumEx9 as exact directories, and its README maps each directory number to the corresponding DSP module.",
+      "evidence": [
+        "https://github.com/LCAV/DSPNumex"
+      ],
+      "urls": [
+        "https://github.com/LCAV/DSPNumex/tree/master/NumEx2",
+        "https://github.com/LCAV/DSPNumex/tree/master/NumEx4",
+        "https://github.com/LCAV/DSPNumex/tree/master/NumEx5",
+        "https://github.com/LCAV/DSPNumex/tree/master/NumEx6",
+        "https://github.com/LCAV/DSPNumex/tree/master/NumEx7",
+        "https://github.com/LCAV/DSPNumex/tree/master/NumEx8"
+      ]
+    },
+    {
+      "name": "WPI PCB course repository directories",
+      "decision": "retain",
+      "automation_reason": "robots policy",
+      "allowed_reason_codes": [
+        "robots_denied"
+      ],
+      "method": "The public WPI course repository root lists all four exact directories and its README describes slides, starter board, sample board, and code as course materials.",
+      "evidence": [
+        "https://github.com/ieee-wpi/pcb"
+      ],
+      "urls": [
+        "https://github.com/ieee-wpi/pcb/tree/main/code",
+        "https://github.com/ieee-wpi/pcb/tree/main/sample_board",
+        "https://github.com/ieee-wpi/pcb/tree/main/slides",
+        "https://github.com/ieee-wpi/pcb/tree/main/starter_board"
+      ]
+    },
+    {
+      "name": "All About Circuits textbook index",
+      "decision": "retain",
+      "automation_reason": "anti-automation 403",
+      "allowed_reason_codes": [
+        "http_403"
+      ],
+      "method": "The rendered official textbook index identifies the free multi-volume collection, while the official Direct Current volume confirms that the index resolves to substantive textbook chapters.",
+      "evidence": [
+        "https://www.allaboutcircuits.com/textbook/direct-current/"
+      ],
+      "urls": [
+        "https://www.allaboutcircuits.com/textbook/"
+      ]
+    },
+    {
+      "name": "NPTEL legacy course identities",
+      "decision": "retain",
+      "automation_reason": "local Python TLS-chain failure",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "Each target course identifier and title is independently confirmed by the matching official NPTEL syllabus PDF, which the checker retrieved successfully.",
+      "evidence": [
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108105114.pdf",
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108106193.pdf"
+      ],
+      "urls": [
+        "https://nptel.ac.in/courses/108105114",
+        "https://nptel.ac.in/courses/108106193"
+      ]
+    },
+    {
+      "name": "Keysight oscilloscope-probe selection guide",
+      "decision": "retain",
+      "automation_reason": "anti-automation 403",
+      "allowed_reason_codes": [
+        "http_403"
+      ],
+      "method": "Keysight's official probe-selection article links the exact current selection-guide page and describes it as the comparison resource for choosing an oscilloscope probe.",
+      "evidence": [
+        "https://www.keysight.com/blogs/en/tech/educ/oscilloscope-probe"
+      ],
+      "urls": [
+        "https://www.keysight.com/us/en/lib/resources/selection-guides/oscilloscope-probes.html"
+      ]
+    },
+    {
+      "name": "RP Photonics Encyclopedia",
+      "decision": "retain",
+      "automation_reason": "robots policy",
+      "allowed_reason_codes": [
+        "robots_denied"
+      ],
+      "method": "The rendered official About page identifies the open-access RP Photonics Encyclopedia and links its canonical encyclopedia index.",
+      "evidence": [
+        "https://www.rp-photonics.com/encyclopedia_about.html"
+      ],
+      "urls": [
+        "https://www.rp-photonics.com/encyclopedia.html"
       ]
     }
   ]

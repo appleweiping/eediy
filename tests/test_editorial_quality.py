@@ -32,29 +32,48 @@ def _guide_pair(
         f"https://example.edu/{course_id}/assignments",
         f"https://example.edu/{course_id}/archive",
     )
-    zh_padding = " ".join(
+    zh_padding = "\n\n".join(
         [
-            (
-                f"围绕{topic_zh}，记录模型假设、输入条件、原始输出、误差来源和复核依据，"
-                "并把未通过的检查与下一次修改完整留在工程日志中。"
-            )
-            for _ in range(25)
+            f"围绕{topic_zh}，先固定电源、源阻抗、负载与元件公差，再从微分方程推导"
+            "传递函数。SPICE 的 DC operating point、AC response 与 transient response "
+            "分别回答偏置、频域和时域问题；极点位置、阻尼比、谐振峰与 settling "
+            "必须能从手算和仿真两边解释。若手算与波形不一致，应回到同一张电路图检查"
+            "参考方向、初始条件、负载模型"
+            "和 solver 设置。每次只改变一个参数，观察 pole 与 step response 怎样移动；"
+            "这样可以区分代数符号错误、模型遗漏和数值设置，而不是靠反复调参碰到一条"
+            "看似正确的曲线。",
+            "收尾时重新做一题尚未看解答的 assignment，再用公开 solution 定位推导中"
+            "最早的分歧。随后在固定条件下比较手算 Bode 特征、SPICE sweep 和 transient "
+            f"结果，并说明{topic_zh}在哪个参数范围内满足设计目标、在哪个边界首先失效。"
+            "这份比较比堆叠截图更能体现课程里的模型判断。",
         ]
     )
-    en_padding = " ".join(
+    en_padding = "\n\n".join(
         [
-            (
-                f"For the {topic_en}, preserve model assumptions, input conditions, "
-                "raw output, error sources, failed checks, review evidence, and the "
-                "next engineering revision in a reproducible log."
-            )
-            for _ in range(22)
+            f"For the {topic_en}, fix the supply, source impedance, load, and "
+            "component tolerances before deriving the transfer function from the "
+            "differential equation. SPICE DC operating point, AC response, and "
+            "transient response answer different questions. Pole locations, damping "
+            "ratio, resonant peak, and settling should agree with both the derivation "
+            "and the simulation. When the calculation and waveform disagree, return "
+            "to the same schematic "
+            "and inspect reference directions, initial conditions, the load model, and "
+            "solver settings. Change one parameter at a time and predict how the poles "
+            "and step response should move. This separates an algebra error, an omitted "
+            "model effect, and a numerical setting from blind parameter tuning.",
+            "To finish, attempt an unseen assignment problem before opening its public "
+            "solution and locate the earliest divergence in the derivation. Under fixed "
+            "conditions, compare the hand-derived Bode features, SPICE sweep, and "
+            f"transient result. Explain where the {topic_en} meets the design target "
+            "and which parameter boundary causes the first failure; that comparison "
+            "demonstrates model judgment better than a stack of screenshots.",
         ]
     )
     zh = f"""\
 ## 课程定位
 
-官方 [Syllabus]({urls[0]}) 说明 {code} 的 2024 版本按 Lecture 1–4 组织，
+若想把 RLC 手算和 SPICE 验证放在同一门课里，这门课适合作为首选。官方
+[Syllabus]({urls[0]}) 说明 {code} 的 2024 版本按 Lecture 1–4 组织，
 并把 RLC 与 SPICE 模型放进同一条分析链。
 
 ## 课件与考核
@@ -78,7 +97,9 @@ def _guide_pair(
     en = f"""\
 ## Course Position
 
-The official [syllabus]({urls[0]}) organizes the 2024 version of {code} as
+This course is a good first choice if you want RLC derivations and SPICE
+verification in one sequence. The official [syllabus]({urls[0]}) organizes the
+2024 version of {code} as
 Lectures 1–4 and connects the RLC and SPICE models in one analysis chain.
 
 ## Materials and Assessment
@@ -301,8 +322,8 @@ def test_translationese_repair_is_blocked_in_english_guides(
     unnatural = replace(
         pair.en,
         text=pair.en.text.replace(
-            "preserve model assumptions",
-            "repair linear algebra first, then preserve model assumptions",
+            "deriving the transfer function",
+            "repair linear algebra first, then derive the transfer function",
             1,
         ),
     )
@@ -310,6 +331,93 @@ def test_translationese_repair_is_blocked_in_english_guides(
     issues = _document_issues(analyze_document(unnatural))
 
     assert "editorial.translationese" in _codes(issues, "error")
+
+
+def test_repeated_sentence_tripwire_ignores_code_tables_and_two_uses(
+    tmp_path: Path,
+) -> None:
+    pair = _guide_pair(1, root=tmp_path)
+    sentence = (
+        "This deliberately repeated narrative sentence describes the same circuit "
+        "assumption, simulation result, boundary condition, and engineering decision "
+        "without adding any new course-specific evidence or technical explanation for "
+        "the learner."
+    )
+    twice = replace(pair.en, text=pair.en.text + f"\n\n{sentence} {sentence}\n")
+    padding_loop = replace(
+        pair.en,
+        text=pair.en.text + f"\n\n{sentence} {sentence} {sentence}\n",
+    )
+    code_and_table = replace(
+        pair.en,
+        text=(
+            pair.en.text
+            + f"\n\n```text\n{sentence}\n{sentence}\n{sentence}\n```\n\n"
+            "| Expression | Meaning |\n"
+            "| --- | --- |\n"
+            f"| {sentence} | model |\n"
+            f"| {sentence} | model |\n"
+            f"| {sentence} | model |\n"
+        ),
+    )
+
+    assert "editorial.repeated_sentence" not in _codes(
+        _document_issues(analyze_document(twice)),
+        "error",
+    )
+    assert "editorial.repeated_sentence" in _codes(
+        _document_issues(analyze_document(padding_loop)),
+        "error",
+    )
+    assert "editorial.repeated_sentence" not in _codes(
+        _document_issues(analyze_document(code_and_table)),
+        "error",
+    )
+
+
+def test_template_voice_and_delayed_course_judgment_are_blocked(
+    tmp_path: Path,
+) -> None:
+    text = """\
+## 材料清点
+
+官方页面列出了讲义和作业文件，这一段只复述页面栏目与文件名称。
+
+## 统一流程
+
+我会检查五项完成证据。先下载讲义，再填写表格，最后归档。先运行脚本，再截图，最后提交。
+这个结果不是课程项目，也不等于完成课程，而不是官方评分。
+
+## 命令
+
+学习者必须记录版本，不要跳步，应当复核；必须保存日志，不要省略，应当提交。
+
+[课程](https://example.edu/course) [作业](https://example.edu/work)
+[考试](https://example.edu/exam)
+"""
+    document = GuideDocument(
+        1,
+        "zh",
+        tmp_path / "templated.zh.md",
+        text,
+        {"title": {"zh": "测试"}, "course_code": "EE-1"},
+        (
+            "https://example.edu/course",
+            "https://example.edu/work",
+            "https://example.edu/exam",
+        ),
+        "R0",
+    )
+
+    codes = _codes(_document_issues(analyze_document(document)), "error")
+
+    assert {
+        "editorial.late_judgment",
+        "editorial.fake_reviewer_voice",
+        "editorial.defensive_voice",
+        "editorial.command_voice",
+        "editorial.workflow_template",
+    } <= codes
 
 
 def test_anchor_source_and_supplement_boundaries_are_actionable(
@@ -341,6 +449,48 @@ def test_anchor_source_and_supplement_boundaries_are_actionable(
     )
     supplement_issues = _document_issues(analyze_document(supplement))
     assert "editorial.supplement_boundary" in _codes(supplement_issues, "error")
+
+
+def test_catalogue_only_course_can_use_an_explicit_independent_project_map(
+    tmp_path: Path,
+) -> None:
+    text = """\
+## 这是一张课程地图，不是公开课程包
+
+想把 timing、control 与 FPGA implementation 接成系统的人，可以把这门课用作
+主题地图。官方 [院系页](https://example.edu/department)、
+[课程目录](https://example.edu/catalogue) 和
+[学期记录](https://example.edu/term) 只确认主题与课程身份，没有公开现行
+assignments、starter、rubric 或 staff feedback。
+
+## 独立项目的边界
+
+下面是独立项目地图，不是学校官方作业或实验。学习者自行定义一个 FSM、一个
+arithmetic datapath 和一个 bus peripheral，并用 assertion 与 timing report 判断结果。
+这组练习只映射公开主题，不冒充原课提交物。
+
+## 版本与取舍
+
+官方页面说明当前工具环境；编辑建议在已有 RTL 与 testbench 经验后再选这条路线。
+如果需要真实公开 assignment、grader 与课堂反馈，应改选材料完整的课程。
+"""
+    document = GuideDocument(
+        43,
+        "zh",
+        tmp_path / "043.zh.md",
+        text,
+        {"title": {"zh": "目录课程"}, "course_code": "ECE 385"},
+        (
+            "https://example.edu/department",
+            "https://example.edu/catalogue",
+            "https://example.edu/term",
+        ),
+        "R0",
+    )
+
+    codes = _codes(_document_issues(analyze_document(document)), "error")
+
+    assert "editorial.real_coursework" not in codes
 
 
 def test_bilingual_parity_checks_links_years_percentages_and_numbers(
@@ -397,6 +547,55 @@ def test_bilingual_parity_blocks_missing_substantive_paragraphs(
     codes = _codes(issues, "error")
     assert "editorial.translation_paragraphs" in codes
     assert "editorial.translation_section_length" in codes
+
+
+def test_bilingual_parity_blocks_one_missing_substantive_paragraph(
+    tmp_path: Path,
+) -> None:
+    pair = _guide_pair(1, root=tmp_path)
+    extra = (
+        "这一段补充一个独立的课程限制、项目边界和复核条件，长度足以成为实质段落，"
+        "却没有出现在英文版本中；标题和链接仍然完全一致，因此不能只靠页面结构判断翻译完整。"
+    )
+    broken_zh = replace(
+        pair.zh,
+        text=pair.zh.text.replace(
+            "## 完成判断",
+            f"{extra}\n\n## 完成判断",
+        ),
+    )
+    broken_pair = GuidePair(pair.course_id, broken_zh, pair.en)
+
+    issues = _bilingual_issues(
+        broken_pair,
+        analyze_document(broken_pair.zh),
+        analyze_document(broken_pair.en),
+    )
+
+    assert "editorial.translation_paragraphs" in _codes(issues, "error")
+
+
+def test_bilingual_parity_blocks_severely_truncated_aligned_paragraph(
+    tmp_path: Path,
+) -> None:
+    pair = _guide_pair(1, root=tmp_path)
+    original = pair.en.text
+    start = original.index("For the damped capacitor network")
+    end = original.index("\n", start)
+    truncated = original[:start] + "A short summary." + original[end:]
+    broken_pair = GuidePair(
+        pair.course_id,
+        pair.zh,
+        replace(pair.en, text=truncated),
+    )
+
+    issues = _bilingual_issues(
+        broken_pair,
+        analyze_document(broken_pair.zh),
+        analyze_document(broken_pair.en),
+    )
+
+    assert "editorial.translation_paragraph_length" in _codes(issues, "error")
 
 
 def test_protected_term_parity_splits_slash_compounds() -> None:

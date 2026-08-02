@@ -3,68 +3,86 @@ title: "Digital Design and Computer Architecture"
 description: "ETH Zurich's Digital Design and Computer Architecture connects digital design and computer architecture through complete 2025 videos, notes, exercises, and code, while its separately hosted materials need manual access checks."
 page_type: course
 course_id: "course-038"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: b0a73bc356250949 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: a708f0a6d5685ae9 -->
 
-# Digital Design and Computer Architecture
+# ETH Zurich DDCA: Digital Design and Computer Architecture
 
 ## Course Overview
 
 - **University:** ETH Zurich
 - **Course code:** DDCA
-- **Prerequisites:** Recommended foundation: Programming and Engineering Computing; Recommended foundation: Circuit Analysis
-- **Track:** [Digital Logic and Computation Structures](index.md)
-- **Path role:** Alternative
-- **Public materials:** Broadly complete
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
+- **EEDIY preparation:** Programming and Engineering Computing; Circuit Analysis
+- **Access:** Open without registration
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### A Course That Really Moves from Gates to a Processor
 
-ETH Zurich's Digital Design and Computer Architecture connects digital design and computer architecture through complete 2025 videos, notes, exercises, and code, while its separately hosted materials need manual access checks.
+Onur Mutlu's material landing page changes across years; this guide fixes
+**ETH Zürich Spring 2025**. The official
+[schedule](https://safari.ethz.ch/ddca/spring2025/doku.php?id=schedule) moves
+from Boolean logic, FSMs, Verilog, and timing into MIPS, single-cycle,
+multicycle, and pipelined processors, then branch prediction, SIMD/GPU,
+caches, multicore, and virtual memory. Choose it to connect RTL, an FPGA, and
+architecture. The second half is wider than needed for HDL syntax alone.
+Recordings are linked from Mutlu's
+[materials entry](https://people.inf.ethz.ch/omutlu/lecture-videos.html), but
+keep them aligned with the Spring 2025 files.
 
-**Check before starting**
+### Coursework
 
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Circuit Analysis
+The [homeworks](https://safari.ethz.ch/ddca/spring2025/doku.php?id=homeworks)
+provide 6 optional sets with solutions across RTL, ISA, pipelines, memory, and
+advanced architecture. Optional described campus scoring, not their value for
+self-study. Draw complete timing, pipeline, and cache decompositions before
+reading a solution, then redo errors from blank paper.
 
-## Start with these links
+The [labs](https://safari.ethz.ch/ddca/spring2025/doku.php?id=labs) list 9
+experiments, progressing through circuit drawing, FPGA work, combinational
+logic, FSMs, an ALU, and assembly into processor integration and MIPS
+performance. Both stages of Lab 8 form a cumulative system. Preserve
+interfaces and bit widths, RTL, self-checking testbenches, simulation
+transcripts, synthesis/timing results, and a bug log. LEDs alone are weak
+evidence. Keep the original [Lab 6 bundle](https://safari.ethz.ch/ddca/spring2025/lib/exe/fetch.php?media=lab6_files.zip)
+unchanged and version personal work separately.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+### Describe Board Status Precisely
 
-- [Course home](https://people.inf.ethz.ch/omutlu/lecture-videos.html)
+The original flow uses Vivado and a Basys 3. Without a board, simulation and
+synthesis support “pre-board complete,” not a physical demonstration. A board
+result should preserve the board, target part, constraints, tool version, and
+timing report. Investigate latch, width-truncation, and unconstrained-clock
+warnings instead of silencing them.
 
-## Known Boundaries
+Make the architecture half quantitative. Compare critical path and CPI for
+an instruction trace under single-cycle, multicycle, and pipelined execution.
+Split cache addresses into tag, index, and offset and count hits and misses.
+Report clock, cycle and instruction counts, memory behavior, and timing slack
+together.
 
-The official landing page links complete 2025 videos and materials; the Safari-hosted material server needs a manual robots and download-health check.
+### Use One Instruction to Check the ISA, Datapath, and Board
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+The [exam page](https://safari.ethz.ch/ddca/spring2025/doku.php?id=exams) is
+the assessment entry for this term. After the sets and labs, take an unseen
+paper under its printed rules. Finally, trace a MIPS instruction from ISA
+semantics through control, datapath, pipeline, memory transaction, and an
+FPGA-visible result. Mark bit width, clock boundary, and observation point at
+every layer. The course has worked when an internal trace localizes a defect
+before the final output fails. A bad state transition sends you back to RTL;
+negative slack or a bad constraint sends you back to clocks and
+implementation. One board demonstration cannot blur that distinction.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://people.inf.ethz.ch/omutlu/lecture-videos.html)
+- [Code · DDCA Spring 2025 Lab 6 project archive](https://safari.ethz.ch/ddca/spring2025/lib/exe/fetch.php?media=lab6_files.zip)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | Partial |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://people.inf.ethz.ch/omutlu/lecture-videos.html) | Open access | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

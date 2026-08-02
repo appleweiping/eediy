@@ -5,26 +5,27 @@
   "stats": {
     "candidate_courses": 141,
     "courses_with_any_resource": 141,
-    "courses_with_available_landing": 95,
-    "courses_with_extracted_resources": 97,
-    "total_resources": 1531,
-    "available_resources": 1520,
+    "courses_with_available_landing": 94,
+    "courses_with_extracted_resources": 95,
+    "total_resources": 1479,
+    "available_resources": 1467,
     "review_needed_resources": 10,
     "by_kind": {
-      "assignments": 350,
-      "code": 40,
-      "course": 217,
-      "exams": 208,
-      "labs": 116,
-      "notes": 507,
-      "projects": 34,
-      "textbook": 5,
-      "video": 54
+      "assignments": 337,
+      "code": 16,
+      "course": 256,
+      "exams": 184,
+      "labs": 96,
+      "notes": 489,
+      "projects": 30,
+      "textbook": 6,
+      "video": 65
     },
     "by_access": {
       "free-audit": 3,
-      "open": 1501,
-      "open-registration": 27
+      "open": 1452,
+      "open-registration": 23,
+      "paid": 1
     },
     "fetches": {
       "attempted": 446,
@@ -49,12 +50,10 @@
         "platform-unrelated": 34,
         "same-host-outside-course": 88
       },
-      "final_resources_after_balanced_cap": 1531,
-      "refilter_input_resources": 1534,
-      "refilter_output_resources": 1531,
-      "refilter_removed_by_reason": {
-        "same-host-outside-course": 3
-      }
+      "final_resources_after_balanced_cap": 1479,
+      "refilter_input_resources": 1479,
+      "refilter_output_resources": 1479,
+      "refilter_removed_by_reason": {}
     },
     "hard_blacklist_matches": 0,
     "title_quality": {
@@ -69,11 +68,10 @@
           {
             "course_id": 94,
             "course_title": "Digital Signal Processing I",
-            "resource_count": 22,
+            "resource_count": 4,
             "by_kind": {
-              "assignments": 10,
-              "course": 3,
-              "exams": 9
+              "assignments": 1,
+              "course": 3
             },
             "sample_resources": [
               {
@@ -93,28 +91,17 @@
               },
               {
                 "kind": "assignments",
-                "title": "Homework",
+                "title": "Restricted homework index (linked files require UIUC access)",
                 "url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-              },
-              {
-                "kind": "assignments",
-                "title": "HW 1",
-                "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/HW1.pdf"
-              },
-              {
-                "kind": "assignments",
-                "title": "HW 10",
-                "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw10.pdf"
               }
             ]
           },
           {
             "course_id": 95,
             "course_title": "Digital Signal Processing Laboratory",
-            "resource_count": 18,
+            "resource_count": 2,
             "by_kind": {
-              "course": 2,
-              "labs": 16
+              "course": 2
             },
             "sample_resources": [
               {
@@ -126,26 +113,6 @@
                 "kind": "course",
                 "title": "Digital Signal Processing Laboratory — official course overview",
                 "url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-              },
-              {
-                "kind": "labs",
-                "title": "Lab 1",
-                "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab1/Lab1.zip"
-              },
-              {
-                "kind": "labs",
-                "title": "Lab 1 Walkthrough",
-                "url": "https://mediaspace.illinois.edu/media/t/1_1xw6bgin"
-              },
-              {
-                "kind": "labs",
-                "title": "Lab 2",
-                "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab2/Lab2.zip"
-              },
-              {
-                "kind": "labs",
-                "title": "Lab 2 Walkthrough",
-                "url": "https://mediaspace.illinois.edu/media/t/1_hef7d5hw/379609912"
               }
             ]
           }
@@ -202,55 +169,6 @@
         ]
       },
       {
-        "domain": "cs61c.org",
-        "available_courses": 1,
-        "sampled_courses": [
-          {
-            "course_id": 48,
-            "course_title": "Great Ideas in Computer Architecture",
-            "resource_count": 13,
-            "by_kind": {
-              "assignments": 4,
-              "course": 1,
-              "exams": 2,
-              "notes": 6
-            },
-            "sample_resources": [
-              {
-                "kind": "course",
-                "title": "Great Ideas in Computer Architecture — official course overview",
-                "url": "https://cs61c.org/su26"
-              },
-              {
-                "kind": "notes",
-                "title": "combinational logic blocks handout",
-                "url": "https://inst.eecs.berkeley.edu/%7Ecs61c/sp21/resources-pdfs/blocks.pdf"
-              },
-              {
-                "kind": "notes",
-                "title": "GDB reference card",
-                "url": "https://inst.eecs.berkeley.edu/%7Ecs61c/resources/gdb5-refcard.pdf"
-              },
-              {
-                "kind": "notes",
-                "title": "Lecture 10: RISC-V Instruction Formats II and CALL",
-                "url": "https://cs61c.org/su26/lectures/lec10"
-              },
-              {
-                "kind": "notes",
-                "title": "Lecture 11: CALL & SDS I",
-                "url": "https://cs61c.org/su26/lectures/lec11"
-              },
-              {
-                "kind": "notes",
-                "title": "Reference Card",
-                "url": "https://cs61c.org/su26/pdfs/resources/reference-card.pdf"
-              }
-            ]
-          }
-        ]
-      },
-      {
         "domain": "digilent.com",
         "available_courses": 1,
         "sampled_courses": [
@@ -286,7 +204,7 @@
               {
                 "kind": "course",
                 "title": "Digital Systems Laboratory — official course overview",
-                "url": "https://ece.illinois.edu/academics/courses/ece385-120258"
+                "url": "https://ece.illinois.edu/academics/courses/ece385"
               },
               {
                 "kind": "course",
@@ -392,7 +310,7 @@
       },
       {
         "domain": "ocw.ece.cornell.edu",
-        "available_courses": 14,
+        "available_courses": 13,
         "sampled_courses": [
           {
             "course_id": 124,
@@ -576,12 +494,17 @@
             "resource_count": 12,
             "by_kind": {
               "assignments": 1,
-              "course": 2,
+              "course": 3,
               "exams": 1,
-              "notes": 7,
+              "notes": 6,
               "video": 1
             },
             "sample_resources": [
+              {
+                "kind": "course",
+                "title": "Calendar",
+                "url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/calendar"
+              },
               {
                 "kind": "course",
                 "title": "Principles of Digital Communication II — official course overview",
@@ -596,11 +519,6 @@
                 "kind": "video",
                 "title": "Video Lectures",
                 "url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/video_galleries/video-lectures"
-              },
-              {
-                "kind": "notes",
-                "title": "Calendar",
-                "url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/calendar"
               },
               {
                 "kind": "notes",
@@ -653,6 +571,55 @@
                 "kind": "course",
                 "title": "Essentials of PCB Design — official course overview",
                 "url": "https://pcb.wpi.edu/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "domain": "people.ece.cornell.edu",
+        "available_courses": 1,
+        "sampled_courses": [
+          {
+            "course_id": 52,
+            "course_title": "Hardware Acceleration via FPGA",
+            "resource_count": 22,
+            "by_kind": {
+              "course": 1,
+              "notes": 1,
+              "projects": 1,
+              "video": 19
+            },
+            "sample_resources": [
+              {
+                "kind": "course",
+                "title": "Hardware Acceleration via FPGA — official course overview",
+                "url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip"
+              },
+              {
+                "kind": "video",
+                "title": "2D wave equation and Verilog gen block",
+                "url": "https://youtu.be/XfVq8MkhMdA"
+              },
+              {
+                "kind": "video",
+                "title": "Augmented Reality Ball Game",
+                "url": "https://www.youtube.com/watch?v=m0tX58WNVII"
+              },
+              {
+                "kind": "video",
+                "title": "Bruce in a Box",
+                "url": "https://www.youtube.com/watch?v=shh8ySmrpKo"
+              },
+              {
+                "kind": "video",
+                "title": "Diffusion limited aggregation in Verilog",
+                "url": "https://youtu.be/Dsxj3r0Pvwc"
+              },
+              {
+                "kind": "video",
+                "title": "Digital filtering and lab 3 intro",
+                "url": "https://youtu.be/x-0IrJ30poQ"
               }
             ]
           }
@@ -775,9 +742,8 @@
             "resource_count": 23,
             "by_kind": {
               "assignments": 5,
-              "code": 2,
               "course": 2,
-              "notes": 7,
+              "notes": 9,
               "video": 7
             },
             "sample_resources": [
@@ -866,10 +832,10 @@
           {
             "course_id": 96,
             "course_title": "Digital Signal Processing",
-            "resource_count": 7,
+            "resource_count": 6,
             "by_kind": {
               "assignments": 1,
-              "code": 2,
+              "code": 1,
               "course": 2,
               "projects": 2
             },
@@ -941,17 +907,38 @@
         ]
       },
       {
+        "domain": "web.archive.org",
+        "available_courses": 1,
+        "sampled_courses": [
+          {
+            "course_id": 48,
+            "course_title": "Great Ideas in Computer Architecture",
+            "resource_count": 1,
+            "by_kind": {
+              "course": 1
+            },
+            "sample_resources": [
+              {
+                "kind": "course",
+                "title": "Great Ideas in Computer Architecture — official course overview",
+                "url": "https://www2.eecs.berkeley.edu/Courses/CS61C"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "domain": "web.stanford.edu",
         "available_courses": 3,
         "sampled_courses": [
           {
             "course_id": 105,
             "course_title": "Wireless Communications",
-            "resource_count": 19,
+            "resource_count": 18,
             "by_kind": {
               "assignments": 8,
               "course": 1,
-              "exams": 9,
+              "exams": 8,
               "projects": 1
             },
             "sample_resources": [
@@ -1227,11 +1214,16 @@
             "resource_count": 21,
             "by_kind": {
               "assignments": 7,
-              "course": 2,
+              "course": 3,
               "exams": 4,
-              "notes": 8
+              "notes": 7
             },
             "sample_resources": [
+              {
+                "kind": "course",
+                "title": "Calendar",
+                "url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/pages/calendar"
+              },
               {
                 "kind": "course",
                 "title": "Optics — official course overview",
@@ -1241,11 +1233,6 @@
                 "kind": "course",
                 "title": "Syllabus",
                 "url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/pages/syllabus"
-              },
-              {
-                "kind": "notes",
-                "title": "Calendar",
-                "url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/pages/calendar"
               },
               {
                 "kind": "notes",
@@ -1295,8 +1282,8 @@
       }
     ],
     "manual_review": {
-      "total_flagged": 48,
-      "shown": 48,
+      "total_flagged": 39,
+      "shown": 39,
       "items": [
         {
           "course_id": 34,
@@ -1384,13 +1371,6 @@
         },
         {
           "course_id": 52,
-          "title": "Hardware ODE solver and ARM9 controller",
-          "url": "https://www.youtube.com/watch?v=cq5JPZjgvKs&t=12s",
-          "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-projects-and-labs",
-          "reason": "external-link-relies-on-course-page-provenance"
-        },
-        {
-          "course_id": 52,
           "title": "Introduction to FPGA and Verilog",
           "url": "https://youtu.be/yvqkg44_DQA",
           "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts",
@@ -1458,62 +1438,6 @@
           "url": "https://www.cds.caltech.edu/~murray/books/AM05/wiki",
           "source_url": "https://www.cds.caltech.edu/~murray/books/AM05/wiki",
           "reason": "review-needed-status"
-        },
-        {
-          "course_id": 95,
-          "title": "Lab 1 Walkthrough",
-          "url": "https://mediaspace.illinois.edu/media/t/1_1xw6bgin",
-          "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-          "reason": "external-link-relies-on-course-page-provenance"
-        },
-        {
-          "course_id": 95,
-          "title": "Lab 2 Walkthrough",
-          "url": "https://mediaspace.illinois.edu/media/t/1_hef7d5hw/379609912",
-          "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-          "reason": "external-link-relies-on-course-page-provenance"
-        },
-        {
-          "course_id": 95,
-          "title": "Lab 3 Walkthrough",
-          "url": "https://mediaspace.illinois.edu/media/t/1_pkh66y0l",
-          "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-          "reason": "external-link-relies-on-course-page-provenance"
-        },
-        {
-          "course_id": 95,
-          "title": "Lab 4 Walkthrough",
-          "url": "https://mediaspace.illinois.edu/media/t/1_xnitucyo/379609912",
-          "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-          "reason": "external-link-relies-on-course-page-provenance"
-        },
-        {
-          "course_id": 95,
-          "title": "Lab 5 Walkthrough",
-          "url": "https://mediaspace.illinois.edu/media/t/1_d14o90a5",
-          "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-          "reason": "external-link-relies-on-course-page-provenance"
-        },
-        {
-          "course_id": 95,
-          "title": "Lab 6 Walkthrough",
-          "url": "https://mediaspace.illinois.edu/media/t/1_j2wl5qha",
-          "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-          "reason": "external-link-relies-on-course-page-provenance"
-        },
-        {
-          "course_id": 95,
-          "title": "Lab 7 Walkthrough",
-          "url": "https://mediaspace.illinois.edu/media/t/1_j44gzi4w/379609912",
-          "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-          "reason": "external-link-relies-on-course-page-provenance"
-        },
-        {
-          "course_id": 95,
-          "title": "Lab Final Walkthrough",
-          "url": "https://mediaspace.illinois.edu/media/t/1_hln3e1sz",
-          "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-          "reason": "external-link-relies-on-course-page-provenance"
         },
         {
           "course_id": 96,
@@ -2601,6 +2525,16 @@
     {
       "course_id": 5,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/lecture-notes"
+    },
+    {
+      "course_id": 5,
+      "kind": "course",
       "title": "Complex Variables with Applications — official course overview",
       "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018",
       "access": "open",
@@ -2621,18 +2555,38 @@
     {
       "course_id": 5,
       "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/calendar",
+      "title": "Lecture Notes",
+      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/lecture-notes",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/lecture-notes"
+      "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018"
     },
     {
       "course_id": 5,
       "kind": "notes",
-      "title": "Lecture Notes",
-      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/lecture-notes",
+      "title": "MATLAB Tutorial 1: Basics",
+      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/study-materials/matlab-tutorial-1-basics",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018"
+    },
+    {
+      "course_id": 5,
+      "kind": "notes",
+      "title": "MATLAB Tutorial 2: Plotting",
+      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/study-materials/matlab-tutorial-2-plotting",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018"
+    },
+    {
+      "course_id": 5,
+      "kind": "notes",
+      "title": "MATLAB Tutorial 3: Eigenstuff",
+      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/study-materials/matlab-tutorial-3-eigenstuff",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -2809,34 +2763,14 @@
       "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/exams"
     },
     {
-      "course_id": 5,
-      "kind": "code",
-      "title": "MATLAB Tutorial 1: Basics",
-      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/study-materials/matlab-tutorial-1-basics",
+      "course_id": 6,
+      "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018"
-    },
-    {
-      "course_id": 5,
-      "kind": "code",
-      "title": "MATLAB Tutorial 2: Plotting",
-      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/study-materials/matlab-tutorial-2-plotting",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018"
-    },
-    {
-      "course_id": 5,
-      "kind": "code",
-      "title": "MATLAB Tutorial 3: Eigenstuff",
-      "url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/study-materials/matlab-tutorial-3-eigenstuff",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018"
+      "source_url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/pages/problem-sets"
     },
     {
       "course_id": 6,
@@ -2887,16 +2821,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/pages/classes-reading-and-in-class-materials"
-    },
-    {
-      "course_id": 6,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/pages/problem-sets"
     },
     {
       "course_id": 6,
@@ -3321,6 +3245,16 @@
     {
       "course_id": 8,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-436j-fundamentals-of-probability-fall-2018/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-436j-fundamentals-of-probability-fall-2018/pages/lecture-notes"
+    },
+    {
+      "course_id": 8,
+      "kind": "course",
       "title": "Fundamentals of Probability — official course overview",
       "url": "https://ocw.mit.edu/courses/6-436j-fundamentals-of-probability-fall-2018",
       "access": "open",
@@ -3353,16 +3287,6 @@
       "kind": "notes",
       "title": "Abstract Integration II (PDF)",
       "url": "https://ocw.mit.edu/courses/6-436j-fundamentals-of-probability-fall-2018/resources/mit6_436jf18_lec08",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-436j-fundamentals-of-probability-fall-2018/pages/lecture-notes"
-    },
-    {
-      "course_id": 8,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-436j-fundamentals-of-probability-fall-2018/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -3561,6 +3485,16 @@
     {
       "course_id": 9,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/video_galleries/video-lectures"
+    },
+    {
+      "course_id": 9,
+      "kind": "course",
       "title": "Matrix Methods in Data Analysis, Signal Processing, and Machine Learning — official course overview",
       "url": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018",
       "access": "open",
@@ -3587,16 +3521,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018"
-    },
-    {
-      "course_id": 9,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/video_galleries/video-lectures"
     },
     {
       "course_id": 9,
@@ -3820,6 +3744,116 @@
     },
     {
       "course_id": 10,
+      "kind": "notes",
+      "title": "1D Elastic Collision in CM",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-9-collision-theory/dd-2-4-worked-example-1d-elastic-collision-in-cm",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "2 Blocks and 2 Pulleys",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-4-drag-forces-constraints-and-continuous-systems/12-5-worked-example-2-blocks-and-2-pulleys",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Acceleration from Position",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/2-3-worked-example-acceleration-from-position",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Angular Position from Angular Acceleration",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-3-circular-motion/10-3-worked-example-angular-position-from-angular-acceleration",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Atwood Machine",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-10-rotational-motion/31-4-worked-example-atwood-machine",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Block Going Down a Ramp",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-7-kinetic-energy-and-work/21-6-worked-example-block-going-down-a-ramp",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Block Sliding Down Circular Slope",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-8-potential-energy-and-energy-conservation/24-3-worked-example-block-sliding-down-circular-slope",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Bouncing Ball",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/15-3-worked-example-bouncing-ball",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Braking Car",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/ps-1-3-worked-example-braking-car",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Car on a Banked Turn",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-3-circular-motion/11-2-worked-example-car-on-a-banked-turn",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
+      "kind": "notes",
+      "title": "Center of Mass of 3 Objects",
+      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/17-2-worked-example-center-of-mass-of-3-objects",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
+    },
+    {
+      "course_id": 10,
       "kind": "assignments",
       "title": "Assignments",
       "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments",
@@ -3917,116 +3951,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "1D Elastic Collision in CM",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-9-collision-theory/dd-2-4-worked-example-1d-elastic-collision-in-cm",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "2 Blocks and 2 Pulleys",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-4-drag-forces-constraints-and-continuous-systems/12-5-worked-example-2-blocks-and-2-pulleys",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Acceleration from Position",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/2-3-worked-example-acceleration-from-position",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Angular Position from Angular Acceleration",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-3-circular-motion/10-3-worked-example-angular-position-from-angular-acceleration",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Atwood Machine",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-10-rotational-motion/31-4-worked-example-atwood-machine",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Block Going Down a Ramp",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-7-kinetic-energy-and-work/21-6-worked-example-block-going-down-a-ramp",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Block Sliding Down Circular Slope",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-8-potential-energy-and-energy-conservation/24-3-worked-example-block-sliding-down-circular-slope",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Bouncing Ball",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/15-3-worked-example-bouncing-ball",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Braking Car",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-1-kinematics/ps-1-3-worked-example-braking-car",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Car on a Banked Turn",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-3-circular-motion/11-2-worked-example-car-on-a-banked-turn",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
-    },
-    {
-      "course_id": 10,
-      "kind": "exams",
-      "title": "Center of Mass of 3 Objects",
-      "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/week-5-momentum-and-impulse/17-2-worked-example-center-of-mass-of-3-objects",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/pages/assignments"
     },
     {
       "course_id": 10,
@@ -4361,6 +4285,16 @@
     {
       "course_id": 13,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/pages/video-lectures"
+    },
+    {
+      "course_id": 13,
+      "kind": "course",
       "title": "Quantum Physics I — official course overview",
       "url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016",
       "access": "open",
@@ -4421,12 +4355,12 @@
     {
       "course_id": 13,
       "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/pages/calendar",
+      "title": "Experiments with Photons: Mach-Zehder Interferometer, Elitzur-Vaidman Bombs (PDF)",
+      "url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/resources/mit8_04s16_lecnotes2",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/pages/video-lectures"
+      "source_url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/pages/lecture-notes"
     },
     {
       "course_id": 13,
@@ -4550,16 +4484,6 @@
     },
     {
       "course_id": 13,
-      "kind": "labs",
-      "title": "Experiments with Photons: Mach-Zehder Interferometer, Elitzur-Vaidman Bombs (PDF)",
-      "url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/resources/mit8_04s16_lecnotes2",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/pages/lecture-notes"
-    },
-    {
-      "course_id": 13,
       "kind": "exams",
       "title": "Exams",
       "url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/pages/exams",
@@ -4577,6 +4501,16 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/pages/exams"
+    },
+    {
+      "course_id": 14,
+      "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/video_galleries/video-lectures"
     },
     {
       "course_id": 14,
@@ -4627,16 +4561,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/pages/lecture-notes"
-    },
-    {
-      "course_id": 14,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/video_galleries/video-lectures"
     },
     {
       "course_id": 14,
@@ -4821,8 +4745,8 @@
     {
       "course_id": 15,
       "kind": "course",
-      "title": "Introduction to CS and Programming Using Python — official course overview",
-      "url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -4830,9 +4754,9 @@
     },
     {
       "course_id": 15,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/pages/calendar",
+      "kind": "course",
+      "title": "Introduction to CS and Programming Using Python — official course overview",
+      "url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -4991,16 +4915,6 @@
     {
       "course_id": 15,
       "kind": "code",
-      "title": "Buy at MIT Press",
-      "url": "https://mitpress.mit.edu/9780262542364/introduction-to-computation-and-programming-using-python",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/pages/readings"
-    },
-    {
-      "course_id": 15,
-      "kind": "code",
       "title": "file 17 kB",
       "url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/mit6_100l_f22_ps3_code.zip",
       "access": "open",
@@ -5059,6 +4973,26 @@
       "source_url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/lists/problem-sets"
     },
     {
+      "course_id": 15,
+      "kind": "textbook",
+      "title": "Buy at MIT Press",
+      "url": "https://mitpress.mit.edu/9780262542364/introduction-to-computation-and-programming-using-python",
+      "access": "paid",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/pages/readings"
+    },
+    {
+      "course_id": 16,
+      "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/pages/lecture-notes"
+    },
+    {
       "course_id": 16,
       "kind": "course",
       "title": "Practical Programming in C — official course overview",
@@ -5077,16 +5011,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010"
-    },
-    {
-      "course_id": 16,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/pages/lecture-notes"
     },
     {
       "course_id": 16,
@@ -5421,6 +5345,16 @@
     {
       "course_id": 18,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-055j-the-art-of-approximation-in-science-and-engineering-spring-2008/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-055j-the-art-of-approximation-in-science-and-engineering-spring-2008/pages/assignments"
+    },
+    {
+      "course_id": 18,
+      "kind": "course",
       "title": "Syllabus",
       "url": "https://ocw.mit.edu/courses/6-055j-the-art-of-approximation-in-science-and-engineering-spring-2008/pages/syllabus",
       "access": "open",
@@ -5437,16 +5371,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-055j-the-art-of-approximation-in-science-and-engineering-spring-2008"
-    },
-    {
-      "course_id": 18,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-055j-the-art-of-approximation-in-science-and-engineering-spring-2008/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-055j-the-art-of-approximation-in-science-and-engineering-spring-2008/pages/assignments"
     },
     {
       "course_id": 18,
@@ -5581,6 +5505,26 @@
     {
       "course_id": 19,
       "kind": "notes",
+      "title": "Arrays as Lists of Lists",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-6",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
+      "kind": "notes",
+      "title": "Association Lists",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-7",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
+      "kind": "notes",
       "title": "Becoming More Cognizant of Students’ Learning",
       "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/instructor-insights/becoming-more-cognizant-of-students2019-learning",
       "access": "open",
@@ -5660,6 +5604,76 @@
     },
     {
       "course_id": 19,
+      "kind": "notes",
+      "title": "Functions and Scope",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-2",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
+      "kind": "notes",
+      "title": "Loops and List Comprehensions",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-5",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
+      "kind": "notes",
+      "title": "Object-Oriented Programming",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/unit-1-software-engineering/object-oriented-programming",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
+      "kind": "notes",
+      "title": "Python Tutorial",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
+      "kind": "notes",
+      "title": "Quadratic Roots",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-4",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
+      "kind": "notes",
+      "title": "Software and Tools",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/software-and-tools",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
+      "kind": "notes",
+      "title": "State Machines",
+      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/unit-1-software-engineering/state-machines",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 19,
       "kind": "labs",
       "title": "Formative Assessment during Design Labs",
       "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/instructor-insights/formative-assessment-during-design-labs",
@@ -5700,96 +5714,6 @@
     },
     {
       "course_id": 19,
-      "kind": "code",
-      "title": "Arrays as Lists of Lists",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-6",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
-      "kind": "code",
-      "title": "Association Lists",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-7",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
-      "kind": "code",
-      "title": "Functions and Scope",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-2",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
-      "kind": "code",
-      "title": "Loops and List Comprehensions",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-5",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
-      "kind": "code",
-      "title": "Object-Oriented Programming",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/unit-1-software-engineering/object-oriented-programming",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
-      "kind": "code",
-      "title": "Python Tutorial",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
-      "kind": "code",
-      "title": "Quadratic Roots",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/python-tutorial/part-4",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
-      "kind": "code",
-      "title": "Software and Tools",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/software-and-tools",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
-      "kind": "code",
-      "title": "State Machines",
-      "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/pages/unit-1-software-engineering/state-machines",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
-    },
-    {
-      "course_id": 19,
       "kind": "textbook",
       "title": "Open Textbook",
       "url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/resources/mit6_01scs11_textbook",
@@ -5797,6 +5721,16 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011"
+    },
+    {
+      "course_id": 20,
+      "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-007-electromagnetic-energy-from-motors-to-lasers-spring-2011/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-007-electromagnetic-energy-from-motors-to-lasers-spring-2011/pages/lecture-notes"
     },
     {
       "course_id": 20,
@@ -5833,16 +5767,6 @@
       "kind": "notes",
       "title": "Birefringence (PPT - 17.2MB)",
       "url": "https://ocw.mit.edu/courses/6-007-electromagnetic-energy-from-motors-to-lasers-spring-2011/resources/mit6_007s11_lec25_pptx",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-007-electromagnetic-energy-from-motors-to-lasers-spring-2011/pages/lecture-notes"
-    },
-    {
-      "course_id": 20,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-007-electromagnetic-energy-from-motors-to-lasers-spring-2011/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -6041,6 +5965,16 @@
     {
       "course_id": 21,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/video_galleries/video-lectures"
+    },
+    {
+      "course_id": 21,
+      "kind": "course",
       "title": "Circuits and Electronics — official course overview",
       "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007",
       "access": "open",
@@ -6067,16 +6001,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007"
-    },
-    {
-      "course_id": 21,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/video_galleries/video-lectures"
     },
     {
       "course_id": 21,
@@ -6301,6 +6225,16 @@
     {
       "course_id": 24,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/lecture-notes"
+    },
+    {
+      "course_id": 24,
+      "kind": "course",
       "title": "Introduction to Electronics, Signals, and Measurement — official course overview",
       "url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006",
       "access": "open",
@@ -6317,16 +6251,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006"
-    },
-    {
-      "course_id": 24,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/pages/lecture-notes"
     },
     {
       "course_id": 24,
@@ -7121,6 +7045,16 @@
     {
       "course_id": 30,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/pages/lecture-notes"
+    },
+    {
+      "course_id": 30,
+      "kind": "course",
       "title": "Microelectronic Devices and Circuits — official course overview",
       "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009",
       "access": "open",
@@ -7137,16 +7071,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009"
-    },
-    {
-      "course_id": 30,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/pages/lecture-notes"
     },
     {
       "course_id": 30,
@@ -7251,6 +7175,16 @@
     {
       "course_id": 32,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-301-solid-state-circuits-fall-2010/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-301-solid-state-circuits-fall-2010/pages/assignments"
+    },
+    {
+      "course_id": 32,
+      "kind": "course",
       "title": "Solid-State Circuits — official course overview",
       "url": "https://ocw.mit.edu/courses/6-301-solid-state-circuits-fall-2010",
       "access": "open",
@@ -7267,16 +7201,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-301-solid-state-circuits-fall-2010"
-    },
-    {
-      "course_id": 32,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-301-solid-state-circuits-fall-2010/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-301-solid-state-circuits-fall-2010/pages/assignments"
     },
     {
       "course_id": 32,
@@ -7331,22 +7255,22 @@
     {
       "course_id": 33,
       "kind": "course",
-      "title": "Syllabus",
-      "url": "https://ocw.mit.edu/courses/6-331-advanced-circuit-techniques-spring-2002/pages/syllabus",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-331-advanced-circuit-techniques-spring-2002"
-    },
-    {
-      "course_id": 33,
-      "kind": "notes",
       "title": "Calendar",
       "url": "https://ocw.mit.edu/courses/6-331-advanced-circuit-techniques-spring-2002/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-331-advanced-circuit-techniques-spring-2002/pages/assignments"
+    },
+    {
+      "course_id": 33,
+      "kind": "course",
+      "title": "Syllabus",
+      "url": "https://ocw.mit.edu/courses/6-331-advanced-circuit-techniques-spring-2002/pages/syllabus",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-331-advanced-circuit-techniques-spring-2002"
     },
     {
       "course_id": 33,
@@ -7639,16 +7563,6 @@
       "source_url": "https://www.coursera.org/learn/build-a-computer"
     },
     {
-      "course_id": 39,
-      "kind": "projects",
-      "title": "Build a Modern Computer from First Principles: Nand to Tetris Part II (project-centered course)",
-      "url": "https://www.coursera.org/learn/nand2tetris2",
-      "access": "open-registration",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://www.coursera.org/learn/build-a-computer"
-    },
-    {
       "course_id": 40,
       "kind": "course",
       "title": "Build a Modern Computer from First Principles: From Nand to Tetris, Part II — official course overview",
@@ -7901,8 +7815,8 @@
     {
       "course_id": 42,
       "kind": "course",
-      "title": "Introductory Digital Systems Laboratory — official course overview",
-      "url": "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -7910,9 +7824,9 @@
     },
     {
       "course_id": 42,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/pages/calendar",
+      "kind": "course",
+      "title": "Introductory Digital Systems Laboratory — official course overview",
+      "url": "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -8112,11 +8026,11 @@
       "course_id": 43,
       "kind": "course",
       "title": "Digital Systems Laboratory — official course overview",
-      "url": "https://ece.illinois.edu/academics/courses/ece385-120258",
+      "url": "https://ece.illinois.edu/academics/courses/ece385",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
-      "source_url": "https://ece.illinois.edu/academics/courses/ece385-120258"
+      "source_url": "https://ece.illinois.edu/academics/courses/ece385"
     },
     {
       "course_id": 43,
@@ -8126,7 +8040,7 @@
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
-      "source_url": "https://ece.illinois.edu/academics/courses/ece385-120258"
+      "source_url": "https://ece.illinois.edu/academics/courses/ece385"
     },
     {
       "course_id": 44,
@@ -8401,6 +8315,16 @@
     {
       "course_id": 47,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-823-computer-system-architecture-fall-2005/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-823-computer-system-architecture-fall-2005/pages/lecture-notes"
+    },
+    {
+      "course_id": 47,
+      "kind": "course",
       "title": "Computer System Architecture — official course overview",
       "url": "https://ocw.mit.edu/courses/6-823-computer-system-architecture-fall-2005",
       "access": "open",
@@ -8417,16 +8341,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-823-computer-system-architecture-fall-2005"
-    },
-    {
-      "course_id": 47,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-823-computer-system-architecture-fall-2005/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-823-computer-system-architecture-fall-2005/pages/lecture-notes"
     },
     {
       "course_id": 47,
@@ -8472,131 +8386,21 @@
       "course_id": 48,
       "kind": "course",
       "title": "Great Ideas in Computer Architecture — official course overview",
-      "url": "https://cs61c.org/su26",
+      "url": "https://web.archive.org/web/20241219154359/https://cs61c.org/fa24",
       "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26"
+      "status": "archived",
+      "last_verified": "2026-07-29",
+      "source_url": "https://web.archive.org/web/20241219154359/https://cs61c.org/fa24"
     },
     {
-      "course_id": 48,
-      "kind": "notes",
-      "title": "combinational logic blocks handout",
-      "url": "https://inst.eecs.berkeley.edu/%7Ecs61c/sp21/resources-pdfs/blocks.pdf",
+      "course_id": 49,
+      "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-884-complex-digital-systems-spring-2005/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26/labs/lab05"
-    },
-    {
-      "course_id": 48,
-      "kind": "notes",
-      "title": "GDB reference card",
-      "url": "https://inst.eecs.berkeley.edu/%7Ecs61c/resources/gdb5-refcard.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26/labs/lab02"
-    },
-    {
-      "course_id": 48,
-      "kind": "notes",
-      "title": "Lecture 10: RISC-V Instruction Formats II and CALL",
-      "url": "https://cs61c.org/su26/lectures/lec10",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26"
-    },
-    {
-      "course_id": 48,
-      "kind": "notes",
-      "title": "Lecture 11: CALL & SDS I",
-      "url": "https://cs61c.org/su26/lectures/lec11",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26"
-    },
-    {
-      "course_id": 48,
-      "kind": "notes",
-      "title": "Reference Card",
-      "url": "https://cs61c.org/su26/pdfs/resources/reference-card.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26"
-    },
-    {
-      "course_id": 48,
-      "kind": "notes",
-      "title": "Venus reference",
-      "url": "https://cs61c.org/su26/resources/venus-reference",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26/labs/lab03"
-    },
-    {
-      "course_id": 48,
-      "kind": "assignments",
-      "title": "Exercise 1: Accessing Services",
-      "url": "https://cs61c.org/su26/labs/lab00",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26/labs/lab00"
-    },
-    {
-      "course_id": 48,
-      "kind": "assignments",
-      "title": "Exercise 1: Calling Convention Checker",
-      "url": "https://cs61c.org/su26/labs/lab04",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26/labs/lab04"
-    },
-    {
-      "course_id": 48,
-      "kind": "assignments",
-      "title": "Exercise 1: Compiler Warnings and Errors",
-      "url": "https://cs61c.org/su26/labs/lab02",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26/labs/lab02"
-    },
-    {
-      "course_id": 48,
-      "kind": "assignments",
-      "title": "Exercise 1: Constructing Immediates",
-      "url": "https://cs61c.org/su26/labs/lab06",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26/labs/lab06"
-    },
-    {
-      "course_id": 48,
-      "kind": "exams",
-      "title": "Exam",
-      "url": "https://cs61c.org/su26/exam",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26"
-    },
-    {
-      "course_id": 48,
-      "kind": "exams",
-      "title": "Past Exams",
-      "url": "https://cs61c.org/su26/resources/exams",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://cs61c.org/su26"
+      "source_url": "https://ocw.mit.edu/courses/6-884-complex-digital-systems-spring-2005/pages/lecture-notes"
     },
     {
       "course_id": 49,
@@ -8617,16 +8421,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-884-complex-digital-systems-spring-2005"
-    },
-    {
-      "course_id": 49,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-884-complex-digital-systems-spring-2005/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-884-complex-digital-systems-spring-2005/pages/lecture-notes"
     },
     {
       "course_id": 49,
@@ -8691,22 +8485,22 @@
     {
       "course_id": 50,
       "kind": "course",
-      "title": "Syllabus",
-      "url": "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/syllabus",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003"
-    },
-    {
-      "course_id": 50,
-      "kind": "notes",
       "title": "Calendar",
       "url": "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/lecture-notes"
+    },
+    {
+      "course_id": 50,
+      "kind": "course",
+      "title": "Syllabus",
+      "url": "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003/pages/syllabus",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-374-analysis-and-design-of-digital-integrated-circuits-fall-2003"
     },
     {
       "course_id": 50,
@@ -8791,12 +8585,22 @@
     {
       "course_id": 52,
       "kind": "course",
-      "title": "Advanced Microcontroller Design and System-on-Chip — official course overview",
+      "title": "Hardware Acceleration via FPGA — official course overview",
       "url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
+      "title": "2D wave equation and Verilog gen block",
+      "url": "https://youtu.be/XfVq8MkhMdA",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
     },
     {
       "course_id": 52,
@@ -8821,6 +8625,26 @@
     {
       "course_id": 52,
       "kind": "video",
+      "title": "Diffusion limited aggregation in Verilog",
+      "url": "https://youtu.be/Dsxj3r0Pvwc",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
+      "title": "Digital filtering and lab 3 intro",
+      "url": "https://youtu.be/x-0IrJ30poQ",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
       "title": "EBAB, video, audio",
       "url": "https://youtu.be/NGDieLfewjs?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c",
       "access": "open",
@@ -8837,6 +8661,26 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-projects-and-labs"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
+      "title": "Final project discussion (cyclone 2, lecture 18)",
+      "url": "https://youtu.be/rc4T6vlQ23Q",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
+      "title": "Final project discussion (cyclone 5, lecture 25)",
+      "url": "https://youtu.be/8jJgAgR3eCo?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
     },
     {
       "course_id": 52,
@@ -8861,6 +8705,36 @@
     {
       "course_id": 52,
       "kind": "video",
+      "title": "Introduction to FPGA and Verilog",
+      "url": "https://youtu.be/yvqkg44_DQA",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
+      "title": "Lab 1 background",
+      "url": "https://youtu.be/FCRWeU2bj9M?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
+      "title": "Lab 2 Audio Filtering",
+      "url": "https://youtu.be/xhwDuIAel2I",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
       "title": "LED 64×64 matrix audio visualizer",
       "url": "https://www.youtube.com/watch?v=swapwjI-fT8&t=2s",
       "access": "open",
@@ -8880,6 +8754,36 @@
     },
     {
       "course_id": 52,
+      "kind": "video",
+      "title": "NoisII software",
+      "url": "https://youtu.be/P_PIBZLnGnU",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
+      "title": "Verilog generate & Mandelbrot set",
+      "url": "https://youtu.be/AYpbyZFo5xs",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
+      "kind": "video",
+      "title": "Verilog, Linux, Qsys",
+      "url": "https://youtu.be/1kjhMJZo_KU?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
+    },
+    {
+      "course_id": 52,
       "kind": "notes",
       "title": "Lecture Notes and Handouts",
       "url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts",
@@ -8890,36 +8794,6 @@
     },
     {
       "course_id": 52,
-      "kind": "labs",
-      "title": "Digital filtering and lab 3 intro",
-      "url": "https://youtu.be/x-0IrJ30poQ",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "labs",
-      "title": "Lab 1 background",
-      "url": "https://youtu.be/FCRWeU2bj9M?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "labs",
-      "title": "Lab 2 Audio Filtering",
-      "url": "https://youtu.be/xhwDuIAel2I",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
       "kind": "projects",
       "title": "Final Project",
       "url": "https://ocw.ece.cornell.edu/files/2017/03/ece5760_lab5-24z4ug1.pdf",
@@ -8927,86 +8801,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-projects-and-labs"
-    },
-    {
-      "course_id": 52,
-      "kind": "projects",
-      "title": "Final project discussion (cyclone 2, lecture 18)",
-      "url": "https://youtu.be/rc4T6vlQ23Q",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "projects",
-      "title": "Final project discussion (cyclone 5, lecture 25)",
-      "url": "https://youtu.be/8jJgAgR3eCo?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "code",
-      "title": "2D wave equation and Verilog gen block",
-      "url": "https://youtu.be/XfVq8MkhMdA",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "code",
-      "title": "Diffusion limited aggregation in Verilog",
-      "url": "https://youtu.be/Dsxj3r0Pvwc",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "code",
-      "title": "Introduction to FPGA and Verilog",
-      "url": "https://youtu.be/yvqkg44_DQA",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "code",
-      "title": "NoisII software",
-      "url": "https://youtu.be/P_PIBZLnGnU",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "code",
-      "title": "Verilog generate & Mandelbrot set",
-      "url": "https://youtu.be/AYpbyZFo5xs",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
-    },
-    {
-      "course_id": 52,
-      "kind": "code",
-      "title": "Verilog, Linux, Qsys",
-      "url": "https://youtu.be/1kjhMJZo_KU?list=PLKcjQ_UFkrd7UcOVMm39A6VdMbWWq-e_c",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.ece.cornell.edu/courses/ece-5760-advanced-microcontroller-design-and-system-on-chip/ece-5760-lecture-notes-and-handouts"
     },
     {
       "course_id": 53,
@@ -9241,8 +9035,8 @@
     {
       "course_id": 61,
       "kind": "course",
-      "title": "Mobile Autonomous Systems Laboratory — official course overview",
-      "url": "https://ocw.mit.edu/courses/6-186-mobile-autonomous-systems-laboratory-january-iap-2005",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-186-mobile-autonomous-systems-laboratory-january-iap-2005/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -9250,9 +9044,9 @@
     },
     {
       "course_id": 61,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-186-mobile-autonomous-systems-laboratory-january-iap-2005/pages/calendar",
+      "kind": "course",
+      "title": "Mobile Autonomous Systems Laboratory — official course overview",
+      "url": "https://ocw.mit.edu/courses/6-186-mobile-autonomous-systems-laboratory-january-iap-2005",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -9490,7 +9284,7 @@
     },
     {
       "course_id": 62,
-      "kind": "exams",
+      "kind": "projects",
       "title": "Final Project",
       "url": "https://ocw.ece.cornell.edu/files/2017/03/ece3400_finalproject-2jk3dax.pdf",
       "access": "open",
@@ -9509,16 +9303,6 @@
       "source_url": "https://www.coursera.org/learn/real-time-project-embedded-systems"
     },
     {
-      "course_id": 63,
-      "kind": "code",
-      "title": "Introduction to Embedded Systems Software and Development Environments",
-      "url": "https://www.coursera.org/learn/introduction-embedded-systems",
-      "access": "open-registration",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices"
-    },
-    {
       "course_id": 64,
       "kind": "course",
       "title": "Real-Time Embedded Systems Theory and Analysis — official course overview",
@@ -9527,16 +9311,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://www.coursera.org/learn/real-time-project-embedded-systems"
-    },
-    {
-      "course_id": 64,
-      "kind": "projects",
-      "title": "Real-Time Project for Embedded Systems",
-      "url": "https://www.coursera.org/learn/real-time-project-embedded-systems",
-      "access": "open-registration",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://www.coursera.org/learn/real-time-embedded-theory-analysis"
     },
     {
       "course_id": 65,
@@ -9557,6 +9331,16 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://www.coursera.org/learn/real-time-project-embedded-systems"
+    },
+    {
+      "course_id": 67,
+      "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/video-resources"
     },
     {
       "course_id": 67,
@@ -9597,16 +9381,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007"
-    },
-    {
-      "course_id": 67,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/pages/video-resources"
     },
     {
       "course_id": 67,
@@ -9771,6 +9545,16 @@
     {
       "course_id": 68,
       "kind": "notes",
+      "title": "Least squares and least norm solutions using Matlab",
+      "url": "https://see.stanford.edu/materials/lsoeldsee263/Additional4-ls_ln_matlab.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://see.stanford.edu/Course/EE263"
+    },
+    {
+      "course_id": 68,
+      "kind": "notes",
       "title": "Lecture 01 (HTML)",
       "url": "https://see.stanford.edu/materials/lsoeldsee263/transcripts/IntroToLinearDynamicalSystems-Lecture01.html",
       "access": "open",
@@ -9830,6 +9614,16 @@
     },
     {
       "course_id": 68,
+      "kind": "notes",
+      "title": "Solving general linear equations using Matlab",
+      "url": "https://see.stanford.edu/materials/lsoeldsee263/Additional5-sle_matlab.pdf",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://see.stanford.edu/Course/EE263"
+    },
+    {
+      "course_id": 68,
       "kind": "assignments",
       "title": "additional exercise — see.stanford.edu/hw1extra.pdf",
       "url": "https://see.stanford.edu/materials/lsoeldsee263/hw1extra.pdf",
@@ -9879,24 +9673,14 @@
       "source_url": "https://see.stanford.edu/Course/EE263"
     },
     {
-      "course_id": 68,
-      "kind": "code",
-      "title": "Least squares and least norm solutions using Matlab",
-      "url": "https://see.stanford.edu/materials/lsoeldsee263/Additional4-ls_ln_matlab.pdf",
+      "course_id": 69,
+      "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-241j-dynamic-systems-and-control-spring-2011/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
-      "source_url": "https://see.stanford.edu/Course/EE263"
-    },
-    {
-      "course_id": 68,
-      "kind": "code",
-      "title": "Solving general linear equations using Matlab",
-      "url": "https://see.stanford.edu/materials/lsoeldsee263/Additional5-sle_matlab.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://see.stanford.edu/Course/EE263"
+      "source_url": "https://ocw.mit.edu/courses/6-241j-dynamic-systems-and-control-spring-2011/pages/lecture-notes"
     },
     {
       "course_id": 69,
@@ -9917,16 +9701,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-241j-dynamic-systems-and-control-spring-2011"
-    },
-    {
-      "course_id": 69,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-241j-dynamic-systems-and-control-spring-2011/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-241j-dynamic-systems-and-control-spring-2011/pages/lecture-notes"
     },
     {
       "course_id": 69,
@@ -9961,6 +9735,16 @@
     {
       "course_id": 70,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-243j-dynamics-of-nonlinear-systems-fall-2003/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-243j-dynamics-of-nonlinear-systems-fall-2003/pages/lecture-notes"
+    },
+    {
+      "course_id": 70,
+      "kind": "course",
       "title": "Dynamics of Nonlinear Systems — official course overview",
       "url": "https://ocw.mit.edu/courses/6-243j-dynamics-of-nonlinear-systems-fall-2003",
       "access": "open",
@@ -9977,16 +9761,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-243j-dynamics-of-nonlinear-systems-fall-2003"
-    },
-    {
-      "course_id": 70,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-243j-dynamics-of-nonlinear-systems-fall-2003/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-243j-dynamics-of-nonlinear-systems-fall-2003/pages/lecture-notes"
     },
     {
       "course_id": 70,
@@ -10161,6 +9935,16 @@
     {
       "course_id": 71,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-245-multivariable-control-systems-spring-2004/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-245-multivariable-control-systems-spring-2004/pages/lecture-notes"
+    },
+    {
+      "course_id": 71,
+      "kind": "course",
       "title": "Multivariable Control Systems — official course overview",
       "url": "https://ocw.mit.edu/courses/6-245-multivariable-control-systems-spring-2004",
       "access": "open",
@@ -10177,16 +9961,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-245-multivariable-control-systems-spring-2004"
-    },
-    {
-      "course_id": 71,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-245-multivariable-control-systems-spring-2004/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-245-multivariable-control-systems-spring-2004/pages/lecture-notes"
     },
     {
       "course_id": 71,
@@ -10581,6 +10355,16 @@
     {
       "course_id": 76,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-270-autonomous-robot-design-competition-january-iap-2005/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-270-autonomous-robot-design-competition-january-iap-2005/pages/lecture-notes"
+    },
+    {
+      "course_id": 76,
+      "kind": "course",
       "title": "Syllabus",
       "url": "https://ocw.mit.edu/courses/6-270-autonomous-robot-design-competition-january-iap-2005/pages/syllabus",
       "access": "open",
@@ -10597,16 +10381,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-270-autonomous-robot-design-competition-january-iap-2005"
-    },
-    {
-      "course_id": 76,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-270-autonomous-robot-design-competition-january-iap-2005/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-270-autonomous-robot-design-competition-january-iap-2005/pages/lecture-notes"
     },
     {
       "course_id": 76,
@@ -10769,16 +10543,6 @@
       "source_url": "https://www.coursera.org/learn/modernrobotics-course6"
     },
     {
-      "course_id": 81,
-      "kind": "projects",
-      "title": "Modern Robotics, Course 6: Capstone Project, Mobile Manipulation",
-      "url": "https://www.coursera.org/learn/modernrobotics-course6",
-      "access": "open-registration",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://www.coursera.org/learn/modernrobotics-course5"
-    },
-    {
       "course_id": 82,
       "kind": "course",
       "title": "Modern Robotics, Course 6: Capstone Project, Mobile Manipulation — official course overview",
@@ -10787,6 +10551,16 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://www.coursera.org/learn/modernrobotics-course6"
+    },
+    {
+      "course_id": 83,
+      "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/lecture-notes"
     },
     {
       "course_id": 83,
@@ -10847,16 +10621,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/readings"
-    },
-    {
-      "course_id": 83,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/lecture-notes"
     },
     {
       "course_id": 83,
@@ -12221,192 +11985,12 @@
     {
       "course_id": 94,
       "kind": "assignments",
-      "title": "Homework",
+      "title": "Restricted homework index (linked files require UIUC access)",
       "url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://courses.physics.illinois.edu/ece310/su2026"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 1",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/HW1.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 10",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw10.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 2",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/HW2.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 3",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw3.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 4",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw4.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 5",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw5.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 6",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw6.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 7",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw7.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "assignments",
-      "title": "HW 8",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw8.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 1 — courses.physics.illinois.edu/exam1_practice3.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam1_practice3.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 1 — courses.physics.illinois.edu/exam1_practice_2.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam1_practice_2.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 1 — courses.physics.illinois.edu/Exam1_su20.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam1_su20.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 2 — courses.physics.illinois.edu/SU24_Exam2_Practice_1.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_Practice_1.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 2 — courses.physics.illinois.edu/SU24_Exam2_practice_2.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_practice_2.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 2 — courses.physics.illinois.edu/SU24_Exam2_practice_3.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_practice_3.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 3 — courses.physics.illinois.edu/Exam3_practice2.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam3_practice2.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 3 — courses.physics.illinois.edu/Exam3_practice3.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam3_practice3.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
-    },
-    {
-      "course_id": 94,
-      "kind": "exams",
-      "title": "Exam 3 — courses.physics.illinois.edu/exam3_su20.pdf",
-      "url": "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam3_su20.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
     },
     {
       "course_id": 95,
@@ -12423,166 +12007,6 @@
       "kind": "course",
       "title": "Digital Signal Processing Laboratory — official course overview",
       "url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 1",
-      "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab1/Lab1.zip",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 1 Walkthrough",
-      "url": "https://mediaspace.illinois.edu/media/t/1_1xw6bgin",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 2",
-      "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab2/Lab2.zip",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 2 Walkthrough",
-      "url": "https://mediaspace.illinois.edu/media/t/1_hef7d5hw/379609912",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 3",
-      "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab3/Lab3.zip",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 3 Walkthrough",
-      "url": "https://mediaspace.illinois.edu/media/t/1_pkh66y0l",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 4",
-      "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab4/Lab4.zip",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 4 Walkthrough",
-      "url": "https://mediaspace.illinois.edu/media/t/1_xnitucyo/379609912",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 5",
-      "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab5/Lab5.zip",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 5 Walkthrough",
-      "url": "https://mediaspace.illinois.edu/media/t/1_d14o90a5",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 6",
-      "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab6/Lab6.zip",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 6 Walkthrough",
-      "url": "https://mediaspace.illinois.edu/media/t/1_j2wl5qha",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 7",
-      "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab7/Lab7.zip",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab 7 Walkthrough",
-      "url": "https://mediaspace.illinois.edu/media/t/1_j44gzi4w/379609912",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab Final",
-      "url": "https://courses.physics.illinois.edu/ece311/su2025/secure/LabFinal/LabFinal.zip",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-    },
-    {
-      "course_id": 95,
-      "kind": "labs",
-      "title": "Lab Final Walkthrough",
-      "url": "https://mediaspace.illinois.edu/media/t/1_hln3e1sz",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -12643,16 +12067,6 @@
       "kind": "code",
       "title": "Jupyter Notebook and Data",
       "url": "https://drive.google.com/a/berkeley.edu/file/d/1g_8gMnrEKHw2EVqOvZreOrvv3mDEuaR0/view?usp=sharing",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://sites.google.com/berkeley.edu/ee123-sp19"
-    },
-    {
-      "course_id": 96,
-      "kind": "code",
-      "title": "Python",
-      "url": "https://sites.google.com/berkeley.edu/ee123-sp19/python",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -12901,6 +12315,16 @@
     {
       "course_id": 98,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-011-introduction-to-communication-control-and-signal-processing-spring-2010/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-011-introduction-to-communication-control-and-signal-processing-spring-2010/pages/readings"
+    },
+    {
+      "course_id": 98,
+      "kind": "course",
       "title": "Introduction to Communication, Control, and Signal Processing — official course overview",
       "url": "https://ocw.mit.edu/courses/6-011-introduction-to-communication-control-and-signal-processing-spring-2010",
       "access": "open",
@@ -12920,16 +12344,6 @@
     },
     {
       "course_id": 98,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-011-introduction-to-communication-control-and-signal-processing-spring-2010/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-011-introduction-to-communication-control-and-signal-processing-spring-2010/pages/readings"
-    },
-    {
-      "course_id": 98,
       "kind": "exams",
       "title": "Exams",
       "url": "https://ocw.mit.edu/courses/6-011-introduction-to-communication-control-and-signal-processing-spring-2010/pages/exams",
@@ -12941,8 +12355,28 @@
     {
       "course_id": 99,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/readings"
+    },
+    {
+      "course_id": 99,
+      "kind": "course",
       "title": "Introduction to EECS II: Digital Communication Systems — official course overview",
       "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012"
+    },
+    {
+      "course_id": 99,
+      "kind": "course",
+      "title": "Software",
+      "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/syllabus/software",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
@@ -12967,16 +12401,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012"
-    },
-    {
-      "course_id": 99,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/readings"
     },
     {
       "course_id": 99,
@@ -13067,16 +12491,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/assignments"
-    },
-    {
-      "course_id": 99,
-      "kind": "code",
-      "title": "Software",
-      "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/pages/syllabus/software",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012"
     },
     {
       "course_id": 100,
@@ -13231,6 +12645,16 @@
     {
       "course_id": 101,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/video_galleries/video-lectures"
+    },
+    {
+      "course_id": 101,
+      "kind": "course",
       "title": "Principles of Digital Communication II — official course overview",
       "url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005",
       "access": "open",
@@ -13257,16 +12681,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005"
-    },
-    {
-      "course_id": 101,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-451-principles-of-digital-communication-ii-spring-2005/video_galleries/video-lectures"
     },
     {
       "course_id": 101,
@@ -13541,6 +12955,16 @@
     {
       "course_id": 103,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010/pages/lecture-notes"
+    },
+    {
+      "course_id": 103,
+      "kind": "course",
       "title": "Information Theory — official course overview",
       "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010",
       "access": "open",
@@ -13557,16 +12981,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010"
-    },
-    {
-      "course_id": 103,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2010/pages/lecture-notes"
     },
     {
       "course_id": 103,
@@ -13929,16 +13343,6 @@
       "source_url": "https://web.stanford.edu/class/ee359/exam.html"
     },
     {
-      "course_id": 105,
-      "kind": "exams",
-      "title": "Midterm solutions",
-      "url": "https://web.stanford.edu/class/ee359/restricted/mt20_soln.pdf",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://web.stanford.edu/class/ee359/exam.html"
-    },
-    {
       "course_id": 106,
       "kind": "course",
       "title": "Principles of Digital Communications — official course overview",
@@ -14191,6 +13595,16 @@
     {
       "course_id": 108,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/lecture-notes"
+    },
+    {
+      "course_id": 108,
+      "kind": "course",
       "title": "Electromagnetics and Applications — official course overview",
       "url": "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009",
       "access": "open",
@@ -14207,16 +13621,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009"
-    },
-    {
-      "course_id": 108,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/pages/lecture-notes"
     },
     {
       "course_id": 108,
@@ -14651,6 +14055,16 @@
     {
       "course_id": 113,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003/pages/lecture-notes"
+    },
+    {
+      "course_id": 113,
+      "kind": "course",
       "title": "Receivers, Antennas, and Signals — official course overview",
       "url": "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003",
       "access": "open",
@@ -14667,16 +14081,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003"
-    },
-    {
-      "course_id": 113,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-661-receivers-antennas-and-signals-spring-2003/pages/lecture-notes"
     },
     {
       "course_id": 113,
@@ -15071,6 +14475,16 @@
     {
       "course_id": 120,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/assignments"
+    },
+    {
+      "course_id": 120,
+      "kind": "course",
       "title": "Electric Machines — official course overview",
       "url": "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013",
       "access": "open",
@@ -15087,16 +14501,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013"
-    },
-    {
-      "course_id": 120,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-685-electric-machines-fall-2013/pages/assignments"
     },
     {
       "course_id": 120,
@@ -15681,6 +15085,16 @@
     {
       "course_id": 125,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010/pages/assignments"
+    },
+    {
+      "course_id": 125,
+      "kind": "course",
       "title": "Introduction to Nanoelectronics — official course overview",
       "url": "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010",
       "access": "open",
@@ -15697,16 +15111,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010"
-    },
-    {
-      "course_id": 125,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-701-introduction-to-nanoelectronics-spring-2010/pages/assignments"
     },
     {
       "course_id": 125,
@@ -15741,6 +15145,16 @@
     {
       "course_id": 126,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/pages/lecture-notes"
+    },
+    {
+      "course_id": 126,
+      "kind": "course",
       "title": "Micro/Nano Processing Technology — official course overview",
       "url": "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005",
       "access": "open",
@@ -15757,16 +15171,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005"
-    },
-    {
-      "course_id": 126,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-152j-micro-nano-processing-technology-fall-2005/pages/lecture-notes"
     },
     {
       "course_id": 126,
@@ -15871,6 +15275,16 @@
     {
       "course_id": 129,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/lecture-notes"
+    },
+    {
+      "course_id": 129,
+      "kind": "course",
       "title": "Design and Fabrication of Microelectromechanical Devices — official course overview",
       "url": "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007",
       "access": "open",
@@ -15887,16 +15301,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007"
-    },
-    {
-      "course_id": 129,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/6-777j-design-and-fabrication-of-microelectromechanical-devices-spring-2007/pages/lecture-notes"
     },
     {
       "course_id": 129,
@@ -16431,6 +15835,16 @@
     {
       "course_id": 134,
       "kind": "course",
+      "title": "Calendar",
+      "url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/pages/calendar",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/pages/lecture-notes"
+    },
+    {
+      "course_id": 134,
+      "kind": "course",
       "title": "Optics — official course overview",
       "url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014",
       "access": "open",
@@ -16447,16 +15861,6 @@
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014"
-    },
-    {
-      "course_id": 134,
-      "kind": "notes",
-      "title": "Calendar",
-      "url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/pages/calendar",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/pages/lecture-notes"
     },
     {
       "course_id": 134,
@@ -16741,22 +16145,22 @@
     {
       "course_id": 140,
       "kind": "course",
-      "title": "Syllabus",
-      "url": "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/syllabus",
-      "access": "open",
-      "status": "available",
-      "last_verified": "2026-07-28",
-      "source_url": "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007"
-    },
-    {
-      "course_id": 140,
-      "kind": "notes",
       "title": "Calendar",
       "url": "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/calendar",
       "access": "open",
       "status": "available",
       "last_verified": "2026-07-28",
       "source_url": "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/lecture-notes"
+    },
+    {
+      "course_id": 140,
+      "kind": "course",
+      "title": "Syllabus",
+      "url": "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007/pages/syllabus",
+      "access": "open",
+      "status": "available",
+      "last_verified": "2026-07-28",
+      "source_url": "https://ocw.mit.edu/courses/hst-582j-biomedical-signal-and-image-processing-spring-2007"
     },
     {
       "course_id": 140,

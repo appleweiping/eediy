@@ -1,70 +1,88 @@
 ---
 title: "Real-Time Mission-Critical Systems Design"
-description: "University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances real-time study into mission-critical design through videos, practice, labs, and code, with specified hardware and paid access as barriers."
+description: "University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances into mission-critical topics, with ECC, flash, redundancy, and FMEA activities hosted inside Coursera and no fixed public code package."
 page_type: course
 course_id: "course-065"
-editorial_status: "catalogue"
+editorial_status: "researched"
 evidence_level: "R0"
+reviewed_at: "2026-07-30"
 comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d05e841f5577835e -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d8f5917ed00ccb50 -->
 
-# Real-Time Mission-Critical Systems Design
+# University of Colorado Boulder Real-Time Embedded Systems 3: Real-Time Mission-Critical Systems Design
 
 ## Course Overview
 
 - **University:** University of Colorado Boulder
 - **Course code:** Real-Time Embedded Systems 3
-- **Prerequisites:** Recommended foundation: Embedded Systems; Recommended foundation: Signals and Systems
-- **Track:** [Real-Time and Cyber-Physical Systems](index.md)
-- **Path role:** Alternative
-- **Public materials:** Core materials available
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** CU Boulder places ECEA 5317 third after 5315 and 5316 and continues to require C, architecture, operating systems, and Linux
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Registration required; scope varies by platform
+- **Material status:** 2026-07-30; public-material guide
 
-> **Resource catalogue:** This page confirms the course identity, official entry points, and public materials. The assignments have not yet been reviewed one by one, and this is not a completion report; use it to find the course, not as a stand-alone enrollment decision.
+### Safety
 
-University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances real-time study into mission-critical design through videos, practice, labs, and code, with specified hardware and paid access as barriers.
+Choose Coursera [ECEA 5317](https://www.coursera.org/learn/real-time-mission-critical-systems-design) after service-feasibility and timing measurements work and you want fault models and recovery; choose a dedicated safety course for certification methods. CU’s [official assignments and syllabus](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5317-mission-critical-sw) list it as course 3 after 5315 and 5316, plus C, architecture, operating systems, and Linux.
 
-**Check before starting**
+The exercises teach fault models, FMEA, and recovery. They do not supply certification, independent verification, environmental qualification, or long-term failure-rate evidence. Limit every conclusion to the tested platform, version, and injection model.
 
-- Recommended foundation: Embedded Systems
-- Recommended foundation: Signals and Systems
+### Course structure
 
-## Start with these links
+The official page divides the material into 4 weeks estimated at 16, 15, 11,
+and 11 hours, followed by a 2-hour final. Week 1 treats HALs, BSP, device I/O,
+driver interfaces, and scaling; week 2 moves into ECC, redundant arrays, flash
+file systems, and persistent memory; week 3 uses profiling and tracing for
+performance and reliability defects; week 4 distinguishes high availability
+from high reliability while combining fault detection, isolation, recovery,
+redundancy management, and FMEA.
 
-Use these entry points to decide whether the course fits. Per-lecture files and historical exams are kept in the complete index at the end of the page.
+The assessment skeleton matches 5316: quizzes are 10%, programming assignments
+and peer reviews together 60%, and the final exam 30%. The course therefore
+does more than inventory fault terminology: implementations face peer review,
+while architectural judgment is also tested by an exam. CU does not publish a
+further split inside the 60%, and the prompts, starter, and peer feedback are
+not anonymously exposed.
 
-- [Course home](https://www.coursera.org/learn/real-time-mission-critical-systems-design)
+### Common Causes and Recovery Consequences Are the Hard Part
 
-## Known Boundaries
+A request crosses the application, HAL or driver, I/O, memory or storage, and
+the supervisor; any layer can time out, corrupt data, complete partially, or
+restart. Voting cannot remove a common cause when redundant devices share
+power, clock, a driver, or the same erroneous input. Automatic restart may
+shorten an outage while dangerously repeating an actuator command. The point
+of 5317 is to separate availability, reliability, and safety rather than
+treating recovery as automatically safer.
 
-ECC, flash, redundancy, and FMEA exercises use specified hardware, and platform access may require payment.
+ECC, persistent memory, profiling, and FMEA are therefore connected. One
+storage-corruption example can ask when the error is detected, where the last
+complete data remains, whether the system continues, degrades, or stops, and
+whether recovery carries bad state into the next mission. The course supports
+risk analysis for a stated architecture; it does not establish certification,
+independent verification, environmental qualification, or long-term failure
+rates.
 
-This catalogue record does not present a maintainer-invented project, uniform workload, or generic acceptance test as a course fact. If you completed the course, use the discussion below to report assignment structure, actual effort, broken access, and concrete pitfalls.
+### Access and version notes
+
+The [hardware requirements](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements)
+use Pi 3B+/4B, Raspberry Pi OS, and C270 as the starter-code baseline. The
+[specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems)
+reserves the camera project for 5318, and the
+[access page](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses)
+does not promise that every assessment is free.
+
+Outside the platform, one small **nonofficial substitute** is enough for a
+preview: compare normal write, storage-full, and interrupted-write behavior in
+a local sensor logger, then relate detection to degraded operation, stopping,
+and recovery. It illuminates the course's FMEA and persistent-memory themes
+but is not a CU programming assignment and has neither peer review nor the
+final exam behind it.
 
 ## Course Resources
 
-<details markdown="1">
-<summary>Expand the complete resource index (1 items)</summary>
+- [Course home](https://www.coursera.org/learn/real-time-mission-critical-systems-design)
 
-### Material coverage
+## Resource Summary
 
-| Type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | Partial |
-| Code | Complete |
-
-### Resource
-
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/real-time-mission-critical-systems-design) | Registration required | Listed by official page | 2026-07-28 |
-
-> Links were discovered from official sources on the recorded date. Access does not grant redistribution rights, and region, account, third-party rights, or later redesigns may change availability.
-
-</details>
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

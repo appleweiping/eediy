@@ -23,9 +23,7 @@ The authoritative layers flow in this order:
 ```text
 course_candidates + tracks + course_resources
   → compile_courses.py
-  → compiled courses.json + project_templates
-  → apply_project_templates.py
-  → project-enriched courses.json + course_editorial
+  → compiled courses.json + course_editorial
   → apply_course_editorial.py
   → canonical courses.json + routes + mainline_audit review annotations
   → generate_course_pages.py
@@ -38,8 +36,8 @@ other validators and tests ─────────────────�
 Edit the layer that owns the claim. Candidate data owns identity, track and
 role, the resource-coverage matrix, risk, and optional provider-backed `level`
 and `workload`. Resource data owns crawler evidence and verification metadata;
-reachability is evidence, not a teaching-quality rating. Project templates and
-editorial records own their respective enrichment. The mainline audit owns
+reachability is evidence, not a teaching-quality rating. Editorial records own
+the bilingual summary and review note. The mainline audit owns
 preferred-course decisions and unresolved review states; it does not alter
 canonical course data, but supplies visible review annotations to generated
 pages and remains an independent release gate. Tracks and routes own
@@ -52,7 +50,6 @@ authoritative data, run the complete pipeline in exactly this order:
 ```bash
 python scripts/enrich_official_resources.py --validate-only
 python scripts/compile_courses.py
-python scripts/apply_project_templates.py
 python scripts/apply_course_editorial.py
 python scripts/validate_courses.py
 python scripts/validate_mainline_audit.py
@@ -140,7 +137,7 @@ uv pip compile requirements.txt requirements-dev.txt --python-version 3.12 --gen
 
 The release gate requires:
 
-- at least 125 courses and 24 populated tracks;
+- evidence-backed courses and an audited preferred mainline for every populated track; catalogue size is not a release criterion;
 - complete resource metadata;
 - valid route references and stages with required/elective semantics and bilingual verifiable exits;
 - 100% Chinese/English page pairing;

@@ -1,183 +1,66 @@
 ---
 title: Project Practice
-description: Build verifiable EE projects through specification, modeling, implementation, measurement, and review.
+description: Build an electrical-engineering project that can explain the path from specification and model to implementation and measurement.
+page_type: guide
+comments: true
 ---
-
-<div class="ee-language" markdown>
-[简体中文](../../guides/projects.md)
-</div>
 
 # Project Practice
 
-A project is valuable when it forces explainable engineering judgment, not when it contains many parts. An excellent first project may be small, but it must include prediction, implementation, measurement, and a difference analysis.
+A board that powers up or RTL that reaches an FPGA has not necessarily answered an engineering question. The useful test is whether you can predict an outcome, implement the system, and explain where prediction and observation agree or fail. A tightly scoped low-voltage system with a precise question and trustworthy measurements is often more valuable than a feature-rich “capstone” whose behavior cannot be explained.
 
-## The project loop
+## Executable starting points in this repository
 
-<div class="ee-route">
-  <div class="ee-route__stage">
-    <div>
-      <h3>Problem and acceptance</h3>
-      <p>Define the user, input, output, constraints, tests, and non-goals. Replace “build a filter” with measurable passband, cutoff, load, and error requirements.</p>
-    </div>
-  </div>
-  <div class="ee-route__stage">
-    <div>
-      <h3>Model and budgets</h3>
-      <p>Build the simplest useful model. Record parameter sources, dimensions, tolerance, noise, power, cost, and safety budgets, then predict the critical curves.</p>
-    </div>
-  </div>
-  <div class="ee-route__stage">
-    <div>
-      <h3>Simulation and design review</h3>
-      <p>Cover nominal and boundary conditions and examine failure modes. Review specification, schematic, and test plan before purchasing, fabrication, or energization.</p>
-    </div>
-  </div>
-  <div class="ee-route__stage">
-    <div>
-      <h3>Implementation and staged verification</h3>
-      <p>Begin with the smallest module and energy. Change one variable at a time. Automate software/HDL tests; perform passive and de-energized checks on hardware first.</p>
-    </div>
-  </div>
-  <div class="ee-route__stage">
-    <div>
-      <h3>Measurement and retrospective</h3>
-      <p>Keep raw data and align prediction, simulation, and measurement. Explain differences, limitations, and the next revision without deleting the failed path.</p>
-    </div>
-  </div>
-</div>
+These 5 starters include source code and fault cases, and the release gate rebuilds them with real toolchains. Run the Python commands from the repository root and the 2 CMake workflows from their respective starter directories. They are independent EEDIY exercises, not official assignments from the mapped university courses.
 
-## The one-page project specification { #project-spec }
+| Starter | Command | What the run actually checks |
+|---|---|---|
+| [RC low-pass: analytical and ngspice](https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass) | `python examples/rc-lowpass/run.py` | Analytical step/frequency baselines, parameters, and generated-data checksums; the full release gate also runs the ngspice netlist and compares \(\tau\) and cutoff |
+| [Fixed-capacity ring buffer](https://github.com/appleweiping/eediy/tree/main/examples/ring-buffer) | `cmake --workflow --preset host-sanitized` | Empty, full, wraparound, ADC/DMA-adapter, and fault cases with ASan/UBSan genuinely active |
+| [Timeout-aware sensor sampler](https://github.com/appleweiping/eediy/tree/main/examples/sensor-sampler) | `cmake --workflow --preset host-sanitized` | Ordinary sampling, timeout, delayed interrupt, bus error, and cancellation paths with line-checkable output |
+| [Synchronous FIFO simulation, formal, and synthesis](https://github.com/appleweiping/eediy/tree/main/examples/sync-fifo) | `python examples/sync-fifo/run_checks.py --require-tools all` | Icarus/Verilator simulation, a SymbiYosys counterexample, and Yosys synthesis; the fault implementation must fail |
+| [TMP117 two-layer KiCad board](https://github.com/appleweiping/eediy/tree/main/examples/tmp117-kicad) | `python examples/tmp117-kicad/export.py --require-kicad` | ERC, DRC, pin parity, and manufacturing-file export; no fabricated-board measurement is included |
 
-Before creating a repository or buying parts, answer:
+A skipped tool is not a passing result. The release environment uses the strict arguments in the table and fails when a dependency is missing. On a first read, begin with the “what this does not prove” section in each README, then adapt the starter into course work of your own.
 
-| Field | Required content |
-| --- | --- |
-| Problem | Who needs which result, and in what context? |
-| Input/output | Signals, energy, format, range, units, and references |
-| Acceptance test | Repeatable procedure, pass threshold, and measurement uncertainty |
-| Constraints | Cost, time, power, size, tools, license, and availability |
-| Safety boundary | Maximum energy, prohibited state, supervision, and stop conditions |
-| Assumptions | Environment, load, model, parts, sampling, and user behavior |
-| Non-goals | What this revision intentionally does not solve |
-| Milestones | Each milestone can be verified and demonstrated independently |
+## When an exercise is ready to become a project
 
-If the acceptance test is impossible to write, the problem is still too broad or its terms are undefined.
+Keep solving exercises while the input is fixed and there is one expected answer. Turn the work into a project when interfaces, tolerances, noise, timing, power, or cost create a real tradeoff. A useful starting question has conditions, for example: “With a 5 V supply and the specified sensor source impedance, can a front end map 10–40 °C into the ADC's usable range while meeting stated limits on in-band noise and settling time?”
 
-## Project ladder: software to hardware
+That question establishes an input, environment, output, and conflict. “Build a smart thermometer” does not: networking, display, enclosure, and software can all hide whether the analog front end works. A first project should isolate one major uncertainty—model fidelity, implementation behavior, or measurement validity. Five unknown interfaces at once turn debugging into random component replacement.
 
-Every project starts with a safety assessment. These examples increase in conceptual complexity; they do not authorize a particular voltage, power, or setting.
+## Write a specification that can fail
 
-| Level | Example | Core capability | Minimum acceptance |
-| --- | --- | --- | --- |
-| 0 | Measurement-data cleaning and uncertainty plot | Units, statistics, scripting, reproducible plots | Rebuild the result from raw data in one path |
-| 0 | RC/RLC transient and frequency simulation | Differential equations, phasors, model boundary | Hand, numerical, and SPICE results agree within a budget |
-| 0 | HDL state machine and self-checking bench | Timing, states, assertions, fault cases | Automatic results for valid and invalid inputs |
-| 1 | Bounded low-energy sensor readout | Data sheet, ADC, calibration, noise | Error and repeatability against a known reference |
-| 1 | Low-energy active filter/amplifier | Op-amp, bandwidth, load, stability | Measured response aligned with prediction and discrepancy explained |
-| 1 | Microcontroller data logger | Driver, timestamp, buffering, file format | Long-duration test quantifies or eliminates dropped samples |
-| 1 | FPGA serial interface or small processing unit | Protocol, domain awareness, synthesis, timing | Self-checking tests plus resource/timing report |
-| 0–1 | Digital filter and real-time implementation | Sampling, quantization, compute budget | Comparable offline baseline and real-time output |
-| 0–1 | Identification and closed-loop control | Model, stability, saturation, delay | Simulation first; bounded plant validation stays inside limits |
-| 0 | Receive-only communication-link analysis | Link budget, noise, modulation, statistics | Predicted and public/self-captured error metrics agree |
-| 0 | Electromagnetic or thermal parameter sweep | Boundary conditions, mesh, convergence | Mesh independence and analytic/benchmark comparison |
-| 2+ | High energy, RF transmit, laser, or process work | Formal assessment and specialist facility | Defined only in an authorized laboratory plan |
+NASA's guidance on [writing a good requirement](https://www.nasa.gov/reference/appendix-c-how-to-write-a-good-requirement/) distinguishes a mandatory requirement from a statement of fact or an aspiration. The [Appendix D requirements-verification matrix](https://www.nasa.gov/reference/appendix-d-requirements-verification-matrix/) asks that each “shall” have a planned method such as analysis, inspection, demonstration, or test. A student project does not need aerospace paperwork, but both ideas scale down well.
 
-## The project evidence package { #project-evidence-package }
+Before implementation, state on one page:
 
-A reviewer who has never met the author should be able to determine what was done, why it is credible, and how to reproduce it.
+- the operating envelope: input, supply, load, clock, temperature, or data distribution;
+- measurable quantities such as gain error, bandwidth, noise, latency, throughput, power, and resource use, each with units and tolerances;
+- explicit non-goals, such as no isolation, no mains connection, and no claim of production EMI compliance;
+- the measurement method, including test point, instrument bandwidth and impedance, sampling, repetitions, and pass condition;
+- failure behavior for saturation, oscillation, overflow, dropped samples, timing violations, or overheating.
 
-```text
-project/
-├── README.md              # Summary, demonstration, reproduction
-├── SPEC.md                # Requirements, non-goals, acceptance matrix
-├── SAFETY.md              # Hazards, controls, stop conditions
-├── design/                # Derivations, schematics, constraints, reviews
-├── src/                   # Software, firmware, or HDL
-├── simulation/            # Models, netlists, parameter sweeps
-├── tests/                 # Automated tests and hardware protocols
-├── data/raw/              # Append-only source measurements
-├── data/processed/        # Rebuildable products
-├── bom/                   # Parts, substitutes, cost, licenses
-└── report/                # Conclusion, error, failure, next revision
-```
+“Good performance” and “stable operation” are not specifications. If a threshold is not yet known, mark it as an exploration variable and run a small experiment to find its scale. Do not write the target after the project around whichever result looks best.
 
-### The README first view
+## Make model, implementation, and measurement challenge one another
 
-- one-sentence problem and result, not a slogan;
-- one key result plot with units and direct labels;
-- status: concept, simulation, prototype, verified, or stopped;
-- a three-to-five-step reproduction path;
-- safety boundaries and prohibited uses;
-- the most important limitation and failure.
+The first model only needs enough detail to support a choice. For an analog circuit, begin with operating point, gain, poles, and a noise budget. For digital logic, model state transitions, throughput, worst-case latency, and expected resources. For signal processing, state sampling, spectral, and error-propagation assumptions. Every parameter should point to a datasheet condition, hand calculation, course model, or measurement.
 
-## Design-review gates
+Implement the smallest version that exposes the dominant risk. Check bias, headroom, and one-stage response before attaching an ADC. Match RTL against a reference model and self-checking testbench before using an FPGA. Confirm sensor sign, sample period, and actuator limits before closing a control loop. Change one interpretable factor at a time and keep failed attempts; “three values changed and it worked” does not establish causality.
 
-### Gate 0: the problem is valid
+Measurement is not neutral observation. Tektronix's official [ABCs of Probes](https://www.tek.com/en/documents/whitepaper/abcs-probes-primer) treats source, probe, and oscilloscope as one measurement system and explains how input resistance, capacitance, bandwidth, and grounding can change a waveform. Record probe ratio, bandwidth limit, coupling, sample rate, load, and test point. If changing the probe changes the result, investigate loading before redesigning the circuit.
 
-- Acceptance metrics are measurable.
-- Scope fits time and budget.
-- Work does not depend on unavailable equipment or restricted material.
-- A software-only or bounded low-energy first milestone exists.
+Compare prediction, simulation, and measurement explicitly. Attribute discrepancies to a missing model term, component spread, numerical setup, implementation defect, instrument limitation, or environment. NIST's [measurement-uncertainty guidance](https://www.nist.gov/pml/nist-technical-note-1297) separates statistically evaluated components from those estimated through specifications, calibration, or other information. At minimum, report repeatability, the source of instrument resolution and accuracy, and errors that remain unquantified.
 
-### Gate 1: implementation is credible
+## What a substantial small EE project looks like
 
-- Model, interfaces, part ratings, and error budgets are consistent.
-- Critical parts have data sheets and obtainable substitutes.
-- Test points, debug interfaces, and observability are designed.
-- Risk controls begin with elimination, energy limitation, and engineered protection.
+Consider a low-voltage sensor front end. Specify sensor range and source impedance, then select protection, gain, filtering, and the ADC interface. Calculate headroom, noise, settling, and alias risk. Sweep supply, component tolerances, and load in SPICE. On a breadboard or PCB, measure DC transfer, frequency response, noise floor, and step response. The important outcome is not a polished Bode plot; it is knowing which region is limited by op-amp gain-bandwidth, which changes under probe or ADC loading, and which term dominates the error budget.
 
-### Gate 2: execution or energization is allowed
+The same pattern applies elsewhere. A UART receiver needs baud-rate mismatch, metastability, and framing-error cases. A FIR accelerator should expose fixed-point quantization, throughput, latency, and resources. A simulated motor controller should separate the plant model, sensor noise, saturation, and sample delay. If a physical extension involves a motor, high-energy battery, mains supply, or another serious hazard, reduce it to an isolated low-energy simulation or bench setup and follow the [laboratory safety guide](safety.md). Risk does not make a project more authentic.
 
-- Simulation or automated tests pass.
-- Schematic, wiring, polarity, shorts, and mechanical boundaries are reviewed.
-- Instrument and supply settings are recorded.
-- Stop conditions are explicit and required supervisors are present.
+## How to know the project worked
 
-### Gate 3: completion can be claimed
+Stop when the original question has been answered, not when no more features fit. A convincing result survives a new input inside the stated operating envelope, allows a major metric to be recomputed from raw data, and localizes a discrepancy to the model, implementation, or measurement layer. A final video, screenshot, or generated report alone cannot establish any of these.
 
-- Every acceptance result traces to raw data.
-- Failed tests and deviations remain visible.
-- The report separates measured, inferred, and assumed statements.
-- A reproduction from locked versions produces an equivalent result.
-
-## Evaluation rubric
-
-<div class="ee-rubric">
-
-| Dimension | 0: missing | 1: preliminary | 2: reliable | 3: engineering-grade |
-| --- | --- | --- | --- | --- |
-| Problem | Title only | Goal without thresholds | Measurable metrics and non-goals | Metrics connect to a real context and tradeoffs |
-| Model | No prediction | Unchecked formula/simulation | Assumptions, units, benchmark | Sensitivity, boundary, and failure models |
-| Implementation | Does not run | Works only for author | Versions, build, interfaces clear | Modular, testable, maintainable |
-| Verification | Demo only | A few successful cases | Test matrix and raw data | Uncertainty, fault injection, repeatability |
-| Safety | Not addressed | Generic warning | Project-specific hazards and controls | Controls verified; residual risk recorded |
-| Communication | Screenshots only | Describes what was built | Reproducible report and figures | Reviews, tradeoffs, and next revision clear |
-
-</div>
-
-The score exposes weak interfaces; it is not a leaderboard. A safety score of zero blocks physical execution.
-
-## Failure log
-
-```text
-Observed:
-Expected:
-Minimal reproduction:
-Ruled out:
-Root-cause evidence:
-Fix:
-Regression test:
-Still unknown:
-```
-
-Do not stop at “bad contact,” “library bug,” or “wrong parameter.” Separate observation from interpretation. If the cause is uncertain, mark it unknown and preserve the minimal failing case.
-
-## Team projects
-
-- Give every interface an owner and a reviewer.
-- Express specifications, data formats, pins, timing, and safety responsibilities as contracts.
-- Run automated checks before merging and record the hardware revision.
-- End meetings with decisions, evidence, objections, and open validation items.
-- Attribute actual contributions and cite external code, models, and data under their licenses.
-
-Choose the minimum stack from [Tools and Environments](tools.md) and pass [Laboratory Safety](safety.md) before any physical step.
+Keep enough material for your future self to rerun the work: current specification and non-goals, versioned schematic or RTL and code, model and parameter sources, BOM or dependencies, raw data, plot commands, instrument settings, and failed conditions. End by answering two questions in plain language: “Which engineering judgment did the data support?” and “Outside which boundary does that conclusion stop applying?” If those answers are clear, the project has converted course knowledge into engineering judgment.

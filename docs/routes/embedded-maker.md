@@ -1,59 +1,72 @@
 ---
-title: "嵌入式与智能硬件"
-description: "完成一个含传感、实时控制、通信、原理图/PCB、测试记录和演示视频的嵌入式系统。"
+title: "嵌入式、实时系统与板级设计"
+description: "做出一台低压嵌入式设备：它能采集传感器、按时完成控制与通信任务，拥有自制 PCB、可重跑测试、故障恢复和现场演示记录。"
 page_type: route
+route_id: "route-embedded-maker"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 43d04b1b154b370e -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: f3969bdd1cd6c22d -->
 
-# 嵌入式与智能硬件
+# 嵌入式、实时系统与板级设计
 
 ## 适合人群
 
-希望从数字逻辑走到 MCU、实时系统、PCB 和完整硬件作品的学习者
+想从数字逻辑和 C 一直做到 MCU、实时任务、PCB 与可演示设备的人
 
-## 最终验收
+## 学完能做什么
 
-完成一个含传感、实时控制、通信、原理图/PCB、测试记录和演示视频的嵌入式系统。
+做出一台低压嵌入式设备：它能采集传感器、按时完成控制与通信任务，拥有自制 PCB、可重跑测试、故障恢复和现场演示记录。
 
-## 阶段安排
+## 先读数据手册，再选板子
 
-### 底层基础
+先选一个低压外设和一个失败模式，例如 I²C 温度传感器断线。用数据手册写出电压、地址、更新率、超时和恢复动作；若这五项还不清楚，先不要选 RTOS 或画 PCB。
 
-**选课要求：** 完成全部 4 门必修；其余 1 门仅在需要补缺时选学。
+## 围绕一个外设闭环
 
-- [Introduction to CS and Programming Using Python](../courses/programming-tools/015-6-100l.md) — **必修**; MIT; 主线; S
-- [Practical Programming in C](../courses/programming-tools/016-6-087.md) — **必修**; MIT; 主线; A
-- [Circuits and Electronics](../courses/circuits/021-6-002.md) — **必修**; MIT; 主线; S
-- [Computation Structures](../courses/digital-logic/037-6-004.md) — **必修**; MIT; 主线; S
-- [Digital Design and Computer Architecture](../courses/digital-logic/038-ddca.md) — **可选补充**; ETH Zurich; 替代; S
+- 先用 Python 生成寄存器与边界输入的黄金向量，再用 C 写最小驱动；逻辑分析 trace 必须能对应数据手册中的启动、读写、超时与错误恢复。
+- 裸机、MSPM0 或 Raspberry Pi 路线只选一个可取得的平台。测量最坏响应时间和 deadline miss，而不是用“看起来实时”代替时序证据。
+- 只有板卡、调试器、低压限流电源、仪器、器件和预算都落实后才画自制板；否则保留可复现的外设模型、固件测试和 pre-board 接口。
+- 已有 HDL、寄存器和 C 内存模型基础时跳过对应 DDCA 与入门编程章节；不要为同一个外设同时换三块开发板。
 
-**阶段退出条件：** 用 C 实现一个带寄存器级外设模型的驱动，并建立主机端参考模型；至少 200 个边界与随机测试全部通过，逻辑分析仪或时序仿真证明建立/保持裕量满足数据手册。
+## 明确停在 pre-board，或把它做成设备
 
-### 裸机与实时
+- 只做轮询设备时先跳过高级 RTOS 理论和任务关键分支；只有测到调度或恢复问题后再补。
+- 无板卡时，黄金模型、固件测试、时序假设和未验证电气项全部写清，可在 pre-board 处诚实停止。
+- 有实体条件时，设备在标称、边界、断线和复位场景下连续通过，逻辑 trace、deadline 统计、BOM 与演示记录能由同一版本复现。
 
-**选课要求：** 完成全部 1 门必修，并从 2 门选修候选中选择 1 门。其余 1 门为可选补充，不计入本阶段选修数。
+## 怎么走
 
-- [Computer Systems from the Ground Up](../courses/embedded-systems/058-cs-107e.md) — **必修**; Stanford University; 主线; S
-- [Embedded Systems: Shape the World](../courses/embedded-systems/059-ee-319k-volume-1.md) — **选修候选**; The University of Texas at Austin; 主线; S
-- [Real-Time Embedded Systems Concepts and Practices](../courses/real-time-cps/063-real-time-embedded-systems-1.md) — **选修候选**; University of Colorado Boulder; 替代; A
-- [Real-Time Embedded Systems Theory and Analysis](../courses/real-time-cps/064-real-time-embedded-systems-2.md) — **可选补充**; University of Colorado Boulder; 替代; A
+### 外设从模型到时序
 
-**阶段退出条件：** 实现含中断、定时任务与故障恢复的裸机或 RTOS 原型，报告最坏执行时间、CPU 占用与 1000 个周期的抖动分布；所有截止期满足预先声明的预算。
+**为什么这样排：** 围绕一个外设驱动学习：Python 写参考模型和测试，C 写固件，6.002 说明引脚外侧的电气限制，6.004 说明寄存器与数字时序。若 HDL、时序图或处理器数据通路仍不熟，再查 DDCA 对应章节；不必为了“读完一本书”重复已经掌握的部分。
 
-### 系统项目
+- [Introduction to CS and Programming Using Python](../courses/programming-tools/015-6-100l.md) — **必学**; MIT
+- [Practical Programming in C](../courses/programming-tools/016-6-087.md) — **必学**; MIT
+- [Circuits and Electronics](../courses/circuits/021-6-002.md) — **必学**; MIT
+- [Computation Structures](../courses/digital-logic/037-6-004.md) — **必学**; MIT
+- [Digital Design and Computer Architecture](../courses/digital-logic/038-ddca.md) — **按需补充**; ETH Zurich
 
-**选课要求：** 完成全部 2 门必修，并完成该门选修候选。其余 1 门为可选补充，不计入本阶段选修数。
+**做到这里再往下：** 用 C 写出驱动和寄存器级外设模型，并在主机端保留参考实现。测试覆盖每个寄存器字段、边界值、无效状态与恢复路径，随机测试保存种子和覆盖率。逻辑分析仪记录或时序仿真还要证明建立、保持时间满足数据手册。
 
-- [The Art and Science of PCB Design](../courses/pcb-eda/055-iap-pcb-2026.md) — **必修**; MIT; 主线; S
-- [Digital Systems Design Using Microcontrollers](../courses/capstone-practice/057-ece-4760-ece-5730.md) — **必修**; Cornell University; 主线; S
-- [Real-Time Mission-Critical Systems Design](../courses/real-time-cps/065-real-time-embedded-systems-3.md) — **选修候选**; University of Colorado Boulder; 替代; A
-- [Real-Time Project for Embedded Systems](../courses/real-time-cps/066-real-time-embedded-systems-4.md) — **可选补充**; University of Colorado Boulder; 替代; A
+### 裸机、RTOS 与时间
 
-**阶段退出条件：** 完成含传感、通信、自制 PCB 与固件更新路径的智能硬件，给出功耗预算和失效注入记录；不少于 20 个自动化系统测试通过，并提供连续 30 分钟运行日志。
+**为什么这样排：** CS 107E 用来理解裸机启动和外设，把刚写好的驱动、参考模型与随机测试直接放进固件。开始前先确认 Mango Pi、启动链和公开 starter 是否还能取得。偏向 MSPM0 外设练习时选 EE 319K；只有确有 Raspberry Pi、Linux 与 Coursera 实验权限，并且目标是调度分析时才选 RTES 1，完成后再考虑 RTES 2。没有板卡可以模拟外设，但必须列出尚未验证的电气和中断时序。
 
-## 执行规则
+- [Computer Systems from the Ground Up](../courses/embedded-systems/058-cs-107e.md) — **必学**; Stanford University
+- [Embedded Systems: Shape the World](../courses/embedded-systems/059-ee-319k-volume-1.md) — **选 1 门**; The University of Texas at Austin
+- [Real-Time Embedded Systems Concepts and Practices](../courses/real-time-cps/063-real-time-embedded-systems-1.md) — **选 1 门**; University of Colorado Boulder
+- [Real-Time Embedded Systems Theory and Analysis](../courses/real-time-cps/064-real-time-embedded-systems-2.md) — **按需补充**; University of Colorado Boulder
 
-- 按每个阶段的选课要求完成全部必修与指定数量的选修；若提供完整路径选项，只选择一条并按序完成其中全部课程；可选补充只用于填补明确缺口。
-- 阶段内至少完成一个可复现产物，并把失败记录纳入复盘。
-- 涉及市电、高压、射频辐射、激光、化学品或加工设备时，必须遵守本地法规并由合格人员监督。
+**做到这里再往下：** 做出带中断、周期任务和故障恢复的裸机或 RTOS 原型。先规定观察时长和测试负载，再报告周期数、抖动分布、观测到的最大执行时间与 CPU 占用；有限测量不能写成 WCET 证明。每次 deadline miss 都要由检测器记录并与预算对照。
+
+### 把它做成一台设备
+
+**为什么这样排：** 固件、timing trace、deadline detector 和故障恢复钩子都继续用于同一台设备。PCB workshop 帮你把设计送到可制造状态，ECE 4760/5730 用来完成系统集成。RTES 3 只在 Coursera 内容和指定硬件都可用时补任务关键系统与 FMEA，RTES 4 留作后续扩展。先确认低压板卡、调试器、仪器、器件和预算；缺少实体条件就停在 pre-board。
+
+- [The Art and Science of PCB Design](../courses/pcb-eda/055-iap-pcb-2026.md) — **必学**; MIT
+- [Digital Systems Design Using Microcontrollers](../courses/capstone-practice/057-ece-4760-ece-5730.md) — **必学**; Cornell University
+- [Real-Time Mission-Critical Systems Design](../courses/real-time-cps/065-real-time-embedded-systems-3.md) — **按需补充**; University of Colorado Boulder
+- [Real-Time Project for Embedded Systems](../courses/real-time-cps/066-real-time-embedded-systems-4.md) — **按需补充**; University of Colorado Boulder
+
+**做到这里再往下：** 设备应包含传感、通信、自制 PCB 和固件更新路径，并记录额定值、功耗预算、看门狗或安全状态、热与过流停机条件及故障注入。测试逐项覆盖需求、接口、故障状态和更新回滚；最后在有人监看下运行预先规定的演示，包含冷启动、稳态、最慢周期任务、回滚与每类已声明故障，并记录实际时长。这只能说明原型在这些场景中的表现，不是可靠性认证。
