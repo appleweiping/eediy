@@ -1,124 +1,81 @@
 ---
 title: "Real-Time Embedded Systems Concepts and Practices"
-description: "University of Colorado Boulder's Real-Time Embedded Systems Concepts and Practices establishes a practical real-time embedded entry through Raspberry Pi, Linux, videos, labs, and code, with explicit hardware and potentially paid access."
+description: "University of Colorado Boulder's Real-Time Embedded Systems Concepts and Practices introduces real-time embedded work through Raspberry Pi, Linux, videos, and platform-hosted labs; its public product page exposes no anonymously downloadable official code package."
 page_type: course
+course_id: "course-063"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 773fe85dfcbd03cd -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 187920ac31595ac1 -->
 
-# Real-Time Embedded Systems Concepts and Practices
+# University of Colorado Boulder Real-Time Embedded Systems 1: Real-Time Embedded Systems Concepts and Practices
 
 ## Course Overview
 
-- **Institution:** University of Colorado Boulder
+- **University:** University of Colorado Boulder
 - **Course code:** Real-Time Embedded Systems 1
-- **Track:** [Real-Time and Cyber-Physical Systems](index.md)
-- **Tier:** A
-- **Role:** Alternative
-- **Level:** Not standardized by provider (use prerequisites)
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** CU Boulder's official ECEA 5315 description assumes C, the compilation pipeline, computer architecture, operating systems, and Linux
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Registration required; scope varies by platform
+- **Material status:** 2026-07-30; public-material guide
 
-University of Colorado Boulder's Real-Time Embedded Systems Concepts and Practices establishes a practical real-time embedded entry through Raspberry Pi, Linux, videos, labs, and code, with explicit hardware and potentially paid access.
+### Measure Deadlines in Real-Time Systems
 
-**Why choose this course**
+Coursera [ECEA 5315](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices) is course 1 of CU Boulder's four-course Real-Time Embedded Systems specialization. The [official 5315 assignments and syllabus](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5315-concept-and-practices) assume C, the compilation pipeline, computer architecture, operating systems, and Linux. It compares cyclic executives, RTOSes, and Linux POSIX real-time extensions rather than introducing GPIO programming. It best suits learners who want “real time” to become a measured deadline rather than a label.
 
-Alternative course. A reliable option that can serve as a main course or strong alternative.
+### Programming and Peer Review Are Each 30%
 
-**Before you start**
+The official page divides the material into 4 weeks estimated at 13, 14, 11,
+and 15 hours, followed by a 2-hour final. Week 1 compares Linux POSIX
+real-time threads, RTOSes, and cyclic executives; week 2 moves through QoS,
+hard real time, rate-monotonic scheduling, and absolute time; week 3 develops
+service sequencing; week 4 compares multicore hardware and real-time software
+stacks. Week 3 is the pivot: threads and policies become a set of ordered
+services that can actually miss deadlines.
 
-- Recommended foundation: Embedded Systems
-- Recommended foundation: Signals and Systems
+The grading structure shows how the course is meant to work: quizzes are 10%,
+programming assignments 30%, peer reviews 30%, and the final exam 30%.
+Programming output is therefore only half the story; another learner inspects
+the timing design, and the exam checks the concepts. The CU page publishes
+these categories and weights, but the prompts, starter code, peer feedback,
+and exam access depend on Coursera enrollment.
 
-**Verifiable learning outcomes**
+For preview outside the platform, a **nonofficial substitute** can run two
+pthread services at different periods and compare ordinary Linux, POSIX
+real-time threads, and a cyclic executive by release, finish, and deadline
+miss. It is not a 5315 assignment and cannot reproduce peer review. Its useful
+result is the response-time tail, especially under brief CPU or I/O
+interference, rather than average throughput.
 
-- Explain the core models in Real-Time and Cyber-Physical Systems, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+### Hardware Differences Change the Measurement
 
-**Workload and pacing**
+The [hardware requirements](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements) use Raspberry Pi 3B+/4B, 32/64-bit Raspberry Pi OS, and a Logitech C270 as the baseline. A Pi 5, another camera, or Ubuntu can support a local exercise, but changes in kernel, architecture, governor, affinity, and camera format prevent a direct numerical comparison with the original platform.
 
-**11 weeks at 9 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+With the same service body, the useful differences among a cyclic executive,
+real-time threads, and ordinary Linux lie in release control, preemption, tail
+latency, and miss recovery. Giving every thread the highest priority proves
+nothing and can starve system services. After a platform change, remeasure the
+deadline distribution instead of carrying over a number from another kernel
+and governor.
 
-**Safety level**
+### Access and version notes
 
-**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
+The public page exposes the syllabus and grading skeleton. The
+[specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems)
+places formal scheduling analysis in 5316, mission-critical architecture in
+5317, and the camera project in 5318. The
+[access page](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses)
+does not promise that every graded item or certificate is free. The distinctive
+part of 5315 is that programming, peer review, and an exam all test Linux
+measurement; rigorous schedulability analysis becomes central in 5316.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+- [Course home](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices)
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: Zephyr or FreeRTOS source, GCC or LLVM, CMake, GDB, and Renode or QEMU
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a course-supported real-time control board, USB debugger, logic analyzer, and low-voltage sensors/actuators. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
-
-**Cost note**
-
-The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | Partial |
-| Code | Complete |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-| [Introduction to Embedded Systems Software and Development Environments](https://www.coursera.org/learn/introduction-embedded-systems) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Real-Time Embedded Systems Concepts and Practices · University of Colorado Boulder Real-Time Embedded Systems 1: Real-Time Closed-Loop Deadline Stress Test**
-
-This is a maintainer-suggested self-study project for Real-Time Embedded Systems Concepts and Practices · University of Colorado Boulder Real-Time Embedded Systems 1, not an official course assignment. Build a discrete-event scheduler and simulated plant for Real-Time and Cyber-Physical Systems, quantifying how jitter, missed deadlines, and sensor loss affect closed-loop safety margin.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A task set with period, deadline, and WCET assumptions, scheduling policy, and plant model
-- An executable scheduler, closed-loop simulation, fault injector, and monitoring assertions
-- Raw response-time, jitter, miss, and state trajectories across multiple loads
-- A report defining the schedulability boundary, control degradation, and safe degraded state
-
-**Verification**
-
-- Produce zero deadline misses at nominal load and keep analytic response-time bound within 10% of the simulated worst case
-- Cover zero load, near-100% utilization, burst blocking, and clock-drift boundaries
-- Cross-check schedulability with a second analysis or exhaustive enumeration over a short hyperperiod
-- Increase WCET until the first miss and report miss rate and closed-loop error growth
-
-**Reproducibility**
-
-- Commit scheduler, plant, fault scenarios, assertions, and analysis sources
-- Pin event ordering, random seeds, time units, solver, and dependency versions
-- Preserve raw event and state logs and automatically generated timelines and report
-
-**Safety boundary:** Simulation only — Inject deadlines and faults only into a simulated plant; do not connect unvalidated scheduling or degradation logic to real machinery, vehicles, medical, or power systems.
-
-**Risks, gaps, and boundaries**
-
-The Raspberry Pi and Linux hardware requirement is explicit, and Coursera access may require payment.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
-- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "design": "synchronous ready-valid FIFO",
+  "top": "sync_fifo",
+  "revision_under_test": "baseline",
+  "parameters": {
+    "DATA_WIDTH": 8,
+    "DEPTH": 4
+  },
+  "clock": {
+    "port": "clk",
+    "period_ns": 10.0,
+    "reset": "synchronous active-low rst_n"
+  },
+  "source_sets": {
+    "rtl": [
+      "rtl/sync_fifo.sv"
+    ],
+    "simulation": [
+      "rtl/sync_fifo.sv",
+      "tb/fifo_tb.sv"
+    ],
+    "formal": [
+      "rtl/sync_fifo.sv",
+      "formal/sync_fifo_formal.sv"
+    ],
+    "synthesis": [
+      "rtl/sync_fifo.sv"
+    ]
+  },
+  "formal_scope": {
+    "baseline": {
+      "mode": "bmc",
+      "depth": 12,
+      "solver": "z3",
+      "parameters": {
+        "DATA_WIDTH": 2,
+        "DEPTH": 2
+      },
+      "assumptions": [
+        "rst_n is low through the first two sampled edges, then remains high"
+      ],
+      "claim_limit": "bounded safety check only; not an unbounded proof"
+    },
+    "cover": {
+      "mode": "cover",
+      "depth": 8,
+      "goals": [
+        "full is reachable",
+        "simultaneous accepted read and write is reachable",
+        "a read request while empty is reachable"
+      ]
+    },
+    "fault_read_pointer": {
+      "mode": "bmc",
+      "depth": 8,
+      "expected_result": "FAIL with a generated counterexample"
+    }
+  },
+  "constraints": {
+    "file": "constraints/sync_fifo.sdc",
+    "scope": "generic 100 MHz interface budget only",
+    "target_device": null,
+    "board_pinout": null
+  },
+  "evidence_boundary": [
+    "No committed PASS log or waveform is treated as proof.",
+    "The repository contains no place-and-route, timing-closure, bitstream, or board result.",
+    "Tool versions and generated evidence must come from the machine that runs run_checks.py."
+  ]
+}

@@ -1,123 +1,55 @@
 ---
 title: "Real-Time Mission-Critical Systems Design"
-description: "University of Colorado Boulder 的《Real-Time Mission-Critical Systems Design》将实时系统学习推进到任务关键设计；视频、练习、实验和代码较完整，但指定硬件与付费访问构成门槛。"
+description: "University of Colorado Boulder 的《Real-Time Mission-Critical Systems Design》把实时系统推进到任务关键设计；ECC、闪存、冗余与 FMEA 活动位于 Coursera 内，公开页没有固定代码包。"
 page_type: course
+course_id: "course-065"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d6b668b8cd279521 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: ec39f5f0de366ce0 -->
 
-# Real-Time Mission-Critical Systems Design
+# University of Colorado Boulder Real-Time Embedded Systems 3: Real-Time Mission-Critical Systems Design
 
 ## 课程简介
 
-- **机构：** University of Colorado Boulder
+- **所属大学：** University of Colorado Boulder
 - **课程编号：** Real-Time Embedded Systems 3
-- **方向：** [实时与信息物理系统](index.md)
-- **评级：** A
-- **角色：** 替代
-- **难度：** 提供方未标准化（请按先修判断）
-- **最近复核：** 2026-07-28
+- **官方先修：** CU Boulder 将 ECEA 5317 设为完成 5315 与 5316 后的第 3 门，并继续要求 C、体系结构、操作系统与 Linux
+- **本站建议背景：** 本站未另设准备条件
+- **访问条件：** 需注册；可用范围以平台为准
+- **资料状态：** 2026-07-30；公开材料导读
 
-University of Colorado Boulder 的《Real-Time Mission-Critical Systems Design》将实时系统学习推进到任务关键设计；视频、练习、实验和代码较完整，但指定硬件与付费访问构成门槛。
+### 安全说明
 
-**为什么选择这门课**
+已经会做 service feasibility 和 timing measurement、下一步想学 fault model 与 recovery，建议选 Coursera [ECEA 5317](https://www.coursera.org/learn/real-time-mission-critical-systems-design)；需要安全认证方法时应另选专门课程。CU 的 [5317 官方 assignments 与 syllabus](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5317-mission-critical-sw) 把它列为 specialization 第 3 门，先修 5315、5316，以及 C、architecture、OS 与 Linux。
 
-替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
+课程练习能教 fault model、FMEA 与 recovery，却不提供认证、独立验证、环境鉴定或长期失效率证据。任何结论都应限定到平台、版本和注入模型。
 
-**学习前准备**
+### 课程结构
 
-- 建议先完成方向基础：嵌入式系统
-- 建议先完成方向基础：信号与系统
+官方课程页把内容分成四周，时数是 16、15、11、11，之后是 2 小时 final。第 1 周讨论 HAL、BSP、device I/O、driver interface 与系统扩展；第 2 周进入 ECC、redundant arrays、flash file system 和 persistent memory；第 3 周用 profiling 与 tracing 处理 performance/reliability defect；第 4 周区分 high availability 与 high reliability，并整合 fault detection、isolation、recovery、redundancy management 和 FMEA。
 
-**可验证的学习成果**
+成绩骨架与 5316 相同：quizzes 10%，programming assignments 与 peer reviews 合计 60%，final exam 30%。这使课程不只是列故障名词：实现结果要接受互评，架构判断还要通过考试。CU 公开页没有说明 programming 与 peer review 在 60% 内各占多少，也没有匿名开放题面、starter 或互评反馈。
 
-- 解释实时与信息物理系统中的核心模型，并说明主要假设与适用边界
-- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
-- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
+### 课程真正难在共同原因与恢复后果
 
-**工时与节奏**
+一条 request 从 application 穿过 HAL/driver、I/O、memory/storage 与 supervisor，任何一层都可能 timeout、corrupt、部分完成或 restart。冗余设备若共用 power、clock、driver 或同一错误输入，投票器消不掉共同原因失效；自动 restart 能缩短 outage，也可能让 actuator 重复危险动作。5317 分别处理 availability、reliability 与 safety，因为“自动恢复”本身并不保证更安全。
 
-**11 周，每周 9 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
+ECC、persistent memory、profiling 和 FMEA 在这里彼此关联。一个 storage corruption 例子可以同时追问：错误何时被检测、最后一条完整数据在哪里、系统是继续、降级还是停止，以及恢复后是否把坏状态带回下一次 mission。课程能支持的是给定架构下的风险分析，不能据此声称完成 certification、independent verification、environmental qualification 或长期失效率证明。
 
-**安全等级**
+### 访问与版本说明
 
-**低能量实验。** 仅开展隔离、限流、低能量实验；通电前检查额定值、接地、短路风险和紧急断电方式。
+[硬件要求](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements) 以 Pi 3B+/4B、Raspberry Pi OS 与 C270 为 starter-code 基线。[Specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems) 把 camera project 留给 5318，[访问说明](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses) 也不承诺全部评测免费。
+
+未注册者可做一个很小、明确标为**非官方替代**的练习：为本地 sensor logger 比较 normal write、storage-full 与 interrupted-write 三种结果，再画出检测、降级/停止与 recovery 的关系。它只帮助理解课程的 FMEA 与 persistent-memory 主题；CU 未把它列为 programming assignment，也没有 peer review 或 final exam 的效力。
 
 ## 课程资源
 
-**软件、硬件与成本**
+- [课程主页](https://www.coursera.org/learn/real-time-mission-critical-systems-design)
 
-**软件**
+## 资源汇总
 
-- 维护者建议的开源/免费验证路径：Zephyr 或 FreeRTOS 源码、GCC 或 LLVM、CMake、GDB，以及 Renode 或 QEMU
-- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
-
-**硬件**
-
-- 资源清单包含实验覆盖；优先借用或共享课程支持的实时控制开发板、USB 调试器、逻辑分析仪及低压传感器/执行器。仅在提供方实验手册明确要求后核对规格、许可与安全条件
-
-**成本说明**
-
-建议软件栈可开源或免费使用；这不是提供方要求或物料清单。开发板、元件、打样和仪器的实际清单与费用以提供方实验手册、地区和当地可得性为准，采购前优先借用、共享或仿真。
-
-**公开资源完整度**
-
-| 资源类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 部分 |
-| 代码 | 完整 |
-
-**资源与访问条件**
-
-| 资源 | 访问 | 许可 | 状态 | 复核日期 |
-|---|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/real-time-mission-critical-systems-design) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
-
-> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
-
-## 实践与验收
-
-**实践闭环**
-
-**《Real-Time Mission-Critical Systems Design · University of Colorado Boulder Real-Time Embedded Systems 3》实时闭环截止期压力测试**
-
-这是维护者为《Real-Time Mission-Critical Systems Design · University of Colorado Boulder Real-Time Embedded Systems 3》建议的自学项目，不是课程官方作业。为实时与信息物理系统建立离散事件调度器与受控对象仿真，量化抖动、超期和传感丢失对闭环安全裕量的影响。
-
-**来源：** 维护者建议项目
-
-**交付物**
-
-- 任务集、周期/截止期/WCET 假设、调度策略和受控对象模型
-- 可执行调度器、闭环仿真、故障注入器和监控断言
-- 不同负载下的原始响应时间、抖动、超期和状态轨迹
-- 一份报告，给出可调度边界、控制退化和安全降级状态
-
-**验收**
-
-- 标称负载下零截止期超期，解析响应时间界与仿真最坏值相差不超过 10%
-- 覆盖零负载、100% 利用率附近、突发阻塞和时钟漂移边界
-- 用第二种调度分析或穷举短超周期交叉核对可调度结论
-- 逐步增加 WCET 直到首次超期，报告超期率与闭环误差增长曲线
-
-**复现要求**
-
-- 提交调度器、受控对象、故障场景、断言和分析源文件
-- 固定事件顺序、随机种子、时间单位、求解器与依赖版本
-- 保存原始事件/状态日志和自动生成的时间线与报告
-
-**安全边界：** 仅仿真 — 只在模拟受控对象上施加超期和故障；不得把未经独立安全验证的调度或降级逻辑接入真实机械、车辆、医疗或电力系统。
-
-**风险、缺口与边界**
-
-ECC、闪存、冗余与 FMEA 练习使用指定硬件，且平台访问可能需要付费。
-
-**完成证据**
-
-- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
-- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
-- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
-- 实验包：原理图/装置设置、校准记录、原始数据、不确定度、安全检查、失败记录与从原始数据重建图表的步骤
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

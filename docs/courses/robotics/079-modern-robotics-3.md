@@ -1,126 +1,69 @@
 ---
 title: "Modern Robotics, Course 3: Robot Dynamics"
-description: "Northwestern University 的《Modern Robotics, Course 3: Robot Dynamics》把系列推进到机器人动力学；视频、讲义、练习、仿真和代码齐全，但依赖前序运动学并可能需要付费访问。"
+description: "Northwestern University 的《Modern Robotics, Course 3: Robot Dynamics》把系列推进到机器人动力学；视频、讲义、练习、仿真和代码齐全，平台高度建议先按顺序掌握前面的刚体运动与运动学，完整访问可能收费。"
 page_type: course
+course_id: "course-079"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: f6147483d65cb9f5 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 8d4a151e719bea96 -->
 
-# Modern Robotics, Course 3: Robot Dynamics
+# Northwestern University Modern Robotics 3: Modern Robotics, Course 3: Robot Dynamics
 
 ## 课程简介
 
-- **机构：** Northwestern University
+- **所属大学：** Northwestern University
 - **课程编号：** Modern Robotics 3
-- **方向：** [机器人与自主系统](index.md)
-- **评级：** A
-- **角色：** 替代
-- **难度：** 中级
-- **最近复核：** 2026-07-28
+- **官方先修：** Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积
+- **本站建议背景：** 建议先完成 Course 1–2 或具备同等的刚体运动与运动学基础；这是本站按内容给出的学习顺序
+- **访问条件：** 公开入口；部分材料需注册或受限
+- **资料状态：** 2026-07-30；公开材料导读
 
-Northwestern University 的《Modern Robotics, Course 3: Robot Dynamics》把系列推进到机器人动力学；视频、讲义、练习、仿真和代码齐全，但依赖前序运动学并可能需要付费访问。
+### 课程定位
 
-**为什么选择这门课**
+Coursera [Robot Dynamics](https://www.coursera.org/learn/modernrobotics-course3) 对应 *Modern Robotics* Chapters 8–9。4 个 module 约为 7、7、5、4 小时：前半推 Lagrange、mass matrix 与 Newton–Euler，继而做 forward/task-space/constrained dynamics、gearing、friction 和 1 个带同伴互评的 project；后半处理 point/via-point trajectory 与受 dynamics/actuator limit 约束的 time-optimal scaling。它适合已经能把 Course 2 的 kinematics 写成稳定代码、准备进入动力学与轨迹约束的人。
 
-替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
+课程假定已完成 Course 1–2。一台 2R arm 可以检查所需基础：写 kinetic/potential energy，检查 mass matrix 对称正定，并从 \(q,\dot q,\tau\) 求一次 \(\ddot q\)。
 
-**学习前准备**
+### Dynamics 接口必须在同一模型上 round-trip
 
-- 建议先完成方向基础：控制系统
-- 建议先完成方向基础：编程与工程计算
-- 建议先完成方向基础：物理基础
-- 课程顺序要求：先完成[《Modern Robotics, Course 1: Foundations of Robot Motion》](../robotics/077-modern-robotics-1.md)（Northwestern University Modern Robotics 1）
-- 课程顺序要求：先完成[《Modern Robotics, Course 2: Robot Kinematics》](../robotics/078-modern-robotics-2.md)（Northwestern University Modern Robotics 2）
+官方库的核心接口是
+`InverseDynamics(q,dq,ddq,g,Ftip,Mlist,Glist,Slist) → tau` 与
+`ForwardDynamics(q,dq,tau,g,Ftip,Mlist,Glist,Slist) → ddq`。同一模型先由前者求
+\(\tau\)，再送入后者检查是否恢复 \(\ddot q\)。另测静止重力补偿、zero-gravity energy、
+tip wrench、friction/gearing 符号。模型文件单列 mass、COM、inertia、link transform、
+screw axis、gravity、joint order 和单位，并验证质量为正、惯量物理可行。
 
-**可验证的学习成果**
+测试误差要随尺度解释：round-trip 同时报告 absolute 与 relative residual；在零速度时检查 Coriolis 项，在静态姿态把 gravity torque 与有限差分 potential gradient 对照；施加 tip wrench 时检查虚功关系。若改变 integration step 后能量漂移不收敛，优先怀疑符号、frame 或模型参数，而非归咎模拟器。
 
-- 解释机器人与自主系统中的核心模型，并说明主要假设与适用边界
-- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
-- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
+[ModernRobotics repository](https://github.com/NxRLab/ModernRobotics) 的实现强调教学可读性。为每个函数加 shape、finite-value、energy 与 round-trip assertion；单摆或 1-DOF inertia 手算提供基准，多连杆用于扩大覆盖。
 
-**工时与节奏**
+### Chapter 9 的输出是 path 与 time scaling 两组数组
 
-**2 周，每周 10 小时。** 提供方公布 2 周、每周 10 小时。先试学两周并记录授课、练习、实验和复盘时间，若实际偏差超过 25%，据实调整剩余计划。
+joint、screw 和 Cartesian trajectory 使用同一起终 pose 与 duration，分别画 \(q,\dot q,\ddot q,\tau\)。via-point 检查位置/速度连续；time scaling 明确 velocity、acceleration 和 torque limit 的来源。画面平滑无法证明 command 连续或满足 limit。
 
-**安全等级**
+对三种 path 统一采样并保存原始 arrays，比较末端几何、关节峰值与所需 torque。受力矩约束的 time scaling 还要显示 path coordinate、允许 acceleration interval 和 switching points；某个离散点可行不能推出整段可行。若缩短 duration 触发 limit，就保留首次违反的位置及对应关节。
 
-**仅仿真。** 默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。
+[教材主页](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) 提供 preprint、errata 与 UR5 参数，[Coursera Resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) 汇总 6 门资源。锁定书版本、MR commit 和语言，避免混入另一套 spatial-vector convention。
+
+### CoppeliaSim 只重放已经检查过的 state sequence
+
+[CoppeliaSim instructions](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) 提供 dynamic scene 与 trajectory CSV。固定 scene/engine、integrator、step、initial state 和 seed；若 arm 数值发散，分别检查 model、step、joint order 与 scene physics。无重力无输入时，energy drift 随 step 缩小而下降，才支持离散化解释。
+
+模拟器异常时，用纯数值程序重放同一 joint sequence。离线正确而 scene 错，检查列顺序、joint direction、physics mode 与 time step；两处都错，再查 dynamics 和 controller。每次运行保存 exact initial state、input、duration 与终止原因，让动画可以从数组重建。
+
+课程记录包括 Chapters 8/9 习题、inverse/forward tests、dynamics project、3 类 trajectory、raw arrays、图与动画。Coursera peer/graded access 可能付费；公开代码和 scene 可复建。真实机器人还需重新辨识 friction、gearing、current 与 collision limits。
+
+最有价值的是一张误差表：手算小系统、MR function、numerical integration 与 CoppeliaSim 各自偏差多少，哪一项随步长下降，哪一项来自参数或 convention。它把“能播放”提升为可检查的动力学实现。
 
 ## 课程资源
 
-**软件、硬件与成本**
+- [课程主页](https://www.coursera.org/learn/modernrobotics-course3)
+- [代码 · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
 
-**软件**
+## 资源汇总
 
-- 维护者建议的开源/免费验证路径：ROS 2、Gazebo、RViz 2、Python 或 C++，以及固定版本的容器环境
-- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
-
-**硬件**
-
-- 资源清单包含实验覆盖；本课程的维护者路径明确将其限定为计算或仿真实验。只假设一台能运行上述软件并保存结果的通用计算机；不采购或连接课程明确支持的机器人平台、传感器、低压电源、急停与安全测试区域
-
-**成本说明**
-
-当前维护者路径只使用计算与仿真，不设专用硬件采购；建议软件优先采用开源/免费工具。这不是提供方要求，平台访问、商业软件或云算力费用仍随提供方、地区与方案而变。
-
-**公开资源完整度**
-
-| 资源类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 完整 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 无公开材料 |
-| 代码 | 完整 |
-
-**资源与访问条件**
-
-| 资源 | 访问 | 许可 | 状态 | 复核日期 |
-|---|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/modernrobotics-course3) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
-
-> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
-
-## 实践与验收
-
-**实践闭环**
-
-**《Modern Robotics, Course 3: Robot Dynamics · Northwestern University Modern Robotics 3》机器人任务规划与安全降级仿真**
-
-这是维护者为《Modern Robotics, Course 3: Robot Dynamics · Northwestern University Modern Robotics 3》建议的自学项目，不是课程官方作业。为机器人与自主系统在仿真器中完成感知—规划—控制闭环任务，量化成功率、碰撞裕量、定位误差和传感失效后的安全停机。
-
-**来源：** 维护者建议项目
-
-**交付物**
-
-- 任务、机器人/环境模型、坐标系、约束与安全状态规格
-- 感知、规划、控制、监控和场景生成源文件
-- 至少 100 个随机场景的轨迹、成功/碰撞、最小间距和运行时原始数据
-- 一份报告与录屏，比较基线/改进算法并复盘最危险失败
-
-**验收**
-
-- 100 个标称场景成功率至少 90%，碰撞为零且最小间距满足预设阈值
-- 覆盖起终点重合、无解地图、窄通道、定位漂移和传感中断
-- 用独立碰撞检查器重放全部轨迹并逐帧交叉核对
-- 注入传感冻结或控制延迟，证明监控器在规定时间内进入停止状态
-
-**复现要求**
-
-- 提交机器人/世界模型、算法、场景、测试和录屏脚本
-- 固定仿真器、物理步长、地图、随机种子和依赖版本
-- 保存原始轨迹/传感数据、场景清单和自动生成报告
-
-**安全边界：** 仅仿真 — 仅使用机器人仿真；不得在无人监督下驱动真实机械、车辆、无人机或执行器。
-
-**风险、缺口与边界**
-
-本课要求先掌握前序运动学内容，且 Coursera 完整访问可能需要付费。
-
-**完成证据**
-
-- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
-- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
-- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
-- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

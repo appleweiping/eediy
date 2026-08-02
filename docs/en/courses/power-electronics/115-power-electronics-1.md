@@ -2,123 +2,52 @@
 title: "Introduction to Power Electronics"
 description: "University of Colorado Boulder's Introduction to Power Electronics provides an entry through videos, exercises, simulation, and code, with useful practice subject to changing or paid platform and grading access."
 page_type: course
+course_id: "course-115"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 05982e9ebb0d43d9 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9137d82d02f614fb -->
 
-# Introduction to Power Electronics
+# University of Colorado Boulder Power Electronics 1: Introduction to Power Electronics
 
 ## Course Overview
 
-- **Institution:** University of Colorado Boulder
+- **University:** University of Colorado Boulder
 - **Course code:** Power Electronics 1
-- **Track:** [Power Electronics](index.md)
-- **Tier:** A
-- **Role:** Alternative
-- **Level:** Not standardized by provider (use prerequisites)
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
+- **EEDIY preparation:** Circuit Analysis; Control Systems; Electronics Laboratory and Measurement
+- **Access:** Registration required; scope varies by platform
+- **Material status:** 2026-07-30; public-material guide
 
-University of Colorado Boulder's Introduction to Power Electronics provides an entry through videos, exercises, simulation, and code, with useful practice subject to changing or paid platform and grading access.
+### Course fit
 
-**Why choose this course**
+The University of Colorado Boulder [Introduction to Power Electronics](https://www.coursera.org/learn/power-electronics) opens its [Power Electronics Specialization](https://www.coursera.org/specializations/power-electronics). The official course page currently shows 3 modules, 3 assignments, and “1 week at 10 hours”; those assignments cover boost simulation, converter analysis, and equivalent-circuit modeling. The specialization gives a separate 12-hour estimate. Allow 3–4 weeks if averaged models are new. This is a strong fit for learners who know circuits and want to derive buck and boost behavior from switching states.
 
-Alternative course. A reliable option that can serve as a main course or strong alternative.
+Before enrolling, write the ideal buck inductor voltage in both states and recover its conversion ratio by volt-second balance. If that requires a copied formula, review KCL/KVL, RC/RL transients, power, and ideal switches first. LTspice appears in the course, but simulation is there to test a derivation.
 
-**Before you start**
+### Course structure
 
-- Recommended foundation: Circuit Analysis
-- Recommended foundation: Control Systems
-- Recommended foundation: Electronics Laboratory and Measurement
+Chapter 1 introduces switched converters through buck, boost, and a boost simulation. Chapter 2 develops steady state, the small-ripple approximation, and converter analysis. Chapter 3 builds averaged equivalent circuits, loss, and efficiency models. For each topology, keep its switching states, periodic constraint, average and ripple result, and assumption boundary together. If the converter enters DCM, revisit the CCM model instead of extending its formula.
 
-**Verifiable learning outcomes**
+Exact prompts and feedback depend on signed-in Coursera access. “Enroll for free” does not guarantee that every account retains graded access, so inspect the enrollment screen before planning around it.
 
-- Explain the core models in Power Electronics, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+### Assignments and feedback
 
-**Workload and pacing**
+Keep a separate low-power 12 V to 5 V buck notebook. Choose `L` and `C` from ripple targets, sweep duty ratio, load, and switching frequency, then add ESR and conduction loss. Put the analytic prediction, steady-state measurement window, and error beside each plot. Obtain the simulator and its current documentation from Analog Devices’ [LTspice page](https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html); a third-party circuit or troubleshooting suggestion still needs an assumption and model check.
 
-**11 weeks at 7 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+A useful finish line is an averaged model derived from two states, LTspice current slopes and mean output that agree with hand predictions, a closed power balance, and an explanation of why startup is outside periodic volt-second balance.
 
-**Safety level**
+### Continue through circuits and control
 
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+Take [Converter Circuits](https://www.coursera.org/learn/converter-circuits) next, then [Converter Control](https://www.coursera.org/learn/converter-control). This course has no bench-lab sequence; magnetics, gate drives, layout, thermal design, and safe measurement need separate laboratory training.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+- [Course home](https://www.coursera.org/learn/power-electronics)
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: Qucs-S, ngspice, Python 3, Jupyter, and GNU Octave
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect isolated/current-limited power, differential probes, electronic load, oscilloscope, and course-specified power stage in a compliant lab
-
-**Cost note**
-
-The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | No public material |
-| Code | Partial |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/power-electronics) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Introduction to Power Electronics · University of Colorado Boulder Power Electronics 1: Converter Loss and Closed-Loop Protection Simulation**
-
-This is a maintainer-suggested self-study project for Introduction to Power Electronics · University of Colorado Boulder Power Electronics 1, not an official course assignment. Simulate a DC–DC converter for Power Electronics and quantify ripple, efficiency proxy, device stress, control stability, and overcurrent or open-load protection.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A specification of topology, input and output range, switching frequency, ratings, control, and protection
-- Switching model, averaged model, controller, and fault-scenario sources
-- Raw steady-state, startup, load-step, and fault waveforms with loss and stress data
-- A report comparing analytic, averaged, and switching models and explaining worst stress and protection action
-
-**Verification**
-
-- Keep nominal steady-state output error below 2% and ripple within 15% of hand analysis
-- Cover minimum and maximum input, no and full load, startup, and device-parameter extremes
-- Cross-check input, output, and loss by power balance with normalized residual below 1%
-- Inject a short-circuit proxy or load dump and show protection acts within the declared time without rating violations
-
-**Reproducibility**
-
-- Commit topology, models, controller, faults, calculations, and plotting sources
-- Pin simulator, device models, time step, switching, and control parameters
-- Preserve raw waveforms, power and stress tables, fault logs, and the generated report
-
-**Safety boundary:** Simulation only — Use converter simulation only; do not build mains, high-voltage, high-current, magnetic-component, battery-powered, or power-switching hardware.
-
-**Risks, gaps, and boundaries**
-
-The simulation exercises are useful, but Coursera access and graded work availability may require payment and can change.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

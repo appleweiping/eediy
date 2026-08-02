@@ -1,97 +1,71 @@
 ---
-title: Literature Search and Evidence Evaluation
-description: Build a reviewable EE research process from question decomposition, source tiers, and an evidence matrix.
+title: Literature Search for Engineering Decisions
+description: Start from a decidable EE question, locate primary material, check versions and conditions, and know when the remaining uncertainty belongs on the bench.
+page_type: guide
+comments: true
 ---
 
-<div class="ee-language" markdown>
-[简体中文](../../guides/literature-research.md)
-</div>
 
-# Literature Search and Evidence Evaluation
+# Literature Search for Engineering Decisions
 
-Research is not collecting the most links. It finds enough evidence to support or overturn an engineering decision. Course pages, textbooks, standards, data sheets, papers, application notes, and forum answers serve different roles; source count cannot replace source quality.
+What follows is a rerunnable search log. The example task is not “collect
+papers about low-noise op amps”; it is to choose an input structure for a
+small-signal front end with a 5 V single supply, 10 kΩ source impedance, and
+100 kHz bandwidth. Every round records how the query changed, what it ruled
+out, and which unresolved parameter moved to calculation or experiment.
 
-## Purpose and learning outcomes
+| Round | Query or action | The only acceptable output from this round |
+| --- | --- | --- |
+| 0 | Broad terms used to build a synonym and topology vocabulary | Candidate terms, not a device conclusion |
+| 1 | Add supply, source impedance, bandwidth, noise, and stability conditions | Comparable claims and their primary locations |
+| 2 | Search failure, limitation, instability, and the opposite topology | Conditions that would overturn the current choice |
+| Stop | New material no longer changes the next calculation or bench test | A scoped one-page judgment and an explicit open question |
 
-- Turn a broad topic into searchable, decidable questions.
-- Distinguish primary research, standards or data sheets, reviews, teaching material, and experience reports.
-- Retain stable bibliographic data, version, page location, and access date.
-- Compare methods, conditions, results, and limits in an evidence matrix.
-- Check conflicts of interest, retractions, outdated standards, and irreproducible experiments.
+The final artifact is not a folder full of PDFs. It is this log, an evidence
+matrix, and a decision that states how it could be overturned.
 
-## Minimal environment
+## Round 0: write the decision before the query
 
-- A search entry point with phrase, Boolean, and site filters.
-- A reference-management method that exports an open bibliographic format.
-- A plain-text search log and evidence matrix.
-- Institutional library or lawful open-access paths; paid access is not required for the core task.
+Compress the question into one line: **object + operating conditions + alternatives + metric + threshold that changes the decision**. For example: “For a small-signal front end with 10 kΩ source impedance and 100 kHz bandwidth, compare the integrated input noise of two amplifier classes; reject a candidate if the compensation needed for stable operation reduces bandwidth below the target.” That wording forces searches for noise density, the 1/f corner, current noise, gain bandwidth, loading, and stability instead of only a product category.
 
-Do not bypass access controls or upload unlicensed full text to a public repository. Tools and indexes change, so record the actual database and search date.
+List abbreviations, historical terms, circuit topologies, and exclusion terms for each concept, then preserve two or three rerunnable queries. The IEEE Xplore [search guide](https://ieeexplore.ieee.org/Xplorehelp/downloads/user-guides/IEEE_Xplore_Searching_and_Saving_Searches.pdf) documents uppercase `AND`, `OR`, and `NOT`, phrase quotes, wildcards, and field restrictions. It is useful for IEEE papers and standards, but it does not represent every publisher or decade. Manufacturer data sheets, standards bodies, author archives, and other indexes still need their own searches.
 
-## Learning sequence
+For every search round, retain the database, exact query, filters, sort order, date, and result count. This is not clerical decoration. When terminology changes or a result appears three weeks later, those details let you tell whether the difference came from the query, the index, or the literature.
 
-1. **Define the question:** state object, input, output, conditions, comparison, and decision threshold.
-2. **Build vocabulary:** list synonyms, abbreviations, historical terms, standard numbers, and exclusions.
-3. **Tier sources:** use textbooks or reviews to learn vocabulary, then return to standards, data sheets, and primary papers.
-4. **Trace backward and forward:** inspect references and later citations for corrections, replications, and counterexamples.
-5. **Extract evidence:** record test conditions, sample, metric, error, limitations, and funding.
-6. **Apply a stop rule:** stop when new sources no longer change the conclusion or the important gap is explicit.
+## Round 1: use persistent identifiers to check version and provenance
 
-## Verification task: compare two filter implementations
+Prefer a DOI, report number, standard number, or manufacturer document ID to a bare browser address. The DOI Foundation's [DOI Handbook](https://www.doi.org/doi-handbook/DOIHandbook_2025.pdf) describes a DOI as a persistent identifier that resolves to resources and metadata. Persistence preserves the identity of the referent; it does not promise correctness, free access, or an unchanging document.
 
-Choose a low-risk question such as the FIR versus IIR tradeoff at a given sample rate and resource limit:
+For a source with a DOI, the Crossref [REST API documentation](https://www.crossref.org/documentation/retrieve-metadata/rest-api/) provides a way to check title, authorship, publication data, license fields, and update relationships. Automated import reduces transcription errors but does not prove that metadata is complete. Open the publisher or standards-body record and determine whether you have a conference version, journal extension, correction, or preprint. For standards and data sheets, retain the revision and date because limits or test methods can change under an unchanged title.
 
-1. Define a decision question covering performance, resources, stability, and delay.
-2. Build search terms and exclusions in two languages where useful.
-3. Collect at least one teaching benchmark, one primary or authoritative source, and one implementation source.
-4. Normalize conditions in an evidence matrix; do not directly compare differently defined metrics.
-5. Find at least one result that argues against the initial preference.
-6. Write a one-page conclusion separating facts, inference, untested assumptions, and the next experiment.
+A reference manager stores and retrieves material; it does not certify it. Zotero's [search documentation](https://www.zotero.org/support/searching) describes advanced conditions and saved searches that update as the library changes. Dynamic sets such as “full text unread,” “test conditions missing,” and “contradicts current choice” make useful working queues; remove a tag only after the record enters the comparison. If the PDF is not lawfully available, retain metadata, an abstract, and an access path. Do not evade access controls or commit restricted full text to a public repository.
 
-Acceptance requires every important judgment to point to a specific section, table, figure, or dataset rather than only a landing-page link.
+## Round 2: search deliberately for conditions that break the preferred answer
 
-## Common failures and diagnosis
+A survey paper or textbook may supply vocabulary, but an important claim should move toward the closest available source: a standard defines the test, a data sheet states device conditions and rated limits, a primary paper describes the method and measurement, and software documentation states implementation parameters. Forums and lecture notes can suggest vocabulary; they are not final authority for mains, high voltage, medical devices, batteries, or RF compliance.
 
-- **Results are too broad:** add device, topology, metric, condition, or standard number.
-- **Only search snippets were read:** open the source and verify that context and limits were not omitted.
-- **The citation chain is circular:** trace back to the original measurement or specification and identify repeated summaries.
-- **Only confirming evidence appears:** search explicitly for counterexamples, negative results, and boundaries.
-- **Incompatible metrics are compared:** normalize definitions, units, bandwidth, and test environment.
-- **A link dies:** retain DOI, report number, version, author, title, and lawful archive information.
+Use a small comparison matrix in which each row carries one claim:
 
-## Reproducible evidence
+| Claim | Location inside source | Test conditions | Value and uncertainty | Limitation or interest | Effect on decision |
+| --- | --- | --- | --- | --- | --- |
+| Candidate A has lower voltage noise | page, figure, or table | frequency, temperature, source impedance | value in a common unit | typical or guaranteed | supports or leaves unchanged |
+| Candidate B is stable with capacitive load | data-sheet section | gain, load, supply | margin or specified waveform | vendor test circuit | supports or rejects |
 
-- Research question, inclusion/exclusion criteria, and stop rule.
-- Databases, query strings, filters, and search dates.
-- Deduplicated bibliography with stable identifiers.
-- Screening log and reasons for exclusion.
-- Evidence matrix with conditions, metrics, results, and limits.
-- Retraction or correction, standard-version, and data-sheet-revision checks.
-- A synthesis that separates facts, inference, and open questions.
+Do not rank noise integrated over different bandwidths, power at different loads, or typical and worst-case values as though they were commensurate. Normalize definition and condition first; if that is impossible, keep two separate questions. Trace important claims backward to the original measurement and forward to replications, corrections, and later counterexamples. Then search explicitly for “failure,” “limitation,” and “instability,” plus the topology opposite the current favorite.
 
-## Cost, licensing, and accessibility
+Publication status needs its own check. Crossref [Crossmark](https://www.crossref.org/services/crossmark/) can expose corrections, retractions, and other important updates registered by participating members. Its own documentation also says that the presence of Crossmark is not a guarantee, and coverage depends on publishers participating and depositing updates. Treat it as one status check, not as a trust badge.
 
-Prefer lawful open access, author archives, libraries, and accessible standards paths. Mark sources requiring payment or institutional login and seek an open alternative with the same learning objective. Citation does not grant redistribution rights.
+## Stop log: another source no longer changes the next experiment
 
-Keep text notes that work with screen readers rather than placing conclusions only in scans. Record chapter, page, or timestamp for long material. For low bandwidth, share the bibliography and summary matrix before full documents.
+Write a one-page synthesis for this decision. Put the current choice and domain first. Make every important number point to a page, section, figure, or table. Separate directly reported facts, inferences assembled from several sources, and assumptions that remain untested. End with the observation that would overturn the choice. An effective search has no mandatory paper count; it has the conditions needed for the decision, at least one serious counterexample, and a remaining gap translated into a feasible test.
 
-## Safety boundaries
+If two more search rounds add only repetitions under the same conditions while the central unknown remains “does this board oscillate with the actual source impedance?”, a limited-energy, observable experiment is more informative than another pile of papers. If sources instead use incompatible metrics or standard revisions, do not build yet. Resolve the definitions and design the test only after the mismatch is understood.
 
-- Do not execute code, firmware, or scripts attached to an unknown source without isolated review.
-- A forum post is not an authority for mains, high voltage, medical, or battery safety.
-- Typical data-sheet values do not replace worst-case rating review.
-- Follow applicable rules for export-controlled, private, or vulnerability-related material.
-- Never fabricate access, replication, or peer-review status.
-
-## Completion checklist
-
-- [ ] Question, metrics, conditions, and decision threshold are explicit.
-- [ ] Queries, databases, dates, and filters are retained.
-- [ ] Sources cover teaching, authoritative or primary, and implementation tiers.
-- [ ] At least one counterexample or negative result was sought deliberately.
-- [ ] Important conclusions point to specific evidence.
-- [ ] Standards, revisions, retractions, and licensing are checked.
-- [ ] Facts, inference, assumptions, and gaps are separated.
-- [ ] Bibliography and evidence matrix are exportable and reviewable.
-
-Next, create a design review with [Technical Writing](technical-writing.md), or turn evidence into a testable hypothesis through [Project Practice](projects.md).
+Archive the final queries, result count from each round, bibliography export,
+evidence matrix, and one-page conclusion, but commit only material you may
+distribute. Inspect attached code or firmware in isolation before execution;
+publication is not a sandbox. The log's open-question field should translate
+directly into an acceptance test in [Project Practice](projects.md), while
+the choice, counterexample, and scope belong in the design note described by
+[Technical Writing](technical-writing.md). If neither destination can use the
+search result, the question has not yet become an engineering decision.

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{# Material computes previous_page and next_page from the complete MkDocs nav.
+   EEDIY keeps Chinese and English as parallel roots in one build, so the two
+   pages at that boundary must not advertise a cross-language relation. This
+   follows Material 9.7.7's site_meta block and changes only those conditions. #}
+{% block site_meta %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {% if page.meta and page.meta.description %}
+    <meta name="description" content="{{ page.meta.description }}">
+  {% elif config.site_description %}
+    <meta name="description" content="{{ config.site_description }}">
+  {% endif %}
+  {% if page.meta and page.meta.author %}
+    <meta name="author" content="{{ page.meta.author }}">
+  {% elif config.site_author %}
+    <meta name="author" content="{{ config.site_author }}">
+  {% endif %}
+  {% if page.canonical_url %}
+    <link rel="canonical" href="{{ page.canonical_url }}">
+  {% endif %}
+  {% set current_is_english = page and (page.url == "en/" or page.url.startswith("en/")) %}
+  {% if page and page.previous_page %}
+    {% set previous_is_english = page.previous_page.url == "en/" or page.previous_page.url.startswith("en/") %}
+    {% if current_is_english == previous_is_english %}
+      <link rel="prev" href="{{ page.previous_page.url | url }}">
+    {% endif %}
+  {% endif %}
+  {% if page and page.next_page %}
+    {% set next_is_english = page.next_page.url == "en/" or page.next_page.url.startswith("en/") %}
+    {% if current_is_english == next_is_english %}
+      <link rel="next" href="{{ page.next_page.url | url }}">
+    {% endif %}
+  {% endif %}
+  {% if config.extra.alternate is iterable %}
+    {% for alt in config.extra.alternate %}
+      <link rel="alternate" href="{{ alt.link | url }}" hreflang="{{ alt.lang | d(lang.t('language')) }}">
+    {% endfor %}
+  {% endif %}
+  {% if "rss" in config.plugins %}
+    <link rel="alternate" type="application/rss+xml" title="{{ lang.t('rss.created') }}" href="{{ 'feed_rss_created.xml' | url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ lang.t('rss.updated') }}" href="{{ 'feed_rss_updated.xml' | url }}">
+  {% endif %}
+  <link rel="icon" href="{{ config.theme.favicon | url }}">
+  <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-9.7.7">
+{% endblock %}
+
+{# Material's stock base template renders config-wide alternate links. EEDIY
+   has parallel / and /en/ trees, so each page must instead identify its exact
+   translated counterpart under the configured site_url subpath. #}
+{% block extrahead %}
+  {{ super() }}
+  {% if page %}
+    {% set is_english = page.url == "en/" or page.url.startswith("en/") %}
+    {% if is_english %}
+      {% set chinese_path = page.url[3:] %}
+      {% set english_path = page.url %}
+    {% else %}
+      {% set chinese_path = page.url %}
+      {% set english_path = "en/" ~ page.url %}
+    {% endif %}
+    {% set site_root = config.site_url.rstrip("/") %}
+    <link rel="alternate" href="{{ site_root }}/{{ chinese_path }}" hreflang="zh-Hans">
+    <link rel="alternate" href="{{ site_root }}/{{ english_path }}" hreflang="en">
+    {# Material's bundle requests one fixed search_index.json. Rewrite that
+       request before the bundle loads so ranking, counts, and the first result
+       page are computed from the current language only. The build hook creates
+       both scoped indexes and verifies that they partition the full index. #}
+    {% set scoped_search_index = "search_index.en.json" if is_english else "search_index.zh.json" %}
+    <script>
+      (() => {
+        const originalFetch = window.fetch.bind(window)
+        const originalXhrOpen = XMLHttpRequest.prototype.open
+        const scopedIndex = {{ scoped_search_index | tojson }}
+        const scopedUrl = rawUrl => {
+          let target
+          try {
+            target = new URL(rawUrl, document.baseURI)
+          } catch (_error) {
+            return null
+          }
+          if (
+            target.origin !== window.location.origin ||
+            !/\/search\/search_index\.json$/.test(target.pathname)
+          ) {
+            return null
+          }
+          target.pathname = target.pathname.replace(
+            /search_index\.json$/,
+            scopedIndex
+          )
+          return target
+        }
+        XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+          const target = scopedUrl(url)
+          return originalXhrOpen.call(
+            this,
+            method,
+            target ? target.toString() : url,
+            ...rest
+          )
+        }
+        window.fetch = (input, init) => {
+          const rawUrl = input instanceof Request ? input.url : input
+          const target = scopedUrl(rawUrl)
+          if (target) {
+            input = input instanceof Request
+              ? new Request(target.toString(), input)
+              : target
+          }
+          return originalFetch(input, init)
+        }
+      })()
+    </script>
+  {% endif %}
+{% endblock %}

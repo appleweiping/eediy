@@ -1,129 +1,66 @@
 ---
 title: "Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots"
-description: "Northwestern University 的《Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots》连接机械臂操作与轮式移动机器人；视频、仿真和代码充分，但术语、前序与平台访问需留意。"
+description: "Northwestern University 的《Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots》连接机械臂操作与轮式移动机器人；视频、仿真和代码充分，但材料仍可能使用 V-REP 旧称，平台高度建议按系列顺序学习，完整访问可能收费。"
 page_type: course
+course_id: "course-081"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: fbe6baf8b8316685 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 5254c134872fa54b -->
 
-# Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots
+# Northwestern University Modern Robotics 5: Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots
 
 ## 课程简介
 
-- **机构：** Northwestern University
+- **所属大学：** Northwestern University
 - **课程编号：** Modern Robotics 5
-- **方向：** [机器人与自主系统](index.md)
-- **评级：** A
-- **角色：** 替代
-- **难度：** 中级
-- **最近复核：** 2026-07-28
+- **官方先修：** Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积
+- **本站建议背景：** 建议先完成 Course 1–4 或具备同等的建模、运动学、动力学、规划与控制基础；这是本站按内容给出的学习顺序
+- **访问条件：** 公开入口；部分材料需注册或受限
+- **资料状态：** 2026-07-30；公开材料导读
 
-Northwestern University 的《Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots》连接机械臂操作与轮式移动机器人；视频、仿真和代码充分，但术语、前序与平台访问需留意。
+### 课程范围
 
-**为什么选择这门课**
+Coursera [Robot Manipulation and Wheeled Mobile Robots](https://www.coursera.org/learn/modernrobotics-course5) 对应 *Modern Robotics* Chapters 12–13。前半用接触力旋量、摩擦锥（friction cone）与形封闭/力封闭研究抓取和装配；后半由车轮约束、非完整模型、规划、反馈和里程计进入移动操作。它适合准备做 Course 6 youBot capstone 的学习者：项目会同时调用两部分，偏科会直接暴露。
 
-替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
+所需基础包括力旋量、运动旋量、雅可比、线性规划、Pfaffian 约束与坐标系变换。可以给平面刚体画摩擦锥和力矩平衡，再由麦克纳姆轮几何写出轮速到刚体运动旋量的映射。
 
-**学习前准备**
+### 两个 contact project 从几何生成优化
 
-- 建议先完成方向基础：控制系统
-- 建议先完成方向基础：编程与工程计算
-- 建议先完成方向基础：物理基础
-- 课程顺序要求：先完成[《Modern Robotics, Course 1: Foundations of Robot Motion》](../robotics/077-modern-robotics-1.md)（Northwestern University Modern Robotics 1）
-- 课程顺序要求：先完成[《Modern Robotics, Course 2: Robot Kinematics》](../robotics/078-modern-robotics-2.md)（Northwestern University Modern Robotics 2）
-- 课程顺序要求：先完成[《Modern Robotics, Course 3: Robot Dynamics》](../robotics/079-modern-robotics-3.md)（Northwestern University Modern Robotics 3）
-- 课程顺序要求：先完成[《Modern Robotics, Course 4: Robot Motion Planning and Control》](../robotics/080-modern-robotics-4.md)（Northwestern University Modern Robotics 4）
+[Form Closure](https://hades.mech.northwestern.edu/index.php/Evaluating_Form_Closure_Project) 把平面接触转成力旋量矩阵，再用线性规划判断它能否抵抗任意外力。检查法向、力臂、秩和正向接触力条件，并构造 1 个明显封闭、1 个不封闭、1 个法向翻转案例；求解器状态要连同残差与容差解释。
 
-**可验证的学习成果**
+[Stability of an Assembly](https://hades.mech.northwestern.edu/index.php/Stability_of_an_Assembly_Project) 输入质量/质心，以及接触对应的刚体对、位置、法向和摩擦系数，建立重力与摩擦锥边缘力的静力平衡。复现官方站立/倒塌案例，再自拟至少一个双刚体装配并改变摩擦。模拟器里静止不能反推解析模型正确。
 
-- 解释机器人与自主系统中的核心模型，并说明主要假设与适用边界
-- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
-- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
+两个项目共用一套接触约定：法向朝向、力旋量原点、刚体坐标系与摩擦锥边缘排序都写进输入。逐列画出接触力旋量，检查接触只能推不能拉的符号。边界案例改变摩擦锥离散与求解容差，并查看松弛量；否则“feasible”可能只是数值容差接纳了物理上不平衡的装配。
 
-**工时与节奏**
+为装配体写清质量、质心、接触位置与外力旋量的单位。依次改变质量、接触位置和摩擦，观察判定转折是否符合力矩平衡直觉。解析线性规划、手算小例子和仿真画面是三种不同证据；结论冲突通常指向模型约定，画面不能覆盖计算。
 
-**4 周，每周 10 小时。** 提供方公布 4 周、每周 10 小时。先试学两周并记录授课、练习、实验和复盘时间，若实际偏差超过 25%，据实调整剩余计划。
+### Wheel encoder 只产生 odometry
 
-**安全等级**
+Chapter 13 从轮速矩阵得到刚体运动旋量，再积分到空间位姿；非完整底盘要区分瞬时约束与长期可控性。全向底盘测试前进、横移、旋转和斜行，受约束底盘则标出不可实现的侧向速度。比较一阶积分与指数映射，并检查车轮顺序、单位和矩阵条件数。
 
-**仅仿真。** 默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。
+Odometry 至少测试 1 m straight、4 次 right-angle turn、full circle 与 forward-reverse loop，报告 endpoint、heading、drift per meter 和 cumulative error；分别扰动 wheel radius、geometry 与 sample interval。Simulator ground truth 只用于算误差，不能作为 estimator input。
+
+底盘更新函数对 zero command、single wheel、opposite wheel pairs 与 speed clipping 各有 oracle。每步同时输出 body increment 与 space pose；较大 \(\Delta t\) 下比较一阶积分和 exponential update，解释差异来自坐标积分，而非 wheel slip。遇到 near-singular wheel matrix 时返回诊断，不能静默给出巨大 pseudoinverse command。
+
+### 为 capstone 留下可复用单元
+
+[教材主页](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) 与 [MR repository](https://github.com/NxRLab/ModernRobotics) 提供公式和教学代码，[Coursera Resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) 标明项目归属，[CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) 提供 youBot scene。
+
+课程记录包含 Chapters 12/13 习题、2 个 contact project、failure cases、base/odometry tests 和一份可重放 youBot CSV。另提供纯函数推进 chassis/joint configuration，明确 \(\Delta t\)、speed limit 与 joint order。实体 mecanum 的 roller friction、backlash、encoder quantization 与 collision 仍需另行测量。
+
+capstone 共用一个接口文件，集中定义 configuration vector 的 chassis、arm、wheel 顺序，wheel geometry，frame convention 与 timestep。用一段已知 wheel/joint command 生成 CSV，手算开头几步并播放；若方块任务失败，这些单元测试能排除底盘积分与 contact math。
+
+contact 与 odometry 的交界需要额外检查：底盘位姿误差会改变抓取 frame，抓取反力又可能造成轮滑，使 encoder integration 继续偏离。用固定末端目标分别注入 chassis pose bias 与 wheel slip，观察 wrench feasibility、末端误差和恢复动作。这样 capstone 中的失败能归到几何、接触或里程计，而不会全部落进 controller gain。
 
 ## 课程资源
 
-**软件、硬件与成本**
+- [课程主页](https://www.coursera.org/learn/modernrobotics-course5)
+- [代码 · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
 
-**软件**
+## 资源汇总
 
-- 维护者建议的开源/免费验证路径：ROS 2、Gazebo、RViz 2、Python 或 C++，以及固定版本的容器环境
-- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
-
-**硬件**
-
-- 资源清单包含实验覆盖；本课程的维护者路径明确将其限定为计算或仿真实验。只假设一台能运行上述软件并保存结果的通用计算机；不采购或连接课程明确支持的机器人平台、传感器、低压电源、急停与安全测试区域
-
-**成本说明**
-
-当前维护者路径只使用计算与仿真，不设专用硬件采购；建议软件优先采用开源/免费工具。这不是提供方要求，平台访问、商业软件或云算力费用仍随提供方、地区与方案而变。
-
-**公开资源完整度**
-
-| 资源类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 完整 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 无公开材料 |
-| 代码 | 完整 |
-
-**资源与访问条件**
-
-| 资源 | 访问 | 许可 | 状态 | 复核日期 |
-|---|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/modernrobotics-course5) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
-| [Modern Robotics, Course 6: Capstone Project, Mobile Manipulation](https://www.coursera.org/learn/modernrobotics-course6) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
-
-> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
-
-## 实践与验收
-
-**实践闭环**
-
-**《Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots · Northwestern University Modern Robotics 5》机器人任务规划与安全降级仿真**
-
-这是维护者为《Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots · Northwestern University Modern Robotics 5》建议的自学项目，不是课程官方作业。为机器人与自主系统在仿真器中完成感知—规划—控制闭环任务，量化成功率、碰撞裕量、定位误差和传感失效后的安全停机。
-
-**来源：** 维护者建议项目
-
-**交付物**
-
-- 任务、机器人/环境模型、坐标系、约束与安全状态规格
-- 感知、规划、控制、监控和场景生成源文件
-- 至少 100 个随机场景的轨迹、成功/碰撞、最小间距和运行时原始数据
-- 一份报告与录屏，比较基线/改进算法并复盘最危险失败
-
-**验收**
-
-- 100 个标称场景成功率至少 90%，碰撞为零且最小间距满足预设阈值
-- 覆盖起终点重合、无解地图、窄通道、定位漂移和传感中断
-- 用独立碰撞检查器重放全部轨迹并逐帧交叉核对
-- 注入传感冻结或控制延迟，证明监控器在规定时间内进入停止状态
-
-**复现要求**
-
-- 提交机器人/世界模型、算法、场景、测试和录屏脚本
-- 固定仿真器、物理步长、地图、随机种子和依赖版本
-- 保存原始轨迹/传感数据、场景清单和自动生成报告
-
-**安全边界：** 仅仿真 — 仅使用机器人仿真；不得在无人监督下驱动真实机械、车辆、无人机或执行器。
-
-**风险、缺口与边界**
-
-说明可能仍使用 CoppeliaSim 的旧称 V-REP；课程还可能要求完成前序系列并购买平台访问。
-
-**完成证据**
-
-- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
-- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
-- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
-- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

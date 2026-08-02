@@ -2,126 +2,59 @@
 title: "Solar Energy Engineering: Photovoltaic Energy Conversion"
 description: "Delft University of Technology's Solar Energy Engineering: Photovoltaic Energy Conversion builds a photovoltaic-conversion spine from videos, notes, practice, labs, and code, with a matching TU Delft open-course entry, public videos, and notes while edX audit and certificate access remain limited."
 page_type: course
+course_id: "course-122"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-29"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4bbbe1e3e647cba8 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 74bc3d02002dec52 -->
 
-# Solar Energy Engineering: Photovoltaic Energy Conversion
+# Delft University of Technology PV Energy Conversion: Solar Energy Engineering: Photovoltaic Energy Conversion
 
 ## Course Overview
 
-- **Institution:** Delft University of Technology
+- **University:** Delft University of Technology
 - **Course code:** PV Energy Conversion
-- **Track:** [Energy Storage and Photovoltaics](index.md)
-- **Tier:** A
-- **Role:** Mainline
-- **Level:** Advanced
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
+- **EEDIY preparation:** Semiconductor Devices; Circuit Analysis; Engineering Mathematics
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-29; public-material guide
 
-Delft University of Technology's Solar Energy Engineering: Photovoltaic Energy Conversion builds a photovoltaic-conversion spine from videos, notes, practice, labs, and code, with a matching TU Delft open-course entry, public videos, and notes while edX audit and certificate access remain limited.
+### Course fit
 
-**Why choose this course**
+TU Delft [Photovoltaic Energy Conversion](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/) moves from irradiance, semiconductor physics, and the illuminated p-n junction to heterojunctions, light management, external quantum efficiency, the Shockley–Queisser limit, and third-generation concepts. The provider divides it into Modules 1–8 and lists a 121-hour study load. It explains a cell’s \(I\!-\!V\) curve and efficiency; module wiring, partial shading, MPPT, inverters, batteries, and grid integration belong to [Photovoltaic Systems](https://ocw.tudelft.nl/courses/solar-energy-photovoltaic-pv-systems/).
 
-Mainline course. A reliable option that can serve as a main course or strong alternative.
+Before Module 2, try 4 checks: derive carrier concentration from density of states and Fermi level; state the units in drift, diffusion, and continuity; draw dark and illuminated junction band diagrams; and explain a generation profile from absorption coefficient and thickness. Review semiconductor physics if the first 2 fail, junction electrostatics for the 3rd, and basic optics for the 4th. This is a study placement test, not an official prerequisite.
 
-**Before you start**
+### Access and version notes
 
-- Recommended foundation: Semiconductor Devices
-- Recommended foundation: Circuit Analysis
-- Recommended foundation: Engineering Mathematics
+OCW [Lectures](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/?view=lectures) preserves videos for 8 modules, while [Readings](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/?view=readings) lists only 4 entries: Module 1, 2, 6, and 8. Course material is marked CC BY-NC-SA 4.0, but embedded video, images, and external material retain their own notices.
 
-**Verifiable learning outcomes**
+The [official edX Assignments and course entry](https://www.edx.org/learn/solar-energy/delft-university-of-technology-solar-energy-photovoltaic-pv-energy-conversion) handles sessions, discussion, graded work, and certificates; anonymous pages do not establish what a current region and account can access. The official [audit explanation](https://edxsupport.zendesk.com/hc/en-us/articles/1500003964681-What-is-the-audit-track) says that audit access, when offered, is normally temporary, excludes graded assignments and certificates, and is not guaranteed for every course. The open route should therefore rely on OCW and independent checks, without claiming access to the edX grader.
 
-- Explain the core models in Energy Storage and Photovoltaics, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+### Add Recombination, Transport, and Losses to the Cell Model Week by Week
 
-**Workload and pacing**
+Modules 1–4 connect photon flux to drift-diffusion, generation/recombination, and the illuminated junction. Maintain a conservation sheet with consistent units for optical input, bulk/surface recombination, and terminal current. Module 5 introduces metal-semiconductor junctions and heterojunctions. Modules 6–7 treat refraction, dispersion, diffraction, scattering, and EQE; keep absorptance, collection probability, and internal/external quantum efficiency distinct. Module 8 closes a cell-level loss budget that identifies bandgap, radiative/non-radiative recombination, optical loss, series/shunt effects, and temperature.
 
-**12 weeks at 10.5 hours/week.** The provider publishes 12 weeks at 10–11 hours per week; the midpoint is shown above for planning. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+For numerical practice, start with a dark diode and illuminated \(I\!-\!V\), then add recombination and optical loss before sweeping irradiance, temperature, series resistance, and thickness. Preserve each earlier model as a baseline. Recover the dark curve at 0 irradiance; inspect the limits as series resistance approaches 0 and shunt resistance increases; record units, grid sensitivity, and data provenance for spectral integration. Label parameters as synthetic when no public data is available.
 
-**Safety level**
+### One loss budget connects the conversion losses
 
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+The exit package should contain derivations, a versioned notebook, raw tables, and an environment file, and should explain changes in short-circuit, open-circuit, maximum-power point, and EQE. The notebook is an independent exercise, not a TU Delft lab or official assignment.
+
+The course is especially good for turning each physical loss into an explainable, falsifiable model.
+
+Keep this route at low-energy computation. Cell fabrication involves chemicals, vacuum, high temperature, and cleanroom controls; modules and arrays add persistent DC, arcing, stored energy, and grid hazards. Move to PV Systems if the remaining questions concern inverter sizing, shading, or daily energy. Stay here for materials, junctions, passivation, light trapping, and efficiency limits.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+- [Course home](https://www.edx.org/learn/solar-energy/delft-university-of-technology-solar-energy-photovoltaic-pv-energy-conversion)
+- [Alternate course entry](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion)
+- [Notes · Course readings](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion?view=readings)
+- [Videos · Video lectures](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion?view=lectures)
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: pvlib-python, PyBaMM, Python 3, Jupyter, and pandas
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect course-specified protected low-voltage PV/battery training modules, temperature/current sensors, electronic load, and protective enclosure
-
-**Cost note**
-
-The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Partial |
-| Labs | Partial |
-| Exams | No public material |
-| Code | Partial |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.edx.org/learn/solar-energy/delft-university-of-technology-solar-energy-photovoltaic-pv-energy-conversion) | Free audit | edX Terms of Service | Listed by official page | 2026-07-28 |
-| [Alternate course entry](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
-| [Course readings](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion?view=readings) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
-| [Video lectures](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion?view=lectures) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Solar Energy Engineering: Photovoltaic Energy Conversion · Delft University of Technology PV Energy Conversion: Battery or PV Energy-Management Digital Twin**
-
-This is a maintainer-suggested self-study project for Solar Energy Engineering: Photovoltaic Energy Conversion · Delft University of Technology PV Energy Conversion, not an official course assignment. Build a battery or PV digital twin from public or synthetic data for Energy Storage and Photovoltaics and evaluate state estimation, energy scheduling, temperature or irradiance changes, and safety constraints.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- Equivalent model, states and parameters, power and temperature bounds, scheduling objective, and data provenance
-- Model calibration, state estimation, scheduling, constraint checking, and scenario-simulation sources
-- Raw public or synthetic curves, fit residuals, state-of-charge or power trajectories, and constraint logs
-- A report comparing baseline and improved strategies and analyzing aging, shading, or thermal-drift failure
-
-**Verification**
-
-- Keep normalized voltage or power RMSE below 5% on held-out data or declare a noise-based threshold
-- Cover empty and full state boundaries, temperature extremes, power steps, and sensor bias
-- Cross-check state of charge or cumulative generation by energy integration with normalized residual below 2%
-- Inject capacity fade or partial shading and show that constraint checks prevent an out-of-bounds schedule
-
-**Reproducibility**
-
-- Commit model, calibration, estimation, scheduling, scenario, and plotting sources
-- Pin data version, units, solver, parameters, random seeds, and environment
-- Preserve raw public or synthetic data, provenance and license, checksums, and the generated report
-
-**Safety boundary:** Simulation only — Use public or synthetic data and simulation only; do not charge, discharge, or open real cells or connect PV arrays, mains, high voltage, or laser sources.
-
-**Risks, gaps, and boundaries**
-
-The edX audit path is limited and certificate pricing can change; the companion open materials use a CC BY-NC-SA license.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Theory dossier with explicit assumptions, notation, derivation, units, and boundary conditions, checked by at least one independent method
-- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

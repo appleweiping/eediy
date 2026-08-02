@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "audited_at": "2026-07-29",
+  "audited_at": "2026-07-31",
   "methodology": {
-    "zh": "逐一核对全部 role=mainline 记录与 35 个方向：课程身份以机构官方主入口或官方备用入口为准；资源判断交叉检查公开资源清单和候选向量；访问受限、证书链或反爬失败只触发复核，不等同于课程不存在；首选表示该方向当前建议的第一入口，不表示没有先修课或限制。",
-    "en": "Every role=mainline record across all 35 tracks was checked against an institutional primary or alternate page, the public-resource manifest, and the candidate resource vector. Access controls, certificate-chain failures, and anti-bot behavior trigger review rather than a false missing-course verdict. Preferred identifies the current first recommendation for a track, not an absence of prerequisites or constraints."
+    "zh": "逐一核对全部 role=mainline 记录与当前全部方向：课程身份以机构官方主入口或官方备用入口为准；资源判断交叉检查公开资源清单和候选向量；访问受限、证书链或反爬失败只触发复核，不等同于课程不存在；首选通常表示该方向当前建议的第一入口，若方向按学习产出分支，则表示明确命名分支的首选，不表示没有先修课、限制或其他完整路径。",
+    "en": "Every role=mainline record across the current taxonomy was checked against an institutional primary or alternate page, the public-resource manifest, and the candidate resource vector. Access controls, certificate-chain failures, and anti-bot behavior trigger review rather than a false missing-course verdict. Preferred normally identifies the current first recommendation for a track; when the track branches by learning outcome, it identifies the preferred entry for the explicitly named branch rather than eliminating other complete paths, prerequisites, or constraints."
   },
   "summary": {
     "track_count": 35,
-    "mainline_count": 55,
+    "mainline_count": 59,
     "preferred_count": 35,
-    "pass_count": 51,
-    "review_count": 4
+    "pass_count": 58,
+    "review_count": 1
   },
   "audits": [
     {
@@ -184,9 +184,22 @@
     },
     {
       "track": "electronics-laboratory",
-      "course_id": 27,
+      "course_id": 24,
       "status": "pass",
       "preferred": true,
+      "official_url": "https://ocw.mit.edu/courses/6-071j-introduction-to-electronics-signals-and-measurement-spring-2006/",
+      "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
+      "limitation_zh": "LabVIEW 虚拟仪器与配套仪器生态较旧；10 份作业、3 次 quiz 和期末没有答案。25 次实验中只有 Lab 2、3、4 与心率监测器有部分解答，实体测量必须遵守原课程安全说明，并进一步限制在低能量、限流范围内。",
+      "limitation_en": "The LabVIEW virtual-instrument flow and associated hardware ecosystem are dated; the ten homework sets, three quizzes, and final have no answers. Of twenty-five labs, only Labs 2, 3, 4, and the heart-rate monitor have partial solutions, and physical measurements must follow the original safety guidance with a stricter low-energy, current-limited boundary.",
+      "rationale_zh": "MIT 6.071J 官方身份、25 次实验、讲义、作业与考核均已核对，且少量实验解答能形成真实反馈；它比纯厂商硬件路径更适合作为电子测量首选主线。",
+      "rationale_en": "MIT 6.071J's official identity, twenty-five labs, notes, homework, and assessments were confirmed, with selected lab solutions providing genuine feedback; it is a stronger preferred measurement spine than a vendor-only hardware path.",
+      "verified_at": "2026-07-29"
+    },
+    {
+      "track": "electronics-laboratory",
+      "course_id": 27,
+      "status": "pass",
+      "preferred": false,
       "official_url": "https://digilent.com/shop/coursework-learning-resources/",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
       "limitation_zh": "需要 Analog Discovery 2 或 3，价格和地区供货会限制完成度；课程供应商与硬件销售方相同。",
@@ -202,24 +215,24 @@
       "preferred": true,
       "official_url": "https://ocw.ece.cornell.edu/courses/ece-3150-microelectronics/",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
-      "limitation_zh": "2016 年版本没有视频；学习依赖文本推导、已解作业、考试和四个实验。",
-      "limitation_en": "The 2016 edition has no video and relies on textual derivations, solved homework, exams, and four labs.",
+      "limitation_zh": "2016 年版本没有视频；学习依赖文本推导、已解作业、考试和三个有解的常规实验，另有一个无解答的 optional bonus Lab 4。",
+      "limitation_en": "The 2016 edition has no video and relies on textual derivations, solved homework, exams, and three regular solved labs, plus an unsolved optional bonus Lab 4.",
       "rationale_zh": "Cornell ECE 3150 官方身份、27 份讲义、已解作业、考试与实验相互印证，公开反馈闭环罕见而完整。",
       "rationale_en": "Cornell ECE 3150's official identity is corroborated by 27 handouts, solved homework, exams, and labs, yielding an unusually complete public feedback loop.",
       "verified_at": "2026-07-29"
     },
     {
       "track": "analog-ic",
-      "course_id": 36,
-      "status": "review",
+      "course_id": 141,
+      "status": "pass",
       "preferred": true,
-      "official_url": "https://nptel.ac.in/courses/108106105",
-      "checks": {"identity": "pass", "resources": "review", "mainline_fit": "pass", "limitations": "pass"},
-      "limitation_zh": "2026 年官方 12 周视频大纲已确认，但评分反馈和证书考试依赖注册，没有公开 EDA 项目；资源清单仍只收录旧版归档入口。",
-      "limitation_en": "The official 2026 twelve-week video syllabus is confirmed, but graded feedback and the certificate exam depend on enrollment, no open EDA project is supplied, and the resource manifest still contains only the older archive.",
-      "rationale_zh": "课程 ID、IIT Madras 教师和模拟 IC 主题已由官方当前页核实；它是本方向目前最佳教学主干，但需刷新资源证据后才能消除复核标记。",
-      "rationale_en": "The current official page confirms the ID, IIT Madras instructors, and analog-IC scope. It is the best present teaching spine, but the local resource evidence must be refreshed before review can close.",
-      "verified_at": "2026-07-29"
+      "official_url": "https://people.eecs.berkeley.edu/~pister/140sp25/",
+      "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
+      "limitation_zh": "官方先修是 EE 105。公开可运行的仿真只覆盖 Lab 1 的 LTspice 部分，以及 Spring 2023 Lab 3 Part 1 与其 BJTopamp.asc 基础电路；面包板测量、仪器读数和 GSI 签字仍属于校内实验层。Lab 2、Lab 4–8 与设计项目依赖伯克利 Cadence/Virtuoso 服务器和 SKY130 环境。教材付费且资料未声明再分发许可，不能声称校外可完整复现。",
+      "limitation_en": "EE 105 is the official prerequisite. Publicly runnable simulation is limited to the LTspice portion of Lab 1 and Spring 2023 Lab 3 Part 1 with its BJTopamp.asc base circuit; breadboard measurements, instrument readings, and GSI sign-off remain a campus bench layer. Lab 2, Labs 4–8, and the design project depend on Berkeley's Cadence/Virtuoso servers and SKY130 environment. The texts are paid and no redistribution license is stated, so full off-campus reproducibility cannot be claimed.",
+      "rationale_zh": "Berkeley 2025 官方课程页公开 21 份讲义、10 份作业、部分当前答案、历年已解考试、8 个实验和设计项目；Spring 2023 的 BJTopamp.asc 又为其中一小段模拟电路提供了可直接运行的 LTspice 起点，因此它仍是本方向最具体的分析—仿真—设计主线。",
+      "rationale_en": "Berkeley's official 2025 site exposes twenty-one lecture decks, ten homework sets, partial current solutions, archived solved exams, eight labs, and a design project. The Spring 2023 BJTopamp.asc file also gives one small analog-design slice a directly runnable LTspice starting point, so the course remains the track's most concrete analysis-to-simulation-to-design spine.",
+      "verified_at": "2026-07-31"
     },
     {
       "track": "digital-logic",
@@ -241,17 +254,17 @@
       "preferred": true,
       "official_url": "https://ocw.mit.edu/courses/6-111-introductory-digital-systems-laboratory-spring-2006/",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
-      "limitation_zh": "FPGA 板卡与 EDA 流程较旧，实体演示需映射到当前板卡；不能假设原工具仍可直接运行。",
-      "limitation_en": "The FPGA boards and EDA flow are dated, so physical demonstrations require porting to current hardware and tools.",
-      "rationale_zh": "官方 6.111 页面公开 13 个实验入口和大量最终项目，适合用可综合 RTL 与板级证据验收。",
-      "rationale_en": "The official 6.111 page exposes thirteen lab entries and many final projects, supporting assessment through synthesizable RTL and board-level evidence.",
-      "verified_at": "2026-07-29"
+      "limitation_zh": "FPGA 板卡与 EDA 流程较旧；4 份公开 lab assignment 可作为有年份标记的默认练习主线，实体演示则需迁移到当前板卡，不能假设原工具仍可直接运行。",
+      "limitation_en": "The FPGA boards and EDA flow are dated. The four public lab assignments form a dated default practice spine, while physical demonstrations require porting to current hardware and tools.",
+      "rationale_zh": "官方 6.111 页面公开 4 份实验题面和大量最终项目，在不依赖特定当前板卡的候选中提供最清楚的公开 RTL—系统练习链；ECE 5760 只有在 DE1-SoC/Cyclone V 与 Quartus 条件具备时才是更现代的替代。",
+      "rationale_en": "The official 6.111 page exposes four lab assignments and many final projects, giving the clearest public RTL-to-system practice spine without assuming a particular current board. ECE 5760 is the more modern alternative only when DE1-SoC or Cyclone V and Quartus access are available.",
+      "verified_at": "2026-07-31"
     },
     {
       "track": "computer-architecture",
       "course_id": 46,
       "status": "pass",
-      "preferred": true,
+      "preferred": false,
       "official_url": "https://www.csl.cornell.edu/courses/ece4750/handouts.shtml",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
       "limitation_zh": "小组仓库、服务器与部分 starter code 私有；公开材料足以学习分析与实验结构，但不能声称可原样完成全部评分。",
@@ -259,6 +272,19 @@
       "rationale_zh": "Cornell ECE 4750 官方讲义页确认 RISC-V 架构身份，公开笔记、问题、实验说明和代码资源覆盖核心主线。",
       "rationale_en": "Cornell's official ECE 4750 handout page confirms the RISC-V architecture identity, with notes, problems, lab descriptions, and code covering the core spine.",
       "verified_at": "2026-07-29"
+    },
+    {
+      "track": "computer-architecture",
+      "course_id": 48,
+      "status": "pass",
+      "preferred": true,
+      "official_url": "https://www2.eecs.berkeley.edu/Courses/CS61C/",
+      "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
+      "limitation_zh": "院系课程页公开说明课程范围与先修要求，Fall 2024 的 lab/project starter 也仍在官方 GitHub 组织中；但旧学期日历、录像、官方 grader、教学账号和部分校内服务已不再匿名开放。独立学习必须补本地测试，且不能复制受限答案或声称完成原评分流程。",
+      "limitation_en": "The department page publicly documents scope and prerequisites, and official Fall 2024 lab/project starters remain in the course GitHub organization. The old calendar, recordings, official grader, instructional accounts, and some campus services are no longer anonymously available. Independent learners must add local tests and may neither copy restricted answers nor claim the original grading flow.",
+      "rationale_zh": "院系页确认课程范围与先修要求；开放课程笔记和 61c-teach 官方仓库保留一套 lab starter 与 Fall 2024 的四个 project starter。它因此仍可作为有项目支撑的体系结构主线，但不能声称原学期与 grader 仍开放。",
+      "rationale_en": "The department page confirms the course scope and prerequisites; open course notes and official 61c-teach repositories preserve a lab starter plus all four Fall 2024 project starters. This supports a project-backed architecture spine without claiming that the original semester or grader remains open.",
+      "verified_at": "2026-07-31"
     },
     {
       "track": "vlsi-ic",
@@ -316,27 +342,27 @@
       "track": "embedded-systems",
       "course_id": 58,
       "status": "pass",
-      "preferred": true,
+      "preferred": false,
       "official_url": "https://cs107e.github.io/",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
       "limitation_zh": "2026 RISC-V 版本依赖 Mango Pi 和配套套件，地区供货不稳定；不是微控制器外设课程的完全替代。",
       "limitation_en": "The 2026 RISC-V edition depends on a Mango Pi and kit with variable regional availability; it is not a complete substitute for a microcontroller-peripheral course.",
-      "rationale_zh": "Stanford CS107E 官方站点身份、进度表、阅读、作业和代码链接均一致，适合作为从裸机到完整系统的第二主线。",
-      "rationale_en": "Stanford CS107E's official site, schedule, readings, assignments, and code links agree, making it a strong second spine from bare metal to a complete system.",
-      "verified_at": "2026-07-29"
+      "rationale_zh": "Stanford CS107E 官方站点身份、进度表、阅读、作业和代码链接均一致；它适合作为已经愿意深入 linker、boot flow 与 RISC-V 寄存器层的第二主线，而不是最平缓的 MCU 第一入口。",
+      "rationale_en": "Stanford CS107E's official site, schedule, readings, assignments, and code links agree. It is a strong second spine for learners ready to follow the linker, boot flow, and RISC-V registers, rather than the gentlest first MCU entry.",
+      "verified_at": "2026-07-31"
     },
     {
       "track": "embedded-systems",
       "course_id": 59,
       "status": "pass",
-      "preferred": false,
+      "preferred": true,
       "official_url": "https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
       "limitation_zh": "主入口是为 EE 319K 编写的开放教材与课程材料站，而不是当前课程运行页；edX 运行已归档，TM4C123 工具链老旧，应提供 MSPM0 迁移。",
       "limitation_en": "The primary is an open text and course-material site created for EE 319K rather than a current course run; the edX run is archived and the TM4C123 toolchain is old, so provide an MSPM0 migration path.",
-      "rationale_zh": "UT Austin 教师官方页面明确材料服务于 EE 319K，并链接教材、视频与 11 个实验，资源向量与公开证据相符。",
-      "rationale_en": "The UT Austin instructor's official page identifies the materials as created for EE 319K and links the book, videos, and eleven labs, consistent with the candidate resource vector.",
-      "verified_at": "2026-07-29"
+      "rationale_zh": "UT Austin 教师官方页面明确旧版开放教材与视频服务于 EE 319K；当前 Spring 2026 MSPM0 课程页与实验页列出 Lab 1–9，从 GPIO、timer 与 interrupt 建立 MCU 节奏，适合作为本方向第一入口。",
+      "rationale_en": "The UT Austin instructor's official pages identify the older open text and videos as EE 319K materials. The current Spring 2026 MSPM0 course and lab pages list Labs 1–9 and establish an MCU rhythm through GPIO, timers, and interrupts, making this the track's first entry.",
+      "verified_at": "2026-07-31"
     },
     {
       "track": "real-time-cps",
@@ -355,27 +381,27 @@
       "track": "control-systems",
       "course_id": 67,
       "status": "pass",
-      "preferred": false,
+      "preferred": true,
       "official_url": "https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
       "limitation_zh": "主要教材笔记未公开，电机、热和运放实验需要替代 BOM；实体控制实验只能在低能量限流条件下进行。",
       "limitation_en": "Primary text notes are not public, and motor, thermal, and op-amp labs need a substitute BOM; physical control work should stay low-energy and current-limited.",
-      "rationale_zh": "MIT 6.302 官方身份以及公开作业、实验和考试均已核对，为频域反馈与实测控制提供实践主线。",
-      "rationale_en": "MIT 6.302's official identity, assignments, labs, and exams were confirmed, providing a practice-oriented frequency-domain feedback spine.",
-      "verified_at": "2026-07-29"
+      "rationale_zh": "MIT 6.302 官方身份以及公开作业、实验和考试均已核对；它把频域反馈直接接到 motor、thermal 与 op-amp 对象，是本方向优先的实践入口。",
+      "rationale_en": "MIT 6.302's official identity, assignments, labs, and exams were confirmed. Its direct connection from frequency-domain feedback to motor, thermal, and op-amp plants makes it the preferred practice entry.",
+      "verified_at": "2026-07-31"
     },
     {
       "track": "control-systems",
       "course_id": 68,
       "status": "pass",
-      "preferred": true,
+      "preferred": false,
       "official_url": "https://see.stanford.edu/Course/EE263",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
       "limitation_zh": "MATLAB 代码版本较旧，需要迁移到当前 MATLAB 或 Python；课程更偏线性动态系统而非完整硬件控制实验。",
       "limitation_en": "The MATLAB code is old and should be migrated to current MATLAB or Python; the course emphasizes linear dynamical systems rather than a complete hardware-control lab.",
-      "rationale_zh": "Stanford EE263 官方页面提供视频、讲义、已解练习、考试和代码，线性系统学习闭环最完整，列为首选。",
-      "rationale_en": "Stanford EE263's official page provides video, notes, solved practice, exams, and code, giving the most complete linear-systems loop and the preferred entry.",
-      "verified_at": "2026-07-29"
+      "rationale_zh": "Stanford EE263 官方页面提供视频、讲义、已解练习、考试和代码，适合在第一条经典反馈主线之后补 linear dynamical systems 与 state-space，而非替代 6.302 的物理实验入口。",
+      "rationale_en": "Stanford EE263's official page provides video, notes, solved practice, exams, and code. It is a strong linear-dynamical-systems and state-space continuation after a first classical-feedback spine rather than a replacement for 6.302's physical entry.",
+      "verified_at": "2026-07-31"
     },
     {
       "track": "control-systems",
@@ -438,8 +464,8 @@
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
       "limitation_zh": "核心教材源自 1975 年，没有代码实验或考试；需要用现代 Python/Julia 实现滤波器和谱分析。",
       "limitation_en": "The core text dates to 1975 and there is no coding lab or exam; implement filters and spectral analysis in current Python or Julia.",
-      "rationale_zh": "MIT RES.6-008 官方页面提供完整讲座和 19 份已解问题集，理论反馈质量高，适合作为 DSP 首选。",
-      "rationale_en": "The official MIT RES.6-008 page supplies a complete lecture series and nineteen solved problem sets, giving a high-quality theory loop for the preferred DSP entry.",
+      "rationale_zh": "MIT RES.6-008 官方页面提供 20 课完整讲座、讲义内习题和后 19 课对应的解答包，理论反馈质量高，适合作为 DSP 首选。",
+      "rationale_en": "The official MIT RES.6-008 page supplies twenty complete lessons, problems embedded in the notes, and solution packets for Lessons 2–20, giving a high-quality theory loop for the preferred DSP entry.",
       "verified_at": "2026-07-29"
     },
     {
@@ -514,11 +540,11 @@
       "preferred": true,
       "official_url": "https://ocw.ece.cornell.edu/courses/ece-3030-electromagnetic-fields-and-waves-2/",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
-      "limitation_zh": "2007 年课程没有视频；学习以 28 份笔记、12 组已解作业和 4 组已解考试为主。",
-      "limitation_en": "The 2007 course has no video and relies on 28 notes, twelve solved homework sets, and four solved exams.",
+      "limitation_zh": "2007 年课程没有视频；学习以 36 组讲义、12 组已解作业和 4 组已解考试为主。",
+      "limitation_en": "The 2007 course has no video and relies on thirty-six handout groups, twelve solved homework sets, and four solved exams.",
       "rationale_zh": "Cornell ECE 3030 官方页面和大量已解资源相互印证，文本反馈闭环最强，列为电磁首选。",
       "rationale_en": "Cornell's official ECE 3030 page is corroborated by extensive solved resources, giving the strongest text-based feedback loop and the preferred electromagnetics spine.",
-      "verified_at": "2026-07-29"
+      "verified_at": "2026-07-31"
     },
     {
       "track": "electromagnetics",
@@ -535,9 +561,22 @@
     },
     {
       "track": "rf-microwave-antennas",
-      "course_id": 111,
+      "course_id": 110,
       "status": "pass",
       "preferred": true,
+      "official_url": "https://ocw.ece.cornell.edu/courses/ece-4880-radio-frequency-systems/",
+      "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
+      "limitation_zh": "Lecture 1–5 未公开，课程还依赖付费教材与 Simulink。真实 RF 实验需要合规仪器和合格监督，独立学习不得进行未经许可的辐射发射。",
+      "limitation_en": "Lectures 1–5 are not public, and the course also depends on a paid text and Simulink. Physical RF labs require compliant instruments and qualified supervision; independent learners must not make unauthorized radiating transmissions.",
+      "rationale_zh": "Cornell ECE 4880 官方课程页、10 组作业、带解答考试以及 6 个实验共同构成目前最强的 RF systems 理论—计算—测量反馈链，因此列为 RF systems 分支首选；毫米波电路与天线分支仍有各自完整入口。",
+      "rationale_en": "Cornell ECE 4880's official course page, ten homework sets, solved exams, and six labs form the strongest current RF-systems theory-to-calculation-to-measurement feedback chain, so it is preferred for the RF-systems branch; the millimeter-wave circuit and antenna branches retain their own complete entries.",
+      "verified_at": "2026-07-29"
+    },
+    {
+      "track": "rf-microwave-antennas",
+      "course_id": 111,
+      "status": "pass",
+      "preferred": false,
       "official_url": "https://www.coursera.org/learn/rf-mmwave-circuit-design",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
       "limitation_zh": "Coursera 完整访问可能付费；约 70% 可用 Qucs-S 与 Octave 仿真复现，硬件可选，实体 RF 发射需遵守频谱法规。",
@@ -549,15 +588,15 @@
     {
       "track": "rf-microwave-antennas",
       "course_id": 112,
-      "status": "review",
+      "status": "pass",
       "preferred": false,
       "official_url": "https://nptel.ac.in/courses/108105114",
-      "checks": {"identity": "pass", "resources": "review", "mainline_fit": "pass", "limitations": "pass"},
-      "limitation_zh": "官方身份是“微波天线分析与设计原理”，不是通用微波工程；没有开放实验或代码。资源清单中的旧 www 主机抓取记录仍为待复核，需要在下一次证据刷新中重抓。",
-      "limitation_en": "The official identity is Analysis and Design Principles of Microwave Antennas, not a general microwave-engineering course, and there is no open lab or code. The resource manifest still marks the superseded www-host fetch for review and needs a fresh evidence crawl.",
-      "rationale_zh": "NPTEL 官方 syllabus 已核对课程 ID、IIT Kharagpur 和天线范围；与 ID111 组合可补天线侧，但在本地证据同步前保持复核。",
-      "rationale_en": "The official NPTEL syllabus confirms the ID, IIT Kharagpur, and antenna scope. It complements course 111, but remains under review until local evidence is synchronized.",
-      "verified_at": "2026-07-29"
+      "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
+      "limitation_zh": "官方身份是“微波天线分析与设计原理”，不是通用微波工程；公开视频与 syllabus 可匿名访问，但没有开放实验、代码或当期作业答案。",
+      "limitation_en": "The official identity is Analysis and Design Principles of Microwave Antennas, not a general microwave-engineering course. Public video and syllabus evidence is anonymously accessible, but there is no open lab, code, or current-run answer set.",
+      "rationale_zh": "NPTEL 当前课程页、官方 syllabus 与 downloads API 已在 2026-07-31 交叉核对课程 ID、IIT Kharagpur、8 周主题表和 40 条视频记录；它与 ID111 组合后补足天线分析侧。",
+      "rationale_en": "The current NPTEL page, official syllabus, and downloads API were cross-checked on 2026-07-31 for the course ID, IIT Kharagpur identity, eight-week topic map, and forty video records. It supplies the antenna-analysis side beside course 111.",
+      "verified_at": "2026-07-31"
     },
     {
       "track": "power-electronics",
@@ -609,6 +648,19 @@
       "limitation_en": "The edX audit path is limited and certification is paid; companion open materials are CC BY-NC-SA and carry noncommercial and share-alike conditions.",
       "rationale_zh": "edX 官方页和 TU Delft 开放备用入口共同确认课程身份、视频、笔记和光伏转换实践，访问路径有冗余。",
       "rationale_en": "The official edX page and TU Delft open alternate jointly confirm the identity, videos, notes, and photovoltaic-conversion practice, providing redundant access.",
+      "verified_at": "2026-07-29"
+    },
+    {
+      "track": "energy-storage-pv",
+      "course_id": 123,
+      "status": "pass",
+      "preferred": false,
+      "official_url": "https://ocw.mit.edu/courses/10-626-electrochemical-energy-systems-spring-2014/",
+      "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
+      "limitation_zh": "这是有较强先修要求的研究生课程；5 份 problem set 没有答案，2014 年期中有解答而期末无解答。独立学习只做模型、公开数据或受控低能量测量，不在家组装电芯，也不循环来源与状态未知的电池。",
+      "limitation_en": "This graduate course has substantial prerequisites. Its five problem sets have no solutions; the 2014 midterm is solved and the final is not. Independent work should use models, public data, or controlled low-energy measurement—never home cell assembly or cycling batteries of unknown provenance and condition.",
+      "rationale_zh": "MIT 官方页面公开 38 次课程讲义，并提供问题集与考试证据；它作为电化学储能第二主线，能补足 ID122 偏重光伏转换的范围。",
+      "rationale_en": "MIT's official site exposes thirty-eight class-session notes plus problem-set and exam evidence. As a second electrochemical-storage spine, it fills the scope left by course 122's photovoltaic emphasis.",
       "verified_at": "2026-07-29"
     },
     {
@@ -667,27 +719,27 @@
       "track": "optics-photonics",
       "course_id": 132,
       "status": "pass",
-      "preferred": true,
+      "preferred": false,
       "official_url": "https://nptel.ac.in/courses/108106135",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
-      "limitation_zh": "当前评分访问可能依赖注册，实验为演示而非家庭激光实验；需要基础电磁学。",
-      "limitation_en": "Current assessment access may depend on enrollment, labs are demonstrations rather than home laser experiments, and basic electromagnetics is required.",
-      "rationale_zh": "NPTEL 官方当前页确认 IIT Madras、12 周课程、作业解答和演示，从基础光学到激光与探测器，最适合作为首选。",
-      "rationale_en": "The current official NPTEL page confirms IIT Madras, twelve weeks, solved assignments, and demonstrations from basic optics to lasers and detectors, making it the preferred entry.",
+      "limitation_zh": "匿名公开 API 的 assignments 数组为空，没有核验到公开题目、答案或评分入口；10 个实验条目是演示而非家庭激光实验，并且需要基础电磁学。",
+      "limitation_en": "The anonymous public API returns an empty assignments array, with no verified public problems, answers, or grading endpoint; the ten laboratory items are demonstrations rather than home laser labs, and basic electromagnetics is required.",
+      "rationale_zh": "NPTEL 当前 downloads API 可核验 34 个主题讲次、4 个 tutorial 和 10 个实验演示，范围从几何/波动光学延伸到光纤、激光与探测器；它适合作为宽口径理论主线，但不能冒充有答案反馈的课程。",
+      "rationale_en": "The current NPTEL downloads API verifies thirty-four topic lectures, four tutorials, and ten laboratory demonstrations spanning geometrical and wave optics through fibers, lasers, and detectors. It is a broad theory mainline, not a course with a verified answer loop.",
       "verified_at": "2026-07-29"
     },
     {
       "track": "optics-photonics",
-      "course_id": 133,
-      "status": "review",
-      "preferred": false,
-      "official_url": "https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana",
-      "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "review"},
-      "limitation_zh": "课程按期开放，商业工具许可、地区注册、流片日期和付费条件会变化；只返回测量数据，不邮寄芯片，必须在每次开课前人工复核。",
-      "limitation_en": "The course is instructor-paced, and commercial-tool licenses, regional registration, tapeout dates, and payment terms can change; learners receive measurement data rather than a mailed chip, so every run needs manual recheck.",
-      "rationale_zh": "edX 官方页确认 UBC、KLayout/SiEPIC/gdsfactory、远程制造和测量闭环，课程身份正确且项目罕见；动态访问条件尚不能永久判定。",
-      "rationale_en": "The official edX page confirms UBC, KLayout/SiEPIC/gdsfactory, remote fabrication, and measurement, making the identity and rare project loop sound; dynamic access conditions cannot be permanently closed.",
-      "verified_at": "2026-07-29"
+      "course_id": 134,
+      "status": "pass",
+      "preferred": true,
+      "official_url": "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/",
+      "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
+      "limitation_zh": "课程没有视频或公开实体实验；Problem Set 1–4 有解答，5–6 无解答。任何 MATLAB 项目都属于 EEDIY 补充实践而非原课作业，激光实验不得在无合格监督的家庭环境中复刻。",
+      "limitation_en": "The course has no video or public physical lab. Problem Sets 1–4 are solved, while 5–6 are not. Any MATLAB project is an EEDIY-added exercise rather than original coursework, and laser experiments must not be recreated at home without qualified supervision.",
+      "rationale_zh": "MIT 2.71 官方页面公开 10 组讲义、6 份 problem set，以及多套带解答的 quiz 和期末；理论与考核反馈均可核查，因此取代仅靠演示的路径成为光学首选。",
+      "rationale_en": "MIT 2.71's official site exposes ten groups of notes, six problem sets, and multiple solved quizzes and finals. Its verifiable theory-and-assessment loop makes it a stronger preferred optics spine than a demonstration-only route.",
+      "verified_at": "2026-07-30"
     },
     {
       "track": "sensors-instrumentation",
@@ -704,15 +756,15 @@
     },
     {
       "track": "sensors-instrumentation",
-      "course_id": 137,
+      "course_id": 138,
       "status": "pass",
       "preferred": false,
-      "official_url": "https://nptel.ac.in/courses/108106193",
+      "official_url": "https://www.coursera.org/learn/sensors-circuit-interface",
       "checks": {"identity": "pass", "resources": "pass", "mainline_fit": "pass", "limitations": "pass"},
-      "limitation_zh": "从物理、制造到电路的覆盖广，但没有开放构建与测试闭环；微制造内容只能作为案例。",
-      "limitation_en": "Coverage spans physics, fabrication, and circuits but lacks an open build-and-test loop; microfabrication remains case-study material.",
-      "rationale_zh": "官方 NPTEL syllabus 确认 IISER Bhopal、课程 ID、先修和主题范围，适合作为传感器物理侧第二主线。",
-      "rationale_en": "The official NPTEL syllabus confirms IISER Bhopal, the course ID, prerequisites, and scope, supporting a second spine on sensor physics.",
+      "limitation_zh": "实际材料与作业需要付费证书体验；可能有试用但不保证无证书访问。热敏电阻实验依赖 PSoC 5LP、LCD/器件、示波器和 Windows 工具链，因此不是完全开放或硬件中立的课程。",
+      "limitation_en": "The actual materials and assignments require the paid certificate experience; a trial may be offered and no-certificate access is not guaranteed. The thermistor lab depends on a PSoC 5LP, LCD/components, an oscilloscope, and a Windows toolchain, so this is not a fully open or hardware-neutral course.",
+      "rationale_zh": "公开官方页明确列出 5 个模块、5 项作业、热敏电阻实验、课程项目和硬件清单；它与 ID136 的开放理论主线组成诚实的有条件实践路径。",
+      "rationale_en": "The public official page documents five modules, five assignments, a thermistor lab, a course project, and the hardware list; it complements course 136's open theory spine with an explicitly access-dependent practical path.",
       "verified_at": "2026-07-29"
     },
     {

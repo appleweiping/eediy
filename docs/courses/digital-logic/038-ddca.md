@@ -2,123 +2,74 @@
 title: "Digital Design and Computer Architecture"
 description: "ETH Zurich 的《Digital Design and Computer Architecture》用 2025 年视频、讲义、练习与代码连接数字设计和计算机体系结构；材料较新，但托管服务器需要人工检查可访问性。"
 page_type: course
+course_id: "course-038"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: a1cc439a03febb02 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: ecd8992656067f25 -->
 
-# Digital Design and Computer Architecture
+# ETH Zurich DDCA: Digital Design and Computer Architecture
 
 ## 课程简介
 
-- **机构：** ETH Zurich
+- **所属大学：** ETH Zurich
 - **课程编号：** DDCA
-- **方向：** [数字逻辑与计算结构](index.md)
-- **评级：** S
-- **角色：** 替代
-- **难度：** 提供方未标准化（请按先修判断）
-- **最近复核：** 2026-07-28
+- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
+- **本站建议背景：** 编程与工程计算；电路分析
+- **访问条件：** 无需注册公开访问
+- **资料状态：** 2026-07-30；公开材料导读
 
-ETH Zurich 的《Digital Design and Computer Architecture》用 2025 年视频、讲义、练习与代码连接数字设计和计算机体系结构；材料较新，但托管服务器需要人工检查可访问性。
+### 一门真正从门电路走到处理器的课
 
-**为什么选择这门课**
+Onur Mutlu 的材料入口会跨年份更新；这里固定 **ETH Zürich Spring 2025**。官方
+[Schedule](https://safari.ethz.ch/ddca/spring2025/doku.php?id=schedule) 从 Boolean logic、
+FSM、Verilog 与 timing 走到 MIPS、single/multicycle/pipeline，再延伸到 branch prediction、
+SIMD/GPU、cache、multicore 与 virtual memory。它适合想把 RTL、FPGA 和体系结构接成一条线
+的人；若只想学 HDL 语法，课程后半会显得过宽。录像可从 Mutlu 的
+[课程材料入口](https://people.inf.ethz.ch/omutlu/lecture-videos.html) 找到，所选录像版本要与
+Spring 2025 文件保持一致。
 
-替代课程，资源完整、教学设计清晰，适合作为该方向的优先选择。（审阅记录：S/A）
+### 课程任务
 
-**学习前准备**
+[Homeworks](https://safari.ethz.ch/ddca/spring2025/doku.php?id=homeworks) 有 6 份 optional
+homework 及解答，覆盖 RTL、ISA、pipeline、memory 与 advanced architecture。“optional”只描述校园计分，
+自学仍值得完成：画出完整 timing/pipeline/cache 分解，再读 solution 并重做错题。
 
-- 建议先完成方向基础：编程与工程计算
-- 建议先完成方向基础：电路分析
+[Labs](https://safari.ethz.ch/ddca/spring2025/doku.php?id=labs) 列出 9 个实验，从画电路、
+FPGA、combinational logic、FSM、ALU 和 assembly，累积到处理器集成与 MIPS performance。
+Lab 8 的两个阶段属于同一系统。每个 lab 保存 interface/bit width、RTL、self-checking
+testbench、simulation transcript、synthesis/timing 与 bug log；只有板上灯亮不够。
+原始 [Lab 6 bundle](https://safari.ethz.ch/ddca/spring2025/lib/exe/fetch.php?media=lab6_files.zip)
+应保持不改，个人代码另行版本控制。
 
-**可验证的学习成果**
+### 板卡状态要说准确
 
-- 解释数字逻辑与计算结构中的核心模型，并说明主要假设与适用边界
-- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
-- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
+原课用 Vivado 与 Basys 3。没有板时可以完成 simulation 和 synthesis，但状态只能写
+pre-board complete；实体 demo 还需保存 board、target part、constraints、tool version
+和 timing report。遇到 latch、width truncation 或 unconstrained clock warning，要解释
+它对应的设计含义；静音会把真实缺陷一起藏掉。
 
-**工时与节奏**
+体系结构后半也要落到数据：对同一 instruction trace 比较 single-cycle、multicycle 和
+pipeline 的 critical path/CPI；对 cache 拆 tag/index/offset 并数 hit/miss。性能结果同时
+报告 clock、cycle count、instruction count、memory behavior 和 timing slack。
 
-**11 周，每周 9 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
+### 拿一条指令检查 ISA、datapath 与板上行为
 
-**安全等级**
-
-**低能量实验。** 仅开展隔离、限流、低能量实验；通电前检查额定值、接地、短路风险和紧急断电方式。
+[Exams](https://safari.ethz.ch/ddca/spring2025/doku.php?id=exams) 是本学期考试入口。完成题目
+和 labs 后，再按页面规则做一份未看过的卷。最后任选一条 MIPS instruction，从 ISA semantics
+写到 control、datapath、pipeline、memory transaction 和 FPGA-visible result，并在每层标
+bit width、clock boundary 与观察点。能在内部 trace 定位错误，无需等到最终输出失败，才说明
+这门课的跨层能力真正建立。若第一次出错的 cycle 来自错误状态转移，就修 RTL；若来自
+negative slack 或错误约束，就回到时钟与实现，二者不能被一张板上演示混为一谈。
 
 ## 课程资源
 
-**软件、硬件与成本**
+- [课程主页](https://people.inf.ethz.ch/omutlu/lecture-videos.html)
+- [代码 · DDCA Spring 2025 Lab 6 project archive](https://safari.ethz.ch/ddca/spring2025/lib/exe/fetch.php?media=lab6_files.zip)
 
-**软件**
+## 资源汇总
 
-- 维护者建议的开源/免费验证路径：Logisim Evolution、Icarus Verilog 或 Verilator，以及 GTKWave
-- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
-
-**硬件**
-
-- 资源清单包含实验覆盖；优先借用或共享课程明确指定的逻辑实验板、USB 编程器和逻辑分析仪。仅在提供方实验手册明确要求后核对规格、许可与安全条件
-
-**成本说明**
-
-建议软件栈可开源或免费使用；这不是提供方要求或物料清单。开发板、元件、打样和仪器的实际清单与费用以提供方实验手册、地区和当地可得性为准，采购前优先借用、共享或仿真。
-
-**公开资源完整度**
-
-| 资源类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 完整 |
-| 练习 | 完整 |
-| 实验 | 部分 |
-| 考试 | 部分 |
-| 代码 | 完整 |
-
-**资源与访问条件**
-
-| 资源 | 访问 | 许可 | 状态 | 复核日期 |
-|---|---|---|---|---|
-| [课程主页](https://people.inf.ethz.ch/omutlu/lecture-videos.html) | 无需注册公开访问 | Provider-specific terms; verify before reuse | 官方页已列出 | 2026-07-28 |
-
-> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
-
-## 实践与验收
-
-**实践闭环**
-
-**《Digital Design and Computer Architecture · ETH Zurich DDCA》带形式化检查的流式数字单元**
-
-这是维护者为《Digital Design and Computer Architecture · ETH Zurich DDCA》建议的自学项目，不是课程官方作业。为数字逻辑与计算结构实现一个带握手的参数化流式运算单元，用 RTL 仿真、断言和随机测试验证功能、时序协议与复位边界。
-
-**来源：** 维护者建议项目
-
-**交付物**
-
-- 接口时序图、位宽/溢出策略、状态机和延迟规格
-- 可综合 RTL、参考模型、测试平台和协议断言源文件
-- 至少 10000 个随机事务的种子、原始日志、覆盖率和波形
-- 一份验证报告，列出吞吐/延迟、覆盖空洞和一个已修复反例
-
-**验收**
-
-- 10000 个随机事务与软件参考逐位一致，断言零失败
-- 覆盖最小/最大操作数、连续 backpressure、复位中断和计数回绕
-- 用穷举检查所有 8 位配置，或对更大位宽运行等价/形式化性质
-- 注入一处 off-by-one 或握手缺陷，证明测试能稳定复现并定位
-
-**复现要求**
-
-- 提交 RTL、参考模型、断言、测试和波形查看说明
-- 固定模拟器/综合器版本、随机种子、参数和单命令回归入口
-- 保存原始回归日志、覆盖数据库摘要和自动生成报告
-
-**安全边界：** 仅仿真 — 默认仅做 RTL 仿真与综合报告；不要把未经时钟、复位和接口验证的设计下载到实体系统。
-
-**风险、缺口与边界**
-
-官方入口链接了完整的 2025 年视频与材料；Safari 托管的材料服务器仍需人工检查 robots 规则和下载健康状况。
-
-**完成证据**
-
-- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
-- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
-- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
-- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
-- 实验包：原理图/装置设置、校准记录、原始数据、不确定度、安全检查、失败记录与从原始数据重建图表的步骤
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

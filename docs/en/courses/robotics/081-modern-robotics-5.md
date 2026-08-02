@@ -1,129 +1,66 @@
 ---
 title: "Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots"
-description: "Northwestern University's Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots connects manipulation and wheeled mobility through rich videos, simulation, and code, with terminology, prerequisites, and access conditions requiring attention."
+description: "Northwestern University's Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots connects manipulation and wheeled mobility through rich videos, simulation, and code; material may still use the V-REP name, the provider highly recommends the series order, and full access may be paid."
 page_type: course
+course_id: "course-081"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: fbe6baf8b8316685 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 45011c03c7cf89e7 -->
 
-# Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots
+# Northwestern University Modern Robotics 5: Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots
 
 ## Course Overview
 
-- **Institution:** Northwestern University
+- **University:** Northwestern University
 - **Course code:** Modern Robotics 5
-- **Track:** [Robotics and Autonomous Systems](index.md)
-- **Tier:** A
-- **Role:** Alternative
-- **Level:** Intermediate
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The Coursera specialization page says Courses 1–6 are highly recommended in order because the material builds on itself
+- **EEDIY preparation:** Complete Courses 1–4 first or bring equivalent modeling, kinematics, dynamics, planning, and control background; this is EEDIY's content-based study order
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-Northwestern University's Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots connects manipulation and wheeled mobility through rich videos, simulation, and code, with terminology, prerequisites, and access conditions requiring attention.
+### Course scope
 
-**Why choose this course**
+Coursera [Robot Manipulation and Wheeled Mobile Robots](https://www.coursera.org/learn/modernrobotics-course5) corresponds to *Modern Robotics* Chapters 12–13. The first half uses contact wrenches, friction cones, and form/force closure for grasping and assembly. The second uses wheel constraints, nonholonomic models, planning, feedback, and odometry for mobile manipulation. It fits learners preparing for the Course 6 youBot capstone, where a missing half surfaces directly.
 
-Alternative course. A reliable option that can serve as a main course or strong alternative.
+You should know wrenches, twists, Jacobians, linear programming, Pfaffian constraints, and frame transforms. Draw a friction cone and wrench balance for a planar body, then derive the wheel-speed-to-body-twist map from mecanum geometry.
 
-**Before you start**
+### Two contact projects turn geometry into optimization
 
-- Recommended foundation: Control Systems
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Physics Foundations
-- Course-sequence requirement: complete [Modern Robotics, Course 1: Foundations of Robot Motion](../robotics/077-modern-robotics-1.md) (Northwestern University Modern Robotics 1) first
-- Course-sequence requirement: complete [Modern Robotics, Course 2: Robot Kinematics](../robotics/078-modern-robotics-2.md) (Northwestern University Modern Robotics 2) first
-- Course-sequence requirement: complete [Modern Robotics, Course 3: Robot Dynamics](../robotics/079-modern-robotics-3.md) (Northwestern University Modern Robotics 3) first
-- Course-sequence requirement: complete [Modern Robotics, Course 4: Robot Motion Planning and Control](../robotics/080-modern-robotics-4.md) (Northwestern University Modern Robotics 4) first
+[Form Closure](https://hades.mech.northwestern.edu/index.php/Evaluating_Form_Closure_Project) converts planar contacts into a wrench matrix, then uses an LP to decide whether they resist arbitrary wrenches. Inspect normals, moment arms, rank, and positive-force conditions. Construct 1 obvious closure, 1 non-closure, and 1 normal-flipped case; interpret solver status together with residual and tolerance.
 
-**Verifiable learning outcomes**
+[Stability of an Assembly](https://hades.mech.northwestern.edu/index.php/Stability_of_an_Assembly_Project) takes mass/COM and each contact’s body pair, position, normal, and friction coefficient to form static equilibrium under gravity and friction-cone-edge forces. Reproduce the official stand/collapse cases, then design at least one 2-body assembly and vary friction. Rest in a simulator does not prove that the analytical model is correct.
 
-- Explain the core models in Robotics and Autonomous Systems, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+Use one contact convention across both projects: record normal orientation, wrench origin, body frame, and friction-cone-edge ordering in the input. Draw each contact-wrench column and verify the sign for contacts that push but never pull. For boundary cases, vary cone discretization and solver tolerance and report slack; otherwise “feasible” may merely mean numerical tolerance accepted a physically unbalanced assembly.
 
-**Workload and pacing**
+Retain units for assembly mass, COM, contact position, and external wrench. Vary mass, contact location, and friction independently and check whether the transition matches torque-balance intuition. Analytical LP, a hand-worked small case, and the scene are distinct evidence sources; when they disagree, inspect conventions before letting the picture overrule the calculation.
 
-**4 weeks at 10 hours/week.** The provider publishes 4 weeks at 10 hours per week. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+### Wheel encoders produce odometry, not pose truth
 
-**Safety level**
+Chapter 13 maps wheel speeds to body twist and integrates into a space pose; for a nonholonomic base, distinguish instantaneous constraints from long-term controllability. Test forward, sideways, rotation, and diagonal motion for an omni base, and identify unavailable lateral velocity for a constrained base. Compare first-order integration with the exponential map, checking wheel order, units, and conditioning.
 
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+Odometry tests should include 1 m straight travel, 4 right-angle turns, a full circle, and a forward-reverse loop. Report endpoint, heading, drift per meter, and cumulative error while perturbing wheel radius, geometry, and sample interval separately. Simulator ground truth is only an error reference, never estimator input.
+
+Give the base-update function oracles for zero command, one wheel, opposing wheel pairs, and speed clipping. Output the body increment and space pose at every step. At larger \(\Delta t\), compare first-order integration with an exponential update and explain coordinate-integration error separately from wheel slip. Return a diagnostic for a near-singular wheel matrix rather than silently emitting a huge pseudoinverse command.
+
+### Leave reusable units for the capstone
+
+The [book home](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) and [MR repository](https://github.com/NxRLab/ModernRobotics) supply formulas and teaching code. [Coursera Resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) identifies project ownership, and the [CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) supplies the youBot scene.
+
+The course record includes Chapters 12/13 exercises, 2 contact projects, failure cases, base/odometry tests, and a replayable youBot CSV. Also expose a pure function that advances chassis/joint configuration with explicit \(\Delta t\), speed limits, and joint order. A physical mecanum base still requires separate measurement of roller friction, backlash, encoder quantization, and collision behavior.
+
+Use one interface file across the capstone, containing the configuration-vector order for chassis, arm, and wheels, plus wheel geometry, frame convention, and time step. Generate a CSV from a known wheel/joint command, calculate its first few steps by hand, and replay it. If the block task later fails, these units can eliminate base integration and contact math before whole-scene debugging.
+
+Contact and odometry meet at a subtle failure point: chassis-pose error changes the grasp frame, while grasp reaction can make the wheels slip and send encoder integration farther off course. Hold the end-effector target fixed and inject a chassis-pose bias, then wheel slip. Comparing wrench feasibility, end-effector error, and the recovery motion helps distinguish geometry, contact, and odometry faults before every capstone failure gets blamed on controller gains.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+- [Course home](https://www.coursera.org/learn/modernrobotics-course5)
+- [Code · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: ROS 2, Gazebo, RViz 2, Python or C++, and a version-pinned container environment
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect a course-supported robot platform, sensors, low-voltage power, emergency stop, and safe test area
-
-**Cost note**
-
-The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/modernrobotics-course5) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-| [Modern Robotics, Course 6: Capstone Project, Mobile Manipulation](https://www.coursera.org/learn/modernrobotics-course6) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots · Northwestern University Modern Robotics 5: Robot Task Planning and Safe-Degradation Simulation**
-
-This is a maintainer-suggested self-study project for Modern Robotics, Course 5: Robot Manipulation and Wheeled Mobile Robots · Northwestern University Modern Robotics 5, not an official course assignment. Complete a perception–planning–control task in simulation for Robotics and Autonomous Systems, quantifying success rate, collision margin, localization error, and safe stop after sensor failure.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A specification of task, robot and environment models, frames, constraints, and safe state
-- Perception, planning, control, monitoring, and scenario-generation sources
-- Raw trajectories, success or collision labels, minimum clearance, and runtime for at least 100 randomized scenes
-- A report and screen recording comparing baseline and improved methods and reviewing the most hazardous failure
-
-**Verification**
-
-- Achieve at least 90% success over 100 nominal scenes with zero collisions and the predeclared minimum clearance
-- Cover coincident start and goal, infeasible maps, narrow passages, localization drift, and sensor interruption
-- Replay every trajectory through an independent collision checker and cross-check frame by frame
-- Inject frozen sensing or control delay and show the monitor reaches a stopped state within the specified time
-
-**Reproducibility**
-
-- Commit robot and world models, algorithms, scenarios, tests, and recording scripts
-- Pin simulator, physics step, maps, random seeds, and dependency versions
-- Preserve raw trajectories and sensor data, scenario manifests, and the generated report
-
-**Safety boundary:** Simulation only — Use robot simulation only; do not drive real mechanisms, vehicles, drones, or actuators without qualified supervision.
-
-**Risks, gaps, and boundaries**
-
-Instructions may use the former V-REP name for CoppeliaSim; the prior sequence and paid-platform access may be required.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
-- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

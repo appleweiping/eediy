@@ -2,121 +2,78 @@
 title: "Micro and Nanofabrication (MEMS)"
 description: "EPFL's Micro and Nanofabrication (MEMS) offers an alternative MEMS fabrication path through videos and cleanroom demonstrations, which remain observational under a costly premium-access model."
 page_type: course
+course_id: "course-127"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: fc596abb1be4736c -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: bc9bebf5374d62cb -->
 
-# Micro and Nanofabrication (MEMS)
+# EPFL memsX: Micro and Nanofabrication (MEMS)
 
 ## Course Overview
 
-- **Institution:** EPFL
+- **University:** EPFL
 - **Course code:** memsX
-- **Track:** [Micro/Nanofabrication and MEMS](index.md)
-- **Tier:** A
-- **Role:** Alternative
-- **Level:** Not standardized by provider (use prerequisites)
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The EPFL memsX/edX page lists basic physics and chemistry as prerequisites
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-EPFL's Micro and Nanofabrication (MEMS) offers an alternative MEMS fabrication path through videos and cleanroom demonstrations, which remain observational under a costly premium-access model.
+### Course fit
 
-**Why choose this course**
+EPFL [Micro and Nanofabrication (MEMS)](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems), formerly memsX, is labeled advanced and self-paced on edX, with an estimate of 7 weeks at 3–5 hours per week and prerequisites of basic physics and chemistry. The EPFL [courseware entry](https://courseware.epfl.ch/courses/course-v1%3AEPFL%2Bmems%2B2023/about) names Jürgen Brugger and Martin Gijs, while the [official MICRO-621 coursebook and quizzes](https://edu.epfl.ch/coursebook/en/mooc-micro-and-nanofabrication-mems-MICRO-621-A) describe online fabrication practice through video.
 
-Alternative course. A reliable option that can serve as a main course or strong alternative.
+Its value is close observation of equipment, wafers, and process steps, not tool qualification. Videos do not provide facility safety certification, recipe qualification, contamination control, waste procedures, or supervisor sign-off.
 
-**Before you start**
+### Choose a virtual cantilever and redraw its cross-section every week
 
-- Recommended foundation: Semiconductor Devices
-- Recommended foundation: Physics Foundations
+In Week 1, choose a cantilever, membrane, or interdigitated capacitor and draw its initial cross-section, material stack, critical dimensions, and function. For Week 2 CVD and Week 3 PVD, record deposition mechanism, conformality, thermal budget, stress, selectivity, and contamination. In Week 4, put mask polarity, resist tone, alignment, and lithography bias into a process traveler.
 
-**Verifiable learning outcomes**
+Compare Week 5 dry etching and Week 6 wet etching through anisotropy, selectivity, loading/undercut, damage, and required environment. Week 7 inspection/metrology should state what is measured, when, and whether uncertainty supports a pass decision. Separate direct observation from inference for every video: a plasma glow does not reveal gas chemistry, and a cross-section does not establish etch rate. The [MediaSpace channel](https://mediaspace.epfl.ch/channel/channelid/29004) helps verify public demonstrations, but it is not a recipe.
 
-- Explain the core models in Micro/Nanofabrication and MEMS, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+Split the observation sheet into two columns. On the left, put the incoming
+wafer, equipment class, visible process change, and outgoing cross-section. On
+the right, put undisclosed recipe variables, dominant failure modes, and
+available metrology. If flow, temperature, duration, or chemical concentration
+is not visible, write “unknown” and name the measurement that would distinguish
+two plausible explanations. A paused frame is not a complete recipe.
 
-**Workload and pacing**
+### MEMSx evidence maps observation to a cross-section
 
-**10 weeks at 6 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+Platform quiz prompts, feedback, and completion state depend on the account
+and current presentation; the public page lacks a complete solution package.
+The [Reproducibility guide](../../guides/reproducibility.md) carries
+the generic table. On the MEMSx page, enter only what the
+video can support: incoming layer, visible process change, outgoing
+cross-section, and metrology. Leave a recipe variable as unknown when the
+footage still does not reveal it.
 
-**Safety level**
+### Use device tolerance to explain the seven weeks of process choices
 
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+Build an internally consistent flow for a cantilever, membrane, or
+interdigitated capacitor and carry lithography bias, etch bias, film stress,
+or thickness nonuniformity into stiffness, resonance, or capacitance. The
+video index and cross-sections answer what was observed; the sensitivity curve
+shows where a process bias pushes the device.
+
+The [Laboratory Safety guide](../../guides/safety.md) contains the general
+facility boundary. Without a cleanroom, the MEMSx-specific exercise is video
+observation, cross-section reasoning, sourced parameters, and numerical
+tolerance analysis. The most useful pass changes only one upstream film, mask,
+or bias and follows it into downstream etch, release, metrology, and the device
+observable. If cantilever resonance moves in the wrong direction, revisit the
+process sensitivity or geometry assumption that predicted it.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+- [Course home](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems)
+- [EPFL MICRO-331 / MEMS courseware landing](https://courseware.epfl.ch/courses/course-v1%3AEPFL%2Bmems%2B2023/about)
+- [EPFL MICRO-621 coursebook and quiz outline](https://edu.epfl.ch/coursebook/en/mooc-micro-and-nanofabrication-mems-MICRO-621-A)
+- [Videos · EPFL MEMS public demonstration-video channel](https://mediaspace.epfl.ch/channel/channelid/29004)
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: KLayout, gdsfactory, Python 3, and Jupyter
-- The resource inventory does not list public code coverage; the tools above are only a maintainer-suggested independent check, not a provider requirement
-
-**Hardware**
-
-- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect institution-approved cleanroom, process tools, metrology, and personal protective equipment; do not substitute home purchases
-
-**Cost note**
-
-The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Partial |
-| Labs | Partial |
-| Exams | No public material |
-| Code | No public material |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.edx.org/learn/engineering/ecole-polytechnique-federale-de-lausanne-micro-and-nanofabrication-mems) | Free audit | edX Terms of Service | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Micro and Nanofabrication (MEMS) · EPFL memsX: MEMS Process-Flow and Tolerance Digital Validation**
-
-This is a maintainer-suggested self-study project for Micro and Nanofabrication (MEMS) · EPFL memsX, not an official course assignment. Propose a virtual MEMS or microfabricated structure and process flow for Micro/Nanofabrication and MEMS, then simulate geometry, residual stress, etch bias, and failure margin.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- Device cross section, mask layers, materials, process sequence, design rules, and risk analysis
-- Parameterized geometry or finite-element model and process-tolerance sweep sources
-- Raw displacement, frequency, stress, thermal or fluid results and at least 100 tolerance samples
-- A report defining process window, yield proxy, failure modes, and layout correction
-
-**Verification**
-
-- Keep the nominal key response within 10% of a simplified beam or membrane analytic model
-- Cover minimum feature, maximum etch bias, material extremes, and contact or buckling boundaries
-- After mesh refinement, keep the key metric change below 5% and report energy or force balance
-- Inject residual stress or mask misalignment and locate the first design-rule or performance failure
-
-**Reproducibility**
-
-- Commit cross-section or mask, parametric geometry, solver, sweep, and post-processing sources
-- Pin solver, material library, meshing rules, process parameters, and tolerance seeds
-- Preserve raw field and geometry data, solver logs, and the generated report
-
-**Safety boundary:** Simulation only — Use process planning and simulation only; do not use chemicals, vacuum, plasma, lithography, cleanroom equipment, or physical micromechanical structures.
-
-**Risks, gaps, and boundaries**
-
-The audit path is limited and premium access is about USD 249; cleanroom demonstrations are observational rather than reproducible home laboratories.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

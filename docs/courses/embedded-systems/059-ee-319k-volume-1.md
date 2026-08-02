@@ -2,126 +2,74 @@
 title: "Embedded Systems: Shape the World"
 description: "The University of Texas at Austin 的《Embedded Systems: Shape the World》依托为 EE 319K 编写的开放教材、章节视频与实践活动提供嵌入式系统入门；失效的聚合视频索引已排除、edX 课程已归档，实践时宜优先使用 MSPM0 版本并自行保存实验记录。"
 page_type: course
+course_id: "course-059"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-29"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 81e8b99da9ada593 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0421ba7161498035 -->
 
-# Embedded Systems: Shape the World
+# The University of Texas at Austin EE 319K / Volume 1: Embedded Systems: Shape the World
 
 ## 课程简介
 
-- **机构：** The University of Texas at Austin
+- **所属大学：** The University of Texas at Austin
 - **课程编号：** EE 319K / Volume 1
-- **方向：** [嵌入式系统](index.md)
-- **评级：** S
-- **角色：** 主线
-- **难度：** 提供方未标准化（请按先修判断）
-- **最近复核：** 2026-07-28
+- **官方先修：** UT Austin EE 319K 的正式先修是 EE 306、ECE 306 或 BME 306，且成绩至少为 C-
+- **本站建议背景：** 本站未另设准备条件
+- **访问条件：** 无需注册公开访问
+- **资料状态：** 2026-07-29；公开材料导读
 
-The University of Texas at Austin 的《Embedded Systems: Shape the World》依托为 EE 319K 编写的开放教材、章节视频与实践活动提供嵌入式系统入门；失效的聚合视频索引已排除、edX 课程已归档，实践时宜优先使用 MSPM0 版本并自行保存实验记录。
+### 课程定位
 
-**为什么选择这门课**
+UT Austin EE319K 的 [2022 版 Volume 1](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/) 围绕 TM4C123/Cortex-M4，共 10 章；[Spring 2026 syllabus](https://users.ece.utexas.edu/~valvano/mspm0/EE319KSp26.html) 已改用 LP-MSPM0G3507/Cortex-M0+、当前 CCS 和 9 章 e-book。知识顺序可互证，寄存器地址、startup、工程文件和 pinout 不能混搭。主仓库用 `LP-MSPM0G3507 / Spring 2026` 标明基线，旧教材只作概念参考。
 
-主线课程，资源完整、教学设计清晰，适合作为该方向的优先选择。（审阅记录：S/A）
+先修是 EE306、ECE306 或 BME306，最低 C-。读简单汇编、画有限状态机、解释电压电流与二进制表示，是购买 kit 前值得确认的基础。
 
-**学习前准备**
+### 实验与项目
 
-- 建议先完成方向基础：数字逻辑与计算结构
-- 建议先完成方向基础：编程与工程计算
-- 建议先完成方向基础：电子实验与测量
+[Labs](https://users.ece.utexas.edu/~valvano/mspm0/labs.html) 从 Lab 1–9 递进：前 5 项个人完成，后 4 项结对。Lab 1 建工具链与汇编，Lab 2 做 switch/LED，Lab 3 用 C 和 debug dump，Lab 4 实现 traffic-light FSM，Lab 5 用 5-bit DAC 做 piano；随后是 LCD/fixed-point、ADC 实时位置、serial FIFO 数据采集，最后做 game。
 
-**可验证的学习成果**
+成功视频之外，每项至少留源码、接线图、输入条件、logic trace 或 dump、失败边界和修复。Lab 4 应能从 transition table 重建代码；Lab 7 应保留 ADC 标定曲线；Lab 8 应给出 FIFO 在峰值输入下的丢样结果；Lab 9 则解释 frame timing、输入和声音怎样共享预算。
 
-- 解释嵌入式系统中的核心模型，并说明主要假设与适用边界
-- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
-- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
+### 访问与版本说明
 
-**工时与节奏**
+[Downloads](https://users.ece.utexas.edu/~valvano/mspm0/downloads.htm) 提供软件与部分 starter，[Exams](https://users.ece.utexas.edu/~valvano/mspm0/exams.htm) 可用来检验汇编、FSM、I/O 和实时性，但 Canvas quiz、现场签核、完整 grader 与未公开解答仍缺席。先不看答案做一遍，再用波形、极限输入和第二种实现找错；搜索到的答案无法提供同等反馈。
 
-**13 周，每周 11 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
+[ValvanoWare](https://github.com/kk4ead/ValvanoWare) 是 kk4ead 整理的公开子集，
+README 说明源自 Jonathan Valvano，并保留 BSD-compatible license；其中有 TM4C123 的
+traffic-light、ADC、FIFO 与 SysTick 示例。它适合核对 2022 Volume 1 的旧板接口，与
+2026 MSPM0 starter 分属不同平台。FSM table 或 FIFO contract 可以比较，寄存器代码则需按当前芯片重写。
 
-**安全等级**
+与 Stanford CS107E 相比，本课更适合第一次系统练 MCU I/O、仪器和实时 loop；CS107E 更深入 runtime、linker、allocator 与 interrupt-driven library。两者可串联，不能把不同 ISA 和开发板拼成一个工程。
 
-**低能量实验。** 仅开展隔离、限流、低能量实验；通电前检查额定值、接地、短路风险和紧急断电方式。
+### FSM、标定和实时性，各留一个失败案例
+
+硬件连接以 [TI LP-MSPM0G3507 guide](https://www.ti.com/lit/ug/slau873d/slau873d.pdf) 为准；默认 J101 暴露 GND、5 V、3V3、UART 和 SWD，不代表安全隔离。断电接线、限流供电，speaker 驱动与 LED 电阻按当前 schematic 核算，避开市电、锂电充放电和未知外部电源。
+
+从 Lab 4 的 FSM、Lab 7 的传感标定与 Lab 8/9 的实时集成各挑一个真实失败，再做一个小系统，
+把输入、状态、输出和时序从原始数据串起来。解释版本、波形和一次性能取舍，比“跑过 9 个
+lab”更能看出 MCU I/O、instrument 与 real-time loop 是否真的接通。
 
 ## 课程资源
 
-**软件、硬件与成本**
+- [课程主页](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys)
+- [备用课程入口](https://users.ece.utexas.edu/~valvano/mspm0/ebook)
+- [讲义 · Assembly reference](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/AssemblyReference.htm)
 
-**软件**
+## 资源汇总
 
-- 维护者建议的开源/免费验证路径：GCC 或 LLVM、CMake、GDB、OpenOCD，以及 Renode 或 QEMU
-- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
+<details markdown="1">
+<summary>展开更多官方资源（1 项）</summary>
 
-**硬件**
+**资源**
 
-- 资源清单包含实验覆盖；优先借用或共享课程明确支持的微控制器开发板、USB 调试器、限流低压电源与逻辑分析仪。仅在提供方实验手册明确要求后核对规格、许可与安全条件
+| 资源 | 访问 | 状态 | 复核日期 |
+|---|---|---|---|
+| [TM4C123 Hardware Reference Material](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/Appendix.htm) | 无需注册公开访问 | 官方页已列出 | 2026-07-28 |
 
-**成本说明**
+> 其余条目保留访问状态与复核日期；材料权利归原提供方，实际可用性可能随账号、地区或课程改版变化。
 
-建议软件栈可开源或免费使用；这不是提供方要求或物料清单。开发板、元件、打样和仪器的实际清单与费用以提供方实验手册、地区和当地可得性为准，采购前优先借用、共享或仿真。
-
-**公开资源完整度**
-
-| 资源类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 完整 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 部分 |
-| 代码 | 完整 |
-
-**资源与访问条件**
-
-| 资源 | 访问 | 许可 | 状态 | 复核日期 |
-|---|---|---|---|---|
-| [课程主页](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys) | 无需注册公开访问 | Provider-specific terms; verify before reuse | 官方页已列出 | 2026-07-28 |
-| [备用课程入口](https://users.ece.utexas.edu/~valvano/mspm0/ebook) | 无需注册公开访问 | Provider-specific terms; verify before reuse | 官方页已列出 | 2026-07-28 |
-| [TM4C123 Hardware Reference Material](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/Appendix.htm) | 无需注册公开访问 | Provider-specific terms; verify before reuse | 官方页已列出 | 2026-07-28 |
-| [Assembly reference](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/AssemblyReference.htm) | 无需注册公开访问 | Provider-specific terms; verify before reuse | 官方页已列出 | 2026-07-28 |
-
-> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
-
-## 实践与验收
-
-**实践闭环**
-
-**《Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1》确定性采样与故障恢复节点**
-
-这是维护者为《Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1》建议的自学项目，不是课程官方作业。为嵌入式系统实现一个低压传感节点或其仿真，含定时采样、缓冲、校验通信、看门狗和掉电恢复。
-
-**来源：** 维护者建议项目
-
-**交付物**
-
-- 任务/中断架构、时序预算、缓冲策略、通信帧和故障状态说明
-- 固件、主机解码器、硬件抽象/模拟器与自动测试源文件
-- 至少一小时运行的时间戳、丢包、延迟、复位与功耗估计原始日志
-- 一份报告，量化时序裕量并复盘缓冲溢出或通信损坏
-
-**验收**
-
-- 一小时标称运行中采样周期 99.9 百分位误差低于周期的 5%，且无静默丢包
-- 覆盖计时器回绕、缓冲满、断线、校验失败和重复复位
-- 用主机参考时间戳和独立帧解析器交叉核对计数与延迟
-- 注入丢包和模拟掉电，证明系统在 5 秒内恢复且保留可诊断记录
-
-**复现要求**
-
-- 提交固件、主机工具、模拟器、测试、接线图和 README
-- 固定编译器/SDK/板卡版本、构建标志、时钟配置和测试种子
-- 保存原始串口/网络日志、固件哈希和自动生成报告
-
-**安全边界：** 低能量实验 — 实体节点仅限隔离、限流且不高于 5 V；核对引脚和额定值，断电接线，不连接市电、人体、加热器、电机或电池组。
-
-**风险、缺口与边界**
-
-主入口是为 EE 319K 编写的开放教材与课程材料站，而不是当前课程运行页；章节页仍嵌入视频与活动，但失效的聚合视频索引已排除。edX 课程已经归档、TM4C123 工具链较旧，因此应优先采用 MSPM0 版本。
-
-**完成证据**
-
-- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
-- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
-- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
-- 实验包：原理图/装置设置、校准记录、原始数据、不确定度、安全检查、失败记录与从原始数据重建图表的步骤
+</details>

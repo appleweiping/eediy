@@ -1,0 +1,7 @@
+read_verilog -sv -D SYNTHESIS rtl/sync_fifo.sv
+chparam -set DATA_WIDTH 8 -set DEPTH 16 sync_fifo
+hierarchy -check -top sync_fifo
+synth -top sync_fifo
+check -assert
+tee -o build/synth/stat.txt stat
+write_json build/synth/sync_fifo.json

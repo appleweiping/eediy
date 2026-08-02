@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eediy.dev/schemas/course-guide.schema.json",
+  "title": "EEDIY researched course guides",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "guides"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "guides": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/guide"
+      }
+    }
+  },
+  "$defs": {
+    "guide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "course_id",
+        "editorial_status",
+        "evidence_level",
+        "reviewed_at",
+        "files",
+        "primary_sources",
+        "learner_reviews"
+      ],
+      "properties": {
+        "course_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "editorial_status": {
+          "description": "Reader-facing evidence state used on course and track pages. Catalogue records are authored indexes, not complete course substitutes.",
+          "enum": [
+            "catalogue",
+            "researched",
+            "learner-reviewed"
+          ]
+        },
+        "evidence_level": {
+          "enum": [
+            "R0",
+            "R1",
+            "R2",
+            "R3",
+            "R4"
+          ]
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "resource_index_mode": {
+          "description": "Controls whether the generated page adds a structured resource tail. Use inline-only when the guide's contextual links are the authoritative presentation and a bare tail would erase important scope or archive caveats.",
+          "enum": [
+            "structured",
+            "inline-only"
+          ],
+          "default": "structured"
+        },
+        "files": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "zh",
+            "en"
+          ],
+          "properties": {
+            "zh": {
+              "type": "string",
+              "pattern": "^content/course-guides/.+\\.zh\\.md$"
+            },
+            "en": {
+              "type": "string",
+              "pattern": "^content/course-guides/.+\\.en\\.md$"
+            }
+          }
+        },
+        "primary_sources": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          }
+        },
+        "learner_reviews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/learnerReview"
+          }
+        }
+      }
+    },
+    "bilingualText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "zh",
+        "en"
+      ],
+      "properties": {
+        "zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "learnerReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "author",
+        "url",
+        "evidence_kind",
+        "evidence_level",
+        "relationship",
+        "published_at",
+        "completion_period",
+        "coverage",
+        "environment",
+        "friction"
+      ],
+      "properties": {
+        "author": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "evidence_kind": {
+          "const": "first-person-report"
+        },
+        "evidence_level": {
+          "enum": [
+            "R2",
+            "R3",
+            "R4"
+          ]
+        },
+        "relationship": {
+          "description": "Relationship between the attributed report and the exact course page. Only exact-offering and same-course-other-run may elevate a page to learner-reviewed; a successor-course report remains contextual evidence.",
+          "enum": [
+            "exact-offering",
+            "same-course-other-run",
+            "successor-course"
+          ]
+        },
+        "published_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "completion_period": {
+          "description": "The period stated or bounded by the report; do not invent an exact completion date.",
+          "type": "string",
+          "minLength": 1
+        },
+        "coverage": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "environment": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "friction": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "artifacts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          }
+        }
+      }
+    }
+  }
+}

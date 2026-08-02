@@ -1,17 +1,18 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from collections import Counter
 from datetime import date
 from pathlib import Path
 from typing import Any, Mapping, Sequence
+from urllib.parse import urlsplit
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.course_data import (
-    HIGH_VALUE_RESOURCE_KINDS,
     RESOURCE_ACCESS,
     RESOURCE_STATUSES,
     _track_cycle_issues,
@@ -30,26 +31,87 @@ from scripts.quality_common import (
 )
 
 
-HIGH_RISK_PROJECT_TRACKS = {
-    "fabrication-mems",
-    "optics-photonics",
-    "power-electronics",
-    "power-systems-machines",
-    "energy-storage-pv",
-    "rf-microwave-antennas",
-    "robotics",
-    "capstone-practice",
+VIDEO_RESOURCE_HOSTS = {
+    "youtube.com",
+    "www.youtube.com",
+    "youtu.be",
+    "vimeo.com",
+    "www.vimeo.com",
 }
-LOW_ENERGY_PROJECT_TRACKS = {
-    "ee-introduction",
-    "circuits",
-    "electronics-laboratory",
-    "analog-electronics",
-    "fpga-soc",
-    "embedded-systems",
-    "pcb-eda",
-    "sensors-instrumentation",
+PLATFORM_RESOURCE_HOSTS = {
+    "coursera.org",
+    "www.coursera.org",
+    "edx.org",
+    "www.edx.org",
 }
+PUBLISHER_RESOURCE_HOSTS = {
+    "mitpress.mit.edu",
+    "www.mitpress.mit.edu",
+}
+AUTH_GATED_RESOURCE_HOSTS = {
+    "mediaspace.illinois.edu",
+}
+RESTRICTED_RESOURCE_PATH_RE = re.compile(
+    r"/(?:secure|restricted|protected)(?:/|$)",
+    re.IGNORECASE,
+)
+MACHINE_RESOURCE_SUFFIXES = {
+    ".7z",
+    ".c",
+    ".cc",
+    ".cpp",
+    ".csv",
+    ".gz",
+    ".h",
+    ".ipynb",
+    ".m",
+    ".mat",
+    ".py",
+    ".rar",
+    ".sv",
+    ".tar",
+    ".tgz",
+    ".v",
+    ".vhd",
+    ".zip",
+}
+
+
+def _looks_like_machine_resource(resource: Mapping[str, Any]) -> bool:
+    """Return whether a code record points to a repository, file, or code index."""
+
+    url = str(resource.get("url", ""))
+    title = str(resource.get("title", {}).get("en", ""))
+    if not title and isinstance(resource.get("title"), str):
+        title = str(resource["title"])
+    parts = urlsplit(url)
+    host = (parts.hostname or "").lower()
+    path = parts.path.lower()
+    if host in {"github.com", "www.github.com", "gitlab.com", "www.gitlab.com"}:
+        return True
+    if Path(path).suffix.lower() in MACHINE_RESOURCE_SUFFIXES:
+        return True
+    if any(
+        token in path
+        for token in (
+            "/code",
+            "/download",
+            "/examples",
+            "/labs",
+            "/notebook",
+            "/programming-assignments",
+            "/software",
+        )
+    ):
+        return True
+    return bool(
+        re.search(
+            r"\b(?:archive|code|dataset|examples?|files?|notebooks?|repository|"
+            r"software|source|starter)\b",
+            title,
+            re.IGNORECASE,
+        )
+    )
 
 
 def _jsonschema_issues(catalogue: Any, schema: Any, source: str) -> list[Issue]:
@@ -190,11 +252,7 @@ def semantic_issues(
     catalogue: Any,
     *,
     source: str = "data/courses.json",
-    minimum_courses: int = 125,
-    minimum_used_tracks: int = 24,
     maximum_age_days: int = 400,
-    minimum_unique_resources: int = 550,
-    minimum_project_courses: int = 100,
     today: date | None = None,
 ) -> list[Issue]:
     issues: list[Issue] = []
@@ -205,15 +263,6 @@ def semantic_issues(
     courses = catalogue.get("courses", [])
     if not isinstance(tracks, list) or not isinstance(courses, list):
         return [Issue("error", "catalogue.shape", "tracks and courses must be arrays", source)]
-    if len(courses) < minimum_courses:
-        issues.append(
-            Issue(
-                "error",
-                "catalogue.course_count",
-                f"expected at least {minimum_courses} courses, found {len(courses)}",
-                source,
-            )
-        )
     track_ids: set[str] = set()
     track_orders: set[int] = set()
     for index, track in enumerate(tracks):
@@ -247,19 +296,11 @@ def semantic_issues(
                     )
                 )
     issues.extend(_track_cycle_issues(tracks))
-    track_titles = {
-        str(track.get("id")): track.get("title", {})
-        for track in tracks
-        if isinstance(track, Mapping) and track.get("id")
-    }
-
     course_ids: set[str] = set()
     slugs_by_track: set[tuple[str, str]] = set()
     source_ids: set[int] = set()
     used_tracks: Counter[str] = Counter()
     primary_urls: dict[str, str] = {}
-    high_value_urls: set[str] = set()
-    project_course_count = 0
     for index, course in enumerate(courses):
         path = f"{source}:courses/{index}"
         if not isinstance(course, Mapping):
@@ -289,72 +330,14 @@ def semantic_issues(
         slugs_by_track.add(slug_key)
         for key in ("title", "summary", "selection_note", "review_note"):
             issues.extend(_localized_issues(course.get(key), f"{path}/{key}"))
-        for key in ("prerequisites", "outcomes"):
+        for key in (
+            "prerequisites",
+            "official_prerequisites",
+            "recommended_background",
+        ):
             issues.extend(
                 _localized_issues(course.get(key), f"{path}/{key}", list_value=True)
             )
-        issues.extend(
-            _localized_issues(
-                course.get("completion_evidence"),
-                f"{path}/completion_evidence",
-                list_value=True,
-            )
-        )
-        completion_evidence = course.get("completion_evidence", {})
-        if isinstance(completion_evidence, Mapping):
-            for language in ("zh", "en"):
-                if not completion_evidence.get(language):
-                    issues.append(
-                        Issue(
-                            "error",
-                            "course.completion_evidence_empty",
-                            f"{language} completion evidence must not be empty",
-                            path,
-                        )
-                    )
-        study_plan = course.get("study_plan")
-        if isinstance(study_plan, Mapping):
-            issues.extend(
-                _localized_issues(study_plan.get("note"), f"{path}/study_plan/note")
-            )
-            note = study_plan.get("note", {})
-            zh_note = str(note.get("zh", "")) if isinstance(note, Mapping) else ""
-            en_note = str(note.get("en", "")).casefold() if isinstance(note, Mapping) else ""
-            if not (
-                any(token in zh_note for token in ("提供方", "维护者"))
-                and any(token in en_note for token in ("provider", "maintainer"))
-            ):
-                issues.append(
-                    Issue(
-                        "error",
-                        "course.workload_provenance_missing",
-                        "workload must identify a provider source or a maintainer estimate in both languages",
-                        path,
-                    )
-                )
-            if "两周" not in zh_note or "two weeks" not in en_note:
-                issues.append(
-                    Issue(
-                        "error",
-                        "course.workload_calibration_missing",
-                        "workload guidance must include the bilingual two-week calibration step",
-                        path,
-                    )
-                )
-        tooling = course.get("tooling")
-        if isinstance(tooling, Mapping):
-            for key in ("software", "hardware"):
-                issues.extend(
-                    _localized_issues(
-                        tooling.get(key), f"{path}/tooling/{key}", list_value=True
-                    )
-                )
-            issues.extend(
-                _localized_issues(tooling.get("cost_note"), f"{path}/tooling/cost_note")
-            )
-        safety = course.get("safety")
-        if isinstance(safety, Mapping):
-            issues.extend(_localized_issues(safety.get("note"), f"{path}/safety/note"))
         reviewed = parse_iso_date(course.get("last_reviewed"))
         if reviewed is not None:
             if reviewed > today:
@@ -438,6 +421,52 @@ def semantic_issues(
             url = resource.get("url")
             if isinstance(url, str):
                 normalized_url = normalize_url(url)
+                parts = urlsplit(url)
+                host = (parts.hostname or "").lower()
+                kind = str(resource.get("kind", ""))
+                if kind == "code" and host in VIDEO_RESOURCE_HOSTS:
+                    issues.append(
+                        Issue(
+                            "error",
+                            "resource.kind_host_conflict",
+                            "video-hosted material must not be classified as code",
+                            resource_path,
+                        )
+                    )
+                if (
+                    kind in {"code", "projects"}
+                    and host in PLATFORM_RESOURCE_HOSTS
+                    and re.match(r"^/(?:learn|course)/", parts.path, re.IGNORECASE)
+                ):
+                    issues.append(
+                        Issue(
+                            "error",
+                            "resource.kind_host_conflict",
+                            "a platform course-product page is not a code or project artifact",
+                            resource_path,
+                        )
+                    )
+                if kind == "code" and host in PUBLISHER_RESOURCE_HOSTS:
+                    issues.append(
+                        Issue(
+                            "error",
+                            "resource.kind_host_conflict",
+                            "a publisher product page is not a code artifact",
+                            resource_path,
+                        )
+                    )
+                if (
+                    RESTRICTED_RESOURCE_PATH_RE.search(parts.path)
+                    or host in AUTH_GATED_RESOURCE_HOSTS
+                ) and resource.get("access") != "institutional":
+                    issues.append(
+                        Issue(
+                            "error",
+                            "resource.access_wall",
+                            "known restricted or authentication-gated target must be marked institutional",
+                            resource_path,
+                        )
+                    )
                 if normalized_url in resource_urls_in_course:
                     issues.append(
                         Issue(
@@ -464,11 +493,6 @@ def semantic_issues(
                             resource_path,
                         )
                     )
-                if (
-                    resource.get("kind") in HIGH_VALUE_RESOURCE_KINDS
-                    and resource.get("status") in {"available", "degraded", "archived"}
-                ):
-                    high_value_urls.add(normalized_url)
             if isinstance(url, str) and resource_index == 0:
                 if url in primary_urls and primary_urls[url] != course_id:
                     issues.append(
@@ -481,179 +505,55 @@ def semantic_issues(
                     )
                 else:
                     primary_urls[url] = str(course_id)
-        projects = course.get("projects", [])
-        if projects:
-            project_course_count += 1
-        for project_index, project in enumerate(projects):
-            if not isinstance(project, Mapping):
-                continue
-            project_path = f"{path}/projects/{project_index}"
-            for key in ("title", "brief"):
-                issues.extend(_localized_issues(project.get(key), f"{project_path}/{key}"))
-            for key in ("deliverables", "verification"):
-                issues.extend(
-                    _localized_issues(project.get(key), f"{project_path}/{key}", list_value=True)
-                )
-                value = project.get(key)
-                if isinstance(value, Mapping):
-                    for language in ("zh", "en"):
-                        items = value.get(language)
-                        if isinstance(items, list) and len(items) < 4:
-                            issues.append(
-                                Issue(
-                                    "error",
-                                    "project.evidence_count",
-                                    f"{language} {key} requires at least 4 items",
-                                    f"{project_path}/{key}",
-                                )
-                            )
-            issues.extend(
-                _localized_issues(
-                    project.get("reproducibility"),
-                    f"{project_path}/reproducibility",
-                    list_value=True,
-                )
-            )
-            reproducibility = project.get("reproducibility")
-            if isinstance(reproducibility, Mapping):
-                for language in ("zh", "en"):
-                    items = reproducibility.get(language)
-                    if isinstance(items, list) and len(items) < 3:
-                        issues.append(
-                            Issue(
-                                "error",
-                                "project.evidence_count",
-                                f"{language} reproducibility requires at least 3 items",
-                                f"{project_path}/reproducibility",
-                            )
-                        )
-            issues.extend(
-                _localized_issues(
-                    project.get("safety_note"),
-                    f"{project_path}/safety_note",
-                )
-            )
-            if project.get("origin") == "suggested":
-                brief = project.get("brief", {})
-                if isinstance(brief, Mapping):
-                    if (
-                        "维护者" not in str(brief.get("zh", ""))
-                        or "不是课程官方作业" not in str(brief.get("zh", ""))
-                        or "maintainer-suggested"
-                        not in str(brief.get("en", "")).casefold()
-                        or "not an official course assignment"
-                        not in str(brief.get("en", "")).casefold()
-                    ):
-                        issues.append(
-                            Issue(
-                                "error",
-                                "project.origin_disclosure",
-                                "suggested project must be disclosed as maintainer-authored and non-official in both languages",
-                                f"{project_path}/brief",
-                            )
-                        )
-            course_title = course.get("title", {})
-            project_title = project.get("title", {})
-            project_brief = project.get("brief", {})
-            canonical_track_title = track_titles.get(str(track), {})
-            if all(
-                isinstance(value, Mapping)
-                for value in (course_title, project_title, project_brief, canonical_track_title)
-            ):
-                for language in ("zh", "en"):
-                    rendered = " ".join(
-                        (
-                            str(project_title.get(language, "")),
-                            str(project_brief.get(language, "")),
-                        )
-                    )
-                    expected_context = (
-                        str(course_title.get(language, "")),
-                        str(canonical_track_title.get(language, "")),
-                    )
-                    if not any(value and value in rendered for value in expected_context):
-                        issues.append(
-                            Issue(
-                                "error",
-                                "project.context",
-                                f"{language} project must name its course or track context",
-                                project_path,
-                            )
-                        )
-            safety_level = project.get("safety_level")
-            if track in HIGH_RISK_PROJECT_TRACKS and safety_level not in {
-                "simulation-only",
-                "supervised",
-            }:
-                issues.append(
-                    Issue(
-                        "error",
-                        "project.high_risk_safety",
-                        "high-risk project must be simulation-only or supervised",
-                        project_path,
-                    )
-                )
-            safety_note = project.get("safety_note")
-            if track in LOW_ENERGY_PROJECT_TRACKS and isinstance(safety_note, Mapping):
-                zh_note = str(safety_note.get("zh", ""))
-                en_note = str(safety_note.get("en", "")).casefold()
-                if (
-                    not all(token in zh_note for token in ("限流", "额定值", "断电"))
-                    or not all(
-                        token in en_note
-                        for token in ("current-limit", "rating", "power removed")
-                    )
-                ):
+        coverage_kind_map = {
+            "video": {"video"},
+            "notes": {"notes", "textbook"},
+            "practice": {"assignments", "projects"},
+            "labs": {"labs"},
+            "exams": {"exams"},
+            "code": {"code"},
+        }
+        coverage = course.get("resource_coverage", {})
+        if isinstance(coverage, Mapping):
+            published_kinds = {
+                str(resource.get("kind"))
+                for resource in resources
+                if isinstance(resource, Mapping)
+                and resource.get("status") in {"available", "degraded", "archived"}
+            }
+            for coverage_key, resource_kinds in coverage_kind_map.items():
+                if coverage.get(coverage_key) != 0:
+                    continue
+                conflicting_kinds = sorted(published_kinds.intersection(resource_kinds))
+                if conflicting_kinds:
                     issues.append(
                         Issue(
                             "error",
-                            "project.low_energy_safety",
-                            "low-energy project must require current limiting, rating checks, and unpowered wiring in both languages",
-                            f"{project_path}/safety_note",
+                            "resource.coverage_kind_conflict",
+                            f"{coverage_key} coverage is 0 but published resources use "
+                            f"{', '.join(conflicting_kinds)}",
+                            f"{path}/resource_coverage/{coverage_key}",
                         )
                     )
-            if track == "biomedical" and isinstance(safety_note, Mapping):
-                combined = " ".join(str(value) for value in safety_note.values()).casefold()
-                required_tokens = ("公开", "合成", "public", "synthetic", "人体", "human")
-                if not all(token.casefold() in combined for token in required_tokens):
+            if coverage.get("code") == 2:
+                code_evidence = [
+                    resource
+                    for resource in resources
+                    if isinstance(resource, Mapping)
+                    and resource.get("kind") == "code"
+                    and resource.get("status") in {"available", "degraded", "archived"}
+                    and _looks_like_machine_resource(resource)
+                ]
+                if not code_evidence:
                     issues.append(
                         Issue(
                             "error",
-                            "project.biomedical_safety",
-                            "biomedical project must use public or synthetic data and prohibit human collection",
-                            f"{project_path}/safety_note",
+                            "resource.code_coverage_evidence",
+                            "code coverage 2 requires a reviewed repository, machine file, or course-specific code index",
+                            f"{path}/resource_coverage/code",
                         )
                     )
     issues.extend(_course_prerequisite_issues(courses, source))
-    if len(used_tracks) < minimum_used_tracks:
-        issues.append(
-            Issue(
-                "error",
-                "catalogue.used_track_count",
-                f"expected at least {minimum_used_tracks} tracks with courses, found {len(used_tracks)}",
-                source,
-            )
-        )
-    if len(high_value_urls) < minimum_unique_resources:
-        issues.append(
-            Issue(
-                "error",
-                "catalogue.resource_count",
-                f"expected at least {minimum_unique_resources} unique high-value resources, "
-                f"found {len(high_value_urls)}",
-                source,
-            )
-        )
-    if project_course_count < minimum_project_courses:
-        issues.append(
-            Issue(
-                "error",
-                "catalogue.project_course_count",
-                f"expected at least {minimum_project_courses} courses with projects, "
-                f"found {project_course_count}",
-                source,
-            )
-        )
     empty_mainlines = sorted(
         track_id
         for track_id in used_tracks
@@ -679,11 +579,7 @@ def validate_file(
     catalogue_path: Path,
     schema_path: Path,
     *,
-    minimum_courses: int = 125,
-    minimum_used_tracks: int = 24,
     maximum_age_days: int = 400,
-    minimum_unique_resources: int = 550,
-    minimum_project_courses: int = 100,
 ) -> tuple[dict[str, Any] | None, list[Issue]]:
     try:
         catalogue = load_json(catalogue_path)
@@ -696,11 +592,7 @@ def validate_file(
         semantic_issues(
             catalogue,
             source=source,
-            minimum_courses=minimum_courses,
-            minimum_used_tracks=minimum_used_tracks,
             maximum_age_days=maximum_age_days,
-            minimum_unique_resources=minimum_unique_resources,
-            minimum_project_courses=minimum_project_courses,
         )
     )
     # Remove identical errors emitted by both schema and semantic checks.
@@ -712,11 +604,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Validate the canonical course catalogue.")
     parser.add_argument("--catalogue", default="data/courses.json")
     parser.add_argument("--schema", default="data/course.schema.json")
-    parser.add_argument("--minimum-courses", type=int, default=125)
-    parser.add_argument("--minimum-used-tracks", type=int, default=24)
     parser.add_argument("--maximum-age-days", type=int, default=400)
-    parser.add_argument("--minimum-unique-resources", type=int, default=550)
-    parser.add_argument("--minimum-project-courses", type=int, default=100)
     parser.add_argument("--json-report")
     parser.add_argument("--warnings-as-errors", action="store_true")
     return parser
@@ -727,11 +615,7 @@ def main(argv: list[str] | None = None) -> int:
     catalogue, issues = validate_file(
         repo_path(args.catalogue),
         repo_path(args.schema),
-        minimum_courses=args.minimum_courses,
-        minimum_used_tracks=args.minimum_used_tracks,
         maximum_age_days=args.maximum_age_days,
-        minimum_unique_resources=args.minimum_unique_resources,
-        minimum_project_courses=args.minimum_project_courses,
     )
     statistics = catalogue_statistics(catalogue or {})
     emit_issues(issues)

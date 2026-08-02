@@ -1,106 +1,131 @@
 ---
-title: Textbooks and Long-Term Reading
-description: Build an executable method for selecting, reading, practicing from, and versioning textbooks during EE self-study.
+title: Recommended EE Books
+description: A curated shelf for electrical engineering, with intended level, practical use, and legitimate access routes.
+page_type: guide
+comments: true
+last_reviewed: 2026-08-02
 ---
 
-[中文](../books.md)
 
-# Textbooks and Long-Term Reading
+# Recommended EE Books
 
-A textbook can provide definitions, derivations, examples, and a durable reference, but it cannot create a complete learning loop by itself. Start with the [course catalogue](courses/index.md) to check goals, prerequisites, public resources, and feedback conditions. Then decide which primary text and chapters you need and how understanding will be verified. This page does not rank books by reputation; it provides a reusable selection and reading system.
+This is not a shelf to buy in one pass. Circuits, fields, devices, signals, and control demand different kinds of intuition, and one book rarely teaches theory, design, and laboratory work equally well. Each recommendation below says what the resource does especially well, when it becomes useful, and where to obtain it legitimately. Full-text links point only to material released by the author, publisher, or institution; commercial books link to their official pages rather than unofficial copies.
 
-## The role of a textbook in a self-study system
+Do not start five books in parallel. Pick one primary text, pair it with a [public course](courses/index.md) that has exercises or laboratories, and consult a second book only for a named problem. A derivation should eventually meet a calculation, simulation, or measurement; otherwise, recognition can easily masquerade as understanding.
 
-A robust set of learning materials usually contains four roles:
+## Circuit foundations and the electronics bench
 
-| Role | Problem it solves | Operating boundary |
-| --- | --- | --- |
-| Primary text | Establishes one notation, concept order, and derivation spine | Keep one per stage to avoid constant switching between symbol systems |
-| Reference text | Provides a second explanation or a more complete proof | Consult for a defined question instead of restarting from page one |
-| Problem source | Exposes gaps in understanding and trains calculation, modeling, and argument | Pair with solutions, numerical results, or structured peer review |
-| Engineering handbook | Supports lookup of devices, formulas, units, approximations, and design ranges | Use for verification, not as a replacement for concepts and derivations |
+- **[Lessons in Electric Circuits / All About Circuits](https://www.allaboutcircuits.com/textbook/)** (open online text)
+  The collection runs from DC and AC through semiconductors, digital circuits, instrumentation, and safety. It is searchable and rich in worked explanations, which makes it a good first repair manual for terminology or a concept to check before a build. Its mathematical depth is limited; after nodal analysis, transients, and frequency response, move to a full circuit-analysis course.
 
-Course pages separate notes, textbooks, exercises, and exams by resource type. Before selecting a text, read the page sections on public-resource completeness, risks and gaps, and the latest review date.
+- **[The Art of Electronics, 3rd ed.](https://www.book2look.com/book/9780521809269)** (Cambridge publisher preview; print edition is paid)
+  This book is interested in what real components do when connected. Device choice, noise, precision circuits, interfaces, and practical failure modes are its strengths. It is not the gentlest first circuit-theory text: learn linear circuits first, then use it by topic while designing or debugging rather than trying to memorize it cover to cover.
 
-## Five gates for selecting a textbook
+- **[Learning the Art of Electronics, 2nd ed.](https://www.cambridge.org/core/books/learning-the-art-of-electronics/9B9FA2FE6B1802BD4627B1F9825E8F0A)** (publisher page; paid)
+  Choose the companion laboratory book when the missing ingredient is experimental practice. The new edition spans analog work, FPGA exercises, and an ARM microcontroller. Check the required instruments, parts, and safety conditions before starting; a laboratory sequence cannot be reduced to a paper exercise when the necessary bench is unavailable.
 
-1. **Goal fit:** the table of contents must support the observable capability for this stage, not merely share a subject label.
-2. **Affordable prerequisites:** sample three derivation-heavy pages and verify that most notation, mathematics, and physical background are within reach.
-3. **Feedback for practice:** require at least one reliable feedback path, such as solutions, tests, simulation, measurement, or structured review.
-4. **Traceable edition:** record the edition, chapter numbering, and errata source; collaborators should use the same edition.
-5. **Sustainable access:** confirm licensing, cost, region, format, and accessibility before committing to a long plan.
+- **[Foundations of Analog and Digital Electronic Circuits](https://shop.elsevier.com/books/foundations-of-analog-and-digital-electronic-circuits/agarwal/978-0-08-050681-4)** (publisher page; paid, with some official companion material open)
+  Agarwal and Lang move from the circuit abstraction, resistive networks, and network theorems through MOSFETs, small-signal models, transients, sinusoidal steady state, and operational amplifiers. The result is a complete undergraduate circuit-analysis spine and the text used by MIT 6.002. Its special strength is a shared abstraction language for analog and digital work. A learner seeking many traditional network-theorem exercises or three-phase circuits still needs the corresponding course. Pair each chapter with the 6.002 problems rather than reading concepts alone.
 
-If a candidate fails two of the first three gates, replace the primary text or repair prerequisites before adding more reading hours.
+## Instruments, probing, and measurement uncertainty
 
-## Build a shelf around current tasks
+- **[XYZs of Oscilloscopes Primer](https://www.tek.com/en/documents/primer/xyzs-oscilloscopes-primer)** (open manufacturer primer)
+  Waveforms, oscilloscope architectures, bandwidth, sampling, triggering, and basic measurements are introduced for a first encounter with the instrument. This is a Tektronix primer, not an independent metrology text; product-selection claims and features must be checked against the manual for the instrument actually used. After reading, you should be able to distinguish bandwidth from rise time and sample rate from record length, then choose a vertical range and timebase in advance for a known low-voltage signal.
 
-Do not buy an entire professional library at once. Make every selected resource answer a current task:
+- **[ABCs of Probes Primer](https://www.tek.com/en/documents/whitepaper/abcs-probes-primer)** (open manufacturer probing guide)
+  A probe is not a transparent wire. This guide places input resistance, tip capacitance, bandwidth, rise time, ground-lead inductance, differential and current probes, and safety ratings in one measurement chain. Read it beside a low-voltage, isolated RC or pulse source with known parameters: predict loading first, then compare ground lengths or attenuation settings. High-voltage, floating, or power measurements still require the proper equipment category, ratings, and qualified supervision.
 
-| Current task | Preferred entry | Reading emphasis |
-| --- | --- | --- |
-| Repair calculus, linear algebra, and differential equations | [Engineering Mathematics](courses/mathematics/index.md) | Definitions, representative derivations, exercises, and dimensional checks |
-| Build circuit models | [Circuits](courses/circuits/index.md) | Modeling assumptions, sign conventions, limiting cases, and measurable quantities |
-| Learn signals, systems, and transforms | [Signals and Systems](courses/signals-systems/index.md) | Time-frequency correspondence, stability, and physical interpretation |
-| Enter probability and random processes | [Probability, Statistics, and Random Processes](courses/probability-statistics/index.md) | Conditions, distributions, expectation, estimation, and uncertainty |
-| Work with fields, waves, and boundaries | [Electromagnetics](courses/electromagnetics/index.md) | Coordinates, boundary conditions, approximation ranges, and energy relations |
-| Find tools and recording practices for a project | [Practice Guides](guides/index.md) | Reproducible environments, raw data, verification steps, and safety boundaries |
+- **[JCGM 100:2008 — Guide to the Expression of Uncertainty in Measurement](https://www.bipm.org/en/committees/jc/jcgm/publications)** (official open BIPM/JCGM guide)
+  The GUM is not an instrument manual. It is the long-lived reference for asking what a reported measurement actually supports: defining the measurand, identifying inputs, treating standard uncertainties and correlation, combining uncertainty, and reporting the result. A first pass can skip the deeper appendices. Build an uncertainty model for one voltage or cutoff-frequency measurement and distinguish resolution, accuracy, repeatability, and calibration information. Do not replace the actual instrument manual or reduce the method to adding every error bound.
 
-Open the track page first, then compare mainline, alternative, and supplementary courses. These roles describe how to combine materials; they do not imply that every resource should be completed.
+## Mathematics, probability, and optimization
 
-## How to read at different stages
+- **[Introduction to Applied Linear Algebra: Vectors, Matrices, and Least Squares](https://stanford.edu/~boyd/vmls/)** (authorized open full text)
+  Linear algebra is organized around least squares, fitting, and engineering applications, with videos, extra exercises, and Python/Julia companions. It is a strong way to learn what matrices accomplish before signals, control, or estimation. A proof-heavy course is still needed later for deeper spectral theory.
 
-### Foundation stage
+- **[Introduction to Probability, Statistics, and Random Processes](https://www.probabilitycourse.com/)** (open full text)
+  Undergraduate probability, statistics, random processes, and random signals share one notation, supported by short videos, calculators, and a Python simulation chapter. It makes a coherent runway into communications, noise, and estimation. Do not jump from elementary counting straight to random processes; conditional probability and multivariate random variables are load-bearing prerequisites.
 
-Let examples and short exercises drive reading. After each definition, write one example, one counterexample, and a unit-based or geometric interpretation. After each section, solve a small set of problems that exposes different error types. The target is fluency with notation and basic models, not a large proof count.
+- **[Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/)** (authorized open full text)
+  This belongs after multivariable calculus and linear algebra, when control, signal recovery, communication resource allocation, or circuit optimization creates a real need. Study convex sets, convex functions, duality, and KKT conditions, then reproduce one small application. It is neither a zero-background math introduction nor a catalogue of solvers to invoke blindly.
 
-### Core stage
+## Signals, DSP, and feedback
 
-Place each chapter inside a real system. Connect differential equations to RC, RLC, or mechanical analogies; connect linear algebra to state space, least squares, or network equations. Use [Numerical Computing and Model Verification](guides/numerical-computing.md) to check hand derivations with computation without replacing the derivation itself.
+- **[Signals and Systems, 2nd ed.](https://www.pearson.com/en-gb/subject-catalog/p/signals-and-systems-pearson-new-international-edition/P200000005151)** (publisher page; paid)
+  Oppenheim, Willsky, and Nawab develop continuous- and discrete-time systems in parallel, from LTI models, convolution, and Fourier representations through sampling, Laplace and Z transforms, and feedback. It is a standard undergraduate spine for the shared language needed by communications, control, and DSP, with more mathematical demand than the DSP Guide below. Do not memorize transform tables in isolation: represent each system in time, frequency, and pole-zero form, then use problems to check causality, stability, and the region of convergence.
 
-### Direction-depth stage
+- **[The Scientist and Engineer's Guide to Digital Signal Processing](https://www.dspguide.com/)** (author-released full text)
+  Sampling, convolution, spectra, digital filters, and the FFT are explained with abundant figures and engineering language. Use it to build intuition or locate a technique quickly during a project. The book deliberately lowers the mathematical barrier; communications, estimation, or research-level DSP still requires rigorous work with complex exponentials, the DTFT, the Z-transform, and random signals.
 
-Switch to question-driven reading. State the research or design problem first, then locate the required chapters, assumptions, and theorems. Maintain a notation sheet and a dependency graph showing the conditions behind each conclusion. When books use conflicting symbols, retain one project notation and document the conversions.
+- **[Feedback Systems: An Introduction for Scientists and Engineers, 2nd ed.](https://fbswiki.org/wiki/index.php/Feedback_Systems:_An_Introduction_for_Scientists_and_Engineers)** (publisher-authorized open full text)
+  Åström and Murray connect modeling, time response, frequency-domain design, robustness, and system architecture. The site also carries chapter PDFs, examples, FAQs, errata, and Python figure sources. Complete one low-order model–analysis–controller–simulation loop before the robustness chapters; applying a memorized PID recipe is not yet feedback design.
 
-### Project stage
+## Digital logic and computer architecture
 
-The textbook becomes a reference. The project specification, data, and test results form the mainline; use the text to explain anomalies, choose a model, and verify its range. Follow [Project Practice](guides/projects.md) to retain design decisions, failed attempts, and acceptance evidence.
+- **[The Elements of Computing Systems / Nand2Tetris](https://www.nand2tetris.org/)** (book paid; courses, software, and projects open)
+  A continuous project chain starts with NAND, HDL, and a CPU, then climbs to an assembler, compiler, and operating system. Its special value is showing how abstraction layers meet. It does not go deeply into FPGA timing closure, clock-domain crossings, bus protocols, or physical implementation; after the hardware half, continue with a [digital logic](courses/digital-logic/index.md) or [FPGA/SoC](courses/fpga-soc/index.md) course.
 
-## A closed loop for one chapter
+- **[Digital Design and Computer Architecture: RISC-V Edition](https://shop.elsevier.com/books/digital-design-and-computer-architecture-risc-v-edition/harris/978-0-12-820064-3)** (publisher page; paid, some companion resources open)
+  Combinational and sequential logic, SystemVerilog/VHDL, the RISC-V ISA, single-cycle, multicycle, and pipelined processors, and memory hierarchy sit on one path. It suits a reader who can already program and wants to move from RTL to a processor. The companion site includes HDL, labs, and slides; run the simulations and inspect waveforms instead of treating the code as illustrations.
 
-Complete a chapter with this sequence:
+## Embedded systems
 
-1. State in one sentence the engineering problem the chapter addresses.
-2. Scan headings, figures, and examples; list prior knowledge and gaps.
-3. Read the central definitions and derivations, marking assumptions, units, and boundary conditions.
-4. Close the material and reconstruct one key derivation or concept map.
-5. Solve at least one conceptual, one computational, and one transfer problem.
-6. Correct the work using a solution, simulation, measurement, or review, and classify each error.
-7. Write a short note explaining when the chapter’s model must not be used.
+- **[Making Embedded Systems, 2nd ed.](https://www.oreilly.com/library/view/making-embedded-systems/9781098151539/)** (publisher page; paid or subscription)
+  The focus is not one board's register map but architecture, state machines, interrupts, concurrency, error handling, debugging, and power under resource constraints. It works best after you can write C and bring up a board. Refactor a small polling project into something observable and testable while reading; collecting pattern names alone misses the point.
 
-Mark a chapter complete only when you can reconstruct, apply, and correct it. Page counts and highlighting are not completion evidence.
+## Semiconductor devices and integrated circuits
 
-## Exercises and solutions
+- **[Fundamentals of Microelectronics, 3rd ed.](https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=12028&itemId=1119694396)** (official publisher companion site; text paid)
+  Razavi moves from semiconductor foundations, diodes, and bipolar and MOS devices into single-stage and differential amplifiers, frequency response, feedback, oscillators, and power amplifiers. It supplies the undergraduate bridge between knowing devices and analyzing complete microelectronic circuits. The official companion site lists equations, figures, laboratories, videos, and selected problem resources by chapter; access must still be checked item by item. Do not start it in parallel with the advanced CMOS-design text below. First close the analysis loop here with problems and SPICE checks.
 
-When solutions exist, complete the work independently and retain the original attempt before annotating the reason for each correction. When solutions are absent, use three levels of feedback:
+- **[Modern Semiconductor Devices for Integrated Circuits](https://www.chu.berkeley.edu/modern-semiconductor-devices-for-integrated-circuits-chenming-calvin-hu-2010/)** (author page; chapters open)
+  Chenming Hu gives a compact path through junctions, the MOS capacitor, MOSFETs, scaling, and device limits. It is a good entrance to microelectronics after basic electromagnetics and solid-state physics. Do not only memorize band diagrams: connect each device equation and operating region to an observable I–V or C–V curve.
 
-1. Check dimensions, signs, limiting cases, and order of magnitude.
-2. Cross-check with another method, such as analytic versus numerical results or node equations versus power balance.
-3. Ask a peer or instructor to review the argument, assumptions, and communication.
+- **[Design of Analog CMOS Integrated Circuits, 2nd ed.](https://www.mheducation.com/highered/product/design-of-analog-cmos-integrated-circuits-razavi.html)** (publisher page; paid)
+  Razavi moves from MOS intuition through single-stage amplifiers, differential pairs, mirrors, frequency response, noise, feedback, op-amps, and PLLs. It is a primary analog-IC text after introductory microelectronic circuits. Give every chapter a working SPICE testbench and check bias, swing, gain-bandwidth, and process corners; equations alone do not create design judgment.
 
-An error log should contain only actionable information: error class, trigger, correct checking method, and next review date. [Getting Started](getting-started.md) provides a concrete four-week cadence and feedback loop.
+- **[CMOS VLSI Design: A Circuits and Systems Perspective, 4th ed.](https://www.pearson.com/en-us/subject-catalog/p/cmos-vlsi-design-a-circuits-and-systems-perspective/P200000003427/9780137981076)** (publisher page; paid)
+  CMOS gates lead into delay, power, interconnect, datapaths, memory arrays, and systems on chip. It is a good second step in digital VLSI, but not a replacement for HDL and synthesis work. Pair logical effort, delay estimates, or power models with results from an actual synthesis or layout flow.
 
-## Digital, print, and licensing choices
+## Communications and information theory
 
-Choose a format around the real workflow. Digital editions support search, citation, and portability; print supports extended derivation and side-by-side reading. In either format, preserve accurate bibliographic and edition information, do not upload restricted material, and do not treat personal purchase access as permission to share. Follow [Literature Search and Evidence Evaluation](guides/literature-research.md) and the [Contribution Guide](contributing.md) when citing, organizing, or contributing resources.
+- **[Fundamentals of Wireless Communication](https://web.stanford.edu/~dntse/wireless_book.html)** (publisher-permitted author version)
+  Tse and Viswanath use channels, detection, capacity, multiuser communication, and MIMO to connect probability, information theory, and system design. This is a graduate-level wireless text, not a first communications course. Stabilize random variables, linear systems, baseband representation, and AWGN detection before fading and MIMO.
 
-## Internal reading entries
+- **[Information Theory, Inference, and Learning Algorithms](https://www.inference.org.uk/mackay/itila/)** (author-released full text)
+  MacKay places coding, Bayesian inference, and learning algorithms in one unusually broad and lively frame. It is useful once probability is secure and the connection among information, inference, and coding is the question. For a standard communications route, follow entropy, typicality, channel capacity, and coding theorems first; the neural-network and statistical-physics branches can wait.
 
-- Start from [Engineering Mathematics](courses/mathematics/index.md) and inspect the verified notes, exercises, and textbook records on each course page.
-- Use [Physics Foundations](courses/physics/index.md) to repair mechanics, electromagnetism, and wave background.
-- Consult the [Global Roadmap](roadmap.md) to decide whether you need foundation literacy or direction depth.
-- Use [EE Mathematics Foundations](math-foundations.md) when the common mathematical core is unstable, then move to [Advanced Mathematics for EE](math-advanced.md).
-- Record calculations, plots, parameters, and corrections with [Data and Laboratory Records](guides/data-lab-notebooks.md).
+## Electromagnetics, microwave engineering, and photonics
 
-## Completion criteria
+- **[Electromagnetic Field Theory: A Problem-Solving Approach](https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/textbook-contents/)** (MIT OpenCourseWare full text)
+  Vector analysis, electrostatics, boundary-value problems, induction, waves, transmission lines, waveguides, and radiation appear in one sequence, with problems and selected answers on the same page. It rewards a willingness to solve boundary conditions. Drawing the geometry, normals, and material regions correctly matters more than memorizing Maxwell's equations in isolation.
 
-A textbook plan is executable when it identifies one primary text, the chapters in scope, associated practice, feedback method, edition, and stopping rule. After four weeks, review completion rate, error distribution, and transfer into project work. If reading volume rises while representative tasks remain unsolved, reduce the material set and repair the feedback loop.
+- **[Microwave Engineering, 4th ed.](https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=6874&itemId=0470631554)** (publisher companion page; text paid)
+  Pozar is a classic bridge from fields to microwave networks, matching, couplers, filters, and active circuits. Transmission lines, complex power, and S-parameters should already be familiar. Smith-chart and matching exercises belong beside calculation or simulation, not as copied graphical rituals.
+
+- **[RP Photonics Encyclopedia](https://www.rp-photonics.com/encyclopedia.html)** (open online reference)
+  Lasers, fibers, nonlinear optics, optical communication, optoelectronic devices, and measurement are covered with definitions and further literature. This is a continuously maintained, expert-authored encyclopedia rather than a week-by-week course. Use it to answer a precise question, then return to a systematic text or paper for the full derivation.
+
+## Power electronics, machines, and power systems
+
+- **[Fundamentals of Power Electronics, 3rd ed.](https://link.springer.com/book/10.1007/978-3-030-43881-4)** (publisher page; paid)
+  Intended for senior undergraduate and early graduate study, it develops converter steady state, switching devices, magnetics, control, and design tradeoffs. Verify volt-second and ampere-second balance and a small-signal model in simulation or on an isolated low-voltage platform. A topology analysis in a book is not authorization to work on mains or high-energy storage.
+
+- **[Electric Machines and Drives: A First Course](https://bcs.wiley.com/he-bcs/Books?action=contents&bcsId=7010&itemId=1118074815)** (publisher companion page; text paid)
+  Electromechanical conversion, magnetic circuits, DC and AC machines, space vectors, and drive control form the first machine-and-drive path. It fits after three-phase circuits and introductory control. Use a bounded simulation or teaching rig to connect torque-speed curves, losses, and controller limits to the equations.
+
+- **[Electric Power Systems: A First Course](https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=7091&itemId=1118074793)** (publisher companion page; text paid)
+  This is an entry to the system view: three-phase networks, transformers, transmission, power flow, faults, and stability. It does not compete with power electronics—the former explains grid power and constraints, while the latter explains converters. Any mains, grid-connected, or high-voltage work belongs in a qualified laboratory under supervision.
+
+## Robotics and mechatronic systems
+
+- **[Modern Robotics: Mechanics, Planning, and Control](https://hades.mech.northwestern.edu/index.php/Modern_Robotics)** (author site with an open preprint, videos, exercises, and code)
+  Rigid-body motion, kinematics, dynamics, trajectories, planning, control, grasping, and mobile robots share a consistent notation, with Python, MATLAB, and Mathematica code. It is a systematic entrance after linear algebra, calculus, and basic mechanics. A physical robot still demands motor drives, sensors, real-time software, and a safe-stop design in parallel.
+
+## Turning one recommendation into a study plan
+
+With no chosen direction, begin with **All About Circuits plus one circuit course**. For digital hardware, use **Nand2Tetris → Digital Design and Computer Architecture**. For signals or control, establish differential equations, LTI systems, and linear algebra through **18.03/6.003 plus 18.06**, then move to DSP Guide or Feedback Systems. Add probability when the work reaches noise, estimation, random inputs, or communications. For chips, stabilize **circuits plus devices** before splitting toward Razavi or Weste/Harris.
+
+Then make one small commitment: name the chapters, associated problems, and one verification task. For example: “Read Chapter 2 of Feedback Systems, reproduce two first-order models, plot one closed-loop response, and explain its steady-state error.” After one representative chapter–problem–verification loop, if you can repeat the prose but cannot independently build a model or reproduce the result, narrow the scope, repair the prerequisites, or move to a course with feedback instead of adding another book.
+
+Editions, prices, regional availability, and companion resources change. Check the author or publisher page before buying. If a link dies, an edition changes, or a better legitimate access route appears, leave a comment below or propose a correction through the [contribution guide](contributing.md).

@@ -2,124 +2,48 @@
 title: "Converter Circuits"
 description: "University of Colorado Boulder's Converter Circuits specializes in converter circuits after the introductory course, using videos, practice, simulation, and code under an explicit prerequisite and possible access fee."
 page_type: course
+course_id: "course-116"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 2769dabd9773043c -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 5a6c758acb968326 -->
 
-# Converter Circuits
+# University of Colorado Boulder Power Electronics 2: Converter Circuits
 
 ## Course Overview
 
-- **Institution:** University of Colorado Boulder
+- **University:** University of Colorado Boulder
 - **Course code:** Power Electronics 2
-- **Track:** [Power Electronics](index.md)
-- **Tier:** A
-- **Role:** Alternative
-- **Level:** Not standardized by provider (use prerequisites)
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** CU Boulder Converter Circuits is the second course in its power-electronics sequence and assumes prior Introduction to Power Electronics
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Registration required; scope varies by platform
+- **Material status:** 2026-07-30; public-material guide
 
-University of Colorado Boulder's Converter Circuits specializes in converter circuits after the introductory course, using videos, practice, simulation, and code under an explicit prerequisite and possible access fee.
+### Course fit
 
-**Why choose this course**
+The University of Colorado Boulder [Converter Circuits](https://www.coursera.org/learn/converter-circuits) course is the second course in its power-electronics sequence. The official course page lists 4 modules and 4 graded assignments, with a reference pace of 2 weeks at 10 hours per week. It assumes prior study of [Introduction to Power Electronics](https://www.coursera.org/learn/power-electronics). Review the preceding course first if deriving a buck or boost averaged model from switching states, or explaining volt-second and charge balance, is still difficult.
 
-Alternative course. A reliable option that can serve as a main course or strong alternative.
+The [Power Electronics specialization](https://www.coursera.org/specializations/power-electronics) confirms the sequence. Login, subscription, grading feedback, and certificate terms still depend on the current Coursera presentation. A public overview establishes that assignments exist; it does not replace their actual prompts.
 
-**Before you start**
+### Learn Switch Realization and Transfer the Method Across Topologies
 
-- Recommended foundation: Circuit Analysis
-- Recommended foundation: Control Systems
-- Recommended foundation: Electronics Laboratory and Measurement
-- Course-sequence requirement: complete [Introduction to Power Electronics](../power-electronics/115-power-electronics-1.md) (University of Colorado Boulder Power Electronics 1) first
+Chapter 4.1 moves from an ideal switch to physical realization through switching quadrants, bidirectional power flow, and synchronous switching. Mark the permitted voltage and current directions before choosing a diode, MOSFET, or combination; do not identify a device from the familiar shape of a schematic. Chapter 4.2 covers diodes, MOSFETs, IGBTs, gate drivers, and switching loss, with an LTspice synchronous-boost study. Separate conduction loss from switching loss and identify the device parameter behind every term. A single efficiency figure often hides a bad model.
 
-**Verifiable learning outcomes**
+Chapter 5 introduces DCM. Once inductor current reaches 0 A, the state sequence and conversion relation change, so a CCM expression cannot simply be extrapolated. Chapter 6 expands the set to inverters, isolated converters, transformers, forward converters, and flyback converters. For each magnetic topology, explain when energy is stored and transferred and how magnetizing current is reset.
 
-- Explain the core models in Power Electronics, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+### One topology table beats four disconnected notebooks
 
-**Workload and pacing**
+The 4 official assignments provide chapter-by-chapter checks. For independent study, maintain a topology table recording port polarity, switching states, supported quadrants, the CCM/DCM boundary, device stress, dominant losses, isolation, and flux reset. Then simulate a synchronous boost and a flyback. Use the former to inspect dead time and body-diode current paths, and the latter to test magnetizing-energy and reset assumptions. These are independent exercises, not course laboratories.
 
-**11 weeks at 7 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
-
-**Safety level**
-
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+The public material does not teach breadboards, PCB layout, probe selection, insulation, or thermal qualification. Do not transfer a simulation result directly to a mains-connected or high-power build. Proceed to [Converter Control](https://www.coursera.org/learn/converter-control) after an unfamiliar topology can be decomposed into switching states, its voltage and current relations derived, and its DCM boundary and device stresses explained. Otherwise the next course's small-signal models will become formula matching.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+The guide above links each core resource where its version and access conditions are explained. To avoid relabeling a sequence course, archived syllabus, or restricted item out of context, this page does not repeat a generic resource list.
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: Qucs-S, ngspice, Python 3, Jupyter, and GNU Octave
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect isolated/current-limited power, differential probes, electronic load, oscilloscope, and course-specified power stage in a compliant lab
-
-**Cost note**
-
-The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | No public material |
-| Code | Partial |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/converter-circuits) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Converter Circuits · University of Colorado Boulder Power Electronics 2: Converter Loss and Closed-Loop Protection Simulation**
-
-This is a maintainer-suggested self-study project for Converter Circuits · University of Colorado Boulder Power Electronics 2, not an official course assignment. Simulate a DC–DC converter for Power Electronics and quantify ripple, efficiency proxy, device stress, control stability, and overcurrent or open-load protection.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A specification of topology, input and output range, switching frequency, ratings, control, and protection
-- Switching model, averaged model, controller, and fault-scenario sources
-- Raw steady-state, startup, load-step, and fault waveforms with loss and stress data
-- A report comparing analytic, averaged, and switching models and explaining worst stress and protection action
-
-**Verification**
-
-- Keep nominal steady-state output error below 2% and ripple within 15% of hand analysis
-- Cover minimum and maximum input, no and full load, startup, and device-parameter extremes
-- Cross-check input, output, and loss by power balance with normalized residual below 1%
-- Inject a short-circuit proxy or load dump and show protection acts within the declared time without rating violations
-
-**Reproducibility**
-
-- Commit topology, models, controller, faults, calculations, and plotting sources
-- Pin simulator, device models, time step, switching, and control parameters
-- Preserve raw waveforms, power and stress tables, fault logs, and the generated report
-
-**Safety boundary:** Simulation only — Use converter simulation only; do not build mains, high-voltage, high-current, magnetic-component, battery-powered, or power-switching hardware.
-
-**Risks, gaps, and boundaries**
-
-This course assumes the introductory power-electronics course, and platform access may require payment.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+This page does not repeat resources outside their version context. The links and version notes in the overview are the complete verified summary for this review.

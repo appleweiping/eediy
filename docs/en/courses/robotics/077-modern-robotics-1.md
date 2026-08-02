@@ -2,123 +2,84 @@
 title: "Modern Robotics, Course 1: Foundations of Robot Motion"
 description: "Northwestern University's Modern Robotics, Course 1: Foundations of Robot Motion builds robot-motion foundations from an open preprint, software library, and CoppeliaSim exercises, while the platform's free experience is incomplete."
 page_type: course
+course_id: "course-077"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-31"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9608af1b80d21516 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: b1cf7092859d78b9 -->
 
-# Modern Robotics, Course 1: Foundations of Robot Motion
+# Northwestern University Modern Robotics 1: Modern Robotics, Course 1: Foundations of Robot Motion
 
 ## Course Overview
 
-- **Institution:** Northwestern University
+- **University:** Northwestern University
 - **Course code:** Modern Robotics 1
-- **Track:** [Robotics and Autonomous Systems](index.md)
-- **Tier:** A
-- **Role:** Alternative
-- **Level:** Intermediate
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** Modern Robotics Course 1 assumes familiarity with cross products, eigenvalues, matrix inverses, positive definiteness, free-body diagrams, and a matrix language
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-31; public-material guide
 
-Northwestern University's Modern Robotics, Course 1: Foundations of Robot Motion builds robot-motion foundations from an open preprint, software library, and CoppeliaSim exercises, while the platform's free experience is incomplete.
+### Chapters 2–3 establish degrees of freedom and rigid transforms
 
-**Why choose this course**
+Coursera [Foundations of Robot Motion](https://www.coursera.org/learn/modernrobotics-course1) opens the 6-course specialization. It suits learners willing to establish the coordinate conventions of robotics before moving ahead. It covers only *Modern Robotics* Chapter 2, Configuration Space, and Chapter 3, Rigid-Body Motions, but establishes every later frame, twist, and wrench convention. The [book home](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) provides the December 2019 updated first-edition preprint; it matches the 3rd printing from 2019 in content but not pagination. As of 2026-07-31, the platform page lists 5 modules and 21 assignments and estimates 2 weeks at 10 hours per week; weak linear algebra will usually take longer.
 
-Alternative course. A reliable option that can serve as a main course or strong alternative.
+The course assumes familiarity with cross products, eigenvalues, matrix inverses, positive definiteness, free-body diagrams, and a matrix language. Review linear algebra first rather than carrying a frame error into the manipulator courses.
 
-**Before you start**
+### The human-arm DOF prompt makes configuration explicit
 
-- Recommended foundation: Control Systems
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Physics Foundations
+[Official Course 1 resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources)
+lists a human-arm degrees-of-freedom discussion prompt as Course 1's one
+course-specific item on the shared page. Its inputs are modeling choices for
+joints, rigid bodies, contacts, and independent constraints. Its output
+should be a DOF argument that distinguishes configuration, C-space, task
+space, and workspace rather than counting motors. Chapter 2 then connects
+the Grübler formula, topology, holonomic/nonholonomic constraints, and
+Pfaffian form to planar closed chains, spatial bodies, and wheeled bases.
 
-**Verifiable learning outcomes**
+Chapter 3 introduces SO(3)/so(3), SE(3)/se(3), rotations and transforms, angular velocity, twists, screw axes, exp/log, adjoints, and wrenches. When pose, twist, and wrench move between space and body frames, the coordinate conventions must agree; power \(F^TV\) provides an elegant invariant check.
 
-- Explain the core models in Robotics and Autonomous Systems, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+This chapter deserves a convention sheet listing subscripts, action direction, and multiplication order for \(R_{sb}\), \(T_{sb}\), space/body twists, and wrenches. When signs reverse, unit-axis and pure-translation examples usually isolate active/passive interpretation, left/right multiplication, or a frame label quickly. Later kinematics, dynamics, and control repeatedly reuse these choices.
 
-**Workload and pacing**
+### `MatrixExp6` and `MatrixLog6` turn conventions into testable interfaces
 
-**2 weeks at 10 hours/week.** The provider publishes 2 weeks at 10 hours per week. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+The [ModernRobotics repository](https://github.com/NxRLab/ModernRobotics)
+provides educational implementations in Python, MATLAB, and Mathematica and
+explicitly favors readability over production robustness. The
+[library guide](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_Modern_Robotics_Code_Library)
+walks through `MatrixExp6`. Feed the \(4\times4\) se(3) matrix from
+`VecTose3(Sθ)` into `MatrixExp6` to obtain \(T\in SE(3)\), then use
+`MatrixLog6(T)` to return to se(3). Compare the final transform on the round
+trip and test rotation orthogonality, determinant, inverse, pure translation,
+and pure rotation.
 
-**Safety level**
+Library functions are most useful beside hand-computable examples. For SO(3)/SE(3), orthogonality, determinant, inverse, and exp/log round trips catch most convention errors. Axis-angle descriptions need not be unique, so compare the final transform rather than every element.
 
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+The [CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) supplies UR5 and youBot CSV scenes. Inspect the frames, translation units, rotation direction, and column order in the first 3 poses, then try pure rotation, pure translation, and screw motion. A simulator displays motion but cannot validate the matrix convention.
+
+Coursera graded tests and peer assignments may require payment, while the public preprint, code, and simulator setup are enough to reconstruct the central Chapter 2–3 examples. The value of this short course is not its animation; it is fixing the notation of the entire robotics sequence at the beginning.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+- [Course home](https://www.coursera.org/learn/modernrobotics-course1)
+- [Code · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
+- [Code · Getting started with the Modern Robotics code library](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_Modern_Robotics_Code_Library)
+- [Other · Modern Robotics shared six-course resources index](https://hades.mech.northwestern.edu/index.php/Coursera_Resources)
+- [Simulator · Modern Robotics CoppeliaSim setup guide](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator)
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: ROS 2, Gazebo, RViz 2, Python or C++, and a version-pinned container environment
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
+<details markdown="1">
+<summary>Show more official resources (1 item)</summary>
 
-**Hardware**
+**Resource**
 
-- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect a course-supported robot platform, sensors, low-voltage power, emergency stop, and safe test area
+| Resource | Access | Status | Verified |
+|---|---|---|---|
+| [Modern Robotics textbook home and public-preprint link](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) | Open access | Listed by official page | 2026-07-31 |
 
-**Cost note**
+> These remaining entries retain access status and review dates. Rights stay with the original providers, and actual access may change with account, region, or course redesign.
 
-The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Complete |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | No public material |
-| Code | Complete |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/modernrobotics-course1) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Modern Robotics, Course 1: Foundations of Robot Motion · Northwestern University Modern Robotics 1: Robot Task Planning and Safe-Degradation Simulation**
-
-This is a maintainer-suggested self-study project for Modern Robotics, Course 1: Foundations of Robot Motion · Northwestern University Modern Robotics 1, not an official course assignment. Complete a perception–planning–control task in simulation for Robotics and Autonomous Systems, quantifying success rate, collision margin, localization error, and safe stop after sensor failure.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A specification of task, robot and environment models, frames, constraints, and safe state
-- Perception, planning, control, monitoring, and scenario-generation sources
-- Raw trajectories, success or collision labels, minimum clearance, and runtime for at least 100 randomized scenes
-- A report and screen recording comparing baseline and improved methods and reviewing the most hazardous failure
-
-**Verification**
-
-- Achieve at least 90% success over 100 nominal scenes with zero collisions and the predeclared minimum clearance
-- Cover coincident start and goal, infeasible maps, narrow passages, localization drift, and sensor interruption
-- Replay every trajectory through an independent collision checker and cross-check frame by frame
-- Inject frozen sensing or control delay and show the monitor reaches a stopped state within the specified time
-
-**Reproducibility**
-
-- Commit robot and world models, algorithms, scenarios, tests, and recording scripts
-- Pin simulator, physics step, maps, random seeds, and dependency versions
-- Preserve raw trajectories and sensor data, scenario manifests, and the generated report
-
-**Safety boundary:** Simulation only — Use robot simulation only; do not drive real mechanisms, vehicles, drones, or actuators without qualified supervision.
-
-**Risks, gaps, and boundaries**
-
-The open preprint, software library, and CoppeliaSim exercises are strong, but Coursera explicitly does not provide the full experience for free.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
-- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
+</details>

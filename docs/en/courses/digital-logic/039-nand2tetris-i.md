@@ -2,123 +2,86 @@
 title: "Build a Modern Computer from First Principles: From Nand to Tetris, Part I"
 description: "Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part I teaches digital logic through a self-contained HDL simulator and staged projects, subject to changing platform access terms."
 page_type: course
+course_id: "course-039"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9ee2c95aacb3aa0a -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 5e189dc7e03afcaf -->
 
-# Build a Modern Computer from First Principles: From Nand to Tetris, Part I
+# Hebrew University of Jerusalem Nand2Tetris I: Build a Modern Computer from First Principles: From Nand to Tetris, Part I
 
 ## Course Overview
 
-- **Institution:** Hebrew University of Jerusalem
+- **University:** Hebrew University of Jerusalem
 - **Course code:** Nand2Tetris I
-- **Track:** [Digital Logic and Computation Structures](index.md)
-- **Tier:** S
-- **Role:** Alternative
-- **Level:** Not standardized by provider (use prerequisites)
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** The official Nand2Tetris site states that Part I requires no prior knowledge
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part I teaches digital logic through a self-contained HDL simulator and staged projects, subject to changing platform access terms.
+### Labs and projects
 
-**Why choose this course**
+Nand2Tetris Part I is cumulative rather than organized around lectures and
+exams. Projects 1–6 on the official
+[course page](https://www.nand2tetris.org/course) build logic gates, an
+adder/ALU, registers and RAM, Hack assembly programs, a CPU/computer, and an
+assembler. The official [home](https://www.nand2tetris.org/) supplies
+lectures, specifications, and tools and states that no prior knowledge is
+required. Projects 4 and 6 do involve programming and files; a complete
+beginner should first learn variables, loops, functions, and command-line
+basics.
+Choose it if you want to construct a machine interface by interface; a short
+HDL course is more direct when syntax is the only goal.
 
-Alternative course. A particularly complete and well-structured option for this track. Review note: S content / A access
+### Use Only Interfaces Already Built
 
-**Before you start**
+[Project 1](https://www.nand2tetris.org/project01) demonstrates the common
+contract: an `.hdl` interface, `.tst` script, and `.cmp` output. Do not call a
+future-project chip or host-language library. Keep a truth or state table,
+design sketch, official test transcript, added edge tests, and bug log for
+each project. Hand-trace registers, memory, and jumps in Project 4; draw the
+datapath and control truth table before Project 5; and preserve the tokenizer,
+two-pass symbol table, and malformed-input tests for the Project 6 assembler.
 
-- Recommended foundation: Programming and Engineering Computing
-- Recommended foundation: Circuit Analysis
+The official [software](https://www.nand2tetris.org/software) includes a
+browser IDE and legacy Java desktop tools. Choose one path for all 6 projects
+and export source regularly. Switching tools halfway can make formatting or
+time-step behavior look like a design defect.
 
-**Verifiable learning outcomes**
+### Trace One Instruction from NAND without Notes
 
-- Explain the core models in Digital Logic and Computation Structures, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+At the end, choose one Hack C-instruction and write its assembler encoding,
+control bits, ALU function, destination and jump behavior, CPU datapath, and
+register/memory timing. Flip one control bit, predict the machine behavior,
+and then verify it in the emulator. This demonstrates accumulated abstraction
+better than 6 separately green projects.
 
-**Workload and pacing**
+The official [license](https://www.nand2tetris.org/license) asks learners not
+to publish project solutions. Keep HDL and assembler source private; a public
+portfolio can discuss design decisions, testing, and non-solution
+demonstrations. A physical FPGA is not a Part I requirement. Continue to Part
+II's VM, compiler, and OS only after the assembler reliably produces machine
+code for the Project 5 computer.
 
-**11 weeks at 9 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
-
-**Safety level**
-
-**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
+Run one dependency audit from the lowest gate through the CPU: every chip may
+refer only to components already completed. For each sequential component,
+state the current-cycle input, the state-update boundary, and what becomes
+visible next cycle. If one fault looks different in a chip test and a computer
+test, use the smallest test script to pin down the first divergence instead of
+repeatedly changing wiring by guesswork.
+That check should include bit widths, reset state, and the boundary between
+combinational output and registered state. After every repair, rerun the older
+chip tests as well as the computer test; otherwise a passing upper layer can
+hide a lower-level interface that has quietly changed.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+- [Code · Nand2Tetris projects and software suite](https://www.nand2tetris.org/software)
+- [Course home](https://www.coursera.org/learn/build-a-computer)
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: Logisim Evolution, Icarus Verilog or Verilator, and GTKWave
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect a logic training board, USB programmer, and logic analyzer explicitly specified by the course
-
-**Cost note**
-
-The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Complete |
-| Exams | No public material |
-| Code | Complete |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/build-a-computer) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-| [Build a Modern Computer from First Principles: Nand to Tetris Part II (project-centered course)](https://www.coursera.org/learn/nand2tetris2) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Build a Modern Computer from First Principles: From Nand to Tetris, Part I · Hebrew University of Jerusalem Nand2Tetris I: Streaming Digital Unit with Formal Checks**
-
-This is a maintainer-suggested self-study project for Build a Modern Computer from First Principles: From Nand to Tetris, Part I · Hebrew University of Jerusalem Nand2Tetris I, not an official course assignment. Implement a parameterized, handshaked streaming unit for Digital Logic and Computation Structures and verify function, timing protocol, and reset boundaries with RTL simulation, assertions, and randomized testing.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- Interface timing diagrams, width and overflow policy, state machine, and latency specification
-- Synthesizable RTL, reference model, testbench, and protocol-assertion sources
-- Seeds, raw logs, coverage, and waveforms for at least 10,000 randomized transactions
-- A verification report listing throughput, latency, coverage holes, and one corrected counterexample
-
-**Verification**
-
-- Match a software reference bit-for-bit for 10,000 randomized transactions with zero assertion failures
-- Cover minimum and maximum operands, sustained backpressure, interrupted reset, and counter wraparound
-- Exhaust all 8-bit configurations or run equivalence or formal properties for wider configurations
-- Inject one off-by-one or handshake defect and show that the suite reproduces and localizes it reliably
-
-**Reproducibility**
-
-- Commit RTL, reference model, assertions, tests, and waveform-viewing instructions
-- Pin simulator and synthesis versions, seeds, parameters, and a one-command regression entry point
-- Preserve raw regression logs, coverage-database summaries, and the generated report
-
-**Safety boundary:** Simulation only — Use RTL simulation and synthesis reports only by default; do not load a design with unaudited clocks, resets, or interfaces into physical systems.
-
-**Risks, gaps, and boundaries**
-
-The HDL simulator and projects are self-contained, but Coursera trial, payment, and full-course access terms can change.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
-- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

@@ -2,124 +2,80 @@
 title: "Real-Time Embedded Systems Theory and Analysis"
 description: "University of Colorado Boulder's Real-Time Embedded Systems Theory and Analysis follows the concepts course with deeper theory, using videos, practice, and exams under a prerequisite and potentially paid platform model."
 page_type: course
+course_id: "course-064"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: b8ab64c3a07ccc0c -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d45b3f66d9c9cc08 -->
 
-# Real-Time Embedded Systems Theory and Analysis
+# University of Colorado Boulder Real-Time Embedded Systems 2: Real-Time Embedded Systems Theory and Analysis
 
 ## Course Overview
 
-- **Institution:** University of Colorado Boulder
+- **University:** University of Colorado Boulder
 - **Course code:** Real-Time Embedded Systems 2
-- **Track:** [Real-Time and Cyber-Physical Systems](index.md)
-- **Tier:** A
-- **Role:** Alternative
-- **Level:** Not standardized by provider (use prerequisites)
-- **Last reviewed:** 2026-07-28
+- **Official prerequisites:** CU Boulder places ECEA 5316 second in the sequence; it requires ECEA 5315 plus C, architecture, operating systems, and Linux
+- **EEDIY preparation:** No additional EEDIY preparation requirement
+- **Access:** Open entry; some materials require registration or are limited
+- **Material status:** 2026-07-30; public-material guide
 
-University of Colorado Boulder's Real-Time Embedded Systems Theory and Analysis follows the concepts course with deeper theory, using videos, practice, and exams under a prerequisite and potentially paid platform model.
+### 5316 Reconciles Scheduling Analysis with Linux Measurements
 
-**Why choose this course**
+Choose Coursera [ECEA 5316](https://www.coursera.org/learn/real-time-embedded-theory-analysis) after 5315 timing logs work and you want to explain misses with scheduling analysis. It is course 2 of the specialization; the [official assignments and syllabus](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5316-theory-and-analysis) also require C, architecture, operating systems, and Linux. It goes beyond memorizing the rate-monotonic utilization bound: calculate feasibility by hand, generate timing diagrams, and test the model with POSIX services.
 
-Alternative course. A reliable option that can serve as a main course or strong alternative.
+Required fluency includes expressing a periodic task as \(T_i,D_i,C_i\), calculating response time from timestamp logs, and distinguishing a sufficient bound from an exact test. An unreliable 5315 logger leaves no sound measurement base for this course.
 
-**Before you start**
+### Sixty Percent Joins Derivation, Programming, and Peer Review
 
-- Recommended foundation: Embedded Systems
-- Recommended foundation: Signals and Systems
-- Course-sequence requirement: complete [Real-Time Embedded Systems Concepts and Practices](../real-time-cps/063-real-time-embedded-systems-1.md) (University of Colorado Boulder Real-Time Embedded Systems 1) first
+The official page divides the analysis work into 4 weeks estimated at 19, 20,
+10, and 13 hours, followed by a 2-hour final. Week 1 derives the RM
+least-upper-bound, deadline-monotonic scheduling, and the exact completion
+test; week 2 treats service design, ISR synchronization, and unbounded
+blocking; week 3 compares EDF with least-laxity-first; week 4 brings memory,
+I/O, storage, and other non-CPU resources into blocking and recovery.
 
-**Verifiable learning outcomes**
+Grades are quizzes 10%, programming assignments and peer reviews together
+60%, and the final exam 30%. A hand feasibility calculation is therefore not
+the whole course. Learners implement multi-frequency executives,
+priority-preemptive services, or Linux POSIX real-time threads and reconcile
+timing diagrams and traces with theory. CU does not publish a further split
+between programming and peer review inside that 60%, so assigning one would
+be speculation.
 
-- Explain the core models in Real-Time and Cyber-Physical Systems, including their assumptions and limits
-- Solve representative derivations and problems, checking units, limiting cases, or numerical results
-- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
+There is no need to invent a new example every week. Fix one small set of \(C,T,D\) values and release offsets,
+compare the RM sufficient bound with the exact test, add shared-resource
+blocking to response-time analysis, then run EDF on the same workload. Two
+sets with equal utilization but different period relationships reveal more
+about sufficient versus exact tests than a larger arbitrary service list.
 
-**Workload and pacing**
+### Cheddar and Linux Answer Different Questions
 
-**11 weeks at 7 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+Cheddar turns period, deadline, priority, offset, execution time, and resource
+protocol into an inspectable timeline. Linux exposes scheduler, timer, cache,
+page-fault, and measurement overhead. When they differ, inspect priority
+conventions, time units, preemption, and initial offsets before deciding what
+the model omitted. The official [hardware requirements](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements)
+use Pi 3B+/4B and Raspberry Pi OS as the starter-code baseline.
 
-**Safety level**
-
-**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
+The public page does not anonymously expose the starter, Cheddar model, peer
+feedback, or final. A learner outside the platform can try a **nonofficial
+substitute**: make one task set intentionally infeasible, restore feasibility
+by changing only execution budget, period, or critical-section blocking, and
+explain the difference with hand analysis, Cheddar, and a local C trace. That
+previews the method but is not an official programming assignment or peer
+review. The next [specialization](https://www.colorado.edu/ecee/real-time-embedded-systems)
+course, 5317, turns to fault tolerance; the [access page](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses)
+is the place to recheck assessment access before enrollment.
 
 ## Course Resources
 
-**Software, hardware, and cost**
+- [Course home](https://www.coursera.org/learn/real-time-embedded-theory-analysis)
+- [ECEA 5316 syllabus and assignment overview](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5316-theory-and-analysis)
+- [CU Boulder hardware and software requirements guidance (not a public lab)](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements)
 
-**Software**
+## Resource Summary
 
-- Maintainer-suggested open-source/free verification path: Zephyr or FreeRTOS source, GCC or LLVM, CMake, GDB, and Renode or QEMU
-- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
-
-**Hardware**
-
-- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a course-supported real-time control board, USB debugger, logic analyzer, and low-voltage sensors/actuators. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
-
-**Cost note**
-
-The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
-
-**Public resource coverage**
-
-| Resource type | Completeness |
-|---|---|
-| Video | Complete |
-| Notes | Partial |
-| Practice | Complete |
-| Labs | Partial |
-| Exams | Partial |
-| Code | Partial |
-
-**Resources and access**
-
-| Resource | Access | License | Status | Verified |
-|---|---|---|---|---|
-| [Course home](https://www.coursera.org/learn/real-time-embedded-theory-analysis) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-| [Real-Time Project for Embedded Systems](https://www.coursera.org/learn/real-time-project-embedded-systems) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
-
-> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
-
-## Practice and Verification
-
-**Practice loop**
-
-**Real-Time Embedded Systems Theory and Analysis · University of Colorado Boulder Real-Time Embedded Systems 2: Real-Time Closed-Loop Deadline Stress Test**
-
-This is a maintainer-suggested self-study project for Real-Time Embedded Systems Theory and Analysis · University of Colorado Boulder Real-Time Embedded Systems 2, not an official course assignment. Build a discrete-event scheduler and simulated plant for Real-Time and Cyber-Physical Systems, quantifying how jitter, missed deadlines, and sensor loss affect closed-loop safety margin.
-
-**Origin:** Maintainer-suggested project
-
-**Deliverables**
-
-- A task set with period, deadline, and WCET assumptions, scheduling policy, and plant model
-- An executable scheduler, closed-loop simulation, fault injector, and monitoring assertions
-- Raw response-time, jitter, miss, and state trajectories across multiple loads
-- A report defining the schedulability boundary, control degradation, and safe degraded state
-
-**Verification**
-
-- Produce zero deadline misses at nominal load and keep analytic response-time bound within 10% of the simulated worst case
-- Cover zero load, near-100% utilization, burst blocking, and clock-drift boundaries
-- Cross-check schedulability with a second analysis or exhaustive enumeration over a short hyperperiod
-- Increase WCET until the first miss and report miss rate and closed-loop error growth
-
-**Reproducibility**
-
-- Commit scheduler, plant, fault scenarios, assertions, and analysis sources
-- Pin event ordering, random seeds, time units, solver, and dependency versions
-- Preserve raw event and state logs and automatically generated timelines and report
-
-**Safety boundary:** Simulation only — Inject deadlines and faults only into a simulated plant; do not connect unvalidated scheduling or degradation logic to real machinery, vehicles, medical, or power systems.
-
-**Risks, gaps, and boundaries**
-
-This course requires the preceding concepts course, and platform access may require payment.
-
-**Completion evidence**
-
-- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
-- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
-- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
-- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data
+Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.

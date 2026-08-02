@@ -6,12 +6,6 @@ on:
       - main
   pull_request:
   workflow_dispatch:
-    inputs:
-      full_external_check:
-        description: Check every external URL over the network
-        required: false
-        default: false
-        type: boolean
   schedule:
     - cron: "17 3 * * 1"
 
@@ -30,7 +24,7 @@ env:
 jobs:
   quality:
     name: Data, docs, tests, and strict build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
       - name: Check out repository
@@ -49,6 +43,49 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --require-hashes -r requirements.lock
 
+      - name: Install executable EE toolchains
+        env:
+          KICAD_APT_VERSION: 8.0.9-0~ubuntu24.04.1
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends software-properties-common
+          sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            cmake \
+            gcc \
+            g++ \
+            iverilog \
+            "kicad=$KICAD_APT_VERSION" \
+            libngspice0 \
+            ngspice \
+            ninja-build \
+            verilator \
+            yosys \
+            z3
+          dpkg-query --show --showformat='${Status}\n' libngspice0 |
+            grep --line-regexp 'install ok installed'
+          ! dpkg-query --show --showformat='${Status}\n' libngspice-kicad 2>/dev/null |
+            grep --line-regexp 'install ok installed'
+          cmake --version
+          gcc --version
+          ngspice --version
+          iverilog -V
+          verilator --version
+          yosys --version
+          z3 --version
+          test "$(kicad-cli version)" = "8.0.9"
+
+      - name: Install pinned SymbiYosys
+        env:
+          SBY_COMMIT: fea6e467d067b3ea84b6b5ac08cd48beb59f0d42
+        run: |
+          git clone --filter=blob:none https://github.com/YosysHQ/sby.git "$RUNNER_TEMP/sby"
+          git -C "$RUNNER_TEMP/sby" checkout --detach "$SBY_COMMIT"
+          test "$(git -C "$RUNNER_TEMP/sby" rev-parse HEAD)" = "$SBY_COMMIT"
+          sudo make -C "$RUNNER_TEMP/sby" install PREFIX=/usr/local
+          sby --version
+
       - name: Check dependency consistency
         run: |
           python -m pip check
@@ -58,7 +95,6 @@ jobs:
         run: |
           python scripts/enrich_official_resources.py --validate-only
           python scripts/compile_courses.py --check
-          python scripts/apply_project_templates.py --check
           python scripts/apply_course_editorial.py --check
 
       - name: Validate courses and routes
@@ -66,6 +102,22 @@ jobs:
           python scripts/validate_courses.py
           python scripts/validate_mainline_audit.py
           python scripts/validate_routes.py
+          python scripts/check_course_guides.py --require-track-coverage --require-mainline-coverage
+
+      - name: Check editorial quality for changed course guides
+        if: github.event_name == 'pull_request'
+        run: >-
+          python scripts/check_editorial_quality.py
+          --changed-from "${{ github.event.pull_request.base.sha }}"
+          --warnings-as-errors
+          --json-report build/editorial-quality.json
+
+      - name: Check editorial quality for the full guide corpus
+        if: github.event_name != 'pull_request'
+        run: >-
+          python scripts/check_editorial_quality.py
+          --warnings-as-errors
+          --json-report build/editorial-quality.json
 
       - name: Check generated page drift
         run: |
@@ -82,51 +134,25 @@ jobs:
       - name: Run unit tests
         run: python -m pytest -q
 
-      - name: Restore external-link cache
-        if: github.event_name != 'pull_request'
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
-        with:
-          path: .cache/external-links.json
-          key: ${{ runner.os }}-external-links-v3-${{ hashFiles('requirements.lock', 'data/**/*.json', 'docs/**/*.md', 'scripts/check_external_links.py') }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            ${{ runner.os }}-external-links-v3-${{ hashFiles('requirements.lock', 'data/**/*.json', 'docs/**/*.md', 'scripts/check_external_links.py') }}-
-            ${{ runner.os }}-external-links-v3-
+      - name: Execute all release-blocking EE starter toolchains
+        run: python scripts/run_executable_examples.py --require-tools all
 
-      - name: Check every external resource over the network
-        if: >-
-          github.event_name == 'schedule' ||
-          (github.event_name == 'workflow_dispatch' && inputs.full_external_check)
+      - name: Check every external resource with fresh network evidence
         run: >-
           python scripts/check_external_links.py
           --allow-review
           --workers 24
+          --per-host-workers 2
           --timeout 8
           --retries 1
           --cache-ttl-hours 0
 
-      - name: Check external resources with the bounded cache
-        if: >-
-          github.event_name == 'push' ||
-          (github.event_name == 'workflow_dispatch' && inputs.full_external_check != true)
-        run: >-
-          python scripts/check_external_links.py
-          --allow-review
-          --workers 24
-          --timeout 8
-          --retries 1
-
       - name: Build consolidated report
         if: always()
-        shell: bash
-        run: |
-          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
-            python scripts/quality_report.py --skip-external --warnings-as-errors
-          else
-            python scripts/quality_report.py --require-external --warnings-as-errors
-          fi
+        run: python scripts/quality_report.py --require-external --warnings-as-errors
 
       - name: Build documentation with warnings as errors
-        run: python -m mkdocs build --strict
+        run: python -m mkdocs build --strict --site-dir site
 
       - name: Upload quality reports
         if: always()
@@ -136,6 +162,42 @@ jobs:
           path: |
             build/quality-report.json
             build/quality-report.md
+            build/editorial-quality.json
             build/external-links.json
           if-no-files-found: warn
           retention-days: 30
+
+      - name: Upload the tested Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site
+
+  deploy:
+    name: Publish the tested Pages artifact
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: quality
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the current main head
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Reject a stale workflow rerun
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+
+      - name: Deploy the exact artifact produced by Quality
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0

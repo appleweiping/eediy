@@ -2,123 +2,47 @@
 title: "Build a Modern Computer from First Principles: From Nand to Tetris, Part II"
 description: "Hebrew University of Jerusalem 的《Build a Modern Computer from First Principles: From Nand to Tetris, Part II》以六个自成体系的项目实现虚拟机、编译器与操作系统；需要入门编程能力、Python 或 Java 环境，且平台完整访问可能收费。"
 page_type: course
+course_id: "course-040"
+editorial_status: "researched"
+evidence_level: "R0"
+reviewed_at: "2026-07-30"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: bd0510d3c730b3f2 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 74c2fb9bdc836422 -->
 
-# Build a Modern Computer from First Principles: From Nand to Tetris, Part II
+# Hebrew University of Jerusalem Nand2Tetris II: Build a Modern Computer from First Principles: From Nand to Tetris, Part II
 
 ## 课程简介
 
-- **机构：** Hebrew University of Jerusalem
+- **所属大学：** Hebrew University of Jerusalem
 - **课程编号：** Nand2Tetris II
-- **方向：** [计算机体系结构](index.md)
-- **评级：** S
-- **角色：** 替代
-- **难度：** 提供方未标准化（请按先修判断）
-- **最近复核：** 2026-07-28
+- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
+- **本站建议背景：** 数字逻辑与计算结构；编程与工程计算；入门编程能力；第一部分可配套学习，但第二部分官方说明为自成体系
+- **访问条件：** 公开入口；部分材料需注册或受限
+- **资料状态：** 2026-07-30；公开材料导读
 
-Hebrew University of Jerusalem 的《Build a Modern Computer from First Principles: From Nand to Tetris, Part II》以六个自成体系的项目实现虚拟机、编译器与操作系统；需要入门编程能力、Python 或 Java 环境，且平台完整访问可能收费。
+### 课程定位
 
-**为什么选择这门课**
+Nand2Tetris Part II 对应官方 [Course Page](https://www.nand2tetris.org/course) 的 Projects 7–12：2 个 VM translator 阶段、1 个 Jack app、2 个 compiler 阶段，以及 Project 12 的 Jack OS。它适合已经完成 Part I，想亲手看见高级语言怎样落到 Hack 指令的人。recursion、object state、parser、symbol table、stack frame 和 file I/O 是实际先修；进程、文件系统与网络则属于后续操作系统课程。
 
-替代课程，资源完整、教学设计清晰，适合作为该方向的优先选择。（审阅记录：S content / A access）
+### 课程任务
 
-**学习前准备**
+Projects 7–8 从 arithmetic 和 memory segment 走到 branch、call/return、bootstrap 与 recursion。最容易出错的是 function frame：LCL、ARG、THIS、THAT 与 return address 的保存和恢复只要偏一格，递归程序才会暴露问题。Projects 10–11 把 tokenizer、parser、symbol table 和 VM generation 串成编译器；这一段的乐趣在于，一个 Jack 语义错误最终会变成一段可以逐层追踪的 VM 输出。
 
-- 建议先完成方向基础：数字逻辑与计算结构
-- 建议先完成方向基础：编程与工程计算
-- 建议背景：入门编程能力；第一部分可配套学习，但第二部分官方说明为自成体系
+官方 [Project 12](https://www.nand2tetris.org/project12) 要用 Jack 实现 Math、String、Array、Output、Screen、Keyboard、Memory 与 Sys 共 8 个 class。Memory allocator 与 String 最能体现课程的取舍：它们足以支撑 Jack 程序，却没有 process isolation、filesystem 或 networking，因此这里的 “OS” 更像一组运行时库，而非现代 kernel。
 
-**可验证的学习成果**
+### 课程材料
 
-- 解释计算机体系结构中的核心模型，并说明主要假设与适用边界
-- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
-- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
+[Software](https://www.nand2tetris.org/software) 提供 browser 和 Java tools，调试时可以让官方实现暂时代替尚未完成的一层。这个设计非常适合定位问题：同一个最小 Jack program 分别经过自己的 compiler、VM translator 和 assembler，哪一次替换让错误消失，问题大致就落在哪一层。
 
-**工时与节奏**
-
-**11 周，每周 9 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
-
-**安全等级**
-
-**仅仿真。** 默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。
+官方 [Home](https://www.nand2tetris.org/) 免费提供 specifications 与 tools；[License](https://www.nand2tetris.org/license) 请求 solutions 保持非公开，因此 translator、compiler、OS 和 Jack app 源码适合放在 private repository。Part II 最值得抵达的时刻，是一个 Jack app 穿过 compiler、VM、assembler 和 Hack machine 正常运行，而你仍能说清 `Sys.init`、call frame、heap object 与 screen output 分别来自哪一层。
 
 ## 课程资源
 
-**软件、硬件与成本**
+- [代码 · Nand2Tetris projects and software suite](https://www.nand2tetris.org/software)
+- [课程主页](https://www.coursera.org/learn/nand2tetris2)
 
-**软件**
+## 资源汇总
 
-- 维护者建议的开源/免费验证路径：RISC-V GNU 或 LLVM 工具链、QEMU、Verilator 与 GTKWave
-- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
-
-**硬件**
-
-- 资源清单包含实验覆盖；维护者路径将其按计算/仿真实验处理，除非提供方实验手册另有明确说明。只假设可运行仿真和交叉编译的通用计算机；仅在课程明确要求时使用指定 RISC-V 或 FPGA 板。提供方如另列设备或算力要求，以其课程页面为准
-
-**成本说明**
-
-建议软件栈可开源或免费使用；这只是维护者规划，不是提供方要求。商业许可证、云计算、存储和机构资源如被提供方指定，其费用随方案、地区与机构而变，本文不设固定价格。
-
-**公开资源完整度**
-
-| 资源类型 | 完整度 |
-|---|---|
-| 视频 | 完整 |
-| 讲义 | 部分 |
-| 练习 | 完整 |
-| 实验 | 完整 |
-| 考试 | 无公开材料 |
-| 代码 | 完整 |
-
-**资源与访问条件**
-
-| 资源 | 访问 | 许可 | 状态 | 复核日期 |
-|---|---|---|---|---|
-| [课程主页](https://www.coursera.org/learn/nand2tetris2) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
-
-> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
-
-## 实践与验收
-
-**实践闭环**
-
-**《Build a Modern Computer from First Principles: From Nand to Tetris, Part II · Hebrew University of Jerusalem Nand2Tetris II》微体系结构性能与正确性审计**
-
-这是维护者为《Build a Modern Computer from First Principles: From Nand to Tetris, Part II · Hebrew University of Jerusalem Nand2Tetris II》建议的自学项目，不是课程官方作业。为计算机体系结构实现一个指令级模拟器或流水线模型，对功能正确性、CPI、缓存行为和冒险处理进行可复现审计。
-
-**来源：** 维护者建议项目
-
-**交付物**
-
-- ISA 子集、流水线/缓存参数、异常和计数器语义说明
-- 模拟器或 RTL 模型、参考执行器和至少 20 个微基准源文件
-- 逐指令轨迹、性能计数器、缓存命中和运行时原始数据
-- 一份报告，解释性能瓶颈、正确性反例和设计取舍
-
-**验收**
-
-- 所有微基准的架构状态与参考执行器逐指令一致
-- 覆盖空程序、分支全错、依赖链、缓存抖动和地址边界
-- 对至少 5 个短程序手算指令数与理想 CPI，并与计数器交叉核对
-- 关闭转发或改变缓存行大小，量化 CPI/未命中率变化并解释异常
-
-**复现要求**
-
-- 提交模型、微基准、参考器、测试和轨迹解析源文件
-- 固定编译器、模拟器、参数、基准输入和构建命令
-- 保存原始轨迹、计数器与报告生成日志并附校验和
-
-**安全边界：** 仅仿真 — 仅使用本地模拟器与自有测试程序；不要运行未知二进制、真实恶意载荷或未隔离的特权代码。
-
-**风险、缺口与边界**
-
-六个大型项目需要配置 Python 或 Java 环境，且 Coursera 的访问条款可能变化。
-
-**完成证据**
-
-- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
-- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
-- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
-- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
+本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。

@@ -1,59 +1,93 @@
 ---
 title: "半导体、微纳工艺与 VLSI"
-description: "完成一个有器件假设、时序/功耗约束、验证结果和可审查版图/工艺计划的芯片项目。"
+description: "完成一个数字芯片设计，使器件参数、工艺假设、RTL、时序与功耗约束、验证结果和版图使用同一套前提。"
 page_type: route
+route_id: "route-semiconductor-vlsi"
+comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 22ebc5fc88ee5abc -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 60f1ab2f0fdd42e8 -->
 
 # 半导体、微纳工艺与 VLSI
 
 ## 适合人群
 
-希望理解器件、制造、数字集成电路和物理实现完整链条的学习者
+想把半导体器件、微纳工艺、数字 IC 和物理实现连成一条设计链的人
 
-## 最终验收
+## 学完能做什么
 
-完成一个有器件假设、时序/功耗约束、验证结果和可审查版图/工艺计划的芯片项目。
+完成一个数字芯片设计，使器件参数、工艺假设、RTL、时序与功耗约束、验证结果和版图使用同一套前提。
 
-## 阶段安排
+## 先选器件问题还是版图问题
 
-### 器件物理
+选一个 CMOS 反相器，写出使用的器件模型、VDD、温度、负载和工艺假设；从 I–V 曲线估算开关点与延迟。若这些前提不能固定，先停在器件模型，不要把 RTL 直接送进版图。
 
-**选课要求：** 完成全部 2 门必修，并从 3 门选修候选中选择 1 门。
+## 只把一个经检验的器件模型向前传
 
-- [Quantum Physics I](../courses/physics/013-8-04.md) — **选修候选**; MIT; 替代; A
-- [Microelectronics](../courses/microelectronics/029-ece-3150.md) — **必修**; Cornell University; 主线; S
-- [Microelectronic Devices and Circuits](../courses/microelectronics/030-6-012.md) — **选修候选**; MIT; 替代; A
-- [Physics of Semiconductors and Nanostructures](../courses/semiconductor-devices/124-ece-4070.md) — **必修**; Cornell University; 主线; A
-- [Introduction to Nanoelectronics](../courses/semiconductor-devices/125-6-701.md) — **选修候选**; MIT; 替代; A
+- 从能带、器件曲线和紧凑模型得到一套版本化参数，再把关键尺寸、容差与工艺规则传到门级延迟和功耗估计。
+- 微纳工艺只做虚拟流程与案例分析；选择 MEMS、系统微加工或 IC 产线概览之一，不把洁净室内容改写成家庭实验。
 
-**阶段退出条件：** 从能带与输运假设推导器件 I–V/C–V 特性，并对公开或仿真数据提取紧凑模型参数；留出偏置区间的归一化均方根误差不超过 10%。
+## 工具、PDK 与公开材料各有边界
 
-### 工艺
+- 数字实现路径只选一条公开条件可满足的流程，固定 RTL、测试、时序/功耗约束、教育 PDK 与工具版本，并保留迁移旧流程时的差异。
+- 量子基础、6.012 和 6.701 只补实际缺口，不把三门都当概论；同一数字版图问题不同时走 6.884、6.374 与 ECE 4740。
 
-**选课要求：** 完成全部 2 门必修，并从 2 门选修候选中选择 1 门。
+## 在 tapeout 话术之前停下
 
-- [Micro/Nano Processing Technology](../courses/fabrication-mems/126-6-152j.md) — **必修**; MIT; 主线; S
-- [Micro and Nanofabrication (MEMS)](../courses/fabrication-mems/127-memsx.md) — **选修候选**; EPFL; 替代; A
-- [Basic Overview of Semiconductor Device Processing and IC Fabrication](../courses/fabrication-mems/128-108104865.md) — **选修候选**; IIT Kanpur / NPTEL; 补充; A
-- [Design and Fabrication of Microelectromechanical Devices](../courses/fabrication-mems/129-6-777j.md) — **必修**; MIT; 主线; A
+- 没有授权 PDK、商业 EDA 或配套文件时跳过对应签核声明；公开教育流程不能写成 foundry signoff。
+- 器件参数、工艺假设、RTL 回归、综合/时序/功耗和版图检查能追到同一版本，任何模型替换都触发对应回归。
+- 版图只对所声明教育规则完成 DRC/LVS 与可用的寄生分析；没有制造和硅片测量时停在教育流程，不宣称流片。
 
-**阶段退出条件：** 提交掩膜层、截面与逐步工艺流程，标注至少 3 个关键尺寸及其容差；用设计规则检查和 FMEA 说明主要失效机理，并量化一个良率敏感性结果。
+## 怎么走
 
-### VLSI 设计
+### 波与量子准备
 
-**选课要求：** 完成全部 1 门必修，并从 3 门选修候选中选择 1 门。
+**为什么这样排：** 8.04 的正式前置是 8.03，因此先用 8.03SC 建立波动、复振幅、边界条件和 Fourier 表示。若这些内容已有等价训练，可以直接做课程题证明；否则补完会影响量子与器件模型的单元。
 
-- [Digital Design and Integrated Circuits](../courses/vlsi-ic/044-eecs-151.md) — **选修候选**; University of California, Berkeley; 替代; B
-- [Complex Digital Systems](../courses/vlsi-ic/049-6-884.md) — **选修候选**; MIT; 补充; B
-- [Analysis and Design of Digital Integrated Circuits](../courses/vlsi-ic/050-6-374.md) — **必修**; MIT; 主线; A
-- [VLSI Systems](../courses/vlsi-ic/051-ece-4740.md) — **选修候选**; Cornell University; 补充; A
+- [Physics III: Vibrations and Waves](../courses/physics/012-8-03sc.md) — **必学**; MIT
 
-**阶段退出条件：** 完成一个可综合数字模块的规格、RTL、验证与实现报告；回归测试零失配、目标约束下时序收敛，并列出面积、功耗代理值与至少一次设计空间权衡。
+**做到这里再往下：** 推导并数值复算一个带边界条件的波动本征问题，网格加密时本征值和归一化误差收敛，并能说明它与后续量子能级模型的对应关系。
 
-## 执行规则
+### 从能带到紧凑模型
 
-- 按每个阶段的选课要求完成全部必修与指定数量的选修；若提供完整路径选项，只选择一条并按序完成其中全部课程；可选补充只用于填补明确缺口。
-- 阶段内至少完成一个可复现产物，并把失败记录纳入复盘。
-- 涉及市电、高压、射频辐射、激光、化学品或加工设备时，必须遵守本地法规并由合格人员监督。
+**为什么这样排：** ECE 3150 与 6.012 把器件物理连接到电路模型，ECE 4070 提供半导体物理，6.004 则补齐后续数字 VLSI 路线需要的逻辑设计背景。再按实际短板选一门：量子基础不足选 8.04，需要纳米尺度输运时选 6.701；两者不是可互换的器件概论。
+
+- [Quantum Physics I](../courses/physics/013-8-04.md) — **选 1 门**; MIT
+- [Microelectronics](../courses/microelectronics/029-ece-3150.md) — **必学**; Cornell University
+- [Microelectronic Devices and Circuits](../courses/microelectronics/030-6-012.md) — **必学**; MIT
+- [Computation Structures](../courses/digital-logic/037-6-004.md) — **必学**; MIT
+- [Physics of Semiconductors and Nanostructures](../courses/semiconductor-devices/124-ece-4070.md) — **必学**; Cornell University
+- [Introduction to Nanoelectronics](../courses/semiconductor-devices/125-6-701.md) — **选 1 门**; MIT
+
+**做到这里再往下：** 从能带和输运假设推出器件 I–V/C–V，再从公开或仿真数据提取紧凑模型参数。拟合前依据数据分辨率、噪声或求解器误差写明允许误差；在留出的偏置区间报告归一化 RMSE，并标出模型开始失效的位置。
+
+### 把器件变成工艺流程
+
+**为什么这样排：** 把已经得到的紧凑模型、偏置范围和器件假设翻译成关键尺寸、工艺目标与容差。6.152J 提供共同的微纳工艺基础；目标确实是 MEMS 才选 6.777J，需要系统的微加工顺序选 memsX，想了解 IC 产线全貌选 NPTEL。独立学习只做仿真和案例分析，不意味着可以在家搭洁净室。化学品、真空、高温和加工设备只允许在合规设施中由合格人员监督使用。
+
+- [Micro/Nano Processing Technology](../courses/fabrication-mems/126-6-152j.md) — **必学**; MIT
+- [Micro and Nanofabrication (MEMS)](../courses/fabrication-mems/127-memsx.md) — **选 1 门**; EPFL
+- [Basic Overview of Semiconductor Device Processing and IC Fabrication](../courses/fabrication-mems/128-108104865.md) — **选 1 门**; IIT Kanpur / NPTEL
+- [Design and Fabrication of Microelectromechanical Devices](../courses/fabrication-mems/129-6-777j.md) — **选 1 门**; MIT
+
+**做到这里再往下：** 画出掩膜层、器件截面和逐步工艺流程，并为每个会影响性能或良率的关键尺寸写明容差及来源。用设计规则检查和 FMEA 找出主要失效机理，至少量化一个工艺变量对良率的敏感度。
+
+### 从晶体管到数字版图
+
+**为什么这样排：** 这里的三条路线都有缺口，开始前必须先打开材料和工具。匿名自学优先选 6.884：讲义、实验和代码公开，但旧标准单元假设与商业 EDA 不能照搬，分析应迁移到注明版本的现代工具。6.374 只在能合法取得教材或历史材料时选择；公开档案缺少视频和完整授课讲义，2003 年专有流程也只能作为历史案例。ECE 4740 只在商业 EDA、5 个公开实验和配套文件均可用时选择，并标明没有公开解答和期末项目。EECS 151 适合核对当前课程结构和公开考题，但 CalNet 后的教学站点不能算一条可执行路线。无论选哪条，都沿用前面的器件参数、工艺规则、掩膜和容差；没有授权 PDK 时，结论只能限于所声明的教育工艺。
+
+**完整路线 — 公开历史系统路线（MIT 6.884）（按列出顺序学习）**
+
+1. [Complex Digital Systems](../courses/vlsi-ic/049-6-884.md) — **路线内课程**; MIT
+
+**完整路线 — 历史晶体管设计路线（MIT 6.374）（按列出顺序学习）**
+
+1. [Analysis and Design of Digital Integrated Circuits](../courses/vlsi-ic/050-6-374.md) — **路线内课程**; MIT
+
+**完整路线 — 商业工具实验路线（Cornell ECE 4740）（按列出顺序学习）**
+
+1. [VLSI Systems](../courses/vlsi-ic/051-ece-4740.md) — **路线内课程**; Cornell University
+
+- [Digital Design and Integrated Circuits](../courses/vlsi-ic/044-eecs-151.md) — **按需补充**; University of California, Berkeley
+
+**做到这里再往下：** 完成一个可综合数字模块的规格、RTL、验证和实现。回归测试必须零失配，目标约束下时序收敛，并报告面积、功耗估计以及一项真正由规格推动的设计取舍。
