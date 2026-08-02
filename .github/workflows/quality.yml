@@ -57,11 +57,16 @@ jobs:
             g++ \
             iverilog \
             "kicad=$KICAD_APT_VERSION" \
+            libngspice0 \
             ngspice \
             ninja-build \
             verilator \
             yosys \
             z3
+          dpkg-query --show --showformat='${Status}\n' libngspice0 |
+            grep --line-regexp 'install ok installed'
+          ! dpkg-query --show --showformat='${Status}\n' libngspice-kicad 2>/dev/null |
+            grep --line-regexp 'install ok installed'
           cmake --version
           gcc --version
           ngspice --version

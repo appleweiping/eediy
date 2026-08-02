@@ -35,6 +35,12 @@ def test_quality_report_is_a_blocking_gate_with_external_evidence() -> None:
     assert "ppa:kicad/kicad-8.0-releases" in workflow
     assert "8.0.9-0~ubuntu24.04.1" in workflow
     assert 'test "$(kicad-cli version)" = "8.0.9"' in workflow
+    toolchain_step = workflow.split("- name: Install executable EE toolchains", 1)[
+        1
+    ].split("- name: Install pinned SymbiYosys", 1)[0]
+    assert "libngspice0" in toolchain_step
+    assert "libngspice-kicad 2>/dev/null" in toolchain_step
+    assert "--force-overwrite" not in workflow
     assert "fea6e467d067b3ea84b6b5ac08cd48beb59f0d42" in workflow
     assert 'test "$(git -C "$RUNNER_TEMP/sby" rev-parse HEAD)" = "$SBY_COMMIT"' in workflow
     assert workflow.count("--cache-ttl-hours 0") == 1
