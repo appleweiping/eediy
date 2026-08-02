@@ -312,16 +312,16 @@ def test_support_pages_keep_actionable_editorial_corrections() -> None:
 def test_curated_resource_pages_publish_review_dates_and_example_links() -> None:
     root = Path(__file__).resolve().parents[1]
     reviewed_pairs = (
-        ("docs/books.md", "docs/en/books.md"),
-        ("docs/math-foundations.md", "docs/en/math-foundations.md"),
-        ("docs/math-advanced.md", "docs/en/math-advanced.md"),
-        ("docs/guides/tools.md", "docs/en/guides/tools.md"),
+        ("docs/books.md", "docs/en/books.md", "2026-08-02"),
+        ("docs/math-foundations.md", "docs/en/math-foundations.md", "2026-07-31"),
+        ("docs/math-advanced.md", "docs/en/math-advanced.md", "2026-07-31"),
+        ("docs/guides/tools.md", "docs/en/guides/tools.md", "2026-07-31"),
     )
-    for zh_relative, en_relative in reviewed_pairs:
+    for zh_relative, en_relative, reviewed_at in reviewed_pairs:
         zh = (root / zh_relative).read_text(encoding="utf-8")
         en = (root / en_relative).read_text(encoding="utf-8")
-        assert "last_reviewed: 2026-07-31" in zh
-        assert "last_reviewed: 2026-07-31" in en
+        assert f"last_reviewed: {reviewed_at}" in zh
+        assert f"last_reviewed: {reviewed_at}" in en
 
     starter_url = (
         "https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass"

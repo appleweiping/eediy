@@ -907,12 +907,12 @@ def test_review_ledger_summary_must_match_target_decisions(
 def test_repository_review_ledger_has_current_retained_targets() -> None:
     ledger = load_review_ledger(
         Path("data/external_link_reviews.json"),
-        today=date(2026, 7, 31),
+        today=date(2026, 8, 2),
     )
 
     assert ledger
     assert ledger.evidence_urls
-    assert ledger.reviewed_at == "2026-07-31"
+    assert ledger.reviewed_at == "2026-08-02"
     assert all(review["decision"] == "retain" for review in ledger.values())
 
 

@@ -3,7 +3,7 @@ title: EE 好书推荐
 description: 按电子工程方向整理的教材与长期参考书，标明适用阶段、使用方式和合法获取入口。
 page_type: guide
 comments: true
-last_reviewed: 2026-07-31
+last_reviewed: 2026-08-02
 ---
 
 
@@ -18,7 +18,7 @@ last_reviewed: 2026-07-31
 - **[Lessons in Electric Circuits / All About Circuits](https://www.allaboutcircuits.com/textbook/)**（开放在线教材）
   从直流、交流一路讲到半导体、数字电路、仪表和安全，检索方便，例子多。它很适合第一次补齐术语，或在搭电路前查一个具体概念；数学深度有限，学完节点法、暂态和频率响应后，应转入一门正规的电路课程。
 
-- **[The Art of Electronics, 3rd ed.](https://artofelectronics.net/)**（作者官网；纸书/授权电子版付费）
+- **[The Art of Electronics, 3rd ed.](https://www.book2look.com/book/9780521809269)**（Cambridge 出版社预览；纸书付费）
   这本书关心“真实元件接起来会怎样”，强项是器件选择、噪声、精密电路、接口和大量工程经验。它不是最温和的第一本电路理论教材：最好先学过线性电路，并在需要设计或排故时按主题查阅，而不是从头背到尾。
 
 - **[Learning the Art of Electronics, 2nd ed.](https://www.cambridge.org/core/books/learning-the-art-of-electronics/9B9FA2FE6B1802BD4627B1F9825E8F0A)**（出版社页；付费）

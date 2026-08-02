@@ -13,7 +13,7 @@ A weak technical document leaves the reader with only the author's assurance tha
 
 Before drafting, complete the sentence “The reader will use this document to …” A design choice calls for requirements, candidate designs, and tradeoffs. Reproduction calls for equipment, connections, versions, steps, raw data, and abnormal conditions. Maintenance calls for interfaces, normal state, hazard boundaries, and a diagnostic path. One long document that tries to be paper, manual, and lab notebook usually gives none of those readers a clear entry point.
 
-The IEEE Author Center page on [article structure](https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/create-the-text-of-your-article/structure-your-article/) separates methodology, results, and discussion: what was done, what was obtained, and what the result means. That distinction is valuable even for a course project. Do not announce success inside the methods section, and do not introduce new data for the first time in the conclusion.
+The IEEE Professional Communication Society guidance on [effective engineering reports](https://procomm.ieee.org/communication-resources-for-engineers/written-reports/write-effective-reports/) separates methods, results, and discussion: what was done, what was obtained, and what the result means. That distinction is valuable even for a course project. Do not announce success inside the methods section, and do not introduce new data for the first time in the conclusion.
 
 Make the title and opening specific to the object and operating range. “Low-noise amplifier design” reveals little; “Noise–bandwidth tradeoff in a 5 V, 1 kHz–100 kHz sensor front end” identifies the boundary. A useful opening can often be four sentences: problem, method, principal quantitative result, and most important limitation. If those four cannot be written, the engineering question may still be too broad.
 
@@ -23,7 +23,7 @@ A reliable engineering claim names the object, conditions, metric, value or dire
 
 Distinguish predicted, simulated, and measured values. A simulation needs simulator and model source, versions, corner, initial conditions, and relevant solver settings. A measurement needs instrument, probe, calibration state, sampling, and processing. A theoretical result needs assumptions and the range in which its approximation holds. If all three curves share a plot, neither the legend nor the prose should call them simply “results.”
 
-The IEEE Author Center's structural guidance also reflects several useful
+That IEEE engineering-report guidance also reflects several useful
 habits: use terms consistently, define a symbol on first use, number figures
 and tables in order, and tell the reader what each figure demonstrates. A
 class report need not imitate an entire publication format, but formatting
@@ -47,7 +47,7 @@ A negative result is design information. Oscillation that appears only with one 
 
 ## Make every citation and version lead back to its source
 
-Place a citation next to the claim it supports. For a datasheet, name manufacturer, part number, revision, and relevant table or figure. For a standard or paper, identify edition, date, or DOI. Prefer an institution's or author's primary page over a repost. The IEEE [Reference Guide](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/IEEE-Reference-Guide.pdf) covers common forms including datasheets, standards, reports, software, and online sources. A citation manager can format them, but it cannot verify that the cited version supports the sentence.
+Place a citation next to the claim it supports. For a datasheet, name manufacturer, part number, revision, and relevant table or figure. For a standard or paper, identify edition, date, or DOI. Prefer an institution's or author's primary page over a repost. The current IEEE Author Center [Reference Style Guide for Authors](https://docs.google.com/document/d/1j1L96U2NagwWI9MEVDNVKt9pXxRzTH7h3krI3Mb6wZE/edit?usp=sharing) covers common forms including datasheets, standards, reports, software, and online sources. A citation manager can format them, but it cannot verify that the cited version supports the sentence.
 
 Keep the reproduction entry short and explicit: where the data live, which commit applies, what command to run, and which figure it creates. Preserve native schematic and PCB project files whether they are text or binary, and also export a PDF, netlist, BOM, or fabrication outputs so a reader without the same software and license can inspect the design. Large raw data may live in external storage if the document gives a stable identifier, checksum, or version.
 

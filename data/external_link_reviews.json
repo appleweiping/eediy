@@ -1,10 +1,10 @@
 {
-  "reviewed_at": "2026-07-31",
+  "reviewed_at": "2026-08-02",
   "reviewer": "independent adversarial review",
   "policy": "An automated review result is retained only when a primary official index, a repository API, or the rendered primary page independently confirms the target. Automated 403, robots, and local TLS-chain failures are not treated as proof of a dead resource.",
   "summary": {
-    "reviewed": 59,
-    "retain": 59,
+    "reviewed": 42,
+    "retain": 42,
     "replace": 0,
     "remove": 0
   },
@@ -26,61 +26,66 @@
       ]
     },
     {
-      "name": "University of Illinois ECE 310",
+      "name": "W3C Recommendations",
       "decision": "retain",
       "automation_reason": "robots policy",
       "allowed_reason_codes": [
         "robots_denied"
       ],
-      "method": "The course-notes target is an exact href on the official course home; the other 18 targets are exact hrefs on the public official homework or exams index. All 19 matched and none were missing.",
+      "method": "The official W3C publication-history pages independently identify the 2013 and 2015 Recommendations and link their exact canonical specification pages.",
       "evidence": [
-        "https://courses.physics.illinois.edu/ece310/su2026/",
-        "https://courses.physics.illinois.edu/ece310/su2026/homework.html",
-        "https://courses.physics.illinois.edu/ece310/su2026/exams.html"
+        "https://www.w3.org/standards/history/tabular-data-model/",
+        "https://www.w3.org/standards/history/prov-o.html/"
       ],
       "urls": [
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/notes/ece310_notes.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam1_su20.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam3_practice2.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/Exam3_practice3.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_Practice_1.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_practice_2.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/SU24_Exam2_practice_3.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam1_practice3.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam1_practice_2.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/exams/exam3_su20.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/HW1.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/HW2.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw10.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw3.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw4.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw5.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw6.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw7.pdf",
-        "https://courses.physics.illinois.edu/ece310/su2026/secure/homework/hw8.pdf"
+        "https://www.w3.org/TR/tabular-data-model/",
+        "https://www.w3.org/TR/prov-o/"
       ]
     },
     {
-      "name": "University of Illinois ECE 311",
+      "name": "Introduction to Probability open textbook",
+      "decision": "retain",
+      "automation_reason": "anti-automation 403",
+      "allowed_reason_codes": [
+        "http_403"
+      ],
+      "method": "The author's official UMass page identifies Introduction to Probability, names the authors, and links the exact open textbook site.",
+      "evidence": [
+        "https://websites.umass.edu/pishro/books/"
+      ],
+      "urls": [
+        "https://www.probabilitycourse.com/"
+      ]
+    },
+    {
+      "name": "Springer Fundamentals of Power Electronics",
+      "decision": "retain",
+      "automation_reason": "robots policy",
+      "allowed_reason_codes": [
+        "robots_denied",
+        "tls_error"
+      ],
+      "method": "The Springer record and independent Crossref DOI record jointly confirm the exact title, authors, third edition, eBook ISBN, and DOI.",
+      "evidence": [
+        "https://api.crossref.org/works/10.1007/978-3-030-43881-4"
+      ],
+      "urls": [
+        "https://link.springer.com/book/10.1007/978-3-030-43881-4"
+      ]
+    },
+    {
+      "name": "AMD Vivado constraints guide",
       "decision": "retain",
       "automation_reason": "robots policy",
       "allowed_reason_codes": [
         "robots_denied"
       ],
-      "method": "The Getting Started file and all eight laboratory ZIP targets are exact hrefs on the public official laboratory index; all 9 matched and none were missing.",
+      "method": "The rendered UG903 target identifies the document and All Constraints section; the official UG895 constraints page independently names UG903 as the guide for constraint files, sets, and types.",
       "evidence": [
-        "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
+        "https://docs.amd.com/r/en-US/ug895-vivado-system-level-design-entry/Working-with-Constraints"
       ],
       "urls": [
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab1/Getting_Started.pdf",
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab1/Lab1.zip",
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab2/Lab2.zip",
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab3/Lab3.zip",
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab4/Lab4.zip",
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab5/Lab5.zip",
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab6/Lab6.zip",
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/Lab7/Lab7.zip",
-        "https://courses.physics.illinois.edu/ece311/su2025/secure/LabFinal/LabFinal.zip"
+        "https://docs.amd.com/r/en-US/ug903-vivado-using-constraints/All-Constraints"
       ]
     },
     {
@@ -239,6 +244,96 @@
       ],
       "urls": [
         "https://www.allaboutcircuits.com/textbook/"
+      ]
+    },
+    {
+      "name": "NPTEL Biomedical Instrumentation course page",
+      "decision": "retain",
+      "automation_reason": "Python TLS handshake EOF",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "Independent curl returned HTTP 200 for the exact course page. The official course-ID-matched NPTEL archive syllabus returned HTTP 200 application/pdf and identifies Biomedical Instrumentation, its instructor, and IIT Madras.",
+      "evidence": [
+        "https://archive.nptel.ac.in/content/syllabus_pdf/102106669.pdf"
+      ],
+      "urls": [
+        "https://nptel.ac.in/courses/102106669"
+      ]
+    },
+    {
+      "name": "NPTEL Principles of Digital Communications course page",
+      "decision": "retain",
+      "automation_reason": "Python TLS handshake EOF",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "Independent curl returned HTTP 200 for the exact course page. The official course-ID-matched NPTEL archive syllabus returned HTTP 200 application/pdf and identifies Principles of Digital Communications, its instructor, and IIT Bombay.",
+      "evidence": [
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108101113.pdf"
+      ],
+      "urls": [
+        "https://nptel.ac.in/courses/108101113"
+      ]
+    },
+    {
+      "name": "NPTEL Electrical Machines II course page",
+      "decision": "retain",
+      "automation_reason": "Python TLS handshake EOF",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "Independent curl returned HTTP 200 for the exact course page. The official course-ID-matched NPTEL archive syllabus returned HTTP 200 application/pdf and identifies Electrical Machines - II, its instructor, and IIT Kharagpur.",
+      "evidence": [
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108105131.pdf"
+      ],
+      "urls": [
+        "https://nptel.ac.in/courses/108105131"
+      ]
+    },
+    {
+      "name": "NPTEL Electrical Measurement course page",
+      "decision": "retain",
+      "automation_reason": "Python TLS handshake EOF",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "Independent curl returned HTTP 200 for the exact course page. The official course-ID-matched NPTEL archive syllabus returned HTTP 200 application/pdf and identifies Electrical Measurement and Electronic Instruments, its instructor, and IIT Kharagpur.",
+      "evidence": [
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108105153.pdf"
+      ],
+      "urls": [
+        "https://nptel.ac.in/courses/108105153"
+      ]
+    },
+    {
+      "name": "NPTEL Analog IC Design course page",
+      "decision": "retain",
+      "automation_reason": "Python TLS handshake EOF",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "Independent curl returned HTTP 200 for the exact course page. The official course-ID-matched NPTEL archive syllabus returned HTTP 200 application/pdf and identifies Analog IC Design, its instructors, and IIT Madras.",
+      "evidence": [
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108106105.pdf"
+      ],
+      "urls": [
+        "https://nptel.ac.in/courses/108106105"
+      ]
+    },
+    {
+      "name": "NPTEL Introduction to Photonics course page",
+      "decision": "retain",
+      "automation_reason": "Python TLS handshake EOF",
+      "allowed_reason_codes": [
+        "tls_error"
+      ],
+      "method": "Independent curl returned HTTP 200 for the exact course page. The official course-ID-matched NPTEL archive syllabus returned HTTP 200 application/pdf and identifies Introduction to Photonics, its instructor, and IIT Madras.",
+      "evidence": [
+        "https://archive.nptel.ac.in/content/syllabus_pdf/108106135.pdf"
+      ],
+      "urls": [
+        "https://nptel.ac.in/courses/108106135"
       ]
     },
     {

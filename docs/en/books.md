@@ -3,7 +3,7 @@ title: Recommended EE Books
 description: A curated shelf for electrical engineering, with intended level, practical use, and legitimate access routes.
 page_type: guide
 comments: true
-last_reviewed: 2026-07-31
+last_reviewed: 2026-08-02
 ---
 
 
@@ -18,7 +18,7 @@ Do not start five books in parallel. Pick one primary text, pair it with a [publ
 - **[Lessons in Electric Circuits / All About Circuits](https://www.allaboutcircuits.com/textbook/)** (open online text)
   The collection runs from DC and AC through semiconductors, digital circuits, instrumentation, and safety. It is searchable and rich in worked explanations, which makes it a good first repair manual for terminology or a concept to check before a build. Its mathematical depth is limited; after nodal analysis, transients, and frequency response, move to a full circuit-analysis course.
 
-- **[The Art of Electronics, 3rd ed.](https://artofelectronics.net/)** (author site; print and authorized e-book are paid)
+- **[The Art of Electronics, 3rd ed.](https://www.book2look.com/book/9780521809269)** (Cambridge publisher preview; print edition is paid)
   This book is interested in what real components do when connected. Device choice, noise, precision circuits, interfaces, and practical failure modes are its strengths. It is not the gentlest first circuit-theory text: learn linear circuits first, then use it by topic while designing or debugging rather than trying to memorize it cover to cover.
 
 - **[Learning the Art of Electronics, 2nd ed.](https://www.cambridge.org/core/books/learning-the-art-of-electronics/9B9FA2FE6B1802BD4627B1F9825E8F0A)** (publisher page; paid)
