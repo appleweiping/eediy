@@ -142,6 +142,7 @@ jobs:
           python scripts/check_external_links.py
           --allow-review
           --workers 24
+          --per-host-workers 2
           --timeout 8
           --retries 1
           --cache-ttl-hours 0

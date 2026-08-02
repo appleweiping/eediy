@@ -10,7 +10,8 @@ import subprocess
 import sys
 import threading
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from collections import deque
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping
@@ -36,6 +37,9 @@ from scripts.quality_common import (
 
 
 USER_AGENT = "EEDIY-LinkChecker/1.0"
+STREAMING_GET_ACCEPT = (
+    "text/html,application/xhtml+xml,application/pdf;q=0.9,*/*;q=0.8"
+)
 CACHE_VERSION = 4
 DEFAULT_REVIEW_LEDGER = "data/external_link_reviews.json"
 REVIEW_DECISIONS = frozenset({"retain", "replace", "remove"})
@@ -48,6 +52,9 @@ MANUAL_REVIEW_REASON_CODES = frozenset(
 PERMANENT_MISSING_STATUSES = frozenset({404, 410})
 REDIRECT_STATUSES = frozenset({301, 302, 303, 307, 308})
 MAX_REDIRECTS = 10
+NETWORK_RECHECK_DELAY_SECONDS = 5.0
+NETWORK_RECHECK_MAX_WORKERS = 4
+NETWORK_RECHECK_MIN_TIMEOUT = 15.0
 AUTH_HOST_LABELS = frozenset({"auth", "idp", "login", "sso", "weblogin"})
 AUTH_PATH_RE = re.compile(
     r"(?:^|/)(?:cas/login|login|oauth/authorize|saml2?|shibboleth|signin)(?:/|$)",
@@ -166,6 +173,22 @@ def canonical_url(url: str) -> str:
             "",
         )
     )
+
+
+def _entry_origin(url: str) -> tuple[str, str, int | None]:
+    """Return a stable scheduling origin without deciding target safety."""
+    try:
+        parsed = urlsplit(canonical_url(url))
+        scheme = parsed.scheme.casefold()
+        hostname = (parsed.hostname or "").casefold().rstrip(".")
+        port = parsed.port
+    except (TypeError, ValueError, UnicodeError):
+        return ("invalid", url, None)
+    if not scheme or not hostname:
+        return ("invalid", url, None)
+    if port is None:
+        port = 443 if scheme == "https" else 80 if scheme == "http" else None
+    return (scheme, hostname, port)
 
 
 def _has_forbidden_url_control(value: str) -> bool:
@@ -1525,11 +1548,28 @@ class LinkChecker:
                         url,
                         headers={
                             "User-Agent": USER_AGENT,
+                            "Accept": STREAMING_GET_ACCEPT,
                             "Range": "bytes=0-2047",
                         },
                         timeout=self.timeout,
                         stream=True,
                     )
+                    if int(response.status_code) == 415:
+                        # Some providers reject Range requests even though an
+                        # ordinary GET is available. Keep the retry bounded on
+                        # the client side by streaming and never reading the
+                        # response body.
+                        response.close()
+                        response, final_url = self._request_with_safe_redirects(
+                            "GET",
+                            url,
+                            headers={
+                                "User-Agent": USER_AGENT,
+                                "Accept": STREAMING_GET_ACCEPT,
+                            },
+                            timeout=self.timeout,
+                            stream=True,
+                        )
                 status = int(response.status_code)
                 content_type = str(
                     getattr(response, "headers", {}).get("Content-Type", "")
@@ -1629,6 +1669,10 @@ def _load_cache(path: Path, ttl: timedelta) -> dict[str, dict[str, Any]]:
                 cached["reason_code"] = infer_reason_code(cached)
             if not reason_code_matches_result(cached):
                 continue
+            # A transient connection failure is not reusable evidence, even
+            # when an older cache file still marks it as fresh.
+            if cached.get("reason_code") == "network_error":
+                continue
             cached["from_cache"] = True
             output[str(url)] = cached
     return output
@@ -1663,6 +1707,7 @@ def check_urls(
     cache_path: Path,
     cache_ttl_hours: float = 168,
     workers: int = 24,
+    per_host_workers: int = 2,
     timeout: float = 8,
     retries: int = 1,
     offline: bool = False,
@@ -1670,6 +1715,12 @@ def check_urls(
     checkpoint_batch_size: int = 25,
     checkpoint_interval_seconds: float = 5,
 ) -> list[dict[str, Any]]:
+    if (
+        not isinstance(per_host_workers, int)
+        or isinstance(per_host_workers, bool)
+        or per_host_workers < 1
+    ):
+        raise QualityError("per_host_workers must be a positive integer")
     unique = sorted(set(urls))
     cached = _load_cache(cache_path, timedelta(hours=cache_ttl_hours))
     results: dict[str, dict[str, Any]] = {
@@ -1714,9 +1765,17 @@ def check_urls(
                 "from_cache": False,
             }
             cacheable = False
+        if normalized.get("reason_code") == "network_error":
+            # A connection failure is provisional evidence. It must be checked
+            # again instead of becoming a fresh cache hit on the next run.
+            cacheable = False
         results[url] = normalized
         if cacheable:
             cache_results[url] = normalized
+            dirty_results += 1
+            checkpoint()
+        elif url in cache_results:
+            cache_results.pop(url)
             dirty_results += 1
             checkpoint()
 
@@ -1728,6 +1787,85 @@ def check_urls(
             return dict(result), True
         except Exception as exc:
             return _checker_exception_result(url, exc), False
+
+    def run_network_round(
+        round_urls: Iterable[str],
+        *,
+        checker: LinkChecker,
+        worker_limit: int,
+        per_origin_limit: int,
+    ) -> None:
+        origin_queues: dict[tuple[str, str, int | None], deque[str]] = {}
+        for url in round_urls:
+            origin_queues.setdefault(_entry_origin(url), deque()).append(url)
+        if not origin_queues:
+            return
+
+        ready_origins = deque(origin_queues)
+        active_by_origin: dict[tuple[str, str, int | None], int] = {}
+        executor = ThreadPoolExecutor(max_workers=worker_limit)
+        futures: dict[Any, tuple[str, tuple[str, str, int | None]]] = {}
+
+        def fill_worker_slots() -> None:
+            blocked_origins = 0
+            while len(futures) < worker_limit and ready_origins:
+                origin = ready_origins.popleft()
+                queue = origin_queues[origin]
+                if active_by_origin.get(origin, 0) >= per_origin_limit:
+                    ready_origins.append(origin)
+                    blocked_origins += 1
+                    if blocked_origins >= len(ready_origins):
+                        break
+                    continue
+
+                blocked_origins = 0
+                url = queue.popleft()
+                future = executor.submit(checker.check, url)
+                futures[future] = (url, origin)
+                active_by_origin[origin] = active_by_origin.get(origin, 0) + 1
+                if queue:
+                    ready_origins.append(origin)
+
+        fill_worker_slots()
+        try:
+            while futures:
+                completed, _unfinished = wait(
+                    tuple(futures), return_when=FIRST_COMPLETED
+                )
+                for future in completed:
+                    url, origin = futures.pop(future)
+                    active = active_by_origin[origin] - 1
+                    if active:
+                        active_by_origin[origin] = active
+                    else:
+                        active_by_origin.pop(origin)
+                    result, cacheable = completed_result(future, url)
+                    record(url, result, cacheable=cacheable)
+                fill_worker_slots()
+        except BaseException:
+            # Capture this round's completed work before propagating an
+            # interrupt. Recovery URLs may already have provisional entries in
+            # results, so membership in that mapping cannot identify delivery.
+            for future, (url, _origin) in futures.items():
+                if not future.done() or future.cancelled():
+                    continue
+                exception = future.exception()
+                if exception is None:
+                    result, cacheable = completed_result(future, url)
+                    record(url, result, cacheable=cacheable)
+                elif isinstance(exception, Exception):
+                    record(
+                        url,
+                        _checker_exception_result(url, exception),
+                        cacheable=False,
+                    )
+            checkpoint(force=True)
+            for future in futures:
+                future.cancel()
+            executor.shutdown(wait=False, cancel_futures=True)
+            raise
+        else:
+            executor.shutdown(wait=True)
 
     pending = [url for url in unique if url not in results]
     if offline:
@@ -1752,36 +1890,37 @@ def check_urls(
         checker = LinkChecker(
             timeout=timeout, retries=retries, respect_robots=respect_robots
         )
-        executor = ThreadPoolExecutor(max_workers=max(1, workers))
-        futures = {executor.submit(checker.check, url): url for url in pending}
-        try:
-            for future in as_completed(futures):
-                url = futures[future]
-                result, cacheable = completed_result(future, url)
-                record(url, result, cacheable=cacheable)
-        except BaseException:
-            # Capture work that finished before an interrupt but was not yet yielded
-            # by as_completed, then persist it before propagating the interrupt.
-            for future, url in futures.items():
-                if url in results or not future.done() or future.cancelled():
-                    continue
-                exception = future.exception()
-                if exception is None:
-                    result, cacheable = completed_result(future, url)
-                    record(url, result, cacheable=cacheable)
-                elif isinstance(exception, Exception):
-                    record(
-                        url,
-                        _checker_exception_result(url, exception),
-                        cacheable=False,
-                    )
+        worker_limit = max(1, workers)
+        run_network_round(
+            pending,
+            checker=checker,
+            worker_limit=worker_limit,
+            per_origin_limit=per_host_workers,
+        )
+
+        network_rechecks = [
+            url
+            for url in pending
+            if results[url].get("outcome") == "review"
+            and results[url].get("reason_code") == "network_error"
+        ]
+        if network_rechecks:
+            # Persist all conclusive first-round work before the deliberate
+            # recovery delay. The transient results themselves are never cached.
             checkpoint(force=True)
-            for future in futures:
-                future.cancel()
-            executor.shutdown(wait=False, cancel_futures=True)
-            raise
-        else:
-            executor.shutdown(wait=True)
+            if NETWORK_RECHECK_DELAY_SECONDS > 0:
+                time.sleep(NETWORK_RECHECK_DELAY_SECONDS)
+            recovery_checker = LinkChecker(
+                timeout=max(float(timeout), NETWORK_RECHECK_MIN_TIMEOUT),
+                retries=retries,
+                respect_robots=respect_robots,
+            )
+            run_network_round(
+                network_rechecks,
+                checker=recovery_checker,
+                worker_limit=min(NETWORK_RECHECK_MAX_WORKERS, worker_limit),
+                per_origin_limit=1,
+            )
     checkpoint(force=True)
     return [results[url] for url in unique]
 
@@ -1903,6 +2042,16 @@ def result_issues(
     return issues
 
 
+def _positive_int(value: str) -> int:
+    try:
+        parsed = int(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("must be a positive integer") from exc
+    if parsed < 1:
+        raise argparse.ArgumentTypeError("must be a positive integer")
+    return parsed
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Check external resources with cache, robots handling, and explicit review states."
@@ -1921,6 +2070,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--cache-ttl-hours", type=float, default=168)
     parser.add_argument("--workers", type=int, default=24)
+    parser.add_argument("--per-host-workers", type=_positive_int, default=2)
     parser.add_argument("--timeout", type=float, default=8)
     parser.add_argument("--retries", type=int, default=1)
     parser.add_argument("--offline", action="store_true")
@@ -1979,6 +2129,7 @@ def main(argv: list[str] | None = None) -> int:
             cache_path=repo_path(args.cache),
             cache_ttl_hours=args.cache_ttl_hours,
             workers=args.workers,
+            per_host_workers=args.per_host_workers,
             timeout=args.timeout,
             retries=args.retries,
             offline=args.offline,

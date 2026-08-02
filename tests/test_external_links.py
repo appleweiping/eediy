@@ -1405,6 +1405,72 @@ def test_head_policy_or_missing_response_is_confirmed_by_get(
     assert result["outcome"] == expected_outcome
 
 
+@pytest.mark.parametrize(
+    ("final_status", "expected_outcome"),
+    [(200, "ok"), (415, "review")],
+)
+def test_range_get_415_retries_once_without_range(
+    final_status: int, expected_outcome: str
+) -> None:
+    class FakeResponse:
+        def __init__(self, status_code: int) -> None:
+            self.status_code = status_code
+            self.headers = {"Content-Type": "text/html; charset=utf-8"}
+            self.closed = False
+
+        def close(self) -> None:
+            self.closed = True
+
+    class FakeRequests:
+        class RequestException(Exception):
+            pass
+
+        def __init__(self) -> None:
+            self.get_calls: list[dict[str, object]] = []
+            self.range_response: FakeResponse | None = None
+
+        @staticmethod
+        def head(*_args: object, **_kwargs: object) -> FakeResponse:
+            return FakeResponse(415)
+
+        def get(self, *_args: object, **kwargs: object) -> FakeResponse:
+            self.get_calls.append(kwargs)
+            if len(self.get_calls) == 1:
+                self.range_response = FakeResponse(415)
+                return self.range_response
+            assert self.range_response is not None
+            assert self.range_response.closed is True
+            return FakeResponse(final_status)
+
+    checker = LinkChecker(
+        timeout=0.01,
+        retries=0,
+        respect_robots=False,
+        resolve_dns=False,
+    )
+    fake_requests = FakeRequests()
+    checker.requests = fake_requests
+
+    result = checker.check("https://example.edu/course")
+
+    assert result["outcome"] == expected_outcome
+    assert len(fake_requests.get_calls) == 2
+    range_get, ordinary_get = fake_requests.get_calls
+    assert range_get["headers"] == {
+        "User-Agent": external_links.USER_AGENT,
+        "Accept": external_links.STREAMING_GET_ACCEPT,
+        "Range": "bytes=0-2047",
+    }
+    assert ordinary_get["headers"] == {
+        "User-Agent": external_links.USER_AGENT,
+        "Accept": external_links.STREAMING_GET_ACCEPT,
+    }
+    assert range_get["stream"] is True
+    assert ordinary_get["stream"] is True
+    if final_status == 415:
+        assert result["reason_code"] == "http_client_error"
+
+
 def test_same_origin_robots_fetch_is_single_flight_and_path_specific() -> None:
     class FakeResponse:
         status_code = 200
@@ -1454,6 +1520,378 @@ def _ok_result(url: str) -> dict[str, object]:
         "elapsed_ms": 1,
         "from_cache": False,
     }
+
+
+def _network_error_result(url: str) -> dict[str, object]:
+    return {
+        "url": url,
+        "outcome": "review",
+        "reason_code": "network_error",
+        "http_status": None,
+        "reason": "ConnectTimeout: connection timed out",
+        "final_url": url,
+        "checked_at": "2026-07-29T00:00:00+00:00",
+        "elapsed_ms": 8_000,
+        "from_cache": False,
+    }
+
+
+def test_network_errors_get_one_delayed_low_concurrency_recheck(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    constructions: list[dict[str, object]] = []
+    delays: list[float] = []
+    lock = threading.Lock()
+    release = threading.Event()
+    active_total = 0
+    maximum_total = 0
+    active_by_origin: dict[str, int] = {}
+    maximum_by_origin: dict[str, int] = {}
+
+    class RecoveringChecker:
+        def __init__(self, **kwargs: object) -> None:
+            self.round_index = len(constructions)
+            constructions.append(kwargs)
+
+        def check(self, url: str) -> dict[str, object]:
+            nonlocal active_total, maximum_total
+            if self.round_index == 0:
+                return _network_error_result(url)
+
+            origin = url.split("/", 3)[2]
+            with lock:
+                active_total += 1
+                active_by_origin[origin] = active_by_origin.get(origin, 0) + 1
+                maximum_total = max(maximum_total, active_total)
+                maximum_by_origin[origin] = max(
+                    maximum_by_origin.get(origin, 0), active_by_origin[origin]
+                )
+                if active_total == external_links.NETWORK_RECHECK_MAX_WORKERS:
+                    release.set()
+            assert release.wait(timeout=2), "recovery round did not use its worker budget"
+            with lock:
+                active_total -= 1
+                active_by_origin[origin] -= 1
+            return _ok_result(url)
+
+    monkeypatch.setattr(external_links, "LinkChecker", RecoveringChecker)
+    monkeypatch.setattr(
+        external_links.time,
+        "sleep",
+        lambda seconds: delays.append(float(seconds)),
+    )
+    urls = [
+        "https://a.example/1",
+        "https://a.example/2",
+        "https://b.example/1",
+        "https://c.example/1",
+        "https://d.example/1",
+        "https://e.example/1",
+    ]
+
+    results = check_urls(
+        urls,
+        cache_path=tmp_path / "external-links.json",
+        workers=8,
+        per_host_workers=2,
+        timeout=8,
+        retries=1,
+    )
+
+    assert all(result["outcome"] == "ok" for result in results)
+    assert len(constructions) == 2
+    assert constructions[0]["timeout"] == 8
+    assert constructions[1]["timeout"] >= 15
+    assert constructions[1]["retries"] == 1
+    assert delays == [external_links.NETWORK_RECHECK_DELAY_SECONDS]
+    assert maximum_total == external_links.NETWORK_RECHECK_MAX_WORKERS
+    assert max(maximum_by_origin.values()) == 1
+
+
+def test_network_error_still_fails_closed_after_recheck_and_is_not_cached(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    constructions = 0
+    calls = 0
+
+    class FailingChecker:
+        def __init__(self, **_kwargs: object) -> None:
+            nonlocal constructions
+            constructions += 1
+
+        @staticmethod
+        def check(url: str) -> dict[str, object]:
+            nonlocal calls
+            calls += 1
+            return _network_error_result(url)
+
+    monkeypatch.setattr(external_links, "LinkChecker", FailingChecker)
+    monkeypatch.setattr(external_links, "NETWORK_RECHECK_DELAY_SECONDS", 0)
+    url = "https://example.edu/course"
+    cache_path = tmp_path / "external-links.json"
+
+    results = check_urls([url], cache_path=cache_path, retries=0)
+
+    assert constructions == 2
+    assert calls == 2
+    assert results[0]["outcome"] == "review"
+    assert results[0]["reason_code"] == "network_error"
+    issues = result_issues(results, allow_review=True)
+    assert len(issues) == 1
+    assert issues[0].severity == "error"
+    payload = json.loads(cache_path.read_text(encoding="utf-8"))
+    assert url not in payload["results"]
+
+
+def test_fresh_cached_network_error_is_discarded_and_rechecked(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    url = "https://example.edu/course"
+    cache_path = tmp_path / "external-links.json"
+    cached_result = _network_error_result(url)
+    cached_result["checked_at"] = datetime.now(timezone.utc).isoformat()
+    cache_path.write_text(
+        json.dumps(
+            {
+                "version": external_links.CACHE_VERSION,
+                "updated_at": datetime.now(timezone.utc).isoformat(),
+                "results": {url: cached_result},
+            }
+        ),
+        encoding="utf-8",
+    )
+    calls = 0
+
+    class HealthyChecker:
+        def __init__(self, **_kwargs: object) -> None:
+            pass
+
+        @staticmethod
+        def check(checked_url: str) -> dict[str, object]:
+            nonlocal calls
+            calls += 1
+            return _ok_result(checked_url)
+
+    monkeypatch.setattr(external_links, "LinkChecker", HealthyChecker)
+
+    results = check_urls([url], cache_path=cache_path, retries=0)
+
+    assert calls == 1
+    assert results[0]["outcome"] == "ok"
+    assert results[0]["from_cache"] is False
+
+
+def test_recheck_future_exception_is_isolated_from_other_urls(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    bad_url = "https://bad.example/course"
+    constructions = 0
+
+    class RecoveryExceptionChecker:
+        def __init__(self, **_kwargs: object) -> None:
+            nonlocal constructions
+            self.round_index = constructions
+            constructions += 1
+
+        def check(self, url: str) -> dict[str, object]:
+            if self.round_index == 0:
+                return _network_error_result(url)
+            if url == bad_url:
+                raise RuntimeError("isolated recovery failure")
+            return _ok_result(url)
+
+    monkeypatch.setattr(external_links, "LinkChecker", RecoveryExceptionChecker)
+    monkeypatch.setattr(external_links, "NETWORK_RECHECK_DELAY_SECONDS", 0)
+    results = check_urls(
+        ["https://good.example/course", bad_url],
+        cache_path=tmp_path / "external-links.json",
+        retries=0,
+    )
+
+    by_url = {result["url"]: result for result in results}
+    assert by_url["https://good.example/course"]["outcome"] == "ok"
+    assert by_url[bad_url]["outcome"] == "review"
+    assert by_url[bad_url]["reason_code"] == "checker_exception"
+    assert "RuntimeError" in by_url[bad_url]["reason"]
+
+
+def test_recheck_checkpoints_completed_work_before_interrupt(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    cache_path = tmp_path / "external-links.json"
+    conclusive_url = "https://a.example/conclusive"
+    recovered_url = "https://b.example/recovered"
+    interrupted_url = "https://c.example/interrupted"
+    recovered_checkpoint = threading.Event()
+    constructions = 0
+    real_atomic_write = external_links.atomic_write
+
+    def signaling_atomic_write(path: Path, content: str) -> None:
+        real_atomic_write(path, content)
+        payload = json.loads(content)
+        recovered = payload["results"].get(recovered_url)
+        if recovered and recovered["outcome"] == "ok":
+            recovered_checkpoint.set()
+
+    class RecoveryInterruptChecker:
+        def __init__(self, **_kwargs: object) -> None:
+            nonlocal constructions
+            self.round_index = constructions
+            constructions += 1
+
+        def check(self, url: str) -> dict[str, object]:
+            if self.round_index == 0:
+                if url == conclusive_url:
+                    return _ok_result(url)
+                return _network_error_result(url)
+            if url == recovered_url:
+                return _ok_result(url)
+            assert recovered_checkpoint.wait(timeout=2)
+            raise KeyboardInterrupt
+
+    monkeypatch.setattr(external_links, "atomic_write", signaling_atomic_write)
+    monkeypatch.setattr(external_links, "LinkChecker", RecoveryInterruptChecker)
+    monkeypatch.setattr(external_links, "NETWORK_RECHECK_DELAY_SECONDS", 0)
+
+    with pytest.raises(KeyboardInterrupt):
+        check_urls(
+            [conclusive_url, recovered_url, interrupted_url],
+            cache_path=cache_path,
+            workers=1,
+            retries=0,
+            checkpoint_batch_size=1,
+        )
+
+    payload = json.loads(cache_path.read_text(encoding="utf-8"))
+    assert list(payload["results"]) == [conclusive_url, recovered_url]
+    assert payload["results"][recovered_url]["outcome"] == "ok"
+    assert interrupted_url not in payload["results"]
+
+
+def test_check_urls_caps_each_origin_without_serializing_other_origins(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    lock = threading.Lock()
+    release = threading.Event()
+    active_by_origin: dict[str, int] = {}
+    maximum_by_origin: dict[str, int] = {}
+    active_total = 0
+    maximum_total = 0
+    started = 0
+
+    class MeasuringChecker:
+        def __init__(self, **kwargs: object) -> None:
+            pass
+
+        @staticmethod
+        def check(url: str) -> dict[str, object]:
+            nonlocal active_total, maximum_total, started
+            origin = url.split("/", 3)[2]
+            with lock:
+                started += 1
+                active_total += 1
+                active_by_origin[origin] = active_by_origin.get(origin, 0) + 1
+                maximum_by_origin[origin] = max(
+                    maximum_by_origin.get(origin, 0), active_by_origin[origin]
+                )
+                maximum_total = max(maximum_total, active_total)
+                if started == 6:
+                    release.set()
+            assert release.wait(timeout=2), "cross-origin work was serialized"
+            with lock:
+                active_total -= 1
+                active_by_origin[origin] -= 1
+            return _ok_result(url)
+
+    monkeypatch.setattr(external_links, "LinkChecker", MeasuringChecker)
+    urls = [
+        "https://a.example/1",
+        "https://a.example/2",
+        "https://a.example/3",
+        "https://b.example/1",
+        "https://b.example/2",
+        "https://c.example/1",
+        "https://c.example/2",
+    ]
+    results = check_urls(
+        urls,
+        cache_path=tmp_path / "external-links.json",
+        workers=6,
+        per_host_workers=2,
+        retries=0,
+    )
+
+    assert all(result["outcome"] == "ok" for result in results)
+    assert maximum_by_origin == {
+        "a.example": 2,
+        "b.example": 2,
+        "c.example": 2,
+    }
+    assert maximum_total == 6
+
+
+def test_grouped_origin_queue_does_not_starve_a_later_origin(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    lock = threading.Lock()
+    later_origin_started = threading.Event()
+    first_origin_started = 0
+    first_origin_count_when_later_started: int | None = None
+
+    class FairnessChecker:
+        def __init__(self, **kwargs: object) -> None:
+            pass
+
+        @staticmethod
+        def check(url: str) -> dict[str, object]:
+            nonlocal first_origin_started, first_origin_count_when_later_started
+            if url.startswith("https://a.example/"):
+                with lock:
+                    first_origin_started += 1
+                    is_first = first_origin_started == 1
+                if is_first:
+                    assert later_origin_started.wait(timeout=2), (
+                        "later origin was starved behind the grouped first-origin queue"
+                    )
+            else:
+                with lock:
+                    first_origin_count_when_later_started = first_origin_started
+                later_origin_started.set()
+            return _ok_result(url)
+
+    monkeypatch.setattr(external_links, "LinkChecker", FairnessChecker)
+    urls = [*(f"https://a.example/{index:02d}" for index in range(20))]
+    urls.append("https://b.example/only")
+    results = check_urls(
+        urls,
+        cache_path=tmp_path / "external-links.json",
+        workers=2,
+        per_host_workers=1,
+        retries=0,
+    )
+
+    assert all(result["outcome"] == "ok" for result in results)
+    assert first_origin_count_when_later_started is not None
+    assert first_origin_count_when_later_started <= 1
+
+
+@pytest.mark.parametrize("value", ["0", "-1", "not-a-number"])
+def test_cli_rejects_invalid_per_host_worker_limit(value: str) -> None:
+    with pytest.raises(SystemExit):
+        external_links.build_parser().parse_args(["--per-host-workers", value])
+
+
+@pytest.mark.parametrize("value", [0, -1, True, "2"])
+def test_per_host_worker_limit_defaults_to_two_and_rejects_invalid_api_value(
+    tmp_path: Path, value: object
+) -> None:
+    assert external_links.build_parser().parse_args([]).per_host_workers == 2
+    with pytest.raises(external_links.QualityError, match="positive integer"):
+        check_urls(
+            [],
+            cache_path=tmp_path / "external-links.json",
+            per_host_workers=value,  # type: ignore[arg-type]
+        )
 
 
 def test_completed_batches_survive_interruption(

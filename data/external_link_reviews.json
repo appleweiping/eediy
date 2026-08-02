@@ -3,8 +3,8 @@
   "reviewer": "independent adversarial review",
   "policy": "An automated review result is retained only when a primary official index, a repository API, or the rendered primary page independently confirms the target. Automated 403, robots, and local TLS-chain failures are not treated as proof of a dead resource.",
   "summary": {
-    "reviewed": 42,
-    "retain": 42,
+    "reviewed": 44,
+    "retain": 44,
     "replace": 0,
     "remove": 0
   },
@@ -55,6 +55,23 @@
       ],
       "urls": [
         "https://www.probabilitycourse.com/"
+      ]
+    },
+    {
+      "name": "Analog Devices LTspice resources",
+      "decision": "retain",
+      "automation_reason": "anti-automation 403",
+      "allowed_reason_codes": [
+        "http_403"
+      ],
+      "method": "Analog Devices' official Design Tools & Calculators index identifies LTspice as its high-performance SPICE simulator and links the exact LTspice product page. An official Analog Dialogue article independently links the exact LTspice Technical Information and Guides target as the recommended reading list for LTspice tips and tricks.",
+      "evidence": [
+        "https://www.analog.com/en/resources/design-tools-and-calculators.html",
+        "https://www.analog.com/en/resources/analog-dialogue/articles/how-to-add-a-voltage-controlled-switch.html"
+      ],
+      "urls": [
+        "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html",
+        "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator/ltspice-recommended-reading-list.html"
       ]
     },
     {

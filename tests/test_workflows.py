@@ -48,6 +48,10 @@ def test_quality_report_is_a_blocking_gate_with_external_evidence() -> None:
         "- name: Check every external resource with fresh network evidence", 1
     )[1].split("- name: Build consolidated report", 1)[0]
     assert "if:" not in external_step
+    assert "--workers 24" in external_step
+    assert "--per-host-workers 2" in external_step
+    assert "--timeout 8" in external_step
+    assert "--retries 1" in external_step
     assert workflow.index("Install pinned SymbiYosys") < workflow.index(
         "Execute all release-blocking EE starter toolchains"
     )
