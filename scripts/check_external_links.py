@@ -1508,13 +1508,15 @@ class LinkChecker:
                     headers={"User-Agent": USER_AGENT},
                     timeout=self.timeout,
                 )
-                # A missing response to HEAD is not conclusive: some providers do
-                # not implement HEAD correctly. Confirm permanent-missing statuses
-                # with the same bounded GET fallback used for HEAD policy errors.
+                # A missing or policy response to HEAD is not conclusive: some
+                # providers reject or rate-limit HEAD while serving a bounded GET.
+                # Confirm those statuses before classifying the resource.
                 if response.status_code in {
                     400,
                     403,
                     405,
+                    415,
+                    429,
                     *PERMANENT_MISSING_STATUSES,
                 }:
                     response.close()

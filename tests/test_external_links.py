@@ -1354,11 +1354,19 @@ def test_html_response_for_direct_download_is_not_counted_as_healthy() -> None:
 
 
 @pytest.mark.parametrize(
-    ("get_status", "expected_outcome"),
-    [(200, "ok"), (404, "failed"), (410, "failed"), (503, "review")],
+    ("head_status", "get_status", "expected_outcome"),
+    [
+        (404, 200, "ok"),
+        (404, 404, "failed"),
+        (404, 410, "failed"),
+        (404, 503, "review"),
+        (415, 200, "ok"),
+        (429, 200, "ok"),
+        (429, 429, "review"),
+    ],
 )
-def test_head_missing_is_confirmed_by_get(
-    get_status: int, expected_outcome: str
+def test_head_policy_or_missing_response_is_confirmed_by_get(
+    head_status: int, get_status: int, expected_outcome: str
 ) -> None:
     class FakeResponse:
         def __init__(self, status_code: int) -> None:
@@ -1378,7 +1386,7 @@ def test_head_missing_is_confirmed_by_get(
 
         @staticmethod
         def head(*args: object, **kwargs: object) -> FakeResponse:
-            return FakeResponse(404)
+            return FakeResponse(head_status)
 
         def get(self, *args: object, **kwargs: object) -> FakeResponse:
             self.get_calls += 1

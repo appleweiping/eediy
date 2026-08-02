@@ -31,7 +31,7 @@ comments: true
 
 ## 先写一条可能失败的规格
 
-规格必须允许结果判定为“不通过”。NASA [Systems Engineering Handbook 的 Appendix C](https://www.nasa.gov/reference/system-engineering-handbook-appendix/)强调区分强制要求、事实和目标；[Appendix D 需求验证矩阵](https://www.nasa.gov/reference/appendix-d-requirements-verification-matrix/)要求每条 “shall” 预先对应分析、检查、演示或测试方法。学生项目不需要照搬航天文档，但这两个原则非常实用。
+规格必须允许结果判定为“不通过”。NASA [Systems Engineering Handbook](https://ntrs.nasa.gov/citations/20170001761) 的 Appendix C 强调区分强制要求、事实和目标；Appendix D 要求每条 “shall” 预先对应分析、检查、演示或测试方法。学生项目不需要照搬航天文档，但这两个原则非常实用。
 
 开工前用一页写清：
 

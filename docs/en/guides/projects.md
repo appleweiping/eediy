@@ -31,7 +31,7 @@ That question establishes an input, environment, output, and conflict. “Build 
 
 ## Write a specification that can fail
 
-Appendix C of NASA's [Systems Engineering Handbook](https://www.nasa.gov/reference/system-engineering-handbook-appendix/) distinguishes a mandatory requirement from a statement of fact or an aspiration. The [Appendix D requirements-verification matrix](https://www.nasa.gov/reference/appendix-d-requirements-verification-matrix/) asks that each “shall” have a planned method such as analysis, inspection, demonstration, or test. A student project does not need aerospace paperwork, but both ideas scale down well.
+Appendix C of NASA's [Systems Engineering Handbook](https://ntrs.nasa.gov/citations/20170001761) distinguishes a mandatory requirement from a statement of fact or an aspiration. Appendix D asks that each “shall” have a planned method such as analysis, inspection, demonstration, or test. A student project does not need aerospace paperwork, but both ideas scale down well.
 
 Before implementation, state on one page:
 
