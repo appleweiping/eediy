@@ -2,59 +2,126 @@
 title: "Solar Energy Engineering: Photovoltaic Energy Conversion"
 description: "Delft University of Technology 的《Solar Energy Engineering: Photovoltaic Energy Conversion》通过视频、讲义、练习、实验与代码建立光伏能量转换主线；目前有匹配的 TU Delft 开放课程入口、公开视频与讲义，但 edX 审计与证书访问受限。"
 page_type: course
-course_id: "course-122"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-29"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: b0a4186a0c870fce -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 4bbbe1e3e647cba8 -->
 
-# Delft University of Technology PV Energy Conversion: Solar Energy Engineering: Photovoltaic Energy Conversion
+# Solar Energy Engineering: Photovoltaic Energy Conversion
 
 ## 课程简介
 
-- **所属大学：** Delft University of Technology
+- **机构：** Delft University of Technology
 - **课程编号：** PV Energy Conversion
-- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
-- **本站建议背景：** 半导体器件；电路分析；工程数学
-- **访问条件：** 公开入口；部分材料需注册或受限
-- **资料状态：** 2026-07-29；公开材料导读
+- **方向：** [储能与光伏](index.md)
+- **评级：** A
+- **角色：** 主线
+- **难度：** 进阶
+- **最近复核：** 2026-07-28
 
-### 课程定位
+Delft University of Technology 的《Solar Energy Engineering: Photovoltaic Energy Conversion》通过视频、讲义、练习、实验与代码建立光伏能量转换主线；目前有匹配的 TU Delft 开放课程入口、公开视频与讲义，但 edX 审计与证书访问受限。
 
-TU Delft 的 [Photovoltaic Energy Conversion](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/) 从 irradiance、semiconductor physics 和受光 p-n junction 讲到 heterojunction、light management、external quantum efficiency、Shockley–Queisser limit 与 third-generation concepts。官方分为 Module 1–8，标注 121 小时 study load。它回答的是 cell 的 \(I\!-\!V\) 与效率从何而来；module wiring、partial shading、MPPT、inverter、battery、grid integration 属于后续 [Photovoltaic Systems](https://ocw.tudelft.nl/courses/solar-energy-photovoltaic-pv-systems/)。
+**为什么选择这门课**
 
-进入 Module 2 前做 4 项自测：由 density of states 与 Fermi level 解释 carrier concentration；写出 drift、diffusion、continuity 的单位；画暗态与受光 junction band diagram；由 absorption coefficient 和 thickness 解释 generation profile。前 2 项卡住补 semiconductor physics，第 3 项补 junction electrostatics，第 4 项补基础 optics；这组题只用于判断所缺基础，官方没有把它列为先修。
+主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
 
-### 访问与版本说明
+**学习前准备**
 
-OCW 的 [Lectures](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/?view=lectures) 保存 8 个 module 的视频，[Readings](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion/?view=readings) 只列 Module 1、2、6、8 的 4 个入口。课程材料标为 CC BY-NC-SA 4.0，嵌入视频、图片和外部材料仍以各自标注为准。
+- 建议先完成方向基础：半导体器件
+- 建议先完成方向基础：电路分析
+- 建议先完成方向基础：工程数学
 
-[edX 官方 Assignments 与课程入口](https://www.edx.org/learn/solar-energy/delft-university-of-technology-solar-energy-photovoltaic-pv-energy-conversion) 承担 session、discussion、graded work 与 certificate；匿名页面不能证明当前地区和账号能看到什么。官方 [audit 说明](https://edxsupport.zendesk.com/hc/en-us/articles/1500003964681-What-is-the-audit-track) 也说明 audit 若存在通常是临时访问，不含 graded assignments 与 certificate，而且并非每门课都有。开放路线因此以 OCW 和自建校验为准，不能声称拥有 edX grader。
+**可验证的学习成果**
 
-### 让 cell model 逐周加入复合、输运与损耗
+- 解释储能与光伏中的核心模型，并说明主要假设与适用边界
+- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
+- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
 
-Module 1–4 把 photon flux 接到 drift-diffusion、generation/recombination 与 illuminated junction；维护一张 conservation sheet，统一 optical input、bulk/surface recombination 和 terminal current 的单位。Module 5 引入 metal-semiconductor junction 与 heterojunction；Module 6–7 处理 refraction、dispersion、diffraction、scattering 和 EQE，要把 absorptance、collection probability、internal/external quantum efficiency 分开。Module 8 再做 cell-level loss budget，说明 bandgap、radiative/non-radiative recombination、optical loss、series/shunt effect 与 temperature 各损失了什么。
+**工时与节奏**
 
-数值练习可从 dark diode 和受光 \(I\!-\!V\) 开始，依次加入 recombination 与 optical loss，再扫描 irradiance、temperature、series resistance 和 thickness。保留旧模型作 baseline；在 irradiance 为 0 时恢复 dark curve，在 series resistance 趋近 0、shunt resistance 增大时检查极限，并记录 spectral integration 的单位、网格敏感性和数据出处。没有公开数据就明确使用 synthetic parameters。
+**12 周，每周 10.5 小时。** 提供方公布 12 周、每周 10–11 小时；上方每周工时采用区间中点便于规划。先试学两周并记录授课、练习、实验和复盘时间，若实际偏差超过 25%，据实调整剩余计划。
 
-### 一份 loss budget 串起转换损失
+**安全等级**
 
-报告应包含推导、版本化 notebook、原始表格和环境文件，并能解释 short-circuit、open-circuit、maximum-power point 与 EQE 的变化。这个 notebook 是独立练习，TU Delft 并未把它列为 lab 或官方 assignment。
-
-这门课尤其适合把每一种物理损失逐项做成可解释、可反驳的模型。
-
-本路线止于低能量计算：cell fabrication 涉及化学品、真空、高温和洁净室，module/array 还带来持续直流、电弧、储能和并网风险。若最终问题是 inverter sizing、shading 或 daily energy，转去 PV Systems；若关心 material、junction、passivation、light trapping 与 efficiency limit，就留在本课。
+**仅仿真。** 默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。
 
 ## 课程资源
 
-- [课程主页](https://www.edx.org/learn/solar-energy/delft-university-of-technology-solar-energy-photovoltaic-pv-energy-conversion)
-- [备用课程入口](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion)
-- [讲义 · Course readings](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion?view=readings)
-- [视频 · 课程视频](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion?view=lectures)
+**软件、硬件与成本**
 
-## 资源汇总
+**软件**
 
-本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。
+- 维护者建议的开源/免费验证路径：pvlib-python、PyBaMM、Python 3、Jupyter 与 pandas
+- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
+
+**硬件**
+
+- 资源清单包含实验覆盖；本课程的维护者路径明确将其限定为计算或仿真实验。只假设一台能运行上述软件并保存结果的通用计算机；不采购或连接课程指定且受保护的低压光伏/电池教学模块、温度与电流传感器、电子负载及防护容器
+
+**成本说明**
+
+当前维护者路径只使用计算与仿真，不设专用硬件采购；建议软件优先采用开源/免费工具。这不是提供方要求，平台访问、商业软件或云算力费用仍随提供方、地区与方案而变。
+
+**公开资源完整度**
+
+| 资源类型 | 完整度 |
+|---|---|
+| 视频 | 完整 |
+| 讲义 | 完整 |
+| 练习 | 部分 |
+| 实验 | 部分 |
+| 考试 | 无公开材料 |
+| 代码 | 部分 |
+
+**资源与访问条件**
+
+| 资源 | 访问 | 许可 | 状态 | 复核日期 |
+|---|---|---|---|---|
+| [课程主页](https://www.edx.org/learn/solar-energy/delft-university-of-technology-solar-energy-photovoltaic-pv-energy-conversion) | 可免费旁听 | edX Terms of Service | 官方页已列出 | 2026-07-28 |
+| [备用课程入口](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion) | 无需注册公开访问 | Provider-specific terms; verify before reuse | 官方页已列出 | 2026-07-28 |
+| [Course readings](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion?view=readings) | 无需注册公开访问 | Provider-specific terms; verify before reuse | 官方页已列出 | 2026-07-28 |
+| [Video lectures](https://ocw.tudelft.nl/courses/solar-energy-engineering-photovoltaic-energy-conversion?view=lectures) | 无需注册公开访问 | Provider-specific terms; verify before reuse | 官方页已列出 | 2026-07-28 |
+
+> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
+
+## 实践与验收
+
+**实践闭环**
+
+**《Solar Energy Engineering: Photovoltaic Energy Conversion · Delft University of Technology PV Energy Conversion》电池/光伏能量管理数字孪生**
+
+这是维护者为《Solar Energy Engineering: Photovoltaic Energy Conversion · Delft University of Technology PV Energy Conversion》建议的自学项目，不是课程官方作业。为储能与光伏用公开/合成数据建立电池或光伏数字孪生，评估状态估计、能量调度、温度/辐照变化和安全约束。
+
+**来源：** 维护者建议项目
+
+**交付物**
+
+- 等效模型、状态/参数、功率与温度边界、调度目标和数据来源
+- 模型校准、状态估计、调度、约束检查与场景仿真源文件
+- 原始公开/合成曲线、拟合残差、SOC/功率轨迹和约束日志
+- 一份报告，比较基线/改进策略并分析老化、遮挡或温漂失效
+
+**验收**
+
+- 保留数据上的电压/功率归一化 RMSE 低于 5%，或据数据噪声声明阈值
+- 覆盖空/满状态边界、温度极值、功率突变和传感偏置
+- 用能量积分交叉核对 SOC 或累计发电量，归一化残差低于 2%
+- 注入容量衰减或局部遮挡，证明约束检查阻止越界调度
+
+**复现要求**
+
+- 提交模型、校准、估计、调度、场景和绘图源文件
+- 固定数据版本、单位、求解器、参数、随机种子和环境
+- 保存原始公开/合成数据、来源/许可、校验和与自动报告
+
+**安全边界：** 仅仿真 — 仅使用公开/合成数据和仿真；不得充放真实电池、拆解电芯、连接光伏阵列、市电、高压或激光光源。
+
+**风险、缺口与边界**
+
+edX 审计路径受限，证书价格可能变化；配套开放材料采用 CC BY-NC-SA 许可。
+
+**完成证据**
+
+- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
+- 理论推导档案：逐项列出假设、符号、推导、单位与边界条件，并用至少一种独立方法复核
+- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
+- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明

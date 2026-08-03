@@ -1,53 +1,124 @@
 ---
 title: "Real-Time Embedded Systems Concepts and Practices"
-description: "University of Colorado Boulder 的《Real-Time Embedded Systems Concepts and Practices》以 Raspberry Pi、Linux、视频和平台内实验建立实时嵌入式入口；公开产品页未提供可匿名下载的官方代码包。"
+description: "University of Colorado Boulder 的《Real-Time Embedded Systems Concepts and Practices》以 Raspberry Pi、Linux、视频、实验与代码建立实时嵌入式实践入口；硬件要求明确，平台访问可能收费。"
 page_type: course
-course_id: "course-063"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-30"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: bf7ede70080e8ec1 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 773fe85dfcbd03cd -->
 
-# University of Colorado Boulder Real-Time Embedded Systems 1: Real-Time Embedded Systems Concepts and Practices
+# Real-Time Embedded Systems Concepts and Practices
 
 ## 课程简介
 
-- **所属大学：** University of Colorado Boulder
+- **机构：** University of Colorado Boulder
 - **课程编号：** Real-Time Embedded Systems 1
-- **官方先修：** CU Boulder ECEA 5315 官方课程说明假定已掌握 C、编译流程、计算机体系结构、操作系统与 Linux
-- **本站建议背景：** 本站未另设准备条件
-- **访问条件：** 需注册；可用范围以平台为准
-- **资料状态：** 2026-07-30；公开材料导读
+- **方向：** [实时与信息物理系统](index.md)
+- **评级：** A
+- **角色：** 替代
+- **难度：** 提供方未标准化（请按先修判断）
+- **最近复核：** 2026-07-28
 
-### 适合用实测 deadline 进入实时系统
+University of Colorado Boulder 的《Real-Time Embedded Systems Concepts and Practices》以 Raspberry Pi、Linux、视频、实验与代码建立实时嵌入式实践入口；硬件要求明确，平台访问可能收费。
 
-Coursera [ECEA 5315](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices) 是 CU Boulder 四门 Real-Time Embedded Systems specialization 的第 1 门。[5315 官方 assignments 与 syllabus](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5315-concept-and-practices) 默认学生会 C、编译流程、计算机体系结构、操作系统与 Linux。它比较 cyclic executive、RTOS 和 Linux POSIX real-time extension，不负责从 GPIO 入门；最适合想把“是否实时”落实到 deadline 实测的人。
+**为什么选择这门课**
 
-### 编程与互评各占 30%
+替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
 
-官方课程页把学习分成 4 周，时数依次为 13、14、11、15，之后是 2 小时 final。第 1 周比较 Linux POSIX real-time thread、RTOS 与 cyclic executive；第 2 周进入 QoS、hard real-time、rate-monotonic 与绝对时间；第 3 周处理 service sequencing；第 4 周比较 multicore 与不同实时软件栈。第 3 周是转折点：线程和调度政策必须落到一组有顺序、会错过 deadline 的 service，而不再只是 API 名词。
+**学习前准备**
 
-成绩结构更能说明课程怎样运行：quizzes 10%，programming assignments 30%，peer reviews 30%，final exam 30%。因此编程结果只占一半故事；时序设计还要经过同伴审读，最后再由考试检查概念。公开 CU 页面给出这些类别和比例，但题面、starter、互评反馈与考试的实际可见范围取决于 Coursera 注册状态。
+- 建议先完成方向基础：嵌入式系统
+- 建议先完成方向基础：信号与系统
 
-未注册者若想预习，可做一个**非官方替代练习**：让两个 pthread 以不同周期运行，比较普通 Linux、POSIX real-time thread 与 cyclic executive 的 release、finish 和 deadline miss。CU 未把它列为 5315 assignment，它也不能替代 peer review。这个小实验看 response-time 尾部而非平均吞吐；短时 CPU/I/O 干扰常会暴露“平均负载不高却仍超时”的情况。
+**可验证的学习成果**
 
-### 硬件差异会直接改变测量
+- 解释实时与信息物理系统中的核心模型，并说明主要假设与适用边界
+- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
+- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
 
-[硬件要求](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements) 以 Raspberry Pi 3B+/4B、32/64-bit Raspberry Pi OS 和 Logitech C270 为基线。Pi 5、其他相机或 Ubuntu 仍可做本地练习，但 kernel、architecture、governor、affinity 与 camera format 不同，数字不能直接和原平台横比。
+**工时与节奏**
 
-同一 service body 在 cyclic executive、实时线程与普通 Linux 上的差异，主要落在 release control、preemption、tail latency 和 miss recovery。把所有线程都设成最高优先级不会证明实时性，还可能饿死系统服务。换平台后最值得重做的是 deadline 分布；直接复制一个来自不同 kernel 与 governor 的漂亮数字没有意义。
+**11 周，每周 9 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
 
-### 访问与版本说明
+**安全等级**
 
-课程页公开 syllabus 与成绩骨架；[Specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems) 把调度数学放在 5316，mission-critical architecture 放在 5317，camera project 放在 5318。[访问说明](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses) 不保证所有 graded item 或 certificate 免费。5315 的特色是让编程、互评和考试共同检验 Linux 实测；若更需要严格 schedulability analysis，下一门 5316 才是重点。
+**低能量实验。** 仅开展隔离、限流、低能量实验；通电前检查额定值、接地、短路风险和紧急断电方式。
 
 ## 课程资源
 
-- [课程主页](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices)
+**软件、硬件与成本**
 
-## 资源汇总
+**软件**
 
-本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。
+- 维护者建议的开源/免费验证路径：Zephyr 或 FreeRTOS 源码、GCC 或 LLVM、CMake、GDB，以及 Renode 或 QEMU
+- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
+
+**硬件**
+
+- 资源清单包含实验覆盖；优先借用或共享课程支持的实时控制开发板、USB 调试器、逻辑分析仪及低压传感器/执行器。仅在提供方实验手册明确要求后核对规格、许可与安全条件
+
+**成本说明**
+
+建议软件栈可开源或免费使用；这不是提供方要求或物料清单。开发板、元件、打样和仪器的实际清单与费用以提供方实验手册、地区和当地可得性为准，采购前优先借用、共享或仿真。
+
+**公开资源完整度**
+
+| 资源类型 | 完整度 |
+|---|---|
+| 视频 | 完整 |
+| 讲义 | 部分 |
+| 练习 | 完整 |
+| 实验 | 完整 |
+| 考试 | 部分 |
+| 代码 | 完整 |
+
+**资源与访问条件**
+
+| 资源 | 访问 | 许可 | 状态 | 复核日期 |
+|---|---|---|---|---|
+| [课程主页](https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
+| [Introduction to Embedded Systems Software and Development Environments](https://www.coursera.org/learn/introduction-embedded-systems) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
+
+> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
+
+## 实践与验收
+
+**实践闭环**
+
+**《Real-Time Embedded Systems Concepts and Practices · University of Colorado Boulder Real-Time Embedded Systems 1》实时闭环截止期压力测试**
+
+这是维护者为《Real-Time Embedded Systems Concepts and Practices · University of Colorado Boulder Real-Time Embedded Systems 1》建议的自学项目，不是课程官方作业。为实时与信息物理系统建立离散事件调度器与受控对象仿真，量化抖动、超期和传感丢失对闭环安全裕量的影响。
+
+**来源：** 维护者建议项目
+
+**交付物**
+
+- 任务集、周期/截止期/WCET 假设、调度策略和受控对象模型
+- 可执行调度器、闭环仿真、故障注入器和监控断言
+- 不同负载下的原始响应时间、抖动、超期和状态轨迹
+- 一份报告，给出可调度边界、控制退化和安全降级状态
+
+**验收**
+
+- 标称负载下零截止期超期，解析响应时间界与仿真最坏值相差不超过 10%
+- 覆盖零负载、100% 利用率附近、突发阻塞和时钟漂移边界
+- 用第二种调度分析或穷举短超周期交叉核对可调度结论
+- 逐步增加 WCET 直到首次超期，报告超期率与闭环误差增长曲线
+
+**复现要求**
+
+- 提交调度器、受控对象、故障场景、断言和分析源文件
+- 固定事件顺序、随机种子、时间单位、求解器与依赖版本
+- 保存原始事件/状态日志和自动生成的时间线与报告
+
+**安全边界：** 仅仿真 — 只在模拟受控对象上施加超期和故障；不得把未经独立安全验证的调度或降级逻辑接入真实机械、车辆、医疗或电力系统。
+
+**风险、缺口与边界**
+
+课程明确要求 Raspberry Pi 与 Linux 硬件环境，且 Coursera 访问可能需要付费。
+
+**完成证据**
+
+- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
+- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
+- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
+- 实验包：原理图/装置设置、校准记录、原始数据、不确定度、安全检查、失败记录与从原始数据重建图表的步骤

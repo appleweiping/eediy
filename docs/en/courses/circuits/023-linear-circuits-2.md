@@ -2,75 +2,123 @@
 title: "Linear Circuits 2: AC Analysis"
 description: "Georgia Institute of Technology's Linear Circuits 2: AC Analysis follows DC analysis with AC circuit methods, combining videos, 45 assignments, and experiment demonstrations without a complete build loop."
 page_type: course
-course_id: "course-023"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-30"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 60ab7279e7a66f2c -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 1325b60ff51694e7 -->
 
-# Georgia Institute of Technology: Linear Circuits 2: AC Analysis
+# Linear Circuits 2: AC Analysis
 
 ## Course Overview
 
-- **University:** Georgia Institute of Technology
+- **Institution:** Georgia Institute of Technology
 - **Course code:** Linear Circuits 2
-- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
-- **EEDIY preparation:** Engineering Mathematics; Physics Foundations; DC circuit analysis or equivalent background; Course 1 is useful context but not an irreplaceable hard prerequisite
-- **Access:** Registration required; scope varies by platform
-- **Material status:** 2026-07-30; public-material guide
+- **Track:** [Circuit Analysis](index.md)
+- **Tier:** A
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-### This Course Starts with Phasors
+Georgia Institute of Technology's Linear Circuits 2: AC Analysis follows DC analysis with AC circuit methods, combining videos, 45 assignments, and experiment demonstrations without a complete build loop.
 
-Georgia Tech's official [Linear Circuits 2 course and assignments](https://www.coursera.org/learn/linear-circuits-ac-analysis)
-has 5 modules centered on sinusoids and phasors, frequency response, filters,
-complex power, and transformers. It does not rebuild KVL/KCL, node and mesh
-methods, Thévenin/Norton equivalents, or first-order transients; the preceding
-[Linear Circuits 1](https://www.coursera.org/learn/linear-circuits-dcanalysis)
-covers those. Choose it only after that DC foundation. Test readiness with a series RLC circuit: move from time-domain
-relations to impedances, solve the current phasor, translate it back into
-amplitude and phase, and explain which element dominates as frequency changes.
-If the complex arithmetic works but lead and lag do not make sense, review
-complex geometry and stored-energy elements first.
-Graded exercises on the official Coursera page depend on current login and
-access permissions.
+**Why choose this course**
 
-### Return Every Calculation to a Waveform
+Alternative course. A reliable option that can serve as a main course or strong alternative.
 
-After deriving a phasor from \(v(t)\), translate it back to time. After drawing
-Bode asymptotes from a transfer function, calculate several exact frequencies.
-For AC power, state whether phasors are peak or RMS and keep W, var, and VA
-distinct; maximum power transfer is not maximum efficiency. For a transformer,
-set dot convention and reference directions before reflecting an impedance.
+**Before you start**
 
-A filter design needs more than one cutoff. State passband, stopband,
-source/load impedances, available component series, and tolerance. Then ask how
-op-amp gain-bandwidth, slew rate, output swing, and probe loading move the
-intended poles and zeros.
+- Recommended foundation: Engineering Mathematics
+- Recommended foundation: Physics Foundations
+- Recommended background: DC circuit analysis or equivalent background; Course 1 is useful context but not an irreplaceable hard prerequisite
 
-Before plotting, predict the low-frequency, high-frequency, and near-resonance
-directions. If the exact curve violates those limits, inspect the phasor
-convention, transfer-function normalization, and measurement loading before
-changing axes to hide the discrepancy.
+**Verifiable learning outcomes**
 
-### Use a Sensor Filter to Check Phasors, Response, and Waveforms
+- Explain the core models in Circuit Analysis, including their assumptions and limits
+- Solve representative derivations and problems, checking units, limiting cases, or numerical results
+- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-The course demonstrates guitar filtering, RLC behavior, and sensors, but the
-campus [ECE 3710 description](https://pe.gatech.edu/sites/default/files/agendas/ECE-3710-Circuits%20and%20Electronics.pdf)
-and its myDAQ labs are not an open MOOC laboratory package. For independent
-work, design a filter for a narrowband sensor: derive specifications from its
-spectrum, obtain the transfer function, run a SPICE magnitude/phase sweep,
-and measure several frequencies at low voltage. Without hardware, perform a
-tolerance sweep and label it simulation. When you can predict scale, phase
-direction, and frequency limits before using complex arithmetic, phasors have
-become an engineering tool.
+**Workload and pacing**
+
+**11 weeks at 7 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+
+**Safety level**
+
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
 
 ## Course Resources
 
-- [Course home](https://www.coursera.org/learn/linear-circuits-ac-analysis)
+**Software, hardware, and cost**
 
-## Resource Summary
+**Software**
 
-Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.
+- Maintainer-suggested open-source/free verification path: Qucs-S, ngspice, Python 3, and Jupyter
+- The resource inventory does not list public code coverage; the tools above are only a maintainer-suggested independent check, not a provider requirement
+
+**Hardware**
+
+- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a current-limited low-voltage supply, breadboard, digital multimeter, oscilloscope, and function generator. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
+
+**Cost note**
+
+The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
+
+**Public resource coverage**
+
+| Resource type | Completeness |
+|---|---|
+| Video | Complete |
+| Notes | Partial |
+| Practice | Complete |
+| Labs | Partial |
+| Exams | Partial |
+| Code | No public material |
+
+**Resources and access**
+
+| Resource | Access | License | Status | Verified |
+|---|---|---|---|---|
+| [Course home](https://www.coursera.org/learn/linear-circuits-ac-analysis) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
+
+> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+
+## Practice and Verification
+
+**Practice loop**
+
+**Linear Circuits 2: AC Analysis · Georgia Institute of Technology Linear Circuits 2: Dynamic Network Model and Tolerance Validation**
+
+This is a maintainer-suggested self-study project for Linear Circuits 2: AC Analysis · Georgia Institute of Technology Linear Circuits 2, not an official course assignment. Design a low-voltage resistive, capacitive, and optionally op-amp network for Circuit Analysis; compare hand analysis, SPICE, and current-limited measurements while studying tolerance and saturation failures.
+
+**Origin:** Maintainer-suggested project
+
+**Deliverables**
+
+- A schematic and analytic calculation with named nodes, ratings, supplies, and test points
+- An executable SPICE netlist containing DC, AC, transient, and Monte Carlo analyses
+- Raw simulation data at at least 20 frequencies or time points and optional low-voltage measurement data
+- A report comparing the three evidence paths and explaining tolerance, noise, loading, and saturation
+
+**Verification**
+
+- Keep nominal DC node voltages within 2% of hand analysis and AC cutoff frequency within 5%
+- Check open-circuit, short-circuit, zero-frequency, and high-frequency limits against equivalent-circuit expectations
+- Cross-check every operating point with KCL or KVL residual below 1e-6 after normalization
+- Inject ±10% component tolerance and one output-saturation case and report the worst metric and recovery condition
+
+**Reproducibility**
+
+- Commit schematics, netlists, calculation sources, data-analysis scripts, and a README
+- Pin SPICE version, model files, analysis parameters, and optional instrument settings
+- Preserve unprocessed waveforms, export logs, photos or wiring diagrams, and the generated report
+
+**Safety boundary:** Low energy — Use only isolated, current-limited circuits at or below 12 V; verify power ratings and polarity, wire with power removed, and never use mains or unknown supplies.
+
+**Risks, gaps, and boundaries**
+
+Includes 45 assignments and experiment demonstrations but no build loop; Coursera access is paid or variable.
+
+**Completion evidence**
+
+- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
+- Theory dossier with explicit assumptions, notation, derivation, units, and boundary conditions, checked by at least one independent method
+- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
+- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data

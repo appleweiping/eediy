@@ -1,88 +1,125 @@
 ---
 title: "RF and Millimeter-Wave Circuit Design"
-description: "Eindhoven University of Technology's RF and Millimeter-Wave Circuit Design uses Qucs-S and Octave inside Coursera for simulation-first RF study; the public page exposes no fixed course project bundle."
+description: "Eindhoven University of Technology's RF and Millimeter-Wave Circuit Design builds a simulation-first RF and millimeter-wave circuit path in Qucs-S and Octave, with about seventy percent reproducible and hardware optional."
 page_type: course
-course_id: "course-111"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-29"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 6d2757f6d9b6834d -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: a3092536c79591ce -->
 
-# Eindhoven University of Technology: RF and Millimeter-Wave Circuit Design
+# RF and Millimeter-Wave Circuit Design
 
 ## Course Overview
 
-- **University:** Eindhoven University of Technology
+- **Institution:** Eindhoven University of Technology
 - **Course code:** RF and Millimeter-Wave Circuit Design
-- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
-- **EEDIY preparation:** Electromagnetic Fields and Waves; Circuit Analysis; Communication Systems
-- **Access:** Registration required; scope varies by platform
-- **Material status:** 2026-07-29; public-material guide
+- **Track:** [RF, Microwave, and Antennas](index.md)
+- **Tier:** A
+- **Role:** Mainline
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-### Treat the course as 5 linked RF design passes
+Eindhoven University of Technology's RF and Millimeter-Wave Circuit Design builds a simulation-first RF and millimeter-wave circuit path in Qucs-S and Octave, with about seventy percent reproducible and hardware optional.
 
-TU/e's [RF and millimeter-Wave Circuit Design](https://www.coursera.org/learn/rf-mmwave-circuit-design)
-page listed on 2026-07-29 6 modules, 19 assignments, and 5 peer-assessed design
-labs: system, LNA/PA, mixer, VCO, and synthesizer. The provider describes about
-70% as simulation and 30% as requiring a laboratory/components. It fits
-learners who know link budgets, S-parameters, noise cascades, and frequency
-planning and want to trace block specifications into circuit tradeoffs.
-Revisit microwave networks and RF systems first if low-frequency small-signal
-gain remains the main tool.
+**Why choose this course**
 
-### Each pass isolates a different RF failure
+Mainline course. A reliable option that can serve as a main course or strong alternative. Review note: A+
 
-The system pass derives block specifications from range, bandwidth,
-sensitivity, and selectivity. Amplifier work separates LNA
-noise/matching/stability from PA compression/efficiency. Mixer work preserves
-wanted, image, and spur frequencies. VCO work covers startup, tuning, phase
-noise, and load pulling. Synthesizer work explains loop type/bandwidth,
-reference/divider noise, and locking. For every block, compare its
-specification, schematic or model, pass/fail plot, corner/sensitivity result,
-and rejected candidate. Nominal gain cannot stand in for stability or the
-system budget.
+**Before you start**
 
-### Tool versions change the simulated answer
+- Recommended foundation: Electromagnetic Fields and Waves
+- Recommended foundation: Circuit Analysis
+- Recommended foundation: Communication Systems
 
-The course introduces Qucs-S and Octave without pinning a public release. The
-[Qucs-S repository](https://github.com/ra3xdh/qucs_s) and
-[installation guide](https://qucs-s-help.readthedocs.io/en/latest/installation/installing-qucs-s.html)
-show that OS/backend combinations vary; the
-[Octave download](https://octave.org/download.html) represents only a current
-environment option. Write the OS, Qucs-S, backend, Octave, device model, and
-hash beside each circuit model. When changing simulators, rerun the same
-netlist and baseline, then explain parser, model, or convergence differences
-before comparing outputs.
+**Verifiable learning outcomes**
 
-### Default to a Simulation-Only System Loop
+- Explain the core models in RF, Microwave, and Antennas, including their assumptions and limits
+- Solve representative derivations and problems, checking units, limiting cases, or numerical results
+- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-The 70/30 description is not a home-RF safety conclusion. Without an approved
-institutional laboratory, do not connect a PA, antenna, uncharacterized
-VNA/source, or transmit into free space. TU/e's
-[remote RF laboratory](https://research.tue.nl/en/publications/rf-circuits-laboratory-for-remote-learning-and-massive-open-onlin/)
-is purpose-built controlled infrastructure, not permission for a home bench.
+**Workload and pacing**
 
-With platform access, the 19 assignments, 5 peer assessments, and peer
-feedback form the original course route. Without access, locked prompts,
-supporting files, and solutions are outside the available material, so build
-an independent clean-room model instead. Make idealized LNA, mixer, VCO, and
-divider/phase-detector blocks share one transceiver link budget. At each pass,
-push system requirements into the current block and return any excess noise,
-linearity, or locking demand to the budget.
+**13 weeks at 11 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-Judge one transceiver at the end: do the same frequency plan, impedance, and
-power assumptions survive all five blocks? If extra LNA gain costs still more
-in mixer compression, VCO phase noise, or synthesizer lock time, withdraw that
-local optimum. RF design is the work of making five individually attractive
-curves describe the same machine.
+**Safety level**
+
+**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
 
 ## Course Resources
 
-- [Course home](https://www.coursera.org/learn/rf-mmwave-circuit-design)
+**Software, hardware, and cost**
 
-## Resource Summary
+**Software**
 
-Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.
+- Maintainer-suggested open-source/free verification path: openEMS, scikit-rf, GNU Octave or Python 3, and KiCad
+- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
+
+**Hardware**
+
+- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect a vector network analyzer, calibration kit, shielded interconnects, attenuators, and course-specified fixture/antenna in a compliant lab
+
+**Cost note**
+
+The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
+
+**Public resource coverage**
+
+| Resource type | Completeness |
+|---|---|
+| Video | Complete |
+| Notes | Partial |
+| Practice | Complete |
+| Labs | Complete |
+| Exams | No public material |
+| Code | Complete |
+
+**Resources and access**
+
+| Resource | Access | License | Status | Verified |
+|---|---|---|---|---|
+| [Course home](https://www.coursera.org/learn/rf-mmwave-circuit-design) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
+
+> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+
+## Practice and Verification
+
+**Practice loop**
+
+**RF and Millimeter-Wave Circuit Design · Eindhoven University of Technology RF and Millimeter-Wave Circuit Design: Passive RF Network and Antenna-Matching Simulation**
+
+This is a maintainer-suggested self-study project for RF and Millimeter-Wave Circuit Design · Eindhoven University of Technology RF and Millimeter-Wave Circuit Design, not an official course assignment. Design a passive matching network, transmission line, or antenna model for RF, Microwave, and Antennas and audit S-parameters, passivity or stability, and manufacturing tolerance.
+
+**Origin:** Maintainer-suggested project
+
+**Deliverables**
+
+- A specification of band, port impedance, geometry or materials, matching, and regulatory boundary
+- Circuit or full-wave models, mesh and port settings, and parameter-sweep sources
+- Raw S-parameters, Smith-chart data, efficiency or gain or loss, and tolerance Monte Carlo results
+- A report comparing analytic, circuit, and field solutions and explaining resonance drift and mismatch failure
+
+**Verification**
+
+- Meet the predeclared return-loss or insertion-loss target over the nominal band and pass a passivity check
+- Cover the DC or low-frequency limit, center frequency, band edges, and material-parameter extremes
+- Cross-check at least five frequency points against transmission-line or matching equations within 5%
+- Inject ±10% geometry or permittivity variation and report resonance shift and worst mismatch
+
+**Reproducibility**
+
+- Commit geometry, circuit, mesh, sweep, and post-processing sources
+- Pin solver, material models, ports, meshing rules, and convergence tolerances
+- Preserve raw Touchstone or field data, solver logs, and the generated report
+
+**Safety boundary:** Simulation only — Use passive RF or antenna simulation only; do not transmit or connect power amplifiers, microwave sources, or unknown antennas, and do not violate local spectrum rules.
+
+**Risks, gaps, and boundaries**
+
+About seventy percent of the course uses reproducible Qucs-S and Octave simulations, but Coursera access may require payment and hardware is optional.
+
+**Completion evidence**
+
+- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
+- Theory dossier with explicit assumptions, notation, derivation, units, and boundary conditions, checked by at least one independent method
+- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
+- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
+- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes

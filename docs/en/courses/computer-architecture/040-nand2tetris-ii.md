@@ -2,47 +2,123 @@
 title: "Build a Modern Computer from First Principles: From Nand to Tetris, Part II"
 description: "Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part II uses six self-contained projects to implement a virtual machine, compiler, and operating system, requiring introductory programming, Python or Java setup, and potentially paid platform access."
 page_type: course
-course_id: "course-040"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-30"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 6d3d3b373be5de80 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: bd0510d3c730b3f2 -->
 
-# Hebrew University of Jerusalem Nand2Tetris II: Build a Modern Computer from First Principles: From Nand to Tetris, Part II
+# Build a Modern Computer from First Principles: From Nand to Tetris, Part II
 
 ## Course Overview
 
-- **University:** Hebrew University of Jerusalem
+- **Institution:** Hebrew University of Jerusalem
 - **Course code:** Nand2Tetris II
-- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
-- **EEDIY preparation:** Digital Logic and Computation Structures; Programming and Engineering Computing; Introductory programming; Part I is a useful companion, but the provider describes Part II as self-contained
-- **Access:** Open entry; some materials require registration or are limited
-- **Material status:** 2026-07-30; public-material guide
+- **Track:** [Computer Architecture](index.md)
+- **Tier:** S
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-### Course fit
+Hebrew University of Jerusalem's Build a Modern Computer from First Principles: From Nand to Tetris, Part II uses six self-contained projects to implement a virtual machine, compiler, and operating system, requiring introductory programming, Python or Java setup, and potentially paid platform access.
 
-Nand2Tetris Part II covers Projects 7–12 on the official [course page](https://www.nand2tetris.org/course): 2 VM-translator stages, 1 Jack application, 2 compiler stages, and the Project 12 Jack OS. It fits learners who have finished Part I and want to see a high-level language reach Hack instructions by construction. Recursion, object state, parsing, symbol tables, stack frames, and file I/O are practical prerequisites; processes, filesystems, and networking belong in a later operating-systems course.
+**Why choose this course**
 
-### Coursework
+Alternative course. A particularly complete and well-structured option for this track. Review note: S content / A access
 
-Projects 7–8 move from arithmetic and memory segments to branches, call/return, bootstrap, and recursion. Function frames are the subtle part: shifting the save or restore order for LCL, ARG, THIS, THAT, or the return address by a single slot may surface only in a recursive program. Projects 10–11 join a tokenizer, parser, symbol table, and VM generator into a compiler. Their appeal is that a Jack-language mistake eventually becomes VM output whose origin can be traced to a specific layer.
+**Before you start**
 
-Official [Project 12](https://www.nand2tetris.org/project12) implements Math, String, Array, Output, Screen, Keyboard, Memory, and Sys: 8 Jack classes. The Memory allocator and String library show the course's deliberate boundary especially well. They are enough to support Jack programs, but there is no process isolation, filesystem, or networking; the “OS” is closer to a runtime library than a modern kernel.
+- Recommended foundation: Digital Logic and Computation Structures
+- Recommended foundation: Programming and Engineering Computing
+- Recommended background: Introductory programming; Part I is a useful companion, but the provider describes Part II as self-contained
 
-### Course materials
+**Verifiable learning outcomes**
 
-The [software](https://www.nand2tetris.org/software) supplies browser and Java tools and lets an official implementation temporarily replace an unfinished layer. That makes debugging unusually clear: run the same minimal Jack program through a personal compiler, VM translator, and assembler, then observe which substitution makes the error disappear.
+- Explain the core models in Computer Architecture, including their assumptions and limits
+- Solve representative derivations and problems, checking units, limiting cases, or numerical results
+- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-The official [home](https://www.nand2tetris.org/) provides free specifications and tools, while the [license](https://www.nand2tetris.org/license) asks learners not to publish solutions. Translator, compiler, OS, and Jack-application source should therefore remain in a private repository. The most satisfying point in Part II is seeing a Jack application pass through the compiler, VM, assembler, and Hack machine while still being able to explain which layer supplies `Sys.init`, the call frame, the heap object, and screen output.
+**Workload and pacing**
+
+**11 weeks at 9 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
+
+**Safety level**
+
+**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
 
 ## Course Resources
 
-- [Code · Nand2Tetris projects and software suite](https://www.nand2tetris.org/software)
-- [Course home](https://www.coursera.org/learn/nand2tetris2)
+**Software, hardware, and cost**
 
-## Resource Summary
+**Software**
 
-Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.
+- Maintainer-suggested open-source/free verification path: a RISC-V GNU or LLVM toolchain, QEMU, Verilator, and GTKWave
+- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
+
+**Hardware**
+
+- The resource inventory lists lab coverage; the maintainer path treats it as computational/simulation work unless the provider lab manual explicitly says otherwise. It assumes only a general-purpose computer for simulation and cross-compilation; use a specified RISC-V or FPGA board only when the course explicitly calls for it. If the provider lists different equipment or compute requirements, follow its course page
+
+**Cost note**
+
+The suggested software stack is available open source or free; this is maintainer planning, not a provider requirement. If the provider specifies commercial licenses, cloud compute, storage, or institutional resources, costs vary by plan, region, and institution, so no fixed price is asserted here.
+
+**Public resource coverage**
+
+| Resource type | Completeness |
+|---|---|
+| Video | Complete |
+| Notes | Partial |
+| Practice | Complete |
+| Labs | Complete |
+| Exams | No public material |
+| Code | Complete |
+
+**Resources and access**
+
+| Resource | Access | License | Status | Verified |
+|---|---|---|---|---|
+| [Course home](https://www.coursera.org/learn/nand2tetris2) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
+
+> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+
+## Practice and Verification
+
+**Practice loop**
+
+**Build a Modern Computer from First Principles: From Nand to Tetris, Part II · Hebrew University of Jerusalem Nand2Tetris II: Microarchitecture Performance and Correctness Audit**
+
+This is a maintainer-suggested self-study project for Build a Modern Computer from First Principles: From Nand to Tetris, Part II · Hebrew University of Jerusalem Nand2Tetris II, not an official course assignment. Implement an instruction-level simulator or pipeline model for Computer Architecture and reproducibly audit functional correctness, CPI, cache behavior, and hazard handling.
+
+**Origin:** Maintainer-suggested project
+
+**Deliverables**
+
+- A specification of ISA subset, pipeline or cache parameters, exceptions, and counter semantics
+- Simulator or RTL model, reference executor, and source files for at least 20 microbenchmarks
+- Raw instruction traces, performance counters, cache-hit data, and runtimes
+- A report explaining performance bottlenecks, correctness counterexamples, and design tradeoffs
+
+**Verification**
+
+- Match architectural state instruction-by-instruction against the reference executor on every microbenchmark
+- Cover empty programs, all-mispredicted branches, dependency chains, cache thrashing, and address boundaries
+- Hand-calculate instruction count and ideal CPI for at least 5 short programs and cross-check counters
+- Disable forwarding or change cache-line size and quantify CPI or miss-rate changes, explaining anomalies
+
+**Reproducibility**
+
+- Commit model, microbenchmark, reference, test, and trace-analysis sources
+- Pin compiler, simulator, parameters, benchmark inputs, and build commands
+- Preserve raw traces, counters, and report-generation logs with checksums
+
+**Safety boundary:** Simulation only — Use local simulators and self-authored tests only; do not execute unknown binaries, real malicious payloads, or unisolated privileged code.
+
+**Risks, gaps, and boundaries**
+
+Six substantial projects require Python or Java setup, and Coursera access terms can change.
+
+**Completion evidence**
+
+- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
+- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
+- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command

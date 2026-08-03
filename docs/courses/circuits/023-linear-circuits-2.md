@@ -2,63 +2,123 @@
 title: "Linear Circuits 2: AC Analysis"
 description: "Georgia Institute of Technology 的《Linear Circuits 2: AC Analysis》承接直流分析并训练交流电路方法；视频、45 项作业与实验演示可用，但没有完整搭建循环。"
 page_type: course
-course_id: "course-023"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-30"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: ed52f562ac8a8d44 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 1325b60ff51694e7 -->
 
-# Georgia Institute of Technology: Linear Circuits 2: AC Analysis
+# Linear Circuits 2: AC Analysis
 
 ## 课程简介
 
-- **所属大学：** Georgia Institute of Technology
+- **机构：** Georgia Institute of Technology
 - **课程编号：** Linear Circuits 2
-- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
-- **本站建议背景：** 工程数学；物理基础；直流电路分析或同等基础；第一门课程可作为配套，但不是不可替代的硬先修
-- **访问条件：** 需注册；可用范围以平台为准
-- **资料状态：** 2026-07-30；公开材料导读
+- **方向：** [电路分析](index.md)
+- **评级：** A
+- **角色：** 替代
+- **难度：** 提供方未标准化（请按先修判断）
+- **最近复核：** 2026-07-28
 
-### 这门课从相量开始
+Georgia Institute of Technology 的《Linear Circuits 2: AC Analysis》承接直流分析并训练交流电路方法；视频、45 项作业与实验演示可用，但没有完整搭建循环。
 
-Georgia Tech 官方的 [Linear Circuits 2 课程与 assignments](https://www.coursera.org/learn/linear-circuits-ac-analysis)
-有 5 个 modules，主线是 sinusoid/phasor、frequency response、filter、complex power
-和 transformer。它不会重教 KVL/KCL、node/mesh、Thévenin/Norton 或一阶 transient；
-这些由前一门 [Linear Circuits 1](https://www.coursera.org/learn/linear-circuits-dcanalysis)
-覆盖。可拿串联 RLC 检查准备程度：从时域关系转到 impedance，求电流相量，再还原 amplitude
-与 phase，并解释频率变化时谁主导。若只能算复数却说不清超前/滞后，复数几何和储能元件就是当前缺口。
-官方 Coursera 页面中的 graded exercises 会受当期登录与访问权限影响。
+**为什么选择这门课**
 
-### 每次计算都要回到波形
+替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
 
-从 \(v(t)\) 得到 phasor 后，一定再还原时域；从 transfer function 画 Bode asymptote 后，
-选几个频点做精确计算。AC power 要声明 phasor 是 peak 还是 RMS，区分 W、var、VA；
-maximum power transfer 与 maximum efficiency 回答的是两个不同问题。transformer 则要确定 dot
-convention 和 reference direction，再反射 impedance。
+**学习前准备**
 
-filter 设计不能只算 cutoff。写出 passband、stopband、source/load、元件系列和 tolerance，
-再考虑 op-amp gain-bandwidth、slew rate、output swing 与 probe loading 怎样移动原来的
-poles/zeros。
+- 建议先完成方向基础：工程数学
+- 建议先完成方向基础：物理基础
+- 建议背景：直流电路分析或同等基础；第一门课程可作为配套，但不是不可替代的硬先修
 
-画图前写下低频、高频和 resonance 附近的趋势预测；如果精确曲线违反这些极限，优先检查 phasor
-约定、传递函数归一化与测量负载。修改坐标范围只会把异常藏起来。
+**可验证的学习成果**
 
-### 用传感器滤波器检查相量、频响和波形
+- 解释电路分析中的核心模型，并说明主要假设与适用边界
+- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
+- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
 
-课程演示 guitar filtering、RLC 与 sensors，但 Georgia Tech 校内
-[ECE 3710 说明](https://pe.gatech.edu/sites/default/files/agendas/ECE-3710-Circuits%20and%20Electronics.pdf)
-中的 myDAQ 实验属于校内配置，MOOC 页面并未公开对应的 lab 包。自学可为窄带传感器设计 filter：从 spectrum
-写规格，推导 transfer function，做 SPICE magnitude/phase sweep，再低压测几个关键频点。
-没有硬件时做 tolerance sweep，并明确是仿真。最后若能预测新网络的数量级、相位方向和频率
-极限，再用复数计算验证，相量才真正成了工程工具。
+**工时与节奏**
+
+**11 周，每周 7 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
+
+**安全等级**
+
+**低能量实验。** 仅开展隔离、限流、低能量实验；通电前检查额定值、接地、短路风险和紧急断电方式。
 
 ## 课程资源
 
-- [课程主页](https://www.coursera.org/learn/linear-circuits-ac-analysis)
+**软件、硬件与成本**
 
-## 资源汇总
+**软件**
 
-本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。
+- 维护者建议的开源/免费验证路径：Qucs-S、ngspice、Python 3 与 Jupyter
+- 资源清单未标注公开代码覆盖；上述工具仅用于维护者建议的独立验证，不代表提供方要求
+
+**硬件**
+
+- 资源清单包含实验覆盖；优先借用或共享限流低压电源、面包板、数字万用表、示波器与函数发生器。仅在提供方实验手册明确要求后核对规格、许可与安全条件
+
+**成本说明**
+
+建议软件栈可开源或免费使用；这不是提供方要求或物料清单。开发板、元件、打样和仪器的实际清单与费用以提供方实验手册、地区和当地可得性为准，采购前优先借用、共享或仿真。
+
+**公开资源完整度**
+
+| 资源类型 | 完整度 |
+|---|---|
+| 视频 | 完整 |
+| 讲义 | 部分 |
+| 练习 | 完整 |
+| 实验 | 部分 |
+| 考试 | 部分 |
+| 代码 | 无公开材料 |
+
+**资源与访问条件**
+
+| 资源 | 访问 | 许可 | 状态 | 复核日期 |
+|---|---|---|---|---|
+| [课程主页](https://www.coursera.org/learn/linear-circuits-ac-analysis) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
+
+> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
+
+## 实践与验收
+
+**实践闭环**
+
+**《Linear Circuits 2: AC Analysis · Georgia Institute of Technology Linear Circuits 2》动态网络模型与容差验证**
+
+这是维护者为《Linear Circuits 2: AC Analysis · Georgia Institute of Technology Linear Circuits 2》建议的自学项目，不是课程官方作业。围绕电路分析设计一个含电阻、电容和可选运放的低压网络，比较手算、SPICE 与限流测量，并研究元件容差和饱和失效。
+
+**来源：** 维护者建议项目
+
+**交付物**
+
+- 带节点命名、额定值、电源和测试点的原理图与解析计算
+- 可运行 SPICE 网表，包含 DC、AC、瞬态和蒙特卡洛设置
+- 至少 20 个频点/时刻的原始仿真数据及可选低压测量数据
+- 一份报告，比较三种证据并解释容差、噪声、加载与饱和
+
+**验收**
+
+- 标称 DC 节点电压与手算相差不超过 2%，AC 截止频率相差不超过 5%
+- 检查开路、短路、零频率和高频极限，结果须符合等效电路预期
+- 用 KCL/KVL 残差交叉核对每个工作点，归一化残差低于 1e-6
+- 注入 ±10% 元件容差和一次输出饱和，报告最坏指标与恢复条件
+
+**复现要求**
+
+- 提交原理图、网表、计算源稿、数据解析脚本和 README
+- 固定 SPICE 版本、模型文件、分析参数和可选仪器设置
+- 保存未处理波形、导出日志、照片/接线图和自动生成报告
+
+**安全边界：** 低能量实验 — 只允许隔离、限流且不高于 12 V 的电路；逐项核对额定值、功耗和极性，断电接线，禁止市电与未知电源。
+
+**风险、缺口与边界**
+
+课程包含 45 项作业和实验演示，但没有搭建闭环；Coursera 访问可能收费或随时变化。
+
+**完成证据**
+
+- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
+- 理论推导档案：逐项列出假设、符号、推导、单位与边界条件，并用至少一种独立方法复核
+- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
+- 实验包：原理图/装置设置、校准记录、原始数据、不确定度、安全检查、失败记录与从原始数据重建图表的步骤

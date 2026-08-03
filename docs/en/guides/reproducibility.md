@@ -1,60 +1,98 @@
 ---
-title: Reproducible Engineering
-description: Define what must agree, then use clean rebuilds, provenance, and safe automation to show that a result is not confined to one machine.
-page_type: guide
-comments: true
+title: Reproducible Engineering and Automated Verification
+description: Rebuild EE results with pinned environments, one task entry point, automated tests, and an evidence manifest.
 ---
 
+<div class="ee-language" markdown>
+[简体中文](../../guides/reproducibility.md)
+</div>
 
-# Reproducible Engineering
+# Reproducible Engineering and Automated Verification
 
-“Reproducible” often hides three different promises: whether the same source builds a byte-identical firmware image, whether the same data yields metrics within a stated tolerance, and whether another run on the same hardware falls inside a predeclared statistical range. Each promise needs a different comparison. Putting every file in a container merely packages an undefined question.
+“It runs on my machine” is not reproducibility. Reproducible engineering derives accepted outputs from explicit inputs, environments, and commands and explains allowed differences. Hardware work must also separate what software can replay from what requires a named physical device.
 
-Use a micro-project with input data, a calculation, and a short report. The objective is not an elaborate CI configuration. It is for another machine to run one command from explicit inputs, produce specified outputs, and know what to compare when the results differ.
+## Purpose and learning outcomes
 
-The repository's [offline RC low-pass
-starter](https://github.com/appleweiping/eediy/tree/main/examples/rc-lowpass)
-is a runnable version of that exercise. Its Python path needs neither network
-access nor third-party packages. From the repository root, run
-`python examples/rc-lowpass/run.py`; it generates analytical inputs, writes
-checksum-bearing provenance, computes step and AC metrics, and applies
-precommitted tolerances. Its tests also require byte-identical inputs from two
-fresh output directories.
+- Define raw inputs, authoritative parameters, generated artifacts, and nonrebuildable assets.
+- Pin dependencies and record the observed runtime environment.
+- Build, test, analyze, and document through one task entry point.
+- Design deterministic checks and tolerance-aware numerical checks.
+- Generate a machine-readable evidence manifest and useful failure diagnosis.
 
-## Name the kind of result that must be reproduced
+## Minimal environment
 
-For a compiled artifact, a strict definition is available. The Reproducible Builds project [defines a reproducible build](https://reproducible-builds.org/docs/definition/) as one in which any party, given the same source, build environment, and instructions, can recreate bit-for-bit identical copies of the specified artifacts. A matching checksum means something only after the specified artifacts and relevant environment are named. Decide in advance whether logs, signatures, and timestamps are inside or outside the comparison.
+- Version control, a command line, and a small EE project.
+- A textual environment or dependency manifest.
+- Scriptable build and test tools.
+- A checksum tool.
+- Optional continuous integration; the core exercise runs entirely locally.
 
-Numerical analysis should not automatically copy the byte-for-byte criterion. A different BLAS library, CPU, or parallel reduction order can alter trailing bits. Compare quantities with units, array shapes, conservation residuals, and physically justified tolerances instead. Hardware is less exact still: do not expect identical ADC samples. Fix the board revision, firmware, wiring, calibration, and environment, then compare a mean, spread, or frequency-response boundary. State the tolerance before seeing the second run, or it becomes an excuse invented for the discrepancy.
+A container is an optional mechanism, not an automatic answer. Record its base image, target architecture, external models, hardware, and license requirements that cannot be packaged.
 
-Write three sentences for the project:
+## Learning sequence
 
-1. **Inputs:** source revision, raw-data checksums, parameter files, and non-rebuildable external models.
-2. **Outputs:** firmware, numerical tables, figures, and the parts of the report that actually support the conclusion.
-3. **Comparator:** byte equality, numerical tolerance, structural property, or statistical interval.
+1. **Classify assets:** label source, raw data, configuration, generated output, and external artifacts.
+2. **Create one entry:** expose stable commands for environment checks, tests, plot generation, and documentation.
+3. **Pin the environment:** record tool and dependency versions, platform, and retrieval source.
+4. **Control determinism:** fix random seeds, ordering, locale, and time handling.
+5. **Define acceptance:** compare text exactly and use physically justified tolerances for floating-point or measured values.
+6. **Rebuild cleanly:** run from scratch in a temporary or isolated environment and retain a manifest.
 
-If one sentence cannot be made concrete, narrow the claim before pinning more dependencies.
+## Verification task: rebuild one complete micro-project
 
-## One genuinely clean rebuild reveals hidden inputs
+Choose a safe project containing computation, data, and a report:
 
-Keep one local entry point such as `make verify` or an equivalent task. It should read immutable inputs, generate into a new directory, and run schema checks, computation, tests, plots, and documentation in sequence. Execute it twice from a fresh clone, an empty cache, and a different absolute path. Any dependency on a user-directory setting, system font, “latest” model fetched from the network, or previous output should become visible.
+1. Write an asset inventory and state whether each item is rebuildable and under what license.
+2. Create one verification entry that checks environment, tests, data schema, figures, and documentation.
+3. Fix seeds and make units, time zone, and sorting explicit.
+4. Set a justified tolerance for key values and checksums for files.
+5. Run twice from clean directories and compare evidence manifests.
+6. Change one input deliberately and show that dependent output changes and verification identifies it.
 
-The Reproducible Builds [technical documentation](https://reproducible-builds.org/docs/) catalogs timestamps, time zones, locales, file ordering, randomness, and build paths as common sources of variation. Do not add a cargo cult of environment variables. Change date, path, or locale one at a time, observe which value enters the output, and then remove it at the source or record it explicitly. A fixed random seed replays one sequence; it does not establish that a Monte Carlo conclusion is stable. Work that depends on randomness should also inspect the distribution across seeds.
+Acceptance requires one command from source to report, with failures localized to a stage rather than a vague error.
 
-A dependency record must answer both “which version was intended?” and “what was actually retrieved?” Retain direct and transitive versions, source locations, and checksums. When a commercial compiler, PDK, vendor model, or license server cannot be packaged, identify it as an external prerequisite and provide a lawful standard-format export or a smaller runnable substitute. A container describes user space; it does not automatically capture CPU features, instrument calibration, USB devices, or remote-service state.
+## Common failures and diagnosis
 
-## Provenance should explain one artifact, not merely list files
+- **An implicit dependency is missing:** start clean and record system-level tools.
+- **Absolute paths leak into output:** use project-relative paths and configurable data roots.
+- **Checksums differ every run:** remove timestamp metadata and fix order, seeds, and generator settings.
+- **Floating-point output varies slightly:** use scientific tolerances and compare key quantities instead of full-file bytes.
+- **A cache hides a missing step:** clear build directories and test a cache-disabled path.
+- **Hardware results cannot replay exactly:** retain firmware, configuration, raw data, calibration, and an allowed statistical range.
 
-Generate a small `run.json` for each rebuild: source revision, entry command, public parameters, resolved dependencies, execution platform, start time, input and output checksums, tool versions, and hardware run IDs where applicable. SLSA 1.2 describes [provenance](https://slsa.dev/spec/v1.2/provenance) as verifiable information tracing an artifact to where, when, and how it was produced. A small project need not claim a SLSA level to benefit from separating the build definition from details of this particular execution.
+## Reproducible evidence
 
-Licensing needs more than a README sentence saying “open source.” The SPDX 3.0.1 [scope](https://spdx.github.io/spdx-spec/v3.0.1/scope/) covers software composition, build information, datasets, provenance and integrity, licenses, and copyrights. You may not need a complete SPDX document, but you should be able to answer whether each external library, model, and dataset may be modified, redistributed, or placed in a public artifact—and whether that answer remains true after a version change.
+- Source revision and annotated milestone.
+- Environment, dependency, system-tool, and license manifests.
+- Checksums for raw inputs and nonrebuildable assets.
+- One build and verification command with stage logs.
+- Test, schema, link, and documentation check summaries.
+- Numerical tolerances, seeds, and allowed platform differences.
+- Hardware revision, firmware, calibration, and measurement run IDs.
 
-When comparing two `run.json` files, separate explanatory differences from accidental ones. Time and temporary paths that should not affect a specified output can be removed or normalized. Compiler, input checksum, or hardware-revision changes must remain because they may explain the result. A useful record leads from an anomalous figure to the inputs and command of that run, and from a dependency change to every output that needs rebuilding.
+## Cost, licensing, and accessibility
 
-## CI is a second machine, not an arbiter
+Local scripts and free tools cover the core process. Cloud CI has quota, retention, and privacy costs; preserve a local equivalent first. Record commercial-tool license prerequisites and provide standard exports or alternative verification for people without access.
 
-Make the local command reliable before delegating it to CI. A cloud failure can then be reduced locally, and the disappearance of a service does not remove the project's rebuild path. CI is good at exercising a clean environment, several platforms, and every commit. It is not a reason to give untrusted contributions access to credentials, license servers, or attached laboratory hardware.
+Use text logs with explicit stage names and errors. Automation must not convey result through red or green alone; output status words and diagnostic links. Low-bandwidth users can fetch a checksummed source snapshot and a small evidence bundle.
 
-GitHub Actions' [secure-use guidance](https://docs.github.com/en/actions/reference/security/secure-use) covers untrusted input and least-privilege tokens, and states that pinning a third-party action to a full commit SHA is the way to treat that reference as immutable. For an external pull request, separate jobs that read contributed source from jobs that hold secrets or control hardware. Logs must not expose tokens, patient data, or vendor-confidential material. Automated hardware also needs independent current limits, timeouts, an emergency stop, and a safe power-on state; a software assertion cannot be the only protection.
+## Safety boundaries
 
-Finish with deliberate damage. Change one raw input and show that dependent figures and prose update. Remove an external tool and make the failure name the missing prerequisite. Change locale or working path and confirm that specified results still satisfy their comparison rules. The process becomes useful when another machine can start empty, reproduce the same class of conclusion, and explain unavoidable differences through a particular input or platform. Measurement files can then follow [Data and Laboratory Records](data-lab-notebooks.md), while [Version Control](version-control.md) preserves the rebuildable milestone.
+- Review automation as code; do not expose secrets or attach hardware to untrusted contributions.
+- Give CI credentials minimal scope and lifetime and keep them out of logs.
+- Automated hardware tests need current limits, timeouts, emergency stop, and independent protection.
+- Do not upload restricted models, personal data, or vendor-confidential material to public artifacts.
+- Reproducible does not mean safe or correct; independent model and risk review remain necessary.
+
+## Completion checklist
+
+- [ ] Source, inputs, configuration, outputs, and external artifacts are classified.
+- [ ] One stable command performs the build and all checks.
+- [ ] Environment, dependencies, platform, and licenses are recorded.
+- [ ] Randomness, ordering, units, and time handling are explicit.
+- [ ] Deterministic and tolerance checks have stated rationale.
+- [ ] The project rebuilds twice from clean directories.
+- [ ] The evidence manifest traces to source, data, and hardware.
+- [ ] Automation secrets and hardware risk boundaries are reviewed.
+
+Next, apply the process to [Project Practice](projects.md) and freeze reproducible milestones through [Version Control](version-control.md).

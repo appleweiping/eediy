@@ -2,11 +2,9 @@
 title: "Probability, Statistics, and Random Processes"
 description: "Probability models, random signals, estimation, and inference for communications, control, DSP, and device noise."
 page_type: track
-track_id: "track-probability-statistics"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: c9eb126b21b2b0ba -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 9da981c7e469094f -->
 
 # Probability, Statistics, and Random Processes
 
@@ -18,29 +16,26 @@ Probability models, random signals, estimation, and inference for communications
 
 - [Engineering Mathematics](../mathematics/index.md)
 
-## 6.041SC and 18.05 leave the same probability base in different directions
+## Suggested order
 
-[MIT 6.041SC](007-6-041sc.md) uses notes, video, problems, and examinations on its [official OCW page](https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/) to connect random variables, conditioning, limit laws, estimation, and random processes in one term. It fits communication noise, queues, and stochastic control. The [official syllabus](https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/pages/syllabus/) for [MIT 18.05](006-18-05.md) emphasizes confidence intervals, hypothesis tests, regression, and R activities. It has no lecture video, but notes, problems, examinations, and interactive exercises form a coherent reading route. Choose the first course by “random systems” or “statistical inference” rather than completing both overlapping introductions.
-
-[MIT 6.436J](008-6-436j.md) belongs after proof writing and abstract convergence are comfortable. Its public problems and exams have no official answers, and a larger number is not a reason to start there. [Cornell ECE 3100](087-ece-3100.md) is mainly an assignment-and-exam archive with solutions to only some early work, making it an engineering transfer test after a teaching spine. [Engineering mathematics](../mathematics/index.md) should already support density integrals, variable changes, linear algebra, and sequence or series limits. Preview one public exam from each route: follow 6.041SC if its random-process questions fit the goal, or 18.05 if its inference questions do.
-
-## A conditional solution includes its information set, derivation, and numerical challenge
-
-For each problem, name the sample space, random variables, parameters, observations, and conditioning information before invoking independence, total probability, or Bayes. Independence, lack of correlation, and conditional independence are distinct statements. Density, probability, expectation, and variance also carry different units. Challenge each result with a small model: enumerate a finite case exactly, check normalization for a continuous law, or inspect vanishing noise, one sample, and event probability approaching zero or one. A limiting case that cannot be explained signals a modeling gap that another distribution table will not repair.
-
-Open solved 6.041SC or 18.05 work after an independent attempt. Mark unanswered 6.436J and ECE 3100 problems as unresolved instead of assembling an “official” solution from third parties. Monte Carlo challenges a derivation only when the seed, trial count, interval or standard error, and convergence with sample size are reported. A smooth histogram does not establish independence or justify a central-limit approximation. If analysis and simulation disagree, inspect the random-variable definition, sampler, normalization, burn-in, and dependence between observations.
-
-## A sensor with shared bias turns estimation into an identifiability question
-
-Use \(Y_i=\theta+B+N_i\), where \(\theta\) is an unknown constant, \(B\) is shared within a batch, and \(N_i\) is initially independent Gaussian noise. Set \(B=0\) and derive the sample mean's bias, variance, and interval. Then introduce unknown \(B\), a small outlier fraction, or correlated samples. Explain which coverage and variance statements change and why \(\theta\) cannot be separated from fixed bias in the absence of another reference. Cover at least three sample sizes and three noise conditions, reporting theoretical error, empirical bias, variance, coverage, and out-of-bound rate together.
-
-Generator source, seed list, raw samples, parameter files, and statistical scripts should rebuild every table and figure. Add data excluded from tuning and one timed paper problem on conditional expectation or a joint distribution. The project does not crown a universally best estimator; it identifies which metric moves first when Gaussian, independent-and-identically-distributed, or unbiased assumptions are violated. Probability becomes useful in communications, control, or signal processing when population variation, estimator error, and simulation error remain distinct in the interpretation.
+1. [Probabilistic Systems Analysis and Applied Probability](007-6-041sc.md)
 
 ## Courses
 
-| Course | Institution | Role | Editorial evidence | Practice coverage |
+| Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
-| [Probabilistic Systems Analysis and Applied Probability](007-6-041sc.md) | MIT | Main course | Public-material guide | Partial or restricted |
-| [Introduction to Probability and Statistics](006-18-05.md) | MIT | Alternative | Public-material guide | Public assignments or labs |
-| [Fundamentals of Probability](008-6-436j.md) | MIT | Supplement | Public-material guide | Partial or restricted |
-| [Introduction to Probability and Inference for Random Signals and Systems](087-ece-3100.md) | Cornell University | Supplement | Public-material guide | Partial or restricted |
+| [Probabilistic Systems Analysis and Applied Probability](007-6-041sc.md) | MIT | Mainline | S | Complete |
+| [Introduction to Probability and Statistics](006-18-05.md) | MIT | Alternative | S | Complete |
+| [Fundamentals of Probability](008-6-436j.md) | MIT | Supplement | A | Partial |
+| [Introduction to Probability and Inference for Random Signals and Systems](087-ece-3100.md) | Cornell University | Supplement | B | Partial |
+
+## How to choose
+
+- For a first systematic pass, start with audit-passed mainline courses; read the limitation before using a record marked “Audit review,” and rarely take parallel alternatives.
+- Tiers measure public-resource completeness and self-study executability, not institutional or instructor prestige.
+- Use supplements only to close a specific topic, tool, or practice gap.
+
+## Track completion
+
+- Explain the core concepts, models, and methods of Probability, Statistics, and Random Processes
+- Produce reproducible exercises, experiments, or designs with explicit checks

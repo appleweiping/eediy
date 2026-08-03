@@ -3,78 +3,155 @@ title: Contribution Guide
 description: Maintain the EE learning navigator through traceable evidence, bilingual parity, and reproducible review.
 ---
 
+<div class="ee-language" markdown>
+[简体中文](../contributing.md)
+</div>
 
-# Contribute
+# Contribution Guide
 
-Finding one error does not require learning the entire data pipeline, and adding a course should not begin by editing a generated page. Choose the path that matches the size of the change.
+EEDIY welcomes course recommendations, link reviews, route improvements, translations, project reproductions, safety corrections, and accessibility work. Quality depends less on the size of a contribution than on making every fact traceable and every judgment explainable.
 
-## Path one: make a quick correction
+## Useful contributions
 
-Use this path for a dead link, wrong prerequisite, translation mismatch, edition change, or safety concern:
+- Add a course with genuine publicly accessible learning value.
+- Correct a link, access status, prerequisite, hardware need, price, or license.
+- Verify problems, solutions, labs, code, and assessment evidence.
+- Report actual completion time, blockers, and alternatives after taking a course.
+- Improve a route dependency or stage exit criterion.
+- Contribute a reproducible project, test data, or failure retrospective.
+- Restore Chinese/English parity and accessibility.
+- Report a safety-boundary or attribution problem.
 
-- [Report a broken or restricted link](https://github.com/appleweiping/eediy/issues/new?template=broken-link.yml)
-- [Submit a factual or safety correction](https://github.com/appleweiping/eediy/issues/new?template=content-error.yml)
-- [Add learning experience or a course update](https://github.com/appleweiping/eediy/issues/new?template=course-feedback.yml)
-- [Discuss the scope first](https://github.com/appleweiping/eediy/discussions)
+Pure rankings, promotional copy, unsupported “best course” claims, unauthorized copies of restricted material, and link-only pages are not suitable course records.
 
-The exact page, sentence to change, primary source, and verification date are enough to begin. A factual or safety correction can land before a complete page rewrite.
+## Evidence priority
 
-## Path two: add a course, project, or substantial revision
+Prefer:
 
-- [Propose a course](https://github.com/appleweiping/eediy/issues/new?template=course.yml)
-- [Propose a project or laboratory exercise](https://github.com/appleweiping/eediy/issues/new?template=project.yml)
-- [View or open a pull request](https://github.com/appleweiping/eediy/compare)
-- [Read the repository contribution guide](https://github.com/appleweiping/eediy/blob/main/CONTRIBUTING.md)
+1. the official course or institutional page, syllabus, and public repository;
+2. original material published by the instructor or laboratory;
+3. official software, component, and instrument documentation;
+4. reproducible learner evidence as a supplement to official facts;
+5. aggregators, forums, and playlists only as leads to primary sources.
 
-Use an issue first to check for duplication and agree on track and scope. Open a pull request once the bilingual content and traceable evidence are ready.
+External pages change. Every important resource field needs a **last verified date**. Do not infer current availability from a search snippet, cached title, or old screenshot.
 
-## Edit the source that owns the claim
+## Minimum course fields
 
-Course and route pages are generated. Do not edit `docs/courses/`, `docs/en/courses/`, `docs/routes/`, or `docs/en/routes/` directly.
-
-| Change | Authoritative source |
+| Field | Requirement |
 | --- | --- |
-| Course identity, institution, code, track, and prerequisites | [`data/course_candidates.json`](https://github.com/appleweiping/eediy/blob/main/data/course_candidates.json) |
-| Official resources, access status, and verification record | [`data/course_resources.json`](https://github.com/appleweiping/eediy/blob/main/data/course_resources.json) |
-| Course role and editorial judgment | [`data/course_editorial.json`](https://github.com/appleweiping/eediy/blob/main/data/course_editorial.json) |
-| Guide state, source list, and bilingual fragment paths | [`data/course_guides.json`](https://github.com/appleweiping/eediy/blob/main/data/course_guides.json) |
-| Course-guide prose | [`content/course-guides/`](https://github.com/appleweiping/eediy/tree/main/content/course-guides) |
-| Track comparison prose | [`content/track-guides/`](https://github.com/appleweiping/eediy/tree/main/content/track-guides) |
-| Route stages and dependencies | [`data/routes.json`](https://github.com/appleweiping/eediy/blob/main/data/routes.json) |
+| Title, institution, code | Match the official page; explain when no code exists |
+| Official entry | Prefer a stable course page over a reposted playlist |
+| Track and role | One primary track; mainline, alternative, or supplement |
+| Learning outcomes | Three to six observable capabilities, not copied marketing |
+| Prerequisites | Separate hard, recommended, and co-learning prerequisites |
+| Resource matrix | Verify video, notes, problems, solutions, labs, code, and exams separately |
+| Completion path | Order, critical work, and a substitute feedback mechanism |
+| Time and cost | Cite traceable provider workload evidence, or label a maintainer estimate, state its basis, and require two-week calibration; also disclose paywall, region, software, and hardware |
+| Risk and aging | Old tools, missing materials, unsafe labs, irreproducible steps |
+| Verification and evidence | YYYY-MM-DD plus primary links supporting the facts |
 
-If ownership is unclear, follow the [complete data flow and generation order](https://github.com/appleweiping/eediy/blob/main/CONTRIBUTING.md#authoritative-data-flow--权威数据流).
+Evidence tier must match the record:
 
-## What makes a contribution reviewable
+- **S:** a public teaching–practice–feedback–assessment/project loop that can support independent study;
+- **A:** strong teaching with a small number of explicit, compensable gaps;
+- **B:** valuable components without a complete mainline spine;
+- when evidence is insufficient, mark the item for review instead of assigning a high tier.
 
-- Trace material facts to a primary course, institution, instructor, manufacturer, or standards page and record the verification date.
-- Check notes, assignments, solutions, laboratories, code, and examinations separately; “resources complete” is not evidence.
-- Disclose login, payment, region, license, specified hardware, and laboratory requirements.
-- Keep facts, numbers, links, risks, and recommendations aligned across Chinese and English while allowing natural phrasing in each language.
-- Describe something as learner experience only when completion scope, environment, actual effort, obstacles, and inspectable output are supplied.
-- For electrical, laser, RF, battery, chemical, or mechanical hazards, use formal safety sources and never provide a way around interlocks, protection, or supervision.
+## Contribution workflow
 
-## Admission policy: close one module instead of chasing catalogue counts
+1. **Search first:** confirm that the course, issue, or correction is not duplicated.
+2. **Limit scope:** one change solves one clear problem; discuss a large route redesign first.
+3. **Collect evidence:** open each resource and check login, payment, region, and specialist hardware.
+4. **Update canonical data:** never hand-edit generated course or route pages.
+5. **Maintain both languages:** facts, numbers, risks, and links match; phrasing may be natural.
+6. **Validate locally:** run generation, the strict build, and quality checks; read the rendered page.
+7. **Explain the judgment:** list the change, evidence, uncertainty, and verification beyond screenshots.
+8. **Respond to review:** resolve disagreement with new evidence; preserve “review needed” when unknown.
 
-A track should first form one learnable loop: **one main course, one evidence-backed Chinese-language alternative where one genuinely exists, one problem or laboratory set, one official reference entry, and one task that verifies the learning result**. Record a missing part as a gap. Do not add duplicate or weakly evidenced material to satisfy a course, page, link, or project count.
+## Bilingual parity
 
-Evaluate new sources in this order:
+Translation is not word substitution. These must remain semantically identical:
 
-1. Complete open courses published by a university or instructor;
-2. Official documentation from governments, standards bodies, and open-source projects;
-3. Formal training and application material from semiconductor, EDA, and instrument vendors;
-4. Learning sites with a named author and checkable exercises or automated feedback;
-5. Community articles only for one specific gap, never as the source of a mainline fact.
+- course identity, links, and verification dates;
+- prerequisites and completion standards;
+- open/closed status and missing resources;
+- tier, role, and rationale;
+- safety, cost, regional, and license constraints.
 
-Every proposed entry must say what it replaces or supplements, how much official material is actually open, which prerequisites and equipment it needs, and what evidence a learner will produce. Downgrade, archive, or remove an entry when its official source disappears, a more complete resource supersedes it, or only unverifiable promotional claims remain. Historical catalogue size is not a reason to keep it.
+You may localize:
 
-Do not upload paid solutions, restricted course files, PDKs, vendor-confidential material, credentials, personal data, or unlicensed images. Disclose a relevant financial or professional relationship in the change description. See [Licensing and Attribution](about/license.md) for third-party boundaries.
+- sentence structure, terminology explanations, and reader-facing examples;
+- common Chinese names while preserving the official title on first use;
+- time-unit presentation and reading order.
 
-## Preview and check locally
+When a fact changes in one language, update the other in the same contribution. If a reliable translation is unavailable, mark it and request language review instead of leaving a silent stale fact.
 
-```bash
-python -m pip install --require-hashes -r requirements.lock
-python -m mkdocs serve
-python scripts/run_quality.py
+## Writing and attribution
+
+- Lead with the conclusion, then evidence and limits.
+- Separate official claims, contributor verification, and evidence-based judgment.
+- Name the missing item; “resources incomplete” is too vague.
+- Workload may use only one of two provenances: provider data with traceable evidence, or an explicitly labelled maintainer estimate.
+- A maintainer estimate must state its basis and assumptions and require learners to calibrate for two weeks before long-term planning; “unknown” is not a substitute for this record.
+- Summarize in your own words and link the source; do not copy course descriptions or books at length.
+- Do not upload paid solutions, restricted slides, secrets, personal data, or unlicensed images.
+- Give images meaningful alternatives; distinguish plots with more than color; use proper table headers.
+
+## Additional gate for safety content
+
+Safety changes receive priority review. For specific electrical, laser, RF, battery, chemical, mechanical, or first-aid statements:
+
+- prefer regulators, standards bodies, manufacturers, or formal laboratory procedures;
+- do not present one jurisdiction’s threshold as a universal safe line;
+- do not enable unqualified readers to bypass interlocks, protection, or supervision;
+- raise the risk class and recommend simulation or a qualified facility when uncertain;
+- state that educational guidance is not work authorization.
+
+## Change-description template
+
+```markdown
+## Change
+- Added/corrected:
+- Chinese and English pages affected:
+
+## Evidence
+- Official entry:
+- Practice/lab/assessment:
+- Access, cost, and license:
+- Verified date:
+
+## Judgment and uncertainty
+- Role/tier rationale:
+- Workload provenance (provider evidence, or maintainer estimate + basis + two-week calibration):
+- Known gaps:
+- Needs further review:
+
+## Validation
+- [ ] Data generation succeeded
+- [ ] Strict site build passed
+- [ ] Chinese and English facts match
+- [ ] Internal links and critical external links checked
+- [ ] Safety and content license reviewed
 ```
 
-Changes to authoritative course data also require the ordered generation pipeline in the [repository contribution guide](https://github.com/appleweiping/eediy/blob/main/CONTRIBUTING.md). Read both rendered languages before submission, and list the change, sources, remaining uncertainty, and checks run in the pull request.
+## Reviewer checklist
+
+- [ ] The record solves a navigation problem rather than inflating the count.
+- [ ] Every material fact traces to a primary source.
+- [ ] Mainline/alternative/supplement role fits the route.
+- [ ] Tier reflects the self-study loop, not institutional reputation.
+- [ ] Missing resources, old tools, cost, and hardware are disclosed.
+- [ ] Workload has traceable provider evidence, or is a labelled maintainer estimate with its basis and a two-week calibration requirement.
+- [ ] Numbers, risks, links, and dates agree across languages.
+- [ ] Projects and labs stay inside the supervision boundary.
+- [ ] Third-party material is linked or used within its license.
+- [ ] Automated checks pass and human reading finds no navigation dead end.
+
+## Conflicts and corrections
+
+Disclose if you teach the course, work for the platform, created the material, sell relevant equipment, or have another economic interest. A relationship does not automatically disqualify a resource, but readers must be able to judge it.
+
+Factual errors, safety risks, and license concerns may receive a minimal correction before a complete rewrite. Provide the exact page, current statement, evidence, proposed remedy, and urgency. Maintainers should record the disagreement and resolution rationale.
+
+See [Licensing and Attribution](about/license.md) for reuse and third-party boundaries.

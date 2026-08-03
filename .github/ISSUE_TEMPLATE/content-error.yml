@@ -5,39 +5,10 @@ labels:
   - content
   - needs-review
 body:
-  - type: markdown
-    attributes:
-      value: |
-        从课程、方向或路线页进入时，稳定页面 ID 和页面地址会自动填写。请保留这些上下文，并用一手来源支持修正。
-        When opened from a course, track, or route page, the stable page ID and canonical page are prefilled. Keep that context and support the correction with primary evidence.
-  - type: input
-    id: page_id
-    attributes:
-      label: Stable page ID / 稳定页面 ID
-      description: Keep the prefilled course-NNN, track-slug, or route-slug value.
-      placeholder: course-021, track-circuits, or route-essential-core
-    validations:
-      required: true
   - type: input
     id: page
     attributes:
       label: Page and section / 页面与章节
-      description: The canonical Chinese/English pair shares this page context; append a section anchor if useful.
-    validations:
-      required: true
-  - type: input
-    id: reported_page
-    attributes:
-      label: Page where the report started / 发起反馈的页面
-      description: Preserves the exact Chinese or English page that opened this form.
-    validations:
-      required: true
-  - type: input
-    id: reported_language
-    attributes:
-      label: Reported page language / 发起页面语言
-      description: Prefilled as en or zh-Hans when opened from an EEDIY page.
-      placeholder: en or zh-Hans
     validations:
       required: true
   - type: textarea

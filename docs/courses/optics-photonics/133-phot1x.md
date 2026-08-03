@@ -1,78 +1,127 @@
 ---
 title: "Silicon Photonics Design, Fabrication and Data Analysis"
-description: "University of British Columbia 的《Silicon Photonics Design, Fabrication and Data Analysis》在注册课程内使用 KLayout、SiEPIC、gdsfactory、远程制造与测量设计材料；公开 edX 页没有固定 PDK 或工程包。"
+description: "University of British Columbia 的《Silicon Photonics Design, Fabrication and Data Analysis》以 KLayout、SiEPIC、gdsfactory、远程制造和测量工具链形成罕见的硅光全流程；实践价值极高，但时点、许可与地区条件需复核。"
 page_type: course
-course_id: "course-133"
-editorial_status: "catalogue"
-evidence_level: "R0"
-reviewed_at: "2026-07-31"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: df38a8fe1d05942c -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0b9a880d9ba84c58 -->
 
-# University of British Columbia Phot1x: Silicon Photonics Design, Fabrication and Data Analysis
+# Silicon Photonics Design, Fabrication and Data Analysis
 
 ## 课程简介
 
-- **所属大学：** University of British Columbia
+- **机构：** University of British Columbia
 - **课程编号：** Phot1x
-- **官方先修：** Phot1x 提供方列出 introductory physics/optics，未将 integrated optics 列为先修
-- **本站建议背景：** 本站未另设准备条件
-- **访问条件：** 需付费访问
-- **资料状态：** 2026-07-31；资料索引
+- **方向：** [光学、光电与光子学](index.md)
+- **评级：** A
+- **角色：** 主线
+- **难度：** 提供方未标准化（请按先修判断）
+- **最近复核：** 2026-07-28
 
-### 当期课程、价格与先修
+University of British Columbia 的《Silicon Photonics Design, Fabrication and Data Analysis》以 KLayout、SiEPIC、gdsfactory、远程制造和测量工具链形成罕见的硅光全流程；实践价值极高，但时点、许可与地区条件需复核。
 
-UBCx **Silicon Photonics Design, Fabrication and Data Analysis（Phot1x）** 适合愿意为当期 fabrication/data-return 权益付费的人。它是 instructor-paced 的
-design–submit–fabricate–measure 课程。2026-07-29，[当前 edX 课程页及页内 FAQ](https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana)
-列 active run `course-v1:UBCx+Phot1x+3T2026`：2026-09-15 开始、2026-12-08 结束、
-2026-09-22 截止报名；标称 6 周、每周 3–25 小时。seat 是 `Professional Only`，当时
-USD 495，没有列 audit。这些都是该次页面快照，不能当作长期有效的免费资源或默认必修。
+!!! warning "主线审计复核中"
+    这门主线课程仍需人工复核：课程按期开放，商业工具许可、地区注册、流片日期和付费条件会变化；只返回测量数据，不邮寄芯片，必须在每次开课前人工复核。 最近审计：2026-07-29。
 
-购买资格、地区限制、税费、退款和最终价格只以真实账号的当前页面为准。技术上，学习者至少要能
-说明 220 nm SOI waveguide 的 effective/group index、confinement 与 loss 如何进入 circuit
-model，由 coupler 与 arm phase 推 MZI spectrum，并从 noisy trace 提取 FSR 与 residual；
-官方只列 introductory physics/optics，页面没有把 integrated optics 写成先修。
+**为什么选择这门课**
 
-### 设计、制造与返数
+主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
 
-[SiEPIC 官方培训页](https://siepic.ca/trainings/online-training/) 与 edX 页面把核心描述为
-MZI/component design、submission、fabrication 和 returned measurement data。first-time designer
-以 grating coupler、splitter、waveguide 组成 MZI，advanced option 才扩到 resonator、Bragg、
-photonic crystal、MMI、MDM 与 SWG/slot。公开页面仍没有 2026 module list、rubric、PDK revision、
-GDS rule、review eligibility、tapeout 或 data-release date。
+**学习前准备**
 
-[2016-11-15 archived syllabus](https://s3.amazonaws.com/edx-course-phot1x-chrostowski/2016T3/UBCxPhot1x_Course%20Syllabus%20Schedule_2016_11b.pdf) 记录过 model、design PDF、draft layout、3 份 peer review、final layout、fabrication、practice/measurement data 与 report 的顺序；它属于 2016T3，4 周设计期、UTC deadline、70% pass line 和 whole-chip sharing 都不能当成 2026 政策。
+- 建议先完成方向基础：电磁场与波
+- 建议先完成方向基础：半导体器件
+- 建议先完成方向基础：物理基础
 
-当前页面还写明 220 nm SOI、60 nm minimum isolated feature、每人约
-410 µm × 605 µm、可放超过 10 个 device；fabrication 由 University of Washington
-Nanofabrication Facility 与 Applied Nanotools Inc. 执行，measurement 在 UBC。关键是
-**one chip for the course**：课程默认不包含向每位参与者寄送个人芯片，只返回 measurement
-data，参与者不会亲自操作 probe station。当前 FAQ 同时称参与者可在课程中或结束后另购个人
-芯片；是否仍开放、价格、shipping 与其他条件都要按当期页面或官方支持答复复核。
+**可验证的学习成果**
 
-### 付费前要确认的问题
+- 解释光学、光电与光子学中的核心模型，并说明主要假设与适用边界
+- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
+- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
 
-从当前账号或官方支持确认：其一，PDK、solver 与 license 在什么日期和平台可用；其二，design
-review、final GDS、DRC 与 tapeout 的资格和截止日；其三，版图未通过或错过 tapeout 时是否仍有
-practice data、feedback、refund 或下一期迁移。把带日期的官方答复保存在购买记录旁即可。
-这比展开平台法律条款更直接，也决定项目究竟能走到 model、layout、fabrication 还是 returned data。
+**工时与节奏**
 
-### 工具版本要和提交版对得上
+**13 周，每周 11 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
 
-页面称包含 Lumerical Solutions、MATLAB、Luceda、Tidy3D，并使用 KLayout、SiEPIC-Tools、gdsfactory 与 Python，但未公开固定 release、PDK commit、layer map、rule deck、license duration 或 supported platform。第一次进入合法环境时，先记下 solver/tool version（工具版本）、Python lockfile、PDK hash、material model 与 wavelength grid（波长网格）；design freeze（设计冻结）后，让 netlist、GDS、DRC、corner/Monte Carlo 设置和 review PDF 都指向同一提交版。若中途升级 solver 或 compact model，先用旧设计重跑一个基准，再比较返数；否则很容易把工具漂移误判为制造偏差。
+**安全等级**
 
-### 什么才算完成 Phot1x
-
-正式学员按账号实际开放的 entitlement、PDK、submission、review、fabrication、data 与 certificate 往前走；如果版图没有通过 review，或最后没有返数，课程体验就停在对应阶段。公开替代可以做 PDK-free MZI model/layout、synthetic data、tolerance 和 simulation–measurement residual，但它与 Phot1x submission 或 tapeout 是两条不同路径。比较 simulation 与 measurement 时，先对齐 wavelength、normalization 和 reference port，再把 residual 分成 model、fabrication、measurement 与暂时无法解释的部分；这比只给一个拟合误差更能看出问题来自哪里。
-
-remote learner 不会亲自执行 e-beam、wet chemistry、plasma、probe station 或 1550 nm laser/fiber 实验。真正能学到的是把 effective/group index 接到 spectrum、把 layout rule 接到 manufacturability，再从 raw data 重建 residual 与 uncertainty；能否经历完整 full cycle，则取决于这一期实际开放的账户权益和返数。
+**仅仿真。** 默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。
 
 ## 课程资源
 
-本页已在正文中按版本与访问条件放置核心资料链接。为避免把前序课程、历史 syllabus 或受限材料脱离上下文误列为本课资源，这里不重复生成通用资源清单。
+**软件、硬件与成本**
 
-## 资源汇总
+**软件**
 
-本页没有脱离上下文重复列出资源；正文中的链接及其版本说明构成本次核对的完整汇总。
+- 维护者建议的开源/免费验证路径：MEEP、MPB、Python 3、Jupyter 与 ParaView
+- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
+
+**硬件**
+
+- 资源清单包含实验覆盖；本课程的维护者路径明确将其限定为计算或仿真实验。只假设一台能运行上述软件并保存结果的通用计算机；不采购或连接合规光学实验室中的课程指定光源、光学件、探测器、遮光与激光安全防护
+
+**成本说明**
+
+当前维护者路径只使用计算与仿真，不设专用硬件采购；建议软件优先采用开源/免费工具。这不是提供方要求，平台访问、商业软件或云算力费用仍随提供方、地区与方案而变。
+
+**公开资源完整度**
+
+| 资源类型 | 完整度 |
+|---|---|
+| 视频 | 完整 |
+| 讲义 | 完整 |
+| 练习 | 完整 |
+| 实验 | 完整 |
+| 考试 | 部分 |
+| 代码 | 完整 |
+
+**资源与访问条件**
+
+| 资源 | 访问 | 许可 | 状态 | 复核日期 |
+|---|---|---|---|---|
+| [课程主页](https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana) | 可免费旁听 | edX Terms of Service | 官方页已列出 | 2026-07-28 |
+
+> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
+
+## 实践与验收
+
+**实践闭环**
+
+**《Silicon Photonics Design, Fabrication and Data Analysis · University of British Columbia Phot1x》光波导/成像系统参数扫描**
+
+这是维护者为《Silicon Photonics Design, Fabrication and Data Analysis · University of British Columbia Phot1x》建议的自学项目，不是课程官方作业。围绕光学、光电与光子学构建波导、谐振器或成像系统仿真，用解析极限、网格收敛和制造容差验证模式、损耗或成像质量。
+
+**来源：** 维护者建议项目
+
+**交付物**
+
+- 波长、材料、几何、偏振、边界和目标指标规格
+- 可执行光学/电磁模型、参数扫描与后处理源文件
+- 原始场、模式/点扩散函数、透射/损耗和容差数据
+- 一份报告，比较解析/数值结果并解释截止、色散或像差失败
+
+**验收**
+
+- 简单基线的有效折射率、焦距或衍射尺度与解析值相差不超过 3%
+- 覆盖截止附近、频带边缘、材料极值和偏振切换边界
+- 网格加密或第二种传播算法后关键指标变化低于 3%
+- 注入 ±5% 几何偏差，报告模式丢失、谐振漂移或成像退化
+
+**复现要求**
+
+- 提交几何、材料、求解、扫描和绘图源文件
+- 固定求解器、波长网格、材料数据版本和收敛参数
+- 保存原始场/图像、求解日志、材料来源与自动报告
+
+**安全边界：** 仅仿真 — 仅做光学/光子仿真；不得使用激光器、强光源、高压驱动、光纤裸端或未经监督的光学实验。
+
+**风险、缺口与边界**
+
+KLayout、SiEPIC、gdsfactory、远程制造与测量构成罕见的完整闭环，但必须重新核对流片日期、工具许可、地区访问条件以及芯片不会邮寄这一事实。
+
+**完成证据**
+
+- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
+- 理论推导档案：逐项列出假设、符号、推导、单位与边界条件，并用至少一种独立方法复核
+- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
+- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明

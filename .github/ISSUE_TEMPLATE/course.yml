@@ -29,13 +29,13 @@ body:
       label: Canonical track / 方向
       description: Select the closest option; explain a taxonomy concern below.
       options:
-        - Mathematical and Engineering Foundations
-        - Electrical Engineering Core
-        - Digital, Embedded, and Computing Systems
-        - Signals, Communications, and Electromagnetics
-        - Devices, Integrated Circuits, and Micro/Nano
-        - Electric Energy and Sustainability
-        - Instrumentation, Design, and Interdisciplinary Practice
+        - Mathematical and engineering foundations
+        - Circuits and electronics
+        - Digital systems and intelligent hardware
+        - Signals, communications, control, and electromagnetics
+        - Devices, integrated circuits, and micro/nano
+        - Electric energy and sustainability
+        - Instrumentation, design, and interdisciplinary practice
     validations:
       required: true
   - type: textarea

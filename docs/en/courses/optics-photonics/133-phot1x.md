@@ -1,92 +1,127 @@
 ---
 title: "Silicon Photonics Design, Fabrication and Data Analysis"
-description: "University of British Columbia's Silicon Photonics Design, Fabrication and Data Analysis uses KLayout, SiEPIC, gdsfactory, remote fabrication, and measurement inside the enrolled course; the public edX page exposes no fixed PDK or project bundle."
+description: "University of British Columbia's Silicon Photonics Design, Fabrication and Data Analysis forms a rare full silicon-photonics loop across a KLayout, SiEPIC, gdsfactory, remote-fabrication, and measurement toolchain, with timing, licensing, and regional conditions requiring recheck."
 page_type: course
-course_id: "course-133"
-editorial_status: "catalogue"
-evidence_level: "R0"
-reviewed_at: "2026-07-31"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 3ac3452b17989738 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0b9a880d9ba84c58 -->
 
-# University of British Columbia Phot1x: Silicon Photonics Design, Fabrication and Data Analysis
+# Silicon Photonics Design, Fabrication and Data Analysis
 
 ## Course Overview
 
-- **University:** University of British Columbia
+- **Institution:** University of British Columbia
 - **Course code:** Phot1x
-- **Official prerequisites:** The Phot1x provider lists introductory physics/optics and does not name integrated optics as a prerequisite
-- **EEDIY preparation:** No additional EEDIY preparation requirement
-- **Access:** Paid access required
-- **Material status:** 2026-07-31; resource catalogue
+- **Track:** [Optics, Optoelectronics, and Photonics](index.md)
+- **Tier:** A
+- **Role:** Mainline
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-### Run, price, and prerequisites
+University of British Columbia's Silicon Photonics Design, Fabrication and Data Analysis forms a rare full silicon-photonics loop across a KLayout, SiEPIC, gdsfactory, remote-fabrication, and measurement toolchain, with timing, licensing, and regional conditions requiring recheck.
 
-Choose Phot1x only when the current paid run and its fabrication/data-return
-scope are acceptable. UBCx **Silicon Photonics Design, Fabrication and Data Analysis (Phot1x)** is
-an instructor-paced design–submit–fabricate–measure course. On 2026-07-29,
-the [current edX course page and its FAQ](https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana)
-listed active run `course-v1:UBCx+Phot1x+3T2026`: start 2026-09-15, end
-2026-12-08, enrollment close 2026-09-22, and 6 weeks at 3–25 hours per week.
-The seat was `Professional Only` at USD 495, with no audit listed. Those are
-facts from that page snapshot, not a permanent free resource or default requirement.
+!!! warning "Mainline audit review"
+    This mainline course still requires manual review: The course is instructor-paced, and commercial-tool licenses, regional registration, tapeout dates, and payment terms can change; learners receive measurement data rather than a mailed chip, so every run needs manual recheck. Last audited: 2026-07-29.
 
-Eligibility, regional restrictions, tax, refunds, and final price must come
-from the real account's current page. Technically, a learner should be able to
-explain how effective/group index, confinement, and loss for a 220 nm SOI
-waveguide enter a circuit model, derive an MZI spectrum from coupler and arm
-phase, and extract FSR and residuals from a noisy trace. The provider lists
-introductory physics/optics and does not name integrated optics as a prerequisite.
+**Why choose this course**
 
-### Design, fabrication, and returned data
+Mainline course. A reliable option that can serve as a main course or strong alternative.
 
-The [official SiEPIC training page](https://siepic.ca/trainings/online-training/)
-and edX page describe MZI or component design, submission, fabrication, and
-returned measurement data. First-time designers use grating couplers,
-splitters, and waveguides for an MZI; advanced options extend to resonators,
-Bragg structures, photonic crystals, MMI, MDM, and SWG/slot waveguides. The
-public pages do not publish a 2026 module list, rubric, PDK revision, GDS
-rules, review eligibility, tapeout date, or data-release date.
+**Before you start**
 
-The [2016-11-15 archived syllabus](https://s3.amazonaws.com/edx-course-phot1x-chrostowski/2016T3/UBCxPhot1x_Course%20Syllabus%20Schedule_2016_11b.pdf) records a sequence of models, design PDF, draft layout, 3 peer reviews, final layout, fabrication, practice/measurement data, and report. It belongs to 2016T3: its 4-week design period, UTC deadlines, 70% pass line, and whole-chip sharing are not 2026 policy.
+- Recommended foundation: Electromagnetic Fields and Waves
+- Recommended foundation: Semiconductor Devices
+- Recommended foundation: Physics Foundations
 
-The current page also states 220 nm SOI, a 60 nm minimum isolated feature,
-about 410 µm × 605 µm per participant, and room for more than 10 devices.
-Fabrication is by the University of Washington Nanofabrication Facility and
-Applied Nanotools Inc.; measurement is at UBC. The key phrase is **one chip
-for the course**. The course does not include mailing each participant a
-personal chip; participants receive measurement data, which does not mean they
-operated the probe station. The current FAQ also says participants may
-separately purchase their own chip during or after the course. Recheck whether
-that option remains available, its price, shipping, and other terms for the
-current run.
+**Verifiable learning outcomes**
 
-### Questions to settle before paying
+- Explain the core models in Optics, Optoelectronics, and Photonics, including their assumptions and limits
+- Solve representative derivations and problems, checking units, limiting cases, or numerical results
+- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-Use the current account or official support to confirm: when and where the
-PDK, solver, and licenses work; the eligibility and deadlines for design
-review, final GDS, DRC, and tapeout; and whether a rejected or missed-tapeout
-layout still receives practice data, feedback, a refund, or migration to a
-later run. Keep the dated official reply with the purchase record. These
-answers determine whether the project reaches model, layout, fabrication, or
-returned data without turning the page into a platform-law digest.
+**Workload and pacing**
 
-### Keep the tool versions aligned with the submitted design
+**13 weeks at 11 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-The page says Lumerical Solutions, MATLAB, Luceda, and Tidy3D are included, alongside KLayout, SiEPIC-Tools, gdsfactory, and Python. It does not publish fixed releases, a PDK commit, layer map, rule deck, license duration, or supported platform. On first authorized access, note the solver/tool versions, Python lockfile, PDK hash, material model, and wavelength grid. After design freeze, keep the netlist, GDS, DRC, corner/Monte Carlo settings, and review PDF on that same submitted revision. If the solver or compact model changes midway, rerun one baseline with the old design before comparing returned data; otherwise tool drift can look like fabrication error.
+**Safety level**
 
-### What counts as completing Phot1x
-
-An enrolled learner moves through entitlement, PDK, submission, review, fabrication, data, and certificate only as the current account allows. If the layout does not pass review or no data arrive, the course experience stops at that point. A public alternative can still cover a PDK-free MZI model/layout, synthetic data, tolerance analysis, and simulation-to-measurement residual, but it is not a Phot1x submission or tapeout. When comparing simulation with measurement, first align wavelength, normalization, and the reference port, then separate the residual into model, fabrication, measurement, and not-yet-explained components. That breakdown is more informative than a single fit error.
-
-A remote learner does not personally execute e-beam, wet chemistry, plasma, probe-station, or 1550 nm laser/fiber experiments. The useful technical lesson is carrying effective/group index into the spectrum, layout rules into manufacturability, and raw data into residuals and uncertainty. Whether the learner experiences the complete full cycle depends on the entitlements and returned data actually available in that run.
+**Simulation only.** The default practice scope is software, computation, or simulation only; a lab label in the resource inventory does not authorize connecting physical equipment, and any hardware extension requires provider-scope verification and a new risk assessment.
 
 ## Course Resources
 
-The guide above links each core resource where its version and access conditions are explained. To avoid relabeling a sequence course, archived syllabus, or restricted item out of context, this page does not repeat a generic resource list.
+**Software, hardware, and cost**
 
-## Resource Summary
+**Software**
 
-This page does not repeat resources outside their version context. The links and version notes in the overview are the complete verified summary for this review.
+- Maintainer-suggested open-source/free verification path: MEEP, MPB, Python 3, Jupyter, and ParaView
+- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
+
+**Hardware**
+
+- The resource inventory lists lab coverage, but this course's maintainer path explicitly limits it to computational or simulation work. It assumes only a general-purpose computer able to run the software above and retain results; do not purchase or connect course-specified sources, optics, detectors, beam containment, and laser safety controls in a compliant optics lab
+
+**Cost note**
+
+The current maintainer path uses computation and simulation only, with no dedicated hardware purchase, and prefers open-source/free tools. This is not a provider requirement; platform, commercial-software, or cloud-compute costs still vary by provider, region, and plan.
+
+**Public resource coverage**
+
+| Resource type | Completeness |
+|---|---|
+| Video | Complete |
+| Notes | Complete |
+| Practice | Complete |
+| Labs | Complete |
+| Exams | Partial |
+| Code | Complete |
+
+**Resources and access**
+
+| Resource | Access | License | Status | Verified |
+|---|---|---|---|---|
+| [Course home](https://www.edx.org/learn/engineering/university-of-british-columbia-silicon-photonics-design-fabrication-and-data-ana) | Free audit | edX Terms of Service | Listed by official page | 2026-07-28 |
+
+> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+
+## Practice and Verification
+
+**Practice loop**
+
+**Silicon Photonics Design, Fabrication and Data Analysis · University of British Columbia Phot1x: Waveguide or Imaging-System Parameter Sweep**
+
+This is a maintainer-suggested self-study project for Silicon Photonics Design, Fabrication and Data Analysis · University of British Columbia Phot1x, not an official course assignment. Simulate a waveguide, resonator, or imaging system for Optics, Optoelectronics, and Photonics and validate mode, loss, or image quality using analytic limits, mesh convergence, and manufacturing tolerances.
+
+**Origin:** Maintainer-suggested project
+
+**Deliverables**
+
+- A specification of wavelength, materials, geometry, polarization, boundaries, and target metrics
+- Executable optical or electromagnetic model, parameter sweeps, and post-processing sources
+- Raw fields, modes or point-spread functions, transmission or loss, and tolerance data
+- A report comparing analytic and numeric results and explaining cutoff, dispersion, or aberration failure
+
+**Verification**
+
+- Keep effective index, focal length, or diffraction scale within 3% of an analytic simple baseline
+- Cover near-cutoff, band-edge, material-extreme, and polarization-switch boundaries
+- Keep the key metric change below 3% after mesh refinement or a second propagation method
+- Inject ±5% geometry variation and report mode loss, resonance shift, or image degradation
+
+**Reproducibility**
+
+- Commit geometry, material, solver, sweep, and plotting sources
+- Pin solver, wavelength grid, material-data version, and convergence parameters
+- Preserve raw fields or images, solver logs, material provenance, and the generated report
+
+**Safety boundary:** Simulation only — Use optical or photonic simulation only; do not use lasers, intense sources, high-voltage drivers, bare fiber ends, or unsupervised optical experiments.
+
+**Risks, gaps, and boundaries**
+
+KLayout, SiEPIC, gdsfactory, remote fabrication, and measurement form a rare full loop, but tapeout dates, tool licenses, regional access, and the fact that chips are not mailed must be rechecked.
+
+**Completion evidence**
+
+- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
+- Theory dossier with explicit assumptions, notation, derivation, units, and boundary conditions, checked by at least one independent method
+- Simulation package with model or netlist, inputs, solver and version, parameter-sweep script, benchmark comparison, expected results, and one rerun command
+- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes

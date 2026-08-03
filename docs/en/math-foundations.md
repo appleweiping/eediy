@@ -1,67 +1,121 @@
 ---
 title: EE Mathematics Foundations
-description: Interleave MIT 18.01SC, 18.02SC, 18.03SC, 18.06SC, and two probability options with circuits, signals, control, and electromagnetics.
-page_type: guide
-comments: true
-last_reviewed: 2026-07-31
+description: Build the mathematical common core for circuits, signals, control, and electromagnetics through diagnostics, staged study, and verifiable tasks.
 ---
 
+[中文](../math-foundations.md)
 
 # EE Mathematics Foundations
 
-The mathematics used in an EE degree need not be completed in the order "all calculus, then linear algebra, then engineering." Circuits need derivatives, integrals, and complex numbers early. Signals puts differential equations, complex exponentials, and convolution in the same chapter. Electromagnetics depends on vector analysis and surface integrals, while control moves constantly among state equations, eigenvalues, and probability models. A better arrangement is to establish a dependable calculus spine, add linear algebra and low-order dynamics early, and let the next EE course determine how far each subject needs to go.
+Mathematics in electrical engineering is not an isolated prerequisite list. It is a set of tools for describing change, coupling, uncertainty, and spatial structure. A reliable foundation route reconnects formulas to models, units, plots, and checkable results. This page defines a minimum common core for later EE courses; select actual course materials from [Engineering Mathematics](courses/mathematics/index.md) and [Probability, Statistics, and Random Processes](courses/probability-statistics/index.md).
 
-Each recommended course below has a dedicated page describing its public materials, solution coverage, and version limits. This page answers a different question: how the courses fit together, and which parts are not worth completing in advance of engineering work.
+## Work backward from output capabilities
 
-## A mainline that does not have to be serial
+At the end of the foundation stage, you should be able to:
 
-If high-school algebra, trigonometry, exponentials, logarithms, and complex arithmetic are unstable, repair them with short focused material until \(e^{j\theta}\), rational expressions, and two-variable systems are manageable. There is no benefit in disguising that repair as a university course. Then begin the calculus line with [MIT 18.01SC Single Variable Calculus](courses/mathematics/001-18-01sc.md). Its [OCW Scholar course](https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/) keeps exposition, worked examples, exercises, four unit exams, and a final in one structure, which makes it suitable for a first complete pass. The earliest EE needs are derivatives and local linearization, integrals and accumulated quantities, exponential response, and Taylor approximation—not competition-level fluency with every integration trick.
+- use algebra, complex numbers, and trigonometry for phasors, magnitude-phase forms, and periodic signals;
+- use derivatives, integrals, and series to describe rates, accumulation, and local approximation;
+- express multivariable coupling with vectors, matrices, and linear systems;
+- build first- and second-order dynamic models with ordinary differential equations;
+- use elementary probability to describe noise, measurement error, and random events;
+- check results with units, limiting cases, order of magnitude, and numerical computation.
 
-Once basic integration is available, continue with [MIT 18.02SC Multivariable Calculus](courses/mathematics/002-18-02sc.md) and begin [MIT 18.06SC Linear Algebra](courses/mathematics/004-18-06sc.md) in parallel. Differential equations need not wait until all of 18.02SC is complete either. With single-variable calculus and elementary matrix operations in place, start the first-order and constant-coefficient second-order material in 18.03SC while vector fields and multiple integrals continue on the other line. This arrangement has an immediate payoff: an RC equation in circuits or an eigenfunction in signals is already a familiar mathematical object rather than a formula found at the last minute.
+These outputs make better stage goals than “finish a book.”
 
-If calculus was studied before and is merely rusty, replaying both Scholar courses from the first video is rarely the best use of time. Read the unit outlines and attempt an original problem set or exam. Return only when the attempt reveals a specific weakness in substitution, integration regions, or series error. A complete archive should shorten the repair path, not force every learner through the same number of hours.
+## Starting diagnostic
 
-## 18.01SC and 18.02SC address different modeling objects
+Limit each item to fifteen minutes and retain the complete attempt. Mark unknown work directly instead of consulting a solution and filling it in afterward.
 
-[18.01SC](courses/mathematics/001-18-01sc.md) is best learned through one-dimensional dynamic quantities. Capacitor current and charge, power and energy, and small-signal approximation near a device operating point all turn derivatives, integrals, and Taylor series into interpretable engineering relations. MIT estimates roughly 150 hours for the complete course, including reading, practice, and exams; that is a full-course estimate, not a mandatory personal schedule. A learner already comfortable with exponential decay, integration by parts, infinite series, and error terms can start from later applications and exams. Someone seeking proof-oriented calculus should choose a more theoretical course instead: 18.01SC is strongest as a coherent, self-contained course with unusually complete practice.
+| Capability | Diagnostic task | If blocked |
+| --- | --- | --- |
+| Algebra and complex numbers | Solve a two-variable linear system and convert a complex number between rectangular and polar form | Repair fractions, exponents, logarithms, identities, and Euler’s relation |
+| Single-variable calculus | Differentiate and integrate an exponential decay and explain behavior near its time constant | Select the relevant unit from [Single Variable Calculus](courses/mathematics/001-18-01sc.md) |
+| Multivariable calculus | Compute the gradient of a two-variable function and explain a directional derivative | Use [Multivariable Calculus](courses/mathematics/002-18-02sc.md) for coordinates and partial derivatives |
+| Linear algebra | Test whether two vectors are independent and explain the mapping represented by matrix multiplication | Connect geometry and systems of equations through [Linear Algebra](courses/mathematics/004-18-06sc.md) |
+| Differential equations | Write the homogeneous and particular structure of a first-order linear equation | Repair dynamic modeling through [Differential Equations](courses/mathematics/003-18-03sc.md) |
+| Probability | Compute a simple conditional probability, expectation, and variance and explain their units | Select an introductory mainline from the [probability track](courses/probability-statistics/index.md) |
 
-[18.02SC](courses/mathematics/002-18-02sc.md) is difficult for a different reason. The challenge is usually geometric orientation, not simply the presence of another variable. Its [official course](https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/) moves from vectors, matrices, and space curves through gradients, multiple integrals, line integrals, and surface integrals, ending with Green's, Gauss's, and Stokes's theorems. The last two units matter especially for electromagnetics: volume integrals of charge density, work along a path, flux through a surface, divergence, and curl all depend on coordinates, normals, and orientation conventions. The Physics Applications material explicitly reaches curl and Maxwell's equations.
+The diagnostic selects a starting point; it does not certify ability. Verify every weak area again through later tasks.
 
-For circuits or signals, the first half of 18.02SC is enough to open the next course while the remaining units continue in parallel. For [Electromagnetics](courses/electromagnetics/index.md), finish vector fields, line and surface integrals, and the integral theorems. Knowing how to differentiate a function of two variables is not yet enough for field problems; beginning with differential forms and manifolds is equally unnecessary for a first EE pass.
+## Foundation mainline
 
-## Add 18.06SC early rather than waiting for calculus to end
+### Stage one: algebra, complex numbers, and functions
 
-The [MIT 18.06SC Linear Algebra](courses/mathematics/004-18-06sc.md) [Scholar edition](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/) contains 31 topic problem sets with solutions, three unit exams, and a final. MIT's catalogue names 18.02 as a prerequisite, but the course itself also states that calculus is not needed to complete it; vectors, matrices, and three-dimensional coordinates are the real starting tools. Once elementary algebra is secure, 18.06SC can run alongside 18.02SC.
+Become reliable with fractions, powers, exponentials, logarithms, and trigonometric functions before building the complex plane, polar form, and Euler’s relation. Connect each technique to an EE use: decibels and logarithms, phasors and complex numbers, periodicity and trigonometry, transfer relations and rational expressions.
 
-For an EE student, elimination is only the entrance. Nodal analysis turns a network into \(Ax=b\); least squares handles overdetermined constraints and measurement fitting; eigenvalues and eigenvectors expose the modes of coupled systems; SVD returns in arrays, signal compression, system identification, and ill-conditioned numerical work. For every decomposition, ask what physical relation the matrix represents, whether the solution is unique, and whether perturbations will be amplified. Fluency limited to small determinants will have to be rebuilt in control and signals.
+**Exit task:** given a sinusoidal quantity with magnitude and phase, convert among rectangular, polar, and time-domain forms while checking units and quadrant.
 
-18.06SC has no official programming lab or project, and it does not need one added under the MIT name. First use the original problems to make the geometric interpretation reliable, then carry the same method into an engineering course: solve a nodal equation in [Circuits](courses/circuits/index.md), interpret modes of a state matrix in [Control Systems](courses/control-systems/index.md), or compare normal equations with QR/SVD on noisy data. Numerical software is useful for checking a result, but it should not replace an account of column spaces, residuals, and conditioning.
+### Stage two: single- and multivariable calculus
 
-## 18.03SC is the most important bridge from circuits to signals
+In single-variable work, emphasize rate, accumulation, local linearization, and infinite series. In multivariable work, emphasize partial derivatives, gradients, multiple integrals, and coordinate changes. Plot alongside calculation, estimate magnitude, and retain physical units.
 
-The [MIT 18.03SC Differential Equations](courses/mathematics/003-18-03sc.md) [Fall 2011 Scholar course](https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/) contains 38 sessions. Its four units cover first-order modeling; second-order equations, oscillation, and frequency response; Fourier series, Laplace transforms, and convolution; and finally linear systems, eigenvalues, phase portraits, and matrix exponentials. It suits EE better than a catalogue of equation-solving recipes because input, state, transient response, and steady response keep returning around the same models.
+**Exit task:** derive and interpret the area under a first-order decay, analyze parameter sensitivity, and draw gradient directions for a two-dimensional scalar field.
 
-A low-order circuit makes an ideal companion. Use an RC step response for initial conditions and time constants in the first-order unit. Use an RLC model to distinguish underdamping, critical damping, and resonance in the second-order unit. When Laplace transforms and convolution appear, derive the impulse response of the same system and express its zero-state response as a convolution. In the systems unit, describe it once more with a state vector and eigenmodes. The representations then become descriptions of one object rather than four unrelated sets of formulas.
+### Stage three: linear algebra
 
-18.03SC deliberately overlaps with [Signals and Systems](courses/signals-systems/index.md), but the courses are not substitutes. The former concentrates on building and interpreting differential-equation models. The latter must also cover discrete time, sampling, the Z-transform, and a broader LTI framework. If ODEs, complex exponentials, or convolution are still fragile, take 18.03SC through Unit III first. If they are already comfortable and the next need is sampling or system interconnection, move the time to signals.
+Connect linear systems, subspaces, bases, orthogonality, eigenvalues, and decompositions in one conceptual map. Do more than elimination: explain the mapping represented by a matrix, whether a solution is unique, and why conditioning can amplify error.
 
-## Choose probability according to systems or data
+**Exit task:** solve a small network equation in matrix form, compute a residual, and explain how rank or conditioning changes confidence in the result.
 
-For a first systematic course in engineering probability, the default recommendation is [MIT 6.041SC Probabilistic Systems Analysis](courses/probability-statistics/007-6-041sc.md). Its [Resource Index](https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/pages/resource-index/) coordinates 25 lectures, recitations, tutorials, 11 solved problem sets, quizzes, and a final. From random variables and conditional expectation through Poisson processes, finite Markov chains, and limit laws, it connects naturally to communications, random signals, device noise, and estimation. It is not a full course on wide-sense stationarity, autocorrelation, and power spectral density; those still belong in a later random-signals course.
+### Stage four: ordinary differential equations
 
-If the immediate goal is experimental data, parameter intervals, hypothesis tests, bootstrap, or regression, [MIT 18.05 Introduction to Probability and Statistics](courses/probability-statistics/006-18-05.md) is the better fit. Its [Spring 2022 course](https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/) has no lecture video, but it does provide coherent readings, reading questions, 11 solved problem sets, and ten R studios. Bayesian and frequentist inference appear in the same course, making it particularly useful for repeated sensor measurements and laboratory data. The tradeoff is that the learner must be willing to read and write R rather than treat video as the only entry point.
+Move from first-order linear systems into second-order systems, connecting homogeneous response, forced response, initial conditions, stability, and frequency response. Compare analytic results with numerical integration and record step size and error.
 
-Do not overlook the multivariable-calculus threshold in either course. The official prerequisites for 6.041SC include 18.01 and 18.02, while 18.05 lists 18.02. If multiple integrals, two-dimensional integration regions, and changes of variables remain unstable, continue 18.02SC before entering the continuous-random-variable material.
+**Exit task:** build the differential equation for an RC or equivalent low-order system, predict its step response, and produce a reproducible numerical result using [Numerical Computing and Model Verification](guides/numerical-computing.md).
 
-[Cornell ECE 3100](courses/probability-statistics/087-ece-3100.md) offers problems in a valuable random-signals setting, but its public archive omits lecture notes, projects, and most solutions. Use it as follow-up practice after 6.041SC or 18.05, not as a first exposition. There is also no general need to complete both MIT courses end to end. Choose the one closest to the next EE course, then take the relevant part of the other when random systems or statistical inference becomes a real requirement.
+### Stage five: probability and data
 
-## Let the first core EE course set the overlap
+Build the basic language of events, conditional probability, random variables, common distributions, expectation, variance, and sampling. Prioritize the assumptions, sample size, and uncertainty that limit a conclusion before memorizing many distribution formulas.
 
-- **Starting with circuits:** enter [Circuits](courses/circuits/index.md) after derivatives and integrals in 18.01SC, then pair it with the first- and second-order systems in 18.03SC for RC and RLC behavior. Learn nodal analysis alongside 18.06SC; there is no need to wait for the eigenvalue unit.
-- **Starting with signals or control:** connect complex exponentials, frequency response, Laplace transforms, and convolution in 18.03SC while 18.06SC supplies projections and eigenvalues. Add 6.041SC when noise, estimation, or random input arrives. If state space remains only symbolic, return to one low-order system and compare its differential-equation, transfer-function, and matrix descriptions.
-- **Starting with electromagnetics:** make 18.02SC the main axis, especially vector fields, line and surface integrals, divergence, curl, and the integral theorems. 18.03SC supplies language only for low-dimensional dynamics or ODEs produced after separation of variables; general wave and boundary-value problems require PDE methods beyond this foundation page. Repair complex phasors before frequency-domain fields. A numerical field plot does not replace boundary conditions, material assumptions, or conservation checks. Keep physical work in analysis and simulation unless proper facilities are available; do not work on mains voltage, high voltage, strong RF, or unknown microwave hardware.
-- **Starting with experiments and instrumentation:** after completing 18.02SC, 18.05 can begin relatively early, using one measurement dataset across distributions, intervals, tests, and regression. Move to 6.041SC and a later random-signals course when noise processes and filtering become central.
+**Exit task:** summarize and plot repeated observations, then distinguish instrument resolution, random variation, and processing uncertainty. Use [Data and Laboratory Records](guides/data-lab-notebooks.md) for the record structure.
 
-One course is especially useful across these combinations: [MIT 6.055J The Art of Approximation](courses/mathematics/018-6-055j.md). Its [open course](https://ocw.mit.edu/courses/6-055j-the-art-of-approximation-in-science-and-engineering-spring-2008/) teaches dimensional analysis, extreme cases, scaling, and balancing as a habit of estimating before calculating. It can be sampled once the basic 18.01SC material is in place instead of being saved until all mathematics is complete. It is a companion for judging models and scales, not a replacement for calculus, linear algebra, or differential equations.
+## Weekly structure
 
-These foundation courses make the equations in the engineering core familiar. Once the [Global Roadmap](roadmap.md) exposes a real difficulty with residues, singular values, rigorous probability, or numerical conditioning, choose the corresponding course in [Advanced Mathematics for EE](math-advanced.md). Without such a problem, there is no reason to complete the entire advanced catalogue in advance.
+Use a stable concept-practice-verification-review cadence:
+
+| Activity | Suggested share | Evidence to retain |
+| --- | ---: | --- |
+| Concepts and derivations | 30% | Reconstructed definitions, key steps, and applicability conditions |
+| Foundation exercises | 35% | Original attempts, corrections, and error classes |
+| Computational or visual verification | 20% | Runnable files, parameters, plots, and residuals |
+| Transfer and review | 15% | One EE application and the next weekly adjustment |
+
+If exercise accuracy is low, reduce new content. If calculations are correct but explanations are weak, add oral explanations and diagrams. If code runs without a reasoned justification, return to the model and limiting cases.
+
+## Verification tasks
+
+Complete at least these three small artifacts:
+
+1. **Circuit modeling:** express a small linear resistive network as a matrix equation, solve one hand-worked baseline, and check it numerically.
+2. **Dynamic system:** provide the equation, initial condition, analytic or semi-analytic prediction, numerical result, and error discussion for a first- or second-order model.
+3. **Data inference:** retain raw repeated observations, compute statistics, plot them, and explain what cannot be concluded from the finite sample.
+
+Each artifact should state the problem, assumptions, units, method, result, checks, and limitations. Start the tool environment with [Python and Jupyter](guides/python-jupyter.md).
+
+## Common blockers and repairs
+
+| Symptom | More likely cause | Repair action |
+| --- | --- | --- |
+| Formulas can be applied but models cannot be built | Variables, parameters, inputs, and states are not separated | Draw a system boundary and create a unit table before every problem |
+| Symbol errors dominate derivations | Algebra and sign conventions are unstable | Shorten the problem, fix reference directions, and check dimensions line by line |
+| Linear algebra means only elimination | Geometric and mapping interpretations are missing | Draw the column space, null space, and eigen-directions |
+| Differential-equation methods are remembered but responses are not understood | Initial condition, input, and system properties are mixed together | Separate zero-input and zero-state parts before checking superposition |
+| A probability answer looks plausible under the wrong condition | Sample space and conditioning were never made explicit | State events, conditions, and units before calculating |
+| Numerical output looks polished but is untrustworthy | No baseline, convergence, or residual check exists | Vary step size, precision, or algorithm and compare with a simple limit |
+
+## When to enter the EE core
+
+You do not need proof-course depth in every topic before starting core EE work. Begin circuits and signals in parallel when you can:
+
+- complete most basic operations in the diagnostic independently;
+- express a physical problem through variables, units, equations, and boundary conditions;
+- explain the meaning of derivatives, integrals, vectors, and matrices in one EE example;
+- build and check a low-order dynamic model;
+- use computation to verify rather than conceal a derivation;
+- identify one concrete repair task from an error log.
+
+Then enter [Circuits](courses/circuits/index.md) and [Signals and Systems](courses/signals-systems/index.md), repairing mathematical gaps when they become real blockers.
+
+## Next step
+
+Use the [Global Roadmap](roadmap.md) to interleave mathematics with engineering courses. When signals, control, electromagnetics, devices, or research-level modeling demands more depth, choose the relevant module from [Advanced Mathematics for EE](math-advanced.md) instead of completing every advanced topic in advance.

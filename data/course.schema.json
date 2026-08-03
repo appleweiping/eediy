@@ -21,14 +21,14 @@
     },
     "tracks": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 24,
       "items": {
         "$ref": "#/$defs/track"
       }
     },
     "courses": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 125,
       "items": {
         "$ref": "#/$defs/course"
       }
@@ -134,14 +134,18 @@
         "tier",
         "level",
         "languages",
+        "study_plan",
+        "tooling",
+        "safety",
         "prerequisite_course_ids",
         "prerequisites",
-        "official_prerequisites",
-        "recommended_background",
+        "outcomes",
+        "completion_evidence",
         "selection_note",
         "review_note",
         "resource_coverage",
         "resources",
+        "projects",
         "last_reviewed"
       ],
       "properties": {
@@ -203,6 +207,15 @@
             "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
           }
         },
+        "study_plan": {
+          "$ref": "#/$defs/studyPlan"
+        },
+        "tooling": {
+          "$ref": "#/$defs/tooling"
+        },
+        "safety": {
+          "$ref": "#/$defs/safety"
+        },
         "prerequisite_course_ids": {
           "type": "array",
           "uniqueItems": true,
@@ -215,12 +228,10 @@
         "prerequisites": {
           "$ref": "#/$defs/localizedList"
         },
-        "official_prerequisites": {
-          "description": "Provider-published prerequisites, corequisites, permissions, or explicit no-prerequisite statements. Course-sequence entries may link to an exact EEDIY equivalent at render time.",
+        "outcomes": {
           "$ref": "#/$defs/localizedList"
         },
-        "recommended_background": {
-          "description": "EEDIY route advice or practical preparation kept separate from provider requirements.",
+        "completion_evidence": {
           "$ref": "#/$defs/localizedList"
         },
         "selection_note": {
@@ -237,6 +248,12 @@
           "minItems": 1,
           "items": {
             "$ref": "#/$defs/resource"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/project"
           }
         },
         "last_reviewed": {
@@ -277,11 +294,81 @@
         }
       }
     },
+    "studyPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "estimated_weeks",
+        "hours_per_week",
+        "note"
+      ],
+      "properties": {
+        "estimated_weeks": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 104
+        },
+        "hours_per_week": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0,
+          "maximum": 80
+        },
+        "note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "tooling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "software",
+        "hardware",
+        "cost_note"
+      ],
+      "properties": {
+        "software": {
+          "$ref": "#/$defs/localizedList"
+        },
+        "hardware": {
+          "$ref": "#/$defs/localizedList"
+        },
+        "cost_note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "note"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "simulation-only",
+            "low-energy",
+            "supervised",
+            "standard"
+          ]
+        },
+        "note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
     "coverageScore": {
       "type": "integer",
       "minimum": 0,
-      "maximum": 2,
-      "description": "Internal editorial signal: 0 = no usable set verified in this review; 1 = partial, version-mismatched, or access-restricted set; 2 = a coherent course-level material set usable under the separately recorded access conditions. A score of 2 does not imply every term or file, public solutions, grading, starter code, or feedback."
+      "maximum": 2
     },
     "resource": {
       "type": "object",
@@ -352,18 +439,78 @@
           "type": "string",
           "format": "date"
         },
-        "artifact_scope": {
-          "enum": [
-            "content",
-            "index",
-            "outline",
-            "landing",
-            "syllabus"
-          ],
-          "description": "What the URL exposes after access: substantive teaching/assessment content, a link index, a topic/schedule outline, a landing or sales page, or a syllabus. A coverage score of 2 requires matching, available substantive content; a legacy substantive-kind record may omit this field, while non-content records may document only a partial or restricted score of 1."
-        },
         "note": {
           "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "brief",
+        "origin",
+        "deliverables",
+        "verification",
+        "reproducibility",
+        "safety_level",
+        "safety_note"
+      ],
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "brief": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "origin": {
+          "enum": [
+            "official",
+            "suggested"
+          ]
+        },
+        "deliverables": {
+          "$ref": "#/$defs/projectEvidence4"
+        },
+        "verification": {
+          "$ref": "#/$defs/projectEvidence4"
+        },
+        "reproducibility": {
+          "$ref": "#/$defs/projectEvidence3"
+        },
+        "safety_level": {
+          "enum": [
+            "simulation-only",
+            "low-energy",
+            "supervised",
+            "standard"
+          ]
+        },
+        "safety_note": {
+          "$ref": "#/$defs/localizedText"
+        }
+      }
+    },
+    "projectEvidence4": {
+      "$ref": "#/$defs/localizedList",
+      "properties": {
+        "zh": {
+          "minItems": 4
+        },
+        "en": {
+          "minItems": 4
+        }
+      }
+    },
+    "projectEvidence3": {
+      "$ref": "#/$defs/localizedList",
+      "properties": {
+        "zh": {
+          "minItems": 3
+        },
+        "en": {
+          "minItems": 3
         }
       }
     },

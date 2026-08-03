@@ -1,59 +1,97 @@
 ---
-title: Numerical Computing and Model Credibility
-description: Use an RLC model to practice scaling, tolerances, convergence, and independent comparison—and separate solver success from a credible result.
-page_type: guide
-comments: true
+title: Numerical Computing and Model Verification
+description: Decide whether an EE numerical result is trustworthy with scaling, convergence checks, and independent benchmarks.
 ---
 
+<div class="ee-language" markdown>
+[简体中文](../../guides/numerical-computing.md)
+</div>
 
-# Numerical Computing and Model Credibility
+# Numerical Computing and Model Verification
 
-A solver returning `success` means that it completed according to its own rules. It has not shown that the differential equations are correct, the units agree, or the fastest dynamics are resolved. It certainly has not shown that the model represents the circuit on the bench. Credible numerical work separates model error, discretization error, floating-point effects, parameter uncertainty, and physical discrepancy.
+A numerical tool can produce an attractive result without deciding whether the model applies. Reliable computation must answer what the equations represent, how large discretization error is, whether parameters are identifiable, and whether an independent method confirms the result.
 
-A series RLC step response is enough to expose all of them. With the state \(x=[i,\ v_C]\), write
-\[
-\frac{di}{dt}=\frac{v_s-Ri-v_C}{L},\qquad
-\frac{dv_C}{dt}=\frac{i}{C}.
-\]
-The initial slope, steady state, poles, and direction of energy flow can be checked by hand. The same model can also be made stiff, badly scaled, or under-sampled on purpose. Make this small calculation trustworthy before transferring the habits to a field solver, controller, or device model.
+## Purpose and learning outcomes
 
-## Before execution, state the physical facts that may not be violated
+- Check a model with dimensions, order of magnitude, and limiting cases before solving.
+- Recognize conditioning, discretization error, roundoff, and stopping criteria.
+- Use mesh or step convergence to show that a result is not a plotting-resolution artifact.
+- Compare against analysis, a hand-solvable case, and an independent numerical method.
+- Report uncertainty instead of unsupported significant digits.
 
-Give every quantity an SI unit and a plausible scale, and state initial conditions, stimulus, sign convention, and boundaries. For a DC step from zero state, inductor current cannot jump instantaneously. At long-time steady state, capacitor current should approach zero. In a passive circuit with \(R>0\), stored energy cannot grow forever without supplied power. Derive the poles from \(L\), \(C\), and \(R\) and decide whether the response should be overdamped, critical, or oscillatory. A smooth curve that violates one of these facts is not ready for tolerance tuning.
+## Minimal environment
 
-Reduce the engineering question to a few scalars: peak current, overshoot, 2% settling time, and perhaps
-\[
-\Delta E = E(t)-E(0)-\int_0^t\!\bigl(v_s i-Ri^2\bigr)\,dt.
-\]
-Such quantities reveal errors more reliably than comparing plot pixels and can become tests. If parameters come from measurements, preserve their source and uncertainty. NIST [Technical Note 1297](https://www.nist.gov/pml/nist-technical-note-1297) describes evaluation, combination, and reporting of measurement uncertainty. It addresses how well the inputs are known; it does not estimate the discretization error of an algorithm.
+- Any numerical environment with arrays, linear algebra, and plotting.
+- Plain-text scripts, parameter files, and a test entry point.
+- One small problem that can be solved by hand.
+- An optional notebook for explanation, but not as the only execution path.
 
-## Make one solver disagree with itself on purpose
+Record observed tool versions, solver options, and relevant hardware differences. Defaults can vary by implementation, so set critical tolerances explicitly and justify them.
 
-Run the same parameters through a sequence of stricter configurations instead of changing one step size and declaring the curves “close enough.” The SciPy [`solve_ivp`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html) documentation distinguishes `t_eval`, which selects stored output times, from `rtol`, `atol`, and `max_step`, which affect integration. A denser plot is not necessarily a more accurate integration. Begin with a suitable default, tighten tolerances in stages, and limit the maximum step so the fastest expected time scale can be represented.
+## Learning sequence
 
-At each level, record function evaluations, peak value, settling time, and energy residual. Plot the change in each target quantity relative to the strictest run rather than only overlaying waveforms. Then use at least one independent comparison: analytical poles, a frequency-domain transfer function, or an integrator with different numerical properties. The `solve_ivp` documentation recommends explicit Runge–Kutta methods for non-stiff problems and implicit methods such as Radau or BDF for stiff ones. Agreement across method families says more than an extremely small tolerance in one method.
+1. **Scale the problem:** list variable units, select reference scales, and identify dimensionless groups.
+2. **Build a benchmark:** solve an analytical or hand-checkable small instance first.
+3. **Separate errors:** distinguish model, data, discretization, and floating-point error.
+4. **Run convergence:** reduce time step, frequency spacing, or spatial mesh and track a target quantity.
+5. **Test sensitivity:** perturb parameters and initial conditions to see whether the conclusion is robust.
+6. **Cross-check independently:** use another algorithm, conservation law, or limiting case.
 
-A convergence study should record spatial-grid and time-step refinement separately, while asking the same central question: does a target quantity approach a stable asymptotic trend as the discretization is refined? Do not apply Richardson extrapolation mechanically to every solver. Discontinuities, missed events, or runs outside the asymptotic range can produce a meaningless apparent order. For the RLC exercise, an effective refinement study has several levels pointing toward the same limit while independent physical checks improve as well.
+## Verification task: integrate an RLC state model
 
-## If refinement still wanders, classify the failure
+Build a state-space model of a damped RLC system:
 
-Tighter tolerances producing noisier answers do not automatically mean “the computer lacks precision.” Check units and state scales first. If one state is near \(10^{-9}\) and another near \(10^3\), one absolute tolerance has very different meanings for them. Check stiffness and discontinuous inputs next, including whether an event or switch transition can be crossed inside one large step. Only then examine rounding and cancellation. Python's official [floating-point explanation](https://docs.python.org/3/tutorial/floatingpoint.html) shows why most decimal fractions have no exact binary floating-point representation, but that fact is not a universal excuse for numerical discrepancies.
+1. Derive the initial slope, steady value, and expected oscillation or decay regime.
+2. Integrate the same excitation with at least three time steps.
+3. Record peak value, steady value, and energy residual.
+4. Plot target-quantity error relative to the finest step.
+5. Vary one component within a tolerance range and compute local sensitivity.
+6. Cross-check the dynamics with a frequency-domain result or analytical poles.
 
-For a sensitive linear solve or parameter fit, inspect singular values and conditioning. NumPy [`linalg.cond`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.cond.html) computes a matrix condition number under a selected norm. A large value warns that input perturbations may be amplified; it does not automatically declare the physical model wrong. Rescale variables, avoid an unnecessary explicit inverse, ask whether parameters are identifiable, and use synthetic data to test recovery of a known answer.
+Acceptance requires convergence of the target quantity, the correct conservation or dissipation direction, and a statement of how sensitive the conclusion is to tolerance.
 
-Different failures call for different next steps:
+## Common failures and diagnosis
 
-- **Model error:** every discretization setting converges to the same wrong physical trend.
-- **Discretization error:** the target quantity moves systematically with mesh or step refinement.
-- **Rounding or conditioning:** scaling, precision, or algorithm choice changes the answer substantially.
-- **Input uncertainty:** the algorithm has converged, but the permitted parameter range changes the engineering decision.
+- **The matrix solves but results jump:** inspect conditioning, variable scales, and near-linear dependence.
+- **A smaller step diverges:** check algorithm stability, stiffness, units, and implementation.
+- **A smooth curve is physically wrong:** verify signs, initial values, boundary conditions, and power direction.
+- **Only “solver succeeded” is reported:** define a residual and acceptance quantity tied to the physical question.
+- **Too many significant digits:** limit precision by input uncertainty and convergence error.
+- **A random sweep cannot be replayed:** fix the seed and retain distributions and ranges.
 
-The classification matters because it tells you whether to change the equations, change the algorithm, measure a parameter, or narrow the claim.
+## Reproducible evidence
 
-## The final comparison must leave this program
+- Equations, assumptions, units, and reference scales.
+- Parameter provenance, ranges, and uncertainty.
+- Solver, tolerances, step sizes, and stopping criteria.
+- Benchmark results compared with analysis or hand calculation.
+- Convergence table, sensitivity plot, and residual definition.
+- One command that generates all results.
+- Failure cases and domain of validity.
 
-For the RLC model, compare dynamics with hand-derived poles and DC limits, then with a frequency-domain result from another tool or a safe low-voltage measurement. When measured and computed curves disagree, do not immediately call the gap “simulation error.” Probe loading, source impedance, parasitics, component tolerance, and instrument bandwidth may all be physical quantities missing from the model. Add them one at a time and see which one actually explains the discrepancy.
+## Cost, licensing, and accessibility
 
-Retain equations, units, parameter sources, solver and version, tolerances, the refinement table, independent benchmark, residual definition, and one rebuild command. Reported digits should be limited jointly by numerical convergence and input uncertainty. If a model will influence operating boundaries for power supplies, motors, RF transmission, or medical equipment, computation may propose tests; it cannot replace ratings, fault protection, qualified personnel, or supervised validation.
+Free numerical environments are sufficient. A commercial platform may support course compatibility, but export scripts, parameters, and standard-format results. Record solver and data licenses and do not redistribute restricted models.
 
-Once the RLC result rebuilds in a clean environment and deliberate changes to units, step size, or damping cause intelligible failures, move to [SPICE Circuit Simulation](spice-simulation.md) for device models or connect measurements through [Data and Laboratory Records](data-lab-notebooks.md).
+Use line styles, markers, and direct labels in addition to color. Provide key values in a table and state conclusions in text. A low-performance device may use a smaller mesh but should still demonstrate a three-point convergence trend.
+
+## Safety boundaries
+
+- A passing simulation does not establish hardware safety; ratings, faults, and protection need independent review.
+- Do not use an unvalidated extrapolation to set higher-energy operating limits.
+- Separate numerical instability from physical instability through step studies and independent methods.
+- Medical, power, RF-transmission, or actuator-control conclusions need qualified review.
+- Never conceal nonconvergence, nonphysical negative values, or violated conservation.
+
+## Completion checklist
+
+- [ ] Equations, units, assumptions, and boundary conditions are recorded.
+- [ ] At least one benchmark has an independent answer.
+- [ ] A convergence study uses three or more steps or meshes.
+- [ ] Residuals and stopping criteria relate to the physical objective.
+- [ ] Parameter sensitivity and input uncertainty are assessed.
+- [ ] Plots, tables, and prose state a consistent conclusion.
+- [ ] One command rebuilds the result.
+- [ ] Domain of validity and safety limits are explicit.
+
+Next, practice device models with [SPICE Circuit Simulation](spice-simulation.md), or compare against measurements with [Data and Laboratory Records](data-lab-notebooks.md).

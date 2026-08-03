@@ -2,52 +2,123 @@
 title: "Introduction to Power Electronics"
 description: "University of Colorado Boulder 的《Introduction to Power Electronics》通过视频、练习、仿真和代码提供电力电子入门；仿真实践有价值，但平台与评分访问可能收费或变化。"
 page_type: course
-course_id: "course-115"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-30"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 05e0ccf60c3f0624 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 05982e9ebb0d43d9 -->
 
-# University of Colorado Boulder Power Electronics 1: Introduction to Power Electronics
+# Introduction to Power Electronics
 
 ## 课程简介
 
-- **所属大学：** University of Colorado Boulder
+- **机构：** University of Colorado Boulder
 - **课程编号：** Power Electronics 1
-- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
-- **本站建议背景：** 电路分析；控制系统；电子实验与测量
-- **访问条件：** 需注册；可用范围以平台为准
-- **资料状态：** 2026-07-30；公开材料导读
+- **方向：** [电力电子](index.md)
+- **评级：** A
+- **角色：** 替代
+- **难度：** 提供方未标准化（请按先修判断）
+- **最近复核：** 2026-07-28
 
-### 课程定位
+University of Colorado Boulder 的《Introduction to Power Electronics》通过视频、练习、仿真和代码提供电力电子入门；仿真实践有价值，但平台与评分访问可能收费或变化。
 
-University of Colorado Boulder 的 [Introduction to Power Electronics](https://www.coursera.org/learn/power-electronics) 是 [Power Electronics 专项](https://www.coursera.org/specializations/power-electronics)的第一门。官方课程页当前列出 3 个 module、3 份作业和“1 周、每周 10 小时”，三项作业依次围绕 boost simulation、converter analysis 与 equivalent-circuit modeling；专项页则写约 12 小时。第一次自己推平均模型，留 3–4 周更从容。这门课最适合电路基础已经过关、想把 buck/boost 从开关状态推到稳态模型的人。
+**为什么选择这门课**
 
-开课前应能用 KCL/KVL 写出理想 buck 两个区间的电感电压，再用 volt-second balance 得到转换比。若这一步只能背公式，需要补 RC/RL 暂态、功率和理想开关分析。课程会用到 LTspice，但仿真只是检验推导的工具。
+替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
 
-### 课程结构
+**学习前准备**
 
-Chapter 1 用 buck/boost 和一次 boost 仿真说明 switched converter；Chapter 2 进入 steady state、small-ripple approximation 与 converter analysis；Chapter 3 建 averaged equivalent circuit、损耗和效率模型。做题时固定写出 switching states、周期稳态条件、平均量/纹波和假设边界。电感电流已经进入 DCM，就应回头检查 CCM，原式不再适用。
+- 建议先完成方向基础：电路分析
+- 建议先完成方向基础：控制系统
+- 建议先完成方向基础：电子实验与测量
 
-具体题面与反馈受 Coursera 登录状态影响；“Enroll for free”并不保证所有账号都能长期访问评分项，报名前应直接查看结算页。
+**可验证的学习成果**
 
-### 作业与反馈
+- 解释电力电子中的核心模型，并说明主要假设与适用边界
+- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
+- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
 
-另建一个 12 V 到 5 V 的低功率 buck notebook：由纹波目标选 `L`、`C`，扫描 duty、负载和开关频率，再加入 ESR 与导通损耗。每张图同时给手算预期、稳态取样区间和误差。软件和现行文档从 Analog Devices 的 [LTspice 页面](https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html)取得；第三方电路或排错建议仍需自己核对假设与模型。
+**工时与节奏**
 
-一个够用的结课检查是：从两段状态方程推平均模型，让 LTspice 中的电流斜率、平均输出和功率收支与手算同向，并能解释启动暂态为何不受周期稳态的 volt-second balance 约束。
+**11 周，每周 7 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
 
-### 后续顺序
+**安全等级**
 
-建议接着学 [Converter Circuits](https://www.coursera.org/learn/converter-circuits)，再学 [Converter Control](https://www.coursera.org/learn/converter-control)。本课没有 bench lab；磁性元件、栅极驱动、布局、热设计和安全测量需要另找实验训练。
+**仅仿真。** 默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。
 
 ## 课程资源
 
-- [课程主页](https://www.coursera.org/learn/power-electronics)
+**软件、硬件与成本**
 
-## 资源汇总
+**软件**
 
-本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。
+- 维护者建议的开源/免费验证路径：Qucs-S、ngspice、Python 3、Jupyter 与 GNU Octave
+- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
+
+**硬件**
+
+- 资源清单包含实验覆盖；本课程的维护者路径明确将其限定为计算或仿真实验。只假设一台能运行上述软件并保存结果的通用计算机；不采购或连接合规实验室中的隔离/限流电源、差分探头、电子负载、示波器及课程指定功率级
+
+**成本说明**
+
+当前维护者路径只使用计算与仿真，不设专用硬件采购；建议软件优先采用开源/免费工具。这不是提供方要求，平台访问、商业软件或云算力费用仍随提供方、地区与方案而变。
+
+**公开资源完整度**
+
+| 资源类型 | 完整度 |
+|---|---|
+| 视频 | 完整 |
+| 讲义 | 部分 |
+| 练习 | 完整 |
+| 实验 | 部分 |
+| 考试 | 无公开材料 |
+| 代码 | 部分 |
+
+**资源与访问条件**
+
+| 资源 | 访问 | 许可 | 状态 | 复核日期 |
+|---|---|---|---|---|
+| [课程主页](https://www.coursera.org/learn/power-electronics) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
+
+> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
+
+## 实践与验收
+
+**实践闭环**
+
+**《Introduction to Power Electronics · University of Colorado Boulder Power Electronics 1》变换器损耗与闭环保护仿真**
+
+这是维护者为《Introduction to Power Electronics · University of Colorado Boulder Power Electronics 1》建议的自学项目，不是课程官方作业。为电力电子仿真一个 DC–DC 变换器，量化纹波、效率代理、器件应力、控制稳定性和过流/开路保护。
+
+**来源：** 维护者建议项目
+
+**交付物**
+
+- 拓扑、输入/输出范围、开关频率、器件额定值、控制和保护规格
+- 开关模型、平均模型、控制器与故障场景源文件
+- 稳态/启动/负载阶跃/故障的原始波形、损耗和应力数据
+- 一份报告，比较解析/平均/开关模型并解释最坏应力与保护动作
+
+**验收**
+
+- 标称稳态输出误差低于 2%，纹波与手算相差不超过 15%
+- 覆盖最小/最大输入、空载/满载、启动和器件参数极值
+- 用功率平衡交叉核对输入/输出/损耗，归一化残差低于 1%
+- 注入短路代理或负载突降，证明保护在预设时间内动作且所有额定值不过界
+
+**复现要求**
+
+- 提交拓扑、模型、控制器、故障、计算和绘图源文件
+- 固定仿真器、器件模型、步长、开关与控制参数
+- 保存原始波形、功率/应力表、故障日志和自动报告
+
+**安全边界：** 仅仿真 — 仅做变换器仿真；不得搭建市电、高压、大电流、磁性元件、电池供电或功率开关实体电路。
+
+**风险、缺口与边界**
+
+仿真练习具有价值，但 Coursera 访问和评分作业的可用性可能需要付费，也可能变化。
+
+**完成证据**
+
+- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
+- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
+- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
+- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明

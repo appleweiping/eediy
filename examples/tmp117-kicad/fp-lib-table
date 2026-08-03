@@ -1,4 +1,0 @@
-(fp_lib_table
-  (version 7)
-  (lib (name "EEDIY")(type "KiCad")(uri "${KIPRJMOD}/library/EEDIY.pretty")(options "")(descr "Project-local footprints for the TMP117 teaching design"))
-)

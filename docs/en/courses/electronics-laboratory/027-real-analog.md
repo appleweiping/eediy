@@ -2,54 +2,121 @@
 title: "Real Analog Courses"
 description: "Digilent's Real Analog Courses builds a practical analog-circuit sequence from notes, exercises, and instrument-based labs, with strong reproducibility constrained by required Analog Discovery hardware."
 page_type: course
-course_id: "course-027"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-29"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: ea7c865d24be1d3a -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: ad70cead9a08b3fe -->
 
-# Digilent: Real Analog Courses
+# Real Analog Courses
 
 ## Course Overview
 
-- **University:** Digilent
+- **Institution:** Digilent
 - **Course code:** Real Analog
-- **Official prerequisites:** No provider-published hard prerequisite verified; recheck the course page
-- **EEDIY preparation:** Circuit Analysis
-- **Access:** Open without registration
-- **Material status:** 2026-07-29; public-material guide
+- **Track:** [Electronics Laboratory and Measurement](index.md)
+- **Tier:** A
+- **Role:** Mainline
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-### Real Analog turns calculation into measurement
+Digilent's Real Analog Courses builds a practical analog-circuit sequence from notes, exercises, and instrument-based labs, with strong reproducibility constrained by required Analog Discovery hardware.
 
-Digilent's [Real Analog](https://digilent.com/shop/coursework-learning-resources/) places 12 chapters of Circuits 1 theory and Analog Discovery experiments on one path. Chapters 1–5 move from voltage, current, power, and KCL/KVL to network theorems and op-amps. Chapters 6–9 add storage, first- and second-order systems, and state variables. Chapters 10–12 cover sinusoidal steady state, frequency response, filtering, and power. It suits learners with basic algebra who cannot yet explain instrument loading, grounding, or measurement discrepancy. The material was written mainly for AD2. Digilent says its concepts are compatible with AD3, not that every old button, range, and wiring diagram has been updated.
+**Why choose this course**
 
-### Chapter 1 Teaches Measurement; Chapter 9 Teaches State Models
+Mainline course. A reliable option that can serve as a main course or strong alternative.
 
-[Chapter 1](https://digilent.com/reference/_media/learn/courses/real-analog-chapter-1/real-analog-chapter-1.pdf) combines exposition, exercises, worksheets, and 9 experiments. Beginning with breadboards, sources and meters, and V–I regression, place prediction and measurement side by side with the AD model, WaveForms version, reference ground, ranges, raw data, and residuals. Its table of contents names Exercise and Homework Solutions, but the current PDF contains no solution section. A broken contents entry is not an answer chain.
+**Before you start**
 
-[Chapter 9](https://digilent.com/reference/_media/learn/courses/real-analog-chapter-9/real-analog-chapter-9.pdf) uses A, b, c, and d matrices and two experiments to express an RLC in state form. Compare the hand-derived model, initial conditions, simulated and measured curves, overlay residual, and state trajectory in one view. A wrong initial point points first to state definitions and probe reference; an incorrect envelope points to coil resistance and tolerance. Calling every discrepancy “noise” discards the diagnostic lesson.
+- Recommended foundation: Circuit Analysis
 
-### Instrument versions determine whether automation is interpretable
+**Verifiable learning outcomes**
 
-[WaveForms](https://digilent.com/shop/waveforms/) is free to use and has a hardware-free demo mode. Demo mode teaches the interface but does not generate circuit data. Marius Greuel's [DwfPy](https://github.com/mariusgreuel/dwfpy) is a useful unofficial companion: an MIT-licensed, documented, CI-tested Python binding for WaveForms devices, with oscilloscope, generator, logic, supply, and acquisition examples. It is not a Digilent course requirement. Use it to automate repeated sweeps and export raw arrays beside their parameter settings, never to skip manual verification of probes, ranges, and ground.
+- Explain the core models in Electronics Laboratory and Measurement, including their assumptions and limits
+- Solve representative derivations and problems, checking units, limiting cases, or numerical results
+- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-Begin automation with a known resistor and an internal loopback. Have the script emit device enumeration, channel configuration, sample rate, trigger conditions, and raw arrays, then compare them with a one-shot GUI reading. Each sweep point also needs its settle time and clipping decision. A final Bode plot alone cannot separate an instrument setting, a script-unit error, and a circuit discrepancy.
+**Workload and pacing**
 
-The AD2 ground shares the USB host reference and must not be assumed galvanically isolated. Restrict physical reconstruction to low-voltage, current-limited circuits disconnected from mains and other hazardous sources. Power down before rewiring and discharge capacitors. Without a trustworthy DMM, current-limited source, and known ground path, stop at analysis and SPICE rather than labeling a demo-mode screen as measurement.
+**13 weeks at 11 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-### Three Experiments Expose Model Failure
+**Safety level**
 
-Select one static, one dynamic, and one frequency-domain experiment. Use V–I fitting to expose input loading and residuals; use the Chapter 9 RLC to expose state and initial conditions; then place hand-derived Bode values, point measurements, and a Network Analyzer sweep for one filter on the same axes. Put the schematic, bill of materials, software version, wiring, raw data, and script together, then use one failed waveform to show what the correction actually changed.
-
-Real Analog is more portable than the old NI bench, but simulation still does not replace measurement. The lasting skill is explaining how an instrument changes a circuit, how residual structure separates a model error from a wiring error, and why a curve without range and version metadata cannot support that diagnosis.
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
 
 ## Course Resources
 
-- [Course home](https://digilent.com/shop/coursework-learning-resources)
+**Software, hardware, and cost**
 
-## Resource Summary
+**Software**
 
-Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.
+- Maintainer-suggested open-source/free verification path: ngspice, sigrok/PulseView, Python 3, and Jupyter
+- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
+
+**Hardware**
+
+- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a current-limited bench supply, digital multimeter, oscilloscope, function generator, breadboard, and logic analyzer. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
+
+**Cost note**
+
+The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
+
+**Public resource coverage**
+
+| Resource type | Completeness |
+|---|---|
+| Video | Partial |
+| Notes | Complete |
+| Practice | Complete |
+| Labs | Complete |
+| Exams | No public material |
+| Code | Partial |
+
+**Resources and access**
+
+| Resource | Access | License | Status | Verified |
+|---|---|---|---|---|
+| [Course home](https://digilent.com/shop/coursework-learning-resources) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
+
+> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+
+## Practice and Verification
+
+**Practice loop**
+
+**Real Analog Courses · Digilent Real Analog: Measurement-Chain Calibration and Uncertainty Ledger**
+
+This is a maintainer-suggested self-study project for Real Analog Courses · Digilent Real Analog, not an official course assignment. Build a low-voltage source–device–instrument chain for Electronics Laboratory and Measurement and document calibration, repeatability, uncertainty, and wiring-error diagnosis.
+
+**Origin:** Maintainer-suggested project
+
+**Deliverables**
+
+- A wiring diagram, instrument ratings, range choices, safety checklist, and calibration procedure
+- An automated or semi-automated acquisition script and a data format with units and timestamps
+- Raw data from at least 30 repeated measurements, environmental records, and an uncertainty budget
+- A lab report separating random and systematic error and reviewing one deliberately introduced wiring fault
+
+**Verification**
+
+- After calibration, keep mean reference error below 2% of the declared full scale
+- Check linearity at low, middle, and high ranges and report fit residuals and confidence intervals
+- Cross-check at least ten points with a second instrument or simulation and keep differences inside combined uncertainty
+- Inject a probe-factor, ground, or range error and show that the checklist catches it before power-up or in the first reading
+
+**Reproducibility**
+
+- Commit wiring diagrams, acquisition and analysis sources, calibration evidence, a BOM, and a README
+- Record instrument model and firmware, probe settings, acquisition parameters, and software environment
+- Store raw data read-only with checksums and rebuild tables and the report by script
+
+**Safety boundary:** Low energy — Measure only isolated, current-limited circuits at or below 12 V; verify instrument input ratings and wire with power removed. Never attach an oscilloscope ground clip to mains-side circuitry.
+
+**Risks, gaps, and boundaries**
+
+Requires an Analog Discovery 2 or 3, creating a hardware-cost and regional-availability constraint.
+
+**Completion evidence**
+
+- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
+- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
+- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data

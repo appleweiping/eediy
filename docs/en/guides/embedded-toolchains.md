@@ -1,53 +1,98 @@
 ---
 title: Embedded Toolchains and Board-Level Debugging
-description: Build embedded work around a traceable ELF, recoverable flashing, and layered peripheral observations.
-page_type: guide
-comments: true
+description: Build embedded work around recoverable flashing, layered drivers, logs, and measured timing.
 ---
+
+<div class="ee-language" markdown>
+[简体中文](../../guides/embedded-toolchains.md)
+</div>
 
 # Embedded Toolchains and Board-Level Debugging
 
-The first embedded failure often produces no display at all. The fault may lie in compiler options, the linker script, a flash algorithm, startup code, power, reset, or application logic. A useful toolchain is more than an IDE that builds: it lets each symptom be assigned to one of those layers while preserving a route back to a known-good image.
+Embedded development couples software faults with timing, power, and physical interfaces. A reliable workflow establishes buildability, recovery, and observability before enabling peripherals incrementally. A vendor SDK, general build tool, or RTOS is an implementation choice.
 
-## Make the ELF explain where it will run
+## Purpose and learning outcomes
 
-Arm now publishes new GNU Toolchain releases in its [official release repository](https://gitlab.arm.com/tooling/gnu-toolchains-for-arm). Select a package by host OS, host architecture, and target triple. A typical Cortex-M bare-metal project needs `arm-none-eabi`; an Arm name does not make a Linux or AArch64 variant interchangeable. Preserve the archive checksum and record `arm-none-eabi-gcc --version`, `-mcpu`, `-mthumb`, `-mfloat-abi`, and the selected C library in the build log.
+- Record the complete cross-compile, link, flash, and debug chain.
+- Verify startup, GPIO, serial, and interrupts one layer at a time.
+- Isolate pure logic with host tests and verify interfaces with board measurements.
+- Design timeouts, watchdogs, safe defaults, and recovery paths.
+- Explain memory, stack, timing, and power evidence.
 
-Do not flash the first successful build immediately. The linker script must place the vector table, text, data, bss, stack, and heap within the device memory map. Inspect the `.map` for entry point, section addresses, Flash and RAM use, and unexpectedly large objects, then cross-check with `size`, `nm`, or `objdump`. Keep the ELF and its checksum. A `.hex` carries addresses; a raw `.bin` does not, so the latter is safe only when the flashing command supplies the correct base address. Compile algorithms, protocol encoding, and filters into host tests first so a board failure does not also put the mathematics in doubt.
+## Minimal environment
 
-## Rehearse board recovery before the first flash
+- A low-voltage development board or simulated target.
+- A cross-compiler, build tool, and supported debug interface.
+- A current-limited supply or protected onboard supply.
+- Serial logging and an optional logic analyzer.
+- Data sheet, schematic, and pin table.
 
-The [OpenOCD flash guide](https://openocd.org/doc/html/Flash-Programming.html) combines programming, verification, reset, and exit into a scriptable operation, such as `program firmware.elf verify reset exit` with the correct board configuration; a raw binary additionally needs an address. Its [reset configuration guide](https://openocd.org/doc/html/Reset-Configuration.html) makes clear that SRST, TRST, and halt-on-reset behavior depend on the target, board, and adapter. Do not copy a configuration from a related board and erase immediately, or treat repeated reset-button presses as a recovery design.
+Confirm that debugger and target I/O voltages are compatible. Record the observed board revision, toolchain, SDK, and boot configuration rather than relying on a remembered default board.
 
-With pyOCD, read [target support](https://pyocd.io/docs/target_support.html) and run `pyocd list` and `pyocd list --targets`. The generic `cortex_m` target can provide basic CoreSight debugging but has no flash memory map or programming algorithm. Confirm a precise target or the correct CMSIS-Pack before writing flash. The [pyOCD command reference](https://pyocd.io/docs/command_reference.html) provides `load`, `compare`, `erase`, and `reset` for a recovery script, but mass erase, unlock, or protection changes belong only where the device manual permits them and loss of stored data has been accepted.
+## Learning sequence
 
-Before application firmware changes pin multiplexing, low-power state, or the debug port, retain a known-good minimal image, verify boot straps, reset pin, and debug voltage, and actually perform connect, permitted erase, program, compare, reset, and fixed-output observation. The debugger I/O voltage must match the target and board and probe need a common reference. Begin with protected onboard power or a conservative current limit, and prevent a programmer from back-powering an unpowered system.
+1. **Recoverable baseline:** verify reset, boot mode, debug connection, and a known-good image.
+2. **Deterministic build:** pin toolchain and dependencies; retain a linker map and binary checksum.
+3. **Minimal output:** use serial or a debugger to verify clocks, reset cause, and the main loop.
+4. **Layered peripherals:** enable one GPIO, timer, or communication interface at a time and predict its waveform.
+5. **Error paths:** test timeout, missing device, check failure, full buffer, and watchdog recovery.
+6. **System measurement:** quantify latency, jitter, stack watermark, power, and worst-case execution time.
 
-## Bring up a peripheral with both logs and pin measurements
+## Verification task: timeout-aware sensor sampler
 
-Start with the clock tree, reset cause, and one fixed serial message. Add GPIO, timer, interrupt, and a communication peripheral one layer at a time. Leave both a software and physical observation at each layer: a log names the initialization stage and error code, while a logic analyzer or oscilloscope measures level, period, and pulse width at the pin. For garbled serial, compare peripheral clock, baud divisor, frame format, and I/O voltage. For a silent GPIO, inspect reset state, clock enable, and pin multiplexing before rewriting the driver.
+Build a simulated or real low-risk sensor-sampling task:
 
-Classifying faults by boundary is faster than changing everything. Use compiler invocations, the map, and disassembly for build or link failures; power, ground, target ID, reset, and adapter speed for probe failures; reset handler, vector table, copy and zero loops, and fault handlers for startup; and stack watermark, races, barriers, interrupt priority, and watchdog state for runtime failures. Change one condition at a time and preserve the first bad log or trace. Behavior that changes with optimization usually exposes undefined behavior, a race, or a timing assumption rather than a compiler that has become random.
+1. Define sample period, allowed jitter, data format, and failure default.
+2. Place conversion and filtering in a host-testable module.
+3. Drive sampling from a timer and output timestamps and status codes over serial.
+4. Simulate a nonresponsive sensor and verify timeout into a safe continuing state.
+5. Measure period and jitter from logs or a logic analyzer.
+6. Power-cycle and trigger a watchdog; confirm recovery and reset-cause logging.
 
-## A timeout-aware sampler exposes the whole chain
+Acceptance requires a clean-environment build, recoverable flashing, automated host tests, and measured timing within a declared range.
 
-Build a low-risk sensor sampler in which a timer starts acquisition, the driver returns a timestamped value and status, and the main loop or task performs conversion and output. Test conversion, filtering, packet formation, and the timeout state machine on the host. On the board, measure sample period, jitter, and interrupt service time. Inject a missing sensor, busy bus, CRC error, full buffer, and delayed interrupt in turn. The system should abandon the transaction within a stated time, produce an explicit invalid or default state, and keep the log parseable.
+## Common failures and diagnosis
 
-Begin with the repository's [timeout-aware sensor-sampler
-starter](https://github.com/appleweiping/eediy/tree/main/examples/sensor-sampler).
-It keeps `start/poll/cancel/publish` behind a target-adapter interface and uses
-a host mock to execute one normal transaction plus all five faults above.
-From the starter directory, run
-`cmake --workflow --preset host-sanitized`; the test compares the
-deterministic key-value log line by line, checks that a delayed interrupt is
-cancelled at the 5 ms deadline, and requires every fault to remain `invalid`
-with default value `0`. This evidence covers the software state machine only,
-not a physical sensor, bus timing, or power consumption.
+- **The flashing probe cannot connect:** check supply, ground, debug voltage, reset, boot pins, and interface ownership.
+- **Behavior changes with optimization:** inspect bounds, races, uninitialized data, memory barriers, and interrupt sharing.
+- **Serial output is garbled:** verify clock, baud, frame, and voltage before guessing text encoding.
+- **Interrupt load is excessive:** shorten the handler, move processing to a task, and measure worst-case execution.
+- **The device resets unpredictably:** log reset cause and inspect brownout, watchdog, stack, and exception vectors.
+- **The target cannot recover:** preserve a hardware boot entry, known-good image, and debug path the application cannot disable.
 
-Then power-cycle and trigger a controlled watchdog reset, retain the reset cause, and confirm that startup does not spuriously drive an actuator. The project should contain board revision, schematic and pin table, toolchain and SDK versions, linker map, known-good image, build, flash, and recovery commands, host tests, raw log, timing trace, and one timeline from reset through fault recovery. Without a board, a simulated target and mocked peripheral can cover the software path, while electrical behavior, startup time, and power remain explicitly unverified.
+## Reproducible evidence
 
-## Board debugging stops at a controlled low-energy system
+- Board revision, schematic, pins, and supply description.
+- Toolchain, SDK, dependency lock, and build command.
+- Linker map, size summary, and binary checksum.
+- Flash, erase, recovery, and known-good-image procedure.
+- Host tests, board logs, and timing measurements.
+- Reset causes, error codes, and fault-injection results.
+- Current limit, operating modes, and known hardware differences.
 
-A GPIO must not drive an excessive load directly. Motors, relays, heaters, lithium cells, body connections, and higher-energy supplies require separate drivers, isolation, protection, and qualified supervision. Radio operation is also subject to regional frequency and power rules. Every output needs a safe default during reset, bootloader execution, communication loss, and a firmware crash; hardware protection must not depend on software responding in time.
+## Cost, licensing, and accessibility
 
-After the sampler, move to [Instrumentation and Measurement](instrumentation-measurement.md) when edges, jitter, or loading are the main unknowns, or to [HDL and FPGA](hdl-fpga.md) when throughput calls for a parallel datapath. The lasting result is not a vendor IDE click path. It is a route from ELF addresses through flash verification and startup logs to a pin waveform, plus a tested way to recover the board after firmware loses control.
+Prefer an existing low-cost board or simulator and check whether debugger, cable, and supply are included before buying. Vendor SDKs, drivers, and radio stacks may restrict redistribution; store retrieval instructions rather than restricted binaries in a public repository.
+
+Use LEDs only as secondary output and expose important state in text logs and parseable tests. Provide a host-test or simulation path without hardware. Label connector orientation and pin names in text instead of relying only on board-image color.
+
+## Safety boundaries
+
+- Before flashing, verify voltage, polarity, ground, and target and set a conservative current limit.
+- Keep peripheral outputs disabled by default; enter a safe state on communication loss or timeout.
+- Never drive a load beyond GPIO ratings directly.
+- Radio transmission must follow regional frequency and power requirements.
+- Motors, heating, lithium cells, body connection, and higher-energy systems need independent protection and qualified supervision.
+
+## Completion checklist
+
+- [ ] A minimal firmware baseline is verified and recoverable.
+- [ ] Toolchain, SDK, board, and boot configuration are pinned and recorded.
+- [ ] Core logic has automated host tests.
+- [ ] Peripherals are enabled in layers with predicted and measured evidence.
+- [ ] Timeout, disconnect, watchdog, and reboot paths are tested.
+- [ ] Timing, memory, and power each have at least one quantitative record.
+- [ ] Logs are parseable and do not expose sensitive information.
+- [ ] Output defaults and hardware safety boundaries are explicit.
+
+Next, quantify interface timing with [Instrumentation and Measurement](instrumentation-measurement.md), or explore hardware acceleration boundaries in [HDL and FPGA](hdl-fpga.md).

@@ -1,88 +1,123 @@
 ---
 title: "Real-Time Mission-Critical Systems Design"
-description: "University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances into mission-critical topics, with ECC, flash, redundancy, and FMEA activities hosted inside Coursera and no fixed public code package."
+description: "University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances real-time study into mission-critical design through videos, practice, labs, and code, with specified hardware and paid access as barriers."
 page_type: course
-course_id: "course-065"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-30"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d8f5917ed00ccb50 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d6b668b8cd279521 -->
 
-# University of Colorado Boulder Real-Time Embedded Systems 3: Real-Time Mission-Critical Systems Design
+# Real-Time Mission-Critical Systems Design
 
 ## Course Overview
 
-- **University:** University of Colorado Boulder
+- **Institution:** University of Colorado Boulder
 - **Course code:** Real-Time Embedded Systems 3
-- **Official prerequisites:** CU Boulder places ECEA 5317 third after 5315 and 5316 and continues to require C, architecture, operating systems, and Linux
-- **EEDIY preparation:** No additional EEDIY preparation requirement
-- **Access:** Registration required; scope varies by platform
-- **Material status:** 2026-07-30; public-material guide
+- **Track:** [Real-Time and Cyber-Physical Systems](index.md)
+- **Tier:** A
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-### Safety
+University of Colorado Boulder's Real-Time Mission-Critical Systems Design advances real-time study into mission-critical design through videos, practice, labs, and code, with specified hardware and paid access as barriers.
 
-Choose Coursera [ECEA 5317](https://www.coursera.org/learn/real-time-mission-critical-systems-design) after service-feasibility and timing measurements work and you want fault models and recovery; choose a dedicated safety course for certification methods. CU’s [official assignments and syllabus](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5317-mission-critical-sw) list it as course 3 after 5315 and 5316, plus C, architecture, operating systems, and Linux.
+**Why choose this course**
 
-The exercises teach fault models, FMEA, and recovery. They do not supply certification, independent verification, environmental qualification, or long-term failure-rate evidence. Limit every conclusion to the tested platform, version, and injection model.
+Alternative course. A reliable option that can serve as a main course or strong alternative.
 
-### Course structure
+**Before you start**
 
-The official page divides the material into 4 weeks estimated at 16, 15, 11,
-and 11 hours, followed by a 2-hour final. Week 1 treats HALs, BSP, device I/O,
-driver interfaces, and scaling; week 2 moves into ECC, redundant arrays, flash
-file systems, and persistent memory; week 3 uses profiling and tracing for
-performance and reliability defects; week 4 distinguishes high availability
-from high reliability while combining fault detection, isolation, recovery,
-redundancy management, and FMEA.
+- Recommended foundation: Embedded Systems
+- Recommended foundation: Signals and Systems
 
-The assessment skeleton matches 5316: quizzes are 10%, programming assignments
-and peer reviews together 60%, and the final exam 30%. The course therefore
-does more than inventory fault terminology: implementations face peer review,
-while architectural judgment is also tested by an exam. CU does not publish a
-further split inside the 60%, and the prompts, starter, and peer feedback are
-not anonymously exposed.
+**Verifiable learning outcomes**
 
-### Common Causes and Recovery Consequences Are the Hard Part
+- Explain the core models in Real-Time and Cyber-Physical Systems, including their assumptions and limits
+- Solve representative derivations and problems, checking units, limiting cases, or numerical results
+- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-A request crosses the application, HAL or driver, I/O, memory or storage, and
-the supervisor; any layer can time out, corrupt data, complete partially, or
-restart. Voting cannot remove a common cause when redundant devices share
-power, clock, a driver, or the same erroneous input. Automatic restart may
-shorten an outage while dangerously repeating an actuator command. The point
-of 5317 is to separate availability, reliability, and safety rather than
-treating recovery as automatically safer.
+**Workload and pacing**
 
-ECC, persistent memory, profiling, and FMEA are therefore connected. One
-storage-corruption example can ask when the error is detected, where the last
-complete data remains, whether the system continues, degrades, or stops, and
-whether recovery carries bad state into the next mission. The course supports
-risk analysis for a stated architecture; it does not establish certification,
-independent verification, environmental qualification, or long-term failure
-rates.
+**11 weeks at 9 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-### Access and version notes
+**Safety level**
 
-The [hardware requirements](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements)
-use Pi 3B+/4B, Raspberry Pi OS, and C270 as the starter-code baseline. The
-[specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems)
-reserves the camera project for 5318, and the
-[access page](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses)
-does not promise that every assessment is free.
-
-Outside the platform, one small **nonofficial substitute** is enough for a
-preview: compare normal write, storage-full, and interrupted-write behavior in
-a local sensor logger, then relate detection to degraded operation, stopping,
-and recovery. It illuminates the course's FMEA and persistent-memory themes
-but is not a CU programming assignment and has neither peer review nor the
-final exam behind it.
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
 
 ## Course Resources
 
-- [Course home](https://www.coursera.org/learn/real-time-mission-critical-systems-design)
+**Software, hardware, and cost**
 
-## Resource Summary
+**Software**
 
-Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.
+- Maintainer-suggested open-source/free verification path: Zephyr or FreeRTOS source, GCC or LLVM, CMake, GDB, and Renode or QEMU
+- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
+
+**Hardware**
+
+- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a course-supported real-time control board, USB debugger, logic analyzer, and low-voltage sensors/actuators. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
+
+**Cost note**
+
+The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
+
+**Public resource coverage**
+
+| Resource type | Completeness |
+|---|---|
+| Video | Complete |
+| Notes | Partial |
+| Practice | Complete |
+| Labs | Complete |
+| Exams | Partial |
+| Code | Complete |
+
+**Resources and access**
+
+| Resource | Access | License | Status | Verified |
+|---|---|---|---|---|
+| [Course home](https://www.coursera.org/learn/real-time-mission-critical-systems-design) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
+
+> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+
+## Practice and Verification
+
+**Practice loop**
+
+**Real-Time Mission-Critical Systems Design · University of Colorado Boulder Real-Time Embedded Systems 3: Real-Time Closed-Loop Deadline Stress Test**
+
+This is a maintainer-suggested self-study project for Real-Time Mission-Critical Systems Design · University of Colorado Boulder Real-Time Embedded Systems 3, not an official course assignment. Build a discrete-event scheduler and simulated plant for Real-Time and Cyber-Physical Systems, quantifying how jitter, missed deadlines, and sensor loss affect closed-loop safety margin.
+
+**Origin:** Maintainer-suggested project
+
+**Deliverables**
+
+- A task set with period, deadline, and WCET assumptions, scheduling policy, and plant model
+- An executable scheduler, closed-loop simulation, fault injector, and monitoring assertions
+- Raw response-time, jitter, miss, and state trajectories across multiple loads
+- A report defining the schedulability boundary, control degradation, and safe degraded state
+
+**Verification**
+
+- Produce zero deadline misses at nominal load and keep analytic response-time bound within 10% of the simulated worst case
+- Cover zero load, near-100% utilization, burst blocking, and clock-drift boundaries
+- Cross-check schedulability with a second analysis or exhaustive enumeration over a short hyperperiod
+- Increase WCET until the first miss and report miss rate and closed-loop error growth
+
+**Reproducibility**
+
+- Commit scheduler, plant, fault scenarios, assertions, and analysis sources
+- Pin event ordering, random seeds, time units, solver, and dependency versions
+- Preserve raw event and state logs and automatically generated timelines and report
+
+**Safety boundary:** Simulation only — Inject deadlines and faults only into a simulated plant; do not connect unvalidated scheduling or degradation logic to real machinery, vehicles, medical, or power systems.
+
+**Risks, gaps, and boundaries**
+
+ECC, flash, redundancy, and FMEA exercises use specified hardware, and platform access may require payment.
+
+**Completion evidence**
+
+- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
+- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
+- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data
