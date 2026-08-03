@@ -19,7 +19,6 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict
 from dataclasses import dataclass
-from datetime import date
 import hashlib
 from html.parser import HTMLParser
 import json
@@ -45,7 +44,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "data" / "course_candidates.json"
 DEFAULT_OUTPUT = ROOT / "data" / "course_resources.json"
 DEFAULT_CHECKPOINT = ROOT / "data" / ".course_resources.checkpoint.json"
-VERIFIED_DATE = "2026-07-29"
+VERIFIED_DATE = "2026-07-28"
 SCHEMA_VERSION = "1.0"
 PRECISION_FILTER_VERSION = 1
 USER_AGENT = (
@@ -188,32 +187,6 @@ PLATFORM_HOSTS = {
     "edx.org",
     "www.edx.org",
 }
-VIDEO_HOSTS = {
-    "youtube.com",
-    "www.youtube.com",
-    "youtu.be",
-    "vimeo.com",
-    "www.vimeo.com",
-}
-PUBLISHER_PRODUCT_HOSTS = {
-    "mitpress.mit.edu",
-    "www.mitpress.mit.edu",
-}
-PLATFORM_COURSE_PATH_RE = re.compile(
-    r"^/(?:learn|course)/(?:[^/]+/)?[^/]+/?$",
-    re.IGNORECASE,
-)
-RESTRICTED_PATH_RE = re.compile(
-    r"/(?:secure|restricted|protected)(?:/|$)",
-    re.IGNORECASE,
-)
-AUTH_GATED_RESOURCE_HOSTS = {
-    "mediaspace.illinois.edu",
-}
-AUTH_GATED_RESOURCE_URLS = {
-    "https://inst.eecs.berkeley.edu/%7Ecs61c/resources/gdb5-refcard.pdf",
-    "https://inst.eecs.berkeley.edu/%7Ecs61c/sp21/resources-pdfs/blocks.pdf",
-}
 RELEVANCE_STOPWORDS = {
     "advanced",
     "analysis",
@@ -250,8 +223,7 @@ KIND_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
         re.compile(
             r"\b(exams?|examinations?|midterms?|quizzes?|final exam|"
             r"practice tests?|sample tests?)\b|"
-            r"(?:^|[/_.-])(?:qz|quiz|exam|midterm|final)"
-            r"(?:[-_ ]?[0-9]+[a-z]?|[-_ ][a-z0-9]+)?"
+            r"(?:^|[/_.-])(?:qz|quiz|exam|midterm|final)[-_ ]?[0-9a-z]*"
             r"(?:$|[/_.-])",
             re.IGNORECASE,
         ),
@@ -269,9 +241,8 @@ KIND_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
         "notes",
         re.compile(
             r"\b(lecture notes?|course notes?|class notes?|handouts?|slides?|"
-            r"transcripts?|recitation notes?|tutorial notes?|"
-            r"(?:python|matlab|octave|jupyter|verilog|vhdl|spice|cad) tutorials?)\b|"
-            r"(?:^|[/_.-])(?:lecnotes?|lec|lecture|notes?)[-_ ]?\d+",
+            r"transcripts?|recitation notes?|tutorial notes?)\b|"
+            r"(?:^|[/_.-])(?:lec|lecture|notes?)[-_ ]?\d+",
             re.IGNORECASE,
         ),
     ),
@@ -294,16 +265,10 @@ KIND_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
         "code",
         re.compile(
             r"\b(source code|starter code|code repository|github|gitlab|"
-            r"software (?:downloads?|files?|packages?|tools?)|"
-            r"simulation files?|jupyter notebooks?|notebooks?|datasets?|"
-            r"data files?|cad files?|design files?|"
-            r"(?:matlab|octave|python|jupyter|verilog|vhdl|spice|cad)"
-            r"\s+(?:code|scripts?|notebooks?|files?|examples?)|"
-            r"(?:code|scripts?|notebooks?|files?|examples?)\s+"
-            r"(?:for|in)\s+(?:matlab|octave|python|jupyter|verilog|vhdl|spice|cad)"
-            r")\b|(?:^|[/_.-])(?:src|source|code)(?:$|[/_.-])|"
-            r"\.(?:ipynb|m|mht|py|c|cc|cpp|h|v|sv|vhd|cir|spice|asc|"
-            r"kicad_[a-z]+|zip)"
+            r"software|simulation files?|matlab|octave|python|jupyter|"
+            r"notebooks?|datasets?|data files?|verilog|vhdl|spice|cad files?|"
+            r"design files?)\b|(?:^|[/_.-])(?:src|source|code)(?:$|[/_.-])|"
+            r"\.(?:ipynb|m|py|c|cc|cpp|h|v|sv|vhd|cir|spice|asc|kicad_[a-z]+|zip)"
             r"(?:$|[?#])",
             re.IGNORECASE,
         ),
@@ -336,7 +301,7 @@ KIND_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
         "course",
         re.compile(
             r"\b(syllabus|course outline|course overview|course calendar|"
-            r"calendar|schedule|learning objectives?|course information)\b",
+            r"schedule|learning objectives?|course information)\b",
             re.IGNORECASE,
         ),
     ),
@@ -684,14 +649,6 @@ def normalize_resource_title_and_kind(resource: dict[str, Any]) -> None:
 
     title = clean_title(str(resource.get("title", "")))
     resource["title"] = title
-    access_override = explicit_access_override(
-        title, str(resource.get("url", ""))
-    )
-    if access_override:
-        resource["access"] = access_override
-    status_override = explicit_status_override(str(resource.get("url", "")))
-    if status_override:
-        resource["status"] = status_override
     generated_fallback = bool(
         re.match(
             r"^(?:course|video|notes|assignment|lab|project|exam|code|"
@@ -845,19 +802,7 @@ def normalize_url(raw_url: str, base_url: str | None = None) -> str | None:
     host = parts.hostname.lower() if parts.hostname else ""
     if host in EXCLUDED_HOSTS:
         return None
-    raw_path = parts.path or "/"
-    if host == "web.archive.org":
-        archive_target = re.match(r"(?P<prefix>/web/[^/]+)/(https?):/{2}(?P<rest>.+)", raw_path)
-        if archive_target:
-            prefix = re.sub(r"/{2,}", "/", archive_target.group("prefix"))
-            rest = re.sub(r"/{2,}", "/", archive_target.group("rest"))
-            path = (
-                f"{prefix}/{archive_target.group(2)}://{rest}"
-            )
-        else:
-            path = re.sub(r"/{2,}", "/", raw_path)
-    else:
-        path = re.sub(r"/{2,}", "/", raw_path)
+    path = re.sub(r"/{2,}", "/", parts.path or "/")
     if path != "/":
         path = path.rstrip("/")
     if EXCLUDED_PATH_RE.search(path):
@@ -915,7 +860,12 @@ def _classification_haystack(title: str, url: str) -> str:
     host = (parts.hostname or "").lower()
     if host in {"github.com", "gitlab.com"}:
         host_hint = " code repository"
-    elif host in VIDEO_HOSTS:
+    elif host in {
+        "youtube.com",
+        "www.youtube.com",
+        "youtu.be",
+        "vimeo.com",
+    }:
         host_hint = " video"
     haystack = f"{title} {relevant_path} {parts.query}{host_hint}"
     # Course sites commonly join semantic path labels with "-", "_", or "/"
@@ -939,77 +889,8 @@ def explicit_collection_kind(title: str, url: str) -> str | None:
     return None
 
 
-def is_platform_course_landing(url: str) -> bool:
-    """Return whether *url* is a top-level Coursera/edX course product page."""
-
-    parts = urlsplit(url)
-    host = (parts.hostname or "").lower()
-    return host in PLATFORM_HOSTS and bool(PLATFORM_COURSE_PATH_RE.match(parts.path))
-
-
-def explicit_access_override(title: str, url: str) -> str | None:
-    """Return access only when the URL/title makes the override unambiguous."""
-
-    parts = urlsplit(url)
-    host = (parts.hostname or "").lower()
-    if (
-        RESTRICTED_PATH_RE.search(parts.path)
-        or host in AUTH_GATED_RESOURCE_HOSTS
-        or url in AUTH_GATED_RESOURCE_URLS
-    ):
-        return "institutional"
-    if host in PUBLISHER_PRODUCT_HOSTS and (
-        re.search(r"\b(?:buy|purchase|order)\b", title, re.IGNORECASE)
-        or re.match(r"^/\d{10,17}/", parts.path)
-    ):
-        return "paid"
-    return None
-
-
-def explicit_status_override(url: str) -> str | None:
-    """Return a conservative status for URLs that advertise access controls."""
-
-    parts = urlsplit(url)
-    if (
-        RESTRICTED_PATH_RE.search(parts.path)
-        or (parts.hostname or "").lower() in AUTH_GATED_RESOURCE_HOSTS
-        or url in AUTH_GATED_RESOURCE_URLS
-    ):
-        return "degraded"
-    return None
-
-
-def is_restricted_direct_resource(url: str) -> bool:
-    """Return whether *url* is a gated direct file rather than an index page."""
-
-    parts = urlsplit(url)
-    return bool(RESTRICTED_PATH_RE.search(parts.path) and Path(parts.path).suffix)
-
-
 def classify_resource(title: str, url: str) -> str | None:
     haystack = _classification_haystack(title, url)
-    host = (urlsplit(url).hostname or "").lower()
-    # Host semantics outrank incidental words in a title. A lecture or demo on
-    # YouTube/Vimeo is still a video resource; a Coursera/edX product page is a
-    # course landing; and a publisher product page is a textbook resource.
-    if host in VIDEO_HOSTS:
-        return "video"
-    if is_platform_course_landing(url):
-        return "course"
-    if host in PUBLISHER_PRODUCT_HOSTS:
-        return "textbook"
-    # OCW legacy slugs such as ``lecnotes2`` are direct note evidence even
-    # when the note title itself contains the word "experiment".
-    if re.search(r"(?:^|[\s/_.-])lecnotes?\d+", haystack, re.IGNORECASE):
-        return "notes"
-    # "Final project" files often contain a bare ``final`` token in their URL.
-    # That token must not outrank the explicit project phrase.
-    if re.search(
-        r"\bfinal\s+project\b|(?:^|[/_.-])finalproject(?:$|[/_.-])",
-        haystack,
-        re.IGNORECASE,
-    ):
-        return "projects"
     for kind, pattern in KIND_PATTERNS[:2]:
         if pattern.search(haystack):
             return kind
@@ -1019,18 +900,6 @@ def classify_resource(title: str, url: str) -> str | None:
     for kind, pattern in KIND_PATTERNS[2:]:
         if pattern.search(haystack):
             return kind
-    # Once more specific filename/title evidence has had precedence, a direct
-    # document is best represented as notes instead of being discarded or
-    # guessed to be code from a programming-language word in its title.
-    if Path(urlsplit(url).path).suffix.lower() in {
-        ".pdf",
-        ".doc",
-        ".docx",
-        ".ppt",
-        ".pptx",
-        ".tex",
-    }:
-        return "notes"
     return None
 
 
@@ -1164,24 +1033,6 @@ def resource_relevance(
             f"{candidate['title']} — official course overview"
         )
         return True, "candidate-seed"
-
-    if (urlsplit(url).hostname or "").lower() in AUTH_GATED_RESOURCE_HOSTS:
-        # A public syllabus may link to an institutional video platform, but a
-        # redirect to campus SSO is not an anonymously usable course resource.
-        return False, "auth-gated-resource"
-
-    if is_restricted_direct_resource(url):
-        # Public index pages remain useful evidence, but a direct file whose
-        # path declares an access wall must not be advertised as anonymously
-        # usable merely because the parent page links to it.
-        return False, "restricted-direct-resource"
-
-    if is_platform_course_landing(url):
-        # Course-product pages discovered from another Coursera/edX page are
-        # recommendations, not materials belonging to this course. Alternate
-        # official course entries are already admitted by the exact-seed branch
-        # above.
-        return False, "off-course-platform-course"
 
     direct_kind = classify_resource(title, url)
     matching_seed = next(
@@ -1537,9 +1388,6 @@ def infer_access(url: str, source_url: str) -> str | None:
     source_host = (urlsplit(source_url).hostname or "").lower()
     path_and_query = f"{urlsplit(url).path} {urlsplit(url).query}".lower()
 
-    explicit = explicit_access_override("", url)
-    if explicit:
-        return explicit
     if "coursera.org" in host:
         return "open-registration"
     if host.endswith("edx.org"):
@@ -1569,9 +1417,6 @@ def infer_access(url: str, source_url: str) -> str | None:
 def resource_status(url: str, source_url: str, source_fetched: bool) -> str:
     if not source_fetched:
         return "review-needed"
-    explicit = explicit_status_override(url)
-    if explicit:
-        return explicit
     host = (urlsplit(url).hostname or "").lower()
     path = urlsplit(url).path.lower()
     if "archive" in host or "/archive" in path:
@@ -2156,7 +2001,6 @@ def validate_payload(
         raise ValueError("unsupported resource schema version")
     if payload.get("last_verified") != VERIFIED_DATE:
         raise ValueError("unexpected verification date")
-    manifest_verified_date = date.fromisoformat(VERIFIED_DATE)
     resources = payload.get("resources")
     if not isinstance(resources, list):
         raise ValueError("resources must be an array")
@@ -2187,16 +2031,10 @@ def validate_payload(
             str(resource.get("title", "")),
             str(resource.get("url", "")),
         )
-        classified_kind = classify_resource(
-            str(resource.get("title", "")),
-            str(resource.get("url", "")),
-        )
         # Canonical candidate seeds remain course overviews even when the
-        # course name/slug itself contains "lab" or "project". Host semantics
-        # also win: a lab walkthrough on YouTube remains a video.
+        # course name/slug itself contains "lab" or "project".
         if (
             collection_kind
-            and classified_kind == collection_kind
             and resource["kind"] != "course"
             and resource["kind"] != collection_kind
         ):
@@ -2208,15 +2046,7 @@ def validate_payload(
             raise ValueError(f"resource {index} has an invalid access value")
         if resource["status"] not in STATUS_VALUES:
             raise ValueError(f"resource {index} has an invalid status")
-        try:
-            resource_verified_date = date.fromisoformat(
-                str(resource["last_verified"])
-            )
-        except ValueError as exc:
-            raise ValueError(
-                f"resource {index} has an invalid verification date"
-            ) from exc
-        if resource_verified_date > manifest_verified_date:
+        if resource["last_verified"] != VERIFIED_DATE:
             raise ValueError(f"resource {index} has an invalid verification date")
         if not isinstance(resource["title"], str) or not resource["title"].strip():
             raise ValueError(f"resource {index} has an empty title")

@@ -2,11 +2,9 @@
 title: "Physics Foundations"
 description: "Mechanics, electromagnetism, waves, and quantum foundations for robotics, fields, devices, and photonics."
 page_type: track
-track_id: "track-physics"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 2d48d9c45c435964 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: d19ad36bc71e4316 -->
 
 # Physics Foundations
 
@@ -18,34 +16,29 @@ Mechanics, electromagnetism, waves, and quantum foundations for robotics, fields
 
 - [Engineering Mathematics](../mathematics/index.md)
 
-## 8.01SC trains modeling through forces and conservation
+## Suggested order
 
-The [official OCW page](https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/) for [8.01SC](010-8-01sc.md) goes beyond school mechanics. Problem sets, worked examples, and the online text repeatedly build models from forces, constraints, momentum, energy, and angular momentum, a practice reused in robotics, electromechanics, and control. Follow one family of objects across several weeks, such as a spring-mass system, pendulum, or rotating body. Draw coordinates, forces, and constraints before equations and challenge each answer with units, an extreme pose, or energy direction. Because the public examination archive is incomplete, add timed work or line-by-line comparison with a study partner rather than treating viewing progress as feedback.
-
-## 8.02X and 8.03SC carry lumped circuits into fields and modes
-
-The [official course archive](https://ocw.mit.edu/courses/8-02x-physics-ii-electricity-magnetism-with-an-experimental-focus-spring-2005/) for [8.02X](011-8-02x.md) connects charge, potential, fields, magnetism, and circuits with an experimental emphasis, bridging circuit intuition and Maxwell's equations. [8.03SC](012-8-03sc.md) uses vibrations, coupled modes, and wave propagation to give signals, acoustics, electromagnetics, and optics a common picture. In a low-voltage RC or RLC example, 8.02X explains element relations from field and charge, while 8.03SC explains resonance, normal modes, dispersion, and boundaries. Adjacent course numbers do not require two complete consecutive courses: prioritize 8.02X for circuits and fields and deepen 8.03SC when transmission and modes become central.
-
-[Engineering mathematics](../mathematics/index.md) advances with the object. 8.01SC can accompany single-variable calculus. Vectors, integrals, and elementary differential equations should be usable before 8.02X, and second-order linear equations and complex exponentials before 8.03SC. Historical experiments involving charged high-voltage capacitors, strong magnets, or specialized apparatus should use provider data, a low-energy substitute, or simulation outside a suitable laboratory. A safety PDF does not recreate local facilities or supervision.
-
-## 8.04 and 8.05 form a formal two-term quantum sequence
-
-[8.04](013-8-04.md) belongs where semiconductors, nanoelectronics, or photonics has created a need for quantum states, potential wells, tunneling, and measurement language. Classical circuits, embedded systems, and control do not need it for ceremonial completeness. [8.05](014-8-05.md) is not a supplementary packet; it is MIT's formal second quantum-mechanics course. Its [official syllabus](https://ocw.mit.edu/courses/8-05-quantum-physics-ii-fall-2013/pages/syllabus/) requires a grade of C or better in 8.04 and then treats quantum dynamics, two-state systems, angular momentum and spin, radial equations, operator methods, and identical particles.
-
-Before this branch, formulate a one-dimensional well as an eigenvalue problem, explain normalization, expectation values, and measurement probability, and connect one limit to the classical picture. The [8.04](013-8-04.md) record here is Spring 2016: its 10 problem sets do not link edition-matched solutions, and its exams lack a complete answer chain. A separate [official Spring 2013 archive](https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2013/pages/assignments/) supplies solutions for all 10 sets and can serve as a clearly dated parallel source of feedback, not as a 2016 answer key. Feedback for 8.05 practice and exams is likewise incomplete, so independent derivation and timed work matter. If the active objects remain motor torque, RC response, or classical waves, deeper work on that mainline is more useful than early bra-ket memorization.
-
-## Residuals turn “the law is correct” into “the model is valid here”
-
-Choose a safely bounded spring-mass system, low-voltage RC or RLC network, coupled pendulum, or one-dimensional wave. Derive equations and boundary conditions from explicit physical assumptions and form analytic or numerical predictions. Compare several operating points with public data, simulation, or genuine low-energy measurements. Raw observations, calibration, uncertainty, and a residual plot should separate parameter-estimation, numerical, measurement, and model discrepancies.
-
-Center the conclusion on the first systematic departure in the residuals. Identify whether linearity, a lumped approximation, the loss model, a boundary condition, or the classical scale has failed, and state what interaction or state the next model must add. When the same operating points can be traced from raw observations through the original equation and assumptions and then explained by the revised model, the project leaves a reusable physical boundary for later EE work.
+1. [Classical Mechanics](010-8-01sc.md)
+2. [Physics III: Vibrations and Waves](012-8-03sc.md)
+3. [Physics II: Electricity and Magnetism with an Experimental Focus](011-8-02x.md)
 
 ## Courses
 
-| Course | Institution | Role | Editorial evidence | Practice coverage |
+| Course | Institution | Role | Tier | Practice coverage |
 |---|---|---|---|---|
-| [Classical Mechanics](010-8-01sc.md) | MIT | Main course | Public-material guide | Public assignments or labs |
-| [Physics III: Vibrations and Waves](012-8-03sc.md) | MIT | Main course | Public-material guide | Partial or restricted |
-| [Physics II: Electricity and Magnetism with an Experimental Focus](011-8-02x.md) | MIT | Main course | Public-material guide | Public assignments or labs |
-| [Quantum Physics I](013-8-04.md) | MIT | Alternative | Public-material guide | Partial or restricted |
-| [Quantum Physics II](014-8-05.md) | MIT | Supplement | Public-material guide | Partial or restricted |
+| [Classical Mechanics](010-8-01sc.md) | MIT | Mainline | S | Complete |
+| [Physics III: Vibrations and Waves](012-8-03sc.md) | MIT | Mainline | S | Complete |
+| [Physics II: Electricity and Magnetism with an Experimental Focus](011-8-02x.md) | MIT | Mainline | A | Complete |
+| [Quantum Physics I](013-8-04.md) | MIT | Alternative | A | Partial |
+| [Quantum Physics II](014-8-05.md) | MIT | Supplement | A | Partial |
+
+## How to choose
+
+- For a first systematic pass, start with audit-passed mainline courses; read the limitation before using a record marked “Audit review,” and rarely take parallel alternatives.
+- Tiers measure public-resource completeness and self-study executability, not institutional or instructor prestige.
+- Use supplements only to close a specific topic, tool, or practice gap.
+
+## Track completion
+
+- Explain the core concepts, models, and methods of Physics Foundations
+- Produce reproducible exercises, experiments, or designs with explicit checks

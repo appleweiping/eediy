@@ -38,19 +38,6 @@ class NormalizeUrlTests(unittest.TestCase):
         self.assertIsNone(normalize_url("http://example.edu/course/"))
         self.assertIsNone(normalize_url("mailto:teacher@example.edu"))
 
-    def test_preserves_wayback_embedded_https_target(self) -> None:
-        url = (
-            "https://web.archive.org/web/20241219154359/"
-            "https://cs61c.org/fa24/"
-        )
-        self.assertEqual(
-            normalize_url(url),
-            (
-                "https://web.archive.org/web/20241219154359/"
-                "https://cs61c.org/fa24"
-            ),
-        )
-
     def test_excludes_images_and_social_hosts(self) -> None:
         self.assertIsNone(normalize_url("https://example.edu/figure.svg"))
         self.assertIsNone(normalize_url("https://twitter.com/example"))
@@ -100,12 +87,6 @@ class ClassificationTests(unittest.TestCase):
         self.assertIsNone(
             classify_resource("University admissions", "https://example.edu/")
         )
-        self.assertIsNone(
-            classify_resource(
-                "Worked example: Atwood machine",
-                "https://example.edu/week-1/worked-example-atwood-machine",
-            )
-        )
 
     def test_exact_collection_tokens_override_generic_notes(self) -> None:
         cases = (
@@ -128,84 +109,6 @@ class ClassificationTests(unittest.TestCase):
                 "Projects — Final Exam",
                 "https://ocw.mit.edu/courses/example/pages/projects/final",
                 "exams",
-            ),
-        )
-        for title, url, expected in cases:
-            with self.subTest(title=title):
-                self.assertEqual(classify_resource(title, url), expected)
-
-    def test_specific_titles_do_not_get_overridden_by_incidental_tokens(self) -> None:
-        cases = (
-            (
-                "Final Project",
-                "https://example.edu/files/ece3400_finalproject.pdf",
-                "projects",
-            ),
-            (
-                "Calendar",
-                "https://example.edu/course/pages/calendar",
-                "course",
-            ),
-            (
-                "Experiments with Photons",
-                "https://example.edu/course/resources/lecnotes2",
-                "notes",
-            ),
-        )
-        for title, url, expected in cases:
-            with self.subTest(title=title):
-                self.assertEqual(classify_resource(title, url), expected)
-
-    def test_host_semantics_outrank_incidental_technology_and_project_words(
-        self,
-    ) -> None:
-        cases = (
-            (
-                "Introduction to FPGA and Verilog",
-                "https://youtu.be/yvqkg44_DQA",
-                "video",
-            ),
-            (
-                "Final project discussion",
-                "https://www.youtube.com/watch?v=example",
-                "video",
-            ),
-            (
-                "Real-Time Project for Embedded Systems",
-                "https://www.coursera.org/learn/real-time-project-embedded-systems",
-                "course",
-            ),
-            (
-                "Buy at MIT Press",
-                (
-                    "https://mitpress.mit.edu/9780262542364/"
-                    "introduction-to-computation-and-programming-using-python"
-                ),
-                "textbook",
-            ),
-        )
-        for title, url, expected in cases:
-            with self.subTest(title=title):
-                self.assertEqual(classify_resource(title, url), expected)
-
-    def test_code_requires_artifact_or_tutorial_evidence_not_a_bare_tool_word(
-        self,
-    ) -> None:
-        cases = (
-            (
-                "Least squares and least norm solutions using Matlab",
-                "https://see.stanford.edu/materials/lsoeldsee263/Additional4-ls_ln_matlab.pdf",
-                "notes",
-            ),
-            (
-                "Python Tutorial",
-                "https://example.edu/course/pages/python-tutorial",
-                "notes",
-            ),
-            (
-                "Starter files",
-                "https://example.edu/course/ps0_code.zip",
-                "code",
             ),
         )
         for title, url, expected in cases:
@@ -354,96 +257,6 @@ class PrecisionRegressionTests(unittest.TestCase):
                     url,
                     self.candidates[course_id]["url"],
                 )
-
-    def test_other_platform_course_product_is_not_a_course_resource(self) -> None:
-        source = self.candidates[63]["url"]
-        resource = self.resource(
-            63,
-            "Introduction to Embedded Systems Software and Development Environments",
-            "https://www.coursera.org/learn/introduction-embedded-systems",
-            source,
-        )
-        allowed, reason = resource_relevance(resource, self.candidates[63])
-        self.assertFalse(allowed)
-        self.assertEqual(reason, "off-course-platform-course")
-
-    def test_publisher_product_is_paid_textbook_not_code(self) -> None:
-        source = (
-            "https://ocw.mit.edu/courses/"
-            "6-100l-introduction-to-cs-and-programming-using-python-fall-2022/"
-            "pages/readings"
-        )
-        resource = self.resource(
-            15,
-            "Buy at MIT Press",
-            (
-                "https://mitpress.mit.edu/9780262542364/"
-                "introduction-to-computation-and-programming-using-python"
-            ),
-            source,
-        )
-        resource["kind"] = "code"
-        normalize_resource_title_and_kind(resource)
-        allowed, _ = resource_relevance(resource, self.candidates[15])
-        self.assertTrue(allowed)
-        self.assertEqual(resource["kind"], "textbook")
-        self.assertEqual(resource["access"], "paid")
-
-    def test_restricted_direct_file_is_not_advertised_as_public_material(self) -> None:
-        source = "https://courses.physics.illinois.edu/ece310/su2026/homework.html"
-        resource = self.resource(
-            94,
-            "Homework 1",
-            "https://courses.physics.illinois.edu/ece310/su2026/secure/hw01.pdf",
-            source,
-        )
-        allowed, reason = resource_relevance(resource, self.candidates[94])
-        self.assertFalse(allowed)
-        self.assertEqual(reason, "restricted-direct-resource")
-
-    def test_auth_gated_video_is_not_advertised_as_public_material(self) -> None:
-        source = "https://courses.physics.illinois.edu/ece311/su2025/lab.html"
-        resource = self.resource(
-            95,
-            "Lab 1 walkthrough",
-            "https://mediaspace.illinois.edu/media/t/1_1xw6bgin",
-            source,
-        )
-        allowed, reason = resource_relevance(resource, self.candidates[95])
-        self.assertFalse(allowed)
-        self.assertEqual(reason, "auth-gated-resource")
-
-    def test_restricted_resource_normalizes_access_and_status_conservatively(
-        self,
-    ) -> None:
-        cases = (
-            (
-                105,
-                "Midterm solution",
-                "https://web.stanford.edu/class/ee359/restricted/mt20_soln.pdf",
-            ),
-            (
-                95,
-                "Lab 1 walkthrough",
-                "https://mediaspace.illinois.edu/media/t/1_1xw6bgin",
-            ),
-            (
-                48,
-                "GDB reference card",
-                "https://inst.eecs.berkeley.edu/%7Ecs61c/resources/gdb5-refcard.pdf",
-            ),
-        )
-        for course_id, title, url in cases:
-            with self.subTest(course_id=course_id, url=url):
-                resource = self.resource(
-                    course_id,
-                    title,
-                    url,
-                    self.candidates[course_id]["url"],
-                )
-                normalize_resource_title_and_kind(resource)
-                self.assertEqual(resource["access"], "institutional")
-                self.assertEqual(resource["status"], "degraded")
 
     def test_global_research_channels_and_repositories_are_rejected(self) -> None:
         self.assert_rejected(

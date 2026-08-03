@@ -1,52 +1,97 @@
 ---
 title: HDL、仿真与 FPGA
-description: 用双模拟器、自检查 FIFO、通过的形式化结果、故意破坏版本的反例和完整时序约束建立可移植 RTL 工作流。
-page_type: guide
-comments: true
+description: 以可综合 RTL、自动检查测试平台和时序证据完成数字硬件学习闭环。
 ---
+
+<div class="ee-language" markdown>
+[English version](../en/guides/hdl-fpga.md)
+</div>
 
 # HDL、仿真与 FPGA
 
-本页围绕一个同步 FIFO 展开，并保留两个修订。`baseline` 的自检查测试和所声明的形式化 property 均应通过；`fault/read-pointer` 故意破坏读指针更新，用来确认测试和 property 确实能抓住错误。找到最短失败 seed 或 counterexample 后，再让修复后的 `baseline` 通过同一组检查。反例属于被破坏的修订，不是正确设计的交付要求。
+HDL 描述的是并发硬件结构，不是按顺序运行的软件。FPGA 工具只是实现载体；先在与厂商无关的仿真中证明功能，再用综合、约束和时序分析证明实现满足目标。
 
-仓库里的[同步 FIFO 验证 starter](https://github.com/appleweiping/eediy/tree/main/examples/sync-fifo)实现了下面这条链。在仓库根目录执行 `python examples/sync-fifo/run_checks.py`：已安装的 Icarus、Verilator、SymbiYosys/Z3 与 Yosys 会真实运行，缺失工具则明确打印 `CHECK_SKIP`；发布环境改用同一命令的 `--require-tools all` 形式，缺工具即失败。baseline 与读指针故障共用 testbench 和 formal reference model，故障构建必须非零退出并由 SBY 生成 counterexample；仓库不提交预制 PASS 日志。
+## 目的与学习成果
 
-| 修订 | 预期证据 | 不能接受的替代品 |
-| --- | --- | --- |
-| `baseline` | 两种模拟器的自检查 PASS；记录 assumption、mode、depth 的 formal PASS | 只有波形截图或一句“仿真正常” |
-| `fault/read-pointer` | 自动测试失败；保存失败 cycle、seed 和 formal counterexample | 手工看波形后口头指出“这里像是错了” |
-| 修复提交 | 同一失败输入转为 PASS，其他回归仍通过 | 删除触发用例或放宽 property |
+- 区分组合逻辑、时序逻辑和仿真专用结构；
+- 编写自检查测试平台，而不是只查看波形；
+- 处理复位、时钟域交叉、亚稳态和参数边界；
+- 阅读综合资源、锁存器警告和静态时序报告；
+- 保存无需真实板卡也能复现的验证证据。
 
-这个 FIFO 随后经过仿真、形式验证、综合、CDC/时序和上板检查。每一步回答的问题不同；bitstream 能生成，不能替代前面的验证。
+## 最小环境
 
-## 同一接口在 Icarus 与 Verilator 中运行
+- 一个 HDL 编译/仿真器与波形查看器；
+- 可脚本执行的测试入口；
+- 一个支持的 HDL 子集和明确的时钟目标；
+- 可选 FPGA 板与厂商实现工具，核心练习不依赖板卡。
 
-[Icarus Verilog 的入门文档](https://steveicarus.github.io/iverilog/usage/getting_started.html)把 `iverilog` 编译与 `vvp` 运行分开，并说明 `-c` file list 和 `-s` top module 对多文件工程的重要性。固定语言标准、top 和 file order，例如让脚本执行 `iverilog -g2012 -s fifo_tb -o build/fifo.vvp -c rtl.f`，再用 `vvp build/fifo.vvp` 运行编译产物；不依赖 shell glob 的偶然顺序，也不让多个未实例化 module 同时成为 root。
+记录语言标准、仿真器、综合器和器件目标的实际版本。不要把某个厂商界面步骤当作设计规范。
 
-[Verilator 的官方概览](https://verilator.org/guide/latest/overview.html)强调它把 Verilog/SystemVerilog 编译成 C++ 或 SystemC model，并非传统事件模拟器。先用 lint 处理 width、signedness、unreachable code、latch 和 multiple-driver 提示，再让同一组 vector/reference model 通过 Verilator 与 Icarus。两者结果不同时，先缩小到最短 source list 和第一个分歧 cycle，检查 language extension、未初始化值、race、delay construct 与 simulator-specific behavior；不要用 `ifdef` 分别哄过两个工具。
+## 学习顺序
 
-测试结果必须由 scoreboard 或 assertion 自动判定，waveform 只用于解释失败。每次随机运行保存 seed，并在发现错误后保留最短输入序列；CI 的 stdout 应给出 testcase、cycle、expected/actual 和失败信号，即使没有 GUI 也能定位。
+1. **组合逻辑：**实现编码器或 ALU，给所有路径赋值，避免意外锁存。
+2. **时序逻辑：**用单一时钟边沿更新状态，明确同步或异步复位语义。
+3. **自检查测试：**以输入序列、参考模型和断言自动判定通过/失败。
+4. **状态机：**分离状态转移与输出逻辑，测试非法状态和复位恢复。
+5. **时序接口：**学习握手、流水线和跨时钟域的结构化方案。
+6. **实现：**添加引脚与时钟约束，综合、布局布线并阅读最差路径。
 
-## 故意破坏一次，确认测试真的会失败
+## 验证任务：带握手的参数化 FIFO
 
-先实现 synchronous ready/valid FIFO，明确 depth、width、full/empty、同周期读写、reset 后输出以及非法请求的处理。reference queue 覆盖 empty→write→read、full 边界、wrap-around、持续 backpressure 与 reset 插入；若暂不支持非 2 次幂 depth，就在 elaboration 时拒绝，而不是让 pointer silently overflow。在独立的故障修订中改坏 read pointer 或 count，确认测试确实会失败；保存反例后回到正确修订，让同一测试和 property PASS。没有负向控制的“全部通过”信息量很低。
+实现一个小型同步 FIFO：
 
-[SymbiYosys 的 FIFO quickstart](https://yosyshq.readthedocs.io/projects/sby/en/stable/quickstart.html)展示了 count、pointer difference、overflow/underflow property，以及失败时生成 counterexample trace 的完整路径。为自己的 FIFO 写 safety assertions：occupancy 不越界、accepted write/read 改变 count 的规则、读出顺序与 reset state；再写 cover 证明 empty、full 和 simultaneous read/write 可达。bounded proof 只覆盖配置中给定的时间深度，unbounded proof 也依赖环境 assumption；把 solver、mode、depth 和 assumption 与结果一起保存，不能把一张 PASS 截图写成“证明所有参数正确”。
+1. 写出深度、数据宽度、满/空语义和同时读写规则；
+2. 用参数覆盖最小深度、非二次幂边界或明确限制；
+3. 建立参考队列并随机生成合法操作；
+4. 加入断言，检查溢出、下溢、顺序和复位；
+5. 故意制造指针错误，确认测试必须失败；
+6. 综合两个参数配置，比较资源并检查时序约束。
 
-## 综合结果说明 RTL 会变成什么硬件
+验收要求自动测试在固定种子下可重放，零意外锁存/未驱动信号，并保存最差时序裕量或未约束路径为零的证据。
 
-[Yosys 文档](https://yosyshq.readthedocs.io/projects/yosys/en/latest/)对应的是 synthesis framework，不是第二个 simulator。用脚本固定 `read_verilog -sv`、`hierarchy -top`、process lowering、optimization、`check` 和 target-specific synthesis；查看 latch、combinational loop、undriven/multiple-driver、memory inference、cell count 和 hierarchy，而不只看综合成功。分别综合两个 FIFO depth，解释存储为何成为 register、distributed RAM 或 block RAM，并核对 read latency 是否随推断结构改变。
+## 常见失败与排查
 
-portable RTL 与 vendor primitive 要分层。核心控制和数据协议保持通用，PLL、block RAM mode、SERDES 或 debug core 放在薄 wrapper 内；仿真模型、综合源和 constraints 使用显式 file set。生成 netlist 或 bitstream 时记录 tool version、device part、parameter、constraint hash 与 source commit。若开源综合不支持某段 SystemVerilog，先判断它属于语言支持缺口还是原 RTL 本就依赖专有行为，不能把改写后的功能变化藏在“兼容性修复”里。
+- **仿真正确、综合不同：**检查不可综合结构、未完整赋值、初始化和竞争。
+- **波形有未知值：**追踪未复位寄存器、多驱动、越界索引和未连接输入。
+- **板上偶发错误：**检查亚稳态、时钟域交叉、约束与外部信号同步。
+- **时序“通过”但有未约束路径：**补齐时钟、输入输出延迟和例外理由。
+- **复位释放后异常：**分析复位跨域与解除同步，不只延长复位时间。
+- **随机测试每次不同：**记录种子，并保留最小化后的失败序列。
 
-## CDC 结构与时序约束是两件事
+## 可复现证据
 
-CDC 先做结构，再做约束。单 bit level 可使用标注清楚的 synchronizer，但它只降低 metastability 传播概率，不保证窄 pulse 被目的域看到；pulse 或 command 需要 toggle/handshake，multi-bit payload 需要稳定数据加握手或经过验证的 asynchronous FIFO，不能把每一位各接两个 flip-flop。reset 可异步 assert，但应在每个 clock domain 内同步 deassert，并验证 clock 缺失、不同释放顺序与 reset crossing。
+- RTL 源码、参数和接口时序说明；
+- 测试平台、参考模型、断言与固定种子；
+- 批处理仿真命令和通过/失败摘要；
+- 关键波形仅作为诊断补充；
+- 综合资源、警告处置和时序摘要；
+- 约束文件、器件/板卡目标与工具版本；
+- 已知跨域、复位和硬件依赖。
 
-随后为 primary/generated clock、input/output delay 和真实 timing exception 写约束。[AMD 2026.1 UG903](https://docs.amd.com/r/en-US/ug903-vivado-using-constraints/All-Constraints)把 clock、I/O、asynchronous clock group、CDC synchronizer 与 constraint coverage 放在同一流程中；即使使用其他 vendor，也应达到同样的陈述完整度。`set_false_path` 只能描述本来就由正确 CDC 结构处理的异步关系，不能让坏 crossing 变安全。实现报告中逐项解释 unconstrained path、setup/hold、recovery/removal、clock uncertainty 与最差 slack；“timing passed”若仍有未约束路径，结论无效。
+## 成本、许可与无障碍
 
-## 第一次上板只验证物理接口
+功能验证可完全用自由仿真工具和通用 RTL 完成。厂商工具与板卡仅在实现阶段需要；检查免费额度、器件支持、下载体积和许可证。不要公开受限 IP 核或加密网表。
 
-第一次上板只连接受保护的 onboard LED、button 或 loopback。核对 schematic、bank voltage、pin direction、pull resistor、clock source 和 configuration-time state，断电后再接外设；motor、power stage、laser 和 RF transmitter 不能由未验证 RTL 直接驱动。输出在 configuration、reset、clock loss 与失锁时必须回到安全值。bitstream 与 source commit、constraints、device part 和固定 demo input 一一对应。
+测试结果应提供文本摘要，状态不能只靠波形颜色。波形信号使用清晰分组和语义名称，并以文字描述失败周期。没有板卡的学习者可用仿真和实现报告完成同一功能目标。
 
-一份完整记录包括 RTL、interface timing diagram、两套 simulator 命令、自检查 testbench、固定 seed、正确修订的 formal PASS 结果，以及故意破坏修订产生的 counterexample 与对应补丁或提交。Yosys script、vendor constraints、resource/timing/CDC 摘要和可选的板上 trace 也应随项目保存。没有板卡时，工作可以停在 post-implementation report；有板卡只增加 I/O 与实际 clock 的观测，不会把未写的 property 或缺失的 constraint 自动补上。[嵌入式工具链](embedded-toolchains.md)负责 processor/firmware 加入后的证据链，[可复现工程](reproducibility.md)负责让这套回归跨机器保持稳定。
+## 安全边界
+
+- 上板前核对 I/O 电压、引脚、方向、上拉和时钟来源；
+- 不把未验证逻辑直接连接电机、功率级、激光或射频发射器；
+- 输出在复位、配置和失锁状态下应有安全默认值；
+- 时序通过不证明外部电气接口安全；
+- 涉及高速接口时遵守板卡额定值并使用合适测量方法。
+
+## 完成清单
+
+- [ ] 组合与时序逻辑边界明确。
+- [ ] 测试平台自动判定结果并可固定种子重放。
+- [ ] 边界、复位、满空和故障路径均被测试。
+- [ ] 没有未解释锁存、多驱动或未驱动警告。
+- [ ] 约束完整且不存在未解释的未约束路径。
+- [ ] 资源与时序报告随目标配置保存。
+- [ ] 工具、目标器件、许可与限制已记录。
+- [ ] 板级输出具备安全默认状态。
+
+下一步可进入[嵌入式工具链](embedded-toolchains.md)学习软硬协同，或用[可复现工程](reproducibility.md)自动化 HDL 回归。

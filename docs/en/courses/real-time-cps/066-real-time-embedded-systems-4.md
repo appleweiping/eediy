@@ -1,87 +1,125 @@
 ---
 title: "Real-Time Project for Embedded Systems"
-description: "University of Colorado Boulder's Real-Time Project for Embedded Systems closes the sequence with a camera-and-Raspberry-Pi home project; project instructions live inside Coursera and the public product page exposes no official machine files."
+description: "University of Colorado Boulder's Real-Time Project for Embedded Systems closes the sequence with a camera-and-Raspberry-Pi home project, offering strong project and code practice under explicit prerequisites and possible platform cost."
 page_type: course
-course_id: "course-066"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-30"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 47e545e0f76fc3f7 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 39f0e676e848a0e1 -->
 
-# University of Colorado Boulder Real-Time Embedded Systems 4: Real-Time Project for Embedded Systems
+# Real-Time Project for Embedded Systems
 
 ## Course Overview
 
-- **University:** University of Colorado Boulder
+- **Institution:** University of Colorado Boulder
 - **Course code:** Real-Time Embedded Systems 4
-- **Official prerequisites:** CU Boulder ECEA 5318 requires 5315, 5316, and 5317 plus C, architecture, operating systems, and Linux
-- **EEDIY preparation:** No additional EEDIY preparation requirement
-- **Access:** Registration required; scope varies by platform
-- **Material status:** 2026-07-30; public-material guide
+- **Track:** [Real-Time and Cyber-Physical Systems](index.md)
+- **Tier:** A
+- **Role:** Alternative
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-### The Camera Pipeline Is the Assigned Capstone
+University of Colorado Boulder's Real-Time Project for Embedded Systems closes the sequence with a camera-and-Raspberry-Pi home project, offering strong project and code practice under explicit prerequisites and possible platform cost.
 
-Choose Coursera [ECEA 5318](https://www.coursera.org/learn/real-time-project-embedded-systems) after 5315–5317 only if you accept the assigned camera pipeline; it does not fit a learner seeking a free-form capstone. The fixed task is the visual synchronome. The [course page](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/curriculum/computer-engineering-embedded-systems/ecea-5318-real-time-embedded) asks a Raspberry Pi to capture an external clock through a camera, select stable non-blurred frames at 1 Hz and 10 Hz, write them to flash, and compare RMA predictions with timing logs.
+**Why choose this course**
 
-Prerequisites are 5315, 5316, 5317, plus C, architecture, operating systems, and Linux. Begin with a periodic-service framework, task table, timestamp logger, and failure analysis already working. Do not chase 10 Hz while 1 Hz remains unexplained.
+Alternative course. A reliable option that can serve as a main course or strong alternative.
 
-### The Assessment Order Is the Project Route
+**Before you start**
 
-Official weekly estimates are 11, 9, 10, 10, 11, and 8 hours. Week 1 defines
-the visual synchronome, services, RMA, and timing diagrams; week 2 walks
-through the starter and compares shotgun start, continuous tick detection,
-V4L2/UVC, and OpenCV; week 3 completes 1 Hz timing analysis; week 4 uses
-tracing and profiling to reach 10 Hz; week 5 is design review and
-presentation; week 6 is the final.
+- Recommended foundation: Embedded Systems
+- Recommended foundation: Signals and Systems
+- Course-sequence requirement: complete [Real-Time Embedded Systems Concepts and Practices](../real-time-cps/063-real-time-embedded-systems-1.md) (University of Colorado Boulder Real-Time Embedded Systems 1) first
+- Course-sequence requirement: complete [Real-Time Embedded Systems Theory and Analysis](../real-time-cps/064-real-time-embedded-systems-2.md) (University of Colorado Boulder Real-Time Embedded Systems 2) first
 
-The grade is not one generic capstone score. Five peer reviews—initial
-services/RMA, starter-code walkthrough, 1 Hz operation, 10 Hz design, and the
-final presentation—are 10% each, or 50% total. Three quizzes are 5% each, or
-15%. The 1 Hz and 10 Hz programming items are 5% each, while the final's 1 Hz
-and 10 Hz tests are 12.5% each, making programming 35% in total. The design
-therefore faces code checks, peer inspection, and final operation at both
-rates rather than one polished demonstration.
+**Verifiable learning outcomes**
 
-### One Question Must Survive Both 1 Hz and 10 Hz
+- Explain the core models in Real-Time and Cyber-Physical Systems, including their assumptions and limits
+- Solve representative derivations and problems, checking units, limiting cases, or numerical results
+- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-The system centers on capture, frame selection, and flash writes. At 1 Hz,
-service execution times, RMA predictions, and actual timestamps establish the
-model. At 10 Hz, copies, queues, classification, and storage may become new
-bottlenecks. A common sequence number across capture, classification, and
-write locates a frame's delay in input, queuing, or storage instead of hiding
-it inside average frame rate.
+**Workload and pacing**
 
-“Averaging 10 fps” is not the same as following an external clock. The course
-uses a camera to observe that clock and select stable, non-blurred frames at
-1 Hz and 10 Hz. A software timer or prerecorded input can exercise the
-pipeline but cannot establish external-clock synchronization. Camera
-resolution, pixel format, exposure or focus, and timestamp source also need
-to stay comparable between rates if theory and measurement are to agree.
+**11 weeks at 9 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-### Access and version notes
+**Safety level**
 
-The [hardware page](https://www.colorado.edu/ecee/academics/online-programs/ms-ece-coursera/hardware-and-software-requirements)
-specifies Pi 3B+/4B, Raspberry Pi OS, and Logitech C270, and only claims
-starter-code testing on those platforms. The
-[specialization overview](https://www.colorado.edu/ecee/real-time-embedded-systems)
-lists 5318 as course 4 worth 0.8 credit; the
-[access page](https://www.colorado.edu/ali/cu-degrees-on-coursera/non-credit-courses)
-does not promise that every assessment is free.
-
-Without the starter, peer reviews, and final tests, a clearly labeled
-**nonofficial substitute** can compare latency and drops for a 1 Hz/10 Hz
-pipeline over prerecorded frames. Its result stops at pipeline validation.
-CU's five peer reviews, assigned camera, and two-rate final tests remain
-distinctive to 5318; use the original platform route when feedback on
-external-clock synchronization is the goal.
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
 
 ## Course Resources
 
-- [Course home](https://www.coursera.org/learn/real-time-project-embedded-systems)
+**Software, hardware, and cost**
 
-## Resource Summary
+**Software**
 
-Every public entry point verified in this review is listed above. Use the feedback and corrections links below to submit a completion record, another resource, or a broken-link report.
+- Maintainer-suggested open-source/free verification path: Zephyr or FreeRTOS source, GCC or LLVM, CMake, GDB, and Renode or QEMU
+- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
+
+**Hardware**
+
+- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a course-supported real-time control board, USB debugger, logic analyzer, and low-voltage sensors/actuators. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
+
+**Cost note**
+
+The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
+
+**Public resource coverage**
+
+| Resource type | Completeness |
+|---|---|
+| Video | Complete |
+| Notes | Partial |
+| Practice | Complete |
+| Labs | Complete |
+| Exams | No public material |
+| Code | Complete |
+
+**Resources and access**
+
+| Resource | Access | License | Status | Verified |
+|---|---|---|---|---|
+| [Course home](https://www.coursera.org/learn/real-time-project-embedded-systems) | Registration required | Coursera Terms of Use | Listed by official page | 2026-07-28 |
+
+> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+
+## Practice and Verification
+
+**Practice loop**
+
+**Real-Time Project for Embedded Systems · University of Colorado Boulder Real-Time Embedded Systems 4: Real-Time Closed-Loop Deadline Stress Test**
+
+This is a maintainer-suggested self-study project for Real-Time Project for Embedded Systems · University of Colorado Boulder Real-Time Embedded Systems 4, not an official course assignment. Build a discrete-event scheduler and simulated plant for Real-Time and Cyber-Physical Systems, quantifying how jitter, missed deadlines, and sensor loss affect closed-loop safety margin.
+
+**Origin:** Maintainer-suggested project
+
+**Deliverables**
+
+- A task set with period, deadline, and WCET assumptions, scheduling policy, and plant model
+- An executable scheduler, closed-loop simulation, fault injector, and monitoring assertions
+- Raw response-time, jitter, miss, and state trajectories across multiple loads
+- A report defining the schedulability boundary, control degradation, and safe degraded state
+
+**Verification**
+
+- Produce zero deadline misses at nominal load and keep analytic response-time bound within 10% of the simulated worst case
+- Cover zero load, near-100% utilization, burst blocking, and clock-drift boundaries
+- Cross-check schedulability with a second analysis or exhaustive enumeration over a short hyperperiod
+- Increase WCET until the first miss and report miss rate and closed-loop error growth
+
+**Reproducibility**
+
+- Commit scheduler, plant, fault scenarios, assertions, and analysis sources
+- Pin event ordering, random seeds, time units, solver, and dependency versions
+- Preserve raw event and state logs and automatically generated timelines and report
+
+**Safety boundary:** Simulation only — Inject deadlines and faults only into a simulated plant; do not connect unvalidated scheduling or degradation logic to real machinery, vehicles, medical, or power systems.
+
+**Risks, gaps, and boundaries**
+
+The camera and Raspberry Pi home project requires the first two courses and paid-platform access may apply.
+
+**Completion evidence**
+
+- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
+- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
+- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data

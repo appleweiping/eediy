@@ -1,14 +1,9 @@
 from __future__ import annotations
 
 import copy
-import json
 from datetime import date
-from pathlib import Path
 
 from scripts.validate_mainline_audit import mainline_audit_issues
-
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def sample_inputs() -> tuple[dict, list[dict], dict, dict]:
@@ -167,40 +162,3 @@ def test_mainline_audit_rejects_non_candidate_official_url() -> None:
         today=date(2026, 7, 29),
     )
     assert any(issue.code == "mainline_audit.official_url" for issue in issues)
-
-
-def test_sensitive_production_rationales_keep_version_and_branch_scope() -> None:
-    audits = {
-        item["course_id"]: item
-        for item in json.loads(
-            (ROOT / "data" / "mainline_audit.json").read_text(encoding="utf-8")
-        )["audits"]
-    }
-
-    embedded = audits[59]
-    assert "Lab 1–9" in embedded["rationale_zh"]
-    assert "Labs 1–9" in embedded["rationale_en"]
-    assert "11 个实验" not in embedded["rationale_zh"]
-    assert "eleven labs" not in embedded["rationale_en"].lower()
-
-    microelectronics = audits[29]
-    assert "optional bonus Lab 4" in microelectronics["limitation_zh"]
-    assert "three regular solved labs" in microelectronics["limitation_en"]
-
-    radio_frequency = audits[110]
-    assert "RF systems 分支首选" in radio_frequency["rationale_zh"]
-    assert "preferred for the RF-systems branch" in radio_frequency["rationale_en"]
-    assert "毫米波电路与天线分支" in radio_frequency["rationale_zh"]
-    assert "millimeter-wave circuit and antenna branches" in radio_frequency[
-        "rationale_en"
-    ]
-
-
-def test_roadmap_distinguishes_the_first_mcu_entry_from_the_deeper_systems_path() -> None:
-    zh = (ROOT / "docs" / "roadmap.md").read_text(encoding="utf-8")
-    en = (ROOT / "docs" / "en" / "roadmap.md").read_text(encoding="utf-8")
-
-    assert "EE 319K" in zh and "较平缓的 MCU 第一入口" in zh
-    assert "CS107E" in zh and "reset、boot、linker" in zh
-    assert "EE 319K" in en and "gentler first MCU entry" in en
-    assert "CS107E" in en and "reset, boot, linker" in en

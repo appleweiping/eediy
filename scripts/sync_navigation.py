@@ -29,12 +29,9 @@ LANGUAGE_ROOTS = {
 
 PAGE_LABELS = {
     "zh": {
-        "start_learning": "开始学习",
-        "learning_routes": "路线",
-        "course_directions": "课程方向",
-        "resources_community": "资源与共建",
         "home": "前言",
         "getting_started": "如何使用",
+        "study_plan": "EE 学习规划",
         "roadmap": "总体规划",
         "routes": "路线总览",
         "tools": "必学工具",
@@ -42,18 +39,18 @@ PAGE_LABELS = {
         "math_foundations": "数学基础",
         "math_advanced": "数学进阶",
         "course_index": "课程总览",
-        "practice": "实践",
+        "track_index": "方向总览",
+        "practice": "实践指南",
+        "guide_index": "指南总览",
+        "contribute": "参与共建",
         "contributing": "贡献指南",
         "license": "许可与引用",
-        "postscript": "编辑说明",
+        "postscript": "后记",
     },
     "en": {
-        "start_learning": "Start Learning",
-        "learning_routes": "Routes",
-        "course_directions": "Course Directions",
-        "resources_community": "Resources and Community",
         "home": "Preface",
         "getting_started": "How to Use This Guide",
+        "study_plan": "EE Study Plan",
         "roadmap": "Overall Plan",
         "routes": "Route Index",
         "tools": "Essential Tools",
@@ -61,10 +58,13 @@ PAGE_LABELS = {
         "math_foundations": "Mathematical Foundations",
         "math_advanced": "Advanced Mathematics",
         "course_index": "Course Catalog",
-        "practice": "Practice",
+        "track_index": "Track Overview",
+        "practice": "Practice Guides",
+        "guide_index": "Guide Index",
+        "contribute": "Contribute",
         "contributing": "Contribution Guide",
         "license": "Licensing and Attribution",
-        "postscript": "Editorial Notes",
+        "postscript": "Postscript",
     },
 }
 
@@ -104,29 +104,6 @@ def _as_list(value: Any, source: str) -> list[Any]:
     return value
 
 
-def _guide_course_ids(value: Any | None) -> set[int] | None:
-    if value is None:
-        return None
-    data = _as_mapping(value, "course guide data")
-    guides = _as_list(data.get("guides"), "course guide data.guides")
-    course_ids: set[int] = set()
-    for index, raw_guide in enumerate(guides):
-        guide = _as_mapping(raw_guide, f"course guide data.guides[{index}]")
-        course_id = guide.get("course_id")
-        if (
-            not isinstance(course_id, int)
-            or isinstance(course_id, bool)
-            or course_id < 1
-        ):
-            raise QualityError(
-                f"course guide data.guides[{index}].course_id must be a positive integer"
-            )
-        if course_id in course_ids:
-            raise QualityError(f"duplicate course guide id: {course_id}")
-        course_ids.add(course_id)
-    return course_ids
-
-
 def _localized(
     value: Mapping[str, Any],
     language: str,
@@ -153,6 +130,19 @@ def _entry(label: str, value: Any) -> dict[str, Any]:
 
 def _prefixed(prefix: str, path: str) -> str:
     return f"{prefix}{path}"
+
+
+def _course_label(course: Mapping[str, Any], language: str, source: str) -> str:
+    title = _localized(
+        course,
+        language,
+        nested_key="title",
+        source=f"{source}.title",
+    )
+    course_code = course.get("course_code")
+    if isinstance(course_code, str) and course_code.strip():
+        return f"{course_code.strip()} · {title}"
+    return title
 
 
 def _integer_order(value: Any, fallback: int) -> int:
@@ -201,16 +191,13 @@ def generate_navigation(
     tracks_value: Any,
     routes_value: Any,
     *,
-    course_guides_value: Any | None = None,
     docs_root: Path | None = None,
 ) -> list[dict[str, Any]]:
-    """Build the compact bilingual MkDocs navigation tree.
+    """Build the complete bilingual MkDocs navigation tree.
 
-    Track groups follow their declaration order and tracks follow their
-    explicit ``order`` values in ``tracks.json``. Course detail pages are not
-    listed directly: every track title links to its generated index, which in
-    turn links to all course pages. MkDocs still builds and indexes those
-    detail pages for search and direct navigation.
+    Track groups and tracks follow their declaration order/order values in
+    ``tracks.json``. Courses use an explicit ``order`` when present and fall
+    back to the stable source id used to generate their filenames.
     """
 
     courses_data = _as_mapping(courses_value, "courses data")
@@ -221,7 +208,6 @@ def generate_navigation(
     tracks = _as_list(tracks_data.get("tracks"), "tracks.tracks")
     courses = _as_list(courses_data.get("courses"), "courses.courses")
     routes = _as_list(routes_data.get("routes"), "routes.routes")
-    guide_course_ids = _guide_course_ids(course_guides_value)
 
     group_ids: set[str] = set()
     for index, raw_group in enumerate(groups):
@@ -252,41 +238,25 @@ def generate_navigation(
         tracks_by_id[track_id] = track
         tracks_by_group[group_id].append(track)
 
+    courses_by_track: dict[str, list[Mapping[str, Any]]] = {
+        track_id: [] for track_id in tracks_by_id
+    }
     course_paths: set[tuple[str, str]] = set()
-    catalogue_course_ids: set[int] = set()
     for index, raw_course in enumerate(courses):
         course = _as_mapping(raw_course, f"courses.courses[{index}]")
         track_id = course.get("track")
         slug = course.get("slug")
-        source_id = course.get("source_id")
-        if not isinstance(track_id, str) or track_id not in tracks_by_id:
+        if not isinstance(track_id, str) or track_id not in courses_by_track:
             raise QualityError(
                 f"course at index {index} references unknown track {track_id!r}"
             )
         if not isinstance(slug, str) or not slug:
             raise QualityError(f"courses.courses[{index}].slug must be non-empty")
-        if (
-            not isinstance(source_id, int)
-            or isinstance(source_id, bool)
-            or source_id < 1
-        ):
-            raise QualityError(
-                f"courses.courses[{index}].source_id must be a positive integer"
-            )
-        if source_id in catalogue_course_ids:
-            raise QualityError(f"duplicate course source id: {source_id}")
-        catalogue_course_ids.add(source_id)
         key = (track_id, slug)
         if key in course_paths:
             raise QualityError(f"duplicate course path: {track_id}/{slug}.md")
         course_paths.add(key)
-    if guide_course_ids is not None:
-        missing_guide_ids = sorted(guide_course_ids - catalogue_course_ids)
-        if missing_guide_ids:
-            raise QualityError(
-                "course guide ids are missing from the catalogue: "
-                + ", ".join(str(course_id) for course_id in missing_guide_ids)
-            )
+        courses_by_track[track_id].append(course)
 
     route_ids: set[str] = set()
     normalized_routes: list[Mapping[str, Any]] = []
@@ -323,16 +293,10 @@ def generate_navigation(
                 )
             )
 
-        course_group_items: list[dict[str, Any]] = []
+        course_track_items: list[dict[str, Any]] = []
         for group_index, raw_group in enumerate(groups):
             group = _as_mapping(raw_group, f"tracks.groups[{group_index}]")
             group_id = str(group["id"])
-            group_title = _localized(
-                group,
-                language,
-                flat_key="title",
-                source=f"track group {group_id}",
-            )
             sorted_tracks = sorted(
                 tracks_by_group[group_id],
                 key=lambda track: (
@@ -340,7 +304,6 @@ def generate_navigation(
                     str(track.get("id", "")),
                 ),
             )
-            track_items: list[dict[str, Any]] = []
             for track in sorted_tracks:
                 track_id = str(track["id"])
                 track_title = _localized(
@@ -349,14 +312,37 @@ def generate_navigation(
                     flat_key="title",
                     source=f"track {track_id}",
                 )
-                track_items.append(
+                track_items: list[dict[str, Any]] = [
                     _entry(
-                        track_title,
+                        labels["track_index"],
                         _prefixed(prefix, f"courses/{track_id}/index.md"),
                     )
+                ]
+                sorted_courses = sorted(
+                    courses_by_track[track_id],
+                    key=lambda course: (
+                        _integer_order(
+                            course.get("order"),
+                            _integer_order(course.get("source_id"), 1_000_000),
+                        ),
+                        str(course.get("slug", "")),
+                    ),
                 )
-            if track_items:
-                course_group_items.append(_entry(group_title, track_items))
+                for course_index, course in enumerate(sorted_courses):
+                    track_items.append(
+                        _entry(
+                            _course_label(
+                                course,
+                                language,
+                                f"course {track_id}[{course_index}]",
+                            ),
+                            _prefixed(
+                                prefix,
+                                f"courses/{track_id}/{course['slug']}.md",
+                            ),
+                        )
+                    )
+                course_track_items.append(_entry(track_title, track_items))
 
         guide_items: list[dict[str, Any]] = []
         for relative, title_zh, title_en in guide_specs:
@@ -365,54 +351,43 @@ def generate_navigation(
                 _entry(title, _prefixed(prefix, f"guides/{relative}"))
             )
 
-        start_items = [
+        language_items = [
             _entry(labels["home"], _prefixed(prefix, "index.md")),
             _entry(
                 labels["getting_started"],
                 _prefixed(prefix, "getting-started.md"),
             ),
-        ]
-        route_items.extend(
-            [
-                _entry(
-                    labels["math_foundations"],
-                    _prefixed(prefix, "math-foundations.md"),
-                ),
-                _entry(
-                    labels["math_advanced"],
-                    _prefixed(prefix, "math-advanced.md"),
-                ),
-            ]
-        )
-        course_direction_items = [
+            _entry(labels["study_plan"], route_items),
+            _entry(labels["tools"], _prefixed(prefix, "guides/tools.md")),
+            _entry(labels["books"], _prefixed(prefix, "books.md")),
+            _entry(
+                labels["math_foundations"],
+                _prefixed(prefix, "math-foundations.md"),
+            ),
+            _entry(
+                labels["math_advanced"],
+                _prefixed(prefix, "math-advanced.md"),
+            ),
             _entry(
                 labels["course_index"],
                 _prefixed(prefix, "courses/index.md"),
             ),
-            *course_group_items,
-        ]
-        practice_items = [
-            _entry(labels["tools"], _prefixed(prefix, "guides/tools.md")),
-            *guide_items,
-        ]
-        resource_items = [
-            _entry(labels["books"], _prefixed(prefix, "books.md")),
+            *course_track_items,
+            _entry(labels["practice"], guide_items),
             _entry(
-                labels["contributing"],
-                _prefixed(prefix, "contributing.md"),
-            ),
-            _entry(
-                labels["license"],
-                _prefixed(prefix, "about/license.md"),
+                labels["contribute"],
+                [
+                    _entry(
+                        labels["contributing"],
+                        _prefixed(prefix, "contributing.md"),
+                    ),
+                    _entry(
+                        labels["license"],
+                        _prefixed(prefix, "about/license.md"),
+                    ),
+                ],
             ),
             _entry(labels["postscript"], _prefixed(prefix, "postscript.md")),
-        ]
-        language_items = [
-            _entry(labels["start_learning"], start_items),
-            _entry(labels["learning_routes"], route_items),
-            _entry(labels["course_directions"], course_direction_items),
-            _entry(labels["practice"], practice_items),
-            _entry(labels["resources_community"], resource_items),
         ]
         output.append(_entry(language_title, language_items))
     return output
@@ -497,14 +472,12 @@ def _load_navigation(
     courses_path: Path,
     tracks_path: Path,
     routes_path: Path,
-    course_guides_path: Path,
     docs_root: Path,
 ) -> str:
     navigation = generate_navigation(
         load_json(courses_path),
         load_json(tracks_path),
         load_json(routes_path),
-        course_guides_value=load_json(course_guides_path),
         docs_root=docs_root,
     )
     return render_navigation(navigation)
@@ -518,7 +491,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--courses", default="data/courses.json")
     parser.add_argument("--tracks", default="data/tracks.json")
     parser.add_argument("--routes", default="data/routes.json")
-    parser.add_argument("--course-guides", default="data/course_guides.json")
     parser.add_argument("--docs-dir", default="docs")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--write", action="store_true")
@@ -534,7 +506,6 @@ def main(argv: list[str] | None = None) -> int:
             repo_path(args.courses),
             repo_path(args.tracks),
             repo_path(args.routes),
-            repo_path(args.course_guides),
             repo_path(args.docs_dir),
         )
         config_text = config_path.read_text(encoding="utf-8")

@@ -8,69 +8,32 @@ from pathlib import Path
 import pytest
 
 from scripts.course_data import (
+    TRACK_TOOLING,
     catalogue_statistics,
     compile_catalogue,
-    load_taxonomy,
-    normalize_url,
     validate_candidates,
-    validate_resource_manifest,
 )
 from scripts.validate_courses import semantic_issues
 
 
-def test_normalize_url_preserves_embedded_wayback_target_scheme() -> None:
-    assert normalize_url(
-        "https://web.archive.org/web/20241219154359/https://cs61c.org/fa24/"
-    ) == (
-        "https://web.archive.org/web/20241219154359/"
-        "https://cs61c.org/fa24"
-    )
-
-
-def test_normalize_url_still_collapses_ordinary_duplicate_path_slashes() -> None:
-    assert normalize_url("HTTPS://Example.EDU//course///week-1/") == (
-        "https://example.edu/course/week-1"
-    )
-
-
-def test_normalize_url_treats_mit_ocw_www_alias_as_the_same_provider() -> None:
-    assert normalize_url(
-        "https://www.ocw.mit.edu/courses/2-71-optics-spring-2014/pages/syllabus/"
-    ) == (
-        "https://ocw.mit.edu/courses/2-71-optics-spring-2014/pages/syllabus"
-    )
-
-
-def test_schema_requires_a_nonempty_evidence_backed_catalogue() -> None:
+def test_schema_encodes_release_thresholds() -> None:
     schema = json.loads(Path("data/course.schema.json").read_text(encoding="utf-8"))
-    assert schema["properties"]["courses"]["minItems"] == 1
-    assert schema["properties"]["tracks"]["minItems"] == 1
+    assert schema["properties"]["courses"]["minItems"] == 125
+    assert schema["properties"]["tracks"]["minItems"] == 24
     required = set(schema["$defs"]["course"]["required"])
-    assert {
-        "prerequisite_course_ids",
-        "official_prerequisites",
-        "recommended_background",
-        "resources",
-    } <= required
     assert {
         "study_plan",
         "tooling",
         "safety",
+        "prerequisite_course_ids",
         "completion_evidence",
-        "projects",
-    }.isdisjoint(schema["$defs"]["course"]["properties"])
+        "resources",
+    } <= required
     resource_required = set(schema["$defs"]["resource"]["required"])
     assert {"last_verified", "access", "license", "status"} <= resource_required
-    assert schema["$defs"]["resource"]["properties"]["artifact_scope"]["enum"] == [
-        "content",
-        "index",
-        "outline",
-        "landing",
-        "syllabus",
-    ]
 
 
-def test_compile_is_deterministic_and_drops_unsupported_generated_fields(
+def test_compile_is_deterministic_and_preserves_manual_enrichment(
     candidate: dict, taxonomy_tracks: list[dict]
 ) -> None:
     first = compile_catalogue([candidate], taxonomy_tracks)
@@ -78,18 +41,33 @@ def test_compile_is_deterministic_and_drops_unsupported_generated_fields(
     existing["courses"][0]["summary"]["zh"] = "人工审阅后的课程摘要。"
     existing["courses"][0]["resources"][0]["license"] = "Verified course-specific terms"
     existing["courses"][0]["level"] = "mixed"
-    existing["courses"][0]["projects"] = [{"title": "generated filler"}]
-    existing["courses"][0]["study_plan"] = {"estimated_weeks": 12}
+    existing["courses"][0]["projects"] = [
+        {
+            "title": {"zh": "验证项目", "en": "Verification project"},
+            "brief": {"zh": "构建并验证。", "en": "Build and verify."},
+            "origin": "suggested",
+            "deliverables": {"zh": ["报告"], "en": ["Report"]},
+            "verification": {"zh": ["自动检查"], "en": ["Automated check"]},
+            "reproducibility": {
+                "zh": ["固定版本并提供运行步骤"],
+                "en": ["Pin versions and provide run steps"],
+            },
+            "safety_level": "simulation-only",
+            "safety_note": {
+                "zh": "仅使用仿真，不连接实体电源。",
+                "en": "Use simulation only; do not connect physical power.",
+            },
+        }
+    ]
     second = compile_catalogue([candidate], taxonomy_tracks, existing)
     course = second["courses"][0]
     assert course["summary"]["zh"] == "人工审阅后的课程摘要。"
     assert course["resources"][0]["license"] == "Verified course-specific terms"
+    assert course["projects"][0]["title"]["en"] == "Verification project"
     assert course["level"] == "unspecified"
-    assert "projects" not in course
-    assert "study_plan" not in course
-    assert "tooling" not in course
-    assert "safety" not in course
-    assert "completion_evidence" not in course
+    assert course["study_plan"]["estimated_weeks"] > 0
+    assert course["study_plan"]["hours_per_week"] > 0
+    assert "not a provider workload promise" in course["study_plan"]["note"]["en"]
     assert course["last_reviewed"] == candidate["verified_at"]
     assert second == compile_catalogue([candidate], taxonomy_tracks, second)
 
@@ -104,6 +82,24 @@ def test_compile_refreshes_explicit_candidate_level(
     refreshed = compile_catalogue([candidate], taxonomy_tracks, existing)
 
     assert refreshed["courses"][0]["level"] == "advanced"
+
+
+def test_provider_workload_with_fixed_weekly_hours_uses_singular_value(
+    candidate: dict, taxonomy_tracks: list[dict]
+) -> None:
+    candidate["workload"] = {
+        "weeks": 2,
+        "hours_per_week": {"min": 10, "max": 10},
+    }
+
+    course = compile_catalogue([candidate], taxonomy_tracks)["courses"][0]
+    note = course["study_plan"]["note"]
+
+    assert course["study_plan"]["hours_per_week"] == 10
+    assert "10–10" not in note["zh"]
+    assert "10–10" not in note["en"]
+    assert "每周 10 小时" in note["zh"]
+    assert "10 hours per week" in note["en"]
 
 
 def test_compile_adds_explicit_course_sequence_prerequisites(
@@ -123,17 +119,11 @@ def test_compile_adds_explicit_course_sequence_prerequisites(
     )
 
     catalogue = compile_catalogue([first, second], taxonomy_tracks)
-    course = catalogue["courses"][1]
-    prerequisites = course["prerequisites"]
+    prerequisites = catalogue["courses"][1]["prerequisites"]
 
     assert any("Sequence Course One" in item for item in prerequisites["zh"])
-    assert any(
-        item.startswith("Complete Sequence Course One")
-        for item in prerequisites["en"]
-    )
+    assert any("Course-sequence requirement" in item for item in prerequisites["en"])
     assert any("Sequence Course One" in item for item in prerequisites["en"])
-    assert course["recommended_background"] == {"zh": [], "en": []}
-    assert course["official_prerequisites"] == prerequisites
 
 
 def test_recommended_background_does_not_create_a_hard_course_edge(
@@ -147,76 +137,10 @@ def test_recommended_background_does_not_create_a_hard_course_edge(
     course = compile_catalogue([candidate], taxonomy_tracks)["courses"][0]
 
     assert course["prerequisite_course_ids"] == []
-    assert course["official_prerequisites"] == {"zh": [], "en": []}
-    assert any(
-        "直流电路分析或同等基础" in item
-        for item in course["recommended_background"]["zh"]
-    )
+    assert any("直流电路分析或同等基础" in item for item in course["prerequisites"]["zh"])
     assert any(
         "DC circuit analysis or equivalent background" in item
         for item in course["prerequisites"]["en"]
-    )
-
-
-def test_course_can_separate_track_background_without_dropping_hard_edge(
-    candidate: dict, taxonomy_tracks: list[dict]
-) -> None:
-    physics_track = copy.deepcopy(taxonomy_tracks[0])
-    physics_track.update(
-        {
-            "id": "physics",
-            "order": 5,
-            "title_zh": "物理基础",
-            "title_en": "Physics Foundations",
-        }
-    )
-    taxonomy_tracks[0]["prerequisites"] = ["physics"]
-    prerequisite = copy.deepcopy(candidate)
-    prerequisite.update(
-        {
-            "id": 2,
-            "title": "Required Physics",
-            "code": "PHYS-100",
-            "url": "https://example.edu/courses/phys-100/",
-            "track": "physics",
-        }
-    )
-    candidate["inherit_track_prerequisites"] = False
-    candidate["prerequisite_course_ids"] = [2]
-    candidate["recommended_background"] = {
-        "zh": "本站路线建议的数学背景",
-        "en": "Mathematical background recommended by this route",
-    }
-    candidate["prerequisite_note"] = {
-        "zh": "提供方列出的正式先修",
-        "en": "The provider's formal prerequisite",
-    }
-
-    course = compile_catalogue(
-        [candidate, prerequisite],
-        [physics_track, *taxonomy_tracks],
-    )["courses"][0]
-
-    assert course["prerequisite_course_ids"] == [2]
-    assert not any(
-        "物理基础" in item or "Physics Foundations" in item
-        for language in ("zh", "en")
-        for item in course["prerequisites"][language]
-    )
-    assert any("本站路线建议的数学背景" in item for item in course["prerequisites"]["zh"])
-    assert any("提供方列出的正式先修" in item for item in course["prerequisites"]["zh"])
-    assert any("Required Physics" in item for item in course["prerequisites"]["en"])
-    assert all(
-        "本站路线建议的数学背景" not in item
-        and "Mathematical background recommended by this route" not in item
-        for language in ("zh", "en")
-        for item in course["official_prerequisites"][language]
-    )
-    assert all(
-        "提供方列出的正式先修" not in item
-        and "The provider's formal prerequisite" not in item
-        for language in ("zh", "en")
-        for item in course["recommended_background"][language]
     )
 
 
@@ -227,209 +151,12 @@ def test_candidate_validation_rejects_partial_recommended_background(
 
     issues = validate_candidates(
         [candidate],
+        minimum_courses=1,
+        minimum_tracks=1,
         taxonomy_ids={"mathematics"},
     )
 
     assert any(issue.code == "candidate.recommended_background" for issue in issues)
-
-
-def test_candidate_validation_rejects_partial_prerequisite_note(
-    candidate: dict,
-) -> None:
-    candidate["prerequisite_note"] = {"en": "Either EE 101 or EE 102"}
-
-    issues = validate_candidates(
-        [candidate],
-        taxonomy_ids={"mathematics"},
-    )
-
-    assert any(issue.code == "candidate.prerequisite_note" for issue in issues)
-
-
-def test_candidate_validation_rejects_non_boolean_track_prerequisite_control(
-    candidate: dict,
-) -> None:
-    candidate["inherit_track_prerequisites"] = "false"
-
-    issues = validate_candidates(
-        [candidate],
-        taxonomy_ids={"mathematics"},
-    )
-
-    assert any(
-        issue.code == "candidate.inherit_track_prerequisites" for issue in issues
-    )
-
-
-def test_mit_271_keeps_official_prerequisites_separate_from_track_advice() -> None:
-    candidates = json.loads(
-        Path("data/course_candidates.json").read_text(encoding="utf-8")
-    )
-    taxonomy_value = json.loads(Path("data/tracks.json").read_text(encoding="utf-8"))
-    taxonomy_tracks, taxonomy_issues = load_taxonomy(taxonomy_value)
-    assert [issue for issue in taxonomy_issues if issue.severity == "error"] == []
-
-    candidate = next(item for item in candidates if item["id"] == 134)
-    course = compile_catalogue([candidate], taxonomy_tracks)["courses"][0]
-    prerequisites = " ".join(
-        course["prerequisites"]["zh"] + course["prerequisites"]["en"]
-    )
-    optics_track = next(
-        track for track in taxonomy_tracks if track["id"] == "optics-photonics"
-    )
-
-    assert candidate["inherit_track_prerequisites"] is False
-    assert "8.02" in prerequisites
-    assert "18.03" in prerequisites
-    assert "2.004" in prerequisites
-    assert "semiconductor" not in prerequisites.lower()
-    assert "semiconductor-devices" in optics_track["prerequisites"]
-
-
-def test_explicit_provider_prerequisites_do_not_fall_back_to_track_advice() -> None:
-    candidates = json.loads(
-        Path("data/course_candidates.json").read_text(encoding="utf-8")
-    )
-    taxonomy_value = json.loads(Path("data/tracks.json").read_text(encoding="utf-8"))
-    taxonomy_tracks, taxonomy_issues = load_taxonomy(taxonomy_value)
-    assert [issue for issue in taxonomy_issues if issue.severity == "error"] == []
-
-    catalogue = compile_catalogue(candidates, taxonomy_tracks)
-    candidate_by_id = {candidate["id"]: candidate for candidate in candidates}
-    course_by_id = {course["source_id"]: course for course in catalogue["courses"]}
-
-    representative_ids = {1, 39, 42, 57, 71, 108, 126, 139}
-    for course_id in representative_ids:
-        candidate = candidate_by_id[course_id]
-        course = course_by_id[course_id]
-        note = candidate["prerequisite_note"]
-
-        assert candidate["inherit_track_prerequisites"] is False
-        assert note["zh"] in " ".join(course["official_prerequisites"]["zh"])
-        assert note["en"] in " ".join(course["official_prerequisites"]["en"])
-        assert course["recommended_background"] == {"zh": [], "en": []}
-
-    assert candidate_by_id[2]["prerequisite_course_ids"] == [1]
-    assert candidate_by_id[33]["prerequisite_course_ids"] == [32, 67]
-    assert candidate_by_id[66]["prerequisite_course_ids"] == [63, 64, 65]
-    assert candidate_by_id[89]["prerequisite_course_ids"] == [98]
-    for alternative_or_permission_id in (20, 104, 120, 125, 140):
-        assert candidate_by_id[alternative_or_permission_id].get(
-            "prerequisite_course_ids", []
-        ) == []
-
-
-def test_every_provider_note_is_kept_out_of_eediy_route_advice() -> None:
-    candidates = json.loads(
-        Path("data/course_candidates.json").read_text(encoding="utf-8")
-    )
-    taxonomy_value = json.loads(Path("data/tracks.json").read_text(encoding="utf-8"))
-    taxonomy_tracks, taxonomy_issues = load_taxonomy(taxonomy_value)
-    assert [issue for issue in taxonomy_issues if issue.severity == "error"] == []
-
-    catalogue = compile_catalogue(candidates, taxonomy_tracks)
-    course_by_id = {course["source_id"]: course for course in catalogue["courses"]}
-    provider_records = [
-        candidate for candidate in candidates if "prerequisite_note" in candidate
-    ]
-
-    assert len(provider_records) >= 80
-    for candidate in provider_records:
-        course = course_by_id[candidate["id"]]
-        note = candidate["prerequisite_note"]
-
-        assert candidate["inherit_track_prerequisites"] is False
-        assert note["zh"] in " ".join(course["official_prerequisites"]["zh"])
-        assert note["en"] in " ".join(course["official_prerequisites"]["en"])
-        assert note["zh"] not in " ".join(course["recommended_background"]["zh"])
-        assert note["en"] not in " ".join(course["recommended_background"]["en"])
-
-
-def test_canonical_prerequisite_sections_do_not_repeat_their_own_field_labels() -> None:
-    candidates = json.loads(
-        Path("data/course_candidates.json").read_text(encoding="utf-8")
-    )
-    taxonomy_value = json.loads(Path("data/tracks.json").read_text(encoding="utf-8"))
-    taxonomy_tracks, taxonomy_issues = load_taxonomy(taxonomy_value)
-    assert [issue for issue in taxonomy_issues if issue.severity == "error"] == []
-
-    catalogue = compile_catalogue(candidates, taxonomy_tracks)
-    redundant_prefixes = (
-        "官方先修说明：",
-        "Official prerequisite note:",
-        "建议背景：",
-        "Recommended background:",
-        "建议先完成方向基础：",
-        "Recommended foundation:",
-    )
-    for course in catalogue["courses"]:
-        for field in ("official_prerequisites", "recommended_background"):
-            for language in ("zh", "en"):
-                assert not any(
-                    item.startswith(redundant_prefixes)
-                    for item in course[field][language]
-                )
-
-
-def test_recommended_sequences_and_equivalent_background_do_not_become_hard_edges() -> None:
-    candidates = json.loads(
-        Path("data/course_candidates.json").read_text(encoding="utf-8")
-    )
-    candidate_by_id = {candidate["id"]: candidate for candidate in candidates}
-
-    for course_id in range(78, 83):
-        candidate = candidate_by_id[course_id]
-        assert candidate.get("prerequisite_course_ids", []) == []
-        assert "highly recommended" in candidate["prerequisite_note"]["en"]
-        assert candidate["recommended_background"]["en"]
-
-    six_011 = candidate_by_id[98]
-    assert six_011.get("prerequisite_course_ids", []) == []
-    assert "or equivalents" in six_011["prerequisite_note"]["en"]
-    assert "not themselves mandatory" in six_011["recommended_background"]["en"]
-
-
-def test_provider_prerequisites_keep_eediy_preparation_in_a_separate_field() -> None:
-    candidates = json.loads(
-        Path("data/course_candidates.json").read_text(encoding="utf-8")
-    )
-    candidate_by_id = {candidate["id"]: candidate for candidate in candidates}
-
-    for course_id in (4, 5, 21, 123, 128):
-        candidate = candidate_by_id[course_id]
-        official = candidate["prerequisite_note"]
-        recommended = candidate["recommended_background"]
-
-        assert "EEDIY" not in official["en"]
-        assert "本站" not in official["zh"]
-        assert "EEDIY" in recommended["en"]
-        assert "本站" in recommended["zh"]
-
-
-def test_current_cornell_roster_and_mit_equivalence_clauses_are_preserved() -> None:
-    guide_manifest = json.loads(
-        Path("data/course_guides.json").read_text(encoding="utf-8")
-    )
-    guide_by_id = {
-        record["course_id"]: record for record in guide_manifest["guides"]
-    }
-    cornell_source = "https://classes.cornell.edu/browse/roster/FA26/class/ECE/3030"
-
-    assert cornell_source in guide_by_id[107]["primary_sources"]
-    assert guide_by_id[107]["reviewed_at"] == "2026-07-31"
-    for language in ("zh", "en"):
-        cornell_guide = Path(f"content/course-guides/107.{language}.md").read_text(
-            encoding="utf-8"
-        )
-        mit_guide = Path(f"content/course-guides/108.{language}.md").read_text(
-            encoding="utf-8"
-        )
-        assert cornell_source in cornell_guide
-        assert (
-            "or equivalent" in mit_guide
-            if language == "en"
-            else "或同等背景" in mit_guide
-        )
 
 
 @pytest.mark.parametrize(
@@ -449,6 +176,8 @@ def test_candidate_validation_rejects_invalid_course_prerequisite_ids(
 
     issues = validate_candidates(
         [candidate],
+        minimum_courses=1,
+        minimum_tracks=1,
         taxonomy_ids={"mathematics"},
     )
 
@@ -472,6 +201,8 @@ def test_candidate_validation_rejects_course_prerequisite_cycle(
 
     issues = validate_candidates(
         [first, second],
+        minimum_courses=1,
+        minimum_tracks=1,
         taxonomy_ids={"mathematics"},
     )
 
@@ -504,7 +235,6 @@ def test_manifest_refreshes_primary_and_old_available_cannot_mask_review_needed(
             "access": "open-registration",
             "status": "review-needed",
             "last_verified": "2026-07-28",
-            "artifact_scope": "landing",
         },
         {
             "course_id": candidate["id"],
@@ -533,7 +263,6 @@ def test_manifest_refreshes_primary_and_old_available_cannot_mask_review_needed(
     assert refreshed_primary["status"] == "review-needed"
     assert refreshed_primary["access"] == "open-registration"
     assert refreshed_primary["last_verified"] == "2026-07-28"
-    assert refreshed_primary["artifact_scope"] == "landing"
     assert refreshed_primary["title"] == {
         "zh": "课程主页",
         "en": "Course home",
@@ -553,33 +282,8 @@ def test_manifest_refreshes_primary_and_old_available_cannot_mask_review_needed(
     )
 
 
-def test_resource_manifest_rejects_unknown_artifact_scope() -> None:
-    records = [
-        {
-            "course_id": 1,
-            "kind": "assignments",
-            "title": "Homework index",
-            "url": "https://example.edu/homework",
-            "access": "open",
-            "status": "available",
-            "last_verified": "2026-07-31",
-            "artifact_scope": "link-list",
-        }
-    ]
-
-    valid, issues = validate_resource_manifest(records, candidate_ids={1})
-
-    assert valid == []
-    assert [issue.code for issue in issues] == [
-        "resource_manifest.artifact_scope"
-    ]
-
-
-@pytest.mark.parametrize("superseded_status", ["review-needed", "archived"])
-def test_compile_drops_superseded_seed_after_primary_url_changes(
-    candidate: dict,
-    taxonomy_tracks: list[dict],
-    superseded_status: str,
+def test_compile_drops_superseded_failed_seed_after_primary_url_changes(
+    candidate: dict, taxonomy_tracks: list[dict]
 ) -> None:
     old_url = candidate["url"]
     existing = compile_catalogue([candidate], taxonomy_tracks)
@@ -592,7 +296,7 @@ def test_compile_drops_superseded_seed_after_primary_url_changes(
             "url": old_url,
             "source_url": old_url,
             "access": "open",
-            "status": superseded_status,
+            "status": "review-needed",
             "last_verified": "2026-07-28",
         }
     ]
@@ -676,11 +380,206 @@ def test_compile_keeps_unavailable_supplement_in_evidence_only(
     }
 
 
+def _compile_for_track(
+    candidate: dict,
+    track_id: str,
+    *,
+    labs: int,
+    code: int,
+) -> dict:
+    track_candidate = copy.deepcopy(candidate)
+    track_candidate["track"] = track_id
+    track_candidate["resources"]["labs"] = labs
+    track_candidate["resources"]["code"] = code
+    track = {
+        "id": track_id,
+        "group": "test-group",
+        "order": 1,
+        "title_zh": track_id,
+        "title_en": track_id,
+        "summary_zh": f"{track_id} 测试方向。",
+        "summary_en": f"Test track for {track_id}.",
+        "prerequisites": [],
+    }
+    return compile_catalogue([track_candidate], [track])["courses"][0]
+
+
+def test_tooling_profiles_cover_every_canonical_track() -> None:
+    taxonomy = json.loads(Path("data/tracks.json").read_text(encoding="utf-8"))
+    track_ids = {track["id"] for track in taxonomy["tracks"]}
+
+    assert len(track_ids) == 35
+    assert set(TRACK_TOOLING) == track_ids
+    assert {
+        mode
+        for profile in TRACK_TOOLING.values()
+        for mode in profile["evidence"]
+    } <= {"theory", "simulation", "code", "experiment", "design"}
+
+
+@pytest.mark.parametrize(
+    ("track_id", "labs", "code", "software_token", "hardware_token"),
+    [
+        ("mathematics", 0, 0, "sympy", "no dedicated physical hardware"),
+        ("circuits", 2, 0, "ngspice", "oscilloscope"),
+        ("analog-ic", 0, 0, "xschem", "no tape-out"),
+        ("fpga-soc", 2, 2, "yosys", "fpga development board"),
+        ("embedded-systems", 2, 2, "openocd", "microcontroller development board"),
+        ("control-systems", 1, 1, "python-control", "real-time controller"),
+        ("robotics", 2, 2, "ros 2", "robot platform"),
+        ("power-systems-machines", 1, 1, "pandapower", "three-phase"),
+        ("energy-storage-pv", 1, 1, "pvlib-python", "pv/battery"),
+        ("communications", 1, 1, "gnu radio", "software-defined radio"),
+        ("rf-microwave-antennas", 2, 1, "scikit-rf", "vector network analyzer"),
+    ],
+)
+def test_typical_tracks_get_specific_honest_tooling(
+    candidate: dict,
+    track_id: str,
+    labs: int,
+    code: int,
+    software_token: str,
+    hardware_token: str,
+) -> None:
+    course = _compile_for_track(candidate, track_id, labs=labs, code=code)
+    software = "\n".join(course["tooling"]["software"]["en"]).lower()
+    hardware = "\n".join(course["tooling"]["hardware"]["en"]).lower()
+    cost_note = course["tooling"]["cost_note"]["en"].lower()
+
+    assert software_token in software
+    assert hardware_token in hardware
+    assert "maintainer-suggested" in software
+    assert "not a provider" in cost_note
+    assert "requirement" in cost_note
+    assert "provider" in cost_note
+    assert "region" in cost_note
+
+
+def test_typical_track_tooling_is_not_one_reused_template(candidate: dict) -> None:
+    cases = [
+        ("mathematics", 0, 0),
+        ("circuits", 2, 0),
+        ("analog-ic", 0, 0),
+        ("fpga-soc", 2, 2),
+        ("embedded-systems", 2, 2),
+        ("control-systems", 1, 1),
+        ("robotics", 2, 2),
+        ("power-systems-machines", 1, 1),
+        ("energy-storage-pv", 1, 1),
+        ("communications", 1, 1),
+        ("rf-microwave-antennas", 2, 1),
+    ]
+    suggested_paths = {
+        _compile_for_track(candidate, track_id, labs=labs, code=code)["tooling"][
+            "software"
+        ]["en"][0]
+        for track_id, labs, code in cases
+    }
+
+    assert len(suggested_paths) == len(cases)
+
+
+def test_resource_coverage_controls_hardware_and_evidence(candidate: dict) -> None:
+    simulation_only = _compile_for_track(
+        candidate, "circuits", labs=0, code=0
+    )
+    practical = _compile_for_track(candidate, "circuits", labs=2, code=1)
+    no_lab_hardware = simulation_only["tooling"]["hardware"]["en"][0]
+    lab_hardware = practical["tooling"]["hardware"]["en"][0]
+    simulation_evidence = "\n".join(
+        simulation_only["completion_evidence"]["en"]
+    )
+    practical_evidence = "\n".join(practical["completion_evidence"]["en"])
+
+    assert "does not list public lab coverage" in no_lab_hardware
+    assert "do not purchase" in no_lab_hardware
+    assert "lists lab coverage" in lab_hardware
+    assert "borrowing or sharing" in lab_hardware
+    assert "Experiment package" not in simulation_evidence
+    assert "Code repository" not in simulation_evidence
+    assert "Experiment package" in practical_evidence
+    assert "Code repository" in practical_evidence
+
+
+def test_compute_labs_remain_simulation_only(candidate: dict) -> None:
+    course = _compile_for_track(
+        candidate, "programming-tools", labs=2, code=2
+    )
+    hardware = "\n".join(course["tooling"]["hardware"]["en"]).lower()
+    evidence = "\n".join(course["completion_evidence"]["en"])
+
+    assert course["safety"]["level"] == "simulation-only"
+    assert "computational/simulation work" in hardware
+    assert "Experiment package" not in evidence
+    assert "Simulation package" in evidence
+    assert "Code repository" in evidence
+
+
+def test_explicit_simulation_modality_overrides_robotics_lab_score(
+    candidate: dict,
+) -> None:
+    candidate["practice_modality"] = "simulation-only"
+    course = _compile_for_track(candidate, "robotics", labs=2, code=2)
+    hardware = "\n".join(course["tooling"]["hardware"]["en"]).lower()
+    evidence = "\n".join(course["completion_evidence"]["en"])
+
+    assert course["safety"]["level"] == "simulation-only"
+    assert "do not purchase or connect" in hardware
+    assert "robot platform" in hardware
+    assert "Experiment package" not in evidence
+    assert "Simulation package" in evidence
+
+
+def test_biomedical_hardware_guidance_is_safe_and_grammatical(candidate: dict) -> None:
+    simulation_only = _compile_for_track(candidate, "biomedical", labs=0, code=1)
+    practical = _compile_for_track(candidate, "biomedical", labs=2, code=1)
+
+    simulation_zh = simulation_only["tooling"]["hardware"]["zh"][0]
+    simulation_en = simulation_only["tooling"]["hardware"]["en"][0]
+    practical_zh = practical["tooling"]["hardware"]["zh"][0]
+    practical_en = practical["tooling"]["hardware"]["en"][0]
+
+    assert "不采购优先使用" not in simulation_zh
+    assert "do not purchase prefer" not in simulation_en
+    assert "借用或共享优先使用" not in practical_zh
+    assert "borrowed equipment: prefer" not in practical_en
+    assert "去标识公开数据或信号模拟器" in simulation_zh
+    assert "de-identified public data or a signal simulator" in simulation_en
+    assert "伦理与安全审查" in practical_zh
+    assert "ethics and safety review" in practical_en
+
+
+def test_completion_evidence_distinguishes_five_reproducible_artifact_types(
+    candidate: dict,
+) -> None:
+    theory_course = _compile_for_track(
+        candidate, "mathematics", labs=0, code=0
+    )
+    design_course = _compile_for_track(
+        candidate, "fpga-soc", labs=2, code=2
+    )
+    evidence = "\n".join(
+        theory_course["completion_evidence"]["en"]
+        + design_course["completion_evidence"]["en"]
+    )
+
+    assert "Theory dossier" in evidence
+    assert "Simulation package" in evidence
+    assert "Code repository" in evidence
+    assert "Experiment package" in evidence
+    assert "Design-review package" in evidence
+    assert "rerun command" in evidence
+    assert "raw data" in evidence
+    assert "editable sources" in evidence
+
+
 def test_candidate_gate_rejects_bad_coverage_and_unknown_track(candidate: dict) -> None:
     candidate["resources"]["labs"] = 3
     candidate["track"] = "not-a-track"
     issues = validate_candidates(
         [candidate],
+        minimum_courses=1,
+        minimum_tracks=1,
         taxonomy_ids={"mathematics"},
     )
     codes = {issue.code for issue in issues}
@@ -688,77 +587,42 @@ def test_candidate_gate_rejects_bad_coverage_and_unknown_track(candidate: dict) 
     assert "candidate.track" in codes
 
 
+def test_candidate_gate_rejects_unknown_practice_modality(candidate: dict) -> None:
+    candidate["practice_modality"] = "wet-lab"
+
+    issues = validate_candidates(
+        [candidate],
+        minimum_courses=1,
+        minimum_tracks=1,
+        taxonomy_ids={"mathematics"},
+    )
+
+    assert any(issue.code == "candidate.practice_modality" for issue in issues)
+
+
 def test_semantic_gate_requires_resource_metadata(catalogue: dict) -> None:
     del catalogue["courses"][0]["resources"][0]["license"]
     issues = semantic_issues(
         catalogue,
+        minimum_courses=1,
+        minimum_used_tracks=1,
+        minimum_unique_resources=1,
+        minimum_project_courses=0,
         maximum_age_days=400,
         today=date(2026, 7, 29),
     )
     assert any(issue.code == "resource.metadata" for issue in issues)
 
 
-def test_semantic_gate_rejects_zero_coverage_with_matching_published_resource(
-    catalogue: dict,
-) -> None:
-    course = catalogue["courses"][0]
-    course["resource_coverage"]["video"] = 0
-    course["resources"][0]["kind"] = "video"
-    issues = semantic_issues(
-        catalogue,
-        maximum_age_days=400,
-        today=date(2026, 7, 29),
-    )
-
-    assert any(issue.code == "resource.coverage_kind_conflict" for issue in issues)
-
-
-def test_semantic_gate_requires_machine_evidence_for_code_coverage_two(
-    catalogue: dict,
-) -> None:
-    catalogue["courses"][0]["resource_coverage"]["code"] = 2
-    issues = semantic_issues(
-        catalogue,
-        maximum_age_days=400,
-        today=date(2026, 7, 29),
-    )
-
-    assert any(issue.code == "resource.code_coverage_evidence" for issue in issues)
-
-
-def test_semantic_gate_rejects_video_misclassified_as_code(catalogue: dict) -> None:
-    resource = catalogue["courses"][0]["resources"][0]
-    resource["kind"] = "code"
-    resource["url"] = "https://www.youtube.com/watch?v=verilog"
-    issues = semantic_issues(
-        catalogue,
-        maximum_age_days=400,
-        today=date(2026, 7, 29),
-    )
-
-    assert any(issue.code == "resource.kind_host_conflict" for issue in issues)
-
-
-def test_semantic_gate_rejects_open_access_for_restricted_target(
-    catalogue: dict,
-) -> None:
-    resource = catalogue["courses"][0]["resources"][0]
-    resource["url"] = "https://example.edu/course/secure/lab.zip"
-    resource["access"] = "open"
-    issues = semantic_issues(
-        catalogue,
-        maximum_age_days=400,
-        today=date(2026, 7, 29),
-    )
-
-    assert any(issue.code == "resource.access_wall" for issue in issues)
-
-
-def test_semantic_gate_accepts_evidence_backed_catalogue(
+def test_semantic_gate_accepts_maintainer_workload_with_provenance(
     catalogue: dict,
 ) -> None:
     issues = semantic_issues(
         catalogue,
+        minimum_courses=1,
+        minimum_used_tracks=1,
+        minimum_unique_resources=1,
+        minimum_project_courses=0,
         maximum_age_days=400,
         today=date(2026, 7, 29),
     )
@@ -766,3 +630,20 @@ def test_semantic_gate_accepts_evidence_backed_catalogue(
     assert errors == []
     statistics = catalogue_statistics(catalogue)
     assert statistics["resource_metadata_percent"] == 100.0
+
+
+def test_semantic_gate_rejects_unexplained_workload(catalogue: dict) -> None:
+    catalogue["courses"][0]["study_plan"]["note"] = {
+        "zh": "请自行安排。",
+        "en": "Choose a schedule.",
+    }
+    issues = semantic_issues(
+        catalogue,
+        minimum_courses=1,
+        minimum_used_tracks=1,
+        minimum_unique_resources=1,
+        minimum_project_courses=0,
+        today=date(2026, 7, 29),
+    )
+    assert any(issue.code == "course.workload_provenance_missing" for issue in issues)
+    assert any(issue.code == "course.workload_calibration_missing" for issue in issues)

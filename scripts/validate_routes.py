@@ -28,6 +28,8 @@ def route_issues(
     catalogue: Any,
     *,
     source: str = "data/routes.json",
+    minimum_routes: int = 10,
+    minimum_unique_courses: int = 100,
 ) -> list[Issue]:
     issues: list[Issue] = []
     if not isinstance(route_data, Mapping) or not isinstance(route_data.get("routes"), list):
@@ -42,12 +44,12 @@ def route_issues(
             )
         ]
     routes = route_data["routes"]
-    if not routes:
+    if len(routes) < minimum_routes:
         issues.append(
             Issue(
                 "error",
                 "routes.count",
-                "routes[] must contain at least one route",
+                f"expected at least {minimum_routes} routes, found {len(routes)}",
                 source,
             )
         )
@@ -60,7 +62,6 @@ def route_issues(
     route_ids: set[str] = set()
     referenced: Counter[int] = Counter()
     exit_pairs: set[tuple[str, str]] = set()
-    guidance_signatures: dict[tuple[Any, ...], str] = {}
     for route_index, route in enumerate(routes):
         path = f"{source}:routes/{route_index}"
         if not isinstance(route, Mapping):
@@ -83,140 +84,6 @@ def route_issues(
                 issues.append(
                     Issue("error", "routes.translation", f"{key} must be non-empty", path)
                 )
-        guidance_sections = route.get("guidance_sections")
-        if not isinstance(guidance_sections, list) or not guidance_sections:
-            issues.append(
-                Issue(
-                    "error",
-                    "routes.guidance_sections",
-                    "guidance_sections must be a non-empty array",
-                    path,
-                )
-            )
-            guidance_sections = []
-        section_ids: set[str] = set()
-        section_titles: dict[str, set[str]] = {"zh": set(), "en": set()}
-        signature_parts: list[tuple[str, int]] = []
-        for section_index, section in enumerate(guidance_sections):
-            section_path = f"{path}/guidance_sections/{section_index}"
-            if not isinstance(section, Mapping):
-                issues.append(
-                    Issue(
-                        "error",
-                        "routes.guidance_section_type",
-                        "each guidance section must be an object",
-                        section_path,
-                    )
-                )
-                continue
-            section_id = section.get("id")
-            if not isinstance(section_id, str) or not _SLUG_RE.fullmatch(section_id):
-                issues.append(
-                    Issue(
-                        "error",
-                        "routes.guidance_section_id",
-                        "guidance section id must be a lowercase slug",
-                        section_path,
-                    )
-                )
-            elif section_id in section_ids:
-                issues.append(
-                    Issue(
-                        "error",
-                        "routes.guidance_section_id_duplicate",
-                        f"guidance section id {section_id!r} is duplicated",
-                        section_path,
-                    )
-                )
-            else:
-                section_ids.add(section_id)
-            for language in ("zh", "en"):
-                title_key = f"title_{language}"
-                title = section.get(title_key)
-                normalized_title = (
-                    title.strip().casefold() if isinstance(title, str) else ""
-                )
-                if not normalized_title:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.guidance_section_translation",
-                            f"{title_key} must be non-empty",
-                            section_path,
-                        )
-                    )
-                elif normalized_title in section_titles[language]:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.guidance_section_title_duplicate",
-                            f"{title_key} must be unique within the route",
-                            section_path,
-                        )
-                    )
-                else:
-                    section_titles[language].add(normalized_title)
-            style = section.get("style")
-            if style not in {"prose", "list"}:
-                issues.append(
-                    Issue(
-                        "error",
-                        "routes.guidance_section_style",
-                        "guidance section style must be prose or list",
-                        section_path,
-                    )
-                )
-            translated_items: dict[str, list[Any]] = {}
-            for language in ("zh", "en"):
-                key = f"items_{language}"
-                value = section.get(key)
-                if (
-                    not isinstance(value, list)
-                    or not value
-                    or any(
-                        not isinstance(item, str) or not item.strip()
-                        for item in value
-                    )
-                ):
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.guidance_section_translation",
-                            f"{key} must be a non-empty list of non-empty strings",
-                            section_path,
-                        )
-                    )
-                    continue
-                translated_items[language] = value
-            if (
-                "zh" in translated_items
-                and "en" in translated_items
-                and len(translated_items["zh"]) != len(translated_items["en"])
-            ):
-                issues.append(
-                    Issue(
-                        "error",
-                        "routes.guidance_section_parity",
-                        "items_zh and items_en must contain the same number of items",
-                        section_path,
-                    )
-                )
-            if isinstance(style, str) and "en" in translated_items:
-                signature_parts.append((style, len(translated_items["en"])))
-        if signature_parts and len(signature_parts) == len(guidance_sections):
-            signature = (len(guidance_sections), *signature_parts)
-            previous_route = guidance_signatures.get(signature)
-            if previous_route is not None:
-                issues.append(
-                    Issue(
-                        "error",
-                        "routes.guidance_structure_duplicate",
-                        f"guidance rhythm duplicates route {previous_route!r}: {signature!r}",
-                        path,
-                    )
-                )
-            elif isinstance(route_id, str):
-                guidance_signatures[signature] = route_id
         stages = route.get("stages")
         if not isinstance(stages, list) or not stages:
             issues.append(Issue("error", "routes.stages", "route needs a non-empty stage", path))
@@ -228,14 +95,7 @@ def route_issues(
             if not isinstance(stage, Mapping):
                 issues.append(Issue("error", "routes.stage_type", "stage must be an object", stage_path))
                 continue
-            for key in (
-                "name_zh",
-                "name_en",
-                "selection_zh",
-                "selection_en",
-                "exit_zh",
-                "exit_en",
-            ):
+            for key in ("name_zh", "name_en", "exit_zh", "exit_en"):
                 if not isinstance(stage.get(key), str) or not stage[key].strip():
                     issues.append(
                         Issue("error", "routes.stage_translation", f"{key} is required", stage_path)
@@ -281,30 +141,6 @@ def route_issues(
                             "error",
                             "routes.stage_path_count",
                             "path_options must contain at least two complete alternatives",
-                            stage_path,
-                        )
-                    )
-            raw_extension_paths = stage.get("extension_paths")
-            if raw_extension_paths is None:
-                extension_paths: list[Any] = []
-            elif not isinstance(raw_extension_paths, list):
-                issues.append(
-                    Issue(
-                        "error",
-                        "routes.stage_extension_type",
-                        "extension_paths must be an array",
-                        stage_path,
-                    )
-                )
-                extension_paths = []
-            else:
-                extension_paths = raw_extension_paths
-                if not extension_paths:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_empty",
-                            "extension_paths must contain at least one ordered extension",
                             stage_path,
                         )
                     )
@@ -362,16 +198,12 @@ def route_issues(
                 )
             for course_id in required_ids:
                 course = courses_by_id.get(course_id)
-                if (
-                    isinstance(course, Mapping)
-                    and course.get("role") not in {"mainline", "alternative"}
-                ):
+                if isinstance(course, Mapping) and course.get("role") != "mainline":
                     issues.append(
                         Issue(
                             "error",
                             "routes.stage_required_not_mainline",
-                            f"required course_id {course_id!r} is neither a mainline "
-                            "nor an intentional alternative course",
+                            f"required course_id {course_id!r} is not a mainline course",
                             stage_path,
                         )
                     )
@@ -434,21 +266,6 @@ def route_issues(
                         )
                     else:
                         path_labels[key].add(normalized)
-                option_stop = {
-                    language: option.get(f"stop_when_{language}")
-                    for language in ("zh", "en")
-                }
-                if any(value is not None for value in option_stop.values()):
-                    for language, value in option_stop.items():
-                        if not isinstance(value, str) or not value.strip():
-                            issues.append(
-                                Issue(
-                                    "error",
-                                    "routes.stage_path_stop_translation",
-                                    "path-specific stop criteria must be present in both languages",
-                                    option_path,
-                                )
-                            )
                 option_ids = option.get("course_ids")
                 if not isinstance(option_ids, list) or not option_ids:
                     issues.append(
@@ -513,158 +330,10 @@ def route_issues(
                         )
                     )
                 path_course_ids.update(option_set)
-            extension_course_ids: set[int] = set()
-            for option_index, option in enumerate(extension_paths):
-                option_path = f"{stage_path}/extension_paths/{option_index}"
-                if not isinstance(option, Mapping):
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_item",
-                            "each extension path must be an object",
-                            option_path,
-                        )
-                    )
-                    continue
-                option_id = option.get("id")
-                if not isinstance(option_id, str) or not _SLUG_RE.fullmatch(option_id):
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_id",
-                            "extension path id must be a non-empty lowercase slug",
-                            option_path,
-                        )
-                    )
-                elif option_id in path_ids:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_path_id_duplicate",
-                            f"path or extension id {option_id!r} is duplicated",
-                            option_path,
-                        )
-                    )
-                else:
-                    path_ids.add(option_id)
-                for key in ("label_zh", "label_en"):
-                    label = option.get(key)
-                    normalized = label.strip().casefold() if isinstance(label, str) else ""
-                    if not normalized:
-                        issues.append(
-                            Issue(
-                                "error",
-                                "routes.stage_extension_translation",
-                                f"{key} must be non-empty",
-                                option_path,
-                            )
-                        )
-                    elif normalized in path_labels[key]:
-                        issues.append(
-                            Issue(
-                                "error",
-                                "routes.stage_path_label_duplicate",
-                                f"{key} must uniquely identify every path and extension",
-                                option_path,
-                            )
-                        )
-                    else:
-                        path_labels[key].add(normalized)
-                option_stop = {
-                    language: option.get(f"stop_when_{language}")
-                    for language in ("zh", "en")
-                }
-                if any(value is not None for value in option_stop.values()):
-                    for language, value in option_stop.items():
-                        if not isinstance(value, str) or not value.strip():
-                            issues.append(
-                                Issue(
-                                    "error",
-                                    "routes.stage_extension_stop_translation",
-                                    "extension stop criteria must be present in both languages",
-                                    option_path,
-                                )
-                            )
-                option_ids = option.get("course_ids")
-                if not isinstance(option_ids, list) or not option_ids:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_course_empty",
-                            "extension course_ids must be a non-empty array",
-                            option_path,
-                        )
-                    )
-                    continue
-                option_set = {
-                    course_id
-                    for course_id in option_ids
-                    if isinstance(course_id, int) and not isinstance(course_id, bool)
-                }
-                if len(option_set) != len(option_ids):
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_course_duplicate",
-                            "extension course_ids must contain unique integer identifiers",
-                            option_path,
-                        )
-                    )
-                if not option_set.issubset(stage_id_set):
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_subset",
-                            "extension course_ids must be a subset of stage course_ids",
-                            option_path,
-                        )
-                    )
-                elif [course_id for course_id in ids if course_id in option_set] != option_ids:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_order",
-                            "extension course_ids must preserve the order in stage course_ids",
-                            option_path,
-                        )
-                    )
-                overlap_required = option_set.intersection(required_set)
-                if overlap_required:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_required_overlap",
-                            "extension courses cannot also be required courses",
-                            option_path,
-                        )
-                    )
-                overlap_complete_path = option_set.intersection(path_course_ids)
-                if overlap_complete_path:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_path_overlap",
-                            "extension courses cannot also belong to a complete path option",
-                            option_path,
-                        )
-                    )
-                overlap_extensions = option_set.intersection(extension_course_ids)
-                if overlap_extensions:
-                    issues.append(
-                        Issue(
-                            "error",
-                            "routes.stage_extension_course_overlap",
-                            "a course cannot appear in more than one extension path",
-                            option_path,
-                        )
-                    )
-                extension_course_ids.update(option_set)
             remaining_ids = [
                 course_id
                 for course_id in ids
-                if course_id not in required_set
-                and course_id not in path_course_ids
-                and course_id not in extension_course_ids
+                if course_id not in required_set and course_id not in path_course_ids
             ]
             raw_elective_ids = stage.get("elective_course_ids")
             explicit_elective_pool = raw_elective_ids is not None
@@ -803,39 +472,6 @@ def route_issues(
                         )
                     if isinstance(course_id, int) and not isinstance(course_id, bool):
                         earlier_in_path.add(course_id)
-            for option_index, option in enumerate(extension_paths):
-                if not isinstance(option, Mapping):
-                    continue
-                earlier_in_extension: set[int] = set()
-                for course_id in option.get("course_ids", []):
-                    course = courses_by_id.get(course_id)
-                    if not isinstance(course, Mapping):
-                        continue
-                    prerequisites = {
-                        prerequisite_id
-                        for prerequisite_id in course.get("prerequisite_course_ids", [])
-                        if isinstance(prerequisite_id, int)
-                        and not isinstance(prerequisite_id, bool)
-                    }
-                    missing = prerequisites.difference(
-                        guaranteed_before_stage
-                        | required_set
-                        | earlier_in_extension
-                    )
-                    if missing:
-                        issues.append(
-                            Issue(
-                                "error",
-                                "routes.stage_extension_prerequisite",
-                                f"extension course_id {course_id} has hard prerequisites "
-                                f"{sorted(missing)} that are neither guaranteed by previous "
-                                "stages, required in this stage, nor completed earlier in "
-                                "this extension",
-                                f"{stage_path}/extension_paths/{option_index}",
-                            )
-                        )
-                    if isinstance(course_id, int) and not isinstance(course_id, bool):
-                        earlier_in_extension.add(course_id)
             if (
                 isinstance(elective_count, int)
                 and not isinstance(elective_count, bool)
@@ -928,6 +564,16 @@ def route_issues(
                 )
     if not referenced:
         issues.append(Issue("error", "routes.coverage", "routes reference no courses", source))
+    elif len(referenced) < minimum_unique_courses:
+        issues.append(
+            Issue(
+                "error",
+                "routes.course_coverage",
+                f"expected at least {minimum_unique_courses} unique referenced courses, "
+                f"found {len(referenced)}",
+                source,
+            )
+        )
     return issues
 
 
@@ -959,7 +605,9 @@ def validate_route_files(
     routes_path: Path,
     catalogue_path: Path,
     schema_path: Path,
-    **_: Any,
+    *,
+    minimum_routes: int = 10,
+    minimum_unique_courses: int = 100,
 ) -> tuple[dict[str, Any] | None, list[Issue], dict[str, Any]]:
     try:
         route_data = load_json(routes_path)
@@ -973,6 +621,8 @@ def validate_route_files(
             route_data,
             catalogue,
             source=routes_path.as_posix(),
+            minimum_routes=minimum_routes,
+            minimum_unique_courses=minimum_unique_courses,
         )
     )
     referenced = {
@@ -1026,23 +676,6 @@ def validate_route_files(
             if isinstance(option, Mapping)
             and isinstance(option.get("course_ids", []), list)
         ),
-        "extension_path_groups": sum(
-            1
-            for route in route_data.get("routes", [])
-            if isinstance(route, Mapping)
-            for stage in route.get("stages", [])
-            if isinstance(stage, Mapping) and stage.get("extension_paths")
-        ),
-        "extension_path_course_slots": sum(
-            len(option.get("course_ids", []))
-            for route in route_data.get("routes", [])
-            if isinstance(route, Mapping)
-            for stage in route.get("stages", [])
-            if isinstance(stage, Mapping)
-            for option in stage.get("extension_paths", [])
-            if isinstance(option, Mapping)
-            and isinstance(option.get("course_ids", []), list)
-        ),
         "catalogue_coverage_percent": (
             round(len(referenced) * 100 / len(catalogue.get("courses", [])), 2)
             if catalogue.get("courses")
@@ -1057,6 +690,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--routes", default="data/routes.json")
     parser.add_argument("--catalogue", default="data/courses.json")
     parser.add_argument("--schema", default="data/route.schema.json")
+    parser.add_argument("--minimum-routes", type=int, default=10)
+    parser.add_argument("--minimum-unique-courses", type=int, default=100)
     parser.add_argument("--json-report")
     parser.add_argument("--warnings-as-errors", action="store_true")
     return parser
@@ -1068,6 +703,8 @@ def main(argv: list[str] | None = None) -> int:
         repo_path(args.routes),
         repo_path(args.catalogue),
         repo_path(args.schema),
+        minimum_routes=args.minimum_routes,
+        minimum_unique_courses=args.minimum_unique_courses,
     )
     emit_issues(issues)
     print(

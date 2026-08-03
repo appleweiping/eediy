@@ -1,119 +1,129 @@
 ---
-title: How to Use This Guide
-description: Choose a first course from your actual background, time, and laboratory access—and begin the work.
-page_type: guide
-comments: true
+title: Getting Started
+description: Turn EE self-study into an executable plan with a diagnostic, time budget, and four-week launch.
 ---
 
+<div class="ee-language" markdown>
+[简体中文](../getting-started.md)
+</div>
 
-# How to Use This Guide
+# Getting Started
 
-You do not need, and cannot reasonably expect, to finish every course in the navigation. This is not another degree plan. It is an annotated resource map: what a public course actually releases, what it assumes, whether assignments have feedback, what a lab requires, and what remains impossible to confirm from the public pages.
+A reliable plan answers four questions at once: **Where do I begin? What do I do each week? What proves completion? When do I change course?** Spend one month building the learning system before optimizing the number of courses.
 
-Do not begin with the question “Which specialization is hottest?” Before opening a course, write down the problem immediately in front of you: “I can solve DC networks but do not understand an RC response,” “I write C but have never read a datasheet,” or “I want to find out whether chip design genuinely interests me.” A precise problem makes it much easier to tell whether a course is helping.
+## The 30-minute starting diagnostic { #start-diagnostic }
 
-## Locate your actual starting point
+This is not an entrance examination. Mark each row “independent,” “need references,” or “unfamiliar,” and retain one real sample of your work.
 
-### You have just entered university or are early in an EE degree
-
-Do not rush to route around your degree and assemble a supposedly stronger parallel curriculum. Calculus, linear algebra, physics, and basic circuits recur everywhere. Public courses work best as sources of better explanations, problems, and laboratories—not as a second full timetable.
-
-If the shape of EE is still unclear, sample the system view in [MIT 6.01SC](courses/ee-introduction/019-6-01sc.md), then repair what the current semester needs through [mathematics foundations](math-foundations.md), [physics](courses/physics/index.md), and [circuits](courses/circuits/index.md). Reserve at least as much time for problems, simulation, or laboratory work as for watching instruction. A long playback history mostly proves familiarity.
-
-### You are arriving from software, computer science, or another engineering field
-
-Programming is a real advantage, but it does not replace circuits, continuous-time models, or physical scale. A common mistake is to make a development board blink and infer that power, interfaces, and measurement are understood.
-
-Try three small questions. Derive the output of a loaded divider. Explain a first-order time constant. Explain how an oscilloscope's protective-earth connection can create a short circuit. If the first two fail, begin with [MIT 6.002](courses/circuits/021-6-002.md) and [mathematics foundations](math-foundations.md). If the third is unclear, read [Instrumentation and Measurement](guides/instrumentation-measurement.md) and [Laboratory Safety](guides/safety.md), and keep work in simulation or on a qualified low-energy teaching platform for now.
-
-### You know the common core and are choosing a direction
-
-Do not “systematically study” three tracks at once. Pick the closest candidate from the [learning routes](routes/index.md), inspect the assignments and projects in two or three representative courses, and only then commit.
-
-Course titles matter less than the failures you are willing to investigate: bias and noise in analog work, timing and CDC on an FPGA, concurrency and peripherals in embedded systems, stochastic models in communications, modeling error in control, or boundary conditions in fields and waves. The kind of error you willingly chase to ground often predicts fit better than the lecture you enjoyed most.
-
-### Your time or laboratory access is limited
-
-Choose one main course from the [essential core](routes/essential-core.md). A lack of hardware does not prevent substantial work in mathematics, circuit analysis, SPICE, signal processing, HDL verification, control simulation, or public-data research. It does require the report to state which parasitic, noise, thermal, quantization, and manufacturing effects remain unmeasured.
-
-Borrow, buy, or enter a laboratory when a defined task needs the instrument or board. Buying a bench first usually produces a bench full of components without a question.
-
-## A five-minute prerequisite diagnostic
-
-Do not treat “I took that class” as a prerequisite check. Use one small task with a checkable result. Attempt only the first column without looking up an answer. If it fails, repair the linked foundation; if it passes, continue toward the course closest to your goal.
-
-| Attempt | Evidence that the foundation is usable | Repair first |
+| Capability | Ten-minute task | Minimum state before the mainline |
 | --- | --- | --- |
-| Write the node equation for a loaded divider and predict what happens as the load resistance falls | Equation, units, and limiting direction agree | [Mathematical foundations](math-foundations.md) and [circuits](courses/circuits/index.md) |
-| Predict the initial value, final value, and time constant of an RC step from its first-order differential equation | You can sketch the qualitative waveform before simulation | [Differential equations](courses/mathematics/003-18-03sc.md) and [MIT 6.002](courses/circuits/021-6-002.md) |
-| Explain where a sinusoid above Nyquist appears after sampling | The sampling, source, and alias frequencies have an explicit relationship | [Signals and systems](courses/signals-systems/index.md) |
-| Draw a state diagram for “toggle an LED after button debouncing” and list edge cases | States, transitions, clock, and reset conditions are explicit | [Digital logic](courses/digital-logic/index.md) |
-| Explain how to connect a meter for current and when an oscilloscope protective-earth lead can create a short | Stop conditions, ratings, and current limiting come before wiring | [Instrumentation and Measurement](guides/instrumentation-measurement.md) and [Laboratory Safety](guides/safety.md) |
+| Mathematics | Simplify a complex fraction, differentiate a simple function, and explain a dot product | Show steps and check dimensions; speed is irrelevant |
+| Physics | Sketch forces or fields for a simple system and explain where energy enters and leaves | Distinguish state, rate of change, and conservation |
+| Programming | Load one data column, compute a mean, and plot it; use pseudocode if needed | Run, modify, and save a short script |
+| Circuits | Write KCL/KVL for a resistor divider and predict the effect of a load | Understand nodes, voltage, current, and reference ground |
+| Measurement | Plan how to measure an unknown DC voltage: range, leads, units, and hazards | Check ratings before making a connection |
 
-This is not an exam, and no learner needs all five at the start. It prevents course titles, playback history, or familiarity with one tool from masquerading as a usable prerequisite.
+Repair only the gaps that block the current goal. If you want to study linear circuits but have not learned differential equations, begin with DC resistive networks and learn differential equations alongside RC/RL transients. You do not need to finish all mathematics first.
 
-## Choosing the first course
+## Choose a weekly cadence
 
-These are common first moves, not a rigid sequence:
-
-| What you can do now | Open first | Why this is a useful start |
+| Available time | Suggested allocation | Realistic semester evidence |
 | --- | --- | --- |
-| High-school mathematics is comfortable; university EE is new | [MIT 6.01SC](courses/ee-introduction/019-6-01sc.md) | See systems, signals, software, and hardware meet before deciding what to repair |
-| Calculus or linear algebra is in progress; circuits are almost new | [MIT 6.002](courses/circuits/021-6-002.md) | Networks, dynamic components, and device models expose mathematical gaps quickly |
-| Basic circuits are comfortable; filters and spectra are not | [MIT 6.003](courses/signals-systems/083-6-003.md) | Build the shared language of LTI systems, convolution, and transforms |
-| You can program and want to approach digital hardware | [Nand2Tetris I](courses/digital-logic/039-nand2tetris-i.md) | Projects move from gates to a processor without an FPGA toolchain at the entrance |
-| You want an MCU or sensor project | [Embedded Systems track](courses/embedded-systems/index.md) | Compare board, debugger, and laboratory dependencies before choosing the main line |
-| The undergraduate core is already in place | [Track routes](routes/index.md) | Enter adjacent advanced courses by prerequisite and project evidence |
+| 5 hours | Theory 2h + problems 2h + records 1h | Core units from one foundation course + one simulation project |
+| 10 hours | Theory 3h + problems 3h + project 3h + review 1h | One mainline course + two small data-backed projects |
+| 15 hours | Theory 4h + problems 4h + project 5h + review 2h | Mainline plus necessary co-requisite + one complete stage artifact |
 
-When two courses look equally plausible, open their first substantial assignments. Prefer the one whose assignment, feedback, or reference results you can actually obtain. A beautiful homepage and a complete video playlist do not replace a practice loop.
+Do not count video runtime as learning time. Derivation- and laboratory-heavy courses often need one to three hours of practice, debugging, and documentation per hour of presented material. Measure your own ratio and adjust.
 
-## What matters on a course page
+## The four-week launch
 
-Read the editorial course judgment before the resource inventory. Several details are easy to miss:
+### Week 1: establish the workbench
 
-- **Mainline, alternative, and supplement describe relationships, not prestige.** Usually choose one mainline for a topic. An alternative changes style or access conditions; a supplement repairs a specific gap.
-- **“Prerequisites and preparation” is not one blended list.** An “EEDIY recommended foundation” is an editorial route judgment. An “official prerequisite note” or “course-sequence requirement” records a provider condition; neither substitutes for the other.
-- **Start with the course's own work.** Provider assignments, laboratories, and projects are linked directly. Any independent-study exercise added to fill a gap is labeled separately and never represented as an official requirement.
-- **A rich resource inventory may still be a bad fit.** Prerequisites, language, region, licensing, hardware, and feedback determine whether the course can be completed.
-- **The feedback links can supply experience missing from the article.** Learners can submit edition changes, environment failures, and actual workload. Each link carries the page, language, and stable ID so maintainers can verify the report.
+- Choose one four-week question from the [global roadmap](roadmap.md), such as “explain and verify a first-order RC transient.”
+- Select one unit from one mainline course; do not start three equivalent courses.
+- Create a log with date, goal, actual time, blocker, and next action.
+- Install the minimum software. Start with simulation or a bounded low-energy platform instead of buying a complete bench.
 
-For a factual error or dead link, use the matching GitHub report link at the bottom. For a complete learning report, consult the [contribution guide](contributing.md). A correction with a date and primary source is usually more helpful than “great course.”
+**Weekly evidence:** one-page objective, environment inventory, and first executable notebook.
 
-## What it means to begin
+### Week 2: create feedback
 
-Before designing a six-month plan, complete one small feedback loop:
+- Finish a problem set with solutions, tests, or a comparable reference.
+- Classify each important error: concept, model, algebra, code, instrument, or units.
+- Cross-check one result with two kinds of evidence, such as hand analysis and simulation or simulation and safe low-energy measurement.
 
-1. Open the syllabus and the first substantial assignment; verify access, language, and tool conditions.
-2. Name one question this unit should answer and any prerequisite gap already visible.
-3. Complete a task that an answer, test, simulation, or measurement can correct.
-4. Keep the original attempt and the reason for each correction, not only the polished result.
-5. Decide whether to continue, repair a prerequisite, or change course, and record the reason in two or three sentences.
+**Weekly evidence:** at least five corrected problems and an error classification table.
 
-For an RC step problem, the evidence can be small: calculate the time constant, run one parameter sweep, plot a figure with units, and explain agreement or disagreement with the prediction. For HDL, it can be a self-checking test plus the failing waveform. Make this small loop work before expanding it into a course plan.
+### Week 3: build a micro-project
 
-Use the [practice guides](guides/index.md) when code, environments, data, or reports need structure. Their tool lists are menus for a problem, not instructions to install everything.
+- Express the target as inputs, outputs, constraints, and acceptance tests.
+- Predict first, then simulate; connect hardware only after the safety gate.
+- Retain raw data, plot-generation code, key parameters, and versions.
 
-## Hardware and laboratory boundaries
+**Weekly evidence:** a minimal project that someone else can reproduce from the instructions.
 
-A passing simulation shows that a model is internally consistent under the chosen conditions. It does not establish that hardware will be safe or correct. Learn first connections in an environment with stated ratings, protection, and local supervision. Mains, high voltage, substantial stored energy, lasers, rotating machinery, vacuum systems, chemicals, and high-temperature processes are not “follow an online tutorial and see” activities.
+### Week 4: oral exam and route adjustment
 
-When a course page marks the proposed work as simulation-only, do not extend it to physical equipment on your own. A course with official laboratories still remains subject to institutional, manufacturer, and laboratory safety rules. If the boundary is unclear, stop and use an isolated low-voltage platform, public data, or simulation. [Laboratory Safety](guides/safety.md) gives more specific stop conditions.
+- Without notes, explain the model, assumptions, main equations, and failure causes in ten minutes.
+- Redo one random problem and change one parameter to test transfer.
+- Decide the next state: continue the mainline, repair a prerequisite, use an alternative, or pause an ill-fitting direction.
 
-## Six things to do now
+**Weekly evidence:** a one-page retrospective and the next four-week milestone.
 
-The state below stays only in this browser.
+## How to read a course page
+
+Read “risks and gaps” before opening the course links:
+
+1. **Outcomes:** confirm that the course solves your current problem.
+2. **Prerequisites:** schedule hard requirements; keep recommended background as an on-demand list.
+3. **Resource matrix:** verify that practice, solutions, labs, and assessment are actually public.
+4. **Tools and cost:** prepare software, component, regional-access, and accessibility alternatives.
+5. **Completion standard:** turn course expectations into your own milestone evidence.
+6. **Verification date:** spot-check links that are beyond a reasonable review interval.
+
+!!! tip "Mainline, alternative, and supplement are not additive"
+    Choose one mainline for a topic. Alternatives replace the teaching style or resource conditions; supplements repair a specific gap. Three parallel sets of lectures usually consume the time needed for practice.
+
+## Build learning evidence
+
+Keep one minimal evidence package per stage:
+
+```text
+stage-name/
+├── README.md          # Question, conclusion, reproduction
+├── notes/             # Your derivations and concept maps
+├── exercises/         # Representative work and corrections
+├── src/               # Simulation, code, configuration
+├── data/raw/          # Immutable raw measurements
+├── data/processed/    # Rebuildable results
+└── report/            # Plots, uncertainty, limits, next step
+```
+
+The exact folders are optional. The essential questions are not: Which version produced the result? Which parameters were used? Is the raw data preserved? How does another person reproduce it? What failed?
+
+## Cost and alternatives
+
+- **Software first:** verify that open or no-cost tools can cover the objective before accepting license lock-in.
+- **Borrow before buying:** use institutional, makerspace, or shared instruments and complete local training.
+- **Buy by module:** purchase around the current milestone, not a hypothetical future laboratory.
+- **Estimate total cost:** include probes, adapters, protection, consumables, shipping, and replacements.
+- **Preserve a no-hardware route:** every costly lab should have a simulation, public-data, or remote-lab evidence alternative.
+
+## Your launch checklist
+
+Checkbox state is stored only in this browser and can be cleared at any time.
 
 <div class="ee-checklist">
-  <label><input type="checkbox" data-ee-check="question">I wrote down one EE problem I genuinely need to solve now.</label>
-  <label><input type="checkbox" data-ee-check="starting-point">I chose an entry from my background, not from course prestige.</label>
-  <label><input type="checkbox" data-ee-check="first-assignment">I verified that the first assignment, its feedback, and the required tools are accessible.</label>
-  <label><input type="checkbox" data-ee-check="one-mainline">There is only one mainline course for this topic.</label>
-  <label><input type="checkbox" data-ee-check="safe-scope">For hardware work, I know the ratings, supervision conditions, and stop boundaries.</label>
-  <label><input type="checkbox" data-ee-check="first-evidence">I completed and saved one small task that can be corrected.</label>
+  <label><input type="checkbox" data-ee-check="diagnostic">I completed all five diagnostic areas and saved a real sample.</label>
+  <label><input type="checkbox" data-ee-check="time-budget">I reserved realistic weekly blocks, including review time.</label>
+  <label><input type="checkbox" data-ee-check="milestone">I wrote a four-week verifiable artifact, not “learn a field.”</label>
+  <label><input type="checkbox" data-ee-check="main-course">I selected only one mainline and read its gaps and prerequisites.</label>
+  <label><input type="checkbox" data-ee-check="safety">For physical work, I passed the safety gate and confirmed facilities and supervision.</label>
+  <label><input type="checkbox" data-ee-check="evidence">I created a log and raw-data area and know how to record failure.</label>
   <div class="ee-checklist__footer">
-    <span class="ee-check-progress" data-complete-label="complete" data-of-label="/"></span>
-    <button class="ee-reset-progress" type="button">Clear this page</button>
+    <span class="ee-check-progress" data-complete-label="Complete" data-of-label="of"></span>
+    <button class="ee-reset-progress" type="button">Clear page progress</button>
   </div>
 </div>
 
-After the first five, close this guide and do the first problem. Return to check the sixth.
+Next: open the [global roadmap](roadmap.md) and choose exactly one stage exit criterion.

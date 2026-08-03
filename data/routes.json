@@ -3,415 +3,135 @@
   "routes": [
     {
       "id": "essential-core",
-      "title_zh": "精简 EE 核心",
-      "title_en": "Essential EE Core",
-      "audience_zh": "想补齐关键 EE 基础、但没有时间把每门公开课从头修完，并愿意围绕同一个项目学习的人",
-      "audience_en": "Learners who need the essential EE foundations but cannot take every public course end to end, and prefer to learn around one continuing project",
-      "outcome_zh": "用一个一阶 RC 低通把微积分、微分方程、概率、电路与信号接起来，留下可重跑的解析—仿真对照。做到这里就是这条最短主线的完整出口；数字系统、电磁场、器件和实体板卡都是后续分支，不冒充本科 EE 的完整广度。",
-      "outcome_en": "Use one first-order RC low-pass to connect calculus, differential equations, probability, circuits, and signals, leaving a repeatable analytic-to-simulation comparison. That is the complete exit for this shortest route. Digital systems, fields, devices, and a physical board are later branches, not a claim of full undergraduate EE breadth.",
+      "title_zh": "精简核心路线",
+      "title_en": "Essential Core",
+      "audience_zh": "时间有限、希望先建立完整 EE 骨架的学习者",
+      "audience_en": "Learners with limited time who still want a complete EE foundation",
+      "outcome_zh": "完成数理、电路、信号、数字、电磁、电子与一个可演示项目的最小闭环；总工期按各课程页的维护者规划估计汇总，并在每门课试学两周后校准。",
+      "outcome_en": "Complete a minimum loop through math, circuits, signals, digital systems, electromagnetics, electronics, and one demonstrable project; aggregate the maintainer planning estimates on each course page and recalibrate after a two-week pilot of every course.",
       "stages": [
         {
-          "name_zh": "先用题目定位缺口",
-          "name_en": "Locate gaps with problems first",
-          "course_ids": [
-            1,
-            3,
-            4,
-            7,
-            15,
-            16
-          ],
-          "required_course_ids": [
-            1,
-            3,
-            15
-          ],
+          "name_zh": "数理与编程",
+          "name_en": "Math and programming",
+          "course_ids": [1, 3, 4, 7, 15, 16],
+          "required_course_ids": [1, 3, 4, 15, 16],
+          "elective_count": 1,
+          "exit_zh": "完成一套覆盖微积分、微分方程、线性代数与概率的校准题，正确率达到 80%；同时提交可从全新环境复现、含至少 5 个自动化检查的 Python/C 数值实验仓库。",
+          "exit_en": "Score at least 80% on a calibration set spanning calculus, differential equations, linear algebra, and probability, and submit a Python/C numerical experiment repository reproducible from a clean environment with at least five automated checks."
+        },
+        {
+          "name_zh": "EE 核心",
+          "name_en": "EE core",
+          "course_ids": [21, 37, 83, 107, 29],
+          "required_course_ids": [21, 37, 83, 107, 29],
           "elective_count": 0,
-          "selection_zh": "18.01SC、18.03SC 和 6.100L 只提供前面列出的诊断单元。6.041SC 仅作为概率题参考，不计作本路线必修；若诊断显示需要系统学习概率，先另行补足它正式列出的 18.01 与 18.02 背景。18.06SC 在要改写状态空间时再用，6.087 只留给固件或嵌入式分支；这里不要求修完六门课。",
-          "selection_en": "Use only the named diagnostic units from 18.01SC, 18.03SC, and 6.100L. Treat 6.041SC as an uncounted probability reference; if the diagnostic calls for the full probability course, first satisfy its published 18.01 and 18.02 background separately. Open 18.06SC when moving to state space and 6.087 only for a firmware or embedded branch; this stage does not require six course completions.",
-          "exit_zh": "诊断链在第一处失败时确实停止，只补了对应的最小课程单元；随后两道改变参数与表述的新题均可无提示完成。RC 解析脚本能从干净环境一条命令运行，并拒绝没有单位或超出定义域的输入。",
-          "exit_en": "The diagnostic chain actually stopped at the first failure and only the smallest matching course unit was studied; two new problems with changed parameters and wording then pass without hints. The RC analytic script runs with one command in a clean environment and rejects unitless or out-of-domain inputs."
+          "exit_zh": "对同一系统给出电路、信号、数字逻辑、电磁场与晶体管五个视角的模型，提交手算—仿真对照表；关键量误差低于 10%，超限项须有量纲一致的原因分析。",
+          "exit_en": "Model one system from circuit, signal, digital-logic, electromagnetic-field, and transistor perspectives, then submit a hand-calculation-to-simulation comparison; key quantities must agree within 10%, with dimensionally consistent explanations for any exception."
         },
         {
-          "name_zh": "把 RC 手算接到仿真",
-          "name_en": "Connect the RC derivation to simulation",
-          "course_ids": [
-            21,
-            83,
-            37,
-            107,
-            29,
-            55,
-            57
-          ],
-          "required_course_ids": [
-            21,
-            83
-          ],
+          "name_zh": "工程收束",
+          "name_en": "Engineering closure",
+          "course_ids": [55, 57],
+          "required_course_ids": [55, 57],
           "elective_count": 0,
-          "selection_zh": "6.002 只取 KCL、一阶暂态和小信号频率响应，6.003 只取连续时间 LTI、卷积与频率响应；6.041SC 的期望、方差与 Monte Carlo 接口必须继续作用在 R、C 容差上，而不是学完后丢掉。6.004、ECE 3030、ECE 3150 分别留给数字接口、互连和器件分支；PCB workshop 与 ECE 4760/5730 是实体扩展，不属于最短出口。",
-          "selection_en": "Use 6.002 only for KCL, first-order transients, and small-signal frequency response, and 6.003 only for continuous-time LTI systems, convolution, and frequency response. Keep the 6.041SC expectation, variance, and Monte Carlo interface active in the R and C tolerance model instead of discarding probability after the course. Reserve 6.004, ECE 3030, and ECE 3150 for digital-interface, interconnect, and device branches; the PCB workshop and ECE 4760/5730 are physical extensions, not part of the shortest exit.",
-          "exit_zh": "同一组 R、C 分布和输入生成手算、解析脚本与数值或 SPICE 结果；E[RC]、Var(RC) 及截止频率的一阶近似与带固定 seed 的 Monte Carlo 均值、方差和 5%/50%/95% 分位数并排呈现。样本加倍后的分位数变化和解析—仿真差异落入事先声明的容差，并保留一个单位、步长或模型边界失败例。",
-          "exit_en": "The same R and C distributions and input produce the hand, analytic-script, and numerical or SPICE results. Present E[RC], Var(RC), and the first-order cutoff approximation beside the seeded Monte Carlo mean, variance, and 5th/50th/95th percentiles. Percentile changes after doubling the sample count and analytic-to-simulation differences stay within tolerances declared in advance, with one unit, step-size, or model-boundary failure retained."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "find-first-break",
-          "title_zh": "先找第一处断点",
-          "title_en": "Find the first break",
-          "style": "prose",
-          "items_zh": [
-            "先不要下载整套课程。给定 R = 1 kΩ、C = 1 µF，限时 45 分钟写出时间常数、单位阶跃响应和 −3 dB 频率，再用任意熟悉的语言画出响应。不会的那一步，才决定第一门要打开的课。"
-          ],
-          "items_en": [
-            "Do not download whole courses yet. Given R = 1 kΩ and C = 1 µF, spend at most 45 minutes deriving the time constant, unit-step response, and −3 dB frequency, then plot the response in any language you already know. The first failed step determines the first course unit to open."
-          ]
-        },
-        {
-          "id": "make-uncertainty-part-of-the-circuit",
-          "title_zh": "把不确定性接进 RC 电路",
-          "title_en": "Put uncertainty into the RC circuit",
-          "style": "list",
-          "items_zh": [
-            "按导数与线性化→一阶微分方程→期望与方差→KCL 与一阶暂态的依赖顺序，每次只做一道未见过答案的诊断题。第一处独立完成失败就是停止点：只打开能修补该失败的最小课程单元，再用两道改变参数和表述的新题复测；通过后继续下一接口，不预设题目总数。",
-            "仍用同一个 RC 低通。先推导极点、阶跃和幅相响应，再把 R、C 建模为相互独立且截断为正值的随机变量，记录均值、标准差与分布依据。解析计算 E[RC] 与 Var(RC)，并用一阶误差传播近似 −3 dB 频率的均值和方差；6.003 只读完成 LTI 推导所需的单元。",
-            "用固定随机种子做 Monte Carlo，把时间常数和截止频率的样本均值、方差以及 5%/50%/95% 分位数与解析或 delta-method 近似并排比较；样本数增加一倍后关键分位数变化必须落入预先声明的容差。保存重跑命令、参数单位表、收敛图和至少一个故意保留的单位或求解设置失败例，仿真不得写成测量。"
-          ],
-          "items_en": [
-            "Follow the dependency chain derivatives and linearization → first-order ODEs → expectation and variance → KCL and first-order transients, attempting one unseen problem at a time. The first unaided failure is the stop point: open only the smallest course unit that repairs it, then retest with two new problems whose parameters and wording have changed. Continue only after both pass; there is no preset problem count.",
-            "Keep the same RC low-pass. Derive its pole, step, and magnitude/phase response, then model R and C as independent random variables truncated to positive values, recording each mean, standard deviation, and distribution rationale. Compute E[RC] and Var(RC) analytically and use first-order uncertainty propagation to approximate the mean and variance of the −3 dB frequency; read only the 6.003 units needed for the LTI derivation.",
-            "Run a seeded Monte Carlo study and compare the sample mean, variance, and 5th/50th/95th percentiles of time constant and cutoff frequency against the analytic or delta-method approximations. After doubling the sample count, key percentiles must change by less than a tolerance declared in advance. Keep the rerun command, parameter-and-unit table, convergence plot, and at least one retained unit or solver-setting failure; never describe simulation as measurement."
-          ]
-        },
-        {
-          "id": "claim-only-what-the-model-proves",
-          "title_zh": "只认模型真正证明的出口",
-          "title_en": "Claim only what the model proves",
-          "style": "list",
-          "items_zh": [
-            "先跳过整门线性代数、C 语言、数字系统、电磁场和半导体器件课；只有项目后来需要状态空间、固件、接口、互连或器件模型时，才回到相应单元。",
-            "没有隔离限流电源、万用表或示波器、可替换 BOM 和打样预算时，跳过 PCB、固件和板上演示。它们不是完成精简主线的条件。",
-            "解析式与仿真在预先声明的数值容差内一致，容差扫描可一条命令重跑，失败例能指出是模型、单位还是求解设置出了问题。到这里可以诚实标记为“simulation-only 完成”。",
-            "若继续实体分支，只在隔离、限流、低压条件下比较测量与仿真；没有器材时停在原理图和仿真即可，不以“还没做板”否定前面的完成。"
-          ],
-          "items_en": [
-            "Skip full courses in linear algebra, C, digital systems, electromagnetics, and devices for now. Return only if the project later needs state space, firmware, an interface, interconnect fields, or a device model.",
-            "Skip the PCB, firmware, and board demonstration without an isolated current-limited supply, a DMM or oscilloscope, a viable BOM, and a fabrication budget. None is required to finish the essential route.",
-            "The analytic and simulated results agree within a tolerance stated before the run, the tolerance sweep reruns with one command, and the retained failure can be traced to the model, units, or solver settings. At that point, mark the route honestly as complete, simulation-only.",
-            "If you take the physical branch, compare measurement with simulation only under isolated, current-limited, low-voltage conditions. Without the equipment, stop at schematic and simulation; the absence of a board does not invalidate the completed core."
-          ]
+          "exit_zh": "交付可演示的板级作品，仓库须含需求、原理图、PCB、BOM、固件、装配说明和连续测试记录；预先声明的 5 个端到端验收用例全部通过。",
+          "exit_en": "Deliver a demonstrable board-level build whose repository includes requirements, schematic, PCB, BOM, firmware, assembly instructions, and continuous test records; all five predeclared end-to-end acceptance cases must pass."
         }
       ]
     },
     {
       "id": "undergraduate-core",
-      "title_zh": "本科 EE 核心路线",
-      "title_en": "Undergraduate EE Core",
-      "audience_zh": "想按本科培养的广度与深度重建 EE 基础，并愿意完成实验和综合设计的人",
-      "audience_en": "Learners rebuilding the breadth and depth of an undergraduate EE education, including laboratory work and an integrated design",
-      "outcome_zh": "从数学、物理和编程一路走到电路、信号、数字系统、电磁场、器件、实验与方向综合。它可以帮助发现本科基础中的空缺，但不等同于大学学位、学分或任何认证。",
-      "outcome_en": "Move from mathematics, physics, and programming through circuits, signals, digital systems, fields, devices, laboratory work, and a two-area final design. The route can expose gaps in an undergraduate foundation, but it grants no degree, credit, or accreditation.",
+      "title_zh": "本科核心审计路线",
+      "title_en": "Undergraduate Core Audit",
+      "audience_zh": "希望按本科培养深度系统补齐基础的学习者",
+      "audience_en": "Learners auditing a full undergraduate-level EE core",
+      "outcome_zh": "覆盖 ABET 风格完整性检查所需的数学、自然科学、工程核心、实验和综合设计，但不宣称任何认证。",
+      "outcome_en": "Covers mathematics, natural science, engineering core, laboratory practice, and capstone-style design for completeness auditing without claiming accreditation.",
       "stages": [
         {
-          "name_zh": "先把单变量微积分做实",
-          "name_en": "Secure single-variable calculus first",
-          "course_ids": [
-            1
-          ],
-          "required_course_ids": [
-            1
-          ],
+          "name_zh": "阶段 0：诊断与工具",
+          "name_en": "Stage 0: diagnostics and tools",
+          "course_ids": [1, 4, 10, 11, 15, 16],
+          "required_course_ids": [1, 4, 10, 11, 15, 16],
           "elective_count": 0,
-          "selection_zh": "18.01SC 是后续 18.02SC 与概率课共同依赖的起点。先做课程的诊断题；若极限、微分、积分和级数已经稳定，可以只完成未通过的单元，但必须保留改换参数后的闭卷复测，不能用“学过”代替证据。",
-          "selection_en": "18.01SC is the common starting point for 18.02SC and the later probability course. Begin with its diagnostic problems. If limits, derivatives, integrals, and series are already secure, complete only the failed units, but keep a closed-book retest with changed parameters rather than treating prior enrollment as evidence.",
-          "exit_zh": "在不查答案的情况下完成一组覆盖极限、微分、定积分与级数的新题，并把一个带单位的物理量从模型、解析结果到数值图完整算通；每一步的定义域和单位一致。",
-          "exit_en": "Solve a fresh set of limit, derivative, definite-integral, and series problems without consulting solutions, then carry one dimensional physical quantity from model through analytical result to numerical plot with consistent domains and units."
+          "exit_zh": "在限时诊断中取得 80% 以上，并用同一仓库复现一个力学或电磁实验的数据采集、单位检查与拟合流程；换一台机器后仅凭 README 可重建全部图表。",
+          "exit_en": "Earn at least 80% on a timed diagnostic and reproduce the acquisition, unit checks, and fitting workflow for one mechanics or electromagnetics experiment in a single repository; every plot must rebuild on another machine using only the README."
         },
         {
-          "name_zh": "多变量、物理与编程",
-          "name_en": "Multivariable calculus, physics, and programming",
-          "course_ids": [
-            2,
-            4,
-            10,
-            11,
-            15,
-            16
-          ],
-          "required_course_ids": [
-            2,
-            4,
-            10,
-            11,
-            15,
-            16
-          ],
+          "name_zh": "阶段 1：电路与动态系统",
+          "name_en": "Stage 1: circuits and dynamics",
+          "course_ids": [3, 21, 24, 83],
+          "required_course_ids": [3, 21, 83],
           "elective_count": 0,
-          "selection_zh": "沿用上一段的单变量基础，用 18.02SC、18.06SC 和 8.01SC/8.02X 的题目检查多变量微积分、线性代数、力学与电磁学，只重学真正薄弱的单元。6.100L 负责 Python 建模，6.087 负责 C 与内存，两种实现处理同一个物理案例。只有具备课程要求的安全器材时才复现物理实验；否则改用公开数据或仿真，并在 README 中明确说明数据来自哪里。",
-          "selection_en": "Carry forward the single-variable foundation, then use problems from 18.02SC, 18.06SC, and 8.01SC/8.02X to find gaps in multivariable calculus, linear algebra, mechanics, and electromagnetism, revisiting only the weak units. Let 6.100L supply Python modeling and 6.087 supply C and memory work on the same physical case. Reproduce an experiment only with the safe equipment required by the course; otherwise use public data or simulation and state the data origin plainly in the README.",
-          "exit_zh": "微积分、线性代数、力学和电磁学中任何会妨碍后续课程的错题，都要补学后换一组参数重做。再选一个力学或电磁案例，完成数据采集或公开数据导入、单位检查和拟合；换一台机器仅凭 README 就能重建全部图表，仿真和回放不得写成实测。",
-          "exit_en": "Any error in calculus, linear algebra, mechanics, or electromagnetism that would obstruct later work must be studied and retested with changed parameters. Then complete acquisition or public-data import, unit checks, and fitting for one mechanics or electromagnetics case. A second machine must reproduce every plot from the README alone, and simulation or replay must never be described as measurement."
+          "exit_zh": "从微分方程推导一个二阶电路的状态与频域模型，测量或仿真其阶跃和扫频响应；主极点、稳态增益和带宽与预测值偏差均不超过 5%。",
+          "exit_en": "Derive state-space and frequency-domain models for a second-order circuit from its differential equation, then measure or simulate its step and swept-frequency responses; dominant pole, DC gain, and bandwidth must each agree with prediction within 5%."
         },
         {
-          "name_zh": "电路与动态系统",
-          "name_en": "Circuits and dynamic systems",
-          "course_ids": [
-            3,
-            21,
-            24,
-            83
-          ],
-          "required_course_ids": [
-            3,
-            21,
-            83
-          ],
+          "name_zh": "阶段 2：概率、数字与场",
+          "name_en": "Stage 2: probability, digital, and fields",
+          "course_ids": [7, 37, 107, 29],
+          "required_course_ids": [7, 37, 107, 29],
           "elective_count": 0,
-          "selection_zh": "让 18.03SC、6.002 和 6.003 共同解释一个二阶网络：先写微分方程，再落到电路参数，最后用系统表示连接阶跃和频率响应。前一段的建模、单位检查和拟合代码直接沿用。只有当仪器、误差或测量链仍是短板时，才加入 6.071J；它不能替代三门基础课。",
-          "selection_en": "Make 18.03SC, 6.002, and 6.003 explain the same second-order network: begin with its differential equation, connect it to circuit parameters, and use system representations to relate step and frequency response. Reuse the modeling, unit checks, and fitting code from the first part. Add 6.071J only when instrumentation, error analysis, or measurement chains remain weak; it does not replace the three foundations.",
-          "exit_zh": "从微分方程推出二阶电路的状态与频域模型，再测量或仿真阶跃和扫频响应。调参前，根据元件容差、仪器不确定度或数值精度写明主极点、直流增益和带宽允许偏差，并用一组未参与拟合的数据验证。",
-          "exit_en": "Derive state-space and frequency-domain models for a second-order circuit, then measure or simulate its step and swept-frequency responses. Before tuning, state allowed errors for the dominant pole, DC gain, and bandwidth from component tolerance, instrument uncertainty, or numerical accuracy, and verify them on data not used for fitting."
+          "exit_zh": "实现一个受随机输入驱动的数字模块并完成不少于 1000 组可复现测试向量，同时提交其互连场模型；逻辑失配为零，场仿真的功率平衡残差低于 5%。",
+          "exit_en": "Implement a digital module driven by stochastic inputs with at least 1,000 reproducible test vectors and submit an electromagnetic model of its interconnect; logic mismatches must be zero and simulated power-balance residual must stay below 5%."
         },
         {
-          "name_zh": "概率、数字系统与电磁",
-          "name_en": "Probability, digital systems, and fields",
-          "course_ids": [
-            7,
-            37,
-            107,
-            29
-          ],
-          "required_course_ids": [
-            7,
-            37,
-            107,
-            29
-          ],
+          "name_zh": "阶段 3：实验和制造",
+          "name_en": "Stage 3: laboratory and fabrication",
+          "course_ids": [26, 55, 57],
+          "required_course_ids": [26, 55, 57],
           "elective_count": 0,
-          "selection_zh": "6.041SC 负责随机输入，6.004 负责数字实现，ECE 3030 解释互连中的场，ECE 3150 说明晶体管边界；做过 FPGA 也不能跳过概率或电磁。先把上一段二阶系统的激励和参考响应改成随机数字测试，再让同一接口进入场模型和器件模型。",
-          "selection_en": "Random inputs come from 6.041SC, the digital implementation from 6.004, interconnect fields from ECE 3030, and transistor limits from ECE 3150; prior FPGA work does not replace probability or electromagnetics. Turn the previous second-order system's stimulus and reference response into randomized digital tests, then carry the same interface into the field and device models.",
-          "exit_zh": "数字模块的定向测试要覆盖全部状态转移、接口边界和无效输入；随机测试保存种子与覆盖率变化，并与参考模型零失配。互连场模型还要通过网格加密显示传播量收敛，端口功率不平衡不得超过求解器给出的数值误差。",
-          "exit_en": "Directed tests for the digital module must cover every state transition, interface boundary, and invalid input. Preserve random seeds and coverage progression, with zero mismatches against the reference model. Refine the interconnect mesh until propagation quantities converge, and keep port-power imbalance within the solver's stated numerical error."
+          "exit_zh": "制造并调通一块含模拟前端与数字控制的 PCB，保留可追溯的校准数据、至少 10 个工作点的测试矩阵、返修记录和实物照片；所有需求都映射到测试证据。",
+          "exit_en": "Fabricate and commission a PCB containing an analog front end and digital control, preserving traceable calibration data, a test matrix of at least ten operating points, rework history, and hardware photographs; every requirement must map to test evidence."
         },
         {
-          "name_zh": "实验、PCB 与系统集成",
-          "name_en": "Laboratory, PCB, and system integration",
-          "course_ids": [
-            26,
-            55,
-            57
-          ],
-          "required_course_ids": [
-            26,
-            55,
-            57
-          ],
-          "elective_count": 0,
-          "selection_zh": "把模拟网络、数字模块和随机回归放到同一块板上。6.101 用来学模拟调试，MIT PCB workshop 负责投板准备，ECE 4760/5730 负责系统集成。开工前确认旧器件的替代 BOM、隔离限流电源、示波器或万用表、目标 MCU 和打样预算；条件不足可以停在 pre-board，但还没有完成这段实验。已有经验也不能省掉校准、返修和需求到测试的对应关系。",
-          "selection_en": "Put the analog network, digital module, and randomized regression on one board. Use 6.101 for analog debugging, the MIT PCB workshop for fabrication preparation, and ECE 4760/5730 for system integration. Before starting, confirm substitute parts for dated components, an isolated current-limited supply, an oscilloscope or DMM, the target MCU, and a fabrication budget. Missing access means stopping at pre-board; prior experience still does not remove calibration, rework, or requirements-to-test mapping.",
-          "exit_zh": "在隔离、限流、低压条件下制造并调通含模拟前端与数字控制的 PCB。测试要覆盖工作范围端点、标称点、关键角落和保护边界，并保留额定值核对、停机条件、校准原始数据、返修记录与实物照片；每项需求都能指向一次测试，不连接市电、人体或未知电源。",
-          "exit_en": "Fabricate and commission a PCB with an analog front end and digital control under isolated, current-limited, low-voltage conditions. Test the endpoints, nominal point, critical corners, and protection boundaries of its operating range. Keep rating checks, stop conditions, raw calibration data, rework history, and photographs, and map every requirement to a test. Connect neither mains, people, nor unknown supplies."
-        },
-        {
-          "name_zh": "两个方向的综合设计",
-          "name_en": "An integrated design across two areas",
-          "course_ids": [
-            88,
-            99,
-            68,
-            114,
-            124,
-            132
-          ],
-          "required_course_ids": [
-            88
-          ],
+          "name_zh": "阶段 4：专项选择",
+          "name_en": "Stage 4: concentration choices",
+          "course_ids": [88, 100, 68, 114, 124, 132],
+          "required_course_ids": [88],
           "elective_count": 2,
-          "selection_zh": "RES.6-008 提供共同的信号处理基础；通信分支使用不依赖 6.011 前序的 6.02，而不是直接跳入研究生数字通信。再从通信、线性动态、功率电子、半导体器件和光子学中选两个真正会在系统里相接的方向。先写清两个子系统各自的指标和接口，再决定需要读哪些章节；上一段的板级测试或 pre-board 接口应成为共同输入，而不是按学校名气另起两个无关项目。",
-          "selection_en": "RES.6-008 supplies the shared signal-processing foundation. The communications option uses 6.02, which does not assume the 6.011 sequence, rather than jumping directly into graduate digital communications. Choose two areas—communications, linear dynamics, power electronics, semiconductor devices, or photonics—that genuinely meet inside one system. Define each subsystem's performance and interface requirements before choosing chapters, and use the board tests or pre-board interface from the preceding work as their common input rather than starting two prestige-driven projects.",
-          "exit_zh": "最终设计要把信号处理与两个方向接成一个系统，每个方向都有从系统需求推导出的性能和接口指标，默认以仿真或公开数据验证。涉及高压或大电流、RF、激光、化学品或加工设备时，只能在合规设施和合格监督下实测。报告写清哪些结论来自仿真、公开数据或实测，并保留一次真正促使设计改变的失败。",
-          "exit_en": "The final design must connect signal processing and both chosen areas into one system, with performance and interface metrics derived from system requirements and checked by simulation or public data by default. High voltage or current, RF, lasers, chemicals, and fabrication equipment require a compliant facility and qualified supervision. State which conclusions come from simulation, public data, or measurement, and retain one failure that genuinely changed the design."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "placement-before-syllabus",
-          "title_zh": "先定位，不先抄培养方案",
-          "title_en": "Place yourself before copying a syllabus",
-          "style": "prose",
-          "items_zh": [
-            "先从五类题各抽一题：微积分、线性代数、电磁学、电路暂态和概率。再写一个最小 Python 模型。把不会做或只能照答案做的项记成缺口；这张缺口表决定课程顺序，而不是学校名称。"
-          ],
-          "items_en": [
-            "Sample one problem each from calculus, linear algebra, electromagnetism, circuit transients, and probability, then write one small Python model. Record anything you cannot solve or can solve only by copying as a gap. That gap list, not institutional prestige, determines the order."
-          ]
-        },
-        {
-          "id": "one-spine-per-layer",
-          "title_zh": "每一层只留一条主线",
-          "title_en": "Keep one spine at each layer",
-          "style": "list",
-          "items_zh": [
-            "每个阶段选一个贯穿对象，例如二阶 RLC 网络或电机—变换器；数学推导、代码、场模型和实验都更新同一组参数，不另起互不相干的课程作业集。",
-            "先做阶段末任务，再补真正失败的课程单元。实验阶段保留校准、不确定度、额定值和失败记录；仿真、公开数据与实测分别标注。",
-            "综合设计只接两个确实共享接口的方向，并在开工前写出接口量、单位、更新率、允许误差和停机条件。"
-          ],
-          "items_en": [
-            "Keep one object through every stage, such as a second-order RLC network or a motor-converter pair. Derivations, code, field models, and experiments should update the same parameters instead of becoming unrelated course exercise sets.",
-            "Attempt the end-of-stage task first and study only the units that failed. During laboratory work, retain calibration, uncertainty, ratings, and failed runs, labeling simulation, public data, and measurement separately.",
-            "Join exactly two final areas that share a real interface, and define its quantities, units, update rate, allowed error, and shutdown conditions before implementation."
-          ]
-        },
-        {
-          "id": "defer-specialization",
-          "title_zh": "把方向课推迟到基础会反驳你",
-          "title_en": "Defer specialization until the core can challenge it",
-          "style": "list",
-          "items_zh": [
-            "能在新参数上独立通过阶段任务的课程直接跳过；同一缺口不要同时修两门替代课。",
-            "器材、许可证或校内 starter 不可得时，跳过对应实体复现，改用边界清楚的仿真或公开数据，不把缺口藏在“等以后补”。"
-          ],
-          "items_en": [
-            "Skip any course whose stage task you can already pass on new parameters, and do not take two alternatives for the same gap.",
-            "When equipment, a license, or an institutional starter is unavailable, skip the physical reproduction and use a bounded simulation or public dataset instead of hiding the gap behind a future promise."
-          ]
-        },
-        {
-          "id": "the-undergraduate-exit",
-          "title_zh": "本科广度要用跨层产物验收",
-          "title_en": "Use a cross-layer artifact for the undergraduate exit",
-          "style": "list",
-          "items_zh": [
-            "五个阶段各有一份可复核产物，前一阶段的参数和失败能追到后一阶段，综合设计的两个接口场景均按预先写下的允许误差通过。",
-            "若目标只是补某一方向，完成相应阶段即可转入专门路线；不必为了“本科完整感”继续堆课，也不得把路线完成写成学位或认证。"
-          ],
-          "items_en": [
-            "Each of the five stages has a reviewable artifact, parameters and failures trace forward, and both interface scenarios in the final design pass the tolerances written before testing.",
-            "If the goal is one specialization, move to its focused route after the relevant stage. Do not add courses for a feeling of undergraduate completeness, and never present route completion as a degree or credential."
-          ]
+          "exit_zh": "把信号处理主干与所选两个专项整合为一份综合设计评审，分别定义不少于 2 个子系统指标，并用仿真、测量或公开数据验证；最终报告须包含接口风险与一次失败迭代。",
+          "exit_en": "Integrate the signal-processing spine with two selected concentrations in one design review, defining at least two subsystem metrics per concentration and validating them with simulation, measurement, or public data; the final report must include interface risks and one failed iteration."
         }
       ]
     },
     {
       "id": "embedded-maker",
-      "title_zh": "嵌入式、实时系统与板级设计",
-      "title_en": "Embedded, Real-Time, and Board-Level Systems",
-      "audience_zh": "想从数字逻辑和 C 一直做到 MCU、实时任务、PCB 与可演示设备的人",
-      "audience_en": "Learners who want to move from digital logic and C through MCUs, real-time tasks, PCB design, and a working device",
-      "outcome_zh": "做出一台低压嵌入式设备：它能采集传感器、按时完成控制与通信任务，拥有自制 PCB、可重跑测试、故障恢复和现场演示记录。",
-      "outcome_en": "Build a low-voltage embedded device that reads sensors, meets its control and communication timing, and includes a custom PCB, repeatable tests, fault recovery, and a recorded demonstration.",
+      "title_zh": "嵌入式与智能硬件",
+      "title_en": "Embedded Systems and Intelligent Hardware",
+      "audience_zh": "希望从数字逻辑走到 MCU、实时系统、PCB 和完整硬件作品的学习者",
+      "audience_en": "Learners moving from digital logic to MCUs, real-time systems, PCBs, and complete hardware builds",
+      "outcome_zh": "完成一个含传感、实时控制、通信、原理图/PCB、测试记录和演示视频的嵌入式系统。",
+      "outcome_en": "Build an embedded system with sensing, real-time control, communications, schematic/PCB artifacts, test records, and a demo.",
       "stages": [
         {
-          "name_zh": "外设从模型到时序",
-          "name_en": "A peripheral from model to timing",
-          "course_ids": [
-            15,
-            16,
-            21,
-            37,
-            38
-          ],
-          "required_course_ids": [
-            15,
-            16,
-            21,
-            37
-          ],
+          "name_zh": "底层基础",
+          "name_en": "Low-level foundations",
+          "course_ids": [15, 16, 21, 37, 38],
+          "required_course_ids": [15, 16, 21, 37],
           "elective_count": 0,
-          "selection_zh": "围绕一个外设驱动学习：Python 写参考模型和测试，C 写固件，6.002 说明引脚外侧的电气限制，6.004 说明寄存器与数字时序。若 HDL、时序图或处理器数据通路仍不熟，再查 DDCA 对应章节；不必为了“读完一本书”重复已经掌握的部分。",
-          "selection_en": "Organize the work around one peripheral driver. Use Python for the reference model and tests, C for firmware, 6.002 for the electrical limits outside the pins, and 6.004 for registers and digital timing. Consult the relevant DDCA chapters only if HDL, timing diagrams, or processor datapaths are still unfamiliar; there is no need to reread settled material merely to finish the book.",
-          "exit_zh": "用 C 写出驱动和寄存器级外设模型，并在主机端保留参考实现。测试覆盖每个寄存器字段、边界值、无效状态与恢复路径，随机测试保存种子和覆盖率。逻辑分析仪记录或时序仿真还要证明建立、保持时间满足数据手册。",
-          "exit_en": "Write the C driver and a register-level peripheral model, retaining a host-side reference implementation. Tests must cover every register field, boundary value, invalid state, and recovery path, with random seeds and coverage saved. Logic-analyzer traces or timing simulation must also show setup and hold margins that meet the datasheet."
+          "exit_zh": "用 C 实现一个带寄存器级外设模型的驱动，并建立主机端参考模型；至少 200 个边界与随机测试全部通过，逻辑分析仪或时序仿真证明建立/保持裕量满足数据手册。",
+          "exit_en": "Implement a C driver against a register-level peripheral model and build a host-side reference model; at least 200 boundary and randomized tests must pass, while logic-analyzer traces or timing simulation demonstrate datasheet-compliant setup and hold margins."
         },
         {
-          "name_zh": "裸机、RTOS 与时间",
-          "name_en": "Bare metal, RTOS, and time",
-          "course_ids": [
-            58,
-            59,
-            63,
-            64
-          ],
-          "required_course_ids": [
-            58
-          ],
-          "elective_course_ids": [
-            59,
-            63
-          ],
+          "name_zh": "裸机与实时",
+          "name_en": "Bare metal and real time",
+          "course_ids": [58, 59, 63, 64],
+          "required_course_ids": [58],
+          "elective_course_ids": [59, 63],
           "elective_count": 1,
-          "selection_zh": "CS 107E 用来理解裸机启动和外设，把刚写好的驱动、参考模型与随机测试直接放进固件。开始前先确认 Mango Pi、启动链和公开 starter 是否还能取得。偏向 MSPM0 外设练习时选 EE 319K；只有确有 Raspberry Pi、Linux 与 Coursera 实验权限，并且目标是调度分析时才选 RTES 1，完成后再考虑 RTES 2。没有板卡可以模拟外设，但必须列出尚未验证的电气和中断时序。",
-          "selection_en": "CS 107E is the route into bare-metal boot and peripherals; move the driver, reference model, and randomized tests directly into its firmware work. First confirm that the Mango Pi, boot chain, and public starter are still obtainable. Choose EE 319K for MSPM0 peripheral practice; choose RTES 1 only with Raspberry Pi, Linux, and Coursera lab access when scheduling is the goal, and consider RTES 2 afterward. A missing board can be modeled, but electrical behavior and interrupt timing remain explicitly unverified.",
-          "exit_zh": "做出带中断、周期任务和故障恢复的裸机或 RTOS 原型。先规定观察时长和测试负载，再报告周期数、抖动分布、观测到的最大执行时间与 CPU 占用；有限测量不能写成 WCET 证明。每次 deadline miss 都要由检测器记录并与预算对照。",
-          "exit_en": "Build a bare-metal or RTOS prototype with interrupts, periodic tasks, and fault recovery. Define the observation duration and load first, then report cycle count, jitter distribution, observed maximum execution time, and CPU utilization; finite measurements are not a WCET proof. A detector must record every deadline miss against the stated budget."
+          "exit_zh": "实现含中断、定时任务与故障恢复的裸机或 RTOS 原型，报告最坏执行时间、CPU 占用与 1000 个周期的抖动分布；所有截止期满足预先声明的预算。",
+          "exit_en": "Build a bare-metal or RTOS prototype with interrupts, periodic tasks, and fault recovery, reporting worst-case execution time, CPU utilization, and jitter over 1,000 periods; every deadline must satisfy the predeclared budget."
         },
         {
-          "name_zh": "把它做成一台设备",
-          "name_en": "Turn it into a device",
-          "course_ids": [
-            55,
-            57,
-            65,
-            66
-          ],
-          "required_course_ids": [
-            55,
-            57
-          ],
-          "elective_count": 0,
-          "selection_zh": "固件、timing trace、deadline detector 和故障恢复钩子都继续用于同一台设备。PCB workshop 帮你把设计送到可制造状态，ECE 4760/5730 用来完成系统集成。RTES 3 只在 Coursera 内容和指定硬件都可用时补任务关键系统与 FMEA，RTES 4 留作后续扩展。先确认低压板卡、调试器、仪器、器件和预算；缺少实体条件就停在 pre-board。",
-          "selection_en": "Keep the firmware, timing trace, deadline detector, and recovery hooks in the same device. Use the PCB workshop to make it manufacturable and ECE 4760/5730 to complete system integration. Add RTES 3 for mission-critical design and FMEA only when its Coursera material and specified hardware are available; leave RTES 4 for later. Confirm the low-voltage board, debugger, instruments, parts, and budget before committing, or stop at pre-board.",
-          "exit_zh": "设备应包含传感、通信、自制 PCB 和固件更新路径，并记录额定值、功耗预算、看门狗或安全状态、热与过流停机条件及故障注入。测试逐项覆盖需求、接口、故障状态和更新回滚；最后在有人监看下运行预先规定的演示，包含冷启动、稳态、最慢周期任务、回滚与每类已声明故障，并记录实际时长。这只能说明原型在这些场景中的表现，不是可靠性认证。",
-          "exit_en": "The device must include sensing, communications, a custom PCB, and a firmware-update path, with ratings, power budget, watchdog or safe state, thermal and overcurrent stops, and fault injections recorded. Tests cover each requirement, interface, fault state, and rollback. Finish with a supervised, predeclared run covering cold start, steady state, the slowest periodic task, rollback, and every declared fault class, recording its actual duration. The run describes prototype behavior in those scenarios; it is not reliability qualification."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "datasheet-before-board",
-          "title_zh": "先读数据手册，再选板子",
-          "title_en": "Read the datasheet before choosing a board",
-          "style": "prose",
-          "items_zh": [
-            "先选一个低压外设和一个失败模式，例如 I²C 温度传感器断线。用数据手册写出电压、地址、更新率、超时和恢复动作；若这五项还不清楚，先不要选 RTOS 或画 PCB。"
-          ],
-          "items_en": [
-            "Choose one low-voltage peripheral and one failure mode, such as an I²C temperature sensor disconnect. From the datasheet, write its voltage, address, update rate, timeout, and recovery action. Do not choose an RTOS or draw a PCB until those five are clear."
-          ]
-        },
-        {
-          "id": "close-the-peripheral-loop",
-          "title_zh": "围绕一个外设闭环",
-          "title_en": "Close the loop around one peripheral",
-          "style": "list",
-          "items_zh": [
-            "先用 Python 生成寄存器与边界输入的黄金向量，再用 C 写最小驱动；逻辑分析 trace 必须能对应数据手册中的启动、读写、超时与错误恢复。",
-            "裸机、MSPM0 或 Raspberry Pi 路线只选一个可取得的平台。测量最坏响应时间和 deadline miss，而不是用“看起来实时”代替时序证据。",
-            "只有板卡、调试器、低压限流电源、仪器、器件和预算都落实后才画自制板；否则保留可复现的外设模型、固件测试和 pre-board 接口。",
-            "已有 HDL、寄存器和 C 内存模型基础时跳过对应 DDCA 与入门编程章节；不要为同一个外设同时换三块开发板。"
-          ],
-          "items_en": [
-            "Generate golden register and boundary-input vectors in Python before writing the smallest C driver. A logic-analyzer trace must map to the datasheet's startup, read/write, timeout, and recovery behavior.",
-            "Choose one obtainable platform: bare-metal, MSPM0, or Raspberry Pi. Measure worst-case response time and deadline misses instead of calling behavior real-time because it looks responsive.",
-            "Draw a custom board only after the target, debugger, low-voltage current-limited supply, instruments, parts, and budget are real. Otherwise retain the reproducible peripheral model, firmware tests, and pre-board interface.",
-            "Skip DDCA or introductory programming sections already covered by secure HDL, register, and C memory skills; do not move the same peripheral across three boards."
-          ]
-        },
-        {
-          "id": "pre-board-or-device",
-          "title_zh": "明确停在 pre-board，或把它做成设备",
-          "title_en": "Stop explicitly at pre-board, or make it a device",
-          "style": "list",
-          "items_zh": [
-            "只做轮询设备时先跳过高级 RTOS 理论和任务关键分支；只有测到调度或恢复问题后再补。",
-            "无板卡时，黄金模型、固件测试、时序假设和未验证电气项全部写清，可在 pre-board 处诚实停止。",
-            "有实体条件时，设备在标称、边界、断线和复位场景下连续通过，逻辑 trace、deadline 统计、BOM 与演示记录能由同一版本复现。"
-          ],
-          "items_en": [
-            "For a polling-only device, skip advanced RTOS theory and mission-critical branches until measured scheduling or recovery behavior requires them.",
-            "Without a board, stop honestly at pre-board once the golden model, firmware tests, timing assumptions, and unverified electrical behavior are explicit.",
-            "With hardware, stop when nominal, boundary, disconnect, and reset scenarios pass repeatedly and the logic trace, deadline statistics, BOM, and demonstration all reproduce from one version."
-          ]
+          "name_zh": "系统项目",
+          "name_en": "System projects",
+          "course_ids": [55, 57, 65, 66],
+          "required_course_ids": [55, 57],
+          "elective_course_ids": [65],
+          "elective_count": 1,
+          "exit_zh": "完成含传感、通信、自制 PCB 与固件更新路径的智能硬件，给出功耗预算和失效注入记录；不少于 20 个自动化系统测试通过，并提供连续 30 分钟运行日志。",
+          "exit_en": "Complete an intelligent device with sensing, communications, a custom PCB, and a firmware-update path, including a power budget and fault-injection record; at least twenty automated system tests must pass with a continuous 30-minute run log."
         }
       ]
     },
@@ -419,145 +139,38 @@
       "id": "digital-fpga-architecture",
       "title_zh": "数字系统、FPGA 与体系结构",
       "title_en": "Digital Systems, FPGA, and Architecture",
-      "audience_zh": "想从逻辑门和 RTL 走到 FPGA、流水线处理器、加速器与 SoC 的硬件学习者",
-      "audience_en": "Hardware learners moving from gates and RTL to FPGAs, pipelined processors, accelerators, and SoCs",
-      "outcome_zh": "实现一个流水线处理器或自定义加速器，用参考模型和回归测试验证，并让软件在 FPGA 或固定器件的可复现仿真中运行。",
-      "outcome_en": "Implement a pipelined processor or custom accelerator, verify it against a reference model and regression suite, and run software on an FPGA or a reproducible simulation for a fixed device.",
+      "audience_zh": "希望理解从 RTL 到处理器和 SoC 的硬件学习者",
+      "audience_en": "Hardware learners who want the full path from RTL to processors and SoCs",
+      "outcome_zh": "实现并验证一个流水线处理器或自定义加速器，并在 FPGA 或可复现仿真环境中运行软件。",
+      "outcome_en": "Implement and verify a pipelined processor or custom accelerator and run software on an FPGA or reproducible simulator.",
       "stages": [
         {
-          "name_zh": "从逻辑门到可运行计算机",
-          "name_en": "From gates to a working computer",
-          "course_ids": [
-            37,
-            39,
-            40
-          ],
-          "required_course_ids": [
-            37
-          ],
-          "path_options": [
-            {
-              "id": "hardware-computer",
-              "label_zh": "Nand2Tetris I 硬件计算机",
-              "label_en": "Nand2Tetris I hardware computer",
-              "course_ids": [
-                39
-              ],
-              "stop_when_zh": "HDL 芯片、CPU、内存与 Hack 计算机分别通过对应测试，最终系统能运行目标机器代码；这份产物可以接入后面的 RTL/FPGA 阶段。",
-              "stop_when_en": "The HDL chips, CPU, memory, and Hack computer pass their respective tests and the final system runs the target machine code. This artifact can feed the later RTL/FPGA stage."
-            },
-            {
-              "id": "software-stack",
-              "label_zh": "Nand2Tetris II 软件工具链",
-              "label_en": "Nand2Tetris II software toolchain",
-              "course_ids": [
-                40
-              ],
-              "stop_when_zh": "assembler、VM translator、Jack compiler 与所做 OS 模块通过各自测试；这里只验收软件栈，不声称实现了门电路、RTL 或 FPGA。",
-              "stop_when_en": "The assembler, VM translator, Jack compiler, and implemented OS modules pass their own tests. This accepts a software stack only and makes no gate-level, RTL, or FPGA claim."
-            }
-          ],
-          "elective_count": 0,
-          "selection_zh": "6.004 负责数字抽象和处理器边界。第一次从门电路搭整机就选 Nand2Tetris I；若已有等价数据通路，目标转向 assembler、VM 和 compiler，才选 Part II。两条路只走一条，不必各看一点。Nand2Tetris 的实现按官方要求保持私有，公开作品集可以展示测试方法，但不能公开答案代码。",
-          "selection_en": "Let 6.004 establish the digital abstractions and processor boundary. Choose Nand2Tetris I when building a computer from gates for the first time; choose Part II only when an equivalent datapath is already secure and the goal has shifted to the assembler, VM, and compiler. Follow one path rather than sampling both. Keep implementation repositories private as the provider requests; a public portfolio may explain tests but must not publish solution code.",
-          "exit_zh": "按所选分支使用上面的独立停止条件。只有硬件分支或另行完成的等价 RTL 能直接进入 FPGA；软件分支可以在这里结束，或先补硬件产物再继续。",
-          "exit_en": "Use the separate stop condition attached to the chosen branch. Only the hardware branch or a separately completed equivalent RTL artifact proceeds directly to FPGA; the software branch may end here or add hardware before continuing."
-        },
-        {
-          "name_zh": "RTL 在 FPGA 上站稳",
-          "name_en": "RTL on an FPGA",
-          "course_ids": [
-            42,
-            43,
-            44,
-            45
-          ],
-          "required_course_ids": [
-            42
-          ],
+          "name_zh": "逻辑到计算机",
+          "name_en": "Logic to computer",
+          "course_ids": [37, 39, 40],
+          "required_course_ids": [37],
+          "elective_course_ids": [39, 40],
           "elective_count": 1,
-          "selection_zh": "以 6.111 的 FPGA 项目组织方式为参考，优先继续使用前面的 datapath、参考解释器和随机指令测试；换成别的 RTL 模块也保留同一个 self-checking harness。分支由实际条件决定：有 Illinois 环境选 ECE 385，想走 ASIC 综合选 EECS 151，想加强体系结构 RTL 选 EE 180。先核对板卡、EDA 许可和作业访问，缺哪一项就及时换路。",
-          "selection_en": "Treat the 6.111 FPGA project structure as the working frame and preferably keep the existing datapath, reference interpreter, and randomized instruction tests; a different RTL block should still use the same self-checking harness. Practical access determines the branch: ECE 385 with the Illinois environment, EECS 151 for ASIC synthesis, or EE 180 for architecture-centered RTL. Check the board, EDA license, and assignment access first, and switch paths when one is unavailable.",
-          "exit_zh": "含跨时钟域接口的 RTL 模块要完成自检仿真、lint、约束、综合和静态时序，目标时钟下最差裕量不得为负。有匹配板卡时再部署，并让板上输出逐项对齐黄金向量；没有板卡就标为 pre-board，给出固定器件型号的实现结果，不得虚构硬件运行。",
-          "exit_en": "An RTL module with a clock-domain crossing must pass self-checking simulation, lint, constraints, synthesis, and static timing with nonnegative worst slack at the target clock. Deploy only on a matching board and compare each board output with golden vectors. Without the board, label the work pre-board, report implementation for a fixed device part, and make no hardware claim."
+          "exit_zh": "从布尔逻辑实现带最小指令集的数据通路与控制器，并用参考解释器差分验证不少于 1000 条随机指令序列；最终波形中不得出现未解释的 X/Z 状态。",
+          "exit_en": "Build a datapath and controller with a minimal instruction set from Boolean logic, then differentially verify at least 1,000 randomized instruction sequences against a reference interpreter; final waveforms must contain no unexplained X or Z states."
         },
         {
-          "name_zh": "流水线、加速器与 SoC",
-          "name_en": "Pipelines, accelerators, and SoCs",
-          "course_ids": [
-            46,
-            47,
-            48,
-            52,
-            53
-          ],
-          "required_course_ids": [
-            46,
-            53
-          ],
+          "name_zh": "RTL 与板级实现",
+          "name_en": "RTL and board implementation",
+          "course_ids": [42, 43, 44, 45],
+          "required_course_ids": [42],
           "elective_count": 1,
-          "selection_zh": "ECE 4750 用来学习流水线与性能评测，6.5950 用来梳理资产、攻击入口和信任边界；直接从上一段的 RTL、约束、回归和软件 workload 继续。ECE 4750 的团队仓库、服务器和部分 starter 不公开，因此要为公开材料自建可重跑测试，不能声称通过 Cornell lab 或 autograder。最后按短板选 6.823、CS 61C，或只在 DE1-SoC 与 Quartus 可用时选 ECE 5760，不必三门都浅尝。",
-          "selection_en": "ECE 4750 covers pipelines and performance measurement; 6.5950 adds assets, attack surfaces, and trust boundaries. Continue directly from the existing RTL, constraints, regression, and software workload. The ECE 4750 team repository, server, and some starters are private, so build repeatable tests around the public material without claiming a Cornell lab or autograder result. Choose one remaining gap: 6.823, CS 61C, or ECE 5760 only with DE1-SoC and Quartus access.",
-          "exit_zh": "实现流水线处理器或自定义加速器，基准集要能分别暴露控制流、访存和计算瓶颈，输出与软件参考结果零差异。分别报告各类负载的吞吐量、面积和功耗估计，再按列出的资产、入口和信任边界说明威胁与缓解方法。",
-          "exit_en": "Implement a pipelined processor or custom accelerator with benchmarks that separately expose control-flow, memory, and compute bottlenecks, while matching software reference outputs exactly. Report throughput, area, and a power estimate for each workload class, then explain threats and mitigations against the stated assets, entry points, and trust boundaries."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "choose-hardware-or-software",
-          "title_zh": "先分清硬件出口和软件出口",
-          "title_en": "Separate the hardware and software exits",
-          "style": "prose",
-          "items_zh": [
-            "先判断出口是硬件还是软件。想从门电路得到 Hack 计算机，走 Nand2Tetris I；已有等价数据通路、只想做 assembler、VM 与 compiler，走 Part II。Part II 的软件栈不能当作 FPGA/RTL 已完成的证据。"
-          ],
-          "items_en": [
-            "Choose the exit before starting. Take Nand2Tetris I to build the Hack computer from gates. Take Part II only when an equivalent datapath already exists and the goal is the assembler, VM, and compiler. A Part II software stack is not evidence of completed FPGA or RTL work."
-          ]
+          "exit_zh": "将一个含跨时钟域接口的 RTL 模块部署到 FPGA，完成 lint、约束与静态时序检查；目标时钟下最差裕量非负，板上输出与仿真黄金向量逐项一致。",
+          "exit_en": "Deploy an RTL module with a clock-domain crossing to an FPGA and complete lint, constraint, and static-timing checks; worst slack at the target clock must be nonnegative and board outputs must match simulation golden vectors item by item."
         },
         {
-          "id": "finish-one-nand2tetris-branch",
-          "title_zh": "Nand2Tetris 只走完一条分支",
-          "title_en": "Finish exactly one Nand2Tetris branch",
-          "style": "list",
-          "items_zh": [
-            "两条 Nand2Tetris 分支只走一条，并使用各自的测试：硬件分支验证芯片、CPU、内存和整机；软件分支验证 assembler、VM translator、Jack compiler 与 OS 模块。",
-            "不要同时浅尝 Nand2Tetris I 与 II，也不要公开提供方要求保持私有的答案代码；作品集可以解释测试方法和结果。"
-          ],
-          "items_en": [
-            "Take exactly one Nand2Tetris branch and use its own tests: chips, CPU, memory, and the complete computer for the hardware branch; assembler, VM translator, Jack compiler, and OS modules for the software branch.",
-            "Do not sample both Nand2Tetris I and II, and do not publish solution code the provider asks learners to keep private. A portfolio may explain tests and results."
-          ]
-        },
-        {
-          "id": "earn-the-fpga-claim",
-          "title_zh": "用 RTL、约束和回归赢得 FPGA 声明",
-          "title_en": "Earn the FPGA claim with RTL, constraints, and regression",
-          "style": "list",
-          "items_zh": [
-            "进入 FPGA 阶段前必须有可综合 RTL、self-checking testbench、固定器件与时序约束。只有 Part II 产物时，先补一个独立 RTL 模块，不能把 compiler 测试移作硬件验收。",
-            "体系结构阶段沿用同一参考解释器和 workload，分别报告控制流、访存与计算瓶颈；板卡不可得时保留固定器件的综合与静态时序结果。",
-            "没有目标板、EDA 许可证或完整 starter 时，跳过依赖该环境的分支；不要用课程概览或截图代替综合、时序和回归。"
-          ],
-          "items_en": [
-            "Before the FPGA stage, have synthesizable RTL, a self-checking testbench, a fixed device part, and timing constraints. If you have only Part II artifacts, first build an independent RTL module; compiler tests cannot be repurposed as hardware acceptance.",
-            "Carry one reference interpreter and workload into the architecture stage, reporting control-flow, memory, and compute bottlenecks separately. Without the board, retain synthesis and static-timing results for a named device.",
-            "Skip branches whose target board, EDA license, or complete starter is unavailable; a course overview or screenshot does not replace synthesis, timing, and regression."
-          ]
-        },
-        {
-          "id": "two-honest-endpoints",
-          "title_zh": "软件栈和硬件主线各有自己的终点",
-          "title_en": "Keep separate endpoints for software and hardware",
-          "style": "list",
-          "items_zh": [
-            "Part II 分支在软件工具链通过其官方测试时可以单独结束，但只能称为软件栈完成；要继续 FPGA，仍需另有可综合 RTL 与硬件测试。",
-            "硬件主线在参考输出零失配、无未解释 X/Z、固定器件时序收敛且性能数据可重跑时结束；有板才增加实机声明。"
-          ],
-          "items_en": [
-            "The Part II branch may stop when the software toolchain passes its provider tests, but the result is a completed software stack only. Continuing to FPGA still requires separate synthesizable RTL and hardware tests.",
-            "The hardware route ends when reference outputs match exactly, no X or Z remains unexplained, timing closes for a fixed device, and performance results rerun. Add a board claim only after a real deployment."
-          ]
+          "name_zh": "架构与 SoC",
+          "name_en": "Architecture and SoC",
+          "course_ids": [46, 47, 48, 52, 53],
+          "required_course_ids": [46, 53],
+          "elective_count": 1,
+          "exit_zh": "实现流水线处理器或自定义加速器，运行至少 3 个基准并与软件参考结果零差异；报告吞吐量、面积和功耗代理值，并针对资产与信任边界完成一次威胁检查。",
+          "exit_en": "Implement a pipelined processor or custom accelerator, run at least three benchmarks with zero deviation from software reference outputs, report throughput, area, and a power proxy, and complete one threat review covering assets and trust boundaries."
         }
       ]
     },
@@ -565,99 +178,38 @@
       "id": "analog-ic",
       "title_zh": "模拟、混合信号与集成电路",
       "title_en": "Analog, Mixed-Signal, and Integrated Circuits",
-      "audience_zh": "想从器件曲线和小信号电路走到晶体管级设计、角落仿真与版图的人",
-      "audience_en": "Learners moving from device curves and small-signal circuits to transistor-level design, corner simulation, and layout",
-      "outcome_zh": "以 Berkeley EE 140/240A 的公开题目和实验说明为模拟 IC 主线，完成规格、偏置、噪声以及模型确实支持的 PVT/负载角落。默认出口是 schematic-level；只有独立核实开放 EDA、合法教育 PDK、DRC/LVS 和提取模型后，才追加独立版图研习，不承诺复现 Berkeley 的校内 Cadence 流程或完整 PEX。",
-      "outcome_en": "Use the public Berkeley EE 140/240A problems and lab specifications as the analog-IC spine, completing specifications, bias, noise, and only the PVT/load corners supported by the available models. The default exit is schematic-level. Add an independent layout study only after validating open EDA, a lawfully usable educational PDK, DRC/LVS, and extraction models; this route does not promise to reproduce Berkeley's campus Cadence flow or complete PEX.",
+      "audience_zh": "希望从电路和器件进入晶体管级设计、仿真与版图的学习者",
+      "audience_en": "Learners progressing from circuits and devices to transistor-level design, simulation, and layout",
+      "outcome_zh": "完成一个带规格、角落仿真、噪声/功耗权衡和版图检查的模拟或混合信号设计。",
+      "outcome_en": "Complete an analog or mixed-signal design with specifications, corner simulation, noise/power tradeoffs, and layout checks.",
       "stages": [
         {
-          "name_zh": "从器件曲线到偏置",
-          "name_en": "From device curves to bias",
-          "course_ids": [
-            21,
-            29,
-            31,
-            30,
-            124
-          ],
-          "required_course_ids": [
-            21,
-            29,
-            31
-          ],
+          "name_zh": "电路与器件",
+          "name_en": "Circuits and devices",
+          "course_ids": [21, 29, 30, 31, 124],
+          "required_course_ids": [21, 29, 124],
+          "elective_count": 1,
+          "exit_zh": "从公开或仿真 I–V/C–V 曲线提取 MOS 器件参数，并用同一模型预测一个偏置电路的 DC、AC 与瞬态响应；留出数据上的归一化均方根误差低于 10%。",
+          "exit_en": "Extract MOS-device parameters from public or simulated I–V/C–V curves and use the same model to predict a bias circuit's DC, AC, and transient responses; normalized RMSE on held-out data must stay below 10%."
+        },
+        {
+          "name_zh": "模拟设计",
+          "name_en": "Analog design",
+          "course_ids": [26, 32, 34, 35, 36],
+          "required_course_ids": [26],
+          "elective_course_ids": [32, 34, 35],
+          "elective_count": 2,
+          "exit_zh": "设计运算放大器或低噪声前端，逐项验证增益、带宽、相位裕量、噪声、摆率和功耗规格；PVT 与负载角落均通过，未通过项必须形成可复现的权衡记录。",
+          "exit_en": "Design an op-amp or low-noise front end and verify gain, bandwidth, phase margin, noise, slew rate, and power specifications individually; all PVT and load corners must pass, or any miss must be captured as a reproducible tradeoff."
+        },
+        {
+          "name_zh": "集成实现",
+          "name_en": "Integrated implementation",
+          "course_ids": [50, 51, 126],
+          "required_course_ids": [50, 126],
           "elective_count": 0,
-          "selection_zh": "6.002 负责电路，ECE 3150 负责小信号器件。EE 140/240A 明确以 EE 105 为先修，因此 EE 105 是这条路线的必经桥梁；已有等价能力可以用一组无提示的 MOS 偏置、小信号、频率响应与反馈诊断题替代整门重修，但不能跳过能力验收。6.012 与 ECE 4070 只补器件推导或半导体物理缺口。",
-          "selection_en": "6.002 supplies circuit analysis and ECE 3150 supplies small-signal device work. EE 140/240A explicitly names EE 105 as its prerequisite, so EE 105 is the required bridge in this route. Existing equivalent competence may replace retaking the entire course only after an unaided diagnostic covering MOS bias, small-signal behavior, frequency response, and feedback; it cannot remove the capability check. Use 6.012 or ECE 4070 only for remaining device-derivation or semiconductor-physics gaps.",
-          "exit_zh": "从公开或仿真的 I–V/C–V 曲线提取 MOS 参数，再用同一模型预测偏置电路的 DC、AC 和瞬态响应。拟合前依据数据分辨率、噪声或求解器误差写出允许误差，最后在留出数据上报告归一化 RMSE，并标出模型失效的偏置区间。",
-          "exit_en": "Extract MOS parameters from public or simulated I–V/C–V curves, then use that same model to predict a bias circuit's DC, AC, and transient behavior. Before fitting, state the allowed error from data resolution, noise, or solver accuracy. Report normalized RMSE on held-out data and mark the bias regions where the model fails."
-        },
-        {
-          "name_zh": "EE 140/240A 主线与诚实的版图上限",
-          "name_en": "EE 140/240A spine and an honest layout ceiling",
-          "course_ids": [
-            141,
-            34,
-            35,
-            36,
-            126,
-            26
-          ],
-          "required_course_ids": [
-            141
-          ],
-          "elective_count": 0,
-          "selection_zh": "EE 140/240A 的 Spring 2025 公开作业、部分解答、考试和 Lab 1 构成主线；Labs 2–8 与 project 的 Cadence/Virtuoso、Berkeley 服务器和 SKY130 环境并未形成已验证的校外复现包。NPTEL 材料用于补讲解，6.152J 只补工艺语境，6.101 只在确有低压台面条件时补离散模拟调试。版图属于另行验证工具后的独立研习，不是这些材料自动提供的课程实验。",
-          "selection_en": "The Spring 2025 EE 140/240A homework, partial solutions, exams, and Lab 1 form the spine. Labs 2–8 and the project depend on Cadence/Virtuoso, Berkeley servers, and a SKY130 environment that has not been validated as an off-campus reproduction package. Use NPTEL material for explanation, 6.152J only for process context, and 6.101 only with a real low-voltage bench. Layout is an independently validated study, not a course lab these public materials automatically provide.",
-          "exit_zh": "先交付 schematic-level 设计：增益、带宽、相位裕量、噪声、摆率、功耗与模型支持的 PVT/负载角落可重跑，未达标项保留。若另做版图，注明工具、教育 PDK 和 rule deck，DRC/LVS 清零；只有实际存在提取规则与模型时才报告 PEX，且不称为流片签核。",
-          "exit_en": "First deliver a schematic-level design with repeatable gain, bandwidth, phase margin, noise, slew rate, power, and supported PVT/load corners, retaining every miss. If an independent layout is added, name the tool, educational PDK, and rule deck and obtain clean DRC/LVS. Report PEX only when extraction rules and models actually exist, and never call the result tapeout signoff."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "ee105-check-before-pdk",
-          "title_zh": "装 PDK 前先过 EE 105 能力检查",
-          "title_en": "Pass the EE 105 capability check before installing a PDK",
-          "style": "prose",
-          "items_zh": [
-            "先做 EE 105/6.012 层级的 MOS 偏置与小信号题，再打开 EE 140/240A Spring 2025 的 HW1 和公开 Lab 1。若 gm、ro、极点和反馈还不能独立算，先补器件桥梁；不要先装 PDK。",
-            "先以 EE 105、6.002 和 ECE 3150 连接器件曲线、偏置与小信号；6.012 或 ECE 4070 只补缺失的器件物理，不重复修概论。"
-          ],
-          "items_en": [
-            "Attempt an EE 105/6.012-level MOS bias and small-signal problem, then open Spring 2025 EE 140/240A HW1 and the public Lab 1. If gm, ro, poles, and feedback are not yet independent skills, repair the device bridge before installing a PDK.",
-            "Use EE 105, 6.002, and ECE 3150 to connect device curves, bias, and small-signal analysis. Read 6.012 or ECE 4070 only for a missing device-physics topic rather than repeating another survey."
-          ]
-        },
-        {
-          "id": "schematic-spine-first",
-          "title_zh": "先把 schematic 主线做实",
-          "title_en": "Make the schematic spine real first",
-          "style": "list",
-          "items_zh": [
-            "以 EE 140/240A 为晶体管级主线：按公开作业做偏置、增益、频率响应、反馈、噪声和输出摆幅，并用 Lab 1 的 LTspice 范围建立可在校外复现的基线。",
-            "若另行验证开放工具与教育 PDK，再把一个已冻结的 schematic 做 DRC/LVS；只有提取规则和模型真实可用时才比较寄生前后，所有结论限定在所声明的 PDK 与工具版本。"
-          ],
-          "items_en": [
-            "Use EE 140/240A as the transistor-level spine: work through the public material on bias, gain, frequency response, feedback, noise, and output swing, establishing an off-campus baseline with the LTspice scope of Lab 1.",
-            "If an open toolchain and educational PDK are independently validated, take one frozen schematic through DRC/LVS. Compare pre- and post-parasitic behavior only when extraction rules and models actually exist, and scope every conclusion to the named PDK and tool versions."
-          ]
-        },
-        {
-          "id": "layout-is-a-separate-claim",
-          "title_zh": "版图是另一层证据，不是默认赠品",
-          "title_en": "Layout is a separate claim, not a default bonus",
-          "style": "list",
-          "items_zh": [
-            "模拟 IC 路线不再借用 MIT 6.374 或 Cornell ECE 4740 的数字 IC/VLSI 实验作为终点；它们属于数字版图路线。",
-            "没有 Berkeley 服务器权限时跳过 Labs 2–8 和课程 project 的“原样复现”声明；没有可验证提取模型时也跳过 PEX 数字，而不是填一个占位结果。",
-            "默认在 schematic-level 停止：规格表、偏置、AC/瞬态/噪声以及实际模型覆盖的 PVT/负载扫描可重跑，失败角落和取舍没有被删掉。",
-            "独立版图分支只有在 DRC/LVS 对所声明规则为零错误时才算完成；PEX 是可选的下一层，不是无公开提取证据时必须假装达到的门槛。"
-          ],
-          "items_en": [
-            "Do not end the analog route with MIT 6.374 or Cornell ECE 4740 digital-IC/VLSI labs; those belong to the digital-layout route.",
-            "Without Berkeley server access, skip any claim of reproducing Labs 2–8 or the course project. Without a validated extraction model, omit PEX numbers instead of filling in a placeholder result.",
-            "The default stop is schematic-level: the specification table, bias, AC/transient/noise analysis, and supported PVT/load sweeps rerun, with failed corners and tradeoffs retained.",
-            "The independent layout branch ends only when DRC/LVS are clean under the stated rules. PEX is an optional next layer, not a gate to pretend to meet when public extraction evidence is absent."
-          ]
+          "exit_zh": "提交带工艺假设的版图与签核包，DRC 和 LVS 零错误，并比较前后仿真的关键指标；寄生导致的性能变化须量化，且每项超差都有版图层面的修正建议。",
+          "exit_en": "Submit a layout and signoff package with explicit process assumptions, zero DRC and LVS errors, and a pre- versus post-layout comparison of key metrics; parasitic-driven changes must be quantified and every specification miss must have a layout-level remedy."
         }
       ]
     },
@@ -665,191 +217,39 @@
       "id": "dsp-communications",
       "title_zh": "信号处理、通信与信息论",
       "title_en": "Signal Processing, Communications, and Information Theory",
-      "audience_zh": "想把傅里叶、随机过程与 DSP 真正接到数字通信、无线信道和纠错码上的学习者",
-      "audience_en": "Learners who want to connect Fourier analysis, random processes, and DSP to digital communications, wireless channels, and coding",
-      "outcome_zh": "实现一条可重跑的通信链路，包含同步、调制解调、信道编码和误码率测量，并能说明理论曲线与仿真偏差来自哪里。",
-      "outcome_en": "Implement a repeatable communication link with synchronization, modulation and demodulation, channel coding, and error-rate measurement, and explain where simulation departs from theory.",
+      "audience_zh": "希望从傅里叶分析走到数字通信、无线和纠错码的学习者",
+      "audience_en": "Learners moving from Fourier analysis to digital communications, wireless systems, and coding",
+      "outcome_zh": "实现一个含同步、调制解调、信道编码和误码率测量的可复现实验链路。",
+      "outcome_en": "Implement a reproducible link with synchronization, modulation/demodulation, channel coding, and measured error rates.",
       "stages": [
         {
-          "name_zh": "单变量微积分",
-          "name_en": "Single-variable calculus",
-          "course_ids": [
-            1
-          ],
-          "required_course_ids": [
-            1
-          ],
+          "name_zh": "信号与概率",
+          "name_en": "Signals and probability",
+          "course_ids": [4, 7, 83, 97, 98],
+          "required_course_ids": [4, 7, 83, 97],
           "elective_count": 0,
-          "selection_zh": "6.041SC 的正式准备从 18.01 开始。先用 18.01SC 的极限、微分、积分和级数题做闭卷诊断；只有这些运算能够稳定支撑概率密度归一化、期望积分和级数收敛时，才进入下一段。",
-          "selection_en": "The published preparation for 6.041SC begins with 18.01. Use closed-book 18.01SC problems on limits, derivatives, integrals, and series as the diagnostic, and continue only when those operations can support probability-density normalization, expectation integrals, and convergence arguments.",
-          "exit_zh": "独立完成一组改换参数的微积分题，并用解析积分与数值积分计算同一个归一化密度的概率和期望；数值误差随步长收敛，单位与定义域一致。",
-          "exit_en": "Solve a changed-parameter calculus set independently, then compute probability and expectation for one normalized density by both analytical and numerical integration. Numerical error must converge with step size, with consistent units and domains."
+          "exit_zh": "在同一笔记本中解析并数值验证一个 LTI 系统的时域、频域和随机响应；Parseval 能量残差低于 1%，蒙特卡洛均值落入解析 95% 置信区间。",
+          "exit_en": "Analytically derive and numerically verify the time-domain, frequency-domain, and stochastic responses of one LTI system in a single notebook; Parseval energy residual must be below 1%, and the Monte Carlo mean must fall within the analytical 95% confidence interval."
         },
         {
-          "name_zh": "多变量、微分方程与向量空间",
-          "name_en": "Multivariable calculus, differential equations, and vector spaces",
-          "course_ids": [
-            2,
-            3,
-            4
-          ],
-          "required_course_ids": [
-            2,
-            3,
-            4
-          ],
-          "elective_count": 0,
-          "selection_zh": "18.02SC 补齐 6.041SC 正式列出的多重积分背景，18.03SC 负责线性常微分方程与特征结构，18.06SC 负责向量空间和投影。三门课都围绕同一个二阶 LTI 模型工作，不各做一套互不相干的例题。",
-          "selection_en": "18.02SC supplies the multiple-integral background published for 6.041SC, 18.03SC supplies linear ODEs and eigenstructure, and 18.06SC supplies vector spaces and projection. Keep all three attached to one second-order LTI model rather than completing unrelated exercise sets.",
-          "exit_zh": "从微分方程得到状态模型、特征值与解析响应，再用矩阵指数和数值积分复算。改变基底后，输入输出响应保持不变；残差随时间步长收敛。",
-          "exit_en": "Derive a state model, eigenvalues, and analytical response from the differential equation, then recompute with a matrix exponential and numerical integration. A basis change must preserve the input-output response, and residuals must converge with time step."
-        },
-        {
-          "name_zh": "把概率接到信号系统",
-          "name_en": "Connect probability to signals and systems",
-          "course_ids": [
-            7,
-            83,
-            97
-          ],
-          "required_course_ids": [
-            7,
-            83,
-            97
-          ],
-          "elective_count": 0,
-          "selection_zh": "6.041SC 处理随机变量与随机过程，6.003 连接时域、频域和系统表示，EE 261 只深入项目需要的 Fourier 内容。继续使用上一段的 LTI 模型，把确定性输入改为带固定种子的随机过程；6.003 与 EE 261 重叠的 Fourier 单元只保留一套主练习。",
-          "selection_en": "Use 6.041SC for random variables and processes, 6.003 for time-, frequency-, and system-domain representations, and EE 261 only for the Fourier depth needed by the project. Keep the preceding LTI model and replace its deterministic input with a seeded random process; retain one main exercise set for overlapping Fourier material.",
-          "exit_zh": "在同一个 notebook 中推导并数值验证系统的时域、频域和随机响应。保存随机种子与样本数，用预先选定的置信水平核对蒙特卡洛均值，并使 Parseval 残差低于由采样窗口和离散化给出的误差。",
-          "exit_en": "Derive and numerically verify the system's time-domain, frequency-domain, and stochastic responses in one notebook. Preserve the seed and sample count, compare Monte Carlo means at a confidence level chosen before the run, and drive the Parseval residual below an error derived from windowing and discretization."
-        },
-        {
-          "name_zh": "把 DSP 算法变成实现",
-          "name_en": "Turn DSP into an implementation",
-          "course_ids": [
-            88,
-            89,
-            90,
-            91,
-            92,
-            93
-          ],
-          "required_course_ids": [
-            88
-          ],
-          "elective_course_ids": [
-            90,
-            91,
-            92,
-            93
-          ],
+          "name_zh": "DSP 实现",
+          "name_en": "DSP implementation",
+          "course_ids": [88, 89, 90, 91, 92, 93],
+          "required_course_ids": [88],
+          "elective_course_ids": [89, 90, 91, 92, 93],
           "elective_count": 1,
-          "selection_zh": "以 RES.6-008 为主要 DSP 课程，继续使用前一段的随机 LTI 数据、采样定义和 golden output。计入完成要求的加深课从 EPFL DSP 1–4 中按算法、滤波、采样边界或应用短板选一门。6.341 明确建立在 6.011 上，只在后来走完 6.011→6.450 数字通信分支时作为额外理论材料，不计作本阶段选修。EPFL 模块打不开就只完成公开的 RES.6-008，不能把产品介绍页当成实验。",
-          "selection_en": "RES.6-008 is the main DSP course; keep the stochastic-LTI data, sampling definition, and golden output from the preceding work. The counted depth course is one relevant EPFL DSP 1–4 module chosen for an algorithm, filtering, sampling, or application gap. Because 6.341 explicitly builds on 6.011, use it only as uncounted theory after taking the later 6.011→6.450 digital-communications path. If an EPFL module is inaccessible, complete only public RES.6-008 rather than treating a product page as a lab.",
-          "exit_zh": "实现滤波或频谱处理流水线，用合成样本和一组真实数据检查通带、阻带与混叠。浮点和定点版本使用同一输入，报告信噪比、运行时间与内存占用，并提供一条命令重现比较。",
-          "exit_en": "Implement a filtering or spectral-processing pipeline and check passband, stopband, and aliasing with synthetic samples and one real dataset. Run floating- and fixed-point versions on the same inputs, report SNR, runtime, and memory use, and provide one command that reproduces the comparison."
+          "exit_zh": "实现一个滤波或频谱处理流水线，用合成与真实样本验证通带、阻带和混叠指标；同时报告浮点/定点信噪比、运行时间与内存占用的可重复对照。",
+          "exit_en": "Implement a filtering or spectral-processing pipeline and verify passband, stopband, and aliasing requirements with synthetic and real samples; also report reproducible floating-point versus fixed-point SNR, runtime, and memory comparisons."
         },
         {
-          "name_zh": "从比特到有噪链路",
-          "name_en": "Bits over a noisy link",
-          "course_ids": [
-            99,
-            102,
-            98,
-            100,
-            101,
-            105
-          ],
-          "required_course_ids": [
-            99,
-            102
-          ],
-          "path_options": [
-            {
-              "id": "digital-communications",
-              "label_zh": "数字通信完整前序（6.011→6.450）",
-              "label_en": "Digital communications with its prerequisite (6.011→6.450)",
-              "course_ids": [
-                98,
-                100
-              ],
-              "stop_when_zh": "先用 6.011 完成估计或检测基线，再进入 6.450 的调制、检测与误码率；两门使用同一个随机 LTI 模型和测试数据。6.451 只作为完成该路径后的未计数加深。",
-              "stop_when_en": "Use 6.011 for the estimation or detection baseline before entering 6.450 modulation, detection, and error rates, keeping one stochastic-LTI model and test dataset across both. Treat 6.451 as uncounted depth only after this path."
-            },
-            {
-              "id": "wireless-channels",
-              "label_zh": "无线信道路线（EE 359）",
-              "label_en": "Wireless-channel path (EE 359)",
-              "course_ids": [
-                105
-              ],
-              "stop_when_zh": "用 EE 359 的衰落与无线信道模型扩展 6.02 链路，保留前一阶段的滤波器、固定种子和误码率统计；不同时重复数字通信路径。",
-              "stop_when_en": "Extend the 6.02 link with EE 359 fading and wireless-channel models, retaining the previous filter, fixed seeds, and error-rate statistics without also repeating the digital-communications path."
-            }
-          ],
-          "elective_count": 0,
-          "selection_zh": "6.02 建立同步、编码和链路直觉，EE 276 给出信息论边界；前一段的滤波或定点模块继续充当发送端或接收端前端。随后二选一：数字通信必须把 6.011→6.450 作为完整有序路径，无线信道则选 EE 359。6.451 只有在完成数字通信路径并能解释检测器与误码曲线后才作为未计数加深；这个顺序是知识依赖，不是证书要求。",
-          "selection_en": "Start the link in 6.02 with synchronization, coding, and system intuition, while EE 276 sets the information-theoretic limits. Keep the preceding filter or fixed-point block as the transmitter or receiver front end. Then choose one complete path: 6.011→6.450 in that order for digital communications, or EE 359 for wireless channels. Use 6.451 only as uncounted depth after the digital path and after the detector and error-rate curve are understood; this is a knowledge dependency, not a certificate rule.",
-          "exit_zh": "搭建包含同步、调制、信道和纠错的端到端链路。固定随机种子，扫描同时覆盖低 SNR 失效区、瀑布区和目标工作区的 Eb/N0，并在转折附近加密取点。BER 图要同时给理论或基线、每点样本数和置信区间，另外单独统计同步失败率。",
-          "exit_en": "Build an end-to-end link with synchronization, modulation, channel, and error correction. With fixed seeds, sweep an Eb/N0 range spanning low-SNR failure, the waterfall, and the target operating region, with denser points near the transition. Plot theory or a baseline beside BER, include sample count and confidence interval at every point, and report synchronization failures separately."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "freeze-one-signal-chain",
-          "title_zh": "先冻结一条信号链",
-          "title_en": "Freeze one signal chain first",
-          "style": "prose",
-          "items_zh": [
-            "先用一个脚本生成正弦加白噪声，画时域、频谱并估计功率。若采样率、Parseval、期望与方差还不能同时解释，先停在 LTI 与概率；不要直接从调制名称开始背。"
-          ],
-          "items_en": [
-            "Begin with one script that generates a sinusoid plus white noise, plots time and spectrum, and estimates power. If sampling rate, Parseval, expectation, and variance cannot all be explained, remain with LTI systems and probability instead of memorizing modulation names."
-          ]
-        },
-        {
-          "id": "reuse-the-same-samples",
-          "title_zh": "解析、浮点、定点和链路共用样本",
-          "title_en": "Reuse the same samples across analysis, floating point, fixed point, and the link",
-          "style": "list",
-          "items_zh": [
-            "在同一组带种子的样本上完成解析 LTI、浮点 DSP 和定点实现，先写通带、阻带、混叠与量化噪声的允许范围。",
-            "通信链路只选 6.450 数字通信或 EE 359 无线信道之一作为主分支；发送端或接收端继续使用前面的滤波模块。",
-            "BER 扫描覆盖失效区、瀑布区与目标区，每点保留比特数和置信区间，并把同步失败与译码错误分开统计。",
-            "6.003 与 EE 261 的重复 Fourier 单元只留一套主练习；EPFL 模块打不开时跳过，不把产品介绍页当 notebook。"
-          ],
-          "items_en": [
-            "Use one seeded sample set for the analytic LTI model, floating-point DSP, and fixed-point implementation, stating passband, stopband, aliasing, and quantization-noise limits first.",
-            "Choose either 6.450 digital communications or EE 359 wireless channels as the main branch, and keep the preceding filter at the transmitter or receiver front end.",
-            "Sweep BER across failure, waterfall, and target regions, retaining bit count and confidence interval at every point and separating synchronization failures from decoding errors.",
-            "Keep one main exercise set for overlapping Fourier material in 6.003 and EE 261. Skip inaccessible EPFL modules rather than treating a product page as a notebook."
-          ]
-        },
-        {
-          "id": "leave-rf-hardware-out",
-          "title_zh": "先把射频硬件留在边界外",
-          "title_en": "Leave RF hardware outside the boundary for now",
-          "style": "list",
-          "items_zh": [
-            "没有先完成检测器与误码曲线时跳过 6.451；不同时做数字通信和无线两条完整路线。"
-          ],
-          "items_en": [
-            "Skip 6.451 until the detector and error-rate curve are secure, and do not complete both the digital-communications and wireless branches."
-          ]
-        },
-        {
-          "id": "stop-on-the-chosen-layer",
-          "title_zh": "在自己选定的层级收口",
-          "title_en": "Stop at the layer you actually chose",
-          "style": "list",
-          "items_zh": [
-            "一条命令能从固定配置重建波形、频谱、浮点/定点差异和 BER 图，理论偏差可追到有限样本、同步、量化或信道假设。",
-            "只做到 DSP 时可在第二阶段停止并明确边界；完成通信出口时，还需链路端到端复现与置信区间，不需要实体发射。"
-          ],
-          "items_en": [
-            "One command rebuilds waveforms, spectra, floating/fixed differences, and BER plots from a fixed configuration, and departures from theory trace to finite samples, synchronization, quantization, or channel assumptions.",
-            "A DSP-only learner may stop after the second stage with that boundary stated. The communications exit adds a reproducible end-to-end link and confidence intervals; no physical transmission is required."
-          ]
+          "name_zh": "通信与编码",
+          "name_en": "Communications and coding",
+          "course_ids": [99, 100, 101, 102, 105],
+          "required_course_ids": [99, 102],
+          "elective_course_ids": [100, 105],
+          "elective_count": 1,
+          "exit_zh": "搭建含同步、调制、信道与纠错的端到端链路，固定随机种子绘制至少 6 个 Eb/N0 点的 BER 曲线；给出理论或基线对照、置信区间及同步失效率。",
+          "exit_en": "Build an end-to-end link with synchronization, modulation, channel, and error correction, using fixed seeds to plot BER at at least six Eb/N0 points; include a theory or baseline comparison, confidence intervals, and synchronization-failure rate."
         }
       ]
     },
@@ -857,155 +257,52 @@
       "id": "control-robotics",
       "title_zh": "控制、机器人与自主系统",
       "title_en": "Control, Robotics, and Autonomous Systems",
-      "audience_zh": "想把动力学、状态估计、规划与反馈控制接成一套机器人系统的人",
-      "audience_en": "Learners who want dynamics, state estimation, planning, and feedback control to work together in one robotic system",
-      "outcome_zh": "先在仿真中闭合感知—规划—控制链，再视安全条件转到低能量实体平台，并用稳定性、轨迹误差和失败案例说明系统表现。",
-      "outcome_en": "Close a perception–planning–control loop in simulation first, then move to low-energy hardware only when safe, using stability, trajectory error, and failed cases to describe system performance.",
+      "audience_zh": "希望把动态系统、估计、规划和操控整合成自主系统的学习者",
+      "audience_en": "Learners integrating dynamics, estimation, planning, and manipulation into autonomous systems",
+      "outcome_zh": "在仿真或安全实体平台上完成感知—规划—控制闭环，并报告稳定性、误差和失败模式。",
+      "outcome_en": "Close the perception–planning–control loop in simulation or on safe hardware, reporting stability, error, and failure modes.",
       "stages": [
         {
-          "name_zh": "从物理对象到状态模型",
-          "name_en": "From a physical plant to a state model",
-          "course_ids": [
-            3,
-            4,
-            10,
-            68
-          ],
-          "required_course_ids": [
-            3,
-            4,
-            10,
-            68
-          ],
+          "name_zh": "数学与动态",
+          "name_en": "Mathematics and dynamics",
+          "course_ids": [3, 4, 10, 68],
+          "required_course_ids": [3, 4, 10, 68],
           "elective_count": 0,
-          "selection_zh": "始终使用同一个机械或机电对象：18.03SC 写运动方程，18.06SC 处理线性代数，8.01SC 负责从受力与能量假设建模，EE 263 再把它改写成状态空间、最小二乘和动态系统问题。这样每个数学工具都有物理落点，也不会出现四门课分别做完却互相接不上。",
-          "selection_en": "Keep one mechanical or electromechanical plant throughout. Use 18.03SC for its equations of motion, 18.06SC for the linear algebra, 8.01SC to derive the model from force and energy assumptions, and EE 263 to express it through state space, least squares, and dynamical-systems tools. Each mathematical idea then has a physical use instead of becoming an isolated course exercise.",
-          "exit_zh": "从物理假设推导多状态模型、识别参数，并在未参与拟合的轨迹上验证。拟合前依据传感器噪声、采样误差和模型近似写明状态预测允许误差；报告归一化误差和失效区间，同时给出可控性与可观性秩检查。",
-          "exit_en": "Derive a multistate model from physical assumptions, identify its parameters, and validate it on a trajectory excluded from fitting. Before fitting, set allowed state-prediction error from sensor noise, sampling error, and model approximation. Report normalized error and failure regions, together with controllability and observability rank checks."
+          "exit_zh": "从物理假设推导一个多状态系统，识别参数并在未参与拟合的轨迹上验证；状态预测归一化误差低于 10%，且完成可控性与可观性秩检查。",
+          "exit_en": "Derive a multistate system from physical assumptions, identify its parameters, and validate on a trajectory excluded from fitting; normalized state-prediction error must be below 10%, with controllability and observability rank checks completed."
         },
         {
           "name_zh": "反馈与最优控制",
           "name_en": "Feedback and optimal control",
-          "course_ids": [
-            67,
-            69,
-            73,
-            72
-          ],
-          "required_course_ids": [
-            67
-          ],
-          "elective_course_ids": [
-            69,
-            72
-          ],
+          "course_ids": [67, 69, 73, 72],
+          "required_course_ids": [67],
+          "elective_course_ids": [69, 72],
           "elective_count": 1,
-          "selection_zh": "6.302 直接拿上一段识别出的 plant、参数范围和留出轨迹来做反馈设计。想深入连续系统和状态空间时选 6.241J；问题属于序贯决策和随机最优控制时选 6.231。Caltech CDS 101/110 可以帮助统一记号和视角，但不能代替所选分支的题目和控制器实现。",
-          "selection_en": "Apply 6.302 directly to the identified plant, parameter range, and held-out trajectory from the preceding work. Choose 6.241J for greater depth in continuous systems and state space, or 6.231 when the problem is sequential decision-making and stochastic optimal control. Caltech CDS 101/110 can unify notation and perspective, but it does not replace the chosen branch's problems and controller implementation.",
-          "exit_zh": "为同一对象实现经典或最优控制器，并记录增益裕量、相位裕量、超调和调节时间。先写出参数不确定范围，再检查边界角落和一组可重现抽样；样本数由覆盖方法或所需置信区间决定。所有失稳案例必须列出，稳定案例中最差的一组也要解释。",
-          "exit_en": "Implement a classical or optimal controller for the same plant and record gain margin, phase margin, overshoot, and settling time. State the parameter-uncertainty range first, then test its boundary corners and a reproducible sample sized by the coverage method or desired confidence interval. List every unstable case and explain the worst stable case."
+          "exit_zh": "为同一被控对象实现经典或最优控制器，记录增益/相位裕量、超调和调节时间；在不少于 100 组参数扰动中保持稳定，并解释最差性能样本。",
+          "exit_en": "Implement a classical or optimal controller for one plant, recording gain/phase margins, overshoot, and settling time; stability must hold across at least 100 parameter perturbations, with the worst-performing sample explained."
         },
         {
           "name_zh": "机器人系统",
           "name_en": "Robotic systems",
-          "course_ids": [
-            74,
-            75,
-            77,
-            78,
-            79,
-            80,
-            81,
-            82
-          ],
+          "course_ids": [74, 75, 77, 78, 79, 80, 81, 82],
           "required_course_ids": [],
           "path_options": [
             {
               "id": "mit-robotics",
               "label_zh": "MIT 机器人路径",
               "label_en": "MIT Robotics path",
-              "course_ids": [
-                74,
-                75
-              ]
+              "course_ids": [74, 75]
             },
             {
               "id": "modern-robotics",
               "label_zh": "Modern Robotics 完整路径（课程 1–6 按序；平台完整访问可能收费）",
               "label_en": "Complete Modern Robotics path (Courses 1–6 in order; full platform access may be paid)",
-              "course_ids": [
-                77,
-                78,
-                79,
-                80,
-                81,
-                82
-              ]
+              "course_ids": [77, 78, 79, 80, 81, 82]
             }
           ],
           "elective_count": 0,
-          "selection_zh": "两条路径择一并完整走通：MIT 路线按 6.4210→6.832 聚焦 manipulation 与欠驱动系统；Modern Robotics 路线按 Course 1–6 顺序完成，平台完整访问可能收费。无论选哪条，都把前面的 plant、controller 和测试带进机器人问题。这里的“走完”只指按顺序完成所选路径的工作，不代表获得课程结业或证书，也不能把两条路线各读一半后称为完整主线。",
-          "selection_en": "Complete one coherent path. The MIT path runs 6.4210 then 6.832 for manipulation and underactuated systems; the Modern Robotics path runs Courses 1–6 in order and may require paid platform access. Whichever path is chosen, bring the existing plant, controller, and tests into the robotics problem. Finishing here means completing the chosen sequence in order, not earning a course credential, and two half-routes do not make one complete path.",
-          "exit_zh": "先在仿真中闭合感知—规划—控制链。测试前写明成功率目标、扰动分布和置信区间精度，再由此确定试验数；报告成功率及区间、轨迹误差、每次失败和观察到的碰撞，有限次数的零碰撞不是安全保证。转到实体平台时，只能使用低能量、限速、有围挡和急停的设备，同样场景须先在仿真通过，任何安全停机都按任务失败统计。",
-          "exit_en": "Close the perception–planning–control loop in simulation first. State the success target, perturbation distribution, and desired confidence-interval precision before choosing the trial count. Report success with its interval, trajectory error, every failure, and every observed collision; zero collisions in a finite test is not a safety guarantee. Physical transfer is limited to low-energy, speed-limited, guarded hardware with an emergency stop after the same scenarios pass in simulation. Count every safety stop as a task failure."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "identify-the-plant",
-          "title_zh": "先把 plant 说清楚",
-          "title_en": "Name the plant before choosing a controller",
-          "style": "prose",
-          "items_zh": [
-            "选一个能写出运动方程的对象，例如倒立摆或二轮车，先给出状态、输入、输出、单位和工作点。若线性化后还不会判断可控性或开环稳定性，先不要打开机器人课程。",
-            "从同一 plant 的物理方程、参数识别和留出轨迹开始；控制器只能使用训练数据未包含的轨迹检验。"
-          ],
-          "items_en": [
-            "Choose a plant whose equations of motion you can write, such as an inverted pendulum or differential-drive robot. State its state, input, output, units, and operating point. If controllability or open-loop stability after linearization is unclear, do not open a robotics course yet.",
-            "Begin with the same plant's physical equations, parameter identification, and held-out trajectory; evaluate the controller on trajectories not used for fitting."
-          ]
-        },
-        {
-          "id": "controller-before-robot",
-          "title_zh": "先闭合控制环，再进入机器人",
-          "title_en": "Close the control loop before entering robotics",
-          "style": "list",
-          "items_zh": [
-            "反馈阶段在写控制律前给出稳定性论证、执行器饱和和噪声模型；连续控制选 6.241J，随机序贯决策才选 6.231。",
-            "机器人阶段在 MIT 6.4210→6.832 与 Modern Robotics 1→6 之间选一条完整路径，沿用同一个 plant、controller 与失败注入。"
-          ],
-          "items_en": [
-            "Before writing the control law, state the stability argument, actuator saturation, and noise model. Choose 6.241J for continuous control or 6.231 only for stochastic sequential decisions.",
-            "At the robotics stage, choose one complete path—MIT 6.4210 to 6.832 or Modern Robotics 1 through 6—and retain the same plant, controller, and injected failures."
-          ]
-        },
-        {
-          "id": "defer-platform-complexity",
-          "title_zh": "把平台复杂度推迟到模型撑得住",
-          "title_en": "Defer platform complexity until the model can support it",
-          "style": "list",
-          "items_zh": [
-            "已有微分方程、线性代数和力学能力时，直接从参数识别任务开始；不要为统一记号重复修多门控制概论。",
-            "只做控制系统时跳过机器人阶段；没有安全硬件与停机条件时跳过实体迁移，仿真完成仍然有效。"
-          ],
-          "items_en": [
-            "With secure differential equations, linear algebra, and mechanics, begin at the identification task; do not repeat multiple control surveys merely to align notation.",
-            "Skip robotics for a control-only goal, and skip physical deployment without safe hardware and shutdown conditions. A completed simulation remains valid."
-          ]
-        },
-        {
-          "id": "measure-failure-not-demo-polish",
-          "title_zh": "用失败统计验收，不用 demo 光泽验收",
-          "title_en": "Accept measured failures, not demo polish",
-          "style": "list",
-          "items_zh": [
-            "仿真出口要求留出轨迹误差、稳定性边界、饱和与传感噪声结果可重跑，并保留至少一个控制器失败案例。",
-            "机器人出口再要求所选完整路径的规划—控制闭环通过扰动与恢复场景；实体硬件只是有条件的扩展，不是默认验收。"
-          ],
-          "items_en": [
-            "The simulation exit requires repeatable held-out trajectory error, stability limits, saturation and sensor-noise results, plus at least one retained controller failure.",
-            "The robotics exit additionally requires the chosen complete path's planning-control loop to survive disturbance and recovery scenarios. Physical hardware is conditional, not the default acceptance."
-          ]
+          "exit_zh": "在仿真或安全平台上闭合感知—规划—控制链路，20 次带扰动试验中任务成功率至少 90%、碰撞为零；提交轨迹误差分布和失败模式复盘。",
+          "exit_en": "Close a perception-planning-control loop in simulation or on a safe platform, achieving at least 90% task success and zero collisions over twenty perturbed trials; submit the trajectory-error distribution and a failure-mode review."
         }
       ]
     },
@@ -1013,154 +310,38 @@
       "id": "rf-wireless",
       "title_zh": "电磁、射频、微波与无线",
       "title_en": "Electromagnetics, RF, Microwave, and Wireless",
-      "audience_zh": "想从边界条件和传输线走到匹配网络、天线、接收机与完整无线链路的人",
-      "audience_en": "Learners moving from boundary conditions and transmission lines to matching networks, antennas, receivers, and a complete wireless link",
-      "outcome_zh": "完成一个射频或无线设计，把 S 参数、匹配、增益与噪声、天线或通道模型接进同一份链路预算，并核对目标地区法规。",
-      "outcome_en": "Complete an RF or wireless design that connects S-parameters, matching, gain and noise, and an antenna or channel model in one link budget, with rules checked for the target region.",
+      "audience_zh": "希望从场与波进入射频电路、天线、接收机和无线链路的学习者",
+      "audience_en": "Learners progressing from fields and waves to RF circuits, antennas, receivers, and wireless links",
+      "outcome_zh": "完成一个含匹配、链路预算、天线/通道模型和法规检查的射频设计或仿真项目。",
+      "outcome_en": "Complete an RF design or simulation with matching, link budget, antenna/channel models, and regulatory checks.",
       "stages": [
         {
-          "name_zh": "单变量微积分准备",
-          "name_en": "Single-variable calculus preparation",
-          "course_ids": [
-            1
-          ],
-          "required_course_ids": [
-            1
-          ],
+          "name_zh": "场与传输线",
+          "name_en": "Fields and transmission lines",
+          "course_ids": [2, 3, 11, 107, 108],
+          "required_course_ids": [2, 3, 11, 107],
           "elective_count": 0,
-          "selection_zh": "18.02SC 正式建立在 18.01 上，因此先用 18.01SC 核对微分、积分、级数和参数曲线。已有等价背景时可用闭卷题证明，不必重复所有讲次；没有通过就先补对应单元。",
-          "selection_en": "18.02SC formally builds on 18.01, so begin with 18.01SC checks on differentiation, integration, series, and parametric curves. Equivalent preparation can be demonstrated with closed-book problems instead of repeating every lecture; failed topics are repaired before continuing.",
-          "exit_zh": "独立完成一组新的微积分题，并从一个带单位的场量积分得到总电荷、能量或功率；解析结果与数值积分在步长收敛范围内一致。",
-          "exit_en": "Solve a fresh calculus set independently and integrate one dimensional field quantity into total charge, energy, or power. Analytical and numerical results must agree under a documented step-size convergence study."
-        },
-        {
-          "name_zh": "从边界条件到端口",
-          "name_en": "From boundary conditions to ports",
-          "course_ids": [
-            2,
-            3,
-            11,
-            107,
-            108
-          ],
-          "required_course_ids": [
-            2,
-            3,
-            11,
-            107
-          ],
-          "elective_count": 0,
-          "selection_zh": "先用 18.02SC、18.03SC 和 8.02X 补齐向量微积分、波动与边界条件，再由 ECE 3030 把它们变成工程场问题。若传输线、波导和能量流之间仍连不起来，就加入 6.013 的相关章节；已有等价推导和题目训练时不必重复。",
-          "selection_en": "Secure vector calculus, waves, and boundary conditions with 18.02SC, 18.03SC, and 8.02X before ECE 3030 turns them into engineering field problems. Add the relevant 6.013 material when transmission lines, waveguides, and energy flow still do not connect; skip it when equivalent derivations and problem practice are already secure.",
-          "exit_zh": "为一段传输线或波导同时建立解析和数值模型，不断加密网格，直到传播常数与端口功率平衡的变化小于事先写明的离散化误差。这个误差范围要能由求解器阶次、网格收敛趋势和项目规格解释，并保留完整收敛表。",
-          "exit_en": "Build analytical and numerical models of a transmission line or waveguide and refine the mesh until changes in propagation constant and port-power balance fall below a stated discretization error. Explain that error from solver order, the convergence trend, and the project specification, and retain the complete convergence table."
+          "exit_zh": "建立一段传输线或波导的解析与数值模型，完成至少 3 档网格的收敛研究；传播常数偏差低于 3%，端口功率平衡残差低于 5%。",
+          "exit_en": "Build analytical and numerical models of a transmission line or waveguide and complete a convergence study at three or more mesh resolutions; propagation-constant deviation must stay below 3% and port power-balance residual below 5%."
         },
         {
           "name_zh": "射频电路与天线",
           "name_en": "RF circuits and antennas",
-          "course_ids": [
-            110,
-            111,
-            112,
-            113
-          ],
-          "required_course_ids": [],
-          "path_options": [
-            {
-              "id": "open-theory",
-              "label_zh": "开放理论路线（MIT 6.661）",
-              "label_en": "Open theory path (MIT 6.661)",
-              "course_ids": [
-                113
-              ]
-            },
-            {
-              "id": "rf-systems-lab",
-              "label_zh": "射频系统与实验路线（Cornell ECE 4880）",
-              "label_en": "RF systems and laboratory path (Cornell ECE 4880)",
-              "course_ids": [
-                110
-              ]
-            },
-            {
-              "id": "coursera-circuits",
-              "label_zh": "Coursera 电路路线（TU/e；需注册访问）",
-              "label_en": "Coursera circuit path (TU/e; enrollment required)",
-              "course_ids": [
-                111
-              ]
-            }
-          ],
-          "elective_count": 0,
-          "selection_zh": "这一段没有一门对所有人都成立的默认主课。能匿名使用公开材料时，选 MIT 6.661，以开放讲义和 13 套带解答习题完成接收、天线与匹配分析；需要系统级作业和实验说明时选 Cornell ECE 4880，但缺失的前 5 讲、付费教材、Simulink 与实验条件都要先补齐；只有实际注册 Coursera 并确认能打开 19 份作业和 5 个实验时，才选 TU/e 电路路线，公开课程概览本身不算可学材料。三条路线只走一条，NPTEL 天线课只用于按需补讲解。任何实体测量都必须在合规 RF 实验室由合格人员监督，课程页面和仿真均不构成辐射测试许可。",
-          "selection_en": "There is no default course that works for everyone here. For anonymously accessible study, take MIT 6.661 and use its open draft plus 13 solved problem sets for receiver, antenna, and matching analysis. Choose Cornell ECE 4880 when system assignments and laboratory descriptions matter, but first account for the missing first 5 lectures, paid text, Simulink, and laboratory access. Choose the TU/e circuit path only after enrolling through Coursera and confirming access to its 19 assignments and 5 laboratories; the public overview alone is not a teachable course. Complete one path, using the NPTEL antenna course only for extra explanation. Physical measurements belong in a compliant RF laboratory under qualified supervision, and neither a course page nor simulation authorizes radiated testing.",
-          "exit_zh": "完成匹配网络、射频前端或天线中的一个设计。S11 目标必须从链路预算、允许失配损耗和带宽要求推出；−10 dB 只有在其失配损耗确实可接受时才能作为起点，不能替代系统论证。增益、噪声和稳定性预算也要同时闭合。",
-          "exit_en": "Complete one matching network, RF front end, or antenna design. Derive the S11 target from the link budget, allowed mismatch loss, and bandwidth; −10 dB is only a starting point when its mismatch loss is genuinely acceptable, not a substitute for system reasoning. Close the gain, noise, and stability budgets at the same time."
-        },
-        {
-          "name_zh": "让预算经受真实信道",
-          "name_en": "Put the budget through a channel",
-          "course_ids": [
-            99,
-            105,
-            106
-          ],
-          "required_course_ids": [
-            99
-          ],
+          "course_ids": [110, 111, 112, 113],
+          "required_course_ids": [111],
+          "elective_course_ids": [110, 113],
           "elective_count": 1,
-          "selection_zh": "用 6.02 建立同步、编码、检测与误码率基线，它不会暗中要求本路线尚未保证的 6.011 前序。把刚完成的 S 参数、增益与噪声预算或天线模型直接放到链路前端，再按访问条件从 EE 359 无线系统与 NPTEL 长视频讲解中选一门加深。6.450/6.452 属于另一个以 6.011 为前置的研究生序列，不计入本路线。",
-          "selection_en": "Use 6.02 for the synchronization, coding, detection, and error-rate baseline; it does not silently assume the 6.011 sequence that this route has not guaranteed. Put the completed S-parameters, gain/noise budget, or antenna model directly at the link front end, then choose either EE 359 for wireless systems or the NPTEL lecture sequence according to access. The 6.450/6.452 graduate sequence requires separate 6.011 preparation and is not counted here.",
-          "exit_zh": "完成可复算的链路预算和含衰落、干扰的信道仿真，画出接收灵敏度与 BER 或吞吐量的关系。频率、带宽、发射功率和占空比逐项对照目标地区当前法规；没有合规实验条件时只做仿真，不发射。",
-          "exit_en": "Complete a reproducible link budget and a channel simulation with fading and interference, plotting receiver sensitivity against BER or throughput. Check frequency, bandwidth, transmit power, and duty cycle against current rules in the target region. Without a compliant test setting, remain in simulation and do not transmit."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "calibrate-the-em-model",
-          "title_zh": "先校准电磁模型",
-          "title_en": "Calibrate the electromagnetic model first",
-          "style": "prose",
-          "items_zh": [
-            "先在纸上处理一段有损传输线：由负载与特性阻抗算反射系数、驻波比和输入阻抗，再用无源性检查结果。若端口功率和场边界还接不上，先补 ECE 3030/6.013，不要先画天线。"
-          ],
-          "items_en": [
-            "Start on paper with one lossy transmission line: compute reflection coefficient, VSWR, and input impedance from the load and characteristic impedance, then check passivity. If port power and field boundaries do not connect, repair ECE 3030/6.013 material before drawing an antenna."
-          ]
+          "exit_zh": "完成一个匹配网络、射频前端或天线设计，在声明频段达到 S11 低于 −10 dB 或经论证的等效目标；同时提交增益、噪声和稳定性预算。",
+          "exit_en": "Complete a matching-network, RF-front-end, or antenna design that achieves S11 below -10 dB across the declared band, or a justified equivalent target, and submit gain, noise, and stability budgets."
         },
         {
-          "id": "one-frequency-plan-one-chain",
-          "title_zh": "一份频率规划，一条收发链",
-          "title_en": "One frequency plan, one RF chain",
-          "style": "list",
-          "items_zh": [
-            "让场模型、S 参数、匹配网络、增益/噪声预算和信道使用同一频段、参考阻抗与功率单位，先写端口定义再仿真。",
-            "射频电路与天线阶段只选一条可执行材料路径；匿名自学优先用 6.661，校内或平台分支必须先实际打开作业、工具和实验说明。",
-            "无线链路把前一段器件或天线模型接进检测器和 BER 基线，并在报告中注明目标地区、频段与法规核对日期。",
-            "缺少 Cornell 前五讲、付费教材、Simulink 或实验条件时跳过 ECE 4880 完整复现；未注册并核实作业/实验访问时跳过 TU/e 路线。",
-            "家中自学默认跳过辐射测试和发射；仿真或课程页面不构成频谱使用、实验室操作或合规许可。"
-          ],
-          "items_en": [
-            "Keep the field model, S-parameters, matching network, gain/noise budget, and channel on the same band, reference impedance, and power units, defining ports before simulation.",
-            "Choose one executable RF-circuit/antenna material path. Prefer 6.661 for anonymous study; institutional or platform branches require opening the actual assignments, tools, and lab descriptions first.",
-            "Insert the preceding device or antenna model into the detector and BER baseline, and record the target region, band, and date of the regulatory check.",
-            "Skip a complete ECE 4880 reproduction when the missing first five lectures, paid text, Simulink, or lab conditions are unavailable. Skip the TU/e path until enrolled access to assignments and labs is verified.",
-            "Default home study skips radiated testing and transmission. Simulation or a course page grants no spectrum, laboratory, or regulatory permission."
-          ]
-        },
-        {
-          "id": "simulation-has-a-real-finish-line",
-          "title_zh": "仿真路线也有真正的终点",
-          "title_en": "Give the simulation route a real finish line",
-          "style": "list",
-          "items_zh": [
-            "S 参数满足无源性/互易性等适用检查，匹配与噪声预算能从固定输入重建，网格或频率步长收敛已记录。",
-            "链路出口在不发射的情况下完成：天线或信道模型进入 BER/容量结果，假设、法规边界和未实测项清楚可见。"
-          ],
-          "items_en": [
-            "S-parameters pass applicable passivity and reciprocity checks, matching and noise budgets rebuild from fixed inputs, and mesh or frequency-step convergence is recorded.",
-            "The link exit requires no transmission: the antenna or channel model enters the BER or capacity result, with assumptions, regulatory bounds, and unmeasured quantities visible."
-          ]
+          "name_zh": "无线系统",
+          "name_en": "Wireless systems",
+          "course_ids": [100, 104, 105, 106],
+          "required_course_ids": [100],
+          "elective_count": 1,
+          "exit_zh": "给出可复算的链路预算和含衰落/干扰的信道仿真，绘制接收灵敏度与 BER/吞吐量曲线；频率、带宽、发射功率和占空比通过目标地区法规清单核对。",
+          "exit_en": "Produce a reproducible link budget and channel simulation with fading and interference, plotting receiver sensitivity against BER or throughput; check frequency, bandwidth, transmit power, and duty cycle against a regulatory checklist for the target region."
         }
       ]
     },
@@ -1168,171 +349,37 @@
       "id": "semiconductor-vlsi",
       "title_zh": "半导体、微纳工艺与 VLSI",
       "title_en": "Semiconductors, Micro/Nanofabrication, and VLSI",
-      "audience_zh": "想把半导体器件、微纳工艺、数字 IC 和物理实现连成一条设计链的人",
-      "audience_en": "Learners who want semiconductor devices, microfabrication, digital IC design, and physical implementation to form one connected workflow",
-      "outcome_zh": "完成一个数字芯片设计，使器件参数、工艺假设、RTL、时序与功耗约束、验证结果和版图使用同一套前提。",
-      "outcome_en": "Complete a digital chip design whose device parameters, process assumptions, RTL, timing and power constraints, verification, and layout all use the same stated premises.",
+      "audience_zh": "希望理解器件、制造、数字集成电路和物理实现完整链条的学习者",
+      "audience_en": "Learners seeking the full chain from devices and fabrication to digital IC physical implementation",
+      "outcome_zh": "完成一个有器件假设、时序/功耗约束、验证结果和可审查版图/工艺计划的芯片项目。",
+      "outcome_en": "Complete a chip project with device assumptions, timing/power constraints, verification, and reviewable layout or process plan.",
       "stages": [
         {
-          "name_zh": "波与量子准备",
-          "name_en": "Waves and quantum preparation",
-          "course_ids": [
-            12
-          ],
-          "required_course_ids": [
-            12
-          ],
-          "elective_count": 0,
-          "selection_zh": "8.04 的正式前置是 8.03，因此先用 8.03SC 建立波动、复振幅、边界条件和 Fourier 表示。若这些内容已有等价训练，可以直接做课程题证明；否则补完会影响量子与器件模型的单元。",
-          "selection_en": "8.04 formally follows 8.03, so use 8.03SC first for waves, complex amplitudes, boundary conditions, and Fourier representations. Equivalent preparation can be demonstrated with course problems; otherwise complete the units that affect quantum and device models.",
-          "exit_zh": "推导并数值复算一个带边界条件的波动本征问题，网格加密时本征值和归一化误差收敛，并能说明它与后续量子能级模型的对应关系。",
-          "exit_en": "Derive and numerically recompute one boundary-value wave eigenproblem. Eigenvalues and normalization error must converge under mesh refinement, with the connection to the later quantum energy-level model explained."
-        },
-        {
-          "name_zh": "从能带到紧凑模型",
-          "name_en": "From bands to a compact model",
-          "course_ids": [
-            13,
-            29,
-            30,
-            37,
-            124,
-            125
-          ],
-          "required_course_ids": [
-            29,
-            30,
-            37,
-            124
-          ],
+          "name_zh": "器件物理",
+          "name_en": "Device physics",
+          "course_ids": [13, 29, 30, 124, 125],
+          "required_course_ids": [29, 124],
           "elective_count": 1,
-          "selection_zh": "ECE 3150 与 6.012 把器件物理连接到电路模型，ECE 4070 提供半导体物理，6.004 则补齐后续数字 VLSI 路线需要的逻辑设计背景。再按实际短板选一门：量子基础不足选 8.04，需要纳米尺度输运时选 6.701；两者不是可互换的器件概论。",
-          "selection_en": "ECE 3150 and 6.012 connect device physics to circuit models, ECE 4070 supplies semiconductor physics, and 6.004 supplies the logic-design background needed by the later digital VLSI path. Add one course for the actual gap: 8.04 for quantum foundations or 6.701 for nanoscale transport; they are not interchangeable device surveys.",
-          "exit_zh": "从能带和输运假设推出器件 I–V/C–V，再从公开或仿真数据提取紧凑模型参数。拟合前依据数据分辨率、噪声或求解器误差写明允许误差；在留出的偏置区间报告归一化 RMSE，并标出模型开始失效的位置。",
-          "exit_en": "Derive device I–V/C–V behavior from band and transport assumptions, then extract compact-model parameters from public or simulated data. Before fitting, state the allowed error from data resolution, noise, or solver accuracy. Report normalized RMSE over a held-out bias interval and mark where the model begins to fail."
+          "exit_zh": "从能带与输运假设推导器件 I–V/C–V 特性，并对公开或仿真数据提取紧凑模型参数；留出偏置区间的归一化均方根误差不超过 10%。",
+          "exit_en": "Derive device I–V/C–V behavior from band and transport assumptions and extract compact-model parameters from public or simulated data; normalized RMSE over a held-out bias interval must not exceed 10%."
         },
         {
-          "name_zh": "把器件变成工艺流程",
-          "name_en": "Turn the device into a process flow",
-          "course_ids": [
-            126,
-            127,
-            128,
-            129
-          ],
-          "required_course_ids": [
-            126
-          ],
-          "elective_course_ids": [
-            127,
-            128,
-            129
-          ],
+          "name_zh": "工艺",
+          "name_en": "Fabrication",
+          "course_ids": [126, 127, 128, 129],
+          "required_course_ids": [126, 129],
           "elective_count": 1,
-          "selection_zh": "把已经得到的紧凑模型、偏置范围和器件假设翻译成关键尺寸、工艺目标与容差。6.152J 提供共同的微纳工艺基础；目标确实是 MEMS 才选 6.777J，需要系统的微加工顺序选 memsX，想了解 IC 产线全貌选 NPTEL。独立学习只做仿真和案例分析，不意味着可以在家搭洁净室。化学品、真空、高温和加工设备只允许在合规设施中由合格人员监督使用。",
-          "selection_en": "Translate the compact model, bias range, and device assumptions into critical dimensions, process targets, and tolerances. Use 6.152J for the common microfabrication foundation, then choose 6.777J only for a genuinely MEMS device, memsX for a systematic fabrication sequence, or NPTEL for an IC production-line overview. Independent study remains simulation and case analysis, not permission to create a home cleanroom. Chemicals, vacuum, high temperature, and fabrication equipment belong only in compliant facilities under qualified supervision.",
-          "exit_zh": "画出掩膜层、器件截面和逐步工艺流程，并为每个会影响性能或良率的关键尺寸写明容差及来源。用设计规则检查和 FMEA 找出主要失效机理，至少量化一个工艺变量对良率的敏感度。",
-          "exit_en": "Draw the mask layers, device cross sections, and step-by-step process flow, and state a sourced tolerance for every critical dimension that affects performance or yield. Use design-rule checks and an FMEA to identify dominant failure mechanisms, and quantify the yield sensitivity to at least one process variable."
+          "exit_zh": "提交掩膜层、截面与逐步工艺流程，标注至少 3 个关键尺寸及其容差；用设计规则检查和 FMEA 说明主要失效机理，并量化一个良率敏感性结果。",
+          "exit_en": "Submit mask layers, cross sections, and a stepwise process flow with tolerances for at least three critical dimensions; use design-rule checks and an FMEA to explain dominant failure mechanisms and quantify one yield-sensitivity result."
         },
         {
-          "name_zh": "从晶体管到数字版图",
-          "name_en": "From transistors to digital layout",
-          "course_ids": [
-            44,
-            49,
-            50,
-            51
-          ],
-          "required_course_ids": [],
-          "path_options": [
-            {
-              "id": "public-legacy-systems",
-              "label_zh": "公开历史系统路线（MIT 6.884）",
-              "label_en": "Public archive path (MIT 6.884)",
-              "course_ids": [
-                49
-              ]
-            },
-            {
-              "id": "archived-transistor-design",
-              "label_zh": "历史晶体管设计路线（MIT 6.374）",
-              "label_en": "Archived transistor-design path (MIT 6.374)",
-              "course_ids": [
-                50
-              ]
-            },
-            {
-              "id": "commercial-vlsi-labs",
-              "label_zh": "商业工具实验路线（Cornell ECE 4740）",
-              "label_en": "Commercial-tool laboratory path (Cornell ECE 4740)",
-              "course_ids": [
-                51
-              ]
-            }
-          ],
-          "elective_count": 0,
-          "selection_zh": "这里的三条路线都有缺口，开始前必须先打开材料和工具。匿名自学优先选 6.884：讲义、实验和代码公开，但旧标准单元假设与商业 EDA 不能照搬，分析应迁移到注明版本的现代工具。6.374 只在能合法取得教材或历史材料时选择；公开档案缺少视频和完整授课讲义，2003 年专有流程也只能作为历史案例。ECE 4740 只在商业 EDA、5 个公开实验和配套文件均可用时选择，并标明没有公开解答和期末项目。EECS 151 适合核对当前课程结构和公开考题，但 CalNet 后的教学站点不能算一条可执行路线。无论选哪条，都沿用前面的器件参数、工艺规则、掩膜和容差；没有授权 PDK 时，结论只能限于所声明的教育工艺。",
-          "selection_en": "Each of these three paths has a real limitation, so open the materials and tools before choosing. For anonymous self-study, prefer 6.884: its notes, laboratories, and code are public, but the old standard-cell assumptions and commercial EDA flow must be translated to versioned modern tools. Choose 6.374 only with lawful access to the text or historical material; its public archive lacks video and a complete lecture-note sequence, and the proprietary 2003 flow is a historical case rather than a current recipe. Choose ECE 4740 only when commercial EDA, all 5 public laboratories, and supporting files are available, noting that solutions and the final project are absent. EECS 151 is useful for the current curriculum and public exams, but a teaching site behind CalNet is not an executable path. Whichever path is chosen, retain the device parameters, process rules, masks, and tolerances from earlier work; without an authorized PDK, limit every conclusion to the named educational process.",
-          "exit_zh": "完成一个可综合数字模块的规格、RTL、验证和实现。回归测试必须零失配，目标约束下时序收敛，并报告面积、功耗估计以及一项真正由规格推动的设计取舍。",
-          "exit_en": "Complete the specification, RTL, verification, and implementation of a synthesizable digital block. Regression must show zero mismatches, timing must close under the target constraints, and the results must include area, a power estimate, and one design tradeoff genuinely driven by the specification."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "choose-device-or-layout-question",
-          "title_zh": "先选器件问题还是版图问题",
-          "title_en": "Choose a device question or a layout question first",
-          "style": "prose",
-          "items_zh": [
-            "选一个 CMOS 反相器，写出使用的器件模型、VDD、温度、负载和工艺假设；从 I–V 曲线估算开关点与延迟。若这些前提不能固定，先停在器件模型，不要把 RTL 直接送进版图。"
-          ],
-          "items_en": [
-            "Choose one CMOS inverter and state its device model, VDD, temperature, load, and process assumptions, then estimate switching point and delay from its I–V behavior. If those premises cannot be fixed, remain at the device model instead of sending RTL directly to layout."
-          ]
-        },
-        {
-          "id": "carry-one-model-forward",
-          "title_zh": "只把一个经检验的器件模型向前传",
-          "title_en": "Carry one tested device model forward",
-          "style": "list",
-          "items_zh": [
-            "从能带、器件曲线和紧凑模型得到一套版本化参数，再把关键尺寸、容差与工艺规则传到门级延迟和功耗估计。",
-            "微纳工艺只做虚拟流程与案例分析；选择 MEMS、系统微加工或 IC 产线概览之一，不把洁净室内容改写成家庭实验。"
-          ],
-          "items_en": [
-            "Derive one versioned parameter set from bands, device curves, and the compact model, carrying critical dimensions, tolerances, and process rules into gate delay and power estimates.",
-            "Keep microfabrication to virtual flow and case analysis. Choose one of MEMS, systematic microfabrication, or an IC production overview rather than rewriting cleanroom material as a home lab."
-          ]
-        },
-        {
-          "id": "respect-tool-and-pdk-boundaries",
-          "title_zh": "工具、PDK 与公开材料各有边界",
-          "title_en": "Respect tool, PDK, and public-material boundaries",
-          "style": "list",
-          "items_zh": [
-            "数字实现路径只选一条公开条件可满足的流程，固定 RTL、测试、时序/功耗约束、教育 PDK 与工具版本，并保留迁移旧流程时的差异。",
-            "量子基础、6.012 和 6.701 只补实际缺口，不把三门都当概论；同一数字版图问题不同时走 6.884、6.374 与 ECE 4740。"
-          ],
-          "items_en": [
-            "Choose one digital implementation path whose public conditions you can meet. Freeze RTL, tests, timing/power constraints, educational PDK, and tool versions, retaining every difference introduced when migrating an old flow.",
-            "Use quantum foundations, 6.012, and 6.701 only for the actual gap rather than as three surveys. Do not take 6.884, 6.374, and ECE 4740 for the same digital-layout problem."
-          ]
-        },
-        {
-          "id": "stop-before-tapeout-language",
-          "title_zh": "在 tapeout 话术之前停下",
-          "title_en": "Stop before tapeout language begins",
-          "style": "list",
-          "items_zh": [
-            "没有授权 PDK、商业 EDA 或配套文件时跳过对应签核声明；公开教育流程不能写成 foundry signoff。",
-            "器件参数、工艺假设、RTL 回归、综合/时序/功耗和版图检查能追到同一版本，任何模型替换都触发对应回归。",
-            "版图只对所声明教育规则完成 DRC/LVS 与可用的寄生分析；没有制造和硅片测量时停在教育流程，不宣称流片。"
-          ],
-          "items_en": [
-            "Skip signoff claims when an authorized PDK, commercial EDA, or supporting files are unavailable. A public educational flow is not foundry signoff.",
-            "Device parameters, process assumptions, RTL regression, synthesis/timing/power, and layout checks trace to one version, and every model substitution triggers the relevant regression.",
-            "Layout completes DRC/LVS and available parasitic analysis only for the stated educational rules. Without fabrication and silicon measurement, stop at the educational flow and make no tapeout claim."
-          ]
+          "name_zh": "VLSI 设计",
+          "name_en": "VLSI design",
+          "course_ids": [44, 49, 50, 51],
+          "required_course_ids": [50],
+          "elective_count": 1,
+          "exit_zh": "完成一个可综合数字模块的规格、RTL、验证与实现报告；回归测试零失配、目标约束下时序收敛，并列出面积、功耗代理值与至少一次设计空间权衡。",
+          "exit_en": "Complete the specification, RTL, verification, and implementation report for a synthesizable digital block; regression must have zero mismatches, timing must close under target constraints, and the report must show area, a power proxy, and at least one design-space tradeoff."
         }
       ]
     },
@@ -1340,166 +387,38 @@
       "id": "power-energy",
       "title_zh": "电力、电机、电力电子与能源",
       "title_en": "Power, Machines, Power Electronics, and Energy",
-      "audience_zh": "想把磁性元件、功率变换、电机、电网与光伏或储能接在同一个能量系统里的人",
-      "audience_en": "Learners who want magnetic components, power conversion, machines, grids, and photovoltaic or storage technology to meet in one energy system",
-      "outcome_zh": "在仿真范围内完成变换器控制，并把它接入电机、电网或能源场景；每一步都能解释能量流、器件应力、稳定性和故障后的约束变化。",
-      "outcome_en": "Complete converter control in simulation and connect it to a machine, grid, or energy scenario, explaining energy flow, device stress, stability, and post-fault constraint changes throughout.",
+      "audience_zh": "希望覆盖能量变换、设备、电网和储能系统的学习者",
+      "audience_en": "Learners covering conversion, machines, grids, and energy storage systems",
+      "outcome_zh": "在安全边界内完成一个变换器、电机驱动、光伏或储能系统的仿真、控制和设计评审。",
+      "outcome_en": "Safely complete simulation, control, and design review for a converter, motor drive, photovoltaic, or storage system.",
       "stages": [
         {
-          "name_zh": "磁场如何变成端口功率",
-          "name_en": "From magnetic field to port power",
-          "course_ids": [
-            21,
-            107,
-            108
-          ],
-          "required_course_ids": [
-            21,
-            107
-          ],
+          "name_zh": "电路与电磁",
+          "name_en": "Circuits and electromagnetics",
+          "course_ids": [21, 107, 108],
+          "required_course_ids": [21, 107],
           "elective_count": 0,
-          "selection_zh": "6.002 负责集总电路和功率，ECE 3030 负责磁场与边界；两门始终分析同一个电感器、变压器或电机，不把磁路和端口模型拆开。只有传输线、波导或 Poynting 能量流的推导仍不稳时，才加入 6.013 对应章节。",
-          "selection_en": "Pair the lumped-circuit and power analysis in 6.002 with the magnetic fields and boundaries in ECE 3030, always studying the same inductor, transformer, or machine instead of separating its field and port models. Add the relevant 6.013 material only when transmission lines, waveguides, or Poynting-flow derivations remain weak.",
-          "exit_zh": "建立电感器、变压器或电机磁路的场—路联合模型，核对磁通、储能和端口功率。稳态量的允许差异由材料参数容差、手算近似与网格收敛误差共同决定；瞬态能量差额必须能由损耗项和数值误差解释。",
-          "exit_en": "Build a coupled field-circuit model of an inductor, transformer, or machine magnetic circuit and reconcile flux, stored energy, and port power. Set allowed steady-state differences from material tolerances, hand-calculation approximations, and mesh-convergence error. The transient energy difference must be explained by modeled losses and numerical error."
+          "exit_zh": "建立电感器、变压器或电机磁路的场—路联合模型，核对磁通、储能与端口功率；稳态关键量与手算偏差低于 5%，瞬态能量守恒闭合。",
+          "exit_en": "Build a coupled field-circuit model of an inductor, transformer, or machine magnetic circuit and reconcile flux, stored energy, and port power; steady-state key quantities must agree with hand calculations within 5%, and transient energy conservation must close."
         },
         {
-          "name_zh": "变换器与闭环",
-          "name_en": "Converter and closed loop",
-          "course_ids": [
-            114,
-            115,
-            116,
-            117
-          ],
-          "required_course_ids": [
-            114
-          ],
-          "elective_count": 0,
-          "selection_zh": "把刚完成的磁性元件模型带入 6.622，保留参数、额定值和能量检查；6.622 是闭环变换器主线。需要更多分步练习且 Coursera 可访问时，才追加下面完整的 Power Electronics 1→2→3 有序扩展。这个扩展必须从 1 开始顺序走完，不能把 2、3 当作无序补充，也不改变默认 simulation-only 边界。",
-          "selection_en": "Carry the completed magnetic-component model into 6.622 with its parameters, ratings, and energy checks; 6.622 is the closed-loop converter spine. Add the complete ordered Power Electronics 1→2→3 extension below only when more staged practice is needed and Coursera is accessible. The extension begins at 1 and proceeds in order rather than treating 2 and 3 as unordered supplements, and it does not change the default simulation-only boundary.",
-          "exit_zh": "在仿真中实现一种变换器及其闭环控制，检查纹波、效率、稳定裕量、器件应力和降额。实体变换器不属于本路线默认范围；若要扩展，必须重新核对课程范围、接受合格监督并做风险评估。不得自行连接市电、高压或大电流，也不得把仿真写成硬件测试。",
-          "exit_en": "Implement one converter topology and its closed-loop control in simulation, checking ripple, efficiency, stability margin, device stress, and derating. A physical converter is outside the default route and requires a new check of course scope, qualified supervision, and risk assessment. Do not connect mains, high voltage, or high current independently, and never describe simulation as hardware testing.",
-          "extension_paths": [
-            {
-              "id": "coursera-converter-sequence",
-              "label_zh": "Coursera Power Electronics 1→2→3",
-              "label_en": "Coursera Power Electronics 1→2→3",
-              "course_ids": [
-                115,
-                116,
-                117
-              ],
-              "stop_when_zh": "按 1→2→3 的顺序完成建模、变换器电路和控制；每一门的模型与测试必须成为下一门的输入。若平台访问或前一门产物缺失，就在最后完成的模块停止，不把后续标题列为已完成。",
-              "stop_when_en": "Complete modeling, converter circuits, and control in the 1→2→3 order, with each module's model and tests becoming inputs to the next. If platform access or the prior artifact is missing, stop at the last completed module rather than listing later titles as completed."
-            }
-          ]
+          "name_zh": "变换与控制",
+          "name_en": "Conversion and control",
+          "course_ids": [114, 115, 116, 117],
+          "required_course_ids": [114],
+          "elective_course_ids": [115],
+          "elective_count": 1,
+          "exit_zh": "在仿真或限能平台上实现一类变换器及其闭环控制，验证纹波、效率、稳定裕量和器件应力；所有工作点均保留降额检查，硬件测试须使用隔离与电流限制。",
+          "exit_en": "Implement one converter topology and its closed-loop control in simulation or on an energy-limited platform, verifying ripple, efficiency, stability margin, and device stress; preserve derating checks at every operating point and use isolation plus current limiting for hardware tests."
         },
         {
-          "name_zh": "并入电网、电机或能源系统",
-          "name_en": "Connect to a grid, machine, or energy system",
-          "course_ids": [
-            118,
-            120,
-            122,
-            123
-          ],
-          "required_course_ids": [],
-          "elective_count": 0,
-          "selection_zh": "下面四条是互斥的完整出口，只走一条：电网分析、电机与驱动、光伏能量转换或电化学储能。每条都从前一阶段带入同一个变换器模型、控制器以及应力与降额检查。不要为了路线看起来“全面”同时强制电网和电机；若目标后来改变，另开一次路线记录。",
-          "selection_en": "The four choices below are mutually exclusive complete exits: grid analysis, machine and drive, photovoltaic conversion, or electrochemical storage. Each carries forward the same converter model, controller, and stress or derating checks. Do not force both grid and machine work merely to make the route look broad; open a separate route record if the goal later changes.",
-          "exit_zh": "完成所选分支的能量平衡与一个适合该系统的故障或工况跃迁，残差容差由系统基值、求解器和模型精度共同决定。报告保护动作、约束违例和恢复条件；未选分支不计入完成要求。",
-          "exit_en": "Complete the chosen branch's energy balance and one appropriate fault or operating transition, deriving residual tolerance from system base, solver, and model fidelity. Report protection action, constraint violations, and recovery conditions; unchosen branches are not completion requirements.",
-          "path_options": [
-            {
-              "id": "grid-analysis",
-              "label_zh": "电网分析",
-              "label_en": "Grid analysis",
-              "course_ids": [
-                118
-              ],
-              "stop_when_zh": "把变换器作为受控注入或负载接入固定基值的电网模型，完成潮流与一个 N−1 或故障场景，报告残差、约束违例和恢复条件。",
-              "stop_when_en": "Connect the converter as a controlled injection or load in a fixed-base grid model, complete power flow and one N-1 or fault scenario, and report residuals, constraint violations, and recovery conditions."
-            },
-            {
-              "id": "electric-machine",
-              "label_zh": "电机与驱动",
-              "label_en": "Machine and drive",
-              "course_ids": [
-                120
-              ],
-              "stop_when_zh": "把变换器接到电机模型，完成启动、负载跃迁和一个失速或限流场景，能量、转矩、速度和器件应力使用同一时间轴。",
-              "stop_when_en": "Connect the converter to a machine model and run startup, a load transition, and one stall or current-limit scenario, placing energy, torque, speed, and device stress on the same time base."
-            },
-            {
-              "id": "photovoltaic-conversion",
-              "label_zh": "光伏能量转换",
-              "label_en": "Photovoltaic conversion",
-              "course_ids": [
-                122
-              ],
-              "stop_when_zh": "把光伏 I–V/P–V 模型接入变换器，完成辐照度与温度跃迁、最大功率点跟踪和降额检查，并报告能量损失去向。",
-              "stop_when_en": "Connect a photovoltaic I-V/P-V model to the converter, run irradiance and temperature transitions, maximum-power-point tracking, and derating checks, and account for where the lost energy goes."
-            },
-            {
-              "id": "electrochemical-storage",
-              "label_zh": "电化学储能",
-              "label_en": "Electrochemical storage",
-              "course_ids": [
-                123
-              ],
-              "stop_when_zh": "把带 SOC、倍率和热约束的储能模型接入变换器，完成充放电跃迁和一个保护触发场景，报告效率、约束违例与恢复条件。",
-              "stop_when_en": "Connect a storage model with state-of-charge, rate, and thermal constraints to the converter, run a charge/discharge transition and one protection trigger, and report efficiency, violations, and recovery conditions."
-            }
-          ]
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "energy-accounting-first",
-          "title_zh": "先把能量账算平",
-          "title_en": "Balance the energy account first",
-          "style": "prose",
-          "items_zh": [
-            "先用理想 buck 变换器做功率守恒：给定 Vin、占空比、L、C 与负载，算稳态输出、电感纹波和器件应力，再用平均模型复核。若额定值和能量流还说不清，路线保持 simulation-only。"
-          ],
-          "items_en": [
-            "Begin with power conservation in an ideal buck converter. Given Vin, duty ratio, L, C, and load, calculate steady output, inductor ripple, and device stress, then check an averaged model. If ratings and energy flow are still unclear, keep the route simulation-only."
-          ]
-        },
-        {
-          "id": "field-model-to-controlled-converter",
-          "title_zh": "从场模型走到受控变换器",
-          "title_en": "Move from a field model to a controlled converter",
-          "style": "list",
-          "items_zh": [
-            "让 6.002 的端口功率与 ECE 3030 的磁场模型解释同一个电感器、变压器或电机，记录饱和、损耗与额定值假设。",
-            "在 6.622/Power Electronics 主线中从开关模型到平均模型再到闭环，分别检查稳态、启动、负载阶跃、饱和和保护边界。"
-          ],
-          "items_en": [
-            "Make 6.002 port power and the ECE 3030 field model describe the same inductor, transformer, or machine, recording saturation, loss, and rating assumptions.",
-            "In the 6.622/Power Electronics spine, move from switching to averaged model to closed loop, checking steady state, startup, load step, saturation, and protection boundaries separately."
-          ]
-        },
-        {
-          "id": "choose-one-system-and-stop-honestly",
-          "title_zh": "只接一个系统，并在仿真证据处收口",
-          "title_en": "Connect one system and stop at the evidence",
-          "style": "list",
-          "items_zh": [
-            "最后只接一个系统：电网、电机、光伏或储能；变换器控制器、应力和降额必须进入同一份能量平衡与故障场景。",
-            "先跳过不能独立完成的高压、大电流和并网硬件；课程仿真不授权搭建市电变换器。",
-            "Converter Circuits 与 Converter Control 只在前一模块完成且平台可访问时顺序追加；能源方向只选一个。",
-            "固定配置可重跑开关与平均模型、闭环稳定性、器件应力和降额检查，能量不平衡落在预先解释的数值或损耗范围内。",
-            "故障注入后，保护动作、恢复条件和系统约束变化可见；在没有合规实验室与监督时，仿真就是完整且诚实的出口。"
-          ],
-          "items_en": [
-            "Connect exactly one final system—grid, machine, photovoltaic, or storage—and place converter control, stress, and derating in the same energy balance and fault scenario.",
-            "Skip independent high-voltage, high-current, and grid-connected hardware. Course simulation does not authorize building a mains converter.",
-            "Add Converter Circuits and Converter Control in order only after the preceding module is complete and accessible, and choose only one energy direction.",
-            "A fixed configuration reruns switching and averaged models, closed-loop stability, device stress, and derating checks, with energy imbalance inside explained numerical or loss bounds.",
-            "After fault injection, protection action, recovery condition, and changed system constraints are visible. Without a compliant laboratory and supervision, simulation is the complete and honest exit."
-          ]
+          "name_zh": "电网、电机与能源",
+          "name_en": "Grid, machines, and energy",
+          "course_ids": [118, 119, 120, 121, 122, 123],
+          "required_course_ids": [118, 120],
+          "elective_count": 1,
+          "exit_zh": "构建含电网、电机及所选能源技术的统一场景，潮流或能量平衡残差低于 1%；再执行一次 N−1、故障或工况跃迁分析并报告约束违例与恢复时间。",
+          "exit_en": "Construct one scenario combining a grid, machine, and selected energy technology with power-flow or energy-balance residual below 1%; then run an N-1, fault, or operating-point transition analysis and report constraint violations and recovery time."
         }
       ]
     },
@@ -1507,159 +426,38 @@
       "id": "photonics-mems",
       "title_zh": "光电、光子与 MEMS",
       "title_en": "Optoelectronics, Photonics, and MEMS",
-      "audience_zh": "想从波、材料与模式进入光电器件，并可把可动结构作为 MEMS 分支加入的人",
-      "audience_en": "Learners moving from waves, materials, and modes into optoelectronic devices, with moving structures available as a MEMS branch",
-      "outcome_zh": "完成一个光子或光电 MEMS 设计，包含模式与器件仿真、虚拟工艺约束、版图和系统性能预算；若只想学纯 MEMS，这不是最短路线。",
-      "outcome_en": "Complete a photonic or optoelectronic-MEMS design with mode and device simulation, virtual process constraints, layout, and a system performance budget. This is not the shortest route for a purely MEMS goal.",
+      "audience_zh": "希望从电磁与量子基础进入光电器件、集成光子和微机电系统的学习者",
+      "audience_en": "Learners moving from electromagnetics and quantum foundations to optoelectronic devices, integrated photonics, and MEMS",
+      "outcome_zh": "完成一个有模式/器件仿真、工艺约束、版图和性能预算的光子或 MEMS 设计。",
+      "outcome_en": "Complete a photonic or MEMS design with mode/device simulation, process constraints, layout, and performance budget.",
       "stages": [
         {
-          "name_zh": "光子器件前的共同物理",
-          "name_en": "Physics shared by photonic devices",
-          "course_ids": [
-            11,
-            12,
-            13,
-            107,
-            124
-          ],
-          "required_course_ids": [
-            11,
-            12,
-            107,
-            124
-          ],
+          "name_zh": "物理与场",
+          "name_en": "Physics and fields",
+          "course_ids": [11, 12, 13, 107, 124],
+          "required_course_ids": [11, 12, 107, 124],
           "elective_count": 0,
-          "selection_zh": "8.02X、8.03SC、ECE 3030 和 ECE 4070 分别补电磁、波、工程场以及材料与器件。后面要读的 ECE 5330 明确要求量子力学：若还不能解释能带、态密度、发射和吸收，就先学 8.04 相关单元或用等价背景补足。已有这部分基础可以跳过 8.04，但只能替换课程，不能省掉量子能力。",
-          "selection_en": "The shared physics comes from 8.02X, 8.03SC, ECE 3030, and ECE 4070: electromagnetics, waves, engineering fields, and the material-device connection. ECE 5330, used next, explicitly expects quantum mechanics. If band structure, density of states, emission, and absorption cannot yet be explained, study the relevant 8.04 units or supply equivalent preparation. Existing knowledge can replace 8.04, but it cannot remove the quantum requirement.",
-          "exit_zh": "求出波导或谐振腔在声明频段内的全部相关模式，并用另一种数值方法复核。逐步加密网格，直到本征频率和归一化场能量稳定；允许误差由离散化趋势和器件规格共同确定。",
-          "exit_en": "Solve every relevant mode of a waveguide or resonator in the declared band and check it with a second numerical method. Refine the mesh until eigenfrequency and normalized field energy stabilize, with allowed error set jointly by the discretization trend and device specification."
+          "exit_zh": "求解一个波导或谐振腔的模式，并用独立数值方法复核；前三个本征频率与解析或收敛基准偏差低于 2%，归一化场能量误差低于 1%。",
+          "exit_en": "Solve the modes of a waveguide or resonator and cross-check them with an independent numerical method; the first three eigenfrequencies must agree with an analytical or converged reference within 2%, and normalized field-energy error must stay below 1%."
         },
         {
-          "name_zh": "从模式到器件和工艺",
-          "name_en": "From modes to device and process",
-          "course_ids": [
-            126,
-            129,
-            130,
-            131
-          ],
-          "required_course_ids": [
-            126,
-            131
-          ],
+          "name_zh": "器件与工艺",
+          "name_en": "Devices and fabrication",
+          "course_ids": [126, 129, 130, 131],
+          "required_course_ids": [126, 131],
           "elective_count": 1,
-          "selection_zh": "继续使用前面的模式求解器、场归一化、材料参数和收敛结果，把它们转成器件指标与自动仿真测试。6.152J 用于理解虚拟工艺约束，ECE 5330 负责半导体光电器件；前者不授权家庭加工。可动结构、微加工和机电耦合选 6.777J，发射或探测中的量子态与噪声选 ECE 5310。洁净室、激光、化学品和加工设备只限合规设施与合格监督。",
-          "selection_en": "Keep using the existing mode solver, field normalization, material parameters, and convergence results, turning them into device requirements and automated simulation tests. Use 6.152J to understand virtual process constraints and ECE 5330 for semiconductor optoelectronic devices; the former grants no home-fabrication permission. Choose 6.777J for moving structures, micromachining, and electromechanical coupling, or ECE 5310 for quantum states and noise in emission or detection. Cleanrooms, lasers, chemicals, and fabrication equipment remain limited to compliant facilities with qualified supervision.",
-          "exit_zh": "设计一个绑定具体工艺的光电、波导或 MEMS 器件。依据工艺规则和失效分析，找出所有可能使性能越界的尺寸与材料变量，逐项做灵敏度和角落扫描；报告可接受容差、最坏角落性能，并让版图通过所采用的规则检查。",
-          "exit_en": "Design an optoelectronic, waveguide, or MEMS device tied to a specific process. From its process rules and failure analysis, identify every dimensional or material variable that can push performance out of specification and sweep its sensitivity and corners. Report acceptable tolerances and worst-corner performance, with the layout passing the adopted rule checks."
+          "exit_zh": "设计一个光电、波导或 MEMS 器件并绑定可制造工艺，扫描至少 3 个关键尺寸；报告灵敏度、容差窗口和最坏角落性能，版图通过所采用的规则检查。",
+          "exit_en": "Design an optoelectronic, waveguide, or MEMS device tied to a manufacturable process and sweep at least three critical dimensions; report sensitivity, tolerance window, and worst-corner performance, with layout passing the adopted rule checks."
         },
         {
           "name_zh": "光子系统",
           "name_en": "Photonic systems",
-          "course_ids": [
-            132,
-            133,
-            134,
-            135
-          ],
-          "required_course_ids": [
-            132
-          ],
-          "elective_count": 0,
-          "selection_zh": "NPTEL Introduction to Photonics 只建立共同系统词汇，随后三门严格三选一：有完整 PDK 与数据流程时走 UBC Silicon Photonics；做自由空间成像与 Fourier optics 时走 MIT 2.71；做材料、波导和器件实现时走 MIT 3.46。三条分支都必须沿用前一阶段的器件模型、工艺角落和尺寸敏感度，不能用目录理想值替换。",
-          "selection_en": "NPTEL Introduction to Photonics supplies only the shared system vocabulary, after which exactly one of three courses is chosen: UBC Silicon Photonics with a complete PDK and data workflow, MIT 2.71 for free-space imaging and Fourier optics, or MIT 3.46 for materials, waveguides, and device implementation. Every branch retains the preceding device model, process corners, and dimensional sensitivities rather than substituting ideal catalog values.",
-          "exit_zh": "完成片上或自由空间光链路预算，检查插入损耗、带宽、串扰和每比特能耗。对尺寸与材料偏差运行可复现的蒙特卡洛分析；样本数由目标良率附近需要的置信区间宽度决定，必要时继续增加。最终一起报告随机种子、达标率和置信区间。",
-          "exit_en": "Complete an on-chip or free-space optical link budget and check insertion loss, bandwidth, crosstalk, and energy per bit. Run a reproducible Monte Carlo analysis over dimensional and material variations, increasing the sample count as needed to reach the desired confidence-interval width near the target yield. Report the seed, specification yield, and confidence interval together.",
-          "path_options": [
-            {
-              "id": "silicon-photonics",
-              "label_zh": "UBC Silicon Photonics",
-              "label_en": "UBC Silicon Photonics",
-              "course_ids": [
-                133
-              ],
-              "stop_when_zh": "只有 PDK、版图或求解器、制造与测量数据流程都可访问时才走这条分支；产物包含可重跑版图—器件—链路预算及未取得的制造或测量证据清单。",
-              "stop_when_en": "Take this branch only when its PDK, layout or solver, fabrication, and measurement-data workflow are accessible; deliver a repeatable layout-to-device-to-link budget plus an explicit list of fabrication or measurement evidence not obtained."
-            },
-            {
-              "id": "free-space-optics",
-              "label_zh": "MIT 2.71 自由空间与 Fourier optics",
-              "label_en": "MIT 2.71 free-space and Fourier optics",
-              "course_ids": [
-                134
-              ],
-              "stop_when_zh": "完成自由空间成像或 Fourier-optics 系统预算与容差扫描；没有公开完整实验包时明确停在解析和仿真。",
-              "stop_when_en": "Complete a free-space imaging or Fourier-optics system budget and tolerance sweep, stopping explicitly at analysis and simulation when no complete public laboratory package is available."
-            },
-            {
-              "id": "photonic-materials",
-              "label_zh": "MIT 3.46 光子材料与器件",
-              "label_en": "MIT 3.46 photonic materials and devices",
-              "course_ids": [
-                135
-              ],
-              "stop_when_zh": "把材料色散和损耗传入波导或器件实现，完成尺寸与材料角落下的链路预算；受限制造或测量不写成已完成。",
-              "stop_when_en": "Carry material dispersion and loss into a waveguide or device implementation and complete the link budget over dimensional and material corners; do not claim restricted fabrication or measurement."
-            }
-          ]
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "mode-problem-before-device-menu",
-          "title_zh": "先解模式题，再看器件菜单",
-          "title_en": "Solve a mode problem before opening the device menu",
-          "style": "prose",
-          "items_zh": [
-            "先解一个平板波导或 Fabry–Pérot 腔的模式题，写出材料折射率、波长、边界条件和归一化方式。若波动、电磁边界或能带仍靠记忆，先补共同物理；纯 MEMS 目标应改走微纳工艺路线。"
-          ],
-          "items_en": [
-            "Solve one slab-waveguide or Fabry–Pérot mode problem, stating refractive indices, wavelength, boundary conditions, and normalization. If waves, electromagnetic boundaries, or bands are still memorized rather than derived, repair the shared physics. A pure MEMS goal should use the fabrication route instead."
-          ]
-        },
-        {
-          "id": "make-the-solver-earn-trust",
-          "title_zh": "先让求解器经得起复核",
-          "title_en": "Make the solver earn trust",
-          "style": "list",
-          "items_zh": [
-            "用解析或第二求解器复核模式有效折射率，并做网格、边界距离和材料参数收敛；保存归一化与功率定义。"
-          ],
-          "items_en": [
-            "Cross-check modal effective index with an analytic result or second solver, and converge mesh, boundary distance, and material parameters while retaining normalization and power definitions."
-          ]
-        },
-        {
-          "id": "choose-one-device-and-one-system",
-          "title_zh": "器件机制选一条，系统出口也选一条",
-          "title_en": "Choose one device mechanism and one system exit",
-          "style": "list",
-          "items_zh": [
-            "从 ECE 5330、ECE 5310 或 6.777J 中只选与器件机制相符的分支，把虚拟工艺尺寸与容差传入器件角落扫描。",
-            "系统阶段在 2.71、3.46 或确有完整访问的 UBC Silicon Photonics 中选一条，链路预算沿用真实器件损耗与尺寸敏感度。",
-            "已有量子能力时跳过 8.04，但不能跳过能带、态密度、发射与吸收能力检查；不要同时修所有器件分支。",
-            "没有 PDK、求解器、制造和测量数据流程时跳过 UBC 实验声明；产品页或受限 lab 不算完成。"
-          ],
-          "items_en": [
-            "Choose only the mechanism-appropriate branch among ECE 5330, ECE 5310, and 6.777J, carrying virtual process dimensions and tolerances into device corner sweeps.",
-            "At system level, choose one path—2.71, 3.46, or UBC Silicon Photonics only with complete access—and retain real device loss and dimensional sensitivity in the link budget.",
-            "Skip 8.04 with existing quantum competence, but not the check on bands, density of states, emission, and absorption. Do not take every device branch.",
-            "Skip UBC laboratory claims without its PDK, solver, fabrication, and measurement-data workflow. A product page or restricted lab is not completion."
-          ]
-        },
-        {
-          "id": "finish-with-a-budget-not-a-lab-claim",
-          "title_zh": "以性能预算收口，不冒充实验",
-          "title_en": "Finish with a performance budget, not a lab claim",
-          "style": "list",
-          "items_zh": [
-            "模式与器件结果对网格、边界和关键尺寸收敛，虚拟工艺角落能一条命令重跑，未制造与未测量项明确。",
-            "系统预算使用上述器件结果而非理想目录值，并能指出哪一个材料、尺寸或耦合假设主导性能；不需要洁净室或激光实测。"
-          ],
-          "items_en": [
-            "Mode and device results converge against mesh, boundary, and critical dimensions; virtual-process corners rerun with one command; unbuilt and unmeasured items are explicit.",
-            "The system budget uses those device results rather than ideal catalog values and identifies the dominant material, dimension, or coupling assumption. No cleanroom or laser measurement is required."
-          ]
+          "course_ids": [132, 133, 134, 135],
+          "required_course_ids": [132],
+          "elective_course_ids": [134, 135],
+          "elective_count": 1,
+          "exit_zh": "完成片上或自由空间光链路预算，验证插入损耗、带宽、串扰和每比特能耗；对尺寸与材料偏差运行不少于 200 次蒙特卡洛试验并报告规格良率。",
+          "exit_en": "Complete an on-chip or free-space optical link budget and verify insertion loss, bandwidth, crosstalk, and energy per bit; run at least 200 Monte Carlo trials over dimensional and material variations and report specification yield."
         }
       ]
     },
@@ -1667,113 +465,37 @@
       "id": "instrumentation-biomedical",
       "title_zh": "传感、仪器与生物医学电子",
       "title_en": "Sensors, Instrumentation, and Biomedical Electronics",
-      "audience_zh": "想把传感器、模拟前端、校准与信号处理连成一条完整测量链的人",
-      "audience_en": "Learners who want sensors, analog front ends, calibration, and signal processing to form one complete measurement chain",
-      "outcome_zh": "完成一个可校准的测量系统，给出不确定度、隔离与安全分析，再用公开或合成生理数据验证处理算法；未经另行批准，不接触人体实验。",
-      "outcome_en": "Build a calibrated measurement system with quantified uncertainty, isolation, and safety analysis, then validate its processing on public or synthetic physiological data. No human experiment is included without separate approval.",
+      "audience_zh": "希望把传感器、模拟前端、测量和生理信号处理连成系统的学习者",
+      "audience_en": "Learners combining sensors, analog front ends, measurement, and physiological signal processing",
+      "outcome_zh": "完成带校准、不确定度、隔离/安全分析和信号处理的测量系统；涉及人体时只使用合规数据或受监督实验。",
+      "outcome_en": "Build a measurement system with calibration, uncertainty, isolation/safety analysis, and signal processing; use compliant data or supervision for human subjects.",
       "stages": [
         {
           "name_zh": "电路与测量",
           "name_en": "Circuits and measurement",
-          "course_ids": [
-            21,
-            24,
-            27,
-            83
-          ],
-          "required_course_ids": [
-            21,
-            24,
-            83
-          ],
+          "course_ids": [21, 24, 27, 83],
+          "required_course_ids": [21, 27, 83],
           "elective_count": 0,
-          "selection_zh": "围绕同一个传感信号，6.002 解释前端电路，6.071J 组织测量链，6.003 处理系统响应。6.071J 的 LabVIEW、DAQ 和器件环境已经较旧，应迁移测量定义，不要假装复刻原实验。只有手头确有 Analog Discovery 2 或 3，并能遵守低压限流范围时才加入 Real Analog 台面练习；否则使用仿真或公开数据并明确标注。",
-          "selection_en": "Keep one sensor signal throughout: use 6.002 for the front-end circuit, 6.071J to organize the measurement chain, and 6.003 for system response. The LabVIEW, DAQ, and component environment in 6.071J is dated, so migrate the measurement definition rather than pretending to reproduce the original lab. Add Real Analog only with an available Analog Discovery 2 or 3 operated within a low-voltage, current-limited range; otherwise use simulation or public data and label it clearly.",
-          "exit_zh": "校准点要覆盖量程端点、标称区以及任何非线性转折或饱和附近，并另留一组独立点检查拟合。把增益、偏置、带宽、噪声和量化误差换算到同一不确定度预算中；留出点的残差必须落在这份预算事先给出的范围内。",
-          "exit_en": "Calibration points must cover the range endpoints, nominal region, and every nonlinear transition or saturation neighborhood, with a separate set withheld to check the fit. Combine gain, offset, bandwidth, noise, and quantization in one uncertainty budget; residuals on the held-out points must stay within the range predicted by that budget."
+          "exit_zh": "搭建可追溯测量链并完成不少于 5 点校准，提交增益、偏置、带宽、噪声和量化误差的不确定度预算；校准残差全部落入预先声明的容差带。",
+          "exit_en": "Build a traceable measurement chain and perform a calibration at five or more points, submitting an uncertainty budget for gain, offset, bandwidth, noise, and quantization; every calibration residual must fall within the predeclared tolerance band."
         },
         {
           "name_zh": "传感与接口",
           "name_en": "Sensors and interfaces",
-          "course_ids": [
-            136,
-            138,
-            137
-          ],
-          "required_course_ids": [
-            136
-          ],
+          "course_ids": [136, 137, 138],
+          "required_course_ids": [136, 137],
           "elective_count": 0,
-          "selection_zh": "前面的测量链、校准数据和不确定度预算现在用来决定接口增益、带宽、采样率与允许漂移。NPTEL Electrical Measurement and Electronic Instruments 是共同的测量基础；Sensors and Sensor Circuit Design 用来补接口和调理，Sensor Technologies 用来理解器件物理、制造和不同传感器的差别。只读项目所用传感器的相关单元，也不要虚构课程并未公开的实验条件。",
-          "selection_en": "Carry the existing measurement chain, calibration data, and uncertainty budget into the interface requirements for gain, bandwidth, sample rate, and allowable drift. NPTEL Electrical Measurement and Electronic Instruments provides the common measurement foundation; Sensors and Sensor Circuit Design adds interface and conditioning work, while Sensor Technologies explains device physics, fabrication, and differences among sensor types. Read only the units relevant to the chosen sensor and do not invent laboratory access the courses do not provide.",
-          "exit_zh": "为一种传感器完成激励、调理、采样和数字输出，可使用公开或合成数据、仿真，或安全低压台面。全量程线性度、迟滞、噪声和漂移要与参考仪器或可信数据表逐项比较。没有课程权限或器材时，明确写出仿真或回放范围，不得声称完成实体实验。",
-          "exit_en": "Complete excitation, conditioning, sampling, and digital output for one sensor using public or synthetic data, simulation, or a safe low-voltage bench. Compare full-scale linearity, hysteresis, noise, and drift with a reference instrument or trustworthy datasheet. When course access or hardware is unavailable, state the simulation or replay scope and do not claim a physical experiment."
+          "exit_zh": "为一种传感器完成激励、调理、采样与数字输出接口，在全量程测量线性度、迟滞、噪声和漂移；结果须与参考仪器或可信数据表逐项对照。",
+          "exit_en": "Complete excitation, conditioning, sampling, and digital output for one sensor, measuring linearity, hysteresis, noise, and drift across full scale; compare every result against a reference instrument or trustworthy datasheet."
         },
         {
-          "name_zh": "从测量到生理信号",
-          "name_en": "From measurement to physiological signals",
-          "course_ids": [
-            88,
-            139,
-            140
-          ],
-          "required_course_ids": [
-            88,
-            139
-          ],
+          "name_zh": "生医应用",
+          "name_en": "Biomedical applications",
+          "course_ids": [88, 139, 140],
+          "required_course_ids": [88, 139],
           "elective_count": 0,
-          "selection_zh": "把传感器接口、原始输出和每项误差接进处理算法，同时保留校准和不确定度；预处理后的公开数据不能冒充自制前端测量。RES.6-008 提供 DSP 方法，NPTEL Biomedical Instrumentation 解释传感器、前端和临床语境，两门要结合使用。需要更深的生理信号或图像算法再读 HST.582J，但这套旧研究生材料不能代替伦理、隐私和医疗安全要求。",
-          "selection_en": "Feed the sensor interface, raw output, and each known error into the processing algorithm while retaining calibration and uncertainty; preprocessed public data must never be presented as measurement from a self-built front end. Use RES.6-008 for DSP methods together with NPTEL Biomedical Instrumentation for sensors, front ends, and clinical context. Add HST.582J for deeper physiological-signal or image algorithms, but this older graduate material does not replace ethics, privacy, or medical-safety requirements.",
-          "exit_zh": "只用公开或合成数据验证生理信号处理链，报告信噪比改善、伪迹抑制率和留出集误差。逐项说明隔离、隐私、伦理和“不得用于诊断”的限制，不开展任何未经批准的人体实验。",
-          "exit_en": "Validate the physiological-signal pipeline using only public or synthetic data, reporting SNR improvement, artifact-rejection rate, and held-out error. State the isolation, privacy, ethics, and non-diagnostic-use limits explicitly, with no unapproved human experimentation."
-        }
-      ],
-      "guidance_sections": [
-        {
-          "id": "measurement-chain-before-application",
-          "title_zh": "先画测量链，再谈应用",
-          "title_en": "Draw the measurement chain before naming the application",
-          "style": "prose",
-          "items_zh": [
-            "先选一个非人体、低压传感量，例如光敏电阻或温度，写出量程、带宽、分辨率、允许误差和校准参考。若无法说明误差从传感器、前端、ADC 还是算法进入，先画测量链。",
-            "让 6.002、6.071J 与 6.003 解释同一传感信号，分开增益、偏置、带宽、噪声、采样与系统响应，并迁移旧 LabVIEW/DAQ 实验的测量定义而非硬装环境。"
-          ],
-          "items_en": [
-            "Choose one non-human, low-voltage quantity such as light or temperature, and state range, bandwidth, resolution, allowed error, and calibration reference. If you cannot locate whether error enters through the sensor, front end, ADC, or algorithm, draw the measurement chain first.",
-            "Make 6.002, 6.071J, and 6.003 explain the same sensor signal, separating gain, offset, bandwidth, noise, sampling, and system response. Migrate the measurement definition from old LabVIEW/DAQ labs rather than forcing their environment."
-          ]
-        },
-        {
-          "id": "calibrate-interface-and-failure",
-          "title_zh": "把校准、接口和失败模式放在一起",
-          "title_en": "Keep calibration, interface, and failure modes together",
-          "style": "list",
-          "items_zh": [
-            "传感阶段用真实 datasheet、校准点和不确定度预算决定接口；只读项目所用传感器的对应单元，不虚构课程未公开的实验。",
-            "生理信号阶段只用公开或合成数据，把前端误差与校准传播到 DSP；原始数据来源、许可、去标识和预处理全部记录。",
-            "没有 Analog Discovery 2/3 时跳过 Real Analog 台面复现；使用仿真或公开数据，并明确标注。"
-          ],
-          "items_en": [
-            "Use a real datasheet, calibration points, and uncertainty budget to choose the interface, reading only the units for the selected sensor and never inventing unpublished course labs.",
-            "Use public or synthetic data only for the physiological stage, propagating front-end error and calibration into DSP while recording source, license, de-identification, and preprocessing.",
-            "Skip Real Analog bench reproduction without an Analog Discovery 2 or 3. Use simulation or public data and label it plainly."
-          ]
-        },
-        {
-          "id": "separate-bench-data-and-clinical-claims",
-          "title_zh": "分开台面证据、公开数据与临床声明",
-          "title_en": "Separate bench evidence, public data, and clinical claims",
-          "style": "list",
-          "items_zh": [
-            "不接人体、不作诊断、不把旧研究生课程当伦理或医疗安全批准；任何人体研究都需要独立机构流程。",
-            "非人体测量链可由原始校准数据重建，误差预算能解释参考值与输出差异，重复测量与漂移结果在预设范围内。",
-            "算法在公开或合成生理数据上有留出验证，并保留校准与前端误差；完成不包含人体安全、临床有效性或医疗器械声明。"
-          ],
-          "items_en": [
-            "Do not connect people, diagnose, or treat an older graduate course as ethics or medical-safety approval. Any human study needs a separate institutional process.",
-            "The non-human measurement chain rebuilds from raw calibration data, its uncertainty budget explains reference-to-output differences, and repeatability and drift remain inside predeclared limits.",
-            "The algorithm has held-out validation on public or synthetic physiological data while retaining calibration and front-end error. Completion includes no human safety, clinical validity, or medical-device claim."
-          ]
+          "exit_zh": "仅用公开或合成数据验证一条生理信号处理链，报告信噪比改善、伪迹抑制率和留出集误差；附隔离、隐私、伦理与“不得用于诊断”的逐项检查，不开展未经批准的人体实验。",
+          "exit_en": "Validate a physiological-signal pipeline using only public or synthetic data, reporting SNR improvement, artifact-rejection rate, and held-out error; attach isolation, privacy, ethics, and non-diagnostic-use checks, with no unapproved human experimentation."
         }
       ]
     }

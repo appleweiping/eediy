@@ -1,76 +1,125 @@
 ---
 title: "RF and Millimeter-Wave Circuit Design"
-description: "Eindhoven University of Technology 的《RF and Millimeter-Wave Circuit Design》在 Coursera 内使用 Qucs-S 与 Octave 仿真材料讲授射频毫米波电路；公开页没有固定课程工程包。"
+description: "Eindhoven University of Technology 的《RF and Millimeter-Wave Circuit Design》以 Qucs-S 与 Octave 仿真构建射频毫米波电路实践主线；约七成内容可复现，硬件为可选项。"
 page_type: course
-course_id: "course-111"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-29"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 0452d555905a125c -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: a3092536c79591ce -->
 
-# Eindhoven University of Technology: RF and Millimeter-Wave Circuit Design
+# RF and Millimeter-Wave Circuit Design
 
 ## 课程简介
 
-- **所属大学：** Eindhoven University of Technology
+- **机构：** Eindhoven University of Technology
 - **课程编号：** RF and Millimeter-Wave Circuit Design
-- **官方先修：** 本次未核到提供方公布的硬性先修；开始前请复核课程主页
-- **本站建议背景：** 电磁场与波；电路分析；通信系统
-- **访问条件：** 需注册；可用范围以平台为准
-- **资料状态：** 2026-07-29；公开材料导读
+- **方向：** [射频、微波与天线](index.md)
+- **评级：** A
+- **角色：** 主线
+- **难度：** 提供方未标准化（请按先修判断）
+- **最近复核：** 2026-07-28
 
-### 把课程读成 5 次相互衔接的 RF 设计推进
+Eindhoven University of Technology 的《RF and Millimeter-Wave Circuit Design》以 Qucs-S 与 Octave 仿真构建射频毫米波电路实践主线；约七成内容可复现，硬件为可选项。
 
-TU/e 的 [RF and millimeter-Wave Circuit Design](https://www.coursera.org/learn/rf-mmwave-circuit-design)
-在 2026-07-29 页面列出 6 modules、19 assignments，以及 5 个互评 design labs：
-system、LNA/PA、mixer、VCO、synthesizer。提供方称约 70% 可仿真、30% 需要 lab/components。
-它适合已经会 link budget、S-parameter、noise cascade 与 frequency planning，想把 block
-specification 追到电路取舍的人；低频 small-signal gain 仍是主要工具时，需要补 microwave
-network 与 RF systems。
+**为什么选择这门课**
 
-### 五个模块各自排除一种 RF 设计错误
+主线课程，核心内容可靠，适合按自身背景作为主课或高质量替代。（审阅记录：A+）
 
-system 阶段从 range、bandwidth、sensitivity 和 selectivity 推 block specs；amplifier
-分清 LNA noise/matching/stability 与 PA compression/efficiency；mixer 保存 wanted/image/
-spur frequency table；VCO 同时看 startup、tuning、phase noise 与 load pulling；synthesizer
-解释 loop type/bandwidth、reference/divider noise 和 lock behavior。每一轮都把 specification、
-schematic/model、pass/fail plot、corner/sensitivity 与被否决方案放在一起比较，不用 nominal
-gain 替代稳定性或系统预算。
+**学习前准备**
 
-### 工具版本会改变仿真答案
+- 建议先完成方向基础：电磁场与波
+- 建议先完成方向基础：电路分析
+- 建议先完成方向基础：通信系统
 
-课程介绍 Qucs-S 与 Octave，却未在公开页固定 release。
-[Qucs-S repository](https://github.com/ra3xdh/qucs_s) 和
-[installation guide](https://qucs-s-help.readthedocs.io/en/latest/installation/installing-qucs-s.html)
-显示不同 OS/backend 组合会变化；[Octave download](https://octave.org/download.html) 也只代表
-当前可选环境。每次仿真都写明 OS、Qucs-S、backend、Octave、device model 与 hash；
-换 simulator 时用同一 netlist 重跑 baseline，并先解释 parser、model 或 convergence 差异。
+**可验证的学习成果**
 
-### 默认交 simulation-only 系统闭环
+- 解释射频、微波与天线中的核心模型，并说明主要假设与适用边界
+- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
+- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
 
-70/30 是课程构成说明，不是家庭 RF 安全结论。无机构批准实验室时，不连接 PA、antenna、
-来源或状态不明的 VNA/source，也不做自由空间发射；TU/e 的
-[remote RF laboratory](https://research.tue.nl/en/publications/rf-circuits-laboratory-for-remote-learning-and-massive-open-onlin/)
-是专门的受控设施，不等于家庭台架许可。
+**工时与节奏**
 
-有平台权限时，19 assignments、5 个互评任务和 peer feedback 构成原课程路线；没有权限时，
-locked prompt、supporting files 与 solution 都不在材料范围内，下面只搭一个独立
-clean-room model。让 idealized LNA、mixer、VCO、divider/phase detector 共用同一份
-transceiver link budget，每轮把系统指标分到当前模块，再把超出的 noise、linearity 或 lock
-要求退回预算表。
+**13 周，每周 11 小时。** 这是维护者规划估计，依据课程角色与公开练习、实验密度生成，不是提供方工时承诺。先试学两周，分别记录授课、练习、实验和复盘时间；若实际偏差超过 25%，据实调整剩余计划。
 
-最后只看一台 transceiver：同一组 frequency plan、impedance 和 power assumptions 是否贯穿
-五个模块？如果 LNA gain 的提高迫使 mixer compression、VCO phase noise 或 synthesizer
-lock time 付出更大代价，就撤回这个局部最优。RF 设计的难点正是让五张各自漂亮的曲线描述同一
-台机器。
+**安全等级**
+
+**仅仿真。** 默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。
 
 ## 课程资源
 
-- [课程主页](https://www.coursera.org/learn/rf-mmwave-circuit-design)
+**软件、硬件与成本**
 
-## 资源汇总
+**软件**
 
-本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。
+- 维护者建议的开源/免费验证路径：openEMS、scikit-rf、GNU Octave 或 Python 3，以及 KiCad
+- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
+
+**硬件**
+
+- 资源清单包含实验覆盖；本课程的维护者路径明确将其限定为计算或仿真实验。只假设一台能运行上述软件并保存结果的通用计算机；不采购或连接合规实验室中的矢量网络分析仪、校准件、屏蔽互连、衰减器及课程指定夹具/天线
+
+**成本说明**
+
+当前维护者路径只使用计算与仿真，不设专用硬件采购；建议软件优先采用开源/免费工具。这不是提供方要求，平台访问、商业软件或云算力费用仍随提供方、地区与方案而变。
+
+**公开资源完整度**
+
+| 资源类型 | 完整度 |
+|---|---|
+| 视频 | 完整 |
+| 讲义 | 部分 |
+| 练习 | 完整 |
+| 实验 | 完整 |
+| 考试 | 无公开材料 |
+| 代码 | 完整 |
+
+**资源与访问条件**
+
+| 资源 | 访问 | 许可 | 状态 | 复核日期 |
+|---|---|---|---|---|
+| [课程主页](https://www.coursera.org/learn/rf-mmwave-circuit-design) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
+
+> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
+
+## 实践与验收
+
+**实践闭环**
+
+**《RF and Millimeter-Wave Circuit Design · Eindhoven University of Technology RF and Millimeter-Wave Circuit Design》无源 RF 网络与天线匹配仿真**
+
+这是维护者为《RF and Millimeter-Wave Circuit Design · Eindhoven University of Technology RF and Millimeter-Wave Circuit Design》建议的自学项目，不是课程官方作业。围绕射频、微波与天线设计一个无源匹配网络、传输线或天线模型，用 S 参数、稳定性/无源性和制造容差审查性能。
+
+**来源：** 维护者建议项目
+
+**交付物**
+
+- 频段、端口阻抗、几何/材料、匹配和法规边界规格
+- 电路或全波模型、网格/端口设置和参数扫描源文件
+- 原始 S 参数、Smith 图数据、效率/增益或损耗及容差蒙特卡洛结果
+- 一份报告，比较解析/电路/场解并解释谐振漂移和失配失败
+
+**验收**
+
+- 标称频段达到预先声明的回波损耗/插损目标，且无源性检查通过
+- 覆盖 DC/低频极限、中心频率、频带边缘和材料参数极值
+- 用传输线/匹配解析式交叉核对至少 5 个频点，关键量相差低于 5%
+- 注入 ±10% 尺寸或介电常数偏差，报告谐振偏移和最坏失配
+
+**复现要求**
+
+- 提交几何、电路、网格、扫描和后处理源文件
+- 固定求解器、材料模型、端口、网格规则和收敛容差
+- 保存原始 Touchstone/场数据、求解日志和自动生成报告
+
+**安全边界：** 仅仿真 — 仅做无源 RF/天线仿真；不得发射、连接功率放大器、微波源或未知天线，也不得违反当地频谱法规。
+
+**风险、缺口与边界**
+
+约 70% 的课程使用可复现的 Qucs-S 与 Octave 仿真，但 Coursera 访问可能需要付费，实体硬件为可选项。
+
+**完成证据**
+
+- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
+- 理论推导档案：逐项列出假设、符号、推导、单位与边界条件，并用至少一种独立方法复核
+- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令
+- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
+- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明

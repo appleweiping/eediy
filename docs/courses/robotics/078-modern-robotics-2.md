@@ -1,71 +1,125 @@
 ---
 title: "Modern Robotics, Course 2: Robot Kinematics"
-description: "Northwestern University 的《Modern Robotics, Course 2: Robot Kinematics》用视频、讲义、练习、仿真和代码训练机器人运动学；平台高度建议按系列顺序学习，因为本课会使用 Course 1 的语言，完整访问也可能收费。"
+description: "Northwestern University 的《Modern Robotics, Course 2: Robot Kinematics》用视频、讲义、练习、仿真和代码训练机器人运动学；必须先完成该系列第一课，完整平台访问可能收费。"
 page_type: course
-course_id: "course-078"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-30"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 63591aa5124dcf7a -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 565b52fac7d9e587 -->
 
-# Northwestern University Modern Robotics 2: Modern Robotics, Course 2: Robot Kinematics
+# Modern Robotics, Course 2: Robot Kinematics
 
 ## 课程简介
 
-- **所属大学：** Northwestern University
+- **机构：** Northwestern University
 - **课程编号：** Modern Robotics 2
-- **官方先修：** Coursera 的 specialization 页面只说高度建议 Courses 1–6 按顺序学习，因为内容前后累积
-- **本站建议背景：** 建议先掌握 Course 1 的 SE(3)、twist、adjoint 与矩阵指数/对数；课程系列可按顺序学习，但这不是平台声明的硬性先修
-- **访问条件：** 公开入口；部分材料需注册或受限
-- **资料状态：** 2026-07-30；公开材料导读
+- **方向：** [机器人与自主系统](index.md)
+- **评级：** A
+- **角色：** 替代
+- **难度：** 中级
+- **最近复核：** 2026-07-28
 
-### 2R 手算基准把刚体语言接到机械臂
+Northwestern University 的《Modern Robotics, Course 2: Robot Kinematics》用视频、讲义、练习、仿真和代码训练机器人运动学；必须先完成该系列第一课，完整平台访问可能收费。
 
-Coursera [Robot Kinematics](https://www.coursera.org/learn/modernrobotics-course2) 对应 *Modern Robotics* Chapters 4–7：forward kinematics、velocity kinematics/statics、inverse kinematics 与 closed chains。[教材主页](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) 提供统一 preprint 与勘误。它适合已经掌握 Course 1 刚体运动语言的人；SE(3)、twist、adjoint 和 exp/log 若仍靠试转置，应回 Chapter 3 重新推导。
+**为什么选择这门课**
 
-一台 2R planar arm 足以检查所需基础：手算 home configuration、space/body screw axes、FK、Jacobian 和 singular pose，再用 finite difference 检查 \(J\dot\theta\)。
+替代课程，核心内容可靠，适合按自身背景作为主课或高质量替代。
 
-### POE、Jacobian 与 IK 共用同一台 2R arm
+**学习前准备**
 
-Chapter 4 用 product of exponentials 写 space/body FK，两式在一致的 home pose 与 screw definition 下应给相同 \(T\)。Chapter 5 推导 Jacobian、wrench/torque、singularity 与 manipulability；非方 Jacobian 检查 rank/singular value，混合角速度与线速度时注明 scaling。
+- 建议先完成方向基础：控制系统
+- 建议先完成方向基础：编程与工程计算
+- 建议先完成方向基础：物理基础
+- 课程顺序要求：先完成[《Modern Robotics, Course 1: Foundations of Robot Motion》](../robotics/077-modern-robotics-1.md)（Northwestern University Modern Robotics 1）
 
-Chapter 6 的 numerical IK 要记录 initial guess、frame convention、angular/linear tolerance、iteration count 与 termination。测试 reachable、unreachable、near-singular、workspace boundary 和 multiple-solution targets。Chapter 7 则写 loop-closure constraint、passive coordinates 和 constraint Jacobian，用数值扰动验证允许方向的一阶残差。
+**可验证的学习成果**
 
-IK 的测试表还要分开“收敛到不同合法解”和“算法失败”。对多组固定 initial guess 保存最终关节角、末端旋转/平移误差、最小 singular value 与停止原因；接近奇异点时观察 step 是否突然放大。若需要加入 damping 或 step limit，把原始失败与修改后的结果并列，不能只留下最后一个成功姿态。
+- 解释机器人与自主系统中的核心模型，并说明主要假设与适用边界
+- 独立完成代表性推导与题目，并用量纲、极限情形或数值结果交叉检查
+- 完成可复现实验或实现，保留原始数据、参数、版本和验证记录
 
-### 官方函数的输入输出要能逐项解释
+**工时与节奏**
 
-[ModernRobotics repository](https://github.com/NxRLab/ModernRobotics) 提供
-`FKinSpace(M,Slist,thetalist) → T`、`JacobianSpace(Slist,thetalist) → J_s` 与
-`IKinSpace(Slist,M,T,thetalist0,eomg,ev) → (thetalist, success)`；按
-[library setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_Modern_Robotics_Code_Library)
-锁定语言、commit 和依赖。每类函数用 2R 手算、library output 与 small-\(\Delta t\) finite
-difference 互查。差异出现时检查 axis、frame 与指数次序，不能只放宽 tolerance。
+**2 周，每周 10 小时。** 提供方公布 2 周、每周 10 小时。先试学两周并记录授课、练习、实验和复盘时间，若实际偏差超过 25%，据实调整剩余计划。
 
-[官方 Course 2 assignments 与 resources](https://hades.mech.northwestern.edu/index.php/Coursera_Resources) 是 coursework 与版本入口。UR5 model 的 home pose、screw axes、joint order 和单位作为受版本控制的数据；固定随机关节角上的 space/body FK 一致后，再运行 IK。
+**安全等级**
 
-模型加载后检查每个 rotation block、矩阵尺寸与 \(q=0\) 位姿。随机回归既覆盖一般姿态，也单列完全伸展、折叠和接近 joint boundary 的情况；对 Jacobian 每一列施加微小关节扰动，从末端 transform 的增量重建 twist。这个检查能抓住 axis direction、joint ordering 与 adjoint direction 的错误，即便动画看起来仍像机械臂运动。
-
-### UR5 CSV 是数值结果的导出边界
-
-[CoppeliaSim setup](https://hades.mech.northwestern.edu/index.php/Getting_Started_with_the_CoppeliaSim_Simulator) 提供 UR5 CSV scene。每个 waypoint 输出前计算 FK error、minimum singular value 与 joint jump，动画通过仍不代表满足真实 joint limit、collision、calibration 或 controller safety。
-
-生成 trajectory 时，每个 waypoint 都独立求解并验证，相邻 IK 解的连接方式由这些结果决定。简单插值可能跨过 joint limit、碰撞区或 discontinuous branch；因此同时输出关节增量与末端误差，并把被拒绝 waypoint 留在 failure table。scene 只读取已验证的 CSV，不在可视化阶段静默修正数值。
-
-课程记录分成 2R oracle、random regression、IK boundary matrix、closed-chain check 与 scene export 五个可独立命令，并记录 errata、library commit、scene 与 tolerance。没有实体 UR5 也能完成数值目标；simulator precision 不能换算成硬件 accuracy。
-
-选一条成功目标和一条不可达目标，从 screw-axis 数据一路追到 FK、Jacobian、IK iteration 与
-CSV 输出。用同一命令再算两条路径，并在返回值旁直接写 reachability、conditioning 或
-iteration budget；一个含糊的 `False` 没有说明 IK 为什么停下。
+**仅仿真。** 默认实践范围仅限软件、计算或仿真；不得因资源清单中的“实验”标签自行连接实体设备，任何硬件扩展都必须重新核对提供方范围并进行风险评估。
 
 ## 课程资源
 
-- [课程主页](https://www.coursera.org/learn/modernrobotics-course2)
-- [代码 · Modern Robotics official software library](https://github.com/NxRLab/ModernRobotics)
+**软件、硬件与成本**
 
-## 资源汇总
+**软件**
 
-本次核对的公开入口已全部列在上方；若你有完成记录、补充材料或失效链接，可通过页末反馈与纠错入口提交依据。
+- 维护者建议的开源/免费验证路径：ROS 2、Gazebo、RViz 2、Python 或 C++，以及固定版本的容器环境
+- 资源清单包含公开代码覆盖；复现时固定解释器、依赖、工具链、数据集和 PDK（如适用）版本
+
+**硬件**
+
+- 资源清单包含实验覆盖；本课程的维护者路径明确将其限定为计算或仿真实验。只假设一台能运行上述软件并保存结果的通用计算机；不采购或连接课程明确支持的机器人平台、传感器、低压电源、急停与安全测试区域
+
+**成本说明**
+
+当前维护者路径只使用计算与仿真，不设专用硬件采购；建议软件优先采用开源/免费工具。这不是提供方要求，平台访问、商业软件或云算力费用仍随提供方、地区与方案而变。
+
+**公开资源完整度**
+
+| 资源类型 | 完整度 |
+|---|---|
+| 视频 | 完整 |
+| 讲义 | 完整 |
+| 练习 | 完整 |
+| 实验 | 完整 |
+| 考试 | 无公开材料 |
+| 代码 | 完整 |
+
+**资源与访问条件**
+
+| 资源 | 访问 | 许可 | 状态 | 复核日期 |
+|---|---|---|---|---|
+| [课程主页](https://www.coursera.org/learn/modernrobotics-course2) | 注册后访问 | Coursera Terms of Use | 官方页已列出 | 2026-07-28 |
+
+> “官方页已列出”表示核验日从成功访问的官方来源页发现该链接，不保证目标文件在所有地区或账号状态下都能直接打开。访问不代表获得再分发权；下载、改编或公开发布前，应重新核对提供方页面、目标链接及其中第三方材料的许可。
+
+## 实践与验收
+
+**实践闭环**
+
+**《Modern Robotics, Course 2: Robot Kinematics · Northwestern University Modern Robotics 2》机器人任务规划与安全降级仿真**
+
+这是维护者为《Modern Robotics, Course 2: Robot Kinematics · Northwestern University Modern Robotics 2》建议的自学项目，不是课程官方作业。为机器人与自主系统在仿真器中完成感知—规划—控制闭环任务，量化成功率、碰撞裕量、定位误差和传感失效后的安全停机。
+
+**来源：** 维护者建议项目
+
+**交付物**
+
+- 任务、机器人/环境模型、坐标系、约束与安全状态规格
+- 感知、规划、控制、监控和场景生成源文件
+- 至少 100 个随机场景的轨迹、成功/碰撞、最小间距和运行时原始数据
+- 一份报告与录屏，比较基线/改进算法并复盘最危险失败
+
+**验收**
+
+- 100 个标称场景成功率至少 90%，碰撞为零且最小间距满足预设阈值
+- 覆盖起终点重合、无解地图、窄通道、定位漂移和传感中断
+- 用独立碰撞检查器重放全部轨迹并逐帧交叉核对
+- 注入传感冻结或控制延迟，证明监控器在规定时间内进入停止状态
+
+**复现要求**
+
+- 提交机器人/世界模型、算法、场景、测试和录屏脚本
+- 固定仿真器、物理步长、地图、随机种子和依赖版本
+- 保存原始轨迹/传感数据、场景清单和自动生成报告
+
+**安全边界：** 仅仿真 — 仅使用机器人仿真；不得在无人监督下驱动真实机械、车辆、无人机或执行器。
+
+**风险、缺口与边界**
+
+本课要求先完成系列第一门课程，且 Coursera 完整访问可能需要付费。
+
+**完成证据**
+
+- 按周学习日志：投入时间、问题、错误订正、决策、下一步，并链接本周可复现产物
+- 设计审查包：需求与约束、方案权衡、可编辑源文件、适用的 ERC/DRC/时序/稳定性检查、导出物与复现实验
+- 代码仓库：固定依赖和工具链、最小运行命令、测试或波形/基准、预期输出与许可说明
+- 仿真包：模型或网表、输入、求解器与版本、参数扫描脚本、基准对照、预期结果及一条重新运行命令

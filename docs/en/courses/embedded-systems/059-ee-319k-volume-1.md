@@ -2,78 +2,126 @@
 title: "Embedded Systems: Shape the World"
 description: "The University of Texas at Austin's Embedded Systems: Shape the World provides an embedded-systems introduction through an open text, chapter-embedded videos, and activities created for EE 319K; the dead aggregate video index is excluded, the edX run is archived, and learners should prefer the MSPM0 edition while preserving their own lab records."
 page_type: course
-course_id: "course-059"
-editorial_status: "researched"
-evidence_level: "R0"
-reviewed_at: "2026-07-29"
-comments: true
 ---
 
-<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 229b025703f494a1 -->
+<!-- generated-by: scripts/generate_course_pages.py; fingerprint: 81e8b99da9ada593 -->
 
-# The University of Texas at Austin EE 319K / Volume 1: Embedded Systems: Shape the World
+# Embedded Systems: Shape the World
 
 ## Course Overview
 
-- **University:** The University of Texas at Austin
+- **Institution:** The University of Texas at Austin
 - **Course code:** EE 319K / Volume 1
-- **Official prerequisites:** UT Austin EE 319K requires EE 306, ECE 306, or BME 306 with a grade of at least C-
-- **EEDIY preparation:** No additional EEDIY preparation requirement
-- **Access:** Open without registration
-- **Material status:** 2026-07-29; public-material guide
+- **Track:** [Embedded Systems](index.md)
+- **Tier:** S
+- **Role:** Mainline
+- **Level:** Not standardized by provider (use prerequisites)
+- **Last reviewed:** 2026-07-28
 
-### Course fit
+The University of Texas at Austin's Embedded Systems: Shape the World provides an embedded-systems introduction through an open text, chapter-embedded videos, and activities created for EE 319K; the dead aggregate video index is excluded, the edX run is archived, and learners should prefer the MSPM0 edition while preserving their own lab records.
 
-UT Austin EE319K’s [2022 Volume 1](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/) targets the TM4C123/Cortex-M4 in 10 chapters. The [Spring 2026 syllabus](https://users.ece.utexas.edu/~valvano/mspm0/EE319KSp26.html) instead uses the LP-MSPM0G3507/Cortex-M0+, current CCS, and a 9-chapter e-book. The conceptual order transfers; register addresses, startup code, project files, and pinouts do not. Put `LP-MSPM0G3507 / Spring 2026` at the top of the repository and treat the old book only as conceptual support.
+**Why choose this course**
 
-The prerequisite is EE306, ECE306, or BME306 with at least C-. If you cannot yet read simple assembly, draw a finite-state machine, and explain voltage, current, and binary representation, repair those gaps before buying the kit.
+Mainline course. A particularly complete and well-structured option for this track. Review note: S/A
 
-### Labs and projects
+**Before you start**
 
-[Labs](https://users.ece.utexas.edu/~valvano/mspm0/labs.html) progresses through Lab 1–9: the first 5 are individual and the final 4 are paired. Lab 1 establishes the toolchain and assembly, Lab 2 handles switches and LEDs, Lab 3 uses C and debug dumps, Lab 4 implements a traffic-light FSM, and Lab 5 builds a piano with a 5-bit DAC. The sequence then covers LCD/fixed-point output, real-time ADC position, serial FIFO data acquisition, and a game.
+- Recommended foundation: Digital Logic and Computation Structures
+- Recommended foundation: Programming and Engineering Computing
+- Recommended foundation: Electronics Laboratory and Measurement
 
-Do more than record successful videos. For each lab, preserve source, wiring, input conditions, a logic trace or dump, a failure boundary, and its fix. Lab 4 should be reconstructible from a transition table; Lab 7 should retain the ADC calibration curve; Lab 8 should show FIFO sample loss at peak input; Lab 9 should explain how frame timing, input, and sound share the budget.
+**Verifiable learning outcomes**
 
-### Access and version notes
+- Explain the core models in Embedded Systems, including their assumptions and limits
+- Solve representative derivations and problems, checking units, limiting cases, or numerical results
+- Complete a reproducible experiment or implementation with raw data, parameters, versions, and verification
 
-[Downloads](https://users.ece.utexas.edu/~valvano/mspm0/downloads.htm) supplies software and partial starters, while [Exams](https://users.ece.utexas.edu/~valvano/mspm0/exams.htm) can test assembly, FSMs, I/O, and timing. Canvas quizzes, in-person checkoffs, the full grader, and unpublished solutions remain unavailable. Attempt the work before looking for answers, then use waveforms, boundary inputs, and a second implementation to locate mistakes; searching for answers is not a substitute for grader or TA feedback.
+**Workload and pacing**
 
-[ValvanoWare](https://github.com/kk4ead/ValvanoWare) is kk4ead's public
-subset of Jonathan Valvano's material, retaining BSD-compatible licenses and
-TM4C123 traffic-light, ADC, FIFO, and SysTick examples. It is useful only for
-checking interfaces from the 2022 Volume 1 board, not as a 2026 MSPM0 starter.
-Compare an FSM table or FIFO contract, but rewrite register code for the
-current device.
+**13 weeks at 11 hours/week.** This maintainer planning estimate is derived from course role and the density of public practice and labs; it is not a provider workload promise. Pilot two weeks while logging instruction, practice, lab, and review time, then adjust the remaining plan when actual effort differs by more than 25%.
 
-Compared with Stanford CS107E, this course is the better first systematic encounter with MCU I/O, instruments, and real-time loops. CS107E goes deeper into runtimes, linkers, allocators, and an interrupt-driven library. They can follow one another, but different ISAs and boards should never be combined into one project.
+**Safety level**
 
-### Keep One Failure from FSM, Calibration, and Real-Time I/O
-
-Use the [TI LP-MSPM0G3507 guide](https://www.ti.com/lit/ug/slau873d/slau873d.pdf) for hardware connections. Default J101 exposes GND, 5 V, 3V3, UART, and SWD; it does not imply safety isolation. Wire only with power removed, use current limiting, calculate the speaker drive and LED resistors from the current schematic, and exclude mains, lithium charging, and unknown external supplies.
-
-Choose one real failure from the Lab 4 FSM, Lab 7 sensor calibration, and Lab
-8/9 real-time integration. Then build a small system that connects input,
-state, output, and timing to raw data. Explaining the version, waveform, and
-one performance tradeoff reveals whether MCU I/O, instruments, and the
-real-time loop actually connect; “running 9 labs” does not.
+**Low energy.** Keep work isolated, current-limited, and low energy; verify ratings, grounding, short-circuit risk, and emergency shutdown before power-up.
 
 ## Course Resources
 
-- [Course home](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys)
-- [Alternate course entry](https://users.ece.utexas.edu/~valvano/mspm0/ebook)
-- [Notes · Assembly reference](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/AssemblyReference.htm)
+**Software, hardware, and cost**
 
-## Resource Summary
+**Software**
 
-<details markdown="1">
-<summary>Show more official resources (1 item)</summary>
+- Maintainer-suggested open-source/free verification path: GCC or LLVM, CMake, GDB, OpenOCD, and Renode or QEMU
+- The resource inventory lists public code coverage; pin interpreter, dependencies, toolchain, datasets, and PDK versions where applicable
 
-**Resource**
+**Hardware**
 
-| Resource | Access | Status | Verified |
-|---|---|---|---|
-| [TM4C123 Hardware Reference Material](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/Appendix.htm) | Open access | Listed by official page | 2026-07-28 |
+- The resource inventory lists lab coverage; prefer borrowing or sharing the following equipment: a course-supported microcontroller development board, USB debugger, current-limited low-voltage supply, and logic analyzer. Verify ratings, authorization, and safety conditions only after the provider lab manual explicitly calls for them
 
-> These remaining entries retain access status and review dates. Rights stay with the original providers, and actual access may change with account, region, or course redesign.
+**Cost note**
 
-</details>
+The suggested software stack is available open source or free; this is not a provider requirement or bill of materials. The actual boards, components, fabrication, and instruments—and their costs—depend on the provider lab manual, region, and local availability; prefer simulation, borrowing, or sharing before purchase.
+
+**Public resource coverage**
+
+| Resource type | Completeness |
+|---|---|
+| Video | Complete |
+| Notes | Complete |
+| Practice | Complete |
+| Labs | Complete |
+| Exams | Partial |
+| Code | Complete |
+
+**Resources and access**
+
+| Resource | Access | License | Status | Verified |
+|---|---|---|---|---|
+| [Course home](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
+| [Alternate course entry](https://users.ece.utexas.edu/~valvano/mspm0/ebook) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
+| [TM4C123 Hardware Reference Material](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/Appendix.htm) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
+| [Assembly reference](https://users.ece.utexas.edu/~valvano/Volume1/IntroToEmbSys/AssemblyReference.htm) | Open access | Provider-specific terms; verify before reuse | Listed by official page | 2026-07-28 |
+
+> “Listed by official page” means the link was discovered on a successfully fetched official source on the verification date; it does not guarantee that every region or account can open the target directly. Access does not grant redistribution rights. Re-check the provider page, target link, and third-party notices before downloading, adapting, or publishing material.
+
+## Practice and Verification
+
+**Practice loop**
+
+**Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1: Deterministic Sampling and Fault-Recovery Node**
+
+This is a maintainer-suggested self-study project for Embedded Systems: Shape the World · The University of Texas at Austin EE 319K / Volume 1, not an official course assignment. Implement a low-voltage sensing node or its simulation for Embedded Systems, including timed sampling, buffering, checksummed communication, a watchdog, and power-loss recovery.
+
+**Origin:** Maintainer-suggested project
+
+**Deliverables**
+
+- A specification of tasks and interrupts, timing budget, buffering, communication frames, and fault states
+- Firmware, host decoder, hardware abstraction or simulator, and automated test sources
+- At least one hour of raw timestamp, loss, latency, reset, and power-estimate logs
+- A report quantifying timing margin and reviewing a buffer-overflow or communication-corruption failure
+
+**Verification**
+
+- During a one-hour nominal run, keep 99.9th-percentile sample-period error below 5% of the period with no silent loss
+- Cover timer wrap, full buffers, disconnects, checksum failures, and repeated resets
+- Cross-check counts and latency with host reference timestamps and an independent frame parser
+- Inject packet loss and simulated power failure and show recovery within five seconds with diagnostic evidence retained
+
+**Reproducibility**
+
+- Commit firmware, host tools, simulator, tests, wiring diagram, and a README
+- Pin compiler, SDK, and board versions, build flags, clock configuration, and test seeds
+- Preserve raw serial or network logs, firmware hashes, and the generated report
+
+**Safety boundary:** Low energy — Limit physical nodes to isolated, current-limited operation at or below 5 V; verify pins and ratings and wire with power removed. No mains, human connection, heaters, motors, or battery packs.
+
+**Risks, gaps, and boundaries**
+
+The primary is an open textbook and course-material site created for EE 319K rather than a current course run; chapter pages still embed videos and activities, but the dead aggregate video index is excluded. The edX run is archived and the TM4C123 toolchain is old, so the MSPM0 edition is preferred.
+
+**Completion evidence**
+
+- Weekly learning log with time, questions, corrected errors, decisions, next steps, and links to that week's reproducible artifacts
+- Design-review package with requirements and constraints, trade-offs, editable sources, applicable ERC/DRC/timing/stability checks, exports, and a reproduction test
+- Code repository with pinned dependencies and toolchain, a minimal run command, tests or waveform/benchmark checks, expected output, and license notes
+- Experiment package with schematic/setup, calibration record, raw data, uncertainty, safety checks, failed runs, and steps to rebuild plots from raw data

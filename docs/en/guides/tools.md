@@ -1,80 +1,131 @@
 ---
 title: Tools and Environments
-description: Choose EE tools from the engineering task, model capability, platform, and licensing boundary.
-page_type: guide
-comments: true
-last_reviewed: 2026-07-31
+description: Choose EE software and laboratory tools by learning objective, reproducibility, cost, and risk.
 ---
+
+<div class="ee-language" markdown>
+[简体中文](../../guides/tools.md)
+</div>
 
 # Tools and Environments
 
-Write down the problem and one minimal test before choosing software. The
-comparison then turns away from feature counts on product pages and toward
-whether course files run, the model is adequate, the license is available,
-and the result can be checked.
+A tool exists to test a model; it is not the learning objective. Ask what you need to observe, how precise the result must be, and how another person can reproduce it before choosing software, instruments, or hardware. A small, stable toolchain usually beats constant platform switching.
 
-| Question to compare | What to make explicit |
-| --- | --- |
-| Task | The engineering question, not a software category |
-| Model capability | Required analysis, language subset, device model, or fabrication rule |
-| Deliverable | Native source, command, report, open export, and comparable metric |
-| Runtime boundary | OS/CPU, driver, laboratory or license server, and available memory |
-| Permission | Separate rights for the program, models, libraries, course starter files, and output |
-| Rejection test | One minimal input the candidate must pass and diagnostics preserved on failure |
+## Five selection criteria
 
-The table does not seek an abstract “most powerful tool.” It asks whether a
-candidate can express this problem, whether the actual environment can run
-it, and how its output will be checked against calculation or measurement.
+1. **Objective coverage:** can it support the current input, analysis, implementation, and verification?
+2. **Reproducibility:** can you save text configuration, versions, parameters, and scripts—not just screenshots?
+3. **Availability:** are its license, operating system, region, hardware, and network requirements sustainable?
+4. **Transfer:** do the concepts carry to other tools, or are you learning one interface?
+5. **Risk fit:** do ratings, isolation, protection, and user training match the experimental energy?
 
-## One small task can eliminate an unsuitable tool
+## Minimal software stack
 
-State the action before choosing software:
+These are not the only valid tools, and you should not install all of them. Choose one primary tool per row. When a course requires commercial software, preserve an accessible alternative path.
 
-- derivation, fitting, or plotting needs unit-aware data handling, a repeatable script, and numerical checks;
-- circuit prediction needs the relevant device models and analyses plus access to operating points and convergence information;
-- board design needs electrical and design rules, BOM and footprint provenance, and usable manufacturing outputs;
-- RTL verification needs a simulator or linter compatible with the course language subset, automated tests, and waveforms when they answer a specific question;
-- instrument control needs a confirmed interface and driver, timestamps, error handling, and preservation of raw samples.
+| Task | Practical starting point | Alternatives | Evidence to retain |
+| --- | --- | --- | --- |
+| Numerical work and data | [Python](https://www.python.org/) + [Jupyter](https://jupyter.org/) | [GNU Octave](https://octave.org/) | Environment file, scripts, raw data, plots with units |
+| Circuit simulation | [ngspice](https://ngspice.sourceforge.io/) or course-supported SPICE | Qucs-S, vendor simulator | Netlist/schematic, model source, tolerance sweep |
+| PCB design | [KiCad](https://www.kicad.org/) | Course or laboratory EDA | Schematic, layout, rules, BOM, fabrication outputs |
+| HDL simulation | [Icarus Verilog](https://steveicarus.github.io/iverilog/) or [Verilator](https://www.veripool.org/verilator/) | FPGA vendor suite | Source, testbench, waveforms, coverage/timing summary |
+| Waveform inspection | [GTKWave](https://gtkwave.github.io/gtkwave/) | Simulator viewer | Replayable waveform and trigger conditions |
+| Embedded builds | Compiler + debugger + scripted build | PlatformIO, vendor SDK, RTOS toolchain | Locked dependencies, flashing method, serial/logic logs |
+| Versioning and review | [Git](https://git-scm.com/) | Institution-compatible hosting | Small commits, tags, issues, review decisions |
+| Reports and plots | Markdown + script-generated figures | LaTeX, notebooks | Report rebuilt from source data |
 
-Run one minimal smoke test first. A numerical environment should recreate a unit-labeled plot from raw CSV. SPICE should solve a small RC operating-point, transient, and AC case. A board tool should pass rules and export a fabrication preview. An HDL tool should make an intentionally failing assertion fail reliably. If that small path cannot be explained, adding plugins merely adds variables.
+!!! note "Commercial does not automatically mean better"
+    Industry tools can matter for a role or chip flow, but foundational concepts and files should remain transferable. Record versions, license limits, and an alternative so the artifact is not trapped on one machine.
 
-## Numerical and circuit tools depend on model capability
+## A reproducible software environment
 
-[Python](https://www.python.org/about/) is well suited to connecting data cleaning, analysis, figures, and automation in scripts; its official site describes its open-source license and broad ecosystem. When a course already uses MATLAB-like material and freely redistributable software is important, [GNU Octave](https://octave.org/about) offers a largely compatible numerical language under the GPL. Neither produces trustworthy answers automatically. Check array shape, units, floating-point tolerance, random seed, and library version, and make every figure rebuild from raw data.
+Put the environment contract in the project rather than in memory:
 
-Do not begin by asking which numerical environment is most powerful. Ask whether course files run, whether unavailable packages have equivalents, and whether collaborators can reproduce the platform. If a notebook depends on hidden state created by a manual execution order, move decisive calculations into normal scripts or functions. A notebook can explain the work without becoming the only sequence that makes the result appear.
+```text
+project/
+├── README.md             # Objective, install, run, verify
+├── environment.yml      # Or requirements/lockfile
+├── Makefile              # Or an equivalent repeatable task entry
+├── src/
+├── tests/
+├── simulations/
+├── data/
+└── docs/
+```
 
-[ngspice](https://ngspice.sourceforge.io/index.html) is an open SPICE simulator that consumes netlists and supports common analog devices and some mixed-signal use. It is useful for operating-point, DC-sweep, AC, transient, and noise questions. It does not prove that a breadboard, PCB, probe, or physical device will behave identically. With any SPICE tool, preserve model source and version, temperature, initial conditions, tolerance or corner settings, and convergence warnings. If a course requires a vendor model or PDK, confirm that it may be used in and distributed with the substitute simulator.
+Record at least:
 
-## PCB and HDL tools also depend on output formats
+- operating system, tool, and critical plugin versions;
+- installation source and license requirements;
+- one clean-environment build path;
+- random seeds, model files, and data provenance;
+- the command that creates plots and reports;
+- known platform differences and failure modes.
 
-[KiCad](https://www.kicad.org/about/kicad/) provides schematic capture, PCB layout, and Gerber or IPC-2581 output. Its official page identifies Windows, Linux, and macOS support and the GPLv3 license. It fits work that values open, cross-platform project files. A laboratory may still require another EDA system, a controlled library, or a particular manufacturing check. Before migrating, compare net classes and rules, layer stack, footprints, 3D or STEP exchange, BOM, and fabrication outputs—not merely whether a schematic opens.
+For binary project formats, also export reviewable PDFs, netlists, BOMs, test reports, or textual intermediate forms. Exports do not replace source files, but they let reviewers without the same license participate.
 
-HDL simulators also differ in semantics and language coverage. Verilator's official [FAQ](https://verilator.org/guide/latest/faq.html) describes its open-source licensing and Windows or WSL options. It favors compiling synthesizable SystemVerilog into a C++ or SystemC model and is not identical to every event-driven commercial simulator. Test compatibility first if a course depends on full timing simulation, vendor primitives, VHDL, or a particular SystemVerilog feature. Passing one simulator does not prove identical behavior under another.
+## Classify a workbench by energy
 
-Keep inspectable intermediate forms for both kinds of work. Whether a tool's native project files are text or binary, also export a PDF schematic, netlist, BOM, design-rule summary, and manufacturing preview. For RTL, keep the compile command, test list, seed, assertion failures, and only the waveforms needed to explain behavior. Exports do not replace native source, but they let someone without the same license or platform inspect interfaces and outcomes.
+<div class="ee-card-grid ee-card-grid--three">
+  <article class="ee-card">
+    <span class="ee-tag">Level 0</span>
+    <h3>Software only</h3>
+    <p>Hand analysis, computation, circuit/field/control simulation, public data, and HDL testbenches. Appropriate at every stage and the first step before physical work.</p>
+  </article>
+  <article class="ee-card">
+    <span class="ee-tag">Level 1</span>
+    <h3>Bounded low energy</h3>
+    <p>Protected teaching supplies, low-energy components, conservative current limits, and complete rating checks. Short circuits, heat, polarity, grounding, and tool hazards still matter.</p>
+  </article>
+  <article class="ee-card">
+    <span class="ee-tag">Level 2+</span>
+    <h3>Qualified facility and supervision</h3>
+    <p>Mains, higher voltage/current, stored-energy systems, lasers, RF power, moving machinery, vacuum, high temperature, or chemical processes. Use only approved facilities and trained supervision.</p>
+  </article>
+</div>
 
-## Platform, license, and model provenance may decide the choice
+Voltage is not the only risk variable. Current capability, stored energy, arcs, frequency, grounding, temperature, motion, and chemical exposure can change the hazard class. Read [Laboratory Safety](safety.md) before starting.
 
-“Free to use” does not mean “free to redistribute.” An open-source program does not guarantee that bundled libraries, device models, vendor IP, PDKs, or course examples carry the same license. Check the program, models and libraries, starter files, and intended output separately. In particular, do not publish a restricted PDK, FPGA IP, or course solution merely because a repository makes sharing convenient.
+## What a Level 1 bench needs to accomplish
 
-Resolve platform constraints before the project: operating system and CPU architecture, memory and disk, USB or JTAG drivers, container or VM support, campus license servers and VPN, and backward compatibility for old formats. If a tool runs only on a campus server, provide lightweight offline analysis and open exports. If a substitute changes the device model, synthesis target, or numerical solver, call the work a migration rather than direct reproduction of the original flow.
+Models and prices vary by region and project, so treat this as a functional list:
 
-Methods are usually more substitutable than product names. MATLAB, Octave, and Python can cover many numerical tasks, but package and floating-point behavior need comparison. Different SPICE engines can compare an operating point from a shared netlist while failing to support the same proprietary model. An open HDL simulator may handle quick lint and regression while the vendor flow remains necessary for device mapping, place-and-route, and a board bitstream. A substitute succeeds when the same question receives an explainable, cross-checked answer.
+- **Protected source:** current limiting and output ratings matched to the project; start at a conservative limit.
+- **Digital multimeter:** category and range fit the use; probes, fuses, and jacks are intact.
+- **Observation:** select an oscilloscope, logic analyzer, or software instrument by objective; understand input range and ground first.
+- **Connection and protection:** insulated leads, appropriate fusing/limiting, eye protection, stable surface, lighting, and ventilation.
+- **Traceable components:** retain part number, data sheet, and source; unknown batteries and power supplies do not enter the bench.
 
-## The environment note should say when to upgrade or switch
+!!! warning "An oscilloscope ground clip is not an arbitrary reference"
+    Many bench oscilloscope grounds connect to protective earth. A wrong connection can short a circuit, damage equipment, or injure someone. If you do not understand the supply and isolation topology, do not probe mains or floating high-energy systems. Use simulation, a properly rated differential setup, or a supervised facility.
 
-The official Git book defines [version control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control.html) as recording changes so a particular version can be recovered later. In an EE project, versioned material includes code, schematic, constraints, simulation deck, analysis scripts, test procedure, and modest data—not source code alone. Large binary or raw datasets may live elsewhere if the repository records a stable location, version, or checksum.
+## Files, units, and names
 
-A minimal environment note answers five things: platform, tool and critical package versions, installation or lawful license access, the command to run, and the location of input and expected output. Keep a small regression case. After an OS, tool, model, or library upgrade, run it before resuming the project. If the result changes, compare versions and warnings before calling the change a design improvement.
+- Preserve column names, units, sample rate, timestamp, and instrument settings in data.
+- Include object, condition, and sequence in names; avoid `final-final-2`.
+- Use consistent SI units and prefixes; every plot axis needs a unit.
+- Define parameters in one authoritative file and derive simulation, code, and reports from it.
+- Append to raw data; make cleaning and processing rerunnable.
+- Never publish secrets, personal data, paid materials, or controlled device files.
 
-Finish the note with “replace when” and “retain for now because.” Replace a
-tool when it cannot express the required model, lacks a necessary analysis,
-is inaccessible to the team because of licensing or platform limits, cannot
-connect output to physical measurement, or has a confirmed blocking defect.
-An unfamiliar interface, a more attractive screenshot elsewhere, or the first
-failed convergence is a reason to read the warning and reduce the model, not
-an automatic migration. The environment is stable enough when every major
-conclusion traces to input, command, version, and output and the rejection
-test still fails under the wrong condition. Installation alone establishes
-none of that.
+## Learn a tool in this order
+
+1. Verify installation and version with a minimal example.
+2. Reproduce a reference result from the course.
+3. Change one parameter and predict the effect.
+4. Introduce one deliberate fault and learn the logs and diagnostics.
+5. Automate the repeated path.
+6. Export evidence another learner can inspect.
+
+When switching tools, map concepts—nodes, netlists, constraints, testbenches, debug interfaces, coordinates, and units—instead of copying button sequences.
+
+## Accessibility and low-bandwidth paths
+
+- Prefer text notes, captions/transcripts, and downloadable files.
+- Distinguish plots with line style, symbols, and direct labels in addition to color.
+- Describe the conclusion and key data in image alternatives; “figure below” is insufficient.
+- A large video should not be the only route; provide chapter, exercise, and timestamp mappings.
+- Cloud tools need a local or export path so a network interruption does not erase core work.
+- Keyboard operation, sufficient contrast, and scalable text are tool-selection requirements.
+
+Next: turn the environment into a testable micro-project with the [Project Practice](projects.md) guide.

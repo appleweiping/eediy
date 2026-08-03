@@ -1,66 +1,131 @@
 ---
 title: 工具与环境
-description: 从实际工程任务、模型能力、平台和许可边界选择电子工程工具。
-page_type: guide
-comments: true
-last_reviewed: 2026-07-31
+description: 按学习目标、可复现性、成本和风险选择电子工程软件与实验工具。
 ---
+
+<div class="ee-language" markdown>
+[English version](../en/guides/tools.md)
+</div>
 
 # 工具与环境
 
-选工具前先写下要解决的问题和一个最小测试。这样比较的对象就不再是宣传页上的功能数量，而是课程文件能否运行、模型是否够用、团队能否取得许可，以及结果能否被检查。
+工具是验证模型的手段，不是学习目标。先问“我要观察什么、精度需要多少、怎样复现”，再决定软件、仪器与硬件。一个小而稳定的工具链通常比不断更换平台更有效。
 
-| 要比较的问题 | 应当写清楚什么 |
-| --- | --- |
-| 任务 | 要回答的工程问题，不是软件类别 |
-| 模型能力 | 必须支持的 analysis、语言子集、器件模型或制造规则 |
-| 交付物 | 原始文件、命令、报告、开放导出和可比较指标 |
-| 运行边界 | OS/CPU、driver、实验室或 license server、可用内存 |
-| 权限 | 程序、模型、库、课程 starter file 与产物分别能否使用和再分发 |
-| 淘汰测试 | 一个候选必须通过的最小输入，以及失败时保留的诊断 |
+## 选择工具的五条标准
 
-这张表不负责选出抽象意义上的“最强工具”。它只帮助回答：候选工具能否表达当前问题，实际环境是否能运行，以及输出怎样与计算或测量互相校正。
+1. **覆盖目标：**是否能完成当前课程或项目的输入、分析、实现和验证？
+2. **可复现：**能否保存文本配置、版本、参数和脚本，而不是只留下截图？
+3. **可获得：**许可证、操作系统、地区、硬件和网络条件是否可持续？
+4. **可迁移：**核心概念能否迁移到其他工具，还是被某个界面锁定？
+5. **风险匹配：**工具额定值、隔离、保护和使用者训练是否覆盖实验能量？
 
-## 一个最小任务通常足以淘汰不合适的工具
+## 软件最小栈
 
-选择前先写清要完成的动作：
+以下不是唯一选择，也不是要求全部安装。每一行先选一个主工具；课程指定商业工具时，同时保留一种可访问的替代路径。
 
-- 推导、拟合或画图：需要带单位的数据处理、可重复脚本和数值误差检查；
-- 预测电路行为：需要支持所用器件模型和分析类型，并能查看 operating point 与收敛信息；
-- 画板与制造：需要 electrical/design rules、BOM、封装来源和可交付制造文件；
-- 验证 RTL：需要与课程语言子集匹配的 simulator/linter、自动 testbench 和必要的波形；
-- 控制仪器：需要确认接口、driver、采样时间戳、错误处理和原始数据保存。
+| 任务 | 推荐起点 | 可替代选择 | 应保存的证据 |
+| --- | --- | --- | --- |
+| 数值计算与数据 | [Python](https://www.python.org/) + [Jupyter](https://jupyter.org/) | [GNU Octave](https://octave.org/) | 环境文件、脚本、原始数据、带单位图表 |
+| 电路仿真 | [ngspice](https://ngspice.sourceforge.io/) 或课程支持的 SPICE | Qucs-S、厂商仿真器 | 网表/原理图、模型来源、容差扫描 |
+| PCB 设计 | [KiCad](https://www.kicad.org/) | 课程或实验室指定 EDA | 原理图、版图、规则、BOM、制造输出 |
+| HDL 仿真 | [Icarus Verilog](https://steveicarus.github.io/iverilog/) 或 [Verilator](https://www.veripool.org/verilator/) | FPGA 厂商工具 | 源码、测试平台、波形、覆盖/时序摘要 |
+| 波形查看 | [GTKWave](https://gtkwave.github.io/gtkwave/) | 仿真器内置查看器 | 可重放波形与触发条件 |
+| 嵌入式构建 | 编译器 + 调试器 + 构建脚本 | PlatformIO、厂商 SDK、RTOS 工具链 | 锁定依赖、烧录方式、串口/逻辑分析日志 |
+| 版本与协作 | [Git](https://git-scm.com/) | 机构提供的兼容平台 | 小提交、标签、问题记录、评审结论 |
+| 文档与图表 | Markdown + 脚本生成图 | LaTeX、Notebook | 可从原始数据重建的报告 |
 
-先用一个最小输入做 smoke test。数值工具应能从原始 CSV 重画一张带单位的图；SPICE 应能运行一个 RC operating-point/transient/AC case；PCB 工具应能通过规则检查并导出制造预览；HDL 工具应能让一个故意失败的 assertion 可靠失败。连最小任务都解释不清时，安装更多插件只会增加变量。
+!!! note "商业工具并非自动优于开源工具"
+    行业工具可能对求职或特定芯片流程很重要，但基础阶段应确保概念和文件格式可迁移。记录版本、许可证限制和替代方案，避免作品只能在一台机器上打开。
 
-## 数值计算与电路仿真看模型能力
+## 一个可复现的软件环境
 
-[Python](https://www.python.org/about/)适合把数据清洗、分析、图表和自动化串成脚本，生态广且采用开放许可；若课程已有 MATLAB 风格代码、又需要可自由再分发的环境，[GNU Octave](https://octave.org/about)提供高度相近的数值语言并采用 GPL。两者都不是答案生成器：必须检查 array shape、单位、floating-point tolerance、随机种子和 library version，图也应能从原始数据一次重建。
+推荐把环境说明写进项目根目录，而不是依赖个人记忆：
 
-选择数值环境时，不要先问“哪一个更强”，而要问课程文件能否运行、缺少的 package 是否可替代、团队是否能在相同平台复现。若唯一输入是 notebook 手工执行后的隐藏状态，就把关键计算迁到普通 script/function；notebook 可以负责解释，但不应成为结果只能按某个点击顺序出现的原因。
+```text
+project/
+├── README.md             # 目标、安装、运行、验证
+├── environment.yml      # 或 requirements/lockfile
+├── Makefile              # 或等价的可重复任务入口
+├── src/
+├── tests/
+├── simulations/
+├── data/
+└── docs/
+```
 
-[ngspice](https://ngspice.sourceforge.io/index.html)是开放的 SPICE 电路模拟器，接受 netlist 并覆盖常见模拟器件及部分 mixed-signal 场景。适合验证工作点、DC sweep、AC、transient 和 noise 等模型问题；它不会证明 breadboard、PCB、probe 或真实器件必然相同。使用任何 SPICE 时都要保存 model 来源与版本、temperature、initial condition、tolerance/corner 设置和 convergence warning。若课程指定厂商模型或 PDK，先确认该模型是否允许在替代 simulator 中使用与分发。
+最低记录项：
 
-## PCB 与 HDL 工具还要看交付格式
+- 操作系统、工具与关键插件版本；
+- 安装来源及许可证要求；
+- 一条从干净环境开始的构建路径；
+- 随机种子、模型文件与数据来源；
+- 生成图表和报告的命令；
+- 已知平台差异和失败模式。
 
-[KiCad](https://www.kicad.org/about/kicad/)覆盖 schematic capture、PCB layout 与 Gerber/IPC-2581 输出，官方说明支持 Windows、Linux、macOS，并采用 GPLv3。它适合需要开放、跨平台原始文件的课程或个人板卡；若实验室规定另一套 EDA、使用受控 library 或要求特定 manufacturing check，则应服从任务交付条件。替换工具前先比较 net class/rules、layer stack、footprint、3D/STEP、BOM 和 fabrication outputs，而不是只比较能否打开 schematic。
+对二进制工程文件，额外导出可审阅的 PDF、网表、BOM、测试报告或文本中间格式。导出文件不能替代源文件，但能让没有相同许可证的人参与评审。
 
-HDL 仿真器的语义和覆盖范围也不同。Verilator 的官方 [FAQ](https://verilator.org/guide/latest/faq.html)说明它是开放的 SystemVerilog 工具，并交代 Windows/WSL 支持与 LGPL/Artistic 许可；它偏向把 synthesizable design 编译成 C++/SystemC model，并不等同于每一种 event-driven commercial simulator。课程若依赖完整 timing simulation、vendor primitive、VHDL 或特定 SystemVerilog feature，应先做兼容性样例。一个工具跑过并不证明语言语义在另一工具中完全一致。
+## 实验台按能量分级
 
-不论 PCB 还是 HDL，都应保留人能检查的中间结果。原生、工具专用的工程文件无论是文本还是二进制，都应另行导出 PDF 原理图、网表、BOM、DRC 摘要和制造预览；RTL 则保留编译命令、测试清单、随机种子、断言失败信息和必要波形。导出文件不能替代原始工程，但能让没有同一许可和平台的人判断接口与结果。
+<div class="ee-card-grid ee-card-grid--three">
+  <article class="ee-card">
+    <span class="ee-tag">Level 0</span>
+    <h3>纯软件</h3>
+    <p>手算、数值计算、电路/场/控制仿真、公开数据、HDL 测试平台。适合所有阶段，也是任何硬件实验的第一步。</p>
+  </article>
+  <article class="ee-card">
+    <span class="ee-tag">Level 1</span>
+    <h3>受限低能量</h3>
+    <p>使用具有限流和保护的教学电源、低能量器件及完整额定值检查。仍需理解短路、发热、反接、接地和工具风险。</p>
+  </article>
+  <article class="ee-card">
+    <span class="ee-tag">Level 2+</span>
+    <h3>合格设施与监督</h3>
+    <p>市电、较高电压/电流、储能系统、激光、射频功率、旋转机械、真空、高温或化学工艺。只能在获准设施中由受训人员指导。</p>
+  </article>
+</div>
 
-## 平台、许可与模型来源可能直接决定选择
+电压不是唯一风险指标。电流能力、储能、电弧、频率、接地方式、温度、机械运动和化学暴露都可能改变危害等级。开始前阅读[实验安全指南](safety.md)。
 
-“免费使用”不等于“允许再分发”，open-source program 也不代表 bundled library、device model、vendor IP、PDK 或 example design 使用同一许可。安装前分别确认 program、models/libraries、课程 starter files 和最终产物的权限。尤其不要把受限 PDK、FPGA IP 或课程 solution 因为仓库方便就公开。
+## Level 1 实验台的最小思路
 
-平台边界也应在开题时确定：操作系统和 CPU architecture、内存/磁盘、USB/JTAG driver、容器或 VM 是否可用、学校 license server 是否需要 VPN、旧 project format 能否向后兼容。若工具只能在校园服务器运行，准备轻量的离线分析和导出格式；若替代工具改变器件模型、综合目标或 numerical solver，就把结果称为迁移，不称原流程的直接复现。
+具体型号随地区、预算和课程而变，以下是功能而不是购物清单：
 
-可替代的通常是“方法”，不是软件名字。MATLAB/Octave/Python 都能承担许多数值任务，但 package 与 floating-point behavior 需要核对；不同 SPICE 可以比较同一 netlist 的 operating point，却可能不支持同一 proprietary model；开放 HDL simulator 可做快速 lint/regression，厂商流程仍负责 device mapping、place-and-route 与板上 bitstream。替代成功的标准是同一问题得到可解释、经过交叉检查的结果。
+- **受保护电源：**可设置限流，输出与项目额定值匹配；上电前把电流限制设在保守值。
+- **数字万用表：**额定类别和量程与用途匹配；表笔、保险丝和插孔状态正常。
+- **观察工具：**按学习目标选择示波器、逻辑分析仪或音频/软件仪器；先理解输入范围与接地。
+- **连接与保护：**绝缘良好的导线、合适保险/限流、护目镜、稳定工作面、良好照明和通风。
+- **可追踪元件：**保留料号、数据手册和来源；未知或来源可疑的电池与电源不进入实验台。
 
-## 环境记录应说明何时升级或换工具
+!!! warning "示波器地夹不是任意参考点"
+    许多台式示波器的地端与保护地相连。错误连接可能造成短路、设备损坏或人身危险。在不了解供电与隔离拓扑时，不测市电或浮地高能量系统；改用仿真、合格差分探头或受监督设施。
 
-Git 的官方书把[版本控制](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control.html)定义为记录文件随时间变化、能够找回特定版本的系统。对 EE 项目，版本对象不仅是 code，也包括 schematic、constraints、simulation deck、analysis script、test procedure 和小型数据。大型 binary/raw data 可放外部存储，但仓库应记录稳定路径、版本或 checksum。
+## 文件、单位与命名
 
-最小环境说明只需回答：在哪个平台运行，工具和关键 package 是什么版本，怎样安装或取得合法许可，执行哪条命令，输入与预期输出在哪里。固定一个小 regression case；升级 OS、tool、model 或 library 后先跑它，再继续项目。若结果变化，先比较版本与 warning，不要把差异自动解释为设计改进。
+- 数据文件保留原始列名、单位、采样率、时间戳和仪器设置；
+- 文件名包含对象、条件与序号，避免 `final-final-2`；
+- SI 单位与前缀保持一致，图轴必须带单位；
+- 参数在一个权威文件中定义，脚本、仿真和报告从它派生；
+- 原始数据只追加不覆盖；清洗和计算步骤可重复执行；
+- 密钥、个人信息、付费材料和受限器件文件不得提交到公开仓库。
 
-选型记录最后写“何时换”与“为何暂不换”。当前工具无法表达关键模型、缺少必要 analysis、许可证或平台让团队无法使用、输出无法与真实测量对应，或已确认存在阻塞性缺陷时，就应更换。界面不熟、别人的截图更漂亮，或第一次 simulation 不收敛，则更适合先读 warning、缩小模型并建立可工作的最小例。主要结论能够追到输入、命令、版本和输出，淘汰测试也会在错误条件下失败，这个环境才算足够稳定；安装完成本身说明不了这些。
+## 工具学习顺序
+
+1. 用最小示例验证安装与版本；
+2. 复现课程提供的参考结果；
+3. 改一个参数并预测变化；
+4. 故意制造一个错误，学习日志和诊断工具；
+5. 自动化重复步骤；
+6. 导出另一位学习者能检查的证据。
+
+工具迁移时先对比概念映射：节点、网表、约束、测试平台、调试接口、坐标和单位。不要逐按钮照搬界面操作。
+
+## 无障碍与低带宽方案
+
+- 优先提供文本讲义、字幕/转写和可下载文件；
+- 图表用颜色之外的线型、符号和直接标签区分；
+- 为图片写明结论与关键数据，而不是只写“如下图”；
+- 大型视频不是唯一教学入口，给出对应章节、练习和时间点；
+- 云端工具应有本地或导出路径，网络中断不应丢失核心记录；
+- 键盘可操作、足够对比度和可缩放文本属于工具选择标准。
+
+下一步：用[项目实践指南](projects.md)把工具配置转成一个有验收标准的微型项目。
